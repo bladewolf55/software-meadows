@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Catching Up on Coding - Claims-Based Identity Part 1</title>
+    <link rel="stylesheet" type="text/css" href="http://bladewolf55.gitlab.io/smblog/css/default.css">
+  </head>
+  <body>
+    <header>
+      Software Meadows      
+    </header>
+    <nav>
+      <ul>
+        <li><a href="http://bladewolf55.gitlab.io/smblog/">Home</a></li>
+        <li class="dropdown">
+          <a href="http://bladewolf55.gitlab.io/smblog/about">About</a>
+        </li>
+      </ul>
+    </nav>
+   	<aside id="sidebar">
+	   <div id="recent">
+       <p><strong>History</strong></p>
+       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-window-key-s-search-from'>windows-81-window-key-s-search-from</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li></ol>
+      </div>
+	    <div id="tags"></div>
+	  </aside>
+    <section id="content"><div class='post-title'>
+                <a href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'><h1>Catching Up on Coding - Claims-Based Identity Part 1</h1></a>
+                <p class='post-info'>2016-11-06 18:58</p>
+            </div><h1 id="section"><a href="images/the-magician_thumb_25255B1_25255D.png"><img src="images/the-magician_thumb_25255B1_25255D.png" title="the-magician" alt="the-magician" width="229" height="295" /></a></h1>
+<p>I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
+<p>Claims-based identity isn't hard to understand, but it's been challenging to learn and implement in a legacy environment. In part one, we'll look at the concepts. In future posts, I'll have code samples using current (at the moment) frameworks.</p>
+<p>Like <a href="https://www.youtube.com/watch?v=lDnxuMh0JG4">Tony Blake producing a flock of doves</a>, we'll learn some security sleight-of-hand.</p>
+<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-3.html">TDD Part 3</a><br />
+Next Episode: Claims-Based Identity Part 2</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<h1 id="claims-based-identity-basics">Claims-Based Identity Basics</h1>
+<h2 id="what-were-used-to---passwords">What We're Used To - Passwords</h2>
+<p>The convention in authentication for decades--for millennia, in a sense--has been this exchange:</p>
+<p>&quot;Let me in.&quot;<br />
+&quot;What's the password?&quot;<br />
+&quot;Swordfish.&quot;</p>
+<p>You're allowed in because you know something only a few people should: the password. Once you're in, the exchange continues.</p>
+<p>&quot;I want to see the boss.&quot;<br />
+&quot;Oh yeah? Who's asking?&quot;<br />
+&quot;I carry packages for Don Crosetti.&quot;<br />
+&quot;A courier? Delivery boys don't see the boss, chum.&quot;</p>
+<p>What you get to do is defined by your role. A lieutenant can see the boss. A courier can't.</p>
+<p>This is very much how people understand software security to work. You enter a username and password on a web site, let's say a Content Management System. Once in the site, if you're a Viewer, you can look at all the pages but not edit anything. An Blogger can create posts for her own blogs, but not anyone else's. A Site Editor can modify anyone's posts.</p>
+<p>This system works well enough for many situations (in both software and life). But there's another common approach: claims.</p>
+<h2 id="what-were-also-used-to---claims">What We're Also Used To - Claims</h2>
+<p>It's Friday night and you go out to a dance club. To get in, you have to show your driver's license. The guy at the door looks it over, then waves you in. What was he checking? Two things.</p>
+<ul>
+<li>Were you over 21?</li>
+<li>Did the license look valid for the issuing state?</li>
+</ul>
+<p>The first item is a claim. You're claiming to be over twenty-one. You have a driver's license issued by a recognized identity validator: the Bureau of Motor Vehicles. The doorman <em>didn't</em> verify your identity. He didn't ask for a social security card or birth certificate or fingerprints. He trusts that the BMV did all that. The most he did was check that the license was the expected color and had the right hologram.</p>
+<p>As long as he trusted the license, he trusted the claims on the license: your birth date, name, height, weight, etc.</p>
+<p>Roles can be claims: maybe at this particular club you have a VIP card that lets you into the upper floor. However, claims are not necessarily roles. Claims can allow more fine-grained and nuanced authorization.</p>
+<p>There are two important aspects of this example:</p>
+<ol>
+<li>The bar didn't ask for a password. They trusted a third party's identity authentication.</li>
+<li>The bar authorized entry based on a claim, not a role.</li>
+</ol>
+<p>With those two real-world examples in mind, we're ready to look at claims-based identity in software.</p>
+<h2 id="whats-an-identity-provider-security-token-service">What's an Identity Provider (Security Token Service)?</h2>
+<p>In the bar example, the identity provider is the BMV.</p>
+<p>An STS takes care of authenticating identity, if needed, and returns a token than contains claims about the identity. An STS could be local or remote. Examples include:</p>
+<ul>
+<li>A local database containing user and password hashes.</li>
+<li>A local Active Directory</li>
+<li>Azure Active Directory</li>
+<li>Google</li>
+</ul>
+<h2 id="whats-a-token">What's a Token?</h2>
+<p>In the bar example, the token is the driver's license.</p>
+<p>A token is just data about the identity and issuer. It could be an XML document, for instance. Generally speaking, it can have:</p>
+<ul>
+<li>A unique ID</li>
+<li>An issuer certificate id</li>
+<li>A collection of claims</li>
+</ul>
+<h2 id="whats-a-claim">What's a Claim?</h2>
+<p>In the bar example, the claim is the age.</p>
+<p>A claim is a fact about the identity (i.e., the user). A claim is trusted if the identity provider is trusted. Claims could include:</p>
+<ul>
+<li>Name</li>
+<li>Email</li>
+<li>Date of Birth</li>
+<li>Country</li>
+</ul>
+<h2 id="whats-federated-identity">What's Federated Identity?</h2>
+<p>The word &quot;federation&quot; means &quot;union by agreement.&quot;</p>
+<blockquote>
+<p>A body formed by a number of nations, states, societies, unions, etc., each retaining control of its own internal affairs. [<a href="http://www.dictionary.com/browse/federation">Dictionary.com</a>]</p>
+</blockquote>
+<p>When it comes to identity, otherwise unrelated organizations can trust each other's STSs, allowing a user to log in with one set of credentials that are accepted elsewhere. This forms the basis of single sign-on (SSO).</p>
+<p>A simple example of real-world federation would be a background check company that wants to give its customers access to their reports <em>without</em> storing them as users. The company would:</p>
+<ol>
+<li>Set up a federated STS.</li>
+<li>Establish a trust with the customer's Active Directory (for example).</li>
+<li>The customer determines which AD claims to provide.</li>
+</ol>
+<p>A customer's user would log into their computer using their corporate credentials. When she opened the background check web site, the site would check if there was an authenticate token, and find the user's credentials in a cookie (perhaps). The web site would contact the STS, which would contact the customer's AD and verify the token's validity and return claims. The site would then authorize access if the claims allowed.</p>
+<p>At no time did the user retype credentials.</p>
+<h2 id="simplest-steps-of-getting-authenticated-claims---code-neutral">Simplest Steps of Getting Authenticated Claims - Code Neutral</h2>
+<p>Here's some pseudo-code (C# style) showing how an application might get and use a claims token. <strong>Note: These are not real .Net classes!</strong></p>
+<p>A simple user.</p>
+<pre class="sourcecode"><code>class User
+{
+    public string Email { get; set; }
+}</code></pre>
+<p>The claims class. (The real .Net class is just about this simple.)</p>
+<pre class="sourcecode"><code>class Claim
+{
+    public string Type { get; set; }
+    public string Value { get; set; }
+}</code></pre>
+<p>A token/identity class, which contains a collection of claims.</p>
+<pre class="sourcecode"><code>class IdentityToken
+{
+    public string TokenId { get; set; }
+    public IEnumerable&lt;Claim&gt; Claims { get; set; }
+}</code></pre>
+<p>A helper class that checks authentication status.</p>
+<pre class="sourcecode"><code>static class AuthenticationManager
+{
+    public static bool IsAuthenticated(User user)
+    {
+        bool authState = false;
+        //check a cookie, or database, or session state, etc.
+        return authState;
+    }</code></pre>
+<p>A provider service to handle getting the token. This is the complex part if you wrote it yourself, since it needs to properly manage the network connection, protocol, certificates, trust, etc.</p>
+<pre class="sourcecode"><code>class Provider
+{
+    public string SignOnUri { get; set; }
+    public string ProviderId { get; set; }
+    public string ApplicationId { get; set;}
+    public IEnumerable&lt;Claim&gt; GetClaims(string email)
+    {
+        //Set up network connection, such as to a remote Azure AD server
+        var connection = GetConnected();
+        //The provider knows which applications are allowed.
+        if (!connection.IsValidApp(applicationId)) { throw new Exception(&quot;Invalid app&quot;);}
+        //The user might need to sign in via a remote page NOT on our site.     
+        var response = connection.Authenticate(email, SignOnUri);
+        if (response.Authenticated)
+        {
+            //The framework-specific provider takes care of the messy work of parsing the claims.
+            var claims = new List&lt;Claim&gt;();
+            foreach (string clm in response.TokenClaimCollection)
+            {
+                claims.Add(new Claim() { Name = clm.Identifier, Value = clm.ValueUri }
+            }
+            var token = new Token() { TokenId = response.TokenGuid, Claims = claims};
+            //store the token info somewhere, like in a cookie or database
+            Session.Store(token);
+            return token.Claims;
+        }
+        else
+        {
+            throw new Exception(&quot;Not a valid user.&quot;);
+        }
+    }
+}</code></pre>
+<p>And here's how authentication might look, using that provider.</p>
+<pre class="sourcecode"><code>void Main()
+{
+    //The user who wants access.
+    User user = new User() { Email = &quot;jane.doe@example.com&quot; };
+    //We have a class that checks if the user&#39;s authenticated.
+    if (!AuthenticationManager.IsAuthenticated(user))
+    {
+        //Set up a service class that does the work of communicating
+        //with the STS. Behind the scenes, it could use WS-Federation, OpenId, SAML, etc.
+        var sts = new Provider()
+        {
+            SignOnUri = &quot;https://login.otherplace.com&quot;,
+            ProviderId = &quot;ef26632f-9af6-4ea0-8fcc-a8cee466cb6d&quot;,
+            ApplicationId = &quot;mysite.mydomain.com/isunique&quot;
+        };
+        //Get the claims collection in our format. If we get this without error,
+        //the user was authenticated. We don&#39;t care how! This is where the user
+        //might be redirected to a login page.
+        var claims = sts.GetToken(user.Email).Claims;
+        //Check if the user can do something
+        if (claims.First(c =&gt; c.Name == &quot;Company&quot;).Value == &quot;XyloTech&quot;)
+        {
+            //Show their reports
+        }
+    }
+}</code></pre>
+<p>In the above method, we</p>
+<ol>
+<li>Found the user wasn't authenticated</li>
+<li>Instantiated our identity provider. This included a way to verify to the provider who we were, and vice versa. (Note: technically, the application trusts the STS, but the STS doesn't trust the application.)</li>
+<li>Asked the provider to authenticate the user. We may not know or care how this happens.</li>
+<li>Got back claims. Our provider class did the messy work of converting it to our class collection.</li>
+<li>Checked for a specific claim and took action.</li>
+</ol>
+<p>In the next post, we'll look at some of the various namespaces Microsoft uses for claims-based identity.</p>
+<hr />
+<p>Tony Blake's Corvette, license plate: &quot;SPIRIT&quot;</p>
+<p><a href="images/image_thumb.png"><img src="images/image_thumb.png" title="image" alt="image" width="244" height="150" /></a></p>
+</section>
+    
+    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
+  </body>
+</html>
