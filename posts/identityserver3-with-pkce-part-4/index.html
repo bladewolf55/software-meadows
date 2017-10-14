@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IdentityServer3 with PKCE Part 4 - Persisting User Data</title>
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
+  </head>
+  <body>
+    <header>Goat Blog</header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+          <a href="/about">About</a>
+          <div class="dropdown-content">
+            <a href="/about/contact">Contact Us</a>
+            <a href="/about-team">Our Team</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+   	<aside id="sidebar">
+	   <div id="recent">
+       <p><strong>History</strong></p>
+       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li></ol></li></ol></li></ol>
+      </div>
+	    <div id="tags"></div>
+	  </aside>
+    <section id="content"><div class='post-title'>
+                <a href='https://bladewolf55.gitlab.io/posts/identityserver3-with-pkce-part-4'><h1>IdentityServer3 with PKCE Part 4 - Persisting User Data</h1></a>
+                <p class='post-info'>2017-05-08 10:11</p>
+            </div><p>This series simulates a native application accessing a protected Web API resource, using OAuth2 via <a href="https://github.com/IdentityServer/IdentityServer3">IdentityServer3</a>. It demonstrates using Proof Key for Code Exchange (PKCE), and is in four parts:</p>
+<ol>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-1-simple.html">Build a simple authorization server, consumed by native application</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-2.html">Build a protected resource</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-3.html">Persist server configuration to database</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
+</ol>
+<blockquote>
+<p><strong>Important</strong><br />
+This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
+</blockquote>
+<h1 id="where-were-at">Where We're At</h1>
+<p>We're persisting IdentityServer configuration data, but still using in-memory users. IdentityServer can be extended to validate against an identity store, and supports Microsoft's AspNet.Identity via Entity Framework on SQL Server.</p>
+<blockquote>
+<p><strong>Important</strong> IdentityServer is <em>not</em> intended or used to add, edit or delete users. They make that clear. The server's job is only to verify identity. In this sample, there's a klunky method for populating the user database, and there are <em>no</em> API methods for registering a user. The API could be added using controller code similar to what's in the default ASP.NET Web API templates.</p>
+</blockquote>
+<h2 id="aspnetidentity">AspNetIdentity</h2>
+<p><strong>References</strong><br />
+<a href="https://github.com/IdentityServer/IdentityServer3.AspNetIdentity">IdentityServer3.AspNetIdentity Sample</a><br />
+<a href="https://www.scottbrady91.com/Identity-Server/Identity-Server-3-using-ASPNET-Identity">Identity Server 3 using ASP.NET Identity</a><br />
+<a href="https://mindfulsoftware.com.au/guidance/oauth2-walkthrough-using-identity-server-and-aspnet/creating-an-identity-server-using-aspnet-identity-and-entity-framework-storage">OAuth2 Walkthrough using Identity Server and ASP.NET</a></p>
+<p>Install these packages.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Install-Package IdentityServer3.<span class="fu">AspNetIdentity</span> -Project AuthAndApi
+Install-Package Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>.<span class="fu">EntityFramework</span> -Version <span class="fl">2.2</span>.<span class="fu">1</span> -Project AuthAndApi</code></pre></div>
+<p>Add a new connection string to web.config, for the AspNet Identity database.</p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml">    <span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">&quot;IdUsersDb&quot;</span><span class="ot"> connectionString=</span><span class="st">&quot;Server=(localDb)\MSSQLLocalDb;AttachDbFilename=|DataDirectory|IdUsers.mdb;Database=IdUsers-ncacpkce;Integrated Security=true;&quot;</span><span class="ot"> providerName=</span><span class="st">&quot;System.Data.SqlClient&quot;</span> <span class="kw">/&gt;</span></code></pre></div>
+<p>Update Factory.cs</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//Add these usings</span>
+<span class="kw">using</span> Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>.<span class="fu">EntityFramework</span>;
+<span class="kw">using</span> Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>;
+<span class="kw">using</span> IdentityServer3.<span class="fu">AspNetIdentity</span>;
+<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>;
+<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>.<span class="fu">InMemory</span>;</code></pre></div>
+<p>Change the Configure method, adding code to persist the users, and a new method to populate the database.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">        <span class="kw">public</span> <span class="kw">static</span> IdentityServerServiceFactory <span class="fu">Configure</span>(<span class="dt">string</span> optionsConnectionString, <span class="dt">string</span> usersConnectionString)
+        {
+            <span class="co">//Configure persisting IdentityServer operational services</span>
+            <span class="co">//The database will be created if needed. The default schema is being used.</span>
+            <span class="dt">var</span> efConfig = <span class="kw">new</span> EntityFrameworkServiceOptions
+            {
+                ConnectionString = optionsConnectionString
+            };
+
+            <span class="co">// these two calls just pre-populate the test DB from the in-memory config.</span>
+            <span class="co">// clf note: there&#39;s probably a better way to do this for a production app.</span>
+            <span class="fu">ConfigureClients</span>(Clients.<span class="fu">Get</span>(), efConfig);
+            <span class="fu">ConfigureScopes</span>(Scopes.<span class="fu">Get</span>(), efConfig);
+
+            <span class="dt">var</span> factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>();
+            factory.<span class="fu">RegisterConfigurationServices</span>(efConfig);
+            factory.<span class="fu">RegisterOperationalServices</span>(efConfig);
+            factory.<span class="fu">ConfigureClientStoreCache</span>();
+            factory.<span class="fu">ConfigureScopeStoreCache</span>();
+            <span class="co">//persist users</span>
+            <span class="co">//populate the database. This creates the database, if needed.</span>
+            <span class="fu">ConfigureUsers</span>(Users.<span class="fu">Get</span>(), usersConnectionString);
+            <span class="co">//configure IdentityServer to use the database</span>
+            factory.<span class="fu">UserService</span> = <span class="kw">new</span> Registration&lt;IUserService&gt;(UserServiceFactory.<span class="fu">Create</span>(usersConnectionString));
+
+            <span class="co">//configure cleanup for expired data</span>
+            <span class="dt">var</span> cleanup = <span class="kw">new</span> <span class="fu">TokenCleanup</span>(efConfig); <span class="co">//by default every 60 seconds</span>
+
+            <span class="kw">return</span> factory;
+        }
+
+        <span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">ConfigureUsers</span>(IEnumerable&lt;InMemoryUser&gt; users, <span class="dt">string</span> connectionString)
+        {
+            <span class="co">//create the Identity UserManager</span>
+            <span class="dt">var</span> context = <span class="kw">new</span> <span class="fu">IdentityDbContext</span>(connectionString);
+            <span class="dt">var</span> userStore = <span class="kw">new</span> UserStore&lt;IdentityUser&gt;(context);
+            <span class="dt">var</span> userManager = <span class="kw">new</span> UserManager&lt;IdentityUser&gt;(userStore);
+            <span class="kw">foreach</span> (var user <span class="kw">in</span> users)
+            {
+                <span class="co">//no error checking!</span>
+                <span class="co">//only add if doesn&#39;t exist</span>
+                <span class="dt">var</span> test = userManager.<span class="fu">FindByName</span>(user.<span class="fu">Username</span>);
+                <span class="kw">if</span> (test != <span class="kw">null</span>) { <span class="kw">continue</span>; }
+                userManager.<span class="fu">Create</span>(<span class="kw">new</span> <span class="fu">IdentityUser</span>(user.<span class="fu">Username</span>), user.<span class="fu">Password</span>);
+                test = userManager.<span class="fu">FindByName</span>(user.<span class="fu">Username</span>);
+                <span class="kw">foreach</span> (var claim <span class="kw">in</span> user.<span class="fu">Claims</span>)
+                {
+                    <span class="kw">if</span> (claim.<span class="fu">Type</span>.<span class="fu">ToLower</span>() == <span class="st">&quot;email&quot;</span>) { test.<span class="fu">Email</span> = claim.<span class="fu">Value</span>; }
+                    userManager.<span class="fu">AddClaim</span>(test.<span class="fu">Id</span>, claim);
+                }
+                userManager.<span class="fu">Update</span>(test);
+            }
+        }</code></pre></div>
+<p>And finally, add a new factory class, which is used in the line <code>factory.UserServce =</code>.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">   <span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> UserServiceFactory
+    {
+        <span class="kw">public</span> <span class="kw">static</span> AspNetIdentityUserService&lt;IdentityUser, <span class="dt">string</span>&gt; <span class="fu">Create</span>(<span class="dt">string</span> connectionString)
+        {
+            <span class="dt">var</span> context = <span class="kw">new</span> <span class="fu">IdentityDbContext</span>(connectionString);
+            <span class="dt">var</span> userStore = <span class="kw">new</span> UserStore&lt;IdentityUser&gt;(context);
+            <span class="dt">var</span> userManager = <span class="kw">new</span> UserManager&lt;IdentityUser&gt;(userStore);
+            <span class="kw">return</span> <span class="kw">new</span> AspNetIdentityUserService&lt;IdentityUser, <span class="dt">string</span>&gt;(userManager);
+        }
+    }</code></pre></div>
+<p>That's it! The Startup class doesn't change. Running the solution creates the new database, and the authentication works as before.</p>
+<p><a href="images/2017-05-06_165055_thumb"><img src="images/2017-05-06_165055_thumb" title="2017-05-06_165055" alt="2017-05-06_165055" width="426" height="139" /></a></p>
+<h1 id="wrap-up">Wrap Up</h1>
+<p>In this series, I demonstrated authorizing a mobile application in a secure way. This was necessarily a simple sample. Some natural next steps and questions to answer would be:</p>
+<ol>
+<li>How to customize the IdentityServer login and authorization screens</li>
+<li>Configure for OpenID Connect3</li>
+<li>Show using Google authentication</li>
+</ol>
+</section>
+    
+    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
+  </body>
+</html>

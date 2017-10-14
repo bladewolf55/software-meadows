@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</title>
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
+  </head>
+  <body>
+    <header>Goat Blog</header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+          <a href="/about">About</a>
+          <div class="dropdown-content">
+            <a href="/about/contact">Contact Us</a>
+            <a href="/about-team">Our Team</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+   	<aside id="sidebar">
+	   <div id="recent">
+       <p><strong>History</strong></p>
+       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li></ol></li></ol></li></ol>
+      </div>
+	    <div id="tags"></div>
+	  </aside>
+    <section id="content"><div class='post-title'>
+                <a href='https://bladewolf55.gitlab.io/posts/identityserver3-with-pkce-part-3'><h1>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</h1></a>
+                <p class='post-info'>2017-05-08 10:09</p>
+            </div><p>This series simulates a native application accessing a protected Web API resource, using OAuth2 via <a href="https://github.com/IdentityServer/IdentityServer3">IdentityServer3</a>. It demonstrates using Proof Key for Code Exchange (PKCE), and is in four parts:</p>
+<ol>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-1-simple.html">Build a simple authorization server, consumed by native application</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-2.html">Build a protected resource</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-3.html">Persist server configuration to database</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
+</ol>
+<blockquote>
+<p><strong>Important</strong><br />
+This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
+</blockquote>
+<h1 id="where-were-at">Where We're At</h1>
+<p>Until now, we've been using in-memory configuration data (clients and scopes). But we'd like a way to persist the configuration to a database.</p>
+<h2 id="identityserver-and-entity-framework">IdentityServer and Entity Framework</h2>
+<p><strong>References</strong></p>
+<p><a href="https://identityserver.github.io/Documentation/docsv2/ef/overview.html">Entity Framework support for Clients, Scopes, and Operational Data</a><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/ef/operational.html">Operational Data</a><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/ef/clients_scopes.html">Clients and Scopes</a><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/advanced/caching.html">Caching results for client, scope, and user stores</a></p>
+<p>Add these packages.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Install-Package IdentityServer3.<span class="fu">EntityFramework</span> -Project AuthAndApi</code></pre></div>
+<p>Add the App_Data folder. This is required if you want to use the connection string below.</p>
+<p>Add a connection string for the configuration database. The sample uses SQL localDb 2016.</p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;connectionStrings&gt;</span>
+    <span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">&quot;IdConfigDb&quot;</span> 
+<span class="ot">         connectionString=</span><span class="st">&quot;Server=(localDb)\MSSQLLocalDb;AttachDbFilename=|DataDirectory|IdConfig.mdb;Database=IdConfig;Integrated Security=true;&quot;</span> 
+<span class="ot">         providerName=</span><span class="st">&quot;System.Data.SqlClient&quot;</span> <span class="kw">/&gt;</span>
+  <span class="kw">&lt;/connectionStrings&gt;</span></code></pre></div>
+<p>Add an IdentityServerConfiguration folder, and a Factory.cs class. The factory class takes care of setting the configuration database source, and also initially populating the database using our in-memory client and scope collections.</p>
+<blockquote>
+<p><strong>Note</strong><br />
+This sample doesn't provide a way to edit configuration data. There is a NuGet package that adds web-based configuration administration to a project. I haven't tried it, but here's the link. <a href="https://github.com/IdentityServer/IdentityServer3.Admin">IdentityServer3.Admin</a></p>
+</blockquote>
+<p><strong>Factory.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Web</span>;
+<span class="co">//Added</span>
+<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Configuration</span>;
+<span class="kw">using</span> IdentityServer3.<span class="fu">EntityFramework</span>;
+<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Models</span>;
+<span class="kw">using</span> AuthAndApi.<span class="fu">IdOptions</span>;
+<span class="kw">using</span> AuthAndApi.<span class="fu">IdUsers</span>;
+
+<span class="kw">namespace</span> AuthAndApi.<span class="fu">IdentityServerConfiguration</span>
+{
+    <span class="kw">public</span> <span class="kw">class</span> Factory
+    {
+        <span class="kw">public</span> <span class="kw">static</span> IdentityServerServiceFactory <span class="fu">Configure</span>(<span class="dt">string</span> optionsConnectionString)
+        {
+            <span class="co">//Configure persisting IdentityServer operational services</span>
+            <span class="co">//The database will be created if needed. The default schema is being used.</span>
+            <span class="dt">var</span> efConfig = <span class="kw">new</span> EntityFrameworkServiceOptions
+            {
+                ConnectionString = optionsConnectionString
+            };
+
+            <span class="co">// these two calls just pre-populate the test DB from the in-memory config.</span>
+            <span class="co">// clf note: there&#39;s probably a better way to do this for a production app.</span>
+            <span class="fu">ConfigureClients</span>(Clients.<span class="fu">Get</span>(), efConfig);
+            <span class="fu">ConfigureScopes</span>(Scopes.<span class="fu">Get</span>(), efConfig);
+
+            <span class="dt">var</span> factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>();
+            factory.<span class="fu">RegisterConfigurationServices</span>(efConfig);
+            factory.<span class="fu">RegisterOperationalServices</span>(efConfig);
+            factory.<span class="fu">ConfigureClientStoreCache</span>();
+            factory.<span class="fu">ConfigureScopeStoreCache</span>();
+            <span class="co">//Still using in-memory users for now</span>
+            factory.<span class="fu">UseInMemoryUsers</span>(Users.<span class="fu">Get</span>());
+
+            <span class="kw">return</span> factory;
+        }
+
+        <span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">ConfigureClients</span>(IEnumerable&lt;Client&gt; clients, EntityFrameworkServiceOptions options)
+        {
+            <span class="kw">using</span> (<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">ClientConfigurationDbContext</span>(options.<span class="fu">ConnectionString</span>, options.<span class="fu">Schema</span>))
+            {
+                <span class="kw">if</span> (!db.<span class="fu">Clients</span>.<span class="fu">Any</span>())
+                {
+                    <span class="kw">foreach</span> (var c <span class="kw">in</span> clients)
+                    {
+                        <span class="dt">var</span> e = c.<span class="fu">ToEntity</span>();
+                        db.<span class="fu">Clients</span>.<span class="fu">Add</span>(e);
+                    }
+                    db.<span class="fu">SaveChanges</span>();
+                }
+            }
+        }
+
+        <span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">ConfigureScopes</span>(IEnumerable&lt;Scope&gt; scopes, EntityFrameworkServiceOptions options)
+        {
+            <span class="kw">using</span> (<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">ScopeConfigurationDbContext</span>(options.<span class="fu">ConnectionString</span>, options.<span class="fu">Schema</span>))
+            {
+                <span class="kw">if</span> (!db.<span class="fu">Scopes</span>.<span class="fu">Any</span>())
+                {
+                    <span class="kw">foreach</span> (var s <span class="kw">in</span> scopes)
+                    {
+                        <span class="dt">var</span> e = s.<span class="fu">ToEntity</span>();
+                        db.<span class="fu">Scopes</span>.<span class="fu">Add</span>(e);
+                    }
+                    db.<span class="fu">SaveChanges</span>();
+                }
+            }
+        }
+    }
+}</code></pre></div>
+<p>Update Startup.cs, replacing the previous IdentityServer configuration that explicitly configured the Factory with in-memory data, with the new call to Factory.Configure.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">            <span class="co">//Configure IdentityServer for issuing authentication tokens</span>
+            <span class="dt">var</span> options = <span class="kw">new</span> IdentityServerOptions
+            {
+                Factory = Factory.<span class="fu">Configure</span>(<span class="st">&quot;IdConfigDb&quot;</span>),
+                <span class="co">//SSL MUST be used in production</span>
+<span class="kw">#if</span> DEBUG
+                RequireSsl = <span class="kw">false</span>
+<span class="kw">#endif</span>
+            };
+            app.<span class="fu">UseIdentityServer</span>(options);</code></pre></div>
+<blockquote>
+<p><strong>ASIDE!</strong></p>
+<p>Running the app at this point, I got an error in Startup.cs that I was missing a dependency.</p>
+<p> </p>
+<p><a href="images/2017-05-06_134432_thumb1"><img src="images/2017-05-06_134432_thumb1" title="2017-05-06_134432" alt="2017-05-06_134432" width="674" height="190" /></a></p>
+<p>When I installed the package <code>IdentityServer3.EntityFramework</code>, Newtonsoft.Json version 8 was uninstalled, because the package requires version 9 or greater. The package installer output confirms this.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Successfully uninstalled &#39;Newtonsoft.<span class="fu">Json</span>.<span class="fu">8</span>.<span class="fu">0</span>.<span class="fu">3</span>&#39; from AuthAndApi
+Successfully installed &#39;Newtonsoft.<span class="fu">Json</span> <span class="fl">9.0</span>.<span class="fu">1</span>&#39; to AuthAndApi</code></pre></div>
+<p>No package requires version 8 or lower, so what gives? For some reason, the solution's web.config assembly binding section wasn't updated properly. It still had this:</p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml">     <span class="kw">&lt;dependentAssembly&gt;</span>
+       <span class="kw">&lt;assemblyIdentity</span><span class="ot"> name=</span><span class="st">&quot;Newtonsoft.Json&quot;</span><span class="ot"> publicKeyToken=</span><span class="st">&quot;30ad4fe6b2a6aeed&quot;</span><span class="ot"> culture=</span><span class="st">&quot;neutral&quot;</span> <span class="kw">/&gt;</span>
+       <span class="kw">&lt;bindingRedirect</span><span class="ot"> oldVersion=</span><span class="st">&quot;0.0.0.0-8.0.0.0&quot;</span><span class="ot"> newVersion=</span><span class="st">&quot;8.0.0.0&quot;</span> <span class="kw">/&gt;</span>
+     <span class="kw">&lt;/dependentAssembly&gt;</span></code></pre></div>
+<p>You could manually change the max version number to 9.0.0.0, reinstall the Newtonsoft package which will do it for you.</p>
+<p><code>Update-Package -Reinstall Newtonsoft.Json -Project AuthAndApi</code></p>
+</blockquote>
+<p>When I run the application, it behaves exactly as before. Checking in the App_Data folder, I see my database was created.</p>
+<p><a href="images/2017-05-06_140602_thumb"><img src="images/2017-05-06_140602_thumb" title="2017-05-06_140602" alt="2017-05-06_140602" width="388" height="111" /></a></p>
+<p>One difference, though. After the first time running the app, I no longer was prompted to authorize the scope. This might be related to these factory settings:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">factory.<span class="fu">ConfigureClientStoreCache</span>();
+factory.<span class="fu">ConfigureScopeStoreCache</span>();</code></pre></div>
+<h1 id="wrap-up">Wrap Up</h1>
+<p>Our server's configuration is now being persisted to a database. The only thing (for this sample!) left is to persist the user's credentials and claims.</p>
+</section>
+    
+    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
+  </body>
+</html>

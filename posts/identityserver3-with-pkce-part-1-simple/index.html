@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</title>
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
+  </head>
+  <body>
+    <header>Goat Blog</header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="dropdown">
+          <a href="/about">About</a>
+          <div class="dropdown-content">
+            <a href="/about/contact">Contact Us</a>
+            <a href="/about-team">Our Team</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+   	<aside id="sidebar">
+	   <div id="recent">
+       <p><strong>History</strong></p>
+       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li></ol></li></ol></li></ol>
+      </div>
+	    <div id="tags"></div>
+	  </aside>
+    <section id="content"><div class='post-title'>
+                <a href='https://bladewolf55.gitlab.io/posts/identityserver3-with-pkce-part-1-simple'><h1>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</h1></a>
+                <p class='post-info'>2017-05-08 10:05</p>
+            </div><p>This series simulates a native application accessing a protected Web API resource, using OAuth2 via <a href="https://github.com/IdentityServer/IdentityServer3">IdentityServer3</a>. It demonstrates using Proof Key for Code Exchange (PKCE), and is in four parts:</p>
+<ol>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-1-simple.html">Build a simple authorization server, consumed by native application</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-2.html">Build a protected resource</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-3.html">Persist server configuration to database</a>.</li>
+<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
+</ol>
+<blockquote>
+<p><strong>Important</strong><br />
+This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
+</blockquote>
+<h2 id="overview---why-pkce">Overview - Why PKCE?</h2>
+<p><strong>References</strong><br />
+<a href="https://alexbilbie.com/guide-to-oauth-2-grants/">A Guide to OAuth 2.0 Grants</a> <a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange</a></p>
+<p>Mobile (i.e. &quot;native&quot;) applications are difficult when it comes to authorizing users. The reasons are: they are long-lived, and can't keep a secret.</p>
+<p>In the descriptions below, &quot;two-step&quot; means calling the authorization endpoint then the token endpoint, &quot;one-step&quot; means calling just the token endpoint, &quot;trusted&quot; means the client can keep a secret key, &quot;short-lived&quot; means only an access token, and &quot;long-lived&quot; means an access+refresh token.</p>
+<p>The standard OAuth 2 grants are:</p>
+<ul>
+<li>Authorization code grant (two-step, trusted, long-lived)</li>
+<li>Implicit grant (one-step, short-lived, meant for javascript-only browser apps)</li>
+<li>Resource owner credentials grant (one-step, trusted, long-lived, for passing user/password)</li>
+<li>Client credentials grant (one-step, trusted, short-lived, meant for app access, not users)</li>
+<li>Refresh token grant (one-step, requires access token)</li>
+</ul>
+<p>None of these fits well for a mobile app, which is untrusted but long-lived. The solution is Proof Key for Code Exchange (PKCE). PKCE generates a temporary secret string and a way to verify that string. It sends the secret to the authorization endpoint, which stores it, then sends the validator to the token endpoint, which verifies the stored secret. This mitigates the threat of another application capturing the authorization code; without the secret/validator, the auth code is useless.</p>
+<h2 id="authorization-server---simplistic">Authorization Server - Simplistic</h2>
+<p><strong>References</strong><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br />
+<a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
+<p>We'll create a simple OAuth2 server using IdentityServer3. We won't even create a Web API, so we can see just the server in operation. In other words, we'll be able to get tokens, but have nothing to use them with.</p>
+<p>Create a new Empty web application project named AuthAndApi</p>
+<p><a href="images/2017-05-03_135031_thumb1"><img src="images/2017-05-03_135031_thumb1" title="2017-05-03_135031" alt="2017-05-03_135031" width="714" height="567" /></a></p>
+<p>Install packages for the authentication server. This assumes using IIS for the web host.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Install-Package IdentityServer3 -Project AuthAndApi
+Install-Package Microsoft.<span class="fu">Owin</span>.<span class="fu">Host</span>.<span class="fu">Systemweb</span> -Version <span class="fl">3.1</span>.<span class="fu">0</span> -Project AuthAndApi</code></pre></div>
+<p>All the IdentityServer documents say RAMFAR should be enabled in web.config.</p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml">  <span class="kw">&lt;system.webServer&gt;</span>
+    <span class="kw">&lt;modules</span><span class="ot"> runAllManagedModulesForAllRequests=</span><span class="st">&quot;true&quot;</span> <span class="kw">/&gt;</span>
+  <span class="kw">&lt;/system.webServer&gt;</span></code></pre></div>
+<p>Add Folders for IdOptions and IdUsers. These represent the database storage we'll configure later.</p>
+<p>In IdOptions folder, add these classes.</p>
+<p><strong>Scopes.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Web</span>;
+<span class="co">//Added</span>
+<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Models</span>;
+
+<span class="kw">namespace</span> AuthAndApi.<span class="fu">IdOptions</span>
+{
+    <span class="kw">public</span> <span class="kw">class</span> Scopes
+    {
+        <span class="kw">public</span> <span class="kw">static</span> List&lt;Scope&gt; <span class="fu">Get</span>()
+        {            
+            <span class="kw">return</span> <span class="kw">new</span> List&lt;Scope&gt;
+            {
+                <span class="co">//Create the email scope for OAuth. Later, when using OpenID Connect, return StandardScopes.Email instead</span>
+                <span class="kw">new</span> <span class="fu">Scope</span>() { Name = <span class="st">&quot;email&quot;</span>, DisplayName = <span class="st">&quot;Email&quot;</span>, Claims = <span class="kw">new</span> List&lt;ScopeClaim&gt;() { <span class="kw">new</span> <span class="fu">ScopeClaim</span>(<span class="st">&quot;email&quot;</span>, <span class="kw">true</span>) } }
+            };
+        }
+    }
+}</code></pre></div>
+<p><strong>Clients.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Web</span>;
+<span class="co">//Added</span>
+<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Models</span>;
+
+<span class="kw">namespace</span> AuthAndApi.<span class="fu">IdOptions</span>
+{
+    <span class="kw">public</span> <span class="kw">class</span> Clients
+    {
+        <span class="kw">public</span> <span class="kw">static</span> List&lt;Client&gt; <span class="fu">Get</span>()
+        {
+            <span class="kw">return</span> <span class="kw">new</span> List&lt;Client&gt;()
+            {
+                <span class="co">//A client is an application configured to request tokens.</span>
+                <span class="co">//The resource, such as Web API, is configured to accept these tokens.</span>
+                <span class="kw">new</span> <span class="fu">Client</span>()
+                {
+                    ClientName = <span class="st">&quot;Pretend Android Mobile App&quot;</span>,
+                    ClientId = <span class="st">&quot;a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef&quot;</span>,
+                    Enabled = <span class="kw">true</span>,
+                    <span class="co">//About Reference vs JWT tokens</span>
+                    <span class="co">//https://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/</span>
+                    AccessTokenType = AccessTokenType.<span class="fu">Reference</span>,
+                    Flow = Flows.<span class="fu">AuthorizationCodeWithProofKey</span>,
+                    AllowedScopes = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;
+                    {
+                        <span class="st">&quot;email&quot;</span>
+                    },
+                    <span class="co">//URIs the authorization code is allowed to be redirected to</span>
+                    RedirectUris = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;()
+                    {
+                        <span class="st">&quot;http://localhost:19191/&quot;</span>
+                    },
+                    <span class="co">//Shouldn&#39;t be required for this flow, but is</span>
+                    ClientSecrets = <span class="kw">new</span> List&lt;Secret&gt;()
+                    {
+                        <span class="kw">new</span> <span class="fu">Secret</span>(<span class="st">&quot;e9711973-edd7-496f-b415-b10ad0667305&quot;</span>.<span class="fu">Sha256</span>())
+                    }
+                }
+            };
+        }
+    }
+}</code></pre></div>
+<p>In IdUsers folder:</p>
+<p><strong>Users.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Web</span>;
+<span class="co">//Added</span>
+<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>.<span class="fu">InMemory</span>;
+<span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Claims</span>;
+<span class="kw">namespace</span> AuthAndApi.<span class="fu">IdUsers</span>
+{
+    <span class="kw">public</span> <span class="kw">class</span> Users
+    {
+        <span class="kw">public</span> <span class="kw">static</span> List&lt;InMemoryUser&gt; <span class="fu">Get</span>()
+        {
+            <span class="kw">return</span> <span class="kw">new</span> List&lt;InMemoryUser&gt;
+            {
+                <span class="kw">new</span> InMemoryUser
+                {
+                    <span class="co">//Subject is identifier? Could be external identity,</span>
+                    <span class="co">//so it&#39;s not our own database primary key</span>
+                    Subject = <span class="st">&quot;1&quot;</span>,
+                    Username = <span class="st">&quot;alice&quot;</span>,
+                    Password = <span class="st">&quot;secret&quot;</span>,
+                    Claims = <span class="kw">new</span> List&lt;Claim&gt;()
+                    {
+                        <span class="kw">new</span> <span class="fu">Claim</span>(<span class="st">&quot;email&quot;</span>, <span class="st">&quot;alice@example.com&quot;</span>)
+                    }
+                }
+            };
+        }
+    }
+}</code></pre></div>
+<p>Add Startup.cs. This is the class that builds the OWIN pipeline, so the order in which features are added is important.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Web</span>;
+<span class="co">//Added</span>
+<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Configuration</span>;
+<span class="kw">using</span> Owin;
+<span class="kw">using</span> AuthAndApi.<span class="fu">IdOptions</span>;
+<span class="kw">using</span> AuthAndApi.<span class="fu">IdUsers</span>;
+
+
+<span class="kw">namespace</span> AuthAndApi
+{
+    <span class="kw">public</span> <span class="kw">class</span> Startup
+    {
+        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">Configuration</span>(IAppBuilder app)
+        {
+            <span class="co">//Configure IdentityServer for issuing authentication tokens</span>
+            <span class="dt">var</span> options = <span class="kw">new</span> IdentityServerOptions
+            {
+                Factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>()
+                .<span class="fu">UseInMemoryClients</span>(Clients.<span class="fu">Get</span>())
+                .<span class="fu">UseInMemoryScopes</span>(Scopes.<span class="fu">Get</span>())
+                .<span class="fu">UseInMemoryUsers</span>(Users.<span class="fu">Get</span>()),
+                <span class="co">//SSL MUST be used in production</span>
+<span class="kw">#if</span> DEBUG
+                RequireSsl = <span class="kw">false</span>
+<span class="kw">#endif</span>
+            };
+            <span class="co">//add to the pipeline</span>
+            app.<span class="fu">UseIdentityServer</span>(options);
+        }
+    }
+}</code></pre></div>
+<p>The basic IdentityServer is configured for OAuth. For now, we don't need a web page to open, since this is a server, so turn off displaying the page in project Properties.</p>
+<p><a href="images/2017-05-06_074519_thumb"><img src="images/2017-05-06_074519_thumb" title="2017-05-06_074519" alt="2017-05-06_074519" width="728" height="333" /></a></p>
+<blockquote>
+<p><strong>Note about Reference vs JWT tokens</strong><br />
+There are two general types of access tokens IdentityServer can return: Reference, or JSON Web Token (JWT). JWTs are self-contained; they can be validated without contacting the server. But they're slightly more complicated to configure. One advantage of using Reference tokens is that they can be quickly revoked, since the resource must call the authorizing server on each use. The disadvantage is this increases network traffic.</p>
+</blockquote>
+<h2 id="pretend-mobile-app---get-token">Pretend Mobile App - Get Token</h2>
+<p><strong>References</strong><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br />
+<a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
+<p>Now we're going to get an authorization code and token from the server, using a native application that simulates a mobile app. In the Authorization Code Grant, the authorization code is retrieved by using an agent--normally a web browser. Mobile apps can open browsers on behalf of applications, providing a seamless experience. They can also register special URIs to receive requests. The basic flow is:</p>
+<p><strong>Front Channel</strong></p>
+<ol>
+<li>App requests code from the server's authorization endpoint, and includes what URI to post the results to.</li>
+<li>Browser opens, server presents authentication/authorization screens, then posts code to supplied URI.</li>
+</ol>
+<p><strong>Back Channel</strong></p>
+<ol>
+<li>App reads the code and sends request to the server's token endpoint.</li>
+<li>Server validates, then responds with the access token.</li>
+</ol>
+<p>Add a standard console application to the solution, named PretendMobile.</p>
+<p><a href="images/2017-05-06_083908_thumb1"><img src="images/2017-05-06_083908_thumb1" title="2017-05-06_083908" alt="2017-05-06_083908" width="722" height="510" /></a></p>
+<p>Add packages. These aren't required (and wouldn't be available for a mobile application). They just include helper classes and methods for the HTTP communication. Anything they do could be done with HttpClient or some other appropriate network library.</p>
+<blockquote>
+<p><strong>Note</strong><br />
+Version number is important! Later versions are for .Net Core.</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Install-Package IdentityModel -Version <span class="fl">1.9</span>.<span class="fu">2</span> -Project PretendMobile</code></pre></div>
+<p>Program.cs</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Text</span>;
+<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
+<span class="co">//Added</span>
+<span class="kw">using</span> System.<span class="fu">Diagnostics</span>;
+<span class="kw">using</span> System.<span class="fu">IO</span>;
+<span class="kw">using</span> System.<span class="fu">Net</span>;
+<span class="kw">using</span> System.<span class="fu">Net</span>.<span class="fu">Http</span>;
+<span class="kw">using</span> IdentityModel;
+<span class="kw">using</span> IdentityModel.<span class="fu">Client</span>;
+
+<span class="kw">namespace</span> PretendMobile
+{
+    <span class="kw">class</span> Program
+    {
+        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
+        {
+            <span class="dt">var</span> response = <span class="fu">GetAccessToken</span>();
+            Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Access Token: &quot;</span> + response.<span class="fu">AccessToken</span>);
+            Console.<span class="fu">ReadLine</span>();
+        }
+
+        <span class="kw">static</span> TokenResponse <span class="fu">GetAccessToken</span>()
+        {
+            <span class="dt">string</span> clientId = <span class="st">&quot;a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef&quot;</span>;
+            <span class="dt">string</span> clientSecret = <span class="st">&quot;e9711973-edd7-496f-b415-b10ad0667305&quot;</span>;
+            <span class="dt">string</span> scope = <span class="st">&quot;email&quot;</span>;
+            <span class="dt">string</span> redirectUri = <span class="st">&quot;http://localhost:19191/&quot;</span>;
+            <span class="dt">string</span> verifier = CryptoRandom.<span class="fu">CreateUniqueId</span>(<span class="dv">64</span>);
+            <span class="dt">string</span> codeChallenge = verifier.<span class="fu">ToCodeChallenge</span>();
+            <span class="dt">string</span> authorizationEndpoint = <span class="st">&quot;http://localhost:27230/connect/authorize&quot;</span>;
+            <span class="dt">string</span> tokenEndpoint = <span class="st">&quot;http://localhost:27230/connect/token&quot;</span>;
+
+            <span class="co">//Front channel to get the authorization code</span>
+            <span class="co">//This simulates the mobile app starting a browser session on the authorization server,</span>
+            <span class="co">//allowing the user to authenticate,</span>
+            <span class="co">//while the app waits for the redirect from the auth server that contains the code.</span>
+            <span class="fu">OpenBrowserToAuthenticate</span>(authorizationEndpoint, clientId, scope, redirectUri, codeChallenge);
+            <span class="dt">string</span> code = <span class="fu">ReceiveAuthCodeFromServer</span>(redirectUri);
+            Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Authorization Code: &quot;</span> + code);
+
+            <span class="co">//Back channel to get the access token</span>
+            <span class="co">//The client secret is still required by IdentityServer, even though it&#39;s not</span>
+            <span class="co">//really secret. The code challenge and verifier are the real secret.</span>
+            <span class="co">//The redirectUri is part of the verification process. There&#39;s no actual redirection.</span>
+            <span class="dt">var</span> client = <span class="kw">new</span> <span class="fu">TokenClient</span>(
+                tokenEndpoint,
+                clientId,
+                clientSecret);
+            <span class="kw">return</span> client.<span class="fu">RequestAuthorizationCodeAsync</span>(code, redirectUri, verifier).<span class="fu">Result</span>;
+        }
+
+        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">OpenBrowserToAuthenticate</span>(<span class="dt">string</span> authorizationEndpoint, <span class="dt">string</span> clientId, <span class="dt">string</span> scope, <span class="dt">string</span> redirectUri, <span class="dt">string</span> codeChallenge)
+        {
+            <span class="dt">string</span> nonce = CryptoRandom.<span class="fu">CreateUniqueId</span>(<span class="dv">64</span>);
+
+            AuthorizeRequest request = <span class="kw">new</span> <span class="fu">AuthorizeRequest</span>(authorizationEndpoint);
+            <span class="dt">string</span> url = request.<span class="fu">CreateAuthorizeUrl</span>(
+                clientId: clientId,
+                responseType: <span class="st">&quot;code&quot;</span>,
+                scope: scope,
+                redirectUri: redirectUri,
+                nonce: nonce,
+                responseMode: OidcConstants.<span class="fu">ResponseModes</span>.<span class="fu">FormPost</span>,
+                codeChallenge: codeChallenge,
+                codeChallengeMethod: OidcConstants.<span class="fu">CodeChallengeMethods</span>.<span class="fu">Sha256</span>);
+
+            Debug.<span class="fu">WriteLine</span>(url);
+            Process.<span class="fu">Start</span>(url);
+        }
+
+        <span class="kw">static</span> <span class="dt">string</span> <span class="fu">ReceiveAuthCodeFromServer</span>(<span class="dt">string</span> redirectUri)
+        {
+            <span class="dt">var</span> web = <span class="kw">new</span> <span class="fu">HttpListener</span>();
+            web.<span class="fu">Prefixes</span>.<span class="fu">Add</span>(redirectUri);
+            Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Listening for request from auth server...&quot;</span>);
+            web.<span class="fu">Start</span>();
+            <span class="dt">var</span> req = web.<span class="fu">GetContext</span>().<span class="fu">Request</span>;
+            Stream body = req.<span class="fu">InputStream</span>;
+            <span class="dt">var</span> encoding = req.<span class="fu">ContentEncoding</span>;
+            <span class="dt">var</span> reader = <span class="kw">new</span> <span class="fu">StreamReader</span>(body, encoding);
+            <span class="dt">string</span> code = reader.<span class="fu">ReadToEnd</span>().<span class="fu">Replace</span>(<span class="st">&quot;code=&quot;</span>, <span class="st">&quot;&quot;</span>);
+            Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Got it, closing.&quot;</span>);
+
+            <span class="co">//Not sure how, but the mobile app should end the browser session, maybe when the app</span>
+            <span class="co">//gets the response.</span>
+            body.<span class="fu">Close</span>();
+            reader.<span class="fu">Close</span>();
+            web.<span class="fu">Close</span>();
+            <span class="kw">return</span> code;
+        }
+
+    }
+}</code></pre></div>
+<p>Let's configure the solution to run both projects. Right-click Solution and choose Properties. Change the Startup Project to &quot;Multiple startup projects,&quot; the Actions to &quot;Start,&quot; and be sure the identity server project starts first.</p>
+<p><a href="images/2017-05-06_091226_thumb1"><img src="images/2017-05-06_091226_thumb1" title="2017-05-06_091226" alt="2017-05-06_091226" width="726" height="470" /></a></p>
+<p>Run the solution.</p>
+<ol>
+<li>The server will start.</li>
+<li>The console application will open a browser to the /authorize endpoint, requesting an authorization code.</li>
+<li>Authenticate using credentials &quot;alice&quot; and &quot;secret&quot;.</li>
+<li>Authorize the requested scope(s).</li>
+<li>The authorization code is sent back to the listening application.</li>
+<li>The app sends a direct request to the /token endpoint, requesting an access token.</li>
+<li>The server returns the token.</li>
+</ol>
+<p><a href="images/2017-05-06_104414_thumb"><img src="images/2017-05-06_104414_thumb" title="2017-05-06_104414" alt="2017-05-06_104414" width="459" height="123" /></a><a href="images/2017-05-06_104502_thumb"><img src="images/2017-05-06_104502_thumb" title="2017-05-06_104502" alt="2017-05-06_104502" width="598" height="435" /></a><a href="images/2017-05-06_104651_thumb1"><img src="images/2017-05-06_104651_thumb1" title="2017-05-06_104651" alt="2017-05-06_104651" width="598" height="251" /></a><a href="images/2017-05-06_104726_thumb"><img src="images/2017-05-06_104726_thumb" title="2017-05-06_104726" alt="2017-05-06_104726" width="459" height="99" /></a></p>
+<h1 id="wrap-up">Wrap Up</h1>
+<p>We've built a basic OAuth2 server that uses the Authorization Code Grant plus PKCE for dynamically generated client secrets, and can get an access token. In the next part, we'll build a protected resource that requires a token.</p>
+</section>
+    
+    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
+  </body>
+</html>
