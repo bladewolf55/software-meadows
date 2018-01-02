@@ -1,157 +1,53 @@
 /* Stolen from MarkdownEdit editor */
 body { font-family: 'Droid Serif';margin:0; padding:0; ;line-height: 1.4; font-size: 10pt;}
 code { white-space: pre }
-ul, ol { padding-left: 16pt;} /* causes outdent */
 h1, h2, h3, h4, h5, h6 { font-family: "Open Sans"; font-weight: normal;}
-h2 {text-decoration: underline;}
-h3 {font-weight: bold;}
+h1 {font-size: 150%;}
+h2 {text-decoration: underline; font-size: 115%;}
+h3 {font-weight: bold; font-size: 105%;}
 h1.title {font-size: 30pt; border-bottom: solid thin gray; margin-bottom: 1.4em;}
 blockquote { padding: 0 12pt; margin-left:12pt; color: #777; border-left: 3pt solid #ddd;  }
 table { display: block; width: 100%; overflow: auto; word-break: normal; word-break: keep-all; border-collapse: collapse;  }
 table th{ font-weight: bold; background-color: #f8f8f8; }
 table th, #content table td{ padding: 6px 13px; border: 1px solid #ddd; }
 table tr{ background-color: #fff; border-top: 1px solid #ccc; page-break-inside: avoid; }
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre { border: solid 1px gray; padding: 5px; border-radius: 5px; background-color: #FDFCFB;}
- pre, code {  font-size: 93%;}
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 
 /* Custom for Goat */
-a, a:link, a:visited {
-    color: slategray;
-    text-decoration-style: dotted;
-    text-decoration-color: lightgray;
-}
+a, 
+a:link, 
+a:visited {color: darkslategray; text-decoration: none; text-decoration-color: lightgray;}
 
-a:hover {
-    color: black;
-}
+a:hover {color: black;}
 
-
-header {height: 60px; background-color: slategray; color: white; font-size: 36px;padding: 10px; }
-
+/* nav */
+nav {font-family: "Open Sans";float:left; width:200px; padding: 0 20px 0 10px;}
+nav h2 {text-decoration: none;}
 /* menu */
-nav {background-color:lightslategray;}
+#menu ol, #menu ul {list-style-type:none; margin: 0; padding: 0}
+#menu li li {margin-left: 10px;}
+/* recent */
+#recent {margin-top: 30px}
+#recent a {display:block; margin-bottom: 7px; }
 
-/* https://www.w3schools.com/css/css_navbar.asp */
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    /*padding: 0;*/
-    overflow: hidden;
-    background-color: #333;
-}
 
-nav li {
-    float: left;
-}
-
-nav li a, .dropbtn {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-nav li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
-}
-
-nav li.dropdown {
-    display: inline-block;
-}
-
-nav .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-nav .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-nav .dropdown-content a:hover {background-color: #f1f1f1}
-
-nav .dropdown:hover .dropdown-content {
-    display: block;
-}
-
-aside#sidebar {float:left; width:150px;  padding: 10px; margin-top:0;}
-section#content, div.paging, footer {margin: 0 50px 50px 200px;}
-div.paging a {
-  display: inline-block;
-  padding: 5px;
-  border: solid 1px lightgray;
-  border-radius: 5px;
-  font-family: "Open Sans";
-  font-size: 120%;
-}
-footer {border-top: solid 1px lightgray;padding-top:20px;}
-.post-title {
-  margin: 50px 15px 25px 0; 
-  font-size: 150%;
-}
-.post-title h1 {margin-bottom: 0;}
-/*.post-title a {text-decoration: none; color: slategray;}
-.post-title a:hover {color: black;}*/
-.post-info {font-family: "Open Sans"; font-size: 60%; padding-top:0;margin-top:0;}
-
-.history-year > label {font-weight: bold;}
-.history-month > label {text-decoration: underline; }
+/* history */
 /* Collapsible post history */
 /*https://www.thecssninja.com/css/css-tree-menu*/
-
+#history {margin-top: 30px;}
+.history-year > label {font-weight: bold;}
+.history-month > label {text-decoration: underline; }
 ol.tree {
     padding: 0 0 0 30px;
     /* width: 300px; */
   }
 
-  ol.tree   li {
+
+  ol.tree li {
     position: relative;
     margin-left: -15px;
     list-style: none;
   }
+  ol.tree li.history-year {margin-left:-30px;}
 
   ol.tree li.post {
     /* margin-left: -1px !important; */
@@ -217,3 +113,24 @@ ol.tree {
     margin: 0 0 0.063em;
     /* 1px */
   }
+
+
+/* header */
+header {margin: 0 50px 0 250px; height:150px}
+#site-image {float:left;margin-right:20px; margin-top: -20px}
+#site-name {font-size: 250%;padding-top: 20px; height:45px;}
+#site-subtitle{font-size: 120%; font-style: italic; color: darkslategray;}
+
+/* content section */
+section#content {margin: 0 50px 20px 250px;}
+#content h1 {}
+
+/* posts section */
+section#posts {margin: 0 50px 20px 250px;}
+.post { border-top: solid 1px lightgray;}
+.post-title { margin: 20px 15px 0 0; font-size: 150%; text-decoration: none;}
+.post-info {font-family: "Open Sans"; font-size: 80%; padding-top:0; margin-top: 0; color:darkslategray;}
+.post-content {margin-top: 20px;}
+
+/* footer */
+footer {margin: 0 50px 20px 250px; border-top: solid 1px lightgray; padding-top: 20px;}

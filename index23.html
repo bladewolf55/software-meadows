@@ -1,340 +1,53 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>index</title>
-    <link rel="stylesheet" type="text/css" href="http://bladewolf55.gitlab.io/smblog/css/default.css">
-  </head>
-  <body>
-    <header>
-      Software Meadows      
-    </header>
-    <nav>
-      <ul>
-        <li><a href="http://bladewolf55.gitlab.io/smblog/">Home</a></li>
-        <li class="dropdown">
-          <a href="http://bladewolf55.gitlab.io/smblog/about">About</a>
-        </li>
-      </ul>
-    </nav>
-   	<aside id="sidebar">
-	   <div id="recent">
-       <p><strong>History</strong></p>
-       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-window-key-s-search-from'>windows-81-window-key-s-search-from</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li></ol>
-      </div>
-	    <div id="tags"></div>
-	  </aside>
-    <section id="content"><h1 id="home">Home</h1>
-<div id='post-roll'><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9'><h1>Edward Farley and the Fantastic Library Part 9</h1></a>
-                <p class='post-info'>2013-05-19 12:46</p>
-            </div><div class='post-contents'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
-<p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="many-to-many-simple">Many to Many, Simple</h3>
-<p><em>Edward reminds the Professor of something important. The Professor expounds on the meaning of a library.</em></p>
-<p>“Professor,” said Edward the next day, “something has been bothering me.”</p>
-<p>“Oh, what is that my boy?”</p>
-<p>“Well, you’ve explained about library cards and magnifiers and pencils and bicycles and reading rooms. But, you haven’t said anything about books. Isn’t that what a library is for?”</p>
-<p>The Professor became serious. “Edward, books are a great treasure. They have survived as a means for storing folly and wisdom for centuries. If you could sum up all living people’s knowledge, it would not equal the knowledge found in a library. The word library, indeed, means collection of books. But, no, our modern library is not simply for books. It is for encountering knowledge outside of ourselves. When we wander these aisles and open a book’s covers, we travel through time and space into another human’s imagination. This is why we get ‘lost’ in a book. But we are not losing ourselves. We are finding the cosmos and our place in it.”</p>
-<p>After a few seconds, the Professor left the room, beckoning Edward to follow.</p>
-<p>Look around you, [he said]. Books! Music! Paintings! How many books can a person read in a lifetime? How many readers has a book had?</p>
-<p>This is a simple relationship. Many to Many. A person reads many books, a book has many readers. The Framework makes this relationship even easier. In the database, such a relationship requires a joining table. Here are the tables we’re about to create.</p>
-<p><strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Books</span> (
- BookId <span class="dt">int</span> not <span class="kw">null</span> primary key,
- Title <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
-)
+<html lang="en">
 
-create table <span class="fu">PersonBooks</span> (
- PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId),
- BookId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Books</span>(BookId),
- constraint pkPersonBook primary <span class="fu">key</span> (PersonId, BookId)
-)</code></pre></div>
-<p>In this case, a diagram may help.</p>
-<p><a href="images/image00.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9/images/image00.png" /></a></p>
-<p>A many-to-many relationship is two one-to-many relationships that meet in the middle, so to speak.</p>
-<p>While we could (and tomorrow will) explicitly create a joining class, for this simple case we don’t need to. The Framework manages the join behind the scenes.</p>
-<p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="kw">virtual</span> ReadingRoom ReadingRoom { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel='stylesheet' href='http://localhost:8080/smblog/css/default.css' />
+<link rel='stylesheet' href='http://localhost:8080/smblog/css/tango.css' />
 
-<span class="kw">public</span> <span class="fu">Person</span>()
-{
-    LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();
-    Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();
-    Pencils = <span class="kw">new</span> HashSet&lt;Pencil&gt;();
-    Books = <span class="kw">new</span> HashSet&lt;Book&gt;();
-}
-....
+  <title>index</title>
+</head>
 
-<span class="kw">public</span> <span class="kw">class</span> Book
-{
-    <span class="co">//Primary Key</span>
-    <span class="kw">public</span> <span class="dt">int</span> BookId { <span class="kw">get</span>; <span class="kw">set</span>; }
-    [Required]
-    <span class="kw">public</span> <span class="dt">string</span> Title { <span class="kw">get</span>; <span class="kw">set</span>; }
+<body>
+  <nav>
+    <div id="menu">
+      <ol>
+<li><a href="http://localhost:8080/smblog/">Home</a></li>
+<li><a href="http://localhost:8080/smblog/about">About</a></li>
+</ol>
 
-    <span class="co">//Navigation</span>
-    <span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }
+    </div>
+    <div id="recent">
+      <h2>Recent</h2>
+      <a href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a>
+    </div>
+    <div id="history">
+      <h2>History</h2>
+      <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-window-key-s-search-from'>Windows 8.1: Window Key + S = Search from Desktop</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li><li class='history-year'><label for='1'>1</label><input type='checkbox'  id='1' /><ol><li class='history-month'><label for='1-1'>January</label><input type='checkbox'  id='1-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/angularjs-service-with-var-declarations'>angularjs-service-with-var-declarations</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/dont-use-data-prefix-in-angularjs'>dont-use-data-prefix-in-angularjs</a></li></ol></li></ol></li></ol>
+    </div>
+  </nav>
+  <header>
+    <div id="site-image">
+      <img src="http://localhost:8080/smblog/images/header.png" alt="" />
+    </div>
+    <h1 id="site-name"></h1>
+    <div id="site-subtitle">A pleasant walk through computing</div>
+  </header>
+  <section id="content">
+    <h1 id="home">Home</h1>
 
-    <span class="kw">public</span> <span class="fu">Book</span>()
-    {
-        Persons = <span class="kw">new</span> HashSet&lt;Person&gt;();
-    }
-}</code></pre></div>
-<p>In our Context, we have some extra work to do. As with our previous examples, the Framework will happily create foreign key names according to its whims.* Moreover, it will create the joining table with a name that I personally find unattractive. And so, dear Edward, we must venture into your father’s favorite realm, the Fluent API.</p>
-<p>First, we add the DbSet as usual.</p>
-<p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-    <span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }
-    <span class="kw">public</span> DbSet&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
-<p>Now, we override the OnModelCreating procedure and explicitly tell the Framework how we want things named. I have tried many times to enforce my desired naming via attributes, to no avail. Someday I must ask the fine people who manage the Framework why they seemingly overlooked such useful attributes for such a common relationship. But here we are:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnModelCreating</span>(DbModelBuilder modelBuilder)
-{
-    modelBuilder.<span class="fu">Entity</span>&lt;Person&gt;()
-        .<span class="fu">HasMany</span>(e =&gt; e.<span class="fu">Books</span>)
-        .<span class="fu">WithMany</span>(e =&gt; e.<span class="fu">Persons</span>)
-        .<span class="fu">Map</span>(t =&gt; t
-            .<span class="fu">MapLeftKey</span>(<span class="st">&quot;PersonId&quot;</span>)
-            .<span class="fu">MapRightKey</span>(<span class="st">&quot;BookId&quot;</span>)
-            .<span class="fu">ToTable</span>(<span class="st">&quot;PersonBooks&quot;</span>)
-            );
-}</code></pre></div>
-<p>Back to our program. To show the many-to-many relationship, we will enlist the help of our nearby Librarian.</p>
-<p>[They had reached an information desk, and an elderly lady smiled at the Professor.]</p>
-<p>Mrs. Jane Eager, I am illustrating for young Edward Farley, here, the many-to-many relationship. Would you work your magic on that temperamental machine and find books you and Edward have both read? [She typed and showed him the screen.] Really? Edward, I must say, you have been well raised. These titles come from a writer who is a master of us all. Now, attend, Edward. There is quite a bit of code.</p>
-<p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Add two books and save&quot;</span>);
-Book book1 = <span class="kw">new</span> <span class="fu">Book</span>() { Title = <span class="st">&quot;The House of Arden&quot;</span> };
-Book book2 = <span class="kw">new</span> <span class="fu">Book</span>() { Title = <span class="st">&quot;Harding&#39;s Luck&quot;</span> };
-_db.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);
-_db.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);
-<span class="fu">SaveChanges</span>();
-
-Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Add another person and save&quot;</span>);
-Person person2 = <span class="kw">new</span> <span class="fu">Person</span>() { Name = <span class="st">&quot;Jane Eager&quot;</span> };
-person2.<span class="fu">LibraryCards</span>.<span class="fu">Add</span>(person.<span class="fu">LibraryCards</span>.<span class="fu">First</span>());
-person2.<span class="fu">ReadingRoom</span> = <span class="kw">new</span> <span class="fu">ReadingRoom</span>() { Location = <span class="st">&quot;NorthEast Wing&quot;</span> };
-_db.<span class="fu">Persons</span>.<span class="fu">Add</span>(person2);
-<span class="fu">SaveChanges</span>();
-
-Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Each person has read both books&quot;</span>);
-person.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);
-person.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);
-person2.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);
-person2.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(person.<span class="fu">Name</span> + <span class="st">&quot;&#39;s books: &quot;</span> 
-    + String.<span class="fu">Join</span>(<span class="st">&quot;, &quot;</span>, person.<span class="fu">Books</span>.<span class="fu">Select</span>(a =&gt; a.<span class="fu">Title</span>)));
-Console.<span class="fu">WriteLine</span>(person2.<span class="fu">Name</span> + <span class="st">&quot;&#39;s books: &quot;</span> 
-    + String.<span class="fu">Join</span>(<span class="st">&quot;, &quot;</span>, person.<span class="fu">Books</span>.<span class="fu">Select</span>(a =&gt; a.<span class="fu">Title</span>)));</code></pre></div>
-<p>Let’s run the program.</p>
-<pre class="console"><code>Create Person without a name.
-Saving changes.
-  ERROR: The Name field is required.
-  ERROR: The ReadingRoom field is required.
-Add the required name and Library Card.
-Add the Reading Room and save.
-Saving changes.
-Successful save.
-Get the record we just saved, and display.
-Person: Edward Farley has card: 123 and Reading Room: Lewis Wing Floor -3
-Create and save Magnifier with required serial number
-Saving changes.
-Successful save.
-Retrieve Magnifier, show it doesn&#39;t belong to someone.
-Magnifier: Bar123, Person: available
-Edward gets the Magnifier. Save and retrieve.
-Saving changes.
-Successful save.
-Magnifier: Bar123, Person: Edward Farley
-Try to add duplicate magnifier
-Saving changes.
-  ERROR: Magnifier with this serial nbr already exists.
-Add/save Pencil setting Nickname to null.
-Saving changes.
-  ERROR: The Nickname field is required.
-Set Nickname to empty string and save
-Saving changes.
-Successful save.
-Retrieve pencil, change Nickname, save
-Pencil: , Person: Edward Farley
-Saving changes.
-Successful save.
-Pencil: Blackwing, Person: Edward Farley
-Attempt adding Bicycle without a Person
-Saving changes.
-  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint &quot;FK_dbo.Bicycles_dbo.Persons_PersonId&quot;. The conflict occurred in database &quot;EFDb&quot;, table &quot;dbo.Persons&quot;, column &#39;PersonId&#39;.
-The statement has been terminated.
-Set the Person, save, retrieve and show
-Saving changes.
-Successful save.
-Model: Herman, Person: Edward Farley
-Add two books and save
-Saving changes.
-Successful save.
-Add another person and save
-Saving changes.
-Successful save.
-Each person has read both books
-Saving changes.
-Successful save.
-Edward Farley&#39;s books: The House of Arden, Harding&#39;s Luck
-Jane Eager&#39;s books: The House of Arden, Harding&#39;s Luck
-Finished</code></pre>
-<p>“And there you have the many-to-many relationship! Thank you, Jane,” said the Professor. When they reached Edward’s reading room, the Professor paused and said quietly, “Edward, you may not know this, but Jane’s husband is a fine author himself. If you enjoyed the the masterful E. Nesbit’s writing, you would surely like his as well. Come, let me show you....”</p>
-<hr />
-<p>*This isn’t quite fair on the Professor’s part. Entity Framework is consistent in its naming.</p>
-<p><a href="http://dictionary.reference.com/browse/library?&amp;path=/">Library</a></p>
-<p><a href="http://en.wikipedia.org/wiki/Pinakes">Pinakes</a></p>
-<p><a href="http://en.wikipedia.org/wiki/E._Nesbit">E. Nesbit, author of <em>The House of Arden</em> and <em>Harding’s Luck</em>, and others</a></p>
-<p><a href="http://en.wikipedia.org/wiki/Edward_Eager">Edward Eager, author of <em>Half Magic</em> and others</a></p>
-<hr />
-</div><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-8'><h1>Edward Farley and the Fantastic Library Part 8</h1></a>
-                <p class='post-info'>2013-05-19 12:44</p>
-            </div><div class='post-contents'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
-<p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="one-to-one">One to One</h3>
-<p><em>Edward’s reading room is scrutinized. The Professor solves a paradox.</em></p>
-<p>Edward’s parents sent him off with some of the Sunderland Library ice cream that he, Edward, had thoughtfully brought home for them as a gift.</p>
-<p>“Yes, thank you, dear,” said his mother, “we quite loved the adventure of trying Cricket and Cream Sherbet, and feel you have earned the rest.”</p>
-<p>Once again, he met the Professor at Edward’s reading room. This time he (Edward) was five minutes early. Inside the room, the Professor walked around, commenting on particular books (“Excellent imagery.”), magazines (“Dreadful, but you’re too young to know.”), paintings (“I’d have preferred an orange cloud, but then I am not an artistic genius.”) and Edward’s homework (“Do they not teach grammar anymore? Never pluralize with an apostrophe, dear boy. That rule’s as certain as the rising sun.”)</p>
-<p>“Well, Edward, the reason we are here, is that here is the reason for our reason.”</p>
-<p>The Professor waited, expectantly. Edward knew his part by now. “What, exactly, does that mean, Professor?”</p>
-<p>It means, [the Professor said, reclining on the couch], that to be in a library is to be studious, to be studious one must have an environment conducive to study, and whatever one’s study, that study must contain an element of reason.</p>
-<p>When a person is born, he or she is assigned a library card. More library cards can be obtained (especially when they involve ice cream). Each person is also assigned a Reading Room in that first library.</p>
-<p>This is our oddest relationship yet. It is One to One. To our human, intuitive mind, it is natural. For example, a person has one left hand, a left hand belongs to one person. But the database underlying our Framework cannot accomplish this. Look here. [He projected code onto the wall using his personal laptop.] This is T-SQL that will create a one-to-one relationship.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">One</span> (
- OneId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
- Name <span class="fu">varchar</span>(<span class="dv">10</span>) <span class="kw">null</span>
-)
-
-create table <span class="fu">Two</span> (
- OneId <span class="dt">int</span> not <span class="kw">null</span> primary key references <span class="fu">One</span>(OneId),
- Name <span class="fu">varchar</span>(<span class="dv">10</span>)
-)
-
-alter table One add constraint fk1 foreign <span class="fu">key</span> (OneId) references <span class="fu">Two</span>(OneId)</code></pre></div>
-<p>Yet, if you run the following statements, they will fail catastrophically.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">insert <span class="fu">One</span>(Name) <span class="fu">values</span>(&#39;asdf&#39;)
-insert <span class="fu">Two</span>(Name) <span class="fu">values</span>(&#39;qwer&#39;)</code></pre></div>
-<p>Why, Edward?</p>
-<p>[“Because...” Edward said slowly, “because you’re telling table One it has a record before table Two has one, but table Two has to have one because they’re one-to-one. Right?”]</p>
-<p>Precisely. I could hardly have said it more clearly myself. It is a paradox. We must insert both records at the same time, but the database won’t allow us to do that. There may be databases that can, but--well, we do not speak of those here. [And the Professor smiled mysteriously.]</p>
-<p>By the way, here is the script to remove those two tables, since they now have foreign key relationships to each other!</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">alter table One drop constraint fk1
-drop table Two
-drop table One</code></pre></div>
-<p>What are we to do? More exactly, what did we do? Fortunately, we can employ a--I hesitate to use the word, but it fits--hack. Hmm. Makes me think of sick cats.</p>
-<p>We’ll tell the Framework to create a One to Zero or One table relationship, but enforce the one-to-one requirement in the classes. Our classes won’t complain, because we are able to assign the relationships simultaneously.</p>
-<p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Person: IValidatableObject
-{
-    <span class="co">//Primary Key</span>
-    <span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-    [Required]
-    <span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-    <span class="co">//Navigation</span>
-    <span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-    <span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
-    <span class="kw">public</span> <span class="kw">virtual</span> ICollectionMagnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-    <span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }
-    [Required]
-    <span class="kw">public</span> <span class="kw">virtual</span> ReadingRoom ReadingRoom { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="kw">class</span> ReadingRoom
-{
-    <span class="co">//Primary Key same as Person</span>
-    [Key, <span class="fu">ForeignKey</span>(<span class="st">&quot;Person&quot;</span>)]
-    <span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-    [Required]
-    <span class="kw">public</span> <span class="dt">string</span> Location { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-    <span class="co">//Navigation</span>
-    <span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
-}</code></pre></div>
-<p>As with the Bicycle, the ReadingRoom requires a person. But now the Person’s ReadingRoom property is required as well. We update the Context.</p>
-<p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> DbSet&lt;ReadingRoom&gt; ReadingRooms { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
-<p>Now, we must update our code. Unlike before, we can’t simply append a reading room. It is now intrinsically linked to a person. We must modify our very first instantiation of a person.</p>
-<p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Create Person without a name.&quot;</span>);
-Person edward = <span class="kw">new</span> <span class="fu">Person</span>();
-_db.<span class="fu">Persons</span>.<span class="fu">Add</span>(edward);
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Add the required name and Library Card.&quot;</span>);
-edward.<span class="fu">Name</span> = <span class="st">&quot;Edward Farley&quot;</span>;
-edward.<span class="fu">LibraryCards</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">LibraryCard</span>() { Number = <span class="dv">123</span> });
-Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Add the Reading Room and save.&quot;</span>);
-edward.<span class="fu">ReadingRoom</span> = <span class="kw">new</span> <span class="fu">ReadingRoom</span>() { Location = <span class="st">&quot;Lewis Wing Floor -3&quot;</span> };
-<span class="co">//Must Save Changes after library card AND reading room have been added.</span>
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Get the record we just saved, and display.&quot;</span>);
-edward = _db.<span class="fu">Persons</span>.<span class="fu">First</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Person: &quot;</span> + edward.<span class="fu">Name</span> 
-    + <span class="st">&quot; has card: &quot;</span> + edward.<span class="fu">LibraryCards</span>.<span class="fu">First</span>().<span class="fu">Number</span>
-    + <span class="st">&quot; and Reading Room: &quot;</span> + edward.<span class="fu">ReadingRoom</span>.<span class="fu">Location</span>);</code></pre></div>
-<p>Our program runs as expected, with just the first part changing.</p>
-<pre class="console"><code>Create Person without a name.
-Saving changes.
-  ERROR: The Name field is required.
-  ERROR: The ReadingRoom field is required.
-Add the required name and Library Card.
-Add the Reading Room and save.
-Saving changes.
-Successful save.
-Get the record we just saved, and display.
-Person: Edward Farley has card: 123 and Reading Room: Lewis Wing Floor -3
-....
-It should be clear, but just in case it is not: the database table is shown below, and does not enforce a one-to-one relationship. Though there might be some clever way to make it do so!
-T-SQL
-create table ReadingRooms (
- PersonId int not null primary key foreign key references Persons(PersonId),
- Location nvarchar(max) not null
-)</code></pre>
-<p>That’s quite enough for today. Tomorrow we leave the realm of “one to something” cardinality, and venture into new relationships. Ah, Edward, do I spy Cricket and Cream Sherbet? Outstanding!</p>
-<hr />
-<p><a href="http://parallelx.blogspot.com/2012/06/t-sql-create-relationships.html">T-SQL create relationships</a></p>
-<p><a href="http://www.loc.gov/rr/main/">Library of Congress Main Reading Room</a></p>
-<hr />
-</div><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'><h1>Edward Farley and the Fantastic Library Part 7</h1></a>
-                <p class='post-info'>2013-05-19 12:42</p>
-            </div><div class='post-contents'><p>Parts</p>
+  </section>
+  <!-- posts only appear in home index -->
+  <section id="posts">
+    
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-05-19 12:42</span></p>
+                <div class='post-content'><p>Parts</p>
 <p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
 <p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
 <p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
@@ -365,35 +78,35 @@ create table ReadingRooms (
 <p><strong>LearningEFSchema.cs</strong></p>
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Person: IValidatableObject
 {
-    <span class="co">//Primary Key</span>
-    <span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-    [Required]
-    <span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="co">//Primary Key</span>
+<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
+[Required]
+<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
 
-    <span class="co">//Navigation</span>
-    <span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-    <span class="kw">public</span> <span class="kw">virtual</span> ICollection Pencils&lt;Pencil&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }
-    <span class="kw">public</span> <span class="kw">virtual</span> ICollection Magnifiers&lt;Magnifier&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }
-    <span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }
-    ....
+<span class="co">//Navigation</span>
+<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> <span class="kw">virtual</span> ICollection Pencils&lt;Pencil&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> <span class="kw">virtual</span> ICollection Magnifiers&lt;Magnifier&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }
+....
 
 <span class="kw">public</span> <span class="kw">class</span> Bicycle
 {
-    <span class="co">//Primary Key same as Person</span>
-    [Key, <span class="fu">ForeignKey</span>(<span class="st">&quot;Person&quot;</span>)]
-    <span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-    [Required]
-    <span class="kw">public</span> <span class="dt">string</span> Model { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="co">//Primary Key same as Person</span>
+[Key, <span class="fu">ForeignKey</span>(<span class="st">&quot;Person&quot;</span>)]
+<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
+[Required]
+<span class="kw">public</span> <span class="dt">string</span> Model { <span class="kw">get</span>; <span class="kw">set</span>; }
 
-    <span class="co">//Navigation</span>
-    <span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="co">//Navigation</span>
+<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
 }</code></pre></div>
 <p>The important items are that the Person class references just one Bicycle that is not required, and Bicycle references just one Person where the PersonId property is both the primary key and the foreign key. In essence, we are extending the Person table.</p>
 <p>The Context class gets the expected DbSet.</p>
 <p><strong>LearningEFDb.cs</strong></p>
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
 {
-    <span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
 <p>We add to our program.</p>
 <p><strong>Program.cs</strong></p>
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Add Bicycle without a Person&quot;</span>);
@@ -408,7 +121,7 @@ Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Model: &quot;</
 <p>And run it.</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
-  ERROR: The Name field is required.
+ERROR: The Name field is required.
 Add the required name and Library Card and save.
 Saving changes.
 Successful save.
@@ -425,10 +138,10 @@ Successful save.
 Magnifier: Bar123, Person: Edward Farley
 Try to add duplicate magnifier
 Saving changes.
-  ERROR: Magnifier with this serial nbr already exists.
+ERROR: Magnifier with this serial nbr already exists.
 Add/save Pencil setting Nickname to null.
 Saving changes.
-  ERROR: The Nickname field is required.
+ERROR: The Nickname field is required.
 Set Nickname to empty string and save
 Saving changes.
 Successful save.
@@ -439,7 +152,7 @@ Successful save.
 Pencil: Blackwing, Person: Edward Farley
 Add Bicycle without a Person
 Saving changes.
-  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint &quot;FK_dbo.Bicycles_dbo.Persons_PersonId&quot;. The conflict occurred in database &quot;EFDb&quot;, table &quot;dbo.Persons&quot;, column &#39;PersonId&#39;.
+ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint &quot;FK_dbo.Bicycles_dbo.Persons_PersonId&quot;. The conflict occurred in database &quot;EFDb&quot;, table &quot;dbo.Persons&quot;, column &#39;PersonId&#39;.
 The statement has been terminated.
 Set the Person, save, retrieve and show
 Saving changes.
@@ -449,8 +162,8 @@ Finished</code></pre>
 <p>It is not a lovely error, but suits our educational purpose. The resulting table would be scripted so:</p>
 <p><strong>T-SQL</strong></p>
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Bicycles</span> (
- PersonId not <span class="kw">null</span> primary key foreign key references <span class="fu">Persons</span>(PersonId),
- Model <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
+PersonId not <span class="kw">null</span> primary key foreign key references <span class="fu">Persons</span>(PersonId),
+Model <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
 )</code></pre></div>
 <p>With that, Edward and Professor Relvar had arrived at Sunderland Library which, as anyone knows, maintains the finest collection of ice cream recipe books found anywhere. Plus, chefs who prepare scoops for anyone who cares to taste.</p>
 <p>“And if it weren’t for the bicycles,” the Professor stated, licking happily at his Chocolate Peanut Butter and Pretzel Sundae, “all Sunderland regulars would be fat. Another scoop, Edward?”</p>
@@ -462,8 +175,343 @@ Finished</code></pre>
 <p><a href="http://weblogs.asp.net/manavi/archive/2010/12/24/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-1-table-per-hierarchy-tph.aspx">EF Inheritance Models</a></p>
 <p><a href="http://www.amazon.com/The-Perfect-Scoop-Granitas-Accompaniments/dp/158008219X/ref=sr_1_1?ie=UTF8&amp;qid=1367882906&amp;sr=8-1&amp;keywords=ice+cream+recipes">The Perfect Scoop</a></p>
 <hr />
-</div></div></section>
+</div>
+              </div>
+              
+
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-05-19 12:40</span></p>
+                <div class='post-content'><p>Parts</p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+<p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
+<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
+<h3 id="one-to-zero-or-many">One to Zero or Many</h3>
+<p><em>Our hero see his pencils in a new light.</em></p>
+<p>“Take me to your reading room,” commanded the Professor. “We shall eat en route.”</p>
+<p>Edward’s room was modest. He was too young to have acquired many items, but he hoped someday to study something so interesting that he’d have to build an addition. For now, he just had a desk, some chairs and a couch. Plus, his framed mosaic of his favorite authors.</p>
+<p>“Yes, yes. Quite nice, though it lacks some fire. We’ll see if we can’t kindle you, eh?”</p>
+<p>The Professor laughed to himself. Apparently this was a joke only he understood. He suddenly stepped to the desk.</p>
+<p>“See? Here?”</p>
+<p>Edward timidly shook his head.</p>
+<p>“Your pencils, my boy. How many?”</p>
+<p>“Three. Sir.”</p>
+<p>Professor Relvar picked them up, scrutinizing. “Good quality wood. Decent whittling. Proud of your work?”</p>
+<p>“Yes, I guess so. I’ve seen nicer. My dad’s are fantastic!”</p>
+<p>“Just so! Just so! We can appreciate our work while being modest. Have you considered this remarkable object? We value them highly, teaching everyone how to whittle and assemble their own pencils. Works of art, some people’s. Ms. Turner turns out terrific ones--or so she tongue-twistingly intones. Would you buy a pre-made pencil? Of course not! You dream of making your own. We’re all the same in this way. The pencil is today’s subject.”</p>
+<p>Everyone, [he continued, sitting behind the desk], can have a Pencil. Not everyone does, and, while I personally don’t understand them, many people have done great work without a pencil. So, a person can whittle and own zero or more pencils. But a pencil always belongs to just one person. This is called a One to Zero or Many relationship, and it is very common. In fact, it may be the most common relationship.</p>
+<p>Here is how we’ll model it:</p>
+<p><strong>LearingEFSchema.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Person...
+...
+<span class="co">//Navigation</span>
+<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+<span class="kw">public</span> <span class="fu">Person</span>()
+{
+LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();
+Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();
+Pencils = <span class="kw">new</span> HashSet&lt;Pencil&gt;();
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Pencil
+{
+<span class="co">//Primary Key</span>
+<span class="kw">public</span> <span class="dt">int</span> PencilId { <span class="kw">get</span>; <span class="kw">set</span>; }
+[<span class="fu">Required</span>(AllowEmptyStrings = <span class="kw">true</span>)]
+<span class="kw">public</span> <span class="dt">string</span> Nickname { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="co">//Foreign Key column</span>
+<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+<span class="co">//Navigation</span>
+<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+<span class="kw">public</span> <span class="fu">Pencil</span>()
+{
+Nickname = <span class="st">&quot;&quot;</span>;
+}
+}</code></pre></div>
+<p><strong>LearningEFDb.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
+{
+<span class="kw">public</span> DbSet&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> DbSet&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> DbSet&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<p>We introduce one new wrinkle, today. We’re requiring a Nickname, and yet we’re not! We allow an empty string. Why, you may ask?</p>
+<p>[The Professor waited patiently until Edward sheepishly asked, “Why, Professor?”]</p>
+<p>I’m so glad you asked. Many fields should not allow nulls. Names are a good example. Let’s say we stored first, middle and last names in nullable table columns. To concatenate them and display the full name, we would have to convert nulls to empty strings, otherwise the full name would become null. I’m sure there’s something philosophical to say about how objects added to a void becoming the void, but that isn’t my field.</p>
+<p>Let’s add to our program and try to set a pencil’s nickname to null.</p>
+<p><strong>Program.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Add/save Pencil setting Nickname to null.&quot;</span>);
+Pencil pencil = <span class="kw">new</span> <span class="fu">Pencil</span>() { Nickname = <span class="kw">null</span>, Person = edward };
+_db.<span class="fu">Pencils</span>.<span class="fu">Add</span>(pencil);
+<span class="fu">SaveChanges</span>();
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Set Nickname to empty string and save&quot;</span>);
+pencil.<span class="fu">Nickname</span> = <span class="st">&quot;&quot;</span>;
+<span class="fu">SaveChanges</span>();
+
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Retrieve pencil, change Nickname, save&quot;</span>);
+pencil = _db.<span class="fu">Pencils</span>.<span class="fu">First</span>();
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Pencil: &quot;</span> + pencil.<span class="fu">Nickname</span> + <span class="st">&quot;, Person: &quot;</span> + pencil.<span class="fu">Person</span>.<span class="fu">Name</span>);
+pencil.<span class="fu">Nickname</span> = <span class="st">&quot;Blue&quot;</span>;
+<span class="fu">SaveChanges</span>();
+pencil = _db.<span class="fu">Pencils</span>.<span class="fu">First</span>();
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Pencil: &quot;</span> + pencil.<span class="fu">Nickname</span> + <span class="st">&quot;, Person: &quot;</span> + pencil.<span class="fu">Person</span>.<span class="fu">Name</span>);</code></pre></div>
+<p>Running the program now produces a Pencils table like so:</p>
+<p><strong>T-SQL</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Pencils</span> (
+PencilId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
+Nickname <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>,
+PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId)
+)</code></pre></div>
+<p>And produces the following output:</p>
+<pre class="console"><code>Create Person without a name.
+Saving changes.
+ERROR: The Name field is required.
+Add the required name and Library Card and save.
+Saving changes.
+Successful save.
+Get the record we just saved, and display.
+Person: Edward Farley has card: 123
+Create and save Magnifier with required serial number
+Saving changes.
+Successful save.
+Retrieve Magnifier, show it doesn&#39;t belong to someone.
+Magnifier: Bar123, Person: available
+Edward gets the Magnifier. Save and retrieve.
+Saving changes.
+Successful save.
+Magnifier: Bar123, Person: Edward Farley
+Try to add duplicate magnifier
+Saving changes.
+ERROR: Magnifier with this serial nbr already exists.
+Add/save Pencil setting Nickname to null.
+Saving changes.
+ERROR: The Nickname field is required.
+Set Nickname to empty string and save
+Saving changes.
+Successful save.
+Retrieve pencil, change Nickname, save
+Pencil: , Person: Edward Farley
+Saving changes.
+Successful save.
+Pencil: Blackwing, Person: Edward Farley
+Finished</code></pre>
+<p>Tomorrow, Edward, we’ll meet here. Do not keep me waiting! That’s simply bad manners. Now, what are you grinning at?</p>
+<hr />
+<p><a href="http://en.wikipedia.org/wiki/Shunyata">Sunyata (Void-ness)</a></p>
+<p><a href="http://en.wikipedia.org/wiki/VoiD">Vocabulary of Interlinked Datasets</a></p>
+<p><a href="http://www.pencils.com/all-brands/blackwing">Blackwing Pencil</a></p>
+<hr />
+</div>
+              </div>
+              
+
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-05-19 12:38</span></p>
+                <div class='post-content'><p>Parts</p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+<p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
+<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
+<h3 id="zero-or-one-to-zero-or-many">Zero or One to Zero or Many</h3>
+<p><em>The Professor produces his favorite Magnifier.</em></p>
+<p>“Hi, Professor,” said Edward Farley. “Mom added raisins to your sandwich.”</p>
+<p>The Professor accepted the sandwich with a delighted smile, then scowled and said, “Today, young man, I will lavish great salivary care on this culinary delicacy before accepting interrogatives.”</p>
+<p>“Huh?” said Edward.</p>
+<p>“I’m not answering any questions until I’ve eaten.”</p>
+<p>“Oh.”</p>
+<p>They ate in silence, the older man clearly enjoying himself and the torture he was inflicting on his impatient student. Finally, the last crumb tasted, they set to work and the Professor began to lecture.</p>
+<p>Observe, Edward, [he began]. I hold in my hand a prized possession. My first magnifying glass. It’s an unfortunate truth of age that our eyes fail. Also, there are several rather fine books with print so small that one needs a good magnifier to read them. (The print was small to conserve paper, before we learned to make artificial paper. I applaud the reduced resources, but I do miss the aroma of those old tomes.)</p>
+<p>Magnifiers are hand-crafted in Birmuthe. Lovely work. A person blessed with excellent vision doesn’t have to own one. A magnifier might not ever be used, but if it is it belongs to that person for life.</p>
+<p>This is a Zero or One to Zero or Many relationship. A magnifier doesn’t require a person, and a person can have zero or more magnifiers. Here is how the relationship is modeled.</p>
+<p><strong>LearningEFSchema.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Person : IValidatableObject
+{
+<span class="co">//Primary Key</span>
+<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
+[Required]
+<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+<span class="co">//Navigation</span>
+<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+<span class="kw">public</span> <span class="fu">Person</span>()
+{
+LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();
+Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();
+}
+
+<span class="kw">public</span> <span class="kw">class</span> Magnifier
+{
+<span class="co">//Primary Key</span>
+<span class="kw">public</span> <span class="dt">int</span> MagnifierId { <span class="kw">get</span>; <span class="kw">set</span>; }
+[Required]
+<span class="kw">public</span> <span class="dt">string</span> SerialNbr { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="co">//Foreign Key column</span>
+<span class="kw">public</span> <span class="dt">int</span>? PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+<span class="co">//Navigation</span>
+<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
+}</code></pre></div>
+<p><strong>LearningEFDb.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
+{
+<span class="kw">public</span> DbSet&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> DbSet&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<p>You have already observed that this is almost identical to our Library Card. The differences are:</p>
+<p>A person doesn’t have to have a magnifier, so there is no validation for that.</p>
+<p>A magnifier doesn’t require a person, so the PersonId foreign key property is nullable.</p>
+<p>If we run our program, the following table gets created.</p>
+<p><strong>T-SQL</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Magnifiers</span> (
+MagnifierId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
+SerialNbr <span class="fu">nvarchar</span>(max) not <span class="kw">null</span> unique nonclustered,
+PersonId <span class="dt">int</span> <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId)
+)</code></pre></div>
+<p>And, we’re finished, right? Wrong! We have a problem. In fact, we have a problem that exists in Library Cards, too, and that I was waiting for you to cry havoc about and let slip the dogs of code. Pardon me? Really, my boy, you should read more Shakespeare.</p>
+<p>The problem in Library Cards is with their Number, and in Magnifiers with their SerialNbr. Do you suppose two cards or magnifiers can have the same number? I should say not. Mr. Barrows at Birmuthe is very careful on that point. Each magnifier is given a unique serial number.</p>
+<p>We already have a primary key (MagnifierId) on our Magnifier table, which uniquely identifies a row. The SerialNbr column is called by some a candidate key. It could be the primary key, but isn’t. Why don’t I just use it as my primary key? Because I don’t like to. It’s really that simple. Oh, I could go on and on about how consistency is glorious, and how Mr. Barrows might decide to recall all his magnifiers and change their serial numbers (or a library could change its card numbering scheme), and those are, indeed, good reasons. But they can be worked around.</p>
+<p>The fact is, I like having a consistent primary key in both name and type*.</p>
+<p>So, our serial number must be unique. How do we tell the Framework about that? Sadly, we don’t. At least, not directly. Remember, a class doesn’t know about the Framework, so it can’t check itself for uniqueness. There are no doubt other (possibly more clever) solutions than the one I’m about to show. Perhaps you, Edward, will improve on my work, eh?</p>
+<p>We turn to our IValidatable interface, and add code that, in effect, tells the class “If you receive any errors from the context, return them as validation errors.” We are coupling the class to a context, but notice that a ValidationContext does not have to be a Framework context. In our case, of course, it will be the DBContext.</p>
+<p><strong>LearningEFSchema.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Magnifier : IValidatableObject
+{
+<span class="co">//Primary Key</span>
+<span class="kw">public</span> <span class="dt">int</span> MagnifierId { <span class="kw">get</span>; <span class="kw">set</span>; }
+[Required]
+<span class="kw">public</span> <span class="dt">string</span> SerialNbr { <span class="kw">get</span>; <span class="kw">set</span>; }
+<span class="co">//Foreign Key column</span>
+<span class="kw">public</span> <span class="dt">int</span>? PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+<span class="co">//Navigation</span>
+<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+IEnumerable IValidatableObject.<span class="fu">Validate</span>(ValidationContext validationContext)
+{
+<span class="co">//Check for any Items in context. If they&#39;re ValidationResults, yield them.</span>
+<span class="kw">if</span> (validationContext.<span class="fu">Items</span> != <span class="kw">null</span>)
+{
+<span class="kw">foreach</span> (var item <span class="kw">in</span> validationContext.<span class="fu">Items</span>)
+{
+<span class="kw">if</span> (item.<span class="fu">Value</span> <span class="kw">is</span> ValidationResult)
+{
+<span class="kw">yield</span> <span class="kw">return</span> (ValidationResult)item.<span class="fu">Value</span>;
+}
+}
+}
+}
+}</code></pre></div>
+<p>In our Context, we add a using statement:</p>
+<p><strong>LearningEFDb.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System.<span class="fu">ComponentModel</span>.<span class="fu">DataAnnotations</span>;</code></pre></div>
+<p>We add a method to check for duplicate SerialNbrs.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">bool</span> <span class="fu">IsUniqueMagnifierSerialNbr</span>(Magnifier magnifier)
+{
+<span class="dt">var</span> entity = <span class="kw">this</span>.<span class="fu">Magnifiers</span>.<span class="fu">SingleOrDefault</span>(a =&gt; a.<span class="fu">MagnifierId</span> != magnifier.<span class="fu">MagnifierId</span> &amp; a.<span class="fu">SerialNbr</span> == magnifier.<span class="fu">SerialNbr</span>);
+<span class="kw">return</span> (entity == <span class="kw">null</span>);
+}</code></pre></div>
+<p>Finally, we override the ValidateEntity method, and add the following code.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">protected</span> <span class="kw">override</span> System.<span class="fu">Data</span>.<span class="fu">Entity</span>.<span class="fu">Validation</span>.<span class="fu">DbEntityValidationResult</span> <span class="fu">ValidateEntity</span>(System.<span class="fu">Data</span>.<span class="fu">Entity</span>.<span class="fu">Infrastructure</span>.<span class="fu">DbEntityEntry</span> entityEntry, IDictionary&lt;<span class="dt">object</span>, <span class="dt">object</span>&gt; items)
+{
+<span class="kw">if</span> (items == <span class="kw">null</span>) { items = <span class="kw">new</span> Dictionary&lt;<span class="dt">object</span>, <span class="dt">object</span>&gt;(); }
+<span class="co">//Magnifier Serial Number</span>
+<span class="kw">if</span> (entityEntry.<span class="fu">Entity</span> <span class="kw">is</span> Magnifier) { var entity = (Magnifier)entityEntry.<span class="fu">Entity</span>;
+<span class="kw">if</span> (!<span class="fu">IsUniqueMagnifierSerialNbr</span>(entity))
+{
+items.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">KeyValuePair</span>(Guid.<span class="fu">NewGuid</span>(), <span class="kw">new</span> <span class="fu">ValidationResult</span>(<span class="st">&quot;Magnifier with this serial nbr already exists.&quot;</span>, <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;() { <span class="st">&quot;SerialNbr&quot;</span> })));
+}
+}
+<span class="kw">return</span> <span class="kw">base</span>.<span class="fu">ValidateEntity</span>(entityEntry, items);
+}</code></pre></div>
+<p>Do you see? The Framework validates for uniqueness when the entity, itself, is being validated, and tells the entity if there were errors. Unfortunately, the Framework is unable (some would say unwilling) to create the table with unique columns**. Let’s add to our program a rather lengthy test.</p>
+<p><strong>Program.cs</strong></p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Create and save Magnifier with required serial number&quot;</span>);
+Magnifier magnifier = <span class="kw">new</span> <span class="fu">Magnifier</span>() { SerialNbr = <span class="st">&quot;Bar123&quot;</span> };
+_db.<span class="fu">Magnifiers</span>.<span class="fu">Add</span>(magnifier);
+<span class="fu">SaveChanges</span>();
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Retrieve Magnifier, show it doesn&#39;t belong to someone.&quot;</span>);
+magnifier = _db.<span class="fu">Magnifiers</span>.<span class="fu">First</span>();
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Magnifier: &quot;</span> + magnifier.<span class="fu">SerialNbr</span> + <span class="st">&quot;, Person: &quot;</span>
++ (magnifier.<span class="fu">Person</span> != <span class="kw">null</span> ? magnifier.<span class="fu">Person</span>.<span class="fu">Name</span> : <span class="st">&quot;available&quot;</span>));
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Edward gets the Magnifier. Save and retrieve.&quot;</span>);
+magnifier.<span class="fu">Person</span> = edward;
+<span class="fu">SaveChanges</span>();
+magnifier = _db.<span class="fu">Magnifiers</span>.<span class="fu">First</span>();
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Magnifier: &quot;</span> + magnifier.<span class="fu">SerialNbr</span> + <span class="st">&quot;, Person: &quot;</span>
++ (magnifier.<span class="fu">Person</span> != <span class="kw">null</span> ? magnifier.<span class="fu">Person</span>.<span class="fu">Name</span> : <span class="st">&quot;available&quot;</span>));
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Try to add duplicate magnifier&quot;</span>);
+magnifier = <span class="kw">new</span> <span class="fu">Magnifier</span>() { SerialNbr = <span class="st">&quot;Bar123&quot;</span> };
+_db.<span class="fu">Magnifiers</span>.<span class="fu">Add</span>(magnifier);
+<span class="fu">SaveChanges</span>();
+<span class="co">//Clean up. Remove the magnifier;</span>
+_db.<span class="fu">Magnifiers</span>.<span class="fu">Remove</span>(magnifier);</code></pre></div>
+<p>Run the program. Ah, it works as expected! (If only this were more often the case, my boy.)</p>
+<pre class="console"><code>Create Person without a name.
+Saving changes.
+ERROR: The Name field is required.
+Add the required name and Library Card and save.
+Saving changes.
+Successful save.
+Get the record we just saved, and display.
+Person: Edward Farley has card: 123
+Create and save Magnifier with required serial number
+Saving changes.
+Successful save.
+Retrieve Magnifier, show it doesn&#39;t belong to someone.
+Magnifier: Bar123, Person: available
+Edward gets the Magnifier. Save and retrieve.
+Saving changes.
+Successful save.
+Magnifier: Bar123, Person: Edward Farley
+Try to add duplicate magnifier
+Saving changes.
+ERROR: Magnifier with this serial nbr already exists.
+Finished</code></pre>
+<p>That should give you enough to think about, young man. If, in fact, you do any thinking at all.</p>
+<hr />
+<p>*The Professor later wrote to Edward, saying there are practical exceptions to this. For instance, a Logins table might use GUIDs as primary keys to reduce security risks. A States table should use the state abbreviation as the key, and likewise a zip code table. These relationships are already established by the US Postal Service. **We could, however, add the unique constraint when the database is created by EF. Here’s the code that might run in a DbContext DatabaseInitializer.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">************* Unique Constraints ***************
+db.<span class="fu">Database</span>.<span class="fu">ExecuteSqlCommand</span>(<span class="st">&quot;ALTER TABLE AppMachines ADD CONSTRAINT u_AppIdMachineId UNIQUE(AppId,MachineId)&quot;</span>);
+************************************************</code></pre></div>
+<p><a href="http://en.wikipedia.org/wiki/The_dogs_of_war_(phrase)">“Cry ‘Havoc!’ and let slip the dogs of war.”</a></p>
+<hr />
+</div>
+              </div>
+              
     <div class='paging'><a href='index22.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index24.html'>Older</a></div>
-    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
-  </body>
+  </section>
+  <footer><p>Copyright (c) 2018 Charles L Flatt</p>
+</footer>
+  
+</body>
+
 </html>

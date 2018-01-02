@@ -1,179 +1,56 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>index</title>
-    <link rel="stylesheet" type="text/css" href="http://bladewolf55.gitlab.io/smblog/css/default.css">
-  </head>
-  <body>
-    <header>
-      Software Meadows      
-    </header>
-    <nav>
-      <ul>
-        <li><a href="http://bladewolf55.gitlab.io/smblog/">Home</a></li>
-        <li class="dropdown">
-          <a href="http://bladewolf55.gitlab.io/smblog/about">About</a>
-        </li>
-      </ul>
-    </nav>
-   	<aside id="sidebar">
-	   <div id="recent">
-       <p><strong>History</strong></p>
-       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-window-key-s-search-from'>windows-81-window-key-s-search-from</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li></ol>
-      </div>
-	    <div id="tags"></div>
-	  </aside>
-    <section id="content"><h1 id="home">Home</h1>
-<div id='post-roll'><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'><h1>Disable Windows 10 Photo Automatic Albums</h1></a>
-                <p class='post-info'>2016-09-09 12:50</p>
-            </div><div class='post-contents'><p><a href="images/image_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb.png" title="image" alt="image" width="244" height="158" /></a></p>
-<p>It’s dumb that:</p>
-<ol>
-<li>Windows 10’s default photo viewing app automatically creates albums for you.<br />
-<a href="images/image_thumb_25255B4_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="319" height="146" /></a></li>
-<li>You can’t disable that feature.</li>
-<li>Instead, you have to remove the application using PowerShell.</li>
-<li>Which means your default photo viewing app becomes something dumb like Paint.</li>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel='stylesheet' href='http://localhost:8080/smblog/css/default.css' />
+<link rel='stylesheet' href='http://localhost:8080/smblog/css/tango.css' />
+
+  <title>index</title>
+</head>
+
+<body>
+  <nav>
+    <div id="menu">
+      <ol>
+<li><a href="http://localhost:8080/smblog/">Home</a></li>
+<li><a href="http://localhost:8080/smblog/about">About</a></li>
 </ol>
-<p><a href="images/image_thumb_255B5_255D"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_255B5_255D" title="image" alt="image" width="190" height="293" /></a></p>
-<p><a href="http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1" class="uri">http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1</a></p>
-<p>PowerShell command to remove Photos:</p>
-<p>Get-AppxPackage *photo* | Remove-AppxPackage</p>
-<p>Note: According to some, setting another program (like Paint) as your default photo viewer <em>might</em> disable automatic album generation without removing the app. I didn’t test it, because the <em>only</em> thing I’d use the app for is as a viewer. Not an editor. Just an on-the-fly viewer.</p>
-<p><strong>------------ EDIT 1 -------------</strong></p>
-<p>It’s possible to restore using the Windows 7 Windows Photo Viewer as the default. The program is still installed in Windows 10, it just doesn’t have its file associations enabled by default. Follow these instructions:</p>
-<p><a href="http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html" class="uri">http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html</a></p>
-<blockquote>
-<p>Note: I haven’t tried the above, but TenForums (and its sister, SevenForums) is reputable.</p>
-</blockquote>
-<p><strong>------------ EDIT 2 -------------</strong></p>
-<p>I’ve installed the free (for home use) <a href="http://www.faststone.org/FSViewerDetail.htm">FastStone Image Viewer</a>, set it as as my default photo viewer, and changed one setting. I’m now happy. I can already see this app will make me more productive, and I’ll likely be <a href="http://www.faststone.org/donate.htm">donating money</a> to it.</p>
-<p><strong>Setting I Changed</strong></p>
-<p>The default behavior of FastStone is to open a double-clicked image file in full screen mode. I prefer opening in a window because I often need to view the photos while doing something else.</p>
-<ol>
-<li>Open FastStone</li>
-<li>Settings (F12) &gt; Viewer</li>
-<li>Associated image launches in: Windowed View<br />
-<a href="images/image_thumb_25255B2_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B2_25255D.png" title="image" alt="image" width="485" height="178" /></a></li>
-</ol>
-<p><strong>Features</strong></p>
-<p>In full screen mode, moving the mouse to the top, bottom, right or left of the screen reveals a specific menu. For instance, at the top is thumbnails and some command buttons.</p>
-<p>FastStone has a lot of features, but here are my needs and how FastStone met them.</p>
-<p><strong>Double-click an image and view in window.</strong></p>
-<ol>
-<li>Search &gt; Default Programs</li>
-<li>For Photo viewer, choose FastStone.</li>
-</ol>
-<p><a href="images/image_thumb_25255B5_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B5_25255D.png" title="image" alt="image" width="345" height="311" /></a></p>
-<p><strong>Easily move to next/previous image.</strong></p>
-<ul>
-<li>In any view, use the arrows to navigate.</li>
-<li>In windowed view, there are buttons in the tool bar.</li>
-<li>In any view, bring the mouse toward the screen bottom and arrows will appear/</li>
-</ul>
-<p><a href="images/image_thumb_25255B7_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B7_25255D.png" title="image" alt="image" width="292" height="165" /></a></p>
-<p><strong>Quickly get some image properties.</strong></p>
-<ul>
-<li>In any view, press “I”.<br />
-<a href="images/image_thumb_25255B13_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B13_25255D.png" title="image" alt="image" width="190" height="373" /></a></li>
-<li>In full screen view, move cursor to right side.</li>
-</ul>
-<p><strong>View as a slide show.</strong></p>
-<ul>
-<li>In windowed view, click the Slide Show button <a href="images/image_thumb_25255B3_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B3_25255D.png" title="image" alt="image" width="27" height="23" /></a></li>
-<li>In full screen, move mouse to top, bottom or left and find the Slide Show option in the menu.</li>
-</ul>
-<p><a href="images/image_thumb_25255B12_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B12_25255D.png" title="image" alt="image" width="367" height="279" /></a></p>
-<h1 id="references">References</h1>
-<p><a href="http://gettinggeek.com/4-best-image-viewers-windows-10/">Here are 4 Best Image Viewers for Windows 10</a></p>
-</div><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and'><h1>A Layman’s Explanation of Mocking and Dependency Injection</h1></a>
-                <p class='post-info'>2016-09-05 12:28</p>
-            </div><div class='post-contents'><h1 id="a-sad-tale-of-woe-again">A Sad Tale of Woe Again</h1>
-<p><a href="images/image_thumb_255B2_255D"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_255B2_255D" title="image" alt="image" width="263" height="88" /></a></p>
-<p>So your husband or wife is a software engineer, and you’re not. You like the <em>idea</em> of software, you even <em>use</em> software, but you are as interested in what goes into creating software as you are in soap manufacturing. He (or she, but programming is still a stupidly male-dominated field, so we’ll stick with the percentages) comes home, blathering on about his day. The conversation goes something like this:</p>
-<p>Him: “They handed me a legacy codebase today. It’s ancient .Net 2 stuff. I’m supposed to refactor the existing code and, in parallel, rewrite it to .Net 4.5.”</p>
-<p>You: (silent, but thinking, “I wonder if crocodiles attack alligators. Or can they mate with them? You only hear about crocodiles <em>or</em> alligators, not crocodiles <em>and</em> alligators. Is a ‘crocogator’ a thing?”)</p>
-<p>Him: “I spent about five hours just looking at the stack. What a mess! I mean, it’s not bad, really, but before I make any changes I need a way to unit test, and it’s not architected for that. I don’t want to go down the rabbit hole since I’m rewriting the whole thing using SOLID DDD principles, but I’ve got to get some DI going, and I’m going to have to figure out how to mock some of the internals.”</p>
-<p>You: (nodding, and thinking, “If I pull weeds today, then I can mow tomorrow and feel virtuous two days in a row, and treat myself to wine at lunch on Saturday.”)</p>
-<p>Him: “Can I brainstorm the unit testing with you? Just, you know, talk it out? That would really help.”</p>
-<p>You: (nodding slowly, thinking, “O! M! G! Just cut off my head and pour cabbage into it! Still, he’s a good man. All I have to do is listen.”</p>
-<p>Him: “Stop me any time if I can explain how something works.”</p>
-<p>You: “OK, honey.” (but thinking, “The weeds. I was going to pull the weeds.”)</p>
-<h1 id="unbaffling-language-to-the-rescue">Unbaffling Language to the Rescue!</h1>
-<p>The only thing worse than listening to a software developer talk about code is asking a sailor about an upcoming voyage. Here are some actual nautical terms and phrases: cumshaw, geedunk, abeam, baggywrinkle, beat to quarters, by and large, coxswain. The definition of “death roll”?:  “In a keel boat, a death roll is the act of broaching to windward, putting the spinnaker pole into the water and causing a crash-gybe of the boom and mainsail, which sweep across the deck and plunge down into the water.” [<a href="https://en.wikipedia.org/wiki/Glossary_of_nautical_terms">Wikipedia</a>]</p>
-<p>Water. I drink water. I understand water.</p>
-<p>Programmers don’t need to live lives of unending, habitual obfuscation. We can explain, if we but remember the lessons of literature.</p>
-<h1 id="the-totally-contrived-ridiculous-metaphor">The Totally Contrived, Ridiculous Metaphor</h1>
-<p>Imagine you’re a high school teacher. Now, imagine that you have a four-inch wood splinter going through your left eyelid. Which is easier on your mental state? If you say “splinter,” you must be a teacher.</p>
-<p>Now, imagine a magical school where you don’t have to grade your own papers. You finish your eight-hour work day, go home, take an hour planning the next day’s lessons, have dinner, and study an hour or two for your required continuing education course, but you <em>don’t</em> have to grade at least twenty-five of the 120 five-page essays from mid-term exams.</p>
-<p>Instead, you get to hand the exams to your Grading And Reports Department. It works like this:</p>
-<ol>
-<li>Give Mr Michael Murphy your stack of 120 essays.</li>
-<li>A few days later, pick up the graded essays and a formatted report of the students’ grades, broken down by class period, by student, and summarized with comparative aggregates. It’s a great report.</li>
-</ol>
-<p>Recently, you were tasked with testing the GARD system. You’re a great choice, because you helped create the department. Here’s what you know:</p>
-<ol>
-<li>Mr Murphy takes the papers and gives them to Dr Marcia Malone. Dr Malone grades every paper. She gives the results back to Mr Murphy.</li>
-<li>Mr Murphy aggregates the grades and creates the formatted report.</li>
-<li>You helped train Dr Malone, who is brilliant. She can grade anything. But teachers have no control over how she grades.</li>
-<li>The grading scale Dr Malone uses could change at any time. Today, 90-100% could be an “A.” Tomorrow, 93-100% could be an “A.” (Remember, this is a <em>contrived</em> <em>example</em>.)</li>
-</ol>
-<p>Here’s a lousy illustration.</p>
-<p>You give the papers to Mr Murphy</p>
-<p><a href="images/image_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B1_25255D.png" title="image" alt="image" width="417" height="217" /></a></p>
-<p>Mr Murphy gives the papers to Dr Malone, who does mysterious, magical mischief.</p>
-<p><a href="images/image_thumb_25255B3_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B3_25255D.png" title="image" alt="image" width="420" height="245" /></a></p>
-<p>Mr Murphy gives you back the papers.</p>
-<p><a href="images/image_thumb_25255B5_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B5_25255D.png" title="image" alt="image" width="426" height="222" /></a></p>
-<p>You have only been asked to test the report formatting. This is critical! You are <strong><em>not</em></strong> verifying the grades are correct. You only care about the report. You devise this test</p>
-<blockquote>
-<p>Given a stack of 120 papers, if the grades are abc, then report should look like xyz.</p>
-</blockquote>
-<p>So here’s your challenge. You are going to give Mr Murphy 120 papers. He’s going to create the report. You’re going to compare what he gives you with how you know the report should look, right down to the numbers and letter grades on it. If they match, the test passes. If not, the test fails.</p>
-<p>“Crap!” you think, “I can’t depend on Dr Malone to always give Mr Murphy the same grades! Besides, it takes her three days on average to grade that many papers, and I want my tests to be done in a day. It only takes Mr Murphy a few hours to prepare a report.”</p>
-<p>You develop a plan. You are a genius.</p>
-<ol>
-<li>You build an automaton that looks like Dr Malone. But, it doesn’t actually grade anything. It just gives back a consistent set of scores that you tell it.</li>
-<li>When you give Mr Murphy the papers, you’ll <em>also</em> give him the automaton.</li>
-<li>Instead of Mr Murphy handing the papers to Dr Malone, he’ll hand them to the automaton and immediately get back your scores from it.</li>
-<li>Mr Murphy formats the report and gives it to you.</li>
-</ol>
-<p>More laughable illustrations, but let’s include the programming terms.</p>
-<p>We have a dependency on our grader, Dr Malone. We’ll change the GARD room so that we can give it a real <em>or fake</em> grader. This is called Dependency Injection.</p>
-<p><a href="images/image12_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image12_thumb.png" title="image" alt="image" width="467" height="259" /></a></p>
-<p>Mr Murphy doesn’t care which grader he gets answers from. For our test, he uses the fake one. That is, he uses a Mock (also called a fake, or stub, or substitute).</p>
-<p><a href="images/image_thumb_25255B12_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B12_25255D.png" title="image" alt="image" width="465" height="269" /></a></p>
-<p>We get back the report made from data we injected. We just want to compare the reports, the work Mr Murphy does.</p>
-<p><a href="images/image_thumb_25255B13_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B13_25255D.png" title="image" alt="image" width="223" height="238" /></a></p>
-<p>If they match, the test passes. If not, fail!</p>
-<p><a href="images/image_thumb_25255B14_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B14_25255D.png" title="image" alt="image" width="244" height="113" /></a></p>
-<h1 id="how-a-programmer-sees-this">How a programmer sees this</h1>
-<p>A programmer sees it the same way. Except it’s all words that look like English, but are alien-ese.</p>
-<p><strong>The Interface</strong></p>
-<p><a href="images/image_thumb_25255B16_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B16_25255D.png" title="image" alt="image" width="473" height="96" /></a></p>
-<p><strong>The Production Code</strong></p>
-<p><a href="images/image_thumb_25255B21_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B21_25255D.png" title="image" alt="image" width="619" height="364" /></a></p>
-<p><strong>Using the Production Code</strong></p>
-<p><a href="images/image_thumb_25255B30_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B30_25255D.png" title="image" alt="image" width="752" height="193" /></a></p>
-<p><strong>The Test Code</strong></p>
-<p><a href="images/image_thumb_25255B24_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B24_25255D.png" title="image" alt="image" width="750" height="509" /></a></p>
-<h1 id="wrap-up">Wrap Up</h1>
-<p>Dependency Injection and Mocking solve two problems that affect how well software can be tested.</p>
-<ol>
-<li>Dependency Injection lets us control what external dependencies, like a grading engine, a method uses. If we couldn’t do this, we’d have to always use production data, when that’s not what we’re always testing.</li>
-<li>Once we can inject a dependency, we can Mock its behavior. That is, we can make it do whatever we want, giving the method under test consistent results. Again, we’re not testing the dependent service. We’re testing the method that is using it.</li>
-</ol>
-<p>It takes some work, but once you get your head wrapped around these concepts and their implementation, their importance becomes clear.</p>
-</div><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-3'><h1>Catching Up on Coding - TDD Part 3</h1></a>
-                <p class='post-info'>2016-08-31 11:07</p>
-            </div><div class='post-contents'><p><img src="images/aliasdvd.jpg" width="193" height="231" />I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
+
+    </div>
+    <div id="recent">
+      <h2>Recent</h2>
+      <a href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a>
+    </div>
+    <div id="history">
+      <h2>History</h2>
+      <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-window-key-s-search-from'>Windows 8.1: Window Key + S = Search from Desktop</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li><li class='history-year'><label for='1'>1</label><input type='checkbox'  id='1' /><ol><li class='history-month'><label for='1-1'>January</label><input type='checkbox'  id='1-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/angularjs-service-with-var-declarations'>angularjs-service-with-var-declarations</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/dont-use-data-prefix-in-angularjs'>dont-use-data-prefix-in-angularjs</a></li></ol></li></ol></li></ol>
+    </div>
+  </nav>
+  <header>
+    <div id="site-image">
+      <img src="http://localhost:8080/smblog/images/header.png" alt="" />
+    </div>
+    <h1 id="site-name"></h1>
+    <div id="site-subtitle">A pleasant walk through computing</div>
+  </header>
+  <section id="content">
+    <h1 id="home">Home</h1>
+
+  </section>
+  <!-- posts only appear in home index -->
+  <section id="posts">
+    
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></h2>
+                <p class='post-info'><span class='posted-on'>2016-08-31 11:07</span></p>
+                <div class='post-content'><p><img src="images/aliasdvd.jpg" width="193" height="231" />I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
 <p>It turns out that unit testing exercises a lot of coding methods for more maintainable code. Some methods involve deception, so who better to inspire us than our “Butch Cassidy/Sundance Kid” knockoffs from 70s show <a href="https://en.wikipedia.org/wiki/Alias_Smith_and_Jones">Alias Smith and Jones</a>? The difference is, I’m not trying to “<a href="https://www.youtube.com/watch?v=4nmxLeNd0ck">get out of this business</a>.”</p>
 <p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">TDD Part 2</a><br />
 Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-coding-claims-based-identity-part-1_6.html">Claims-Based Identity Part 1</a></p>
-<p> </p>
 <h1 id="teaser">Teaser</h1>
 <p>Unit testing benefits from mocking and Inversion of Control. I’d argue that it’s hard to effectively unit test <em>without</em> these techniques. Parts <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-1.html">one</a> and <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">two</a> of this TDD series used hand-crafted mocking and IoC. Today, we’ll redo some tests using 3rd party tools/frameworks.</p>
 <h1 id="act-1-choosing-the-tools">Act 1 – Choosing the Tools</h1>
@@ -212,75 +89,75 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
 </ol>
 <h2 id="replace-a-previous-test">Replace a Previous Test</h2>
 <p>In my <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">previous tests</a>, I created my own mock Registry wrappers from IRegistryWrapper and IRegistryMockWrapper. These are interfaces I created to allow Inversion of Control of the Registry. IRegistryWrapper looks like this</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">public</span> <span class="kw">interface</span> IRegistryWrapper
-    {
-        <span class="dt">object</span> <span class="fu">GetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> defaultValue);
-        <span class="dt">void</span> <span class="fu">SetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> value, RegistryValueKind valueKind);
-    }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">interface</span> IRegistryWrapper
+{
+<span class="dt">object</span> <span class="fu">GetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> defaultValue);
+<span class="dt">void</span> <span class="fu">SetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> value, RegistryValueKind valueKind);
+}</code></pre></div>
 <p>the hand-crafted mock looks like this</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">class</span> RegistryMock : IRegistryWrapper
-    {
-        <span class="kw">public</span> <span class="dt">object</span> <span class="fu">GetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> defaultValue)
-        {
-            <span class="co">//this may become cumbersome, but for now specify some return values</span>
-            <span class="kw">switch</span> (keyName)
-            {
-                <span class="kw">case</span> @<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>:
-                    <span class="kw">if</span> (valueName == <span class="st">&quot;Version&quot;</span>) <span class="kw">return</span> defaultValue;
-                    <span class="kw">break</span>;
-            }
-            <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">&quot;Invalid keyName&quot;</span>);
-        }
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">class</span> RegistryMock : IRegistryWrapper
+{
+<span class="kw">public</span> <span class="dt">object</span> <span class="fu">GetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> defaultValue)
+{
+<span class="co">//this may become cumbersome, but for now specify some return values</span>
+<span class="kw">switch</span> (keyName)
+{
+<span class="kw">case</span> @<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>:
+<span class="kw">if</span> (valueName == <span class="st">&quot;Version&quot;</span>) <span class="kw">return</span> defaultValue;
+<span class="kw">break</span>;
+}
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">&quot;Invalid keyName&quot;</span>);
+}
 
-        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">SetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> value, RegistryValueKind valueKind)
-        {
-            <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NotImplementedException</span>();
-        }
-    }</code></pre></div>
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">SetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> value, RegistryValueKind valueKind)
+{
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NotImplementedException</span>();
+}
+}</code></pre></div>
 <p>here’s the unit test</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">public</span> <span class="kw">class</span> RegistryService_GetRegistryKeyValue_Should
-    {
-        IRegistryWrapper _registry = <span class="kw">new</span> <span class="fu">RegistryMock</span>();
-        IRegistryKeyWrapper _registryKey = <span class="kw">new</span> <span class="fu">RegistryKeyMock</span>();
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryService_GetRegistryKeyValue_Should
+{
+IRegistryWrapper _registry = <span class="kw">new</span> <span class="fu">RegistryMock</span>();
+IRegistryKeyWrapper _registryKey = <span class="kw">new</span> <span class="fu">RegistryKeyMock</span>();
 
-        [Fact]
-        <span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnNullConstantTextIfValueIsMissing</span>()
-        {
-            <span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(_registry, _registryKey);
-            <span class="dt">var</span> result = service.<span class="fu">GetRegistryKeyValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>);
-            Assert.<span class="fu">Equal</span>(result, service.<span class="fu">NoValue</span>);
-        }
-    }</code></pre></div>
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnNullConstantTextIfValueIsMissing</span>()
+{
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(_registry, _registryKey);
+<span class="dt">var</span> result = service.<span class="fu">GetRegistryKeyValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>);
+Assert.<span class="fu">Equal</span>(result, service.<span class="fu">NoValue</span>);
+}
+}</code></pre></div>
 <p>and finally, here's the RegistryService method that passes the test</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">        <span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetRegistryKeyValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName)
-        {
-            <span class="kw">try</span>
-            {
-                <span class="co">//value will be null if no value found, and the default value if the key is missing. But we only care that there&#39;s no value.</span>
-                <span class="co">//Null can&#39;t be returned to the client. Don&#39;t return empty, since that&#39;s ambigious (did the key exist?).</span>
-                <span class="co">//Return a magic string.</span>
-                <span class="dt">object</span> value = _registry.<span class="fu">GetValue</span>(keyName, valueName, <span class="kw">null</span>); <span class="co">//guarantees null if no value or missing key.</span>
-                <span class="kw">return</span> value != <span class="kw">null</span> ? value.<span class="fu">ToString</span>() : NoValue;
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetRegistryKeyValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName)
+{
+<span class="kw">try</span>
+{
+<span class="co">//value will be null if no value found, and the default value if the key is missing. But we only care that there&#39;s no value.</span>
+<span class="co">//Null can&#39;t be returned to the client. Don&#39;t return empty, since that&#39;s ambigious (did the key exist?).</span>
+<span class="co">//Return a magic string.</span>
+<span class="dt">object</span> value = _registry.<span class="fu">GetValue</span>(keyName, valueName, <span class="kw">null</span>); <span class="co">//guarantees null if no value or missing key.</span>
+<span class="kw">return</span> value != <span class="kw">null</span> ? value.<span class="fu">ToString</span>() : NoValue;
 
-            }
-            <span class="kw">catch</span> (Exception ex)
-            {
-                <span class="kw">return</span> <span class="st">&quot;Error attempting keyName &#39;&quot;</span> + keyName + <span class="st">&quot;&#39; and valueName &#39;&quot;</span> + valueName + <span class="st">&quot;&#39;</span><span class="sc">\r\n</span><span class="st">&quot;</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>;
-            }
-        }</code></pre></div>
+}
+<span class="kw">catch</span> (Exception ex)
+{
+<span class="kw">return</span> <span class="st">&quot;Error attempting keyName &#39;&quot;</span> + keyName + <span class="st">&quot;&#39; and valueName &#39;&quot;</span> + valueName + <span class="st">&quot;&#39;</span><span class="sc">\r\n</span><span class="st">&quot;</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>;
+}
+}</code></pre></div>
 <p>All I’m going to do is refactor the test so that I use NSubstitute instead of my own mocks. I’ll need a mock for IRegistryKeyWrapper because the class expects it, but I won’t set any behavior on it.</p>
 <blockquote>
 <p>Note: remember to add “using NSubstitute;”</p>
 </blockquote>
 <p>In my hand-crafted mock, I specified return values based on the arguments to GetValue, and otherwise threw an exception. For my unit test, I need to do something similar. Here’s my first attempt, and it does indeed pass.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">            
-            <span class="dt">var</span> registry = Substitute.<span class="fu">For</span>&lt;IRegistryWrapper&gt;();
-            <span class="dt">var</span> registryKey = Substitute.<span class="fu">For</span>&lt;IRegistryKeyWrapper&gt;();
-            <span class="co">//Registry.GetValue will return null if the valueName doesn&#39;t exist.</span>
-            registry.<span class="fu">GetValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>, <span class="kw">null</span>).<span class="fu">Returns</span>(<span class="kw">null</span>);
-            <span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(registry, registryKey);
-            <span class="dt">var</span> result = service.<span class="fu">GetRegistryKeyValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>);
-            Assert.<span class="fu">Equal</span>(result, service.<span class="fu">NoValue</span>);</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">
+<span class="dt">var</span> registry = Substitute.<span class="fu">For</span>&lt;IRegistryWrapper&gt;();
+<span class="dt">var</span> registryKey = Substitute.<span class="fu">For</span>&lt;IRegistryKeyWrapper&gt;();
+<span class="co">//Registry.GetValue will return null if the valueName doesn&#39;t exist.</span>
+registry.<span class="fu">GetValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>, <span class="kw">null</span>).<span class="fu">Returns</span>(<span class="kw">null</span>);
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(registry, registryKey);
+<span class="dt">var</span> result = service.<span class="fu">GetRegistryKeyValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>);
+Assert.<span class="fu">Equal</span>(result, service.<span class="fu">NoValue</span>);</code></pre></div>
 <p>The problem is (or <em>seems to be</em>), if I change the substitute's argument &quot;Version&quot; to &quot;Blamo&quot;, the test still passes. This is happening because given an unknown argument the method will still return null. I need to tell the substitute that it should only return null if it gets the right arguments.</p>
 <p><em>Or do I?</em></p>
 <p>No, I don’t. I’m attempting to give my mock too much behavior. I <em>only</em> want the mocked Registry to pretend that the value was missing and return null. Elsewhere I’ll test the behavior if the value exists. My hand-crafted mock was eventually going to give me trouble because it was doing too much <em>and</em> it wasn’t really behaving like the Registry class.</p>
@@ -301,19 +178,19 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
 <p>In short, my method is a black box. It could be empty, for all I know. That’s why TDD starts with an empty method, so that it fails first. If it succeeds when empty, that’s a problem. When my method has a dependency, I need to only mock up what that dependency will do if it’s called with the expected value.</p>
 <p><em>But, I mustn’t assume the mocked dependency has been called at all</em>.</p>
 <p>So, here’s how my test should look.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">            <span class="co">//Arrange</span>
-            <span class="dt">var</span> registry = Substitute.<span class="fu">For</span>&lt;IRegistryWrapper&gt;();
-            <span class="dt">var</span> registryKey = Substitute.<span class="fu">For</span>&lt;IRegistryKeyWrapper&gt;();
-            <span class="co">//Registry.GetValue will return null if the valueName doesn&#39;t exist.</span>
-            registry.<span class="fu">GetValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>, <span class="kw">null</span>).<span class="fu">Returns</span>(<span class="kw">null</span>);
-            <span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(registry, registryKey);
-            <span class="co">//Act</span>
-            <span class="dt">var</span> result = service.<span class="fu">GetRegistryKeyValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>);
-            <span class="co">//Assert</span>
-            <span class="co">//First, make sure the mocked Registry was called at least once. Otherwise, we might have a false positive.</span>
-            registry.<span class="fu">Received</span>().<span class="fu">GetValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>, <span class="kw">null</span>);
-            <span class="co">//Now make sure we got back the expected value from our method.</span>
-            Assert.<span class="fu">Equal</span>(result, service.<span class="fu">NoValue</span>);</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//Arrange</span>
+<span class="dt">var</span> registry = Substitute.<span class="fu">For</span>&lt;IRegistryWrapper&gt;();
+<span class="dt">var</span> registryKey = Substitute.<span class="fu">For</span>&lt;IRegistryKeyWrapper&gt;();
+<span class="co">//Registry.GetValue will return null if the valueName doesn&#39;t exist.</span>
+registry.<span class="fu">GetValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>, <span class="kw">null</span>).<span class="fu">Returns</span>(<span class="kw">null</span>);
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(registry, registryKey);
+<span class="co">//Act</span>
+<span class="dt">var</span> result = service.<span class="fu">GetRegistryKeyValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>);
+<span class="co">//Assert</span>
+<span class="co">//First, make sure the mocked Registry was called at least once. Otherwise, we might have a false positive.</span>
+registry.<span class="fu">Received</span>().<span class="fu">GetValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>, <span class="kw">null</span>);
+<span class="co">//Now make sure we got back the expected value from our method.</span>
+Assert.<span class="fu">Equal</span>(result, service.<span class="fu">NoValue</span>);</code></pre></div>
 <p>To sum up, some key lessons of unit testing are:</p>
 <ol>
 <li>Treat the method under test as a black box.</li>
@@ -332,26 +209,26 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//pass the live registry wrappers</span>
 RegistryService service = <span class="kw">new</span> <span class="fu">RegistryService</span>(<span class="kw">new</span> <span class="fu">RegistryWrapper</span>(), <span class="kw">new</span> <span class="fu">RegistryKeyWrapper</span>());</code></pre></div>
 <p>I could also let my class have default dependencies. This might be OK, as long as the caller knows what to expect. It would be considered &quot;convention over configuration.&quot;</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">public</span> <span class="kw">class</span> RegistryService
-    {
-        <span class="kw">private</span> IRegistryWrapper _registry;
-        <span class="kw">private</span> IRegistryKeyWrapper _registryKey;
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryService
+{
+<span class="kw">private</span> IRegistryWrapper _registry;
+<span class="kw">private</span> IRegistryKeyWrapper _registryKey;
 
-        <span class="kw">public</span> <span class="fu">RegistryService</span>()
-        {
-            _registry = <span class="kw">new</span> <span class="fu">RegistryWrapper</span>();
-            _registryKey = <span class="kw">new</span> <span class="fu">RegistryKeyWrapper</span>();
-        }
-        <span class="kw">public</span> <span class="fu">RegistryService</span>(IRegistryWrapper registry, IRegistryKeyWrapper key)
-        {
-            _registry = registry;
-            _registryKey = key;
-        }
-        ...
-    }
+<span class="kw">public</span> <span class="fu">RegistryService</span>()
+{
+_registry = <span class="kw">new</span> <span class="fu">RegistryWrapper</span>();
+_registryKey = <span class="kw">new</span> <span class="fu">RegistryKeyWrapper</span>();
+}
+<span class="kw">public</span> <span class="fu">RegistryService</span>(IRegistryWrapper registry, IRegistryKeyWrapper key)
+{
+_registry = registry;
+_registryKey = key;
+}
+...
+}
 
-    <span class="co">//usage, by default uses the Windows Registry.</span>
-    <span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>();</code></pre></div>
+<span class="co">//usage, by default uses the Windows Registry.</span>
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>();</code></pre></div>
 <p>For simple cases, using an IoC is overkill. In fact, I would say:</p>
 <blockquote>
 <p>Don’t use an IoC container unless you have to.</p>
@@ -369,50 +246,50 @@ RegistryService service = <span class="kw">new</span> <span class="fu">RegistryS
 </ol>
 <h2 id="injection">Injection!</h2>
 <p>First, I prepare my RegistryService class for dependency injection.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">public</span> <span class="kw">class</span> RegistryService
-    {
-        <span class="kw">private</span> IRegistryWrapper _registry;
-        <span class="kw">private</span> IRegistryKeyWrapper _registryKey;
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryService
+{
+<span class="kw">private</span> IRegistryWrapper _registry;
+<span class="kw">private</span> IRegistryKeyWrapper _registryKey;
 
-        <span class="kw">public</span> <span class="fu">RegistryService</span>(IRegistryWrapper registry, IRegistryKeyWrapper key)
-        {
-            _registry = registry;
-            _registryKey = key;
-        }</code></pre></div>
+<span class="kw">public</span> <span class="fu">RegistryService</span>(IRegistryWrapper registry, IRegistryKeyWrapper key)
+{
+_registry = registry;
+_registryKey = key;
+}</code></pre></div>
 <p>My Windows service, EduAgent, is calling the RegistryService, which is in a separate DLL. I want all my dependencies initialized once, in one place. The service’s Main method is the starting point. But, you know what, to make it easier for another developer, I’ll create a class called DependencyInjection, which we’ll call from Main. That makes it pretty clear where the dependencies are maintained, and how.</p>
 <p>All we’re doing here is saying “if I request from ‘container’ a type of IRegistryWrapper, give me an instance of the class RegistryWrapper.”</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> DependencyInjection
-    {
-        <span class="kw">public</span> <span class="kw">static</span> Container container;
-        <span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">InitializeDependencies</span>()
-        {
-            <span class="co">//create container</span>
-            container = <span class="kw">new</span> <span class="fu">Container</span>();
-            <span class="co">//register interfaces</span>
-            container.<span class="fu">Register</span>&lt;IRegistryWrapper, RegistryWrapper&gt;();
-            container.<span class="fu">Register</span>&lt;IRegistryKeyWrapper, RegistryKeyWrapper&gt;();
-            <span class="co">//register concrete types</span>
-            container.<span class="fu">Register</span>&lt;RegistryService&gt;();
-            <span class="co">//optionally verify</span>
-            container.<span class="fu">Verify</span>();
-        }
-    }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> DependencyInjection
+{
+<span class="kw">public</span> <span class="kw">static</span> Container container;
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">InitializeDependencies</span>()
+{
+<span class="co">//create container</span>
+container = <span class="kw">new</span> <span class="fu">Container</span>();
+<span class="co">//register interfaces</span>
+container.<span class="fu">Register</span>&lt;IRegistryWrapper, RegistryWrapper&gt;();
+container.<span class="fu">Register</span>&lt;IRegistryKeyWrapper, RegistryKeyWrapper&gt;();
+<span class="co">//register concrete types</span>
+container.<span class="fu">Register</span>&lt;RegistryService&gt;();
+<span class="co">//optionally verify</span>
+container.<span class="fu">Verify</span>();
+}
+}</code></pre></div>
 <p>I initialize the dependencies.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">static</span> <span class="kw">class</span> Program
-    {
-        <span class="co">/// </span>
-        <span class="co">/// The main entry point for the application.</span>
-        <span class="co">/// </span>
-        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>()
-        {
-            DependencyInjection.<span class="fu">InitializeDependencies</span>();
-            ServiceBase[] ServicesToRun;
-            ...</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> <span class="kw">class</span> Program
+{
+<span class="co">///</span>
+<span class="co">/// The main entry point for the application.</span>
+<span class="co">///</span>
+<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>()
+{
+DependencyInjection.<span class="fu">InitializeDependencies</span>();
+ServiceBase[] ServicesToRun;
+...</code></pre></div>
 <p>Notice that during initialization, I’m also registering the concrete type RegistryService. I’m doing this so that I can request an instance of RegistryService <em>without</em> passing any constructor arguments. The container knows what to pass in on my behalf.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">   <span class="co">//pass the live registry wrappers, which are auto-wired by Simple Injector</span>
-   RegistryService service = DependencyInjection.<span class="fu">container</span>.<span class="fu">GetInstance</span>&lt;RegistryService&gt;();</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//pass the live registry wrappers, which are auto-wired by Simple Injector</span>
+RegistryService service = DependencyInjection.<span class="fu">container</span>.<span class="fu">GetInstance</span>&lt;RegistryService&gt;();</code></pre></div>
 <p>This is the same as if I had done this:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">   RegistryService service = <span class="kw">new</span> <span class="fu">RegistryService</span>(<span class="kw">new</span> <span class="fu">RegistryWrapper</span>(), <span class="kw">new</span> <span class="fu">RegistryKeyWrapper</span>());</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">RegistryService service = <span class="kw">new</span> <span class="fu">RegistryService</span>(<span class="kw">new</span> <span class="fu">RegistryWrapper</span>(), <span class="kw">new</span> <span class="fu">RegistryKeyWrapper</span>());</code></pre></div>
 <p>But by using an IoC container, if I use a different (again, fictitious) registry provider, I only need to set it in one place: InitializeDependencies.</p>
 <h1 id="tag">Tag</h1>
 <p>There’s a lot more to mocking and dependency injection than the above samples show. I ran into a pretty significant problem because my original IRegistryKeyWrapper included IDisposable, which plays hell with dependency injection.</p>
@@ -420,9 +297,701 @@ RegistryService service = <span class="kw">new</span> <span class="fu">RegistryS
 <p>Lesson: Sometimes these tools add complications. But other times, they reveal problems in your code.</p>
 </blockquote>
 <p>On the subject of complications, one of the stars of <em>Alias Smith and Jones</em> killed himself during the first season. He suffered from depression and alcoholism. To this day, that makes me sad. <a href="http://www.imdb.com/name/nm0240233/?ref_=fn_al_nm_1">Pete Duel</a>, I miss what you could have done.</p>
-<p><a href="images/image_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-3/images/image_thumb.png" title="image" alt="image" width="190" height="244" /></a></p>
-</div></div></section>
+<p><a href="images/image_thumb.png"><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-3/images/image_thumb.png" title="image" alt="image" width="190" height="244" /></a></p>
+</div>
+              </div>
+              
+
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></h2>
+                <p class='post-info'><span class='posted-on'>2016-08-24 17:13</span></p>
+                <div class='post-content'><p><img src="images/journey1.jpg" width="296" height="231" /></p>
+<p>I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
+<p>Taking a cue from the 70s and its badass fonts, my <a href="https://en.wikipedia.org/wiki/The_Fantastic_Journey">Fantastic Journey</a> is traveling from skill to skill, trying to escape every software engineer’s Bermuda Triangle: obsolescence. I don’t have Jared Martin’s Sonic Energizer to focus my thoughts and manipulate matter. All I can do is listen to the <a href="https://www.youtube.com/watch?v=fqKEENAGSBo">groovy theme music</a>.</p>
+<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-1.html">TDD Part 1</a><br />
+Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-3.html">TDD Part 3</a></p>
+<h1 id="teaser">Teaser</h1>
+<p>It’s one thing to practice TDD from the start. It’s another to take legacy code <em>that you wrote</em> and create unit tests for it. My EduAgent project includes a client service that processes requests to update the registry.</p>
+<p>Looking at my code, I right away see my first stumbling block: the purpose of the code is changing the registry. For testing, this means:</p>
+<ul>
+<li>Affecting the registry of whatever computer the tests run on.</li>
+<li>Guaranteeing each test starts with a clean environment. What does this mean for parallel testing?</li>
+<li>Guaranteeing the registry returns to its original state, regardless of test results.</li>
+<li>Not breaking the computer.</li>
+</ul>
+<p>These are characteristics of integration/functional tests, not unit tests. Should I mock the registry classes to deal with this code?</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="dt">object</span> value = Registry.<span class="fu">GetValue</span>(keyName, valueName, <span class="kw">null</span>);</code></pre></div>
+<p>If I do—if I <em>can</em>—am I really testing anything? Or am I creating fake conditions that assure the test will pass? There’s a danger, in unit testing, of creating tests that don’t actually test the method: they “test” a mock that will always return the expected value.</p>
+<h1 id="act-1-what-i-can-test-what-i-should">Act 1 – What I Can Test, What I Should</h1>
+<p>The purpose of mocks is to allow the unit test to focus on what it can test, and ignore what can corrupt the test—assuming what can corrupts the test isn’t exactly what should be tested!</p>
+<p>A classic, challenging example is methods that access a database. I don’t want to test if I can access the database. I want to test what I’m doing with the data. For example, consider this class method.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> EmployeeInfoService
+{
+IEmployeeDbContext _db;
+<span class="kw">public</span> <span class="fu">EmployeeInfoService</span>(IEmployeeDbContext db) { _db = db; }
+<span class="kw">public</span> List <span class="fu">GetAverageHourlyPay</span>(<span class="dt">int</span>[] employeeIds)
+{
+<span class="kw">return</span> from stats <span class="kw">in</span> _db.<span class="fu">PayStubs</span>
+<span class="co">//...a bunch of code that gets data and calculates the hourly pay by doing this:</span>
+<span class="co">// stats.Hours / stats.Amount</span>
+;
+}
+}</code></pre></div>
+<p>I don’t care, <em>in the test I’m about to write,</em> if I can access the database, or if the database is returning the right data, or breaks when I hand it a list of EmployeeIds. All I care about is whether the method properly does the math given specific numbers. So, I’d mock the EmployeeDbContext and fabricate the numbers.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">EmployeeInfoService_GetAverageHourlyPay_Should_Correctly_Calculate</span>()
+{
+<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">MockEmployeeDbContext</span>();
+<span class="co">//...add a bunch of test data to the mock, then pass it to service</span>
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">EmployeeInfoService</span>(db);
+<span class="dt">var</span> list = service.<span class="fu">GetAverageHourlyPay</span>(<span class="kw">new</span> <span class="dt">int</span>[] { <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span> });
+Assert.<span class="fu">Equals</span>(<span class="fl">23.34</span>, list[<span class="dv">0</span>].<span class="fu">AverageHourlyPay</span>);
+Assert.<span class="fu">Equals</span>(<span class="fl">17.98</span>, list[<span class="dv">1</span>].<span class="fu">AverageHourlyPay</span>);
+}</code></pre></div>
+<p>Contrast that to this method.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">string</span>[] <span class="fu">GetEmployeeNames</span>()
+{      <span class="kw">return</span> _db.<span class="fu">Employees</span>.<span class="fu">Select</span>(a =&gt; a.<span class="fu">Name</span>).<span class="fu">ToArray</span>();
+}</code></pre></div>
+<p>Is there any reason to create a unit test for this method? I don’t think so. The test would look something like this.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">EmployeeInfoService_GetEmployeeNames_Should_Return_A_List_Of_Names</span>()
+{
+<span class="dt">var</span> db = <span class="kw">new</span> <span class="fu">MockEmployeeDbContext</span>();
+<span class="co">//...add a bunch of mock Employees with names, then pass to service</span>
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">EmployeeInfoService</span>(db);
+<span class="dt">var</span> list = service.<span class="fu">GetEmployeeNames</span>();
+Assert.<span class="fu">True</span>(list.<span class="fu">Contains</span>(<span class="st">&quot;Varian&quot;</span>));
+}</code></pre></div>
+<p>This gets us nothing. All we did was test that our mocking framework works. So…</p>
+<blockquote>
+<p>Lesson 1: Be sure you’re testing something that can fail.</p>
+</blockquote>
+<h1 id="act-2-the-simple-test">Act 2 – The Simple Test</h1>
+<p>For my RegistryService class, I have a different problem as stated above. Can I even mock the .Net Registry class? We’ll look at that shortly. For right now, I’ll evaluate all the methods and see which ones I can test without mocking. Here’s the complete list:</p>
+<ul>
+<li>ProcessRequest</li>
+<li>GetRegistryKeyValue</li>
+<li>GetRegistryValueKind</li>
+<li>SetRegistryKeyValue</li>
+<li>DeleteRegistryKey</li>
+<li>DeleteRegistryValue</li>
+<li>OpenSubKey64</li>
+<li>ParseRegistryHive</li>
+<li>NotifyAppsOfRegistryChange</li>
+</ul>
+<p>Of all these, just one doesn’t require using registry data: ParseRegistryHive. The method’s purpose is to return the hive enum given a string.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> RegistryHive <span class="fu">ParseRegistryHive</span>(<span class="dt">string</span> hiveName)
+{
+<span class="kw">if</span> (hiveName.<span class="fu">ToUpper</span>() == <span class="st">&quot;HKEY_CLASSES_ROOT&quot;</span>) { <span class="kw">return</span> RegistryHive.<span class="fu">ClassesRoot</span>; }
+<span class="kw">else</span> <span class="kw">if</span> (hiveName.<span class="fu">ToUpper</span>() == <span class="st">&quot;HKEY_CURRENT_USER&quot;</span>) { <span class="kw">return</span> RegistryHive.<span class="fu">CurrentUser</span>; }
+<span class="kw">else</span> <span class="kw">if</span> (hiveName.<span class="fu">ToUpper</span>() == <span class="st">&quot;HKEY_LOCAL_MACHINE&quot;</span>) { <span class="kw">return</span> RegistryHive.<span class="fu">LocalMachine</span>; }
+<span class="kw">else</span> <span class="kw">if</span> (hiveName.<span class="fu">ToUpper</span>() == <span class="st">&quot;HKEY_USERS&quot;</span>) { <span class="kw">return</span> RegistryHive.<span class="fu">Users</span>; }
+<span class="kw">else</span> <span class="kw">if</span> (hiveName.<span class="fu">ToUpper</span>() == <span class="st">&quot;HKEY_CURRENT_CONFIG&quot;</span>) { <span class="kw">return</span> RegistryHive.<span class="fu">CurrentConfig</span>; }
+<span class="co">//last chance, will throw error if invalid</span>
+<span class="kw">else</span> <span class="kw">return</span> (RegistryHive)Enum.<span class="fu">Parse</span>(<span class="kw">typeof</span>(RegistryHive), hiveName);
+}</code></pre></div>
+<p>I’m using xUnit.net for my unit testing. xUnit’s Theories are pretty nice, allowing testing sets of data. My tests verify that the method throws errors—or doesn’t—appropriately, and also that it returns the correct hive. I wrote a note to myself about that last one, summed up as:</p>
+<blockquote>
+<p>Lesson 2: Don’t copy/paste any code from your test into the method you’re testing. What if your test has a bug?</p>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryService_ParseRegistryHive_Should
+{
+[Theory]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CLASSES_ROOT&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CURRENT_USER&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_LOCAL_MACHINE&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_USERS&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CURRENT_CONFIG&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;hkey_current_config&quot;</span>)]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">NotThrowErrorWithValidHive</span>(<span class="dt">string</span> name)
+{
+<span class="dt">var</span> hive = RegistryService.<span class="fu">ParseRegistryHive</span>(name);
+}
+
+[Theory]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CLASSES_ROOT&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CURRENT_USER&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_LOCAL_MACHINE&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_USERS&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CURRENT_CONFIG&quot;</span>)]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnCorrectEnumWithValidHive</span>(<span class="dt">string</span> name)
+{
+<span class="co">//This basically reproduces the method code. Need to NOT copy/paste from method, but</span>
+<span class="co">//instead rewrite. In TDD, would NOT copy/paste from the test, otherwise there&#39;s a danger</span>
+<span class="co">//the test duplicates a wrong condition.</span>
+<span class="dt">var</span> hive = RegistryService.<span class="fu">ParseRegistryHive</span>(name);
+<span class="kw">switch</span> (name)
+{
+<span class="kw">case</span> <span class="st">&quot;HKEY_CLASSES_ROOT&quot;</span>:
+Assert.<span class="fu">True</span>(hive == Microsoft.<span class="fu">Win32</span>.<span class="fu">RegistryHive</span>.<span class="fu">ClassesRoot</span>);
+<span class="kw">break</span>;
+<span class="kw">case</span> <span class="st">&quot;HKEY_CURRENT_USER&quot;</span>:
+Assert.<span class="fu">True</span>(hive == Microsoft.<span class="fu">Win32</span>.<span class="fu">RegistryHive</span>.<span class="fu">CurrentUser</span>);
+<span class="kw">break</span>;
+<span class="kw">case</span> <span class="st">&quot;HKEY_LOCAL_MACHINE&quot;</span>:
+Assert.<span class="fu">True</span>(hive == Microsoft.<span class="fu">Win32</span>.<span class="fu">RegistryHive</span>.<span class="fu">LocalMachine</span>);
+<span class="kw">break</span>;
+<span class="kw">case</span> <span class="st">&quot;HKEY_USERS&quot;</span>:
+Assert.<span class="fu">True</span>(hive == Microsoft.<span class="fu">Win32</span>.<span class="fu">RegistryHive</span>.<span class="fu">Users</span>);
+<span class="kw">break</span>;
+<span class="kw">case</span> <span class="st">&quot;HKEY_CURRENT_CONFIG&quot;</span>:
+Assert.<span class="fu">True</span>(hive == Microsoft.<span class="fu">Win32</span>.<span class="fu">RegistryHive</span>.<span class="fu">CurrentConfig</span>);
+<span class="kw">break</span>;
+<span class="kw">default</span>:
+Assert.<span class="fu">True</span>(<span class="kw">false</span>,name + <span class="st">&quot; didn&#39;t return a valid hive. Hive enum returned was &quot;</span> + hive);
+<span class="kw">break</span>;
+}
+}
+
+[Theory]
+[<span class="fu">InlineData</span>(<span class="st">&quot;fail&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;&quot;</span>)]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ThrowErrorWithInvalidHive</span>(<span class="dt">string</span> name)
+{
+Assert.<span class="fu">Throws</span>(() =&gt;  RegistryService.<span class="fu">ParseRegistryHive</span>(name));
+}
+}</code></pre></div>
+<h1 id="act-3-testing-the-difficult-mock-it-or-.-.-.">Act 3 – Testing the Difficult: Mock it, or . . .</h1>
+<p>I’ve been putting it off long enough. What about the rest of the methods? You know, the ones that could <em>completely screw up my registry?</em></p>
+<p>First, which methods do testable work? Some of them are just wrappers so that I can get back a better error message, for example:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetRegistryKeyValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">string</span> value, RegistryValueKind dataType = RegistryValueKind.<span class="fu">String</span>)
+{
+<span class="kw">try</span>
+{
+Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
+}
+<span class="kw">catch</span> (Exception ex)
+{
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">&quot;Error setting registry value keyName &#39;&quot;</span> + keyName + <span class="st">&quot;&#39;, valueName &#39;&quot;</span> + valueName + <span class="st">&quot;, value &#39;&quot;</span> + value + <span class="st">&quot;&#39;</span><span class="sc">\r\n</span><span class="st">&quot;</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
+}
+}</code></pre></div>
+<p>Do I need to test this? Well, I’d <em>like</em> to test that I get back the right exception, so…hmm. OK, let’s see if anyone has mocked the registry.</p>
+<ul>
+<li><a href="https://msdn.microsoft.com/en-us/library/hh549175(v=vs.140).aspx">Microsoft Fake Framework</a> – Great if you have Visual Studio Enterprise and are, therefore, wealthy. (Here’s a <a href="http://stackoverflow.com/a/29701802/1628707">Stack Overflow</a> example.)</li>
+<li><a href="https://github.com/jozefizso/SystemWrapper">SystemWrapper</a>, which wraps a lot of .Net assemblies. Here’s an <a href="http://www.rhyous.com/2011/11/04/unit-testing-registry-access-with-rhinomocks-and-systemwrapper/">article by a project contributor</a>, and uses RhinoMocks.</li>
+<li>The following allow mocking classes without interfaces (but I don’t know if the class methods must be virtual): <a href="https://www.typemock.com/">“TypeMock</a> <em>(paid)</em>, <a href="http://www.telerik.com/products/mocking.aspx">JustMock</a> <em>(paid)</em>, or <a href="http://urasandesu.github.io/Prig/">Prig</a> <em>(free + open source)</em>.”</li>
+</ul>
+<p>In the last bullet, I quote from an excellent Stack Overflow response on the subject. In fact, here are two comments.</p>
+<ul>
+<li>Is it recommended to mock a concrete class? <a href="http://stackoverflow.com/a/12187583/1628707">Response by David Tchepak</a></li>
+<li>Is it recommended to mock a concrete class? <a href="http://stackoverflow.com/a/15164143/1628707">Response by Michael Freidgeim</a></li>
+</ul>
+<p>The research tells me I have two choices:</p>
+<ol>
+<li>Mock the concrete Registry class</li>
+<li>Use a wrapper around the Registry class</li>
+</ol>
+<p>I looked at the Prig example. Whew! That’s a lot of setup! And I’m not prepared to pay for TypeMock or JustMock, though I expect they’re excellent.</p>
+<p>This means wrapping the Registry class. Before I try out SystemWrapper, I’m going to create my own wrapper. I want to understand what’s involved. (This is self-education, after all!) The methods I’m using are:</p>
+<p>Registry.GetValue<br />
+Registry.SetValue<br />
+RegistryKey.GetValueKind<br />
+RegistryKey.DeleteSubKey<br />
+RegistryKey.DeleteValue<br />
+RegistryKey.OpenBaseKey<br />
+RegistryKey.OpenBaseKey.OpenSubKey</p>
+<p>All right, boys! Wrap…That…Code!!!</p>
+<p>I had to rethink my whole approach to my RegistryService class, which consumes the Microsoft.Win32.Registry. Originally I wrote it as a static class, since it didn’t need to be instantiated. But this class now could depend on different “registry providers.” I want to protect the class from being misused. A static SetRegistryProvider method won’t work, because of the danger that in production one caller sets it one way and another sets it differently. It’s the same as if a class could use more than one database back end; you wouldn’t make it static. The solution was to remove static, and make the class entirely instance-able.</p>
+<p>Moving on, the Registry wrapper is pretty straight forward. The oddity is that I’m wrapping a static class in an instance.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">interface</span> IRegistryWrapper
+{
+<span class="dt">object</span> <span class="fu">GetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> defaultValue);
+<span class="dt">void</span> <span class="fu">SetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> value, RegistryValueKind valueKind);
+}
+
+<span class="kw">public</span> <span class="kw">class</span> RegistryWrapper : IRegistryWrapper
+{
+<span class="kw">public</span> <span class="dt">object</span> <span class="fu">GetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> defaultValue)
+{
+<span class="kw">return</span> Registry.<span class="fu">GetValue</span>(keyName, valueName, defaultValue);
+}
+
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">SetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> value, RegistryValueKind valueKind)
+{
+Registry.<span class="fu">SetValue</span>(keyName, valueName, value, valueKind);
+}
+}</code></pre></div>
+<p>The RegistryKey wrapper presented a challenge. The constructor for RegistryKey is private. You cannot create an instance of RegistryKey this way:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">RegistryKey key = <span class="kw">new</span> <span class="fu">RegistryKey</span>(); <span class="co">//this won&#39;t compile</span></code></pre></div>
+<p>Instead, instances are created using the static method OpenBaseKey().</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">RegistryKey key = RegistryKey.<span class="fu">OpenBaseKey</span>(RegistryHive.<span class="fu">CurrentUser</span>, RegistryView.<span class="fu">Registry64</span>);</code></pre></div>
+<p>My abstraction needs to be clear, I want to create an interface, but interfaces can’t have static members.</p>
+<p>A base key is <em>required</em> for RegistryKey to function, therefore it’s required for my wrapper to function. But the RegistryService class, which uses RegistryKey, encapsulates which base key will be used; each method could instantiate its own RegistryKey with different base keys. For example:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">DeletePluginVersionValue</span>(<span class="dt">string</span> id)
+{
+<span class="co">//_registryKey was injected via the constructor</span>
+RegistryKey basekey = RegistryKey.<span class="fu">OpenBaseKey</span>(RegistryHive.<span class="fu">LocalMachine</span>, RegistryView.<span class="fu">Default</span>);
+<span class="kw">using</span> (RegistryKey key = basekey.<span class="fu">OpenSubKey</span>(@<span class="st">&quot;SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent</span><span class="sc">\R</span><span class="st">egistryPlugin&quot;</span>, <span class="kw">false</span>))
+{
+key.<span class="fu">DeleteValue</span>(<span class="st">&quot;Value&quot;</span>);
+key.<span class="fu">Close</span>();
+}
+}</code></pre></div>
+<p>My abstracted class is going to work similarly.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">DeletePluginVersionValue</span>(<span class="dt">string</span> id)
+{
+<span class="co">//_registryKey was injected via the constructor</span>
+IRegistryKeyWrapper basekey = _registryKey.<span class="fu">OpenBaseKey</span>(RegistryHive.<span class="fu">LocalMachine</span>, RegistryView.<span class="fu">Default</span>);
+<span class="kw">using</span> (IRegistryKeyWrapper key = basekey.<span class="fu">OpenSubKey</span>(@<span class="st">&quot;SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent</span><span class="sc">\R</span><span class="st">egistryPlugin&quot;</span>,<span class="kw">false</span>))
+{
+key.<span class="fu">DeleteValue</span>(<span class="st">&quot;Value&quot;</span>);
+key.<span class="fu">Close</span>();
+}
+}</code></pre></div>
+<p>But for testing, I need to pass in a non-null class instance that implements an interface, but does <em>not</em> have a base class yet. I <em>can’t</em> do this:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">interface</span> IRegistryKeyWrapper: IDisposable
+{
+IRegistryKeyWrapper <span class="fu">OpenSubKey</span>(<span class="dt">string</span> name, <span class="dt">bool</span> writable);
+<span class="co">//originally static</span>
+IRegistryKeyWrapper <span class="fu">OpenBaseKey</span>(RegistryHive hKey, RegistryView view);
+}
+
+<span class="kw">public</span> <span class="kw">class</span> RegistryKeyWrapper : IRegistryKeyWrapper
+{
+<span class="kw">private</span> RegistryKey _baseKey;
+<span class="kw">private</span> <span class="fu">RegistryKeyWrapper</span>(RegistryKey key)
+{
+_baseKey = key;
+}
+<span class="co">//etc.</span></code></pre></div>
+<p>Why not? Follow along.</p>
+<p>The RegistryService constructor:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryService
+{
+<span class="kw">private</span> IRegistryWrapper _registry;
+<span class="kw">private</span> IRegistryKeyWrapper _registryKey;
+
+<span class="kw">public</span> <span class="fu">RegistryService</span>(IRegistryWrapper registry, IRegistryKeyWrapper key)
+{
+_registry = registry;
+_registryKey = key;
+}</code></pre></div>
+<p>Using the RegistryService:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//this won&#39;t compile; RegistryKeyWrapper requires base key!</span>
+RegistryService service = <span class="kw">new</span> <span class="fu">RegistryService</span>(<span class="kw">new</span> <span class="fu">RegistryWrapper</span>(), <span class="kw">new</span> <span class="fu">RegistryKeyWrapper</span>());</code></pre></div>
+<p>I <em>need</em> to be able to create a new RegistryKeyWrapper(), but my live registry wrapper right now requires an actual registry base key. The (unfortunate) solution is to allow the user to create an instance of the class that can’t work.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryKeyWrapper : IRegistryKeyWrapper
+{
+<span class="kw">private</span> RegistryKey _baseKey;
+
+<span class="co">///</span>
+<span class="co">/// Note the class can&#39;t be used until instantiated using OpenBaseKey or setting to another RegistryKeyWrapper.</span>
+<span class="co">/// This constructor is here to allow an instance to be passed via dependency injection.</span>
+<span class="co">///</span>
+<span class="kw">public</span> <span class="fu">RegistryKeyWrapper</span>() { }
+
+<span class="kw">private</span> <span class="fu">RegistryKeyWrapper</span>(RegistryKey key)
+{
+_baseKey = key;
+}</code></pre></div>
+<p>In the RegistryService example, above, if the user were to use _registryKey immediately, without setting it using OpeBaseKey, it would fail because the private variable _baseKey has not been set.</p>
+<p>I wouldn’t call this ideal, but it does allow us to test the class.</p>
+<p><strong>EDIT 8/31/16<br />
+-------------------------------------------------------------</strong></p>
+<p><strong>Not only is it not ideal, but it’s not even good. What I’m trying to do is wrap RegistryKey in a pass-through manner. But that’s a mistake, because it implements IDisposable and in my wrapper I <em>should not</em> implement IDisposable.</strong></p>
+<p><strong>In a later post, I’ll explain how I rewrote my RegistryKey wrapper in a better way. It doesn’t affect the validity of the info in this post.</strong></p>
+<p><strong>-------------------------------------------------------------</strong></p>
+<p>First, I’ll fix up my previous tests for ParseRegistryHive that relied on Registry. In my unit test project I create the mock classes. At this point, I don’t even make the classes work, since ParseRegistryHive doesn’t depend on any methods.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">class</span> RegistryMock : IRegistryWrapper
+{
+<span class="kw">public</span> <span class="dt">object</span> <span class="fu">GetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> defaultValue)
+{
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NotImplementedException</span>();
+}
+
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">SetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> value, RegistryValueKind valueKind)
+{
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NotImplementedException</span>();
+}
+}</code></pre></div>
+<p>And update a test to use the new service, passing in the mocks.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">IRegistryWrapper _registry = <span class="kw">new</span> <span class="fu">RegistryMock</span>();
+IRegistryKeyWrapper _registryKey = <span class="kw">new</span> <span class="fu">RegistryKeyMock</span>();
+
+[Theory]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CLASSES_ROOT&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CURRENT_USER&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_LOCAL_MACHINE&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_USERS&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;HKEY_CURRENT_CONFIG&quot;</span>)]
+[<span class="fu">InlineData</span>(<span class="st">&quot;hkey_current_config&quot;</span>)]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">NotThrowErrorWithValidHive</span>(<span class="dt">string</span> name)
+{
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(_registry, _registryKey);
+<span class="dt">var</span> hive = service.<span class="fu">ParseRegistryHive</span>(name);
+}</code></pre></div>
+<p>Now, create a test for the RegistryMock.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryService_GetRegistryKeyValue_Should
+{
+IRegistryWrapper _registry = <span class="kw">new</span> <span class="fu">RegistryMock</span>();
+IRegistryKeyWrapper _registryKey = <span class="kw">new</span> <span class="fu">RegistryKeyMock</span>();
+
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnNullConstantTextIfValueIsMissing</span>()
+{
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(_registry, _registryKey);
+<span class="dt">var</span> result = service.<span class="fu">GetRegistryKeyValue</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>, <span class="st">&quot;Version&quot;</span>);
+Assert.<span class="fu">Equal</span>(result, service.<span class="fu">NoValue</span>);
+}
+}</code></pre></div>
+<p>Which requires RegistryMock.GetValue to be implemented:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">class</span> RegistryMock : IRegistryWrapper
+{
+<span class="kw">public</span> <span class="dt">object</span> <span class="fu">GetValue</span>(<span class="dt">string</span> keyName, <span class="dt">string</span> valueName, <span class="dt">object</span> defaultValue)
+{
+<span class="co">//this may become cumbersome, but for now specify some return values</span>
+<span class="kw">switch</span> (keyName)
+{
+<span class="kw">case</span> @<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgent&quot;</span>:
+<span class="kw">if</span> (valueName == <span class="st">&quot;Version&quot;</span>) <span class="kw">return</span> defaultValue;
+<span class="kw">break</span>;
+}
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">&quot;Invalid keyName&quot;</span>);
+}</code></pre></div>
+<p>Running the test, it passes.</p>
+<p>Next up, using the RegistryKeyMock. Here’s the test:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryService_OpenSubKey64_Should
+{
+IRegistryWrapper _registry = <span class="kw">new</span> <span class="fu">RegistryMock</span>();
+IRegistryKeyWrapper _registryKey = <span class="kw">new</span> <span class="fu">RegistryKeyMock</span>();
+
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ThrowExceptionWhenUsingInvalidKey</span>()
+{
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">RegistryService</span>(_registry, _registryKey);
+<span class="dt">var</span> ex = Assert.<span class="fu">Throws</span>(() =&gt; service.<span class="fu">OpenSubKey64</span>(@<span class="st">&quot;HKEY_LOCAL_MACHINE\SOFTWARE</span><span class="sc">\E</span><span class="st">duAgentMissing&quot;</span>));
+Assert.<span class="fu">Equal</span>(<span class="st">&quot;Error opening subkey &#39;HKEY_LOCAL_MACHINE</span><span class="sc">\\</span><span class="st">SOFTWARE</span><span class="sc">\\</span><span class="st">EduAgentMissing&#39;. Operation returned null.&quot;</span>, ex.<span class="fu">Message</span>);
+}
+}</code></pre></div>
+<p>Here are the relevant methods I had to implement. This one was kind of tricky because I have to set properties that are read only. I’m making use of the latest C# language features to set the value of read only properties in the constructor. I also needed a helper method to return the string representation of a hive name.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> RegistryKeyMock : IRegistryKeyWrapper
+{
+<span class="kw">public</span> <span class="fu">RegistryKeyMock</span>() { }
+<span class="kw">public</span> <span class="fu">RegistryKeyMock</span>(<span class="dt">string</span> name, <span class="dt">int</span> subKeyCount, <span class="dt">int</span> valueCount, RegistryView view)
+{
+Name = name;
+SubKeyCount = subKeyCount;
+ValueCount = valueCount;
+View = view;
+}
+
+<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; }
+<span class="kw">public</span> <span class="dt">int</span> SubKeyCount { <span class="kw">get</span>; }
+<span class="kw">public</span> <span class="dt">int</span> ValueCount { <span class="kw">get</span>; }
+<span class="kw">public</span> RegistryView View { <span class="kw">get</span>; }
+
+<span class="kw">public</span> IRegistryKeyWrapper <span class="fu">OpenBaseKey</span>(RegistryHive hKey, RegistryView view)
+{
+<span class="kw">return</span> <span class="kw">new</span> <span class="fu">RegistryKeyMock</span>(<span class="fu">HiveToString</span>(hKey), <span class="dv">10</span>, <span class="dv">10</span>, view);
+}
+
+<span class="kw">public</span> IRegistryKeyWrapper <span class="fu">OpenSubKey</span>(<span class="dt">string</span> name, <span class="dt">bool</span> writable)
+{
+<span class="kw">if</span> (name == @<span class="st">&quot;SOFTWARE</span><span class="sc">\E</span><span class="st">duAgentMissing&quot;</span>)
+<span class="kw">return</span> <span class="kw">null</span>;
+<span class="kw">return</span> <span class="kw">new</span> <span class="fu">RegistryKeyMock</span>(Name + <span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span> + name, SubKeyCount, ValueCount, View);
+}
+
+<span class="kw">private</span> <span class="dt">string</span> <span class="fu">HiveToString</span>(RegistryHive hive)
+{
+<span class="dt">string</span> key = <span class="st">&quot;HKEY_&quot;</span>;
+<span class="kw">if</span> (hive == RegistryHive.<span class="fu">ClassesRoot</span>) <span class="kw">return</span> key + <span class="st">&quot;CLASSES_ROOT&quot;</span>;
+<span class="kw">if</span> (hive == RegistryHive.<span class="fu">CurrentConfig</span>) <span class="kw">return</span> key + <span class="st">&quot;CURRENT_CONFIG&quot;</span>;
+<span class="kw">if</span> (hive == RegistryHive.<span class="fu">CurrentUser</span>) <span class="kw">return</span> key + <span class="st">&quot;CURRENT_USER&quot;</span>;
+<span class="kw">if</span> (hive == RegistryHive.<span class="fu">LocalMachine</span>) <span class="kw">return</span> key + <span class="st">&quot;LOCAL_MACHINE&quot;</span>;
+<span class="kw">if</span> (hive == RegistryHive.<span class="fu">Users</span>) <span class="kw">return</span> key + <span class="st">&quot;USERS&quot;</span>;
+<span class="kw">return</span> <span class="st">&quot;&quot;</span>;
+}
+}</code></pre></div>
+<p>Test it, it passes, love those green lights!</p>
+<h1 id="tag">Tag</h1>
+<p>This was like a special made-for-TV movie of <em>Fantastic Journey</em>. With all the stuff I’ve done, what haven’t I? Well, there are two big ones:</p>
+<ul>
+<li>Use a mocking framework such as <a href="https://github.com/Moq/moq4">Moq</a> or <a href="https://www.hibernatingrhinos.com/oss/rhino-mocks">RhinoMocks</a></li>
+<li>Use an Inversion of Control container such as <a href="http://www.ninject.org/">Ninject</a> or <a href="https://github.com/unitycontainer/unity">Unity</a>.</li>
+</ul>
+<p>But I’m leaving those for a future post. Otherwise, like our intrepid explorers, I’ll be canceled and never get back to my own time and place.</p>
+<p><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-2/images/cast.jpg" /></p>
+</div>
+              </div>
+              
+
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></h2>
+                <p class='post-info'><span class='posted-on'>2016-08-18 16:56</span></p>
+                <div class='post-content'><p><img src="images/hqdefault.jpg" width="216" height="185" />I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
+<p>There are some pretty high-tech tools out there, but nothing that matches the inspiration provided in the 70s TV show “<a href="https://en.wikipedia.org/wiki/Search_(TV_series)">Search</a>” (originally “Probe”). I don’t have Burgess Meredith, a Probe Scanner or a <a href="https://www.youtube.com/watch?v=Axb1EiJdbCg">catchy theme song</a> to help me out, so, like Hugh O’Brian, I’ll have to rely on my wits and <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a>.</p>
+<p>Previously, on CUOC: <a href="http://www.softwaremeadows.com/2016/07/catching-up-on-coding-syllabus.html">The Syllabus</a>.<br />
+Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">TDD Part 2</a></p>
+<h1 id="teaser">Teaser</h1>
+<p>I’m not truly new to TDD. I <em>wrote</em> a (not very good) unit testing framework for Visual Basic 6 back in 2000. I’ve used TDD in professional projects. But now it’s time to make it a habit. To do that, I need a crash coarse, then retrofit my EduAgent code (applying “Test Eventually Development”) before writing new code.</p>
+<h1 id="act-1-the-elemental-education">Act 1 – The Elemental Education</h1>
+<p>Let’s give primary credit where it’s due. I read James Bender’s blog <a href="http://www.telerik.com/blogs/30-days-tdd-day-one-what-is-tdd">30 Days of TDD</a>. Bender’s series is very good overall. He does—frustratingly--have sloppy grammar and punctuation errors in every post. But his information is otherwise clear and solid. In fact, his description of SOLID is one of the best I’ve read. Thanks, James!</p>
+<p>But first things first: what problem was TDD trying to solve?</p>
+<p>Programmers, being human, don’t like to test our work. Most of us find it as hard as writers self-editing or composers checking for wrong notes. We <em>like</em> QA departments because they find our (careless) mistakes for us. We <em>pretend</em> to hate QA, because we pretend we’re egotistical Greek gods incapable of flaw.</p>
+<p>Unit testing frameworks allowed testing the public interface of our classes. But that wasn’t enough. Kent Beck encouraged an upside-down approach to writing code, where we write a failing test first, then make it pass. This naturally builds up a library of tests that can be run quickly, reducing the chance of new features breaking the application, and building developer confidence. It also turned out that creating easily testable methods led to generally more maintainable code. Thus, some people revised TDD to mean test-driven <em>design</em>.</p>
+<p>What are the elements of TDD? What’s needed to build testable code?</p>
+<h2 id="elements">Elements</h2>
+<ul>
+<li>Test framework such as <a href="http://nunit.org/index.php?p=home">NUnit</a> and <a href="https://xunit.github.io/docs/getting-started-desktop.html">xUnit.net</a></li>
+<li><a href="https://xunit.github.io/docs/getting-started-desktop.html#run-tests-visualstudio">Test runner</a>, for executing tests and viewing results.</li>
+<li>Dependency Inversion (depend on abstractions) and Dependency Injection (decouple dependencies). Both are covered pretty well in <a href="http://www.codeproject.com/Articles/615139/An-Absolute-Beginners-Tutorial-on-Dependency-Inver">this article</a>.</li>
+<li><a href="http://www.telerik.com/blogs/30-days-of-tdd-day-11-what-s-the-deal-with-mocking">Mocking</a> (control results from external resources, such as databases)</li>
+<li><a href="http://www.telerik.com/blogs/30-days-of-tdd-day-nine-refactoring-basics">Refactoring</a> (improving code maintainability without changing the public interface)</li>
+</ul>
+<h1 id="act-2-some-code-a-test">Act 2 – Some Code, a Test</h1>
+<p>Here’s a simple example of TDD, creating code that needs to be tested, and problems with it. I’m using xUnit.Net because I’ve always liked it. I won’t go into how to set up your environment; you can learn that at <a href="https://xunit.github.io/docs/getting-started-desktop.html">Getting Started with xUnit.net</a>. However, I do have three tips for using the VS Test Runner (which you open via Test &gt; Windows &gt; Test Explorer).</p>
+<ul>
+<li>Tear off the Test Explorer into its own window, so that you can easily resize and see all the tests.<br />
+<a href="images/image_thumb3.png"><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1/images/image_thumb3.png" title="image" alt="image" width="571" height="344" /></a></li>
+<li>Group the test results by class<br />
+<a href="images/image_thumb5.png"><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1/images/image_thumb5.png" title="image" alt="image" width="380" height="173" /></a></li>
+<li>In your unit test project, add an app.config file with the following setting. This causes the result to display only the method name instead of the fully qualified name.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">&lt;?xml version=<span class="st">&quot;1.0&quot;</span> encoding=<span class="st">&quot;utf-8&quot;</span> ?&gt;
+&lt;configuration&gt;
+&lt;appSettings&gt;
+&lt;add key=<span class="st">&quot;xunit.methodDisplay&quot;</span> value=<span class="st">&quot;method&quot;</span>/&gt;
+&lt;/appSettings&gt;
+&lt;/configuration&gt;</code></pre></div>
+<p>Our contrived application helps teachers grade coursework. We’re writing a class dealing with the coursework, and we’re consuming a third-party service—GradeMark—that returns a grade. One challenge, however, is we don’t control the grade that GradeMark returns given a set of scores. It depends on however the school has configured it. So, today 90% or higher could be an “A,” but tomorrow 93% or higher could be an “A.”</p>
+<p>Our CourseWork class will have two methods. One that returns a percentage, and the other that returns a grade message. The grade in the message will come from the GradeMark “service,” and we’ll eventually have to mock that service.</p>
+<p>First, in CourseWork, create a GetPercent function that doesn’t work. We want a failing test.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> CourseWork
+{
+<span class="kw">public</span> <span class="dt">decimal</span> <span class="fu">GetPercent</span>(<span class="dt">decimal</span> actual, <span class="dt">decimal</span> maximum)
+{
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">NotImplementedException</span>();
+}
+}</code></pre></div>
+<p>In the unit tests project, create the test. Notice the naming convention I’m using along with nested classes; this will help make the test results readable. There are <a href="https://dzone.com/articles/7-popular-unit-test-naming">lots of naming conventions</a> out there. Consistency and clarity are the big deals.</p>
+<p>Our first test checks that we get back a percent in a particular format. We want “a hundred percent” to return as 100.00.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> BasicTdd
+{
+<span class="kw">public</span> <span class="kw">class</span> CourseWork_GetPercent_Should
+{
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">Return100PercentAs100PointZero</span>()
+{
+<span class="dt">var</span> cw = <span class="kw">new</span> <span class="fu">CourseWork</span>();
+<span class="dt">decimal</span> percent = cw.<span class="fu">GetPercent</span>(<span class="dv">100</span>, <span class="dv">100</span>);
+Assert.<span class="fu">Equal</span>(100m, percent);
+}
+}
+}</code></pre></div>
+<p>Run it and it fails.</p>
+<p><a href="images/image_thumb_25255B3_25255D.png"><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1/images/image_thumb_25255B3_25255D.png" title="image" alt="image" width="337" height="452" /></a></p>
+<p>Write enough code for the test to pass.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">decimal</span> <span class="fu">GetPercent</span>(<span class="dt">decimal</span> actual, <span class="dt">decimal</span> maximum)
+{
+<span class="dt">decimal</span> result = (actual / maximum) * 100m;
+<span class="kw">return</span> result;
+}</code></pre></div>
+<p>Run the test and it passes.</p>
+<p><a href="images/image_thumb_25255B6_25255D.png"><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1/images/image_thumb_25255B6_25255D.png" title="image" alt="image" width="341" height="458" /></a></p>
+<p>Our next test will check if the result is rounded. This does <em>not</em> depend on the first test; they could be run in reverse order.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> BasicTdd
+{
+<span class="kw">public</span> <span class="kw">class</span> CourseWork_GetPercent_Should
+{
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">RoundPercentToTwoDecimalPlaces</span>()
+{
+<span class="dt">var</span> cw = <span class="kw">new</span> <span class="fu">CourseWork</span>();
+<span class="dt">var</span> percent = cw.<span class="fu">GetPercent</span>(<span class="dv">1</span>, <span class="dv">7</span>);
+<span class="dt">var</span> roundedPercent = Math.<span class="fu">Round</span>(percent, <span class="dv">2</span>);
+Assert.<span class="fu">Equal</span>(roundedPercent, percent);
+}
+}
+}</code></pre></div>
+<p>Run it, and it fails.</p>
+<p><a href="images/image_thumb_25255B9_25255D.png"><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1/images/image_thumb_25255B9_25255D.png" title="image" alt="image" width="340" height="455" /></a></p>
+<p>Update the code to make it pass.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">decimal</span> <span class="fu">GetPercent</span>(<span class="dt">decimal</span> actual, <span class="dt">decimal</span> maximum)
+{
+<span class="dt">decimal</span> result = Math.<span class="fu">Round</span>((actual / maximum) * 100m,<span class="dv">2</span>);
+<span class="kw">return</span> result;
+}</code></pre></div>
+<p><a href="images/image_thumb_25255B11_25255D.png"><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1/images/image_thumb_25255B11_25255D.png" title="image" alt="image" width="346" height="455" /></a></p>
+<p>That’s enough to demonstrate a basic test. Now, on to something that will require mocking.</p>
+<h1 id="act-3-mocu-mental-grades">Act 3 – Mocu-mental Grades</h1>
+<p>Let’s create a class that represents our fictional third-party service, GradeMark. Remember, it returns a grade when supplied a percent, but we can’t depend on what that grade will be. For our dummy service, we won’t even use the percent parameter.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> GradeMarkService
+{
+<span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetGrade</span>(<span class="dt">decimal</span> percent)
+{
+<span class="dt">var</span> rnd = <span class="kw">new</span> <span class="fu">Random</span>();
+<span class="dt">int</span> code = rnd.<span class="fu">Next</span>(<span class="dv">65</span>, <span class="dv">70</span>);
+<span class="kw">return</span> ((<span class="dt">char</span>)code).<span class="fu">ToString</span>();
+}
+}</code></pre></div>
+<p>We’re just returning a random letter A-D (no failures in our courses!). Back in our CourseWork class, we’ll start a function that returns a grade, and write a test for it that will fail. Here’s the test.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> CourseWork_GetGradeMessage_Should
+{
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnTheCorrectlyFormattedMessage</span>()
+{
+<span class="dt">var</span> cw = <span class="kw">new</span> <span class="fu">CourseWork</span>();
+<span class="dt">string</span> msg = cw.<span class="fu">GetGradeMessage</span>(<span class="dv">4</span>, <span class="dv">15</span>); <span class="co">//these values don&#39;t matter</span>
+<span class="dt">string</span> expected = <span class="st">&quot;The grade is B&quot;</span>;
+Assert.<span class="fu">Equal</span>(expected, msg);
+}
+}</code></pre></div>
+<p>What we’re testing is getting the expected message text. We’re <em>not</em> testing if GetPercent works, and we’re <em>not</em> testing if the GradeMark service works. When we run the test, it fails, so we write this code to try to make it pass. Some people would say that we shouldn’t bother with the GradeMark service yet, but let’s assume we’re at that point.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetGradeMessage</span>(<span class="dt">decimal</span> actual, <span class="dt">decimal</span> maximum)
+{
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">GradeMarkService</span>();
+<span class="kw">return</span> <span class="st">&quot;The grade is &quot;</span> + service.<span class="fu">GetGrade</span>(<span class="fu">GetPercent</span>(actual, maximum));
+}</code></pre></div>
+<p>We got lucky; it failed. But, remember, we can’t guarantee what letter grade will be returned. It could have passed. Run the tests enough times and it <em>will</em> pass.</p>
+<p><a href="images/image_thumb_25255B13_25255D.png"><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1/images/image_thumb_25255B13_25255D.png" title="image" alt="image" width="347" height="456" /></a></p>
+<p>Our GetGradeMessage function has a dependency on the GradeMark service, and is tightly coupled to it. We need to loosely couple that dependency by injecting it. We could do that at the method level, like this:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetGradeMessage</span>(<span class="dt">decimal</span> actual, <span class="dt">decimal</span> maximum, GradeMarkService gradeService)
+{
+<span class="kw">return</span> <span class="st">&quot;The grade is &quot;</span> + gradeService.<span class="fu">GetGrade</span>(<span class="fu">GetPercent</span>(actual, maximum));
+}</code></pre></div>
+<p>But, typically, a service like this is consumed by the class. So, we’ll inject it in the class’s constructor.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> CourseWork
+{
+GradeMarkService _gradeService;
+
+<span class="kw">public</span> <span class="fu">CourseWork</span>(GradeMarkService gradeService)
+{
+_gradeService = gradeService;
+}
+
+<span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetGradeMessage</span>(<span class="dt">decimal</span> actual, <span class="dt">decimal</span> maximum)
+{
+<span class="kw">return</span> <span class="st">&quot;The grade is &quot;</span> + _gradeService.<span class="fu">GetGrade</span>(<span class="fu">GetPercent</span>(actual, maximum));
+}</code></pre></div>
+<p>Great, but that doesn’t really help us, does it? We still need a GradeMarkService to pass in during our test, <em>and</em> control the letter grade it returns. Using some mocking frameworks, it’s possible to mock a legacy object. But in this case, we’re hoping for one of two things from our vendor to make our lives easier.</p>
+<p><strong>An Interface</strong></p>
+<p>Ideally, our vendor has programmed to an interface, using the Dependency Inversion Principle. We’ll simulate that in our fictional service class.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">interface</span> IGrader
+{
+<span class="dt">string</span> <span class="fu">GetGrade</span>(<span class="dt">decimal</span> percent);
+}
+
+<span class="kw">public</span> <span class="kw">class</span> GradeMarkService: IGrader
+{
+<span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetGrade</span>(<span class="dt">decimal</span> percent)
+{
+<span class="dt">var</span> rnd = <span class="kw">new</span> <span class="fu">Random</span>();
+<span class="dt">int</span> code = rnd.<span class="fu">Next</span>(<span class="dv">65</span>, <span class="dv">70</span>);
+<span class="kw">return</span> ((<span class="dt">char</span>)code).<span class="fu">ToString</span>();
+}
+}</code></pre></div>
+<p>Next, we update our class to inject the <em>interface we’re testing</em>, instead of the concrete instance.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> CourseWork
+{   IGrader _gradeService;
+
+<span class="kw">public</span> <span class="fu">CourseWork</span>(IGrader gradeService)
+{
+_gradeService = gradeService;
+}</code></pre></div>
+<p>Our class is now ready for testing. We don’t need the GradeMarkService. We just need our own mock class implementing the required interface. Back in our test project, we’ll create that.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> GradeMarkServiceMock: IGrader
+{
+<span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetGrade</span>(<span class="dt">decimal</span> percent)
+{
+<span class="kw">return</span> <span class="st">&quot;B&quot;</span>;
+}
+}</code></pre></div>
+<p>And, update our tests to accept the mock object.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">Return100PercentAs100PointZero</span>()
+{
+<span class="dt">var</span> cw = <span class="kw">new</span> <span class="fu">CourseWork</span>(<span class="kw">new</span> <span class="fu">GradeMarkServiceMock</span>());
+<span class="dt">decimal</span> percent = cw.<span class="fu">GetPercent</span>(<span class="dv">1</span>, <span class="dv">1</span>);
+Assert.<span class="fu">Equal</span>(100m, percent);
+}
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">RoundPercentToTwoDecimalPlaces</span>()
+{
+<span class="dt">var</span> cw = <span class="kw">new</span> <span class="fu">CourseWork</span>(<span class="kw">new</span> <span class="fu">GradeMarkServiceMock</span>());
+<span class="dt">var</span> percent = cw.<span class="fu">GetPercent</span>(<span class="dv">1</span>, <span class="dv">7</span>);
+<span class="dt">var</span> roundedPercent = Math.<span class="fu">Round</span>(percent, <span class="dv">2</span>);
+Assert.<span class="fu">Equal</span>(roundedPercent, percent);
+}
+}
+
+<span class="kw">public</span> <span class="kw">class</span> CourseWork_GetGradeMessage_Should
+{
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnTheCorrectlyFormattedMessage</span>()
+{
+<span class="dt">var</span> cw = <span class="kw">new</span> <span class="fu">CourseWork</span>(<span class="kw">new</span> <span class="fu">GradeMarkServiceMock</span>());
+<span class="dt">string</span> msg = cw.<span class="fu">GetGradeMessage</span>(<span class="dv">4</span>, <span class="dv">15</span>); <span class="co">//these values don&#39;t matter</span>
+<span class="dt">string</span> expected = <span class="st">&quot;The grade is B&quot;</span>;
+Assert.<span class="fu">Equal</span>(expected, msg);
+}
+}</code></pre></div>
+<p>When we run our tests a few times, the GetGradeMessage test passes consistently.</p>
+<p><strong>An overridable class</strong></p>
+<p>Our vendor could also have made the GetGrade method overridable. In that case, we’d create a mock object, override GetGrade, and always return “B”. But with a significant object, there could be many problems doing that. It’s best if we can program against interfaces, because that way<em>  we don’t have to use the original classes at all</em>.</p>
+<p>What’s a real-world example? What about a shipping service that our application uses to calculate shipping rates? Several problems could exist in consuming that service instead of mocking it:</p>
+<ul>
+<li>It could be very slow to use that service in our tests.</li>
+<li>It could return inconsistent results that affect our tests.</li>
+<li>We might get charged every time we use the service.</li>
+</ul>
+<p>Databases are another example. Testing against a database is difficult because you want the data to always start in a consistent state. Database tests are slow. They are better left for <em>integration tests.</em></p>
+<h2 id="refactoring">Refactoring</h2>
+<p>The last step in TDD is making the code better, and also making the <em>tests</em> better. For example, we get an instance of the CourseWork class repeatedly. We can declare that as a class field. xUnit creates a new instance of the class for each test, so it will will always be a new instance of CourseWork.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> BasicTdd
+{
+<span class="kw">public</span> <span class="kw">class</span> CourseWork_GetPercent_Should
+{
+<span class="kw">public</span> CourseWork _cw = <span class="kw">new</span> <span class="fu">CourseWork</span>(<span class="kw">new</span> <span class="fu">GradeMarkServiceMock</span>());
+
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">Return100PercentAs100PointZero</span>()
+{
+<span class="dt">decimal</span> percent = _cw.<span class="fu">GetPercent</span>(<span class="dv">1</span>, <span class="dv">1</span>);
+Assert.<span class="fu">Equal</span>(100m, percent);
+}
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">RoundPercentToTwoDecimalPlaces</span>()
+{
+<span class="dt">var</span> percent = _cw.<span class="fu">GetPercent</span>(<span class="dv">1</span>, <span class="dv">7</span>);
+<span class="dt">var</span> roundedPercent = Math.<span class="fu">Round</span>(percent, <span class="dv">2</span>);
+Assert.<span class="fu">Equal</span>(roundedPercent, percent);
+}
+}
+
+<span class="kw">public</span> <span class="kw">class</span> CourseWork_GetGradeMessage_Should
+{
+<span class="kw">public</span> CourseWork _cw = <span class="kw">new</span> <span class="fu">CourseWork</span>(<span class="kw">new</span> <span class="fu">GradeMarkServiceMock</span>());
+
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnTheCorrectlyFormattedMessage</span>()
+{
+<span class="dt">string</span> msg = _cw.<span class="fu">GetGradeMessage</span>(<span class="dv">4</span>, <span class="dv">15</span>); <span class="co">//these values don&#39;t matter</span>
+<span class="dt">string</span> expected = <span class="st">&quot;The grade is B&quot;</span>;
+Assert.<span class="fu">Equal</span>(expected, msg);
+}
+}
+}</code></pre></div>
+<p>Of course, rerun the tests and make sure they pass!</p>
+<h1 id="tag">Tag</h1>
+<p>Test-driven development isn’t natural at first. But it’s got a rat-hits-food-lever pleasure I can’t deny. Kind of like having Probe Control’s Angel Tompkins whispering in my ear.</p>
+<p><img src="http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1/images/05Angel.jpg" /></p>
+<h1 id="references">References</h1>
+<p><a href="http://www.telerik.com/blogs/30-days-tdd-day-one-what-is-tdd">30 Days of TDD</a></p>
+<p><a href="https://xunit.github.io/docs/getting-started-desktop.html">Getting Started with xUnit.net</a></p>
+<p><a href="http://stackoverflow.com/a/32402361/1628707">xUnit: display only method name</a></p>
+<p><a href="https://xunit.github.io/docs/shared-context.html">xUnit: Shared Context Between Tests</a></p>
+<p><a href="https://dzone.com/articles/7-popular-unit-test-naming">7 Popular Unit Test Naming Conventions</a></p>
+<p><a href="http://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html">Naming standards for unit tests</a></p>
+<p><a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0ahUKEwiUz9fXv8vOAhXF4iYKHfpFBewQFggeMAA&amp;url=http%3A%2F%2Fwww.codeproject.com%2FArticles%2F615139%2FAn-Absolute-Beginners-Tutorial-on-Dependency-Inver&amp;usg=AFQjCNFs-TENpoHA01eOYXRVZkYqEEIC9w&amp;sig2=Qp3Zq6b199xguue2bGLDEg">An Absolute Beginner's Tutorial on Dependency Inversion Principle</a></p>
+</div>
+              </div>
+              
     <div class='paging'><a href='index8.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index10.html'>Older</a></div>
-    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
-  </body>
+  </section>
+  <footer><p>Copyright (c) 2018 Charles L Flatt</p>
+</footer>
+  
+</body>
+
 </html>

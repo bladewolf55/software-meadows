@@ -1,180 +1,54 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>index</title>
-    <link rel="stylesheet" type="text/css" href="http://bladewolf55.gitlab.io/smblog/css/default.css">
-  </head>
-  <body>
-    <header>
-      Software Meadows      
-    </header>
-    <nav>
-      <ul>
-        <li><a href="http://bladewolf55.gitlab.io/smblog/">Home</a></li>
-        <li class="dropdown">
-          <a href="http://bladewolf55.gitlab.io/smblog/about">About</a>
-        </li>
-      </ul>
-    </nav>
-   	<aside id="sidebar">
-	   <div id="recent">
-       <p><strong>History</strong></p>
-       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-window-key-s-search-from'>windows-81-window-key-s-search-from</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li></ol>
-      </div>
-	    <div id="tags"></div>
-	  </aside>
-    <section id="content"><h1 id="home">Home</h1>
-<div id='post-roll'><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6'><h1>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</h1></a>
-                <p class='post-info'>2017-02-06 07:56</p>
-            </div><div class='post-contents'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
-<a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
-<p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_63.html">TFS Continuous Integration Walk Through Part 3 - Notifications</a></p>
-<p><strong>References</strong><br />
-<a href="https://www.visualstudio.com/en-us/docs/build/steps/test/visual-studio-test">Test: Visual Studio Test</a><br />
-<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2012/11/20/part-2using-traits-with-different-test-frameworks-in-the-unit-test-explorer/">Part 2: Using Traits with different test frameworks</a><br />
-<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2013/06/11/part-3-unit-testing-with-traits-and-code-coverage-in-visual-studio-2012-using-the-tfs-build-and-the-new-nuget-adapter-approach/">Part 3: Unit testing with Traits and filtering...</a> &lt;-Note that the documentation on mapping &quot;Category&quot; is wrong, see below!<br />
-<a href="https://blogs.msdn.microsoft.com/vikramagrawal/2012/07/23/running-selective-unit-tests-in-vs-2012-rc-using-testcasefilter/">Running selective unit tests in VS 2012 RC using TestCaseFilter</a><br />
-<a href="http://www.dotnetcatch.com/2016/03/11/vststfs-visual-studio-test-task-filter-criteria/">VSTS/TFS Visual Studio Test Task - Filter Criteria</a><br />
-<a href="https://msdn.microsoft.com/en-us/library/hh270865.aspx#BKMK_Group_and_filter_the_test_list">Running unit tests with Test Explorer: Group and Filter</a><br />
-<a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">How to: Group and Run Automated Tests Using Test Categories</a><br />
-<a href="https://github.com/Microsoft/vsts-tasks/blob/releases/m109/Tasks/VsTest/README.md">Run Tests using Visual Studio task</a></p>
-<p>In some environments, not all unit tests should be run on the CI server. For example, there might be tests with external dependencies that are expensive to run, such as a fee for verifying data was saved to an external cloud-based site. Or legacy tests that require manual setup or interaction. Or, the most likely, a test that takes a very long time to run. While these should probably be refactored or replaced, the fact is sometimes we don't want all our tests running automatically.</p>
-<p>One way to restrict tests running is to use the &quot;Test filter criteria&quot; setting. A simple example is using test categories to isolate the manual tests. &quot;TestCategory&quot;, &quot;Priority&quot;, &quot;Name&quot;, etc are all generically referred to as <em>traits</em>.</p>
-<p>Before showing the example, there are two rules for using traits with the Microsoft test console, which is the executable that runs tests regardless of framework.</p>
-<blockquote>
-<p><strong>Test Filter Criteria Rule</strong><br />
-If you set test filter criteria, at least one of your unit tests in every assembly <em>must</em> match that criteria. Otherwise, an error will occur.</p>
-</blockquote>
-<p>In practice, this means that if your filter is looking for <code>TestCategory=weekly</code>, any project that uses the build definition, and has tests, must have at least one test with a trait named &quot;TestCategory&quot;. (For more detail, see <em>Part 4b - Problems With Traits</em>.)</p>
-<p>This will make more sense as you go through the code below.</p>
-<p>Add the following class to Program.cs. This is <em>simulating</em> a cloud-based retrieval of a greeting. For some fictitious reason, it's very expensive to do this.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">public</span> <span class="kw">class</span> CloudMan
-    {
-        <span class="co">//This takes ten minutes to run!</span>
-        <span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetLastGreeting</span>()
-        {
-            <span class="co">//Set up connection, pass credentials, etc.</span>
-            <span class="kw">return</span> <span class="st">&quot;&quot;</span>;
-        }
-    }</code></pre></div>
-<p>Add the following test methods:</p>
-<p><strong>MSTest</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">            [TestMethod]
-            [<span class="fu">TestCategory</span>(<span class="st">&quot;manual&quot;</span>)]
-            <span class="kw">public</span> <span class="dt">void</span> <span class="fu">SaveGreetingToCloud</span>()
-            {
-                <span class="co">//arrange</span>
-                <span class="dt">string</span> value = <span class="st">&quot;Cloud Atlas&quot;</span>;
-                <span class="dt">string</span> expectedResult = <span class="st">&quot;Hello, Charles&quot;</span>;
-                TextMan textMan = <span class="kw">new</span> <span class="fu">TextMan</span>();
-                CloudMan cloudMan = <span class="kw">new</span> <span class="fu">CloudMan</span>();
-                <span class="co">//act</span>
-                <span class="dt">string</span> actualResult = textMan.<span class="fu">Greeter</span>(value);
-                <span class="co">//assert</span>
-                Assert.<span class="fu">AreEqual</span>(expectedResult, cloudMan.<span class="fu">GetLastGreeting</span>());
-            }</code></pre></div>
-<p><strong>xUnit</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">            [Fact]
-            [<span class="fu">Trait</span>(<span class="st">&quot;TestCategory&quot;</span>, <span class="st">&quot;manual&quot;</span>)]
-            <span class="kw">public</span> <span class="dt">void</span> <span class="fu">SaveGreetingToCloud</span>()
-            {
-                <span class="co">//arrange</span>
-                <span class="dt">string</span> value = <span class="st">&quot;Cloud Atlas&quot;</span>;
-                <span class="dt">string</span> expectedResult = <span class="st">&quot;Hello, Charles&quot;</span>;
-                TextMan textMan = <span class="kw">new</span> <span class="fu">TextMan</span>();
-                CloudMan cloudMan = <span class="kw">new</span> <span class="fu">CloudMan</span>();
-                <span class="co">//act</span>
-                <span class="dt">string</span> actualResult = textMan.<span class="fu">Greeter</span>(value);
-                <span class="co">//assert</span>
-                Assert.<span class="fu">Equal</span>(expectedResult, cloudMan.<span class="fu">GetLastGreeting</span>());
-            }</code></pre></div>
-<p>MSTest uses a TestCategory attribute for categories. xUnit uses its Trait attribute to set a &quot;TestCategory&quot; trait (traits are also the way to set &quot;Priority&quot;).</p>
-<blockquote>
-<p><strong>Note</strong> You <em>must</em> set the xUnit trait name to TestCategory in this example, or the test won't be discovered. See <em>Part 4b - Problems With Traits</em> for more information.</p>
-</blockquote>
-<p>If you run the tests locally right now, the new tests will still fail because the category is ignored. Likewise, if you check in the code, the tests will fail on the CI server because there's no filter, yet.</p>
-<h2 id="applying-the-filters">Applying the Filters</h2>
-<p>It's possible to filter tests locally. One way is from the command line.</p>
-<p><a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx" class="uri">https://msdn.microsoft.com/en-us/library/dd286683.aspx</a></p>
-<p>But you can also group by traits in the Text Explorer, and selectively run the tests. (This doesn't work so well if you're using multiple test frameworks).</p>
-<p><a href="images/2017-02-02_102530_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/2017-02-02_102530_thumb.png" title="2017-02-02_102530" alt="2017-02-02_102530" width="406" height="548" /></a></p>
-<p>We want our CI server to only run the non-manual tests. Let's apply the filter in TFS Build. Edit the build definition as shown above, and select the Visual Studio Test step. Add the &quot;Test Filter criteria&quot; <code>TestCategory!=manual</code> and Save.</p>
-<p><a href="images/2017-02-02_103011_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/2017-02-02_103011_thumb_25255B1_25255D.png" title="2017-02-02_103011" alt="2017-02-02_103011" width="749" height="337" /></a></p>
-<p>Click &quot;Queue build&quot; to rerun the build. If you haven't checked in the code with the test categories, do that instead. The result should be just two tests run, and both pass. Here are the Test Results detailed report. Be sure to change the Outcome to show all the tests.</p>
-<p><a href="images/2017-02-02_112051_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/2017-02-02_112051_thumb_25255B1_25255D.png" title="2017-02-02_112051" alt="2017-02-02_112051" width="750" height="394" /></a></p>
-<p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_24.html">TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></p>
-</div><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63'><h1>TFS Continuous Integration Walk Through Part 3 - Notifications</h1></a>
-                <p class='post-info'>2017-02-05 18:42</p>
-            </div><div class='post-contents'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
-<a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
-<p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_5.html">TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></p>
-<p>That's great, right? It worked. But it's not going to help me if I don't know the build failed, and I'm not going to keep a TFS page open, watching it like a hawk. I want email alerts.</p>
-<blockquote>
-<p><strong>Note</strong> There used to be another option for notifications: the Build Notification application. It would show build failure notifications in the status tray. But that only works for XAML builds. There appears to be a third party utility that does the same thing for the modern builds: <a href="https://catlight.io/">CatLight</a>.</p>
-</blockquote>
-<h2 id="configure-smtp-for-email">Configure SMTP for Email</h2>
-<p><strong>References</strong><br />
-<a href="https://www.visualstudio.com/en-us/docs/setup-admin/tfs/admin/setup-customize-alerts">Configure an SMTP server and customize email for alerts and feedback requests in TFS</a><br />
-<a href="https://www.youtube.com/watch?v=bdJvYgK9XnU">TFS Email via Gmail Account</a> &lt;- He enables POP3, but you don't have to.</p>
-<p>These steps assume you have administrative access to the administration console.</p>
-<p>Open the Team Foundation Server Administration Console, select Application Tier, scroll down to and open Alert Settings.</p>
-<p><a href="images/2017-01-31_114324_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_114324_thumb_25255B1_25255D.png" title="2017-01-31_114324" alt="2017-01-31_114324" width="749" height="599" /></a></p>
-<p>In the Settings window, check Enable Email Alerts and configure your SMTP server settings. In my case, I used my Gmail account for testing.</p>
-<blockquote>
-<p><strong>Note</strong> There are challenges getting Gmail SMTP to work in TFS that are beyond the scope of this article. That means, it would take too much space to document it all.</p>
-</blockquote>
-<p><a href="images/2017-01-31_114911_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_114911_thumb.png" title="2017-01-31_114911" alt="2017-01-31_114911" width="557" height="440" /></a></p>
-<p>Send a test email.</p>
-<p><a href="images/2017-01-31_115054_thumb_25255B2_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_115054_thumb_25255B2_25255D.png" title="2017-01-31_115054" alt="2017-01-31_115054" width="737" height="596" /></a><br />
-<a href="images/2017-01-31_115205_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_115205_thumb.png" title="2017-01-31_115205" alt="2017-01-31_115205" width="557" height="179" /></a></p>
-<h2 id="configure-tfs-alerts">Configure TFS Alerts</h2>
-<p><strong>References</strong><br />
-<a href="https://msdn.microsoft.com/en-us/library/ms181725.aspx">Receive build notifications</a></p>
-<p>Alerts are configured per team project. You can create project alerts from the Team Explorer &gt; Settings, but below I show how to do it from the web site.</p>
-<p>Open the main TFS page and click the Settings gear icon.</p>
-<p><a href="images/2017-01-31_123851_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_123851_thumb_25255B1_25255D.png" title="2017-01-31_123851" alt="2017-01-31_123851" width="722" height="233" /></a></p>
-<p>Select the CI Console Sample project. Click &quot;View the project administration page&quot;</p>
-<p><a href="images/2017-01-31_124017_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_124017_thumb.png" title="2017-01-31_124017" alt="2017-01-31_124017" width="565" height="497" /></a></p>
-<p>Open the Alerts tab. Click the link under Create New Alert When... &quot;A build fails&quot;. In the dialog, enter the Send To email address and click OK.</p>
-<p><a href="images/2017-01-31_124245_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_124245_thumb_25255B1_25255D.png" title="2017-01-31_124245" alt="2017-01-31_124245" width="743" height="518" /></a></p>
-<h2 id="configure-team-tfs-alerts">Configure Team TFS Alerts</h2>
-<p>Here's a simple configuration for build notifications. It assumes</p>
-<ul>
-<li>Not everyone on the team should be notified of build failures.</li>
-<li>There are two developers on the team who should receive notifications if <em>any</em> build fails.</li>
-</ul>
-<p>Open the Overview tab in the Control panel. Click &quot;New team&quot;.</p>
-<p><a href="images/2017-03-07_120812_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-03-07_120812_thumb_25255B1_25255D.png" title="2017-03-07_120812" alt="2017-03-07_120812" width="696" height="227" /></a></p>
-<p>Name the team something like &quot;Build Failures&quot;. In the Permissions, leave as Contributers. Click Create Team.</p>
-<blockquote>
-<p><strong>Option</strong><br />
-You could also allow anyone on the team to be a Build Admin by choosing that group.</p>
-</blockquote>
-<p><a href="images/2017-03-07_121236_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-03-07_121236_thumb.png" title="2017-03-07_121236" alt="2017-03-07_121236" width="577" height="563" /></a></p>
-<p>Edit the team and add any desired team members.</p>
-<p>Open the Alerts tab. Click the link under Create New Alert When... &quot;A build fails&quot;. Rename as desired. The only difference from a personal alert is the Subscriber. In this case, &quot;Build Failures&quot; is the team who will receive the alert. Click OK.</p>
-<p><a href="images/2017-03-07_121630_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-03-07_121630_thumb_25255B1_25255D.png" title="2017-03-07_121630" alt="2017-03-07_121630" width="750" height="515" /></a></p>
-<h2 id="test-notification">Test Notification</h2>
-<p>Make a change of some kind to the source code (but that <em>doesn't</em> pass the tests!) and check in your changes. That will start a build. When the build fails, you should get an email.</p>
-<p><a href="images/2017-01-31_124659_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_124659_thumb.png" title="2017-01-31_124659" alt="2017-01-31_124659" width="637" height="599" /></a></p>
-<h2 id="test-success">Test Success</h2>
-<p>Let's finally get our test passing. Update the Greeting code, confirm the tests pass locally, then check in. You should not get an email alert, and you should see a successful build.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">public</span> <span class="kw">class</span> TextMan
-    {
-        <span class="kw">public</span> <span class="dt">string</span> <span class="fu">Greeter</span>(<span class="dt">string</span> value)
-        {
-            <span class="kw">return</span> <span class="st">&quot;Hello, &quot;</span> + value;
-        }
-    }</code></pre></div>
-<p><a href="images/2017-01-31_125046_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_125046_thumb.png" title="2017-01-31_125046" alt="2017-01-31_125046" width="304" height="262" /></a></p>
-<p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_6.html">TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></p>
-</div><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5'><h1>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</h1></a>
-                <p class='post-info'>2017-02-05 14:10</p>
-            </div><div class='post-contents'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><br />
-<img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel='stylesheet' href='http://localhost:8080/smblog/css/default.css' />
+<link rel='stylesheet' href='http://localhost:8080/smblog/css/tango.css' />
+
+  <title>index</title>
+</head>
+
+<body>
+  <nav>
+    <div id="menu">
+      <ol>
+<li><a href="http://localhost:8080/smblog/">Home</a></li>
+<li><a href="http://localhost:8080/smblog/about">About</a></li>
+</ol>
+
+    </div>
+    <div id="recent">
+      <h2>Recent</h2>
+      <a href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a>
+    </div>
+    <div id="history">
+      <h2>History</h2>
+      <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-window-key-s-search-from'>Windows 8.1: Window Key + S = Search from Desktop</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li><li class='history-year'><label for='1'>1</label><input type='checkbox'  id='1' /><ol><li class='history-month'><label for='1-1'>January</label><input type='checkbox'  id='1-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/angularjs-service-with-var-declarations'>angularjs-service-with-var-declarations</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/dont-use-data-prefix-in-angularjs'>dont-use-data-prefix-in-angularjs</a></li></ol></li></ol></li></ol>
+    </div>
+  </nav>
+  <header>
+    <div id="site-image">
+      <img src="http://localhost:8080/smblog/images/header.png" alt="" />
+    </div>
+    <h1 id="site-name"></h1>
+    <div id="site-subtitle">A pleasant walk through computing</div>
+  </header>
+  <section id="content">
+    <h1 id="home">Home</h1>
+
+  </section>
+  <!-- posts only appear in home index -->
+  <section id="posts">
+    
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></h2>
+                <p class='post-info'><span class='posted-on'>2017-02-05 14:10</span></p>
+                <div class='post-content'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><br />
+<img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
 <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through.html">TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></p>
 <h2 id="add-the-solution-to-a-new-build-definition">Add the Solution to a New Build Definition</h2>
@@ -183,30 +57,30 @@ You could also allow anyone on the team to be a Build Admin by choosing that gro
 <p>You can get to the web-based &quot;create new build&quot; wizard a couple of ways.</p>
 <ol>
 <li>In the Visual Studio solution, switch to Team Explorer, click the Home icon, then drop down Home and choose Builds.<br />
- <a href="images/2017-01-31_101042_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_101042_thumb.png" title="2017-01-31_101042" alt="2017-01-31_101042" width="301" height="358" /></a></li>
+<a href="images/2017-01-31_101042_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_101042_thumb.png" title="2017-01-31_101042" alt="2017-01-31_101042" width="301" height="358" /></a></li>
 <li>On the TFS web site (<a href="http://\%5Btfs-site\%5D:8080/tfs" class="uri">http://\[tfs-site\]:8080/tfs</a>), select your team project if visible, or click Browse and navigate to it that way. On the project page, open the Build menu and click the plus sign.<br />
- <a href="images/2017-01-31_102849_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_102849_thumb_25255B1_25255D.png" title="2017-01-31_102849" alt="2017-01-31_102849" width="707" height="515" /></a></li>
+<a href="images/2017-01-31_102849_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_102849_thumb_25255B1_25255D.png" title="2017-01-31_102849" alt="2017-01-31_102849" width="707" height="515" /></a></li>
 </ol>
 <p>Either way gets to the &quot;Create new build definition&quot; wizard. Choose &quot;Visual Studio&quot; and click Next.</p>
-<p><a href="images/2017-01-31_102926_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_102926_thumb_25255B1_25255D.png" title="2017-01-31_102926" alt="2017-01-31_102926" width="752" height="696" /></a></p>
+<p><a href="images/2017-01-31_102926_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_102926_thumb_25255B1_25255D.png" title="2017-01-31_102926" alt="2017-01-31_102926" width="752" height="696" /></a></p>
 <p>Choose the Repository source, in this case the CI Console Sample. We only have one agent queue, the default. Click Create.</p>
-<p><a href="images/2017-01-31_103317_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_103317_thumb.png" title="2017-01-31_103317" alt="2017-01-31_103317" width="628" height="626" /></a></p>
+<p><a href="images/2017-01-31_103317_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_103317_thumb.png" title="2017-01-31_103317" alt="2017-01-31_103317" width="628" height="626" /></a></p>
 <p>This adds a set of build steps to the definition. Click Save and name the definition. Definitions can be used by multiple solutions, so something generic like &quot;Default Visual Studio Build&quot; will work.</p>
 <blockquote>
 <p><strong>Note</strong> The Visual Studio Test step will auto-discover many third-party test adapters, including xUnit. It's <em>not</em> necessary to set the path in the step's Advanced &gt; Path to Custom Test Adapters field for this example.</p>
 </blockquote>
-<p><a href="images/2017-01-31_103740_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_103740_thumb.png" title="2017-01-31_103740" alt="2017-01-31_103740" width="524" height="241" /></a></p>
+<p><a href="images/2017-01-31_103740_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_103740_thumb.png" title="2017-01-31_103740" alt="2017-01-31_103740" width="524" height="241" /></a></p>
 <p>Let's test the build with the default steps. Click &quot;Queue build&quot;, the OK.</p>
-<p><a href="images/2017-01-31_104047_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_104047_thumb_25255B1_25255D.png" title="2017-01-31_104047" alt="2017-01-31_104047" width="743" height="598" /></a></p>
+<p><a href="images/2017-01-31_104047_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_104047_thumb_25255B1_25255D.png" title="2017-01-31_104047" alt="2017-01-31_104047" width="743" height="598" /></a></p>
 <p>The build will run in a pretty cool web-based console window. As expected, the unit tests fail.</p>
-<p><a href="images/2017-01-31_104540_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_104540_thumb_25255B1_25255D.png" title="2017-01-31_104540" alt="2017-01-31_104540" width="741" height="707" /></a></p>
+<p><a href="images/2017-01-31_104540_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_104540_thumb_25255B1_25255D.png" title="2017-01-31_104540" alt="2017-01-31_104540" width="741" height="707" /></a></p>
 <p>There's also a summary error message at the end.</p>
-<p><a href="images/2017-01-31_104648_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_104648_thumb.png" title="2017-01-31_104648" alt="2017-01-31_104648" width="663" height="89" /></a></p>
+<p><a href="images/2017-01-31_104648_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_104648_thumb.png" title="2017-01-31_104648" alt="2017-01-31_104648" width="663" height="89" /></a></p>
 <h2 id="buildconfiguration-default-release">BuildConfiguration Default = Release</h2>
 <p><strong>References</strong><br />
 <a href="http://stackoverflow.com/questions/3416665/unit-testing-on-a-build-server-release-or-debug-code">Unit testing on a build server : Release or Debug code?</a></p>
 <p>Notice, above, when we queued the build that we got a dialog letting us set some variables. These variables are part of the build definition, in the Variables tab.</p>
-<p><a href="images/2017-01-31_104700_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_104700_thumb_25255B1_25255D.png" title="2017-01-31_104700" alt="2017-01-31_104700" width="734" height="356" /></a></p>
+<p><a href="images/2017-01-31_104700_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_104700_thumb_25255B1_25255D.png" title="2017-01-31_104700" alt="2017-01-31_104700" width="734" height="356" /></a></p>
 <p>At first, I thought this was a poor choice for a default. And, I do have a concern. But after reading the article referenced above, I realized...</p>
 <blockquote>
 <p><strong>CI Principle</strong><br />
@@ -214,24 +88,24 @@ Auto-build your application to the code your customers will be using.</p>
 </blockquote>
 <p>When would building in Release mode be a problem? The first thing I thought of was web.config transforms. What if you have this appSetting in your default web.config...</p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;appSettings&gt;</span>
-  <span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">&quot;SysopEmail&quot;</span><span class="ot"> value=</span><span class="st">&quot;developers@example.com&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">&quot;SysopEmail&quot;</span><span class="ot"> value=</span><span class="st">&quot;developers@example.com&quot;</span> <span class="kw">/&gt;</span>
 <span class="kw">&lt;/appSettings&gt;</span></code></pre></div>
 <p>and this one in Web.Release.config...</p>
 <div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;appSettings&gt;</span>
-  <span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">&quot;SysopEmail&quot;</span><span class="ot"> value=</span><span class="st">&quot;live-support@example.com&quot;</span><span class="ot"> xdt:Transform=</span><span class="st">&quot;Replace&quot;</span><span class="ot"> xdt:Locator=</span><span class="st">&quot;Match(key)&quot;</span> <span class="kw">/&gt;</span>
+<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">&quot;SysopEmail&quot;</span><span class="ot"> value=</span><span class="st">&quot;live-support@example.com&quot;</span><span class="ot"> xdt:Transform=</span><span class="st">&quot;Replace&quot;</span><span class="ot"> xdt:Locator=</span><span class="st">&quot;Match(key)&quot;</span> <span class="kw">/&gt;</span>
 <span class="kw">&lt;/appSettings&gt;</span></code></pre></div>
 <p>And, further, you have a method that's being tested that looks like this:</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">SaveCustomer</span>(ICustomer customer) 
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">SaveCustomer</span>(ICustomer customer)
 {
-  <span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">CustomerService</span>();
-  <span class="kw">try</span> 
-  {
-    service.<span class="fu">Save</span>(customer);
-  }
-  <span class="kw">catch</span> (Exception ex)
-  {
-    MailService.<span class="fu">SendError</span>(ConfigurationManager.<span class="fu">AppSettings</span>[<span class="st">&quot;SysopEmail&quot;</span>], ex);
-  }
+<span class="dt">var</span> service = <span class="kw">new</span> <span class="fu">CustomerService</span>();
+<span class="kw">try</span>
+{
+service.<span class="fu">Save</span>(customer);
+}
+<span class="kw">catch</span> (Exception ex)
+{
+MailService.<span class="fu">SendError</span>(ConfigurationManager.<span class="fu">AppSettings</span>[<span class="st">&quot;SysopEmail&quot;</span>], ex);
+}
 }</code></pre></div>
 <p>Now, CustomerService should be mocked, and that <em>should</em> lead to no errors being generated, but &quot;should&quot; has nothing to do with reality. Do we want our CI tests to email our production support on error? No, because they'll think there's a problem in the production system.</p>
 <p>There's anything wrong with the method <em>per se</em>. You can argue that settings like this should be in a database. Fine. But until then, what to do?</p>
@@ -239,33 +113,379 @@ Auto-build your application to the code your customers will be using.</p>
 <h2 id="enable-and-test-continuous-integration">Enable and Test Continuous Integration</h2>
 <p>Let's test that a build will run the next time we commit source code changes. And, let's be a sloppy developer, too.</p>
 <p>First, we need to configure the build definition to trigger when we check in. On the TFS site, in the team project, choose the Build menu, select the Default Visual Studio Build, and click Edit.</p>
-<p><a href="images/2017-01-31_110712_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_110712_thumb.png" title="2017-01-31_110712" alt="2017-01-31_110712" width="601" height="357" /></a></p>
+<p><a href="images/2017-01-31_110712_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_110712_thumb.png" title="2017-01-31_110712" alt="2017-01-31_110712" width="601" height="357" /></a></p>
 <p>Open Triggers, check Continuous Integration, leave the defaults, and Save.</p>
-<p><a href="images/2017-01-31_110924_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_110924_thumb.png" title="2017-01-31_110924" alt="2017-01-31_110924" width="556" height="335" /></a></p>
+<p><a href="images/2017-01-31_110924_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_110924_thumb.png" title="2017-01-31_110924" alt="2017-01-31_110924" width="556" height="335" /></a></p>
 <p>Back in our solution, change the TextMan.Greeter method as follows. Note that this will <em>not</em> pass.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">    <span class="kw">public</span> <span class="kw">class</span> TextMan
-    {
-        <span class="kw">public</span> <span class="dt">string</span> <span class="fu">Greeter</span>(<span class="dt">string</span> value)
-        {
-            <span class="kw">return</span> value;
-        }
-    }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> TextMan
+{
+<span class="kw">public</span> <span class="dt">string</span> <span class="fu">Greeter</span>(<span class="dt">string</span> value)
+{
+<span class="kw">return</span> value;
+}
+}</code></pre></div>
 <p>You can run the tests if you want to prove they fail.</p>
-<p><a href="images/2017-01-31_105424_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_105424_thumb.png" title="2017-01-31_105424" alt="2017-01-31_105424" width="406" height="548" /></a></p>
+<p><a href="images/2017-01-31_105424_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_105424_thumb.png" title="2017-01-31_105424" alt="2017-01-31_105424" width="406" height="548" /></a></p>
 <p>Now for the fun. On the TFS web site, go to the team project's Build tab, select the Default Visual Studio Build, and open the Queued view. Keep this page visible if you can. We want to see the build automatically start.</p>
-<p><a href="images/2017-01-31_105936_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_105936_thumb_25255B1_25255D.png" title="2017-01-31_105936" alt="2017-01-31_105936" width="638" height="354" /></a></p>
+<p><a href="images/2017-01-31_105936_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_105936_thumb_25255B1_25255D.png" title="2017-01-31_105936" alt="2017-01-31_105936" width="638" height="354" /></a></p>
 <p>In Team Explorer, click Pending Changes</p>
-<p><a href="images/2017-01-31_105614_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_105614_thumb_25255B1_25255D.png" title="2017-01-31_105614" alt="2017-01-31_105614" width="293" height="367" /></a></p>
+<p><a href="images/2017-01-31_105614_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_105614_thumb_25255B1_25255D.png" title="2017-01-31_105614" alt="2017-01-31_105614" width="293" height="367" /></a></p>
 <p>Enter a comment and click Check In.</p>
-<p><a href="images/2017-01-31_110109_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_110109_thumb.png" title="2017-01-31_110109" alt="2017-01-31_110109" width="296" height="365" /></a></p>
+<p><a href="images/2017-01-31_110109_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_110109_thumb.png" title="2017-01-31_110109" alt="2017-01-31_110109" width="296" height="365" /></a></p>
 <p>Back on the TFS site page, click Refresh and the build should appear.</p>
-<p><a href="images/2017-01-31_111112_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_111112_thumb.png" title="2017-01-31_111112" alt="2017-01-31_111112" width="496" height="226" /></a></p>
+<p><a href="images/2017-01-31_111112_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_111112_thumb.png" title="2017-01-31_111112" alt="2017-01-31_111112" width="496" height="226" /></a></p>
 <p>You can open the build and wait for it to finish (i.e. &quot;fail&quot;). The summary page nicely tells you who authored the last changes.</p>
-<p><a href="images/2017-01-31_111405_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_111405_thumb_25255B1_25255D.png" title="2017-01-31_111405" alt="2017-01-31_111405" width="756" height="747" /></a></p>
+<p><a href="images/2017-01-31_111405_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5/images/2017-01-31_111405_thumb_25255B1_25255D.png" title="2017-01-31_111405" alt="2017-01-31_111405" width="756" height="747" /></a></p>
 <p>Our build server is successfully automatically building on check in!</p>
 <p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_63.html">TFS Continuous Integration Walk Through Part 3 - Notifications</a></p>
-</div></div></section>
+</div>
+              </div>
+              
+
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></h2>
+                <p class='post-info'><span class='posted-on'>2017-02-04 15:24</span></p>
+                <div class='post-content'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
+<a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
+<h2 id="bonus-uninstall">Bonus: Uninstall!</h2>
+<p>Here's how to uninstall TFS, if necessary.</p>
+<ol>
+<li>Open Windows Services.</li>
+<li>Stop the VSO Agent service(s).</li>
+<li>Copy the service name(s).</li>
+<li>Delete the service from admin command prompt: sc delete vsoagent.Nesbit.Agent-Nesbit</li>
+<li>Open SQL Management Studio or Visual Studio SQL Server Object Explorer.</li>
+<li>Delete the Tfs databases.</li>
+<li>Open Programs and Features.</li>
+<li>Select Team Foundation Server Express 2015, choose Change, then Uninstall.</li>
+</ol>
+<h2 id="install">Install</h2>
+<p><a href="https://www.visualstudio.com/en-us/docs/setup-admin/requirements">Requirements and compatibility</a></p>
+<blockquote>
+<p><strong>Note</strong> These instructions are for TFS 2015 Update 3</p>
+<p><strong>Note about Visual Studio and MS Build</strong> Technically, you don't need to install Visual Studio to build using TFS. But, practically, you do, certainly if you use the recommended Visual Studio task. If you want to stick with just MS Build, you might be able to get away with installing the  <a href="https://www.microsoft.com/en-us/download/details.aspx?id=48159">2015 Build Tools</a></p>
+<p>This walkthrough installs TFS, a build agent, and Visual Studio on one machine to keep the demonstration easy.</p>
+</blockquote>
+<ol>
+<li>Download latest version (2015 Update 3 as of this writing). <a href="http://go.microsoft.com/fwlink/?LinkId=690654">ISO</a></li>
+<li>If you're using SQL 2016, Download and install the C++ Runtime prerequisite. <a href="http://support.microsoft.com/kb/3138367" class="uri">http://support.microsoft.com/kb/3138367</a></li>
+<li>Run installer<br />
+<a href="images/2017-01-27_142237_thumb_25255B3_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_142237_thumb_25255B3_25255D.png" title="2017-01-27_142237" alt="2017-01-27_142237" width="481" height="665" /></a><br />
+<a href="images/2017-01-27_142348_thumb_25255B6_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_142348_thumb_25255B6_25255D.png" title="2017-01-27_142348" alt="2017-01-27_142348" width="481" height="665" /></a></li>
+<li>After installation, the Configuration Center opens. Select Basic Server and click Start Wizard.<br />
+<a href="images/2017-01-27_143404_thumb_25255B3_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_143404_thumb_25255B3_25255D.png" title="2017-01-27_143404" alt="2017-01-27_143404" width="709" height="507" /></a></li>
+<li>Choose whether to participate in the Visual Studio Experience Improvement Program and click Next.<br />
+<a href="images/2017-01-27_143548_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_143548_thumb_25255B1_25255D.png" title="2017-01-27_143548" alt="2017-01-27_143548" width="711" height="497" /></a></li>
+<li>Choose whether to install SQL Express or use an existing instance. In my case, I already have SQL 2016 Express installed. Click Next.<br />
+<a href="images/2017-01-27_143631_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_143631_thumb_25255B1_25255D.png" title="2017-01-27_143631" alt="2017-01-27_143631" width="710" height="496" /></a></li>
+<li>The default SQL instance is displayed, or enter a named instance. This is the instance in which the TFS databases will be created. Click Next.<br />
+<a href="images/2017-01-27_143755_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_143755_thumb_25255B1_25255D.png" title="2017-01-27_143755" alt="2017-01-27_143755" width="708" height="495" /></a></li>
+<li>The next screen is what threw me. &quot;Install and configure a build and deployment agent&quot; is unchecked by default. You can install an agent later (I show how), but it's just as easy to install one now. Check the box and accept the defaults. Note the installation folder for later use. Click Next.<br />
+<a href="images/2017-01-27_144005_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_144005_thumb_25255B1_25255D.png" title="2017-01-27_144005" alt="2017-01-27_144005" width="703" height="491" /></a><br />
+<a href="images/2017-01-27_144159_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_144159_thumb_25255B1_25255D.png" title="2017-01-27_144159" alt="2017-01-27_144159" width="703" height="491" /></a></li>
+<li>Click Next again at the review screen.<br />
+<a href="images/2017-01-27_144341_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_144341_thumb_25255B1_25255D.png" title="2017-01-27_144341" alt="2017-01-27_144341" width="700" height="489" /></a></li>
+<li>Readiness checks will run. If something fails, you'll need to fix it before continuing, then click &quot;Click here to rerun Readiness Checks. Once everything passes, click Configure.<br />
+<a href="images/2017-01-27_144511_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_144511_thumb_25255B1_25255D.png" title="2017-01-27_144511" alt="2017-01-27_144511" width="704" height="492" /></a></li>
+<li>TFS and the agent will be configured. This creates databases, the agent service, and the website. When complete, click Next.<br />
+<a href="images/2017-01-27_144541_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_144541_thumb_25255B1_25255D.png" title="2017-01-27_144541" alt="2017-01-27_144541" width="700" height="489" /></a></li>
+<li>Note the web site location. It's a good idea to open the web site now. Click Close.<br />
+<a href="images/2017-01-27_150639_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_150639_thumb_25255B1_25255D.png" title="2017-01-27_150639" alt="2017-01-27_150639" width="704" height="492" /></a></li>
+<li>You're done with the wizard, so click Close. This will open the Server Administration Console.<br />
+<a href="images/2017-01-27_150745_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_150745_thumb_25255B1_25255D.png" title="2017-01-27_150745" alt="2017-01-27_150745" width="707" height="481" /></a></li>
+<li>Select Build and Release. This page has some instructions. You can go directly to the TFS Settings &gt; Agent page by click on Download Build and Deployment Agent. (<strong>Note: We will not be using the legacy XAML Build Configuration.</strong>). You can also get to the Settings page via the gear icon on the TFS web page.<br />
+<a href="images/2017-01-27_151017_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_151017_thumb_25255B1_25255D.png" title="2017-01-27_151017" alt="2017-01-27_151017" width="711" height="484" /></a><br />
+<a href="images/2017-01-27_151136_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_151136_thumb.png" title="2017-01-27_151136" alt="2017-01-27_151136" width="576" height="316" /></a><br />
+<a href="images/2017-01-27_151306_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_151306_thumb.png" title="2017-01-27_151306" alt="2017-01-27_151306" width="550" height="193" /></a><br />
+<a href="images/2017-01-27_151349_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-27_151349_thumb_25255B1_25255D.png" title="2017-01-27_151349" alt="2017-01-27_151349" width="719" height="224" /></a></li>
+</ol>
+<h2 id="console-app-with-tests">Console App with Tests</h2>
+<ol>
+<li>Create a Console application<br />
+<a href="images/2017-01-30_104608_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_104608_thumb_25255B1_25255D.png" title="2017-01-30_104608" alt="2017-01-30_104608" width="719" height="490" /></a></li>
+<li>Add two Class Library projects to the solution. We'll show consuming different test frameworks.<br />
+CIConsoleSample.MSTests<br />
+CIConsoleSample.xUnitTests<br />
+<a href="images/2017-01-30_105018_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_105018_thumb_25255B1_25255D.png" title="2017-01-30_105018" alt="2017-01-30_105018" width="709" height="502" /></a></li>
+<li>In the MSTests class library, add an Extensions reference to <code>Microsoft.VisualStudio.QualityTools.UnitTestFramework</code><br />
+<a href="images/2017-01-30_105737_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_105737_thumb.png" title="2017-01-30_105737" alt="2017-01-30_105737" width="671" height="155" /></a><br />
+Also add a reference to the CIConsoleSample project.<br />
+<a href="images/2017-01-30_111716_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_111716_thumb.png" title="2017-01-30_111716" alt="2017-01-30_111716" width="707" height="364" /></a></li>
+<li>In the xUnitTests class library, add the xUnit NuGet package, and the xunit.runner.visualstudio package.<br />
+<a href="images/2017-01-30_113117_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_113117_thumb_25255B1_25255D.png" title="2017-01-30_113117" alt="2017-01-30_113117" width="715" height="352" /></a><br />
+And, as above, add the reference to the CIConsoleSample project.</li>
+</ol>
+<h2 id="create-msunit-tests">Create MSUnit Tests</h2>
+<p>Rename Class1.cs to CIConsoleSampleMSTests, add the needed using statement and the following tests code. These tests use nested classes and a Class.Method_Should.Function naming style.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Text</span>;
+<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
+<span class="co">//Added for tests</span>
+<span class="kw">using</span> Microsoft.<span class="fu">VisualStudio</span>.<span class="fu">TestTools</span>.<span class="fu">UnitTesting</span>;
+
+<span class="kw">namespace</span> CIConsoleSample.<span class="fu">MSTests</span>
+{
+[TestClass]
+<span class="kw">public</span> <span class="kw">class</span> CIConsoleSampleMSTests
+{
+[TestClass]
+<span class="kw">public</span> <span class="kw">class</span> TextMan_Greeter_Should {
+[TestMethod]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">AppendTextToTheGreeting</span>()
+{
+<span class="co">//arrange</span>
+<span class="dt">string</span> value = <span class="st">&quot;Charles&quot;</span>;
+<span class="dt">string</span> expectedResult = <span class="st">&quot;Hello, Charles&quot;</span>;
+TextMan textMan = <span class="kw">new</span> <span class="fu">TextMan</span>();
+<span class="co">//act</span>
+<span class="dt">string</span> actualResult = textMan.<span class="fu">Greeter</span>(value);
+<span class="co">//assert</span>
+Assert.<span class="fu">AreEqual</span>(expectedResult, actualResult);
+}
+}
+}
+}</code></pre></div>
+<h2 id="create-xunit-tests">Create xUnit Tests</h2>
+<p>Reference: <a href="https://xunit.github.io/docs/getting-started-desktop.html" class="uri">https://xunit.github.io/docs/getting-started-desktop.html</a><br />
+Add a class file named CIConsoleSamplexUnitTests.cs, then the following code. As above, these tests use nested classes and a Class.Method_Should.Function naming style.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Text</span>;
+<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
+<span class="co">//added for tests</span>
+<span class="kw">using</span> Xunit;
+
+<span class="kw">namespace</span> CIConsoleSample.<span class="fu">xUnitTests</span>
+{
+<span class="kw">public</span> <span class="kw">class</span> CIConsoleSamplexUnitTests
+{
+<span class="kw">public</span> <span class="kw">class</span> TextMan_Greeter_Should
+{
+[Fact]
+<span class="kw">public</span> <span class="dt">void</span> <span class="fu">AppendTextToTheGreeting</span>()
+{
+<span class="co">//arrange</span>
+<span class="dt">string</span> value = <span class="st">&quot;Charles&quot;</span>;
+<span class="dt">string</span> expectedResult = <span class="st">&quot;Hello, Charles&quot;</span>;
+TextMan textMan = <span class="kw">new</span> <span class="fu">TextMan</span>();
+<span class="co">//act</span>
+<span class="dt">string</span> actualResult = textMan.<span class="fu">Greeter</span>(value);
+<span class="co">//assert</span>
+Assert.<span class="fu">Equal</span>(expectedResult, actualResult);
+}
+}
+}
+}</code></pre></div>
+<h2 id="run-failing-tests">Run Failing Tests</h2>
+<p>First, here's how I like to display my tests, taking advantage of the nested class structure.</p>
+<ul>
+<li>Tear off the Test Explorer into its own window, so that you can easily resize and see all the tests.<br />
+<a href="images/test-tearoff_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/test-tearoff_thumb_25255B1_25255D.png" title="test-tearoff" alt="test-tearoff" width="708" height="396" /></a></li>
+<li>Group the test results by class<br />
+<a href="images/test-byclass_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/test-byclass_thumb.png" title="test-byclass" alt="test-byclass" width="554" height="230" /></a></li>
+<li>In your xUnitTests project, add an app.config file with the following setting. This causes the result to display only the method name instead of the fully qualified name.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;utf-8&quot; <span class="kw">?&gt;</span>
+<span class="kw">&lt;configuration&gt;</span>
+<span class="kw">&lt;appSettings&gt;</span>
+<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">&quot;xunit.methodDisplay&quot;</span><span class="ot"> value=</span><span class="st">&quot;method&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/appSettings&gt;</span>
+<span class="kw">&lt;/configuration&gt;</span></code></pre></div>
+<ol>
+<li>Build the solution so the tests are displayed in the runner.<br />
+<a href="images/2017-01-30_120234_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_120234_thumb.png" title="2017-01-30_120234" alt="2017-01-30_120234" width="407" height="290" /></a></li>
+<li>Run the tests. They should both fail.<br />
+<a href="images/2017-01-30_120353_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_120353_thumb.png" title="2017-01-30_120353" alt="2017-01-30_120353" width="406" height="790" /></a></li>
+</ol>
+<p>This is enough for the moment. Let's add this solution to TFS, then to our CI server.</p>
+<h2 id="add-solution-to-tfs">Add Solution to TFS</h2>
+<p><strong>References</strong><br />
+<a href="https://www.visualstudio.com/en-us/docs/setup-admin/create-team-project%3E">Create a team project</a> <a href="https://www.visualstudio.com/en-us/docs/work/guidance/choose-process">Choose a process</a><br />
+Open the Team Explorer. If this is the first time connecting to TFS, you may see something like this (including the commercial).<br />
+<a href="images/2017-01-30_145139_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_145139_thumb.png" title="2017-01-30_145139" alt="2017-01-30_145139" width="303" height="359" /></a><br />
+Close the commercial, if you want, drop down Manage Connections and choose Connect to Team Project.<br />
+<a href="images/2017-01-30_145415_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_145415_thumb.png" title="2017-01-30_145415" alt="2017-01-30_145415" width="298" height="210" /></a><br />
+Select your local server. It will search for collections. Click Connect.<br />
+<a href="images/2017-01-30_145611_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_145611_thumb.png" title="2017-01-30_145611" alt="2017-01-30_145611" width="646" height="475" /></a><br />
+For this walk through, we're using TFS workspaces, not Git, for version control.<br />
+You can click &quot;Configure your workspace&quot; in the big mustard prompt. Or, click Project &gt; Configure Workspace<br />
+<a href="images/2017-01-30_145755_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_145755_thumb.png" title="2017-01-30_145755" alt="2017-01-30_145755" width="298" height="372" /></a><br />
+The dialog maps the remote collection's root folder to a folder on your local computer. You can accept the default (which I'll do for this example), or choose another folder (which I'd normally do). Click &quot;Map and Get&quot;. This is our first solution, so there are none to get.<br />
+<a href="images/2017-01-30_150019_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_150019_thumb.png" title="2017-01-30_150019" alt="2017-01-30_150019" width="298" height="360" /></a><br />
+Switch to Solution Explorer, right-click the solution, and choose Add Solution to Source Control.<br />
+<a href="images/2017-01-30_150759_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_150759_thumb.png" title="2017-01-30_150759" alt="2017-01-30_150759" width="500" height="553" /></a><br />
+I got this error message.</p>
+<blockquote>
+<p><strong>Full Disclosure</strong> I don't like TFS. This is an example of why. So much ceremony! I know there's a good reason, but sometimes I just want to get to work.</p>
+</blockquote>
+<p><a href="images/2017-01-30_150946_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_150946_thumb.png" title="2017-01-30_150946" alt="2017-01-30_150946" width="497" height="229" /></a><br />
+Switch <em>back</em> to Team Explorer, and choose Home &gt; Projects and My Teams &gt; New Team Project.<br />
+<a href="images/2017-01-30_153823_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_153823_thumb.png" title="2017-01-30_153823" alt="2017-01-30_153823" width="507" height="365" /></a><br />
+Name your team project. Click Next.<br />
+<a href="images/2017-01-30_153932_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_153932_thumb.png" title="2017-01-30_153932" alt="2017-01-30_153932" width="637" height="526" /></a><br />
+Choose the Agile process. Click Next.<br />
+<a href="images/2017-01-30_154431_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_154431_thumb.png" title="2017-01-30_154431" alt="2017-01-30_154431" width="637" height="526" /></a><br />
+Choose Team Foundation Version Control. Click Next, then Finish.<br />
+<a href="images/2017-01-30_154535_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_154535_thumb.png" title="2017-01-30_154535" alt="2017-01-30_154535" width="637" height="526" /></a><br />
+<a href="images/2017-01-30_154613_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_154613_thumb.png" title="2017-01-30_154613" alt="2017-01-30_154613" width="637" height="526" /></a><br />
+<em>Now</em> switch to Solution Explorer and add the solution to the team project.<br />
+<a href="images/2017-01-30_154745_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_154745_thumb.png" title="2017-01-30_154745" alt="2017-01-30_154745" width="554" height="563" /></a><br />
+The solution files are added locally, but not yet committed (checked in) to the repository. Right-click the solution and choose Check In.<br />
+<a href="images/2017-01-30_155043_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_155043_thumb.png" title="2017-01-30_155043" alt="2017-01-30_155043" width="500" height="580" /></a><br />
+Enter a comment and click Check In.<br />
+<a href="images/2017-01-30_155135_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_155135_thumb.png" title="2017-01-30_155135" alt="2017-01-30_155135" width="304" height="363" /></a><br />
+<a href="images/2017-01-30_155242_thumb.png"><img src="http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through/images/2017-01-30_155242_thumb.png" title="2017-01-30_155242" alt="2017-01-30_155242" width="301" height="164" /></a><br />
+Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_5.html">TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></p>
+</div>
+              </div>
+              
+
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></h2>
+                <p class='post-info'><span class='posted-on'>2017-01-26 11:40</span></p>
+                <div class='post-content'><p>Sometimes, in my &quot;regular&quot; (i.e. non-IT) life, I apply my job skills. Today, for example, I came across a Facebook post about how to contact and influence Congress members. The post suggested cutting and pasting to share with others. Unfortunately, it wasn't possible to select the text. Some sites do this to prevent copying their content. News sites, especially, for copyright reasons.</p>
+<p>What follows is not a tutorial for regular (i.e. non-technical-programming-nerdy) people. It's an <em>example</em> of the kind of process I do in my job every day, and how I think about a problem. It requires tools, knowledge and experience.</p>
+<h2 id="getting-to-the-source-of-the-matter">Getting to the &quot;Source&quot; of the Matter</h2>
+<p>Now, the first problem is that I viewed the original FB post on my phone, and it turns out that's why I couldn't copy/paste the text. If I'd bothered to find it on my desktop, my problem would have been solved. Instead, I emailed myself a link to the page. That link still went to the mobile version. That's what the &quot;m.&quot; in the URL is telling me.</p>
+<p><a href="images/2017-01-26_25252009_35_13_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252009_35_13_thumb_25255B1_25255D.png" title="2017-01-26 09_35_13" alt="2017-01-26 09_35_13" width="406" height="54" /></a></p>
+<p>Here's some of the text:</p>
+<p><a href="images/2017-01-26_25252009_38_16_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252009_38_16_thumb_25255B1_25255D.png" title="2017-01-26 09_38_16" alt="2017-01-26 09_38_16" width="408" height="156" /></a></p>
+<p>I can't copy the text, it's sort of like it's an image, but I'm pretty sure it's <em>not</em> an image. My next step is to view the page source HTML. I right-click in Chrome and choose &quot;View page source&quot;.</p>
+<p><a href="images/2017-01-26_25252009_40_46_thumb_25255B3_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252009_40_46_thumb_25255B3_25255D.png" title="2017-01-26 09_40_46" alt="2017-01-26 09_40_46" width="403" height="318" /></a></p>
+<p>Which yields a huge mess of coded text, as befitting a complex web site. There are about three thousand more lines like this.</p>
+<p><a href="images/2017-01-26_25252009_42_55_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252009_42_55_thumb_25255B1_25255D.png" title="2017-01-26 09_42_55" alt="2017-01-26 09_42_55" width="709" height="450" /></a></p>
+<p>I'm pretty sure buried in there is the text I want. And I'm also pretty sure I'll need to manipulate it. So, I open <a href="https://notepad-plus-plus.org/">Notepad++</a>, a sophisticated, free, open source text editor. Then I copy/paste the source from the browser into it.</p>
+<p><a href="images/2017-01-26_25252009_46_56_thumb_25255B3_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252009_46_56_thumb_25255B3_25255D.png" title="2017-01-26 09_46_56" alt="2017-01-26 09_46_56" width="708" height="444" /></a></p>
+<p>Now I'm ready to use my text editor.</p>
+<h2 id="text-editing-is-not-the-same-as-word-processing">Text Editing is Not the Same as Word Processing</h2>
+<p>In word processing, like you do with Microsoft Word, the concern is text formatting: making things bold, italic, different fonts, etc. The result of all that work is marked up text (or binary, but we'll stick with text) that tells the application how to display all of your words on the screen. Here's an example from a Word file that was saved in its standard .docx format. The document literally has one word: &quot;hello&quot;. But Word needs all of this information to display that those five characters.</p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;<span class="kw">?&gt;</span>
+<span class="kw">&lt;w:document</span>
+<span class="ot">xmlns:wpc=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot;</span>
+<span class="ot">xmlns:cx=</span><span class="st">&quot;http://schemas.microsoft.com/office/drawing/2014/chartex&quot;</span>
+<span class="ot">xmlns:cx1=</span><span class="st">&quot;http://schemas.microsoft.com/office/drawing/2015/9/8/chartex&quot;</span>
+<span class="ot">xmlns:cx2=</span><span class="st">&quot;http://schemas.microsoft.com/office/drawing/2015/10/21/chartex&quot;</span>
+<span class="ot">xmlns:cx3=</span><span class="st">&quot;http://schemas.microsoft.com/office/drawing/2016/5/9/chartex&quot;</span>
+<span class="ot">xmlns:cx4=</span><span class="st">&quot;http://schemas.microsoft.com/office/drawing/2016/5/10/chartex&quot;</span>
+<span class="ot">xmlns:cx5=</span><span class="st">&quot;http://schemas.microsoft.com/office/drawing/2016/5/11/chartex&quot;</span>
+<span class="ot">xmlns:mc=</span><span class="st">&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;</span>
+<span class="ot">xmlns:o=</span><span class="st">&quot;urn:schemas-microsoft-com:office:office&quot;</span>
+<span class="ot">xmlns:r=</span><span class="st">&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot;</span>
+<span class="ot">xmlns:m=</span><span class="st">&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot;</span>
+<span class="ot">xmlns:v=</span><span class="st">&quot;urn:schemas-microsoft-com:vml&quot;</span>
+<span class="ot">xmlns:wp14=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing&quot;</span>
+<span class="ot">xmlns:wp=</span><span class="st">&quot;http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing&quot;</span>
+<span class="ot">xmlns:w10=</span><span class="st">&quot;urn:schemas-microsoft-com:office:word&quot;</span>
+<span class="ot">xmlns:w=</span><span class="st">&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot;</span>
+<span class="ot">xmlns:w14=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot;</span>
+<span class="ot">xmlns:w15=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot;</span>
+<span class="ot">xmlns:w16se=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2015/wordml/symex&quot;</span>
+<span class="ot">xmlns:wpg=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingGroup&quot;</span>
+<span class="ot">xmlns:wpi=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingInk&quot;</span>
+<span class="ot">xmlns:wne=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2006/wordml&quot;</span>
+<span class="ot">xmlns:wps=</span><span class="st">&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingShape&quot;</span><span class="ot"> mc:Ignorable=</span><span class="st">&quot;w14 w15 w16se wp14&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;w:body&gt;</span>
+<span class="kw">&lt;w:p</span><span class="ot"> w:rsidR=</span><span class="st">&quot;000E45DD&quot;</span><span class="ot"> w:rsidRDefault=</span><span class="st">&quot;00FA6736&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;w:r&gt;</span>
+<span class="kw">&lt;w:t&gt;</span>hello<span class="kw">&lt;/w:t&gt;</span>
+<span class="kw">&lt;/w:r&gt;</span>
+<span class="kw">&lt;w:bookmarkStart</span><span class="ot"> w:id=</span><span class="st">&quot;0&quot;</span><span class="ot"> w:name=</span><span class="st">&quot;_GoBack&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;w:bookmarkEnd</span><span class="ot"> w:id=</span><span class="st">&quot;0&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/w:p&gt;</span>
+<span class="kw">&lt;w:sectPr</span><span class="ot"> w:rsidR=</span><span class="st">&quot;000E45DD&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;w:pgSz</span><span class="ot"> w:w=</span><span class="st">&quot;12240&quot;</span><span class="ot"> w:h=</span><span class="st">&quot;15840&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;w:pgMar</span><span class="ot"> w:top=</span><span class="st">&quot;1440&quot;</span><span class="ot"> w:right=</span><span class="st">&quot;1440&quot;</span><span class="ot"> w:bottom=</span><span class="st">&quot;1440&quot;</span><span class="ot"> w:left=</span><span class="st">&quot;1440&quot;</span><span class="ot"> w:header=</span><span class="st">&quot;720&quot;</span><span class="ot"> w:footer=</span><span class="st">&quot;720&quot;</span><span class="ot"> w:gutter=</span><span class="st">&quot;0&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;w:cols</span><span class="ot"> w:space=</span><span class="st">&quot;720&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;w:docGrid</span><span class="ot"> w:linePitch=</span><span class="st">&quot;360&quot;</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/w:sectPr&gt;</span>
+<span class="kw">&lt;/w:body&gt;</span>
+<span class="kw">&lt;/w:document&gt;</span></code></pre></div>
+<p>The concern of text editing is working with raw content like that above. A good text editor lets you perform complex Find &amp; Replace, or do block editing (where you can select text not just in rows, but also in a columns).</p>
+<p>Back to our FB post source. I know that somewhere in the text is the bit that I want. So, I search for some text that's very likely unique to the content I'm looking for. &quot;Senator&quot; is a good choice.</p>
+<p><a href="images/2017-01-26_25252010_00_34_thumb_25255B2_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252010_00_34_thumb_25255B2_25255D.png" title="2017-01-26 10_00_34" alt="2017-01-26 10_00_34" width="603" height="482" /></a></p>
+<blockquote>
+<p><strong>TECH DIGRESSION!</strong></p>
+<p>I found, at this point, why I couldn't copy/paste the text in the first place. All of the content was inside a &lt;script&gt; tag. It was probably being processed by javascript, and displayed in some messed-up way.</p>
+</blockquote>
+<p>There's other markup in there, but I'll take care of that in a little bit. First, I copy what looks like the text want into a new Notepad++ tab.</p>
+<p><a href="images/2017-01-26_25252010_06_45_thumb_25255B4_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252010_06_45_thumb_25255B4_25255D.png" title="2017-01-26 10_06_45" alt="2017-01-26 10_06_45" width="732" height="325" /></a></p>
+<h2 id="i-need-a-replacement">I Need a Replacement</h2>
+<p>Now, I look at what's there, while thinking about what I want. Ideally, my end result is nicely formatted text, meaning it's got all the original line breaks. I could do that manually, but I'd prefer not to.</p>
+<p>The first thing I notice is the markup after &quot;Senator.&quot;</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">From a high-level staffer <span class="kw">for</span> a Senator:\u003C\/p&gt;\u003Cp&gt; There are two things</code></pre></div>
+<p>That sequence, <code>\u003C\/p&gt;\u003Cp&gt;</code> appears throughout the text exactly where line breaks are in the original.</p>
+<p><a href="images/2017-01-26_25252010_13_55_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252010_13_55_thumb_25255B1_25255D.png" title="2017-01-26 10_13_55" alt="2017-01-26 10_13_55" width="339" height="82" /></a></p>
+<p>So let's see what happens if I just replace all of those instances with a new line and carriage return.</p>
+<blockquote>
+<p><strong>TECH DIGRESSION!</strong></p>
+<p>Huh? How (you wonder) do I do that? How do I insert something that can't be seen? Well, even though you can't see them, line breaks (where you go down one line) and carriage returns (where you go back to the beginning of the line) are stored in text just like any other character. They just aren't <em>displayed</em> in the editor. But there are ways to represent them, and one long-standing way is with C programming-style expressions. I can use text to represent other, hidden text.</p>
+<p><code>\n</code> = newline<br />
+<code>\r</code> = carriage return<br />
+<code>\t</code> = tab stop</p>
+<p>The back slash is an &quot;escape&quot; character. It tells the application &quot;don't treat this sequence \n literally. Instead, look in the raw text for the hexadecimal byte sequence 0D.&quot; As an example, here are two lines of text:</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">life&#39;s
+good</code></pre></div>
+<p>and its hex representation. I put the represented letters and linefeed/carriage return above the hex for clarity.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">l  i  f  e  &#39;  s  \n \r g  o  o  d
+6c <span class="dv">69</span> <span class="dv">66</span> <span class="dv">65</span> <span class="dv">27</span> <span class="dv">73</span> 0d 0a <span class="dv">67</span> 6f 6f <span class="dv">64</span></code></pre></div>
+</blockquote>
+<p>So, I select <code>\u003C\/p&gt;\u003Cp&gt;</code> and try to replace it with <code>\r\n\r\n</code> (two carriage return + new line). And it fails.</p>
+<p><a href="images/2017-01-26_25252010_32_08_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252010_32_08_thumb_25255B1_25255D.png" title="2017-01-26 10_32_08" alt="2017-01-26 10_32_08" width="573" height="388" /></a></p>
+<p>Why? For the same reason the newline can be found: the escape character <code>\</code>. Notepad++ is looking at my &quot;Find what&quot; string and saying, &quot;Oh, you've got a back slash in front of that u. That must mean something special to me, so I won't treat it as '<code>\u</code>'. I can't find your text, sorry.&quot;</p>
+<p>What do we do if we want the back slash to be treated literally? Heh, heh. You <em>escape</em> it by putting another back slash in front of it. To find a literal occurrence of <code>\r</code> in text using C-style expressions, you search for <code>\\r</code>. Crazy logical, right?</p>
+<p>My search express becomes this: <code>\\u003C\\/p&gt;\\u003Cp&gt;</code></p>
+<p>I try my Find &amp; Replace again, and this time it works.</p>
+<p><a href="images/2017-01-26_25252010_39_04_thumb_25255B2_25255D.png"><img src="http://localhost:8080/smblog/posts/what-else-programmers-do-text/images/2017-01-26_25252010_39_04_thumb_25255B2_25255D.png" title="2017-01-26 10_39_04" alt="2017-01-26 10_39_04" width="571" height="421" /></a></p>
+<p>I could live with this result if I weren't a perfectionist. But there's still lots of HTML markup in there (highlighted in yellow). So, I do my Find &amp; Replace magic a bunch more times. By looking at the original text, I can figure out what characters the markup stood for (or I could look it up). There's also some non-standard markup.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">&amp;#<span class="dv">039</span>;  =   &#39;
+&amp;quot;  =   <span class="st">&quot;</span>
+&amp;amp;   =   &amp;
+&amp;gt;    =   &gt;
+\u2013  =   --
+\/      =   /</code></pre></div>
+<p>The result is the text as I originally saw it on the post. Here's a partial example.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">From a high-level staffer <span class="kw">for</span> a Senator:
+
+There are two things that all Democrats should be doing all the time right now, and they&#39;re by far the
+most important things. [***If you want to share <span class="kw">this</span>, please copy and paste so it goes beyond our mutual
+friends***]
+
+--&gt; You should NOT be bothering with online petitions or emailing.
+
+<span class="dv">1</span>. The best thing you can <span class="kw">do</span> to be heard and get your congressperson to pay attention <span class="kw">is</span> to have
+face-to-face time - <span class="kw">if</span> they have townhalls, go to them. Go to their local offices. If you&#39;re <span class="kw">in</span> DC, <span class="kw">try</span>
+to find a way to go to an <span class="kw">event</span> of theirs. Go to the <span class="st">&quot;mobile offices&quot;</span> that their staff hold periodically
+(all these times are located on each congressperson&#39;s website).
+
+When you go, ask questions. A lot of them. And push <span class="kw">for</span> answers. The louder and more vocal and present
+you can be at those the better.
+
+<span class="dv">2</span>. But, those <span class="kw">in</span>-person events don&#39;t happen every day. So, the absolute most important thing that people
+should be doing every day <span class="kw">is</span> calling.
+
+You should make <span class="dv">6</span> calls a day: <span class="dv">2</span> <span class="fu">each</span> (DC office and your local office) to your <span class="dv">2</span> Senators &amp; your <span class="dv">1</span>
+Representative.</code></pre></div>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>It took a lot to extract the text from that mobile web page.</p>
+<ol>
+<li>Use the browser's View Source feature</li>
+<li>Use a specialized text editor</li>
+<li>Find the content I was looking for</li>
+<li>Recreate the line endings via Find &amp; Replace using C programming language expressions</li>
+<li>Replace the remaining HTML markup</li>
+</ol>
+<p>If you're wondering what kind of things that special programmer in your life is doing <em>every day</em>, this is it. It's not glamorous. In fact, it's pretty tedious. But, it's a living!</p>
+</div>
+              </div>
+              
     <div class='paging'><a href='index4.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index6.html'>Older</a></div>
-    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
-  </body>
+  </section>
+  <footer><p>Copyright (c) 2018 Charles L Flatt</p>
+</footer>
+  
+</body>
+
 </html>

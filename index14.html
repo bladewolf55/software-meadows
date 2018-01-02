@@ -1,257 +1,53 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>index</title>
-    <link rel="stylesheet" type="text/css" href="http://bladewolf55.gitlab.io/smblog/css/default.css">
-  </head>
-  <body>
-    <header>
-      Software Meadows      
-    </header>
-    <nav>
-      <ul>
-        <li><a href="http://bladewolf55.gitlab.io/smblog/">Home</a></li>
-        <li class="dropdown">
-          <a href="http://bladewolf55.gitlab.io/smblog/about">About</a>
-        </li>
-      </ul>
-    </nav>
-   	<aside id="sidebar">
-	   <div id="recent">
-       <p><strong>History</strong></p>
-       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-window-key-s-search-from'>windows-81-window-key-s-search-from</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li></ol>
-      </div>
-	    <div id="tags"></div>
-	  </aside>
-    <section id="content"><h1 id="home">Home</h1>
-<div id='post-roll'><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/auto-updating-new-windows-7-installation'><h1>Auto Updating a New Windows 7 Installation</h1></a>
-                <p class='post-info'>2016-01-31 06:11</p>
-            </div><div class='post-contents'><p>There are many reasons you may create a clean Windows installation:</p>
-<ul>
-<li>Gold image for deployment</li>
-<li>Lab installation for testing</li>
-<li>Reinstall/recovery</li>
-</ul>
-<p>Installing all the Windows updates is tedious, especially with reboots. I don’t know why Microsoft doesn’t include a big “Bring up to date” button that would let you configure for reboots. I figured someone had this sorted, and started searching.</p>
-<p>I can’t take credit for the PowerShell script, but am glad to have found it. It does have one oddity: it attempts to disable <a href="https://docs.oracle.com/cd/E23562_01/doc.1035/e14501/install.htm">OpenSSHd</a>. I don’t know if that’s a weird security leftover, or a precaution by the author. The script still runs even if the OpenSSHd service isn’t found, which it shouldn’t be. It’s not part of Windows.</p>
-<p>I made these changes:</p>
-<ol>
-<li>Commented out OpenSSH commands</li>
-<li>After searching for updates, I selectively hide updates such as KB3035583, which is the Windows 10 advertisement (not needed in my case).</li>
-</ol>
-<p>Here’s the link to the original script by Joe Fitzgerald:</p>
-<p><a href="https://gist.github.com/joefitzgerald/8203265" class="uri">https://gist.github.com/joefitzgerald/8203265</a></p>
-<p>And the script itself, with my changes. To execute the script, right-click and choose Run with PowerShell. Or</p>
-<ol>
-<li>open admin command prompt</li>
-<li>cd to location of script file</li>
-<li>&gt; powershell.exe -ExecutionPolicy ByPass -File win-update.ps1</li>
-</ol>
-<p> </p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="fu">param</span>($global:RestartRequired=<span class="dv">0</span>,
-        $global:MoreUpdates=<span class="dv">0</span>,
-        $global:MaxCycles=<span class="dv">10</span>)
+<html lang="en">
 
-function Check-<span class="fu">ContinueRestartOrEnd</span>() {
-    $RegistryKey = <span class="st">&quot;HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion</span><span class="sc">\R</span><span class="st">un&quot;</span>
-    $RegistryEntry = <span class="st">&quot;InstallWindowsUpdates&quot;</span>
-    <span class="kw">switch</span> ($global:RestartRequired) {
-        <span class="dv">0</span> {         
-            $prop = (Get-ItemProperty $RegistryKey).$RegistryEntry
-            <span class="kw">if</span> ($prop) {
-                Write-Host <span class="st">&quot;Restart Registry Entry Exists - Removing It&quot;</span>
-                Remove-ItemProperty -Path $RegistryKey -Name $RegistryEntry -ErrorAction SilentlyContinue
-            }
-            
-            Write-Host <span class="st">&quot;No Restart Required&quot;</span>
-            Check-WindowsUpdates
-            
-            <span class="kw">if</span> (($global:MoreUpdates -eq <span class="dv">1</span>) -<span class="fu">and</span> ($script:Cycles -le $global:MaxCycles)) {
-                Stop-Service $script:ServiceName -Force
-                Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped 
-                Install-WindowsUpdates
-            } <span class="fu">elseif</span> ($script:Cycles -gt $global:MaxCycles) {
-                Write-Host <span class="st">&quot;Exceeded Cycle Count - Stopping&quot;</span>
-            } <span class="kw">else</span> {
-                Write-Host <span class="st">&quot;Done Installing Windows Updates&quot;</span>
-                Set-Service -Name $script:ServiceName -StartupType Automatic -Status Running         
-            }
-        }
-        <span class="dv">1</span> {
-            $prop = (Get-ItemProperty $RegistryKey).$RegistryEntry
-            <span class="kw">if</span> (-not $prop) {
-                Write-Host <span class="st">&quot;Restart Registry Entry Does Not Exist - Creating It&quot;</span>
-                Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value <span class="st">&quot;C:\Windows\System32\WindowsPowerShell</span><span class="sc">\v</span><span class="st">1.0\powershell.exe -File $($script:ScriptPath)&quot;</span>
-            } <span class="kw">else</span> {
-                Write-Host <span class="st">&quot;Restart Registry Entry Exists Already&quot;</span>
-            }
-            
-            Write-Host <span class="st">&quot;Restart Required - Restarting...&quot;</span>
-            Restart-Computer
-        }
-        <span class="kw">default</span> { 
-            Write-Host <span class="st">&quot;Unsure If A Restart Is Required&quot;</span> 
-            <span class="kw">break</span>
-        }
-    }
-}
-
-function Install-<span class="fu">WindowsUpdates</span>() {
-    $script:Cycles++
-    Write-Host &#39;Evaluating Available Updates:&#39;
-    $UpdatesToDownload = New-Object -ComObject &#39;Microsoft.<span class="fu">Update</span>.<span class="fu">UpdateColl</span>&#39;
-    <span class="kw">foreach</span> ($Update <span class="kw">in</span> $SearchResult.<span class="fu">Updates</span>) {
-        <span class="kw">if</span> (($Update -ne $null) -<span class="fu">and</span> (!$Update.<span class="fu">IsDownloaded</span>)) {
-            [<span class="dt">bool</span>]$addThisUpdate = $false
-            <span class="kw">if</span> ($Update.<span class="fu">InstallationBehavior</span>.<span class="fu">CanRequestUserInput</span>) {
-                Write-Host <span class="st">&quot;SKIPPING: $($Update.Title) because it requires user input&quot;</span>
-            } <span class="kw">else</span> {
-                <span class="kw">if</span> (!($Update.<span class="fu">EulaAccepted</span>)) {
-                    Write-Host <span class="st">&quot;&gt; Note: $($Update.Title) has a license agreement that must be accepted. Accepting the license.&quot;</span>
-                    $Update.<span class="fu">AcceptEula</span>()
-                    [<span class="dt">bool</span>]$addThisUpdate = $true
-                } <span class="kw">else</span> {
-                    [<span class="dt">bool</span>]$addThisUpdate = $true
-                }
-            }
-        
-            <span class="kw">if</span> ([<span class="dt">bool</span>]$addThisUpdate) {
-                Write-Host <span class="st">&quot;Adding: $($Update.Title)&quot;</span>
-                $UpdatesToDownload.<span class="fu">Add</span>($Update) |Out-Null
-            }
-        }
-    }
-    
-    <span class="kw">if</span> ($UpdatesToDownload.<span class="fu">Count</span> -eq <span class="dv">0</span>) {
-        Write-Host <span class="st">&quot;No Updates To Download...&quot;</span>
-    } <span class="kw">else</span> {
-        Write-Host &#39;Downloading Updates...&#39;
-        $Downloader = $UpdateSession.<span class="fu">CreateUpdateDownloader</span>()
-        $Downloader.<span class="fu">Updates</span> = $UpdatesToDownload
-        $Downloader.<span class="fu">Download</span>()
-    }
-    
-    $UpdatesToInstall = New-Object -ComObject &#39;Microsoft.<span class="fu">Update</span>.<span class="fu">UpdateColl</span>&#39;
-    [<span class="dt">bool</span>]$rebootMayBeRequired = $false
-    Write-Host &#39;The following updates are downloaded and ready to be installed:&#39;
-    <span class="kw">foreach</span> ($Update <span class="kw">in</span> $SearchResult.<span class="fu">Updates</span>) {
-        <span class="kw">if</span> ($Update.<span class="fu">IsDownloaded</span>) {
-            Write-Host <span class="st">&quot;&gt; $($Update.Title)&quot;</span>
-            $UpdatesToInstall.<span class="fu">Add</span>($Update) |Out-Null
-              
-            <span class="kw">if</span> ($Update.<span class="fu">InstallationBehavior</span>.<span class="fu">RebootBehavior</span> -gt <span class="dv">0</span>){
-                [<span class="dt">bool</span>]$rebootMayBeRequired = $true
-            }
-        }
-    }
-    
-    <span class="kw">if</span> ($UpdatesToInstall.<span class="fu">Count</span> -eq <span class="dv">0</span>) {
-        Write-Host &#39;No updates available to install. Press any key.&#39;
-        $global:MoreUpdates=<span class="dv">0</span>
-        $global:RestartRequired=<span class="dv">0</span>
-        #wait <span class="kw">for</span> user input, so message <span class="kw">is</span> seen
-        $wait = $host.<span class="fu">UI</span>.<span class="fu">RawUI</span>.<span class="fu">ReadKey</span>(<span class="st">&quot;NoEcho,IncludeKeyDown&quot;</span>)
-        <span class="kw">break</span>
-    }
-
-    <span class="kw">if</span> ($rebootMayBeRequired) {
-        Write-Host &#39;These updates may require a reboot&#39;
-        $global:RestartRequired=<span class="dv">1</span>
-    }
-    
-    Write-Host &#39;Installing updates...&#39;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
-    $Installer = $script:UpdateSession.<span class="fu">CreateUpdateInstaller</span>()
-    $Installer.<span class="fu">Updates</span> = $UpdatesToInstall
-    $InstallationResult = $Installer.<span class="fu">Install</span>()
-  
-    Write-Host <span class="st">&quot;Installation Result: $($InstallationResult.ResultCode)&quot;</span>
-    Write-Host <span class="st">&quot;Reboot Required: $($InstallationResult.RebootRequired)&quot;</span>
-    Write-Host &#39;Listing of updates installed and individual installation results:&#39;
-    <span class="kw">if</span> ($InstallationResult.<span class="fu">RebootRequired</span>) {
-        $global:RestartRequired=<span class="dv">1</span>
-    } <span class="kw">else</span> {
-        $global:RestartRequired=<span class="dv">0</span>
-    }
+  <link rel='stylesheet' href='http://localhost:8080/smblog/css/default.css' />
+<link rel='stylesheet' href='http://localhost:8080/smblog/css/tango.css' />
+
+  <title>index</title>
+</head>
+
+<body>
+  <nav>
+    <div id="menu">
+      <ol>
+<li><a href="http://localhost:8080/smblog/">Home</a></li>
+<li><a href="http://localhost:8080/smblog/about">About</a></li>
+</ol>
+
+    </div>
+    <div id="recent">
+      <h2>Recent</h2>
+      <a href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a>
+    </div>
+    <div id="history">
+      <h2>History</h2>
+      <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-window-key-s-search-from'>Windows 8.1: Window Key + S = Search from Desktop</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li><li class='history-year'><label for='1'>1</label><input type='checkbox'  id='1' /><ol><li class='history-month'><label for='1-1'>January</label><input type='checkbox'  id='1-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/angularjs-service-with-var-declarations'>angularjs-service-with-var-declarations</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/dont-use-data-prefix-in-angularjs'>dont-use-data-prefix-in-angularjs</a></li></ol></li></ol></li></ol>
+    </div>
+  </nav>
+  <header>
+    <div id="site-image">
+      <img src="http://localhost:8080/smblog/images/header.png" alt="" />
+    </div>
+    <h1 id="site-name"></h1>
+    <div id="site-subtitle">A pleasant walk through computing</div>
+  </header>
+  <section id="content">
+    <h1 id="home">Home</h1>
+
+  </section>
+  <!-- posts only appear in home index -->
+  <section id="posts">
     
-    <span class="kw">for</span>($i=<span class="dv">0</span>; $i -lt $UpdatesToInstall.<span class="fu">Count</span>; $i++) {
-        New-Object -TypeName PSObject -Property @{
-            Title = $UpdatesToInstall.<span class="fu">Item</span>($i).<span class="fu">Title</span>
-            Result = $InstallationResult.<span class="fu">GetUpdateResult</span>($i).<span class="fu">ResultCode</span>
-        }
-    }
-    
-    Check-ContinueRestartOrEnd
-}
-
-function Check-<span class="fu">WindowsUpdates</span>() {
-    Write-Host <span class="st">&quot;Checking For Windows Updates&quot;</span>
-    $Username = $env:USERDOMAIN + <span class="st">&quot;</span><span class="sc">\&quot;</span><span class="st"> + $env:USERNAME</span>
- 
-    New-EventLog -Source $ScriptName -LogName &#39;Windows Powershell&#39; -ErrorAction SilentlyContinue
- 
-    $Message = <span class="st">&quot;Script: &quot;</span> + $ScriptPath + <span class="st">&quot;`nScript User: &quot;</span> + $Username + <span class="st">&quot;`nStarted: &quot;</span> + (Get-Date).<span class="fu">toString</span>()
-
-    Write-EventLog -LogName &#39;Windows Powershell&#39; -Source $ScriptName -EventID <span class="st">&quot;104&quot;</span> -EntryType <span class="st">&quot;Information&quot;</span> -Message $Message
-    Write-Host $Message
-
-    $script:UpdateSearcher = $script:UpdateSession.<span class="fu">CreateUpdateSearcher</span>()
-    $script:SearchResult = $script:UpdateSearcher.<span class="fu">Search</span>(<span class="st">&quot;IsInstalled=0 and Type=&#39;Software&#39; and IsHidden=0&quot;</span>)      
-    <span class="kw">if</span> ($SearchResult.<span class="fu">Updates</span>.<span class="fu">Count</span> -ne <span class="dv">0</span>) {
-        $script:SearchResult.<span class="fu">Updates</span> |Select-Object -Property Title, Description, SupportUrl, UninstallationNotes, RebootRequired, EulaAccepted |Format-List
-        $global:MoreUpdates=<span class="dv">1</span>
-    } <span class="kw">else</span> {
-        Write-Host &#39;There are no applicable updates&#39;
-        $global:RestartRequired=<span class="dv">0</span>
-        $global:MoreUpdates=<span class="dv">0</span>
-    }
-    
-    #clf hide undesired updates
-    <span class="kw">foreach</span> ($Update <span class="kw">in</span> $SearchResult.<span class="fu">Updates</span>) {
-        <span class="kw">if</span> ($Update.<span class="fu">Title</span>.<span class="fu">Contains</span>(<span class="st">&quot;KB3035583&quot;</span>)) {
-            Write-Host <span class="st">&quot;Hiding $($Update.Title) because it&#39;s the Windows 10 Notification.&quot;</span>
-            $Update.<span class="fu">IsHidden</span> = $TRUE
-        }
-    }
-}
-
-$script:ScriptName = $MyInvocation.<span class="fu">MyCommand</span>.<span class="fu">ToString</span>()
-$script:ScriptPath = $MyInvocation.<span class="fu">MyCommand</span>.<span class="fu">Path</span>
-$script:UpdateSession = New-Object -ComObject &#39;Microsoft.<span class="fu">Update</span>.<span class="fu">Session</span>&#39;
-$script:UpdateSession.<span class="fu">ClientApplicationID</span> = &#39;Packer Windows Update Installer&#39;
-$script:UpdateSearcher = $script:UpdateSession.<span class="fu">CreateUpdateSearcher</span>()
-$script:SearchResult = New-Object -ComObject &#39;Microsoft.<span class="fu">Update</span>.<span class="fu">UpdateColl</span>&#39;
-$script:Cycles = <span class="dv">0</span>
-
-# $script:ServiceName = <span class="st">&quot;OpenSSHd&quot;</span>
-
-# Stop-Service $script:ServiceName -Force
-# Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped 
-
-Check-WindowsUpdates
-<span class="kw">if</span> ($global:MoreUpdates -eq <span class="dv">1</span>) {
-    Install-WindowsUpdates
-} <span class="kw">else</span> {
-    Check-ContinueRestartOrEnd
-}</code></pre></div>
-<p> </p>
-<h2 id="references">References</h2>
-<p>An alternative method, clever but not as flexible.</p>
-<p><a href="http://serverfault.com/questions/320750/best-way-to-fully-update-a-new-installed-windows" class="uri">http://serverfault.com/questions/320750/best-way-to-fully-update-a-new-installed-windows</a></p>
-<p>WSUS Update class</p>
-<p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa386099(v=vs.85).aspx" class="uri">https://msdn.microsoft.com/en-us/library/windows/desktop/aa386099(v=vs.85).aspx</a></p>
-<p>Powershell ReadKey doesn’t work when using editor.</p>
-<p><a href="https://social.technet.microsoft.com/Forums/windowsserver/en-US/0787bcba-f977-400d-8b62-57ec64a71a8a/why-do-i-get-an-exception-calling-readkey?forum=winserverpowershell" class="uri">https://social.technet.microsoft.com/Forums/windowsserver/en-US/0787bcba-f977-400d-8b62-57ec64a71a8a/why-do-i-get-an-exception-calling-readkey?forum=winserverpowershell</a></p>
-</div><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/shoretel-brilliantly-simple'><h1>ShoreTel - Brilliantly Simple?</h1></a>
-                <p class='post-info'>2015-08-27 16:11</p>
-            </div><div class='post-contents'><p>And only an 858 page manual!</p>
-<p><a href="images/unnamed_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/shoretel-brilliantly-simple/images/unnamed_thumb.png" title="unnamed" alt="unnamed" width="470" height="424" /></a></p>
-</div><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems'><h1>The Google Photos Management Problem(s)</h1></a>
-                <p class='post-info'>2015-08-23 11:40</p>
-            </div><div class='post-contents'><h1 id="the-executive-summary-you-can-pretend-youre-an-exec">The Executive Summary (you can pretend you’re an exec)</h1>
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></h2>
+                <p class='post-info'><span class='posted-on'>2015-08-23 11:40</span></p>
+                <div class='post-content'><h1 id="the-executive-summary-you-can-pretend-youre-an-exec">The Executive Summary (you can pretend you’re an exec)</h1>
 <ul>
 <li>Storing photos in one place with one compelling interface is good. I wish Google had that.</li>
 <li>Google Photos is bad.</li>
@@ -265,12 +61,12 @@ Check-WindowsUpdates
 <h1 id="the-setup">The Setup</h1>
 <p>Google strives, mostly successfully, to keep their applications simple. Simple to understand, simple to use, simple to explain. Google also wants us to store our millions of pictures with them, because they are a gateway to marketing, and thus advertising.<br />
 I have a blog, the very one you’re reading. It’s hosted on Blogger, which is owned by Google. I often use screen shots, a.k.a pictures, like this one.<br />
-<a href="images/Dewy_252520grass_252520sm_thumb.jpg"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/Dewy_252520grass_252520sm_thumb.jpg" title="Dewy grass sm" alt="Dewy grass sm" width="244" height="184" /></a><br />
+<a href="images/Dewy_252520grass_252520sm_thumb.jpg"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/Dewy_252520grass_252520sm_thumb.jpg" title="Dewy grass sm" alt="Dewy grass sm" width="244" height="184" /></a><br />
 And, I use Windows Live Writer to compose my posts, because it has easy copy/paste of pictures, good formatting control, and useful plugins. (It’s also quite old and unmaintained, so here’s hoping Scott Hanselman is successful getting Microsoft to <a href="http://winsupersite.com/software-development/microsoft-open-source-windows-live-writer">release it as open source</a>, because I think WLW would rapidly improve.)<br />
 When I publish using WLW, the screen shots end up in a Google . . . somewhere. When I finish composing a blog post, WLW opens the post in my preferred browser, which is Google Chrome. It all looks hunky dory, and I’m pleased with my writing prowess, which I know is what chicks would dig if I weren’t a relatively old man.</p>
 <h1 id="the-story">The Story</h1>
 <p>So the other day I proudly opened my post about <a href="http://www.softwaremeadows.com/2015/08/more-encrypted-config-filesclickonce.html">encrypting app.config</a> in Microsoft’s new Edge browser (in Windows 10), and—what’s this? No images? Just gray boxes with a circle-dash icon?<br />
-<a href="images/image_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image_thumb_25255B1_25255D.png" title="image" alt="image" width="82" height="88" /></a><br />
+<a href="images/image_thumb_25255B1_25255D.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image_thumb_25255B1_25255D.png" title="image" alt="image" width="82" height="88" /></a><br />
 Well, this new browser certainly does suck daikon. Good thing the pictures show in Internet Explorer, right? Nope. Same problem. But they look great in Chrome. Must be Windows 10. Or Windows Live Writer, which led me on an <a href="https://productforums.google.com/forum/#!topic/blogger/-49FC2_0l-g">odyssey of reading</a> about how Google “broke” blogging apps by requiring better authentication, and giving something like two years’ notice. Maybe that’s the problem? No, it isn’t, that got fixed fairly quickly.<br />
 Then it must be Windows 10. Somehow this got past the thousands of people testing the app for a year (as if). I’ll check in lovely Windows 7 from work.<br />
 Same thing. Only now, I don’t see pictures in Chrome, either. Which is the clue to the solution. Because at work, I hadn’t logged into my Google account before viewing my blog.<br />
@@ -280,23 +76,23 @@ OK, I’ll just check the album and set it for public, like I would if it were i
 <ul>
 <li>Initial view is <em>all</em> your pictures, sorted descending by date, in every size imaginable (doubled, in my case, because of how WLW works).</li>
 <li>Choose the Collections view and you get what, exactly? What’s a collection? It looks like an album. So why’s it called a collection? Oh, it’s because a collection could be photos, movies or stories (whatever those are). And a collection of photos is called—I’m perfectly serious—an album. While a collection of movies is called “Movies.”<br />
-<a href="images/image7_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image7_thumb.png" title="image" alt="image" width="360" height="172" /></a></li>
+<a href="images/image7_thumb.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image7_thumb.png" title="image" alt="image" width="360" height="172" /></a></li>
 <li>You can’t create an empty album. You have to create an album from <em>existing</em> pictures you’ve already uploaded. From that massive, date-sorted ocean you saw earlier. Which is the exact opposite of how a sane person creates an album. We, the people, create an album and then upload pictures from our phone or computer to that album. We at least want that option!</li>
 <li>You can’t change the sharing of an album, as far as public/private is concerned. You can share to Google+, Facebook or Twitter, or get a shareable link.</li>
 </ul>
 <p>More reading. I dimly recall Google is storing lots more stuff on Drive. Are they storing photos? Why, yes!<br />
-<a href="images/image_thumb_25255B4_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="201" height="183" /></a><br />
+<a href="images/image_thumb_25255B4_25255D.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="201" height="183" /></a><br />
 Excitedly, I click the link and, indeed, I see my photos. <em>Some</em> of them. And some are different from what’s in Photos, despite the icon and text telling me I’m looking at, um, Photos. No albums. Too bad, because it looks like I can make individual photos publically accessible here. This is an illusion though, as far as my blog is concerned. The settings aren’t related. So this is useless. Gamely, I check the settings, and indeed there’s an intriguing option.<br />
-<a href="images/image13_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image13_thumb.png" title="image" alt="image" width="595" height="75" /></a><br />
+<a href="images/image13_thumb.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image13_thumb.png" title="image" alt="image" width="595" height="75" /></a><br />
 But I don’t check it. It doesn’t <em>feel</em> right. Why would I need to connect Google Photos to Google Drive in order to access sharing properties on Google Albums that are, somehow, already set? And I’m nervous that, according to some descriptions, I can make changes in Drive that affect Photos, but not the other way around. Or is it the reverse?</p>
 <h1 id="the-solution">The Solution</h1>
 <p>Wait . . . hang on. Isn’t Photos a <em>new</em> application? Weren’t we storing photos before? With some other program that I tried? (snap, snap, snap) Picasa. That’s it. Didn’t Picasa have albums? Is it possible? . . . Yes. Follow the trail.<br />
-<a href="images/image16_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image16_thumb.png" title="image" alt="image" width="458" height="184" /></a><br />
-<a href="images/image19_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image19_thumb.png" title="image" alt="image" width="239" height="357" /></a><br />
-<a href="images/image22_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image22_thumb.png" title="image" alt="image" width="296" height="166" /></a><br />
-<a href="images/image25_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image25_thumb.png" title="image" alt="image" width="300" height="104" /></a><br />
+<a href="images/image16_thumb.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image16_thumb.png" title="image" alt="image" width="458" height="184" /></a><br />
+<a href="images/image19_thumb.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image19_thumb.png" title="image" alt="image" width="239" height="357" /></a><br />
+<a href="images/image22_thumb.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image22_thumb.png" title="image" alt="image" width="296" height="166" /></a><br />
+<a href="images/image25_thumb.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image25_thumb.png" title="image" alt="image" width="300" height="104" /></a><br />
 Save and done. Now all of my blog pictures are visible again. That was easy.<br />
-<a href="images/image28_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems/images/image28_thumb.png" title="image" alt="image" width="301" height="254" /></a></p>
+<a href="images/image28_thumb.png"><img src="http://localhost:8080/smblog/posts/the-google-photos-management-problems/images/image28_thumb.png" title="image" alt="image" width="301" height="254" /></a></p>
 <h1 id="the-problems">The Problems</h1>
 <p>Did you keep count? Google has <em>four</em> places you can manage your pictures:</p>
 <ol>
@@ -306,8 +102,381 @@ Save and done. Now all of my blog pictures are visible again. That was easy.<br 
 <li>Pictures in Picasa.</li>
 </ol>
 <p>It’s a mess. I’m sad.</p>
-</div></div></section>
+</div>
+              </div>
+              
+
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></h2>
+                <p class='post-info'><span class='posted-on'>2015-08-23 07:18</span></p>
+                <div class='post-content'><p>This post’s for me, since I’ve occasionally had to look this up.</p>
+<p>Here are the two command lines of code needed to create a long-lasting, untrusted ClickOnce certificate. You run this using the Visual Studio command prompt. I recommend putting the certificate info in a separate folder, documenting the procedure and passwords, and storing in version control. The purpose isn’t deep security, it’s letting the apps install and run with minimal fuss.</p>
+<pre class="console"><code>C:\MakeCertDemo&gt; makecert -sv MyClickOnce.pvk -n &quot;CN=MY ClickOnce&quot; MyClickOnce.cer -b 08/01/2015 -e 12/31/2100 -r
+C:\MakeCertDemo&gt; pvk2pfx -pvk MyClickOnce.pvk -spc MyClickOnce.cer -pfx MyClickOnce.pfx -po X0PASS!</code></pre>
+<p>The –r switch is required to ensure the certificate’s length is greater that 1024 bits, otherwise Windows will refuse the ClickOnce installation. Older articles about using MakeCert omit that.</p>
+<p>The development certificate created by Visual Studio when publishing a ClickOnce application lasts just a year. You can get with your network admin to create a domain-level certificate for internal publishing, if you have Windows Enterprise Server. Or buy a Verisign certificate for trusted public publishing. But often, small businesses just need to publish internal apps with little fanfare. The app developers need:</p>
+<ol>
+<li>A long-lasting certificate</li>
+<li>To not discover they don’t know the original certificate password (“Hey, who wrote this? Know password? OK, I’ll create a new certificate.”)</li>
+<li>Consistency</li>
+</ol>
+<h2 id="references">References</h2>
+<p><a href="https://msdn.microsoft.com/en-us/library/ff369721.aspx?f=255&amp;MSPPError=-2147217396">Certificate Expiration in ClickOnce Deployment</a></p>
+<p><a href="http://stackoverflow.com/questions/12844868/clickonce-signers-certificate-not-valid-for-signing-when-using-makecer-pvk2pfx/13851771#13851771">Stack Overflow</a></p>
+<p><a href="http://www.digitallycreated.net/Blog/38/using-makecert-to-create-certificates-for-development">DigitallyCreated</a></p>
+</div>
+              </div>
+              
+
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></h2>
+                <p class='post-info'><span class='posted-on'>2015-08-10 19:13</span></p>
+                <div class='post-content'><h1 id="prologue">Prologue</h1>
+<p>In my previous post, I detailed a solution for <a href="http://www.softwaremeadows.com/2015/07/encrypting-appconfig.html">encrypting sections of the app.config</a> (the technique is similar in a web app). Since then, I ran into some issues in a Windows Form application I was developing.</p>
+<ul>
+<li>I needed to encrypt email SMTP data.</li>
+<li>Initially, I’d get an error when trying to access the smtp section.</li>
+<li>When published as ClickOnce, the application threw an error and wouldn’t open.</li>
+</ul>
+<h1 id="act-i">Act I</h1>
+<p>Let’s create a simple app. First, a Windows Form app with three labels. All the code will be in the same page as the Form1 class, to keep things simple.</p>
+<p><a href="images/image_thumb_25255B2_25255D.png"><img src="http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B2_25255D.png" title="image" alt="image" width="229" height="244" /></a></p>
+<p>Add connectionString, appSettings and smtp sections to the app.config.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">&lt;?xml version=<span class="st">&quot;1.0&quot;</span> encoding=<span class="st">&quot;utf-8&quot;</span> ?&gt;
+&lt;configuration&gt;
+&lt;startup&gt;
+&lt;supportedRuntime version=<span class="st">&quot;v4.0&quot;</span> sku=<span class="st">&quot;.NETFramework,Version=v4.5&quot;</span> /&gt;
+&lt;/startup&gt;
+&lt;connectionStrings&gt;
+&lt;add name=<span class="st">&quot;MashDb&quot;</span>
+connectionString=<span class="st">&quot;Server=.\SQLExpress2012;Database=MASH;Trusted Connection=True;&quot;</span>
+providerName=<span class="st">&quot;System.Data.SqlClient&quot;</span>/&gt;
+&lt;/connectionStrings&gt;
+&lt;appSettings&gt;
+&lt;add key=<span class="st">&quot;Password&quot;</span> value=<span class="st">&quot;4077&quot;</span>/&gt;
+&lt;/appSettings&gt;
+&lt;system.<span class="fu">net</span>&gt;
+&lt;mailSettings&gt;
+&lt;smtp deliveryMethod=<span class="st">&quot;Network&quot;</span> from=<span class="st">&quot;pierce@mash.net&quot;</span>&gt;
+&lt;network
+host=<span class="st">&quot;ohmyseoul.kr&quot;</span>
+port=<span class="st">&quot;25&quot;</span>
+defaultCredentials=<span class="st">&quot;true&quot;</span>/&gt;
+&lt;/smtp&gt;
+&lt;/mailSettings&gt;
+&lt;/system.<span class="fu">net</span>&gt;
+&lt;/configuration&gt;</code></pre></div>
+<p>Add reference to System.Configuration to the project.</p>
+<p><a href="images/image4_thumb.png"><img src="http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce/images/image4_thumb.png" title="image" alt="image" width="498" height="84" /></a></p>
+<p>The static Settings class, to get the app.config data. This is personal preference; I know you can also use the Settings designer for this, but it’s kind of hidden and finicky.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> Settings
+{
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> MashDb { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">ConnectionStrings</span>[<span class="st">&quot;MashDb&quot;</span>].<span class="fu">Name</span>; } }
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> Password { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">AppSettings</span>[<span class="st">&quot;Password&quot;</span>]; } }
+}</code></pre></div>
+<p>The static ConfigSettings classes. (Or whatever you’d name your general security utilities.) This is different than what I showed previously. Specifically, they don’t optionally take an executable name. Instead, they take the full path to a config file, essential to solving the ClickOnce problem.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> ConfigSettings
+{
+
+<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
+<span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span>
+<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;encryption&quot;</span><span class="kw">&gt;&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;configPath&quot;</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;remarks&gt;https:</span><span class="ot">//msdn.microsoft.com/en-us/library/ms254494(v=</span>vs<span class="ot">.110).aspx&lt;/remarks</span><span class="kw">&gt;</span>
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetDefaultConfigEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> configPath = <span class="kw">null</span>)
+{
+<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">&quot;appSettings&quot;</span>, configPath);
+<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">&quot;connectionStrings&quot;</span>, configPath);
+<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">&quot;system.net/mailSettings/smtp&quot;</span>, configPath);
+}
+
+<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
+<span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span>
+<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;encryption&quot;</span><span class="kw">&gt;&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;sectionName&quot;</span><span class="kw">&gt;&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;configPath&quot;</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;remarks&gt;&lt;</span><span class="ot">/remarks</span><span class="kw">&gt;</span>
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetConfigSectionEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> sectionName, <span class="dt">string</span> configPath = <span class="kw">null</span>)
+{
+<span class="co">//if no configPath supplied, get the currently executing exe&#39;s config.</span>
+<span class="kw">if</span> (<span class="dt">string</span>.<span class="fu">IsNullOrWhiteSpace</span>(configPath))
+{
+configPath = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span> + <span class="st">&quot;.config&quot;</span>;
+<span class="kw">#if</span> (DEBUG)
+AppDomain domain = System.<span class="fu">AppDomain</span>.<span class="fu">CurrentDomain</span>;
+configPath = Path.<span class="fu">Combine</span>(domain.<span class="fu">SetupInformation</span>.<span class="fu">ApplicationBase</span>, domain.<span class="fu">FriendlyName</span> + <span class="st">&quot;.config&quot;</span>);
+<span class="kw">#endif</span>
+}
+
+<span class="kw">try</span>
+{
+<span class="co">//Open the configuration file and retrieve the connectionStrings section.</span>
+ExeConfigurationFileMap fileMap = <span class="kw">new</span> <span class="fu">ExeConfigurationFileMap</span>();
+fileMap.<span class="fu">ExeConfigFilename</span> = configPath;
+Configuration config = ConfigurationManager.<span class="fu">OpenMappedExeConfiguration</span>(fileMap, ConfigurationUserLevel.<span class="fu">None</span>);
+ConfigurationSection section = config.<span class="fu">GetSection</span>(sectionName);
+<span class="kw">if</span> (section == <span class="kw">null</span>)
+{
+<span class="kw">return</span>;
+}
+<span class="co">// Encrypt the section.</span>
+<span class="kw">if</span> (encryption)
+{
+<span class="kw">if</span> (!section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
+{
+section.<span class="fu">SectionInformation</span>.<span class="fu">ForceSave</span> = <span class="kw">true</span>;
+section.<span class="fu">SectionInformation</span>.<span class="fu">ProtectSection</span>(<span class="st">&quot;DataProtectionConfigurationProvider&quot;</span>);
+}
+}
+<span class="co">// Remove encryption.</span>
+<span class="kw">if</span> (!encryption)
+{
+<span class="kw">if</span> (section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
+{
+section.<span class="fu">SectionInformation</span>.<span class="fu">UnprotectSection</span>();
+}
+}
+<span class="co">// Save the current configuration.</span>
+config.<span class="fu">Save</span>();
+}
+<span class="kw">catch</span> (Exception ex)
+{
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">&quot;Unable to encrypt. &quot;</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
+}
+}
+}</code></pre></div>
+<p>In the Form1 class, add the form Load event, and also the method for encrypting the config. You might be tempted to use System.AppDomain.CurrentDomain.FriendlyName, but in a ClickOnce application this will return “DefaultDomain,” and no site I’ve seen has an answer why.</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">partial</span> <span class="kw">class</span> Form1 : Form
+{
+<span class="kw">public</span> <span class="fu">Form1</span>()
+{
+<span class="fu">EncryptClickOnceConfig</span>();
+<span class="fu">InitializeComponent</span>();
+}
+
+<span class="kw">private</span> <span class="dt">void</span> <span class="fu">Form1_Load</span>(<span class="dt">object</span> sender, EventArgs e)
+{
+label1.<span class="fu">Text</span> = Settings.<span class="fu">MashDb</span>;
+label2.<span class="fu">Text</span> = Settings.<span class="fu">Password</span>;
+label3.<span class="fu">Text</span> = <span class="kw">new</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>.<span class="fu">SmtpClient</span>().<span class="fu">Host</span>;
+}
+
+<span class="kw">private</span> <span class="dt">void</span> <span class="fu">EncryptClickOnceConfig</span>()
+{
+<span class="co">//Encrypt config. This didn&#39;t work properly in Load. Would lead to error &quot;Unrecognized attribute ‘configProtectionProvider’</span>
+<span class="co">//after encrypting app.config when reading smtp</span>
+<span class="co">//Weird stuff for ClickOnce Deployment.</span>
+<span class="co">//https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</span>
+<span class="co">//ClickOnce writes two config files for some reason.</span>
+{
+<span class="kw">if</span> (ApplicationDeployment.<span class="fu">IsNetworkDeployed</span> &amp;&amp; ApplicationDeployment.<span class="fu">CurrentDeployment</span>.<span class="fu">IsFirstRun</span>)
+{
+<span class="co">//GetPaths</span>
+<span class="dt">string</span> exeFile = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span>;
+<span class="co">//get directory above the executable&#39;s.</span>
+<span class="dt">string</span> parentPath = Path.<span class="fu">GetDirectoryName</span>(Path.<span class="fu">GetDirectoryName</span>(exeFile));
+<span class="dt">string</span> configName = Path.<span class="fu">GetFileName</span>(exeFile) + <span class="st">&quot;.config&quot;</span>;
+<span class="co">//get the matching files</span>
+<span class="kw">foreach</span> (<span class="dt">string</span> configFile <span class="kw">in</span> Directory.<span class="fu">GetDirectories</span>(parentPath, <span class="st">&quot;*&quot;</span> + configName, SearchOption.<span class="fu">AllDirectories</span>))
+{
+ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>, configFile);
+}
+}
+<span class="kw">else</span>
+{
+<span class="co">//good for debugging, sets the vshost config</span>
+ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>);
+}
+}
+}
+}</code></pre></div>
+<h1 id="act-ii">Act II</h1>
+<p>Publish the application. This will automatically create a self-signed certificate. (In a follow up post, I’ll document (for my easy reference) how to create a certificate that lasts more than a year.) There are two important things to do here:</p>
+<ul>
+<li>Set the project to Release.  This is critical. It should be obvious, but it’s easy to forget and leads to one of the errors.</li>
+<li>It’s important to install it from a network location, which you can fake by sharing your publish folder and using the UNC path to it. I published to the solution folder. Give the share full permissions (for testing only).</li>
+</ul>
+<p><a href="images/image_thumb_25255B16_25255D.png"><img src="http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B16_25255D.png" title="image" alt="image" width="597" height="476" /></a></p>
+<p>You should also enable automatic updating.</p>
+<p><a href="images/image_thumb_25255B17_25255D.png"><img src="http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B17_25255D.png" title="image" alt="image" width="606" height="300" /></a></p>
+<p>Install from the UNC path. The app should open.</p>
+<p><a href="images/image_thumb_25255B19_25255D.png"><img src="http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B19_25255D.png" title="image" alt="image" width="215" height="236" /></a></p>
+<p>With the app open, open Task Manager, right-click the app, and choose “open file location.”</p>
+<p><a href="images/image_thumb_25255B21_25255D.png"><img src="http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B21_25255D.png" title="image" alt="image" width="612" height="562" /></a></p>
+<p>The folder will contain a EncryptedConfigClickOnceSample.exe.config file, which should be encrypted. But you’ll also find <em>another</em> folder, a sibling above or below the one you’re in, also with a EncryptedConfigClickOnceSample.exe.config, which should also be encrypted.</p>
+<p>So, fine, it works. How were the problems fixed?</p>
+<h1 id="act-iii">Act III</h1>
+<h2 id="encrypt-the-smtp-info">Encrypt the SMTP Info</h2>
+<p>This one’s pretty easy. Pass the SetConfigSectionEncryption() method the string “system.net/mailSettings/smtp”. What I found interesting is that you can’t submit just “system.net”, or “system.net/mailSettings” Apparently, in some  Orwellian programming community, some sections are more equal than others.</p>
+<h2 id="error-accessing-the-smtp-info">Error Accessing the SMTP Info</h2>
+<p>Set the program to Debug mode and republish. Run the app, letting it self-update. You should receive an error</p>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Unrecognized attribute &#39;configProtectionProvider&#39;</code></pre></div>
+<p><a href="images/image_thumb_25255B22_25255D.png"><img src="http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B22_25255D.png" title="image" alt="image" width="408" height="194" /></a></p>
+<p>Some sites say to call <span style="font-family: Consolas;">ConfigurationManager.RefreshSection</span><span style="font-family: Calibri;">, but the problem really seems to be the behavior when in Debug mode. </span>The error seems to be caused by how configuration info is accessed after the application starts. It’s not clear to me, and no web page mentioned debug mode. But it worked.</p>
+<h2 id="clickonce-error">ClickOnce Error</h2>
+<p>In one application, when I tried to install it simply wouldn’t open. I believe this was also due to publishing in Debug mode. However, I also moved my call to configure the config file from Form_Load to the constructor. In my testing app, that’s not making any difference.</p>
+<h1 id="epilogue">Epilogue</h1>
+<p>Encrypting the app.config could be critical for certain organizations where the highest security is preferred, even if the risk is very low.</p>
+<h1 id="references">References</h1>
+<p><a href="http://stackoverflow.com/questions/7856951/unrecognized-attribute-configprotectionprovider-after-encrypting-app-config" class="uri">http://stackoverflow.com/questions/7856951/unrecognized-attribute-configprotectionprovider-after-encrypting-app-config</a></p>
+<p><a href="https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup" class="uri">https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</a></p>
+<h1 id="source-code">Source Code</h1>
+<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
+<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
+<span class="kw">using</span> System.<span class="fu">ComponentModel</span>;
+<span class="kw">using</span> System.<span class="fu">Data</span>;
+<span class="kw">using</span> System.<span class="fu">Drawing</span>;
+<span class="kw">using</span> System.<span class="fu">Linq</span>;
+<span class="kw">using</span> System.<span class="fu">Text</span>;
+<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
+<span class="kw">using</span> System.<span class="fu">Windows</span>.<span class="fu">Forms</span>;
+
+<span class="kw">using</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>;
+<span class="kw">using</span> System.<span class="fu">Configuration</span>;
+<span class="kw">using</span> System.<span class="fu">IO</span>;
+<span class="kw">using</span> System.<span class="fu">Deployment</span>.<span class="fu">Application</span>;
+<span class="kw">using</span> System.<span class="fu">Reflection</span>;
+
+<span class="kw">namespace</span> EncryptedConfigClickOnceSample
+{
+<span class="kw">public</span> <span class="kw">partial</span> <span class="kw">class</span> Form1 : Form
+{
+<span class="kw">public</span> <span class="fu">Form1</span>()
+{
+<span class="fu">EncryptClickOnceConfig</span>();
+<span class="fu">InitializeComponent</span>();
+}
+
+<span class="kw">private</span> <span class="dt">void</span> <span class="fu">Form1_Load</span>(<span class="dt">object</span> sender, EventArgs e)
+{
+label1.<span class="fu">Text</span> = Settings.<span class="fu">MashDb</span>;
+label2.<span class="fu">Text</span> = Settings.<span class="fu">Password</span>;
+label3.<span class="fu">Text</span> = <span class="kw">new</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>.<span class="fu">SmtpClient</span>().<span class="fu">Host</span>;
+}
+
+<span class="kw">private</span> <span class="dt">void</span> <span class="fu">EncryptClickOnceConfig</span>()
+{
+<span class="co">//Encrypt config. This didn&#39;t work properly in Load. Would lead to error &quot;Unrecognized attribute ‘configProtectionProvider’</span>
+<span class="co">//after encrypting app.config when reading smtp</span>
+<span class="co">//Weird stuff for ClickOnce Deployment.</span>
+<span class="co">//https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</span>
+<span class="co">//ClickOnce writes two config files for some reason.</span>
+{
+<span class="kw">if</span> (ApplicationDeployment.<span class="fu">IsNetworkDeployed</span> &amp;&amp; ApplicationDeployment.<span class="fu">CurrentDeployment</span>.<span class="fu">IsFirstRun</span>)
+{
+<span class="co">//GetPaths</span>
+<span class="dt">string</span> exeFile = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span>;
+<span class="co">//get directory above the executable&#39;s.</span>
+<span class="dt">string</span> parentPath = Path.<span class="fu">GetDirectoryName</span>(Path.<span class="fu">GetDirectoryName</span>(exeFile));
+<span class="dt">string</span> configName = Path.<span class="fu">GetFileName</span>(exeFile) + <span class="st">&quot;.config&quot;</span>;
+<span class="co">//get the matching files</span>
+<span class="kw">foreach</span> (<span class="dt">string</span> configFile <span class="kw">in</span> Directory.<span class="fu">GetFiles</span>(parentPath, <span class="st">&quot;*&quot;</span> + configName, SearchOption.<span class="fu">AllDirectories</span>))
+{
+ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>, configFile);
+}
+
+}
+<span class="kw">else</span>
+{
+<span class="kw">#if</span> (DEBUG)
+<span class="co">//good for debugging, sets the vshost config</span>
+ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>);
+<span class="kw">#endif</span>
+}
+}
+}
+}
+
+<span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> Settings
+{
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> MashDb { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">ConnectionStrings</span>[<span class="st">&quot;MashDb&quot;</span>].<span class="fu">Name</span>; } }
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> Password { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">AppSettings</span>[<span class="st">&quot;Password&quot;</span>]; } }
+}
+
+
+<span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> ConfigSettings
+{
+
+<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
+<span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span>
+<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;encryption&quot;</span><span class="kw">&gt;&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;configPath&quot;</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;remarks&gt;https:</span><span class="ot">//msdn.microsoft.com/en-us/library/ms254494(v=</span>vs<span class="ot">.110).aspx&lt;/remarks</span><span class="kw">&gt;</span>
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetDefaultConfigEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> configPath = <span class="kw">null</span>)
+{
+<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">&quot;appSettings&quot;</span>, configPath);
+<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">&quot;connectionStrings&quot;</span>, configPath);
+<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">&quot;system.net/mailSettings/smtp&quot;</span>, configPath);
+}
+
+<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
+<span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span>
+<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;encryption&quot;</span><span class="kw">&gt;&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;sectionName&quot;</span><span class="kw">&gt;&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">&quot;configPath&quot;</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span>
+<span class="co">/// </span><span class="kw">&lt;remarks&gt;&lt;</span><span class="ot">/remarks</span><span class="kw">&gt;</span>
+<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetConfigSectionEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> sectionName, <span class="dt">string</span> configPath = <span class="kw">null</span>)
+{
+<span class="co">//if no configPath supplied, get the currently executing exe&#39;s config.</span>
+<span class="kw">if</span> (<span class="dt">string</span>.<span class="fu">IsNullOrWhiteSpace</span>(configPath))
+{
+configPath = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span> + <span class="st">&quot;.config&quot;</span>;
+<span class="kw">#if</span> (DEBUG)
+AppDomain domain = System.<span class="fu">AppDomain</span>.<span class="fu">CurrentDomain</span>;
+configPath = Path.<span class="fu">Combine</span>(domain.<span class="fu">SetupInformation</span>.<span class="fu">ApplicationBase</span>, domain.<span class="fu">FriendlyName</span> + <span class="st">&quot;.config&quot;</span>);
+<span class="kw">#endif</span>
+}
+
+<span class="kw">try</span>
+{
+<span class="co">//Open the configuration file and retrieve the connectionStrings section.</span>
+ExeConfigurationFileMap fileMap = <span class="kw">new</span> <span class="fu">ExeConfigurationFileMap</span>();
+fileMap.<span class="fu">ExeConfigFilename</span> = configPath;
+Configuration config = ConfigurationManager.<span class="fu">OpenMappedExeConfiguration</span>(fileMap, ConfigurationUserLevel.<span class="fu">None</span>);
+ConfigurationSection section = config.<span class="fu">GetSection</span>(sectionName);
+<span class="kw">if</span> (section == <span class="kw">null</span>)
+{
+<span class="kw">return</span>;
+}
+<span class="co">// Encrypt the section.</span>
+<span class="kw">if</span> (encryption)
+{
+<span class="kw">if</span> (!section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
+{
+section.<span class="fu">SectionInformation</span>.<span class="fu">ForceSave</span> = <span class="kw">true</span>;
+section.<span class="fu">SectionInformation</span>.<span class="fu">ProtectSection</span>(<span class="st">&quot;DataProtectionConfigurationProvider&quot;</span>);
+}
+}
+<span class="co">// Remove encryption.</span>
+<span class="kw">if</span> (!encryption)
+{
+<span class="kw">if</span> (section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
+{
+section.<span class="fu">SectionInformation</span>.<span class="fu">UnprotectSection</span>();
+}
+}
+<span class="co">// Save the current configuration.</span>
+config.<span class="fu">Save</span>();
+}
+<span class="kw">catch</span> (Exception ex)
+{
+<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">&quot;Unable to encrypt. &quot;</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
+}
+}
+}
+}</code></pre></div>
+</div>
+              </div>
+              
     <div class='paging'><a href='index13.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index15.html'>Older</a></div>
-    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
-  </body>
+  </section>
+  <footer><p>Copyright (c) 2018 Charles L Flatt</p>
+</footer>
+  
+</body>
+
 </html>

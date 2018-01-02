@@ -1,32 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Writing to the Current User(s) Registry When Running as System</title>
-    <link rel="stylesheet" type="text/css" href="http://bladewolf55.gitlab.io/smblog/css/default.css">
-  </head>
-  <body>
-    <header>
-      Software Meadows      
-    </header>
-    <nav>
-      <ul>
-        <li><a href="http://bladewolf55.gitlab.io/smblog/">Home</a></li>
-        <li class="dropdown">
-          <a href="http://bladewolf55.gitlab.io/smblog/about">About</a>
-        </li>
-      </ul>
-    </nav>
-   	<aside id="sidebar">
-	   <div id="recent">
-       <p><strong>History</strong></p>
-       <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-window-key-s-search-from'>windows-81-window-key-s-search-from</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='post'><a class='post' href='http://bladewolf55.gitlab.io/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li></ol>
-      </div>
-	    <div id="tags"></div>
-	  </aside>
-    <section id="content"><div class='post-title'>
-                <a href='http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when'><h1>Writing to the Current User(s) Registry When Running as System</h1></a>
-                <p class='post-info'>2016-07-28 11:26</p>
-            </div><p>In a project I’m working on, I need to change the Group Policy Object (GPO) registry settings, both for the computer and for the logged in user. Both of these present problems. This article addresses the logged in user scenario.</p>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <link rel='stylesheet' href='http://localhost:8080/smblog/css/default.css' />
+<link rel='stylesheet' href='http://localhost:8080/smblog/css/tango.css' />
+
+  <title>Writing to the Current User(s) Registry When Running as System</title>
+</head>
+
+<body>
+  <nav>
+    <div id="menu">
+      <ol>
+<li><a href="http://localhost:8080/smblog/">Home</a></li>
+<li><a href="http://localhost:8080/smblog/about">About</a></li>
+</ol>
+
+    </div>
+    <div id="recent">
+      <h2>Recent</h2>
+      <a href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a><a href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a>
+    </div>
+    <div id="history">
+      <h2>History</h2>
+      <ol class='tree'><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-window-key-s-search-from'>Windows 8.1: Window Key + S = Search from Desktop</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li><li class='history-year'><label for='1'>1</label><input type='checkbox'  id='1' /><ol><li class='history-month'><label for='1-1'>January</label><input type='checkbox'  id='1-1' /><ol><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/angularjs-service-with-var-declarations'>angularjs-service-with-var-declarations</a></li><li class='history-post'><a class='history-post' href='http://localhost:8080/smblog/posts/dont-use-data-prefix-in-angularjs'>dont-use-data-prefix-in-angularjs</a></li></ol></li></ol></li></ol>
+    </div>
+  </nav>
+  <header>
+    <div id="site-image">
+      <img src="http://localhost:8080/smblog/images/header.png" alt="" />
+    </div>
+    <h1 id="site-name"></h1>
+    <div id="site-subtitle">A pleasant walk through computing</div>
+  </header>
+  <section id="content">
+    
+              <div class='post'>
+                <h2 class='post-title'><a href='http://localhost:8080/smblog/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></h2>
+                <p class='post-info'><span class='posted-on'>2016-07-28 11:26</span></p>
+                <div class='post-content'><p>In a project I’m working on, I need to change the Group Policy Object (GPO) registry settings, both for the computer and for the logged in user. Both of these present problems. This article addresses the logged in user scenario.</p>
 <p>The actual application is a Windows service running on the client that accepts requests from a remote machine. The complication is that the service will need to run as System so that it can write to any part of the registry.</p>
 <p>Below is prototyping and troubleshooting using a Console application.</p>
 <h1 id="goal">Goal</h1>
@@ -46,31 +62,31 @@
 
 <span class="kw">namespace</span> RegistryPrototyping
 {
-    <span class="kw">class</span> Program
-    {
-        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-        {
-            <span class="kw">try</span>
-            {
-                <span class="fu">WriteRegistry</span>();
-            }
-            <span class="kw">catch</span> (Exception ex)
-            {
-                Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-            }
-            Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Finished. Press any key to close.&quot;</span>);
-            Console.<span class="fu">ReadLine</span>();
-        }
+<span class="kw">class</span> Program
+{
+<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
+{
+<span class="kw">try</span>
+{
+<span class="fu">WriteRegistry</span>();
+}
+<span class="kw">catch</span> (Exception ex)
+{
+Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
+}
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Finished. Press any key to close.&quot;</span>);
+Console.<span class="fu">ReadLine</span>();
+}
 
-        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>()
-        {
-            <span class="dt">string</span> keyName = @<span class="st">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer&quot;</span>;
-            <span class="dt">string</span> valueName = <span class="st">&quot;DisallowRun&quot;</span>;
-            <span class="dt">string</span> value = <span class="st">&quot;1&quot;</span>;
-            RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
-            Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
-        }
-    }
+<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>()
+{
+<span class="dt">string</span> keyName = @<span class="st">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer&quot;</span>;
+<span class="dt">string</span> valueName = <span class="st">&quot;DisallowRun&quot;</span>;
+<span class="dt">string</span> value = <span class="st">&quot;1&quot;</span>;
+RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
+Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
+}
+}
 }</code></pre></div>
 <p>Run the application. You should get an error</p>
 <blockquote>
@@ -81,9 +97,9 @@
 <p>For some developers, this problem will be hidden because they turn off UAC or <em>always</em> run Visual Studio as administrator. I don’t do either of these exactly because I’ll catch some permissions issue early.</p>
 </blockquote>
 <p>The obvious next step is to close our app, open Visual Studio using Run as Administrator, then reopen/run the app.</p>
-<p><a href="images/image_thumb.png"><img src="images/image_thumb.png" title="image" alt="image" width="254" height="218" /></a></p>
+<p><a href="images/image_thumb.png"><img src="http://localhost:8080/smblog/posts/writing-to-current-users-registry-when/images/image_thumb.png" title="image" alt="image" width="254" height="218" /></a></p>
 <p>No error, and the key is written to the expected registry key (i.e. the currently logged in user).</p>
-<p><a href="images/image_thumb3.png"><img src="images/image_thumb3.png" title="image" alt="image" width="626" height="196" /></a></p>
+<p><a href="images/image_thumb3.png"><img src="http://localhost:8080/smblog/posts/writing-to-current-users-registry-when/images/image_thumb3.png" title="image" alt="image" width="626" height="196" /></a></p>
 <p>Great! Next task, testing as Local System.</p>
 <p><strong><em>But first, delete the DisallowRun key!</em></strong></p>
 <h1 id="testing-as-local-system">Testing as Local System</h1>
@@ -102,7 +118,7 @@
 <li>Open your Console solution; you’ll need to navigate to its location via C:\Users\[username].</li>
 <li>Run it. Check your registry key. Where the heck is the new value? Because we’re running as System, the registry value will be written to the .Default user key.</li>
 </ol>
-<p><a href="images/image_thumb6.png"><img src="images/image_thumb6.png" title="image" alt="image" width="645" height="209" /></a></p>
+<p><a href="images/image_thumb6.png"><img src="http://localhost:8080/smblog/posts/writing-to-current-users-registry-when/images/image_thumb6.png" title="image" alt="image" width="645" height="209" /></a></p>
 <p>Well, heck! This obviously isn’t what we want. We need to write to the currently logged on user’s profile. But this result gives us a clue how we’ll solve our problem later.</p>
 <h1 id="impersonation-false-start">Impersonation – False Start</h1>
 <p>At first, <a href="https://msdn.microsoft.com/en-us/library/w070t6ka(v=vs.110).aspx">impersonation</a> seems like the way to go. If I can just find out who’s currently logged on and working, I should be able to impersonate that user and write to the registry on that user’s behalf.</p>
@@ -117,18 +133,18 @@
 <p>But we can still do what we want. After all, as System we can write to most parts of the physical registry.</p>
 <h1 id="writing-to-the-users-key">Writing to the User’s Key</h1>
 <p>When we wrote to the System user’s logical hive CURRENT_USER, we ended up in the physical hive USERS. That’s where all the user registry settings are. CURRENT_USER is a symbolic link, a redirection for the active user. Here’s my computer’s USERS hive:</p>
-<p><a href="images/image_thumb1.png"><img src="images/image_thumb1.png" title="image" alt="image" width="629" height="197" /></a></p>
+<p><a href="images/image_thumb1.png"><img src="http://localhost:8080/smblog/posts/writing-to-current-users-registry-when/images/image_thumb1.png" title="image" alt="image" width="629" height="197" /></a></p>
 <p>Those long SIDs are the users. If I can get those, I can write to the user’s Group Policy setting.</p>
 <p>Step one, revise the WriteRegistry method.</p>
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>(<span class="dt">string</span> sid)
-    {
-        <span class="dt">string</span> keyName = @<span class="st">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer&quot;</span>;
-        <span class="dt">string</span> valueName = <span class="st">&quot;DisallowRun&quot;</span>;
-        <span class="dt">string</span> value = <span class="st">&quot;1&quot;</span>;
-        keyName = keyName.<span class="fu">Replace</span>(<span class="st">&quot;HKEY_CURRENT_USER&quot;</span>, @<span class="st">&quot;HKEY_USERS</span><span class="sc">\&quot;</span><span class="st"> + sid);</span>
-        RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
-        Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
-    }</code></pre></div>
+{
+<span class="dt">string</span> keyName = @<span class="st">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer&quot;</span>;
+<span class="dt">string</span> valueName = <span class="st">&quot;DisallowRun&quot;</span>;
+<span class="dt">string</span> value = <span class="st">&quot;1&quot;</span>;
+keyName = keyName.<span class="fu">Replace</span>(<span class="st">&quot;HKEY_CURRENT_USER&quot;</span>, @<span class="st">&quot;HKEY_USERS</span><span class="sc">\&quot;</span><span class="st"> + sid);</span>
+RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
+Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
+}</code></pre></div>
 <p>Step two, <strong>crazy lots of code!</strong></p>
 <p>You’ll need these addtional references.</p>
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System.<span class="fu">Runtime</span>.<span class="fu">InteropServices</span>;
@@ -141,108 +157,107 @@
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">class</span> WindowsIdentityHelper
 {
 
-    [<span class="fu">DllImport</span>(<span class="st">&quot;advapi32&quot;</span>, SetLastError = <span class="kw">true</span>),
-    SuppressUnmanagedCodeSecurityAttribute]
-    <span class="kw">static</span> <span class="kw">extern</span> <span class="dt">int</span> <span class="fu">OpenProcessToken</span>(
-    System.<span class="fu">IntPtr</span> ProcessHandle, <span class="co">// handle to process</span>
-    <span class="dt">int</span> DesiredAccess, <span class="co">// desired access to process</span>
-    <span class="kw">ref</span> IntPtr TokenHandle <span class="co">// handle to open access token</span>
-    );
+[<span class="fu">DllImport</span>(<span class="st">&quot;advapi32&quot;</span>, SetLastError = <span class="kw">true</span>),
+SuppressUnmanagedCodeSecurityAttribute]
+<span class="kw">static</span> <span class="kw">extern</span> <span class="dt">int</span> <span class="fu">OpenProcessToken</span>(
+System.<span class="fu">IntPtr</span> ProcessHandle, <span class="co">// handle to process</span>
+<span class="dt">int</span> DesiredAccess, <span class="co">// desired access to process</span>
+<span class="kw">ref</span> IntPtr TokenHandle <span class="co">// handle to open access token</span>
+);
 
-    [<span class="fu">DllImport</span>(<span class="st">&quot;kernel32&quot;</span>, SetLastError = <span class="kw">true</span>),
-    SuppressUnmanagedCodeSecurityAttribute]
-    <span class="kw">static</span> <span class="kw">extern</span> <span class="dt">bool</span> <span class="fu">CloseHandle</span>(IntPtr handle);
-    [<span class="fu">DllImport</span>(<span class="st">&quot;advapi32.dll&quot;</span>, CharSet = CharSet.<span class="fu">Auto</span>, SetLastError = <span class="kw">true</span>)]
-    <span class="kw">public</span> <span class="kw">extern</span> <span class="kw">static</span> <span class="dt">bool</span> <span class="fu">DuplicateToken</span>(IntPtr ExistingTokenHandle,
-    <span class="dt">int</span> SECURITY_IMPERSONATION_LEVEL, <span class="kw">ref</span> IntPtr DuplicateTokenHandle);
+[<span class="fu">DllImport</span>(<span class="st">&quot;kernel32&quot;</span>, SetLastError = <span class="kw">true</span>),
+SuppressUnmanagedCodeSecurityAttribute]
+<span class="kw">static</span> <span class="kw">extern</span> <span class="dt">bool</span> <span class="fu">CloseHandle</span>(IntPtr handle);
+[<span class="fu">DllImport</span>(<span class="st">&quot;advapi32.dll&quot;</span>, CharSet = CharSet.<span class="fu">Auto</span>, SetLastError = <span class="kw">true</span>)]
+<span class="kw">public</span> <span class="kw">extern</span> <span class="kw">static</span> <span class="dt">bool</span> <span class="fu">DuplicateToken</span>(IntPtr ExistingTokenHandle,
+<span class="dt">int</span> SECURITY_IMPERSONATION_LEVEL, <span class="kw">ref</span> IntPtr DuplicateTokenHandle);
 
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ASSIGN_PRIMARY = <span class="bn">0x0001</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_DUPLICATE = <span class="bn">0x0002</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_IMPERSONATE = <span class="bn">0x0004</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY = <span class="bn">0x0008</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY_SOURCE = <span class="bn">0x0010</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_PRIVILEGES = <span class="bn">0x0020</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_GROUPS = <span class="bn">0x0040</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_DEFAULT = <span class="bn">0x0080</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_SESSIONID = <span class="bn">0x0100</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_READ = <span class="bn">0x00020000</span> | TOKEN_QUERY;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_WRITE = <span class="bn">0x00020000</span> | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_DEFAULT;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_EXECUTE = <span class="bn">0x00020000</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ASSIGN_PRIMARY = <span class="bn">0x0001</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_DUPLICATE = <span class="bn">0x0002</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_IMPERSONATE = <span class="bn">0x0004</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY = <span class="bn">0x0008</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY_SOURCE = <span class="bn">0x0010</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_PRIVILEGES = <span class="bn">0x0020</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_GROUPS = <span class="bn">0x0040</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_DEFAULT = <span class="bn">0x0080</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_SESSIONID = <span class="bn">0x0100</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_READ = <span class="bn">0x00020000</span> | TOKEN_QUERY;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_WRITE = <span class="bn">0x00020000</span> | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_DEFAULT;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_EXECUTE = <span class="bn">0x00020000</span>;
 
-    <span class="kw">public</span> <span class="kw">static</span> List <span class="fu">GetLoggedOnUsers</span>()
-    {
-        List users = <span class="kw">new</span> <span class="fu">List</span>();
-        <span class="dt">string</span> errs = <span class="st">&quot;&quot;</span>;
-        IntPtr hToken = IntPtr.<span class="fu">Zero</span>;
-        <span class="co">//Get a process that will always be available.</span>
-        <span class="kw">foreach</span> (Process proc <span class="kw">in</span> Process.<span class="fu">GetProcessesByName</span>(<span class="st">&quot;explorer&quot;</span>))
-        {
-            <span class="kw">try</span>
-            {
-                <span class="kw">if</span> (<span class="fu">OpenProcessToken</span>(proc.<span class="fu">Handle</span>,
-                TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,
-                <span class="kw">ref</span> hToken) != <span class="dv">0</span>)
-                {
-                    WindowsIdentity newId = <span class="kw">new</span> <span class="fu">WindowsIdentity</span>(hToken);
-                    <span class="fu">CloseHandle</span>(hToken);
-                    users.<span class="fu">Add</span>(newId);
-                }
-                <span class="kw">else</span>
-                {
-                    errs += String.<span class="fu">Format</span>(<span class="st">&quot;OpenProcess Failed {0}, privilege not held</span><span class="sc">\r\n</span><span class="st">&quot;</span>, Marshal.<span class="fu">GetLastWin32Error</span>());
-                }
+<span class="kw">public</span> <span class="kw">static</span> List <span class="fu">GetLoggedOnUsers</span>()
+{
+List users = <span class="kw">new</span> <span class="fu">List</span>();
+<span class="dt">string</span> errs = <span class="st">&quot;&quot;</span>;
+IntPtr hToken = IntPtr.<span class="fu">Zero</span>;
+<span class="co">//Get a process that will always be available.</span>
+<span class="kw">foreach</span> (Process proc <span class="kw">in</span> Process.<span class="fu">GetProcessesByName</span>(<span class="st">&quot;explorer&quot;</span>))
+{
+<span class="kw">try</span>
+{
+<span class="kw">if</span> (<span class="fu">OpenProcessToken</span>(proc.<span class="fu">Handle</span>,
+TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,
+<span class="kw">ref</span> hToken) != <span class="dv">0</span>)
+{
+WindowsIdentity newId = <span class="kw">new</span> <span class="fu">WindowsIdentity</span>(hToken);
+<span class="fu">CloseHandle</span>(hToken);
+users.<span class="fu">Add</span>(newId);
+}
+<span class="kw">else</span>
+{
+errs += String.<span class="fu">Format</span>(<span class="st">&quot;OpenProcess Failed {0}, privilege not held</span><span class="sc">\r\n</span><span class="st">&quot;</span>, Marshal.<span class="fu">GetLastWin32Error</span>());
+}
 
-            }
-            <span class="kw">catch</span> (Exception ex)
-            {
-                errs += String.<span class="fu">Format</span>(<span class="st">&quot;OpenProcess Failed {0}</span><span class="sc">\r\n</span><span class="st">&quot;</span>, ex.<span class="fu">Message</span>);
-            }
-        }
-        <span class="kw">if</span> (errs.<span class="fu">Length</span> &gt; <span class="dv">0</span>) { <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(errs); }
-        <span class="kw">return</span> users;
-    }</code></pre></div>
+}
+<span class="kw">catch</span> (Exception ex)
+{
+errs += String.<span class="fu">Format</span>(<span class="st">&quot;OpenProcess Failed {0}</span><span class="sc">\r\n</span><span class="st">&quot;</span>, ex.<span class="fu">Message</span>);
+}
+}
+<span class="kw">if</span> (errs.<span class="fu">Length</span> &gt; <span class="dv">0</span>) { <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(errs); }
+<span class="kw">return</span> users;
+}</code></pre></div>
 <p>And a method to write to the users’ registries.</p>
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteToLoggedOnUsers</span>()
 {
-    <span class="kw">foreach</span> (var user <span class="kw">in</span> WindowsIdentityHelper.<span class="fu">GetLoggedOnUsers</span>())
-    {
-        <span class="kw">try</span>
-        {
-            <span class="fu">WriteRegistry</span>(user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
-            Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Updated user &quot;</span> + user.<span class="fu">Name</span> + <span class="st">&quot;  SID &quot;</span> + user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
-        }
-        <span class="kw">catch</span> (Exception ex)
-        {
-            Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-        }
-    }
+<span class="kw">foreach</span> (var user <span class="kw">in</span> WindowsIdentityHelper.<span class="fu">GetLoggedOnUsers</span>())
+{
+<span class="kw">try</span>
+{
+<span class="fu">WriteRegistry</span>(user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Updated user &quot;</span> + user.<span class="fu">Name</span> + <span class="st">&quot;  SID &quot;</span> + user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
+}
+<span class="kw">catch</span> (Exception ex)
+{
+Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
+}
+}
 }</code></pre></div>
-<p> </p>
 <blockquote>
 <p>Notice we’re using WindowsIdentity.Owner.Value to return the SID. The property .Owner.AccountDomainSid doesn’t return the full, correct SID.</p>
 </blockquote>
 <p>Finally, change the Main method.</p>
 <div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
 {
-    <span class="kw">try</span>
-    {
-        <span class="fu">WriteToLoggedOnUsers</span>();
-    }
-    <span class="kw">catch</span> (Exception ex)
-    {
-        Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-    }
-    Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Finished. Press any key to close.&quot;</span>);
-    Console.<span class="fu">ReadLine</span>();
+<span class="kw">try</span>
+{
+<span class="fu">WriteToLoggedOnUsers</span>();
+}
+<span class="kw">catch</span> (Exception ex)
+{
+Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
+}
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Finished. Press any key to close.&quot;</span>);
+Console.<span class="fu">ReadLine</span>();
 }</code></pre></div>
 <p>One last thing before running the app. If you <em>really</em> want to test it, create a local user (named Test would be good), log that user on, leave it running and switch back to your regular user.</p>
 <p>Now, run the application.</p>
-<p><a href="images/image_thumb14.png"><img src="images/image_thumb14.png" title="image" alt="image" width="543" height="309" /></a></p>
+<p><a href="images/image_thumb14.png"><img src="http://localhost:8080/smblog/posts/writing-to-current-users-registry-when/images/image_thumb14.png" title="image" alt="image" width="543" height="309" /></a></p>
 <p>Check those User SIDs!</p>
-<p><a href="images/image_thumb9.png"><img src="images/image_thumb9.png" title="image" alt="image" width="589" height="189" /></a></p>
-<p><a href="images/image_thumb11.png"><img src="images/image_thumb11.png" title="image" alt="image" width="596" height="191" /></a></p>
+<p><a href="images/image_thumb9.png"><img src="http://localhost:8080/smblog/posts/writing-to-current-users-registry-when/images/image_thumb9.png" title="image" alt="image" width="589" height="189" /></a></p>
+<p><a href="images/image_thumb11.png"><img src="http://localhost:8080/smblog/posts/writing-to-current-users-registry-when/images/image_thumb11.png" title="image" alt="image" width="596" height="191" /></a></p>
 <p>And finally, to prove the redirection, we’ll look at our CURRENT_USER hive.</p>
-<p><a href="images/image_thumb13.png"><img src="images/image_thumb13.png" title="image" alt="image" width="613" height="197" /></a></p>
+<p><a href="images/image_thumb13.png"><img src="http://localhost:8080/smblog/posts/writing-to-current-users-registry-when/images/image_thumb13.png" title="image" alt="image" width="613" height="197" /></a></p>
 <p>(Remember, now, to delete those keys. You might also log off and delete the test user.)</p>
 <h1 id="wrap-up">Wrap Up</h1>
 <p>Our goal was to write to the logged on users’ Group Policy keys, with the future intention of preventing them from running certain applications. We need to do this running as System, and found that impersonation wouldn’t work because we had use an elevated process. Instead, we wrote to the running users’ physical registry keys.</p>
@@ -270,127 +285,137 @@
 
 <span class="kw">namespace</span> RegistryPrototyping
 {
-    <span class="kw">class</span> Program
-    {
-        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-        {
-            <span class="kw">try</span>
-            {
-                <span class="fu">WriteToLoggedOnUsers</span>();
-            }
-            <span class="kw">catch</span> (Exception ex)
-            {
-                Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-            }
-            Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Finished. Press any key to close.&quot;</span>);
-            Console.<span class="fu">ReadLine</span>();
-        }
+<span class="kw">class</span> Program
+{
+<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
+{
+<span class="kw">try</span>
+{
+<span class="fu">WriteToLoggedOnUsers</span>();
+}
+<span class="kw">catch</span> (Exception ex)
+{
+Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
+}
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Finished. Press any key to close.&quot;</span>);
+Console.<span class="fu">ReadLine</span>();
+}
 
-        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>(<span class="dt">string</span> sid)
-        {
-            <span class="dt">string</span> keyName = @<span class="st">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer&quot;</span>;
-            <span class="dt">string</span> valueName = <span class="st">&quot;DisallowRun&quot;</span>;
-            <span class="dt">string</span> value = <span class="st">&quot;1&quot;</span>;
-            keyName = keyName.<span class="fu">Replace</span>(<span class="st">&quot;HKEY_CURRENT_USER&quot;</span>, @<span class="st">&quot;HKEY_USERS</span><span class="sc">\&quot;</span><span class="st"> + sid);</span>
-            RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
-            Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
-        }
+<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>(<span class="dt">string</span> sid)
+{
+<span class="dt">string</span> keyName = @<span class="st">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer&quot;</span>;
+<span class="dt">string</span> valueName = <span class="st">&quot;DisallowRun&quot;</span>;
+<span class="dt">string</span> value = <span class="st">&quot;1&quot;</span>;
+keyName = keyName.<span class="fu">Replace</span>(<span class="st">&quot;HKEY_CURRENT_USER&quot;</span>, @<span class="st">&quot;HKEY_USERS</span><span class="sc">\&quot;</span><span class="st"> + sid);</span>
+RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
+Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
+}
 
-        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>()
-        {
-            <span class="dt">string</span> keyName = @<span class="st">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer&quot;</span>;
-            <span class="dt">string</span> valueName = <span class="st">&quot;DisallowRun&quot;</span>;
-            <span class="dt">string</span> value = <span class="st">&quot;1&quot;</span>;
-            RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
-            Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
-        }
+<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>()
+{
+<span class="dt">string</span> keyName = @<span class="st">&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer&quot;</span>;
+<span class="dt">string</span> valueName = <span class="st">&quot;DisallowRun&quot;</span>;
+<span class="dt">string</span> value = <span class="st">&quot;1&quot;</span>;
+RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
+Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
+}
 
-        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteToLoggedOnUsers</span>()
-        {
-            <span class="kw">foreach</span> (var user <span class="kw">in</span> WindowsIdentityHelper.<span class="fu">GetLoggedOnUsers</span>())
-            {
-                <span class="kw">try</span>
-                {
-                    <span class="fu">WriteRegistry</span>(user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
-                    Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Updated user &quot;</span> + user.<span class="fu">Name</span> + <span class="st">&quot;  SID &quot;</span> + user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
-                }
-                <span class="kw">catch</span> (Exception ex)
-                {
-                    Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-                }
-            }
-        }
-    }
+<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteToLoggedOnUsers</span>()
+{
+<span class="kw">foreach</span> (var user <span class="kw">in</span> WindowsIdentityHelper.<span class="fu">GetLoggedOnUsers</span>())
+{
+<span class="kw">try</span>
+{
+<span class="fu">WriteRegistry</span>(user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
+Console.<span class="fu">WriteLine</span>(<span class="st">&quot;Updated user &quot;</span> + user.<span class="fu">Name</span> + <span class="st">&quot;  SID &quot;</span> + user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
+}
+<span class="kw">catch</span> (Exception ex)
+{
+Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
+}
+}
+}
+}
 }
 
 
 <span class="kw">class</span> WindowsIdentityHelper
 {
 
-    [<span class="fu">DllImport</span>(<span class="st">&quot;advapi32&quot;</span>, SetLastError = <span class="kw">true</span>),
-    SuppressUnmanagedCodeSecurityAttribute]
-    <span class="kw">static</span> <span class="kw">extern</span> <span class="dt">int</span> <span class="fu">OpenProcessToken</span>(
-    System.<span class="fu">IntPtr</span> ProcessHandle, <span class="co">// handle to process</span>
-    <span class="dt">int</span> DesiredAccess, <span class="co">// desired access to process</span>
-    <span class="kw">ref</span> IntPtr TokenHandle <span class="co">// handle to open access token</span>
-    );
+[<span class="fu">DllImport</span>(<span class="st">&quot;advapi32&quot;</span>, SetLastError = <span class="kw">true</span>),
+SuppressUnmanagedCodeSecurityAttribute]
+<span class="kw">static</span> <span class="kw">extern</span> <span class="dt">int</span> <span class="fu">OpenProcessToken</span>(
+System.<span class="fu">IntPtr</span> ProcessHandle, <span class="co">// handle to process</span>
+<span class="dt">int</span> DesiredAccess, <span class="co">// desired access to process</span>
+<span class="kw">ref</span> IntPtr TokenHandle <span class="co">// handle to open access token</span>
+);
 
-    [<span class="fu">DllImport</span>(<span class="st">&quot;kernel32&quot;</span>, SetLastError = <span class="kw">true</span>),
-    SuppressUnmanagedCodeSecurityAttribute]
-    <span class="kw">static</span> <span class="kw">extern</span> <span class="dt">bool</span> <span class="fu">CloseHandle</span>(IntPtr handle);
-    [<span class="fu">DllImport</span>(<span class="st">&quot;advapi32.dll&quot;</span>, CharSet = CharSet.<span class="fu">Auto</span>, SetLastError = <span class="kw">true</span>)]
-    <span class="kw">public</span> <span class="kw">extern</span> <span class="kw">static</span> <span class="dt">bool</span> <span class="fu">DuplicateToken</span>(IntPtr ExistingTokenHandle,
-    <span class="dt">int</span> SECURITY_IMPERSONATION_LEVEL, <span class="kw">ref</span> IntPtr DuplicateTokenHandle);
+[<span class="fu">DllImport</span>(<span class="st">&quot;kernel32&quot;</span>, SetLastError = <span class="kw">true</span>),
+SuppressUnmanagedCodeSecurityAttribute]
+<span class="kw">static</span> <span class="kw">extern</span> <span class="dt">bool</span> <span class="fu">CloseHandle</span>(IntPtr handle);
+[<span class="fu">DllImport</span>(<span class="st">&quot;advapi32.dll&quot;</span>, CharSet = CharSet.<span class="fu">Auto</span>, SetLastError = <span class="kw">true</span>)]
+<span class="kw">public</span> <span class="kw">extern</span> <span class="kw">static</span> <span class="dt">bool</span> <span class="fu">DuplicateToken</span>(IntPtr ExistingTokenHandle,
+<span class="dt">int</span> SECURITY_IMPERSONATION_LEVEL, <span class="kw">ref</span> IntPtr DuplicateTokenHandle);
 
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ASSIGN_PRIMARY = <span class="bn">0x0001</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_DUPLICATE = <span class="bn">0x0002</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_IMPERSONATE = <span class="bn">0x0004</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY = <span class="bn">0x0008</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY_SOURCE = <span class="bn">0x0010</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_PRIVILEGES = <span class="bn">0x0020</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_GROUPS = <span class="bn">0x0040</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_DEFAULT = <span class="bn">0x0080</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_SESSIONID = <span class="bn">0x0100</span>;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_READ = <span class="bn">0x00020000</span> | TOKEN_QUERY;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_WRITE = <span class="bn">0x00020000</span> | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_DEFAULT;
-    <span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_EXECUTE = <span class="bn">0x00020000</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ASSIGN_PRIMARY = <span class="bn">0x0001</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_DUPLICATE = <span class="bn">0x0002</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_IMPERSONATE = <span class="bn">0x0004</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY = <span class="bn">0x0008</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY_SOURCE = <span class="bn">0x0010</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_PRIVILEGES = <span class="bn">0x0020</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_GROUPS = <span class="bn">0x0040</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_DEFAULT = <span class="bn">0x0080</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_SESSIONID = <span class="bn">0x0100</span>;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_READ = <span class="bn">0x00020000</span> | TOKEN_QUERY;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_WRITE = <span class="bn">0x00020000</span> | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_DEFAULT;
+<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_EXECUTE = <span class="bn">0x00020000</span>;
 
-    <span class="kw">public</span> <span class="kw">static</span> List <span class="fu">GetLoggedOnUsers</span>()
-    {
-        List users = <span class="kw">new</span> <span class="fu">List</span>();
-        <span class="dt">string</span> errs = <span class="st">&quot;&quot;</span>;
-        IntPtr hToken = IntPtr.<span class="fu">Zero</span>;
-        <span class="co">//Get a process that will always be available.</span>
-        <span class="kw">foreach</span> (Process proc <span class="kw">in</span> Process.<span class="fu">GetProcessesByName</span>(<span class="st">&quot;explorer&quot;</span>))
-        {
-            <span class="kw">try</span>
-            {
-                <span class="kw">if</span> (<span class="fu">OpenProcessToken</span>(proc.<span class="fu">Handle</span>,
-                TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,
-                <span class="kw">ref</span> hToken) != <span class="dv">0</span>)
-                {
-                    WindowsIdentity newId = <span class="kw">new</span> <span class="fu">WindowsIdentity</span>(hToken); 
-                    <span class="fu">CloseHandle</span>(hToken);
-                    users.<span class="fu">Add</span>(newId);
-                }
-                <span class="kw">else</span>
-                {
-                    errs += String.<span class="fu">Format</span>(<span class="st">&quot;OpenProcess Failed {0}, privilege not held</span><span class="sc">\r\n</span><span class="st">&quot;</span>, Marshal.<span class="fu">GetLastWin32Error</span>());
-                }
+<span class="kw">public</span> <span class="kw">static</span> List <span class="fu">GetLoggedOnUsers</span>()
+{
+List users = <span class="kw">new</span> <span class="fu">List</span>();
+<span class="dt">string</span> errs = <span class="st">&quot;&quot;</span>;
+IntPtr hToken = IntPtr.<span class="fu">Zero</span>;
+<span class="co">//Get a process that will always be available.</span>
+<span class="kw">foreach</span> (Process proc <span class="kw">in</span> Process.<span class="fu">GetProcessesByName</span>(<span class="st">&quot;explorer&quot;</span>))
+{
+<span class="kw">try</span>
+{
+<span class="kw">if</span> (<span class="fu">OpenProcessToken</span>(proc.<span class="fu">Handle</span>,
+TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,
+<span class="kw">ref</span> hToken) != <span class="dv">0</span>)
+{
+WindowsIdentity newId = <span class="kw">new</span> <span class="fu">WindowsIdentity</span>(hToken);
+<span class="fu">CloseHandle</span>(hToken);
+users.<span class="fu">Add</span>(newId);
+}
+<span class="kw">else</span>
+{
+errs += String.<span class="fu">Format</span>(<span class="st">&quot;OpenProcess Failed {0}, privilege not held</span><span class="sc">\r\n</span><span class="st">&quot;</span>, Marshal.<span class="fu">GetLastWin32Error</span>());
+}
 
-            }
-            <span class="kw">catch</span> (Exception ex)
-            {
-                errs += String.<span class="fu">Format</span>(<span class="st">&quot;OpenProcess Failed {0}</span><span class="sc">\r\n</span><span class="st">&quot;</span>, ex.<span class="fu">Message</span>);
-            }
-        }
-        <span class="kw">if</span> (errs.<span class="fu">Length</span> &gt; <span class="dv">0</span>) { <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(errs); }
-        <span class="kw">return</span> users;
-    }
+}
+<span class="kw">catch</span> (Exception ex)
+{
+errs += String.<span class="fu">Format</span>(<span class="st">&quot;OpenProcess Failed {0}</span><span class="sc">\r\n</span><span class="st">&quot;</span>, ex.<span class="fu">Message</span>);
+}
+}
+<span class="kw">if</span> (errs.<span class="fu">Length</span> &gt; <span class="dv">0</span>) { <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(errs); }
+<span class="kw">return</span> users;
+}
 
 }</code></pre></div>
-</section>
+</div>
+              </div>
+              
+  </section>
+  <!-- posts only appear in home index -->
+  <section id="posts">
     
-    <footer><p>Copyright &copy; Charles L Flatt</p></footer>
-  </body>
+    
+  </section>
+  <footer><p>Copyright (c) 2018 Charles L Flatt</p>
+</footer>
+  
+</body>
+
 </html>
