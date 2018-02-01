@@ -38,7 +38,7 @@
     <div id="site-subtitle">A pleasant walk through computing</div>
   </header>
   <section id="content">
-    <h1 id="home">Home</h1>
+    <h1>Home</h1>
 
   </section>
   <!-- posts only appear in home index -->
@@ -55,10 +55,9 @@
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
-This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
+<p><strong>Important</strong> This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
-<h1 id="where-were-at">Where We're At</h1>
+<h1>Where We're At</h1>
 <p>We can get a token, but there's nothing to use it on. We've configured IdentityServer with information about our client application (PretendMobile), and we used that information (Client ID, etc) to get a token.</p>
 <p>Now we'll add a Web API with a protected method that just returns some claim data. It will be configured to:</p>
 <ol>
@@ -66,141 +65,138 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 <li>Validate that token against the authorization server.</li>
 </ol>
 <p>We'll use the same project as the authorization server, but it's important to know that the Web API could be in a completely separate project.</p>
-<h2 id="web-api">Web API</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
-<a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
+<h2>Web API</h2>
+<p><strong>References</strong> <a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a> <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>Install the packages for Web API, and being able to accept the IdentityServer tokens. Note IdentityModel version, which is latest for .Net 4.6 (2.x is for .Net Core).</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Install-Package Microsoft.<span class="fu">AspNet</span>.<span class="fu">WebApi</span>.<span class="fu">Client</span> -Version <span class="fl">5.2</span>.<span class="fu">3</span> -Project AuthAndApi
-Install-Package Microsoft.<span class="fu">AspNet</span>.<span class="fu">WebApi</span>.<span class="fu">Owin</span> -Version <span class="fl">5.2</span>.<span class="fu">3</span> -Project AuthAndApi
-Install-Package IdentityModel -Version <span class="fl">1.9</span>.<span class="fu">2</span> -Project AuthAndApi
-Install-Package IdentityServer3.<span class="fu">AccessTokenValidation</span> -Version <span class="fl">2.15</span>.<span class="fu">0</span> -Project AuthAndApi</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">Install-Package Microsoft.<span class="fu">AspNet</span>.<span class="fu">WebApi</span>.<span class="fu">Client</span> -Version <span class="dv">5</span>.<span class="fu">2</span><span class="fl">.3</span> -Project AuthAndApi</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">Install-Package Microsoft.<span class="fu">AspNet</span>.<span class="fu">WebApi</span>.<span class="fu">Owin</span> -Version <span class="dv">5</span>.<span class="fu">2</span><span class="fl">.3</span> -Project AuthAndApi</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">Install-Package IdentityModel -Version <span class="dv">1</span>.<span class="fu">9</span><span class="fl">.2</span> -Project AuthAndApi</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">Install-Package IdentityServer3.<span class="fu">AccessTokenValidation</span> -Version <span class="dv">2</span>.<span class="fu">15</span><span class="fl">.0</span> -Project AuthAndApi</a></code></pre></div>
 <p>Add two things to the OWIN pipeline: accepting access tokens, and using WebApi.</p>
 <p><strong>Updated Startup.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Web</span>;
-<span class="co">//Added</span>
-<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Configuration</span>;
-<span class="kw">using</span> Owin;
-<span class="kw">using</span> AuthAndApi.<span class="fu">IdOptions</span>;
-<span class="kw">using</span> AuthAndApi.<span class="fu">IdUsers</span>;
-<span class="kw">using</span> System.<span class="fu">Web</span>.<span class="fu">Http</span>;
-<span class="kw">using</span> IdentityServer3.<span class="fu">AccessTokenValidation</span>;
-
-<span class="kw">namespace</span> AuthAndApi
-{
-<span class="kw">public</span> <span class="kw">class</span> Startup
-{
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">Configuration</span>(IAppBuilder app)
-{
-<span class="co">//Configure IdentityServer for issuing authentication tokens</span>
-<span class="dt">var</span> options = <span class="kw">new</span> IdentityServerOptions
-{
-Factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>()
-.<span class="fu">UseInMemoryClients</span>(Clients.<span class="fu">Get</span>())
-.<span class="fu">UseInMemoryScopes</span>(Scopes.<span class="fu">Get</span>())
-.<span class="fu">UseInMemoryUsers</span>(Users.<span class="fu">Get</span>()),
-<span class="co">//SSL MUST be used in production</span>
-<span class="kw">#if</span> DEBUG
-RequireSsl = <span class="kw">false</span>
-<span class="kw">#endif</span>
-};
-app.<span class="fu">UseIdentityServer</span>(options);
-
-<span class="co">// Configure Web API to accept access tokens from IdentityServer, and require a scope of 'email'</span>
-app.<span class="fu">UseIdentityServerBearerTokenAuthentication</span>(<span class="kw">new</span> IdentityServerBearerTokenAuthenticationOptions
-{
-<span class="co">//In this case, the authorization server is also the Web API server</span>
-Authority = <span class="st">"http://localhost:27230"</span>,
-ValidationMode = ValidationMode.<span class="fu">ValidationEndpoint</span>,
-RequiredScopes = <span class="kw">new</span>[] { <span class="st">"email"</span> }
-});
-
-<span class="co">//Configure Web API</span>
-<span class="dt">var</span> config = <span class="kw">new</span> <span class="fu">HttpConfiguration</span>();
-config.<span class="fu">MapHttpAttributeRoutes</span>();
-app.<span class="fu">UseWebApi</span>(config);
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Web</span>;</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">//Added</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Configuration</span>;</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">using</span> Owin;</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">using</span> AuthAndApi.<span class="fu">IdOptions</span>;</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">using</span> AuthAndApi.<span class="fu">IdUsers</span>;</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">using</span> System.<span class="fu">Web</span>.<span class="fu">Http</span>;</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw">using</span> IdentityServer3.<span class="fu">AccessTokenValidation</span>;</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="kw">namespace</span> AuthAndApi</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">{</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="kw">public</span> <span class="kw">class</span> Startup</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">{</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">Configuration</span>(IAppBuilder app)</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">//Configure IdentityServer for issuing authentication tokens</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="dt">var</span> options = <span class="kw">new</span> IdentityServerOptions</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">Factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>()</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">.<span class="fu">UseInMemoryClients</span>(Clients.<span class="fu">Get</span>())</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">.<span class="fu">UseInMemoryScopes</span>(Scopes.<span class="fu">Get</span>())</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">.<span class="fu">UseInMemoryUsers</span>(Users.<span class="fu">Get</span>()),</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">//SSL MUST be used in production</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="kw">#if</span> DEBUG</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">RequireSsl = <span class="kw">false</span></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="kw">#endif</span></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">};</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">app.<span class="fu">UseIdentityServer</span>(options);</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb2-33" data-line-number="33"><span class="co">// Configure Web API to accept access tokens from IdentityServer, and require a scope of 'email'</span></a>
+<a class="sourceLine" id="cb2-34" data-line-number="34">app.<span class="fu">UseIdentityServerBearerTokenAuthentication</span>(<span class="kw">new</span> IdentityServerBearerTokenAuthenticationOptions</a>
+<a class="sourceLine" id="cb2-35" data-line-number="35">{</a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="co">//In this case, the authorization server is also the Web API server</span></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37">Authority = <span class="st">"http://localhost:27230"</span>,</a>
+<a class="sourceLine" id="cb2-38" data-line-number="38">ValidationMode = ValidationMode.<span class="fu">ValidationEndpoint</span>,</a>
+<a class="sourceLine" id="cb2-39" data-line-number="39">RequiredScopes = <span class="kw">new</span>[] { <span class="st">"email"</span> }</a>
+<a class="sourceLine" id="cb2-40" data-line-number="40">});</a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"></a>
+<a class="sourceLine" id="cb2-42" data-line-number="42"><span class="co">//Configure Web API</span></a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="dt">var</span> config = <span class="kw">new</span> <span class="fu">HttpConfiguration</span>();</a>
+<a class="sourceLine" id="cb2-44" data-line-number="44">config.<span class="fu">MapHttpAttributeRoutes</span>();</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">app.<span class="fu">UseWebApi</span>(config);</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46">}</a>
+<a class="sourceLine" id="cb2-47" data-line-number="47">}</a>
+<a class="sourceLine" id="cb2-48" data-line-number="48">}</a></code></pre></div>
 <p>Add a Controllers folder, and a controller named Test.</p>
-<p><a href="images/2017-05-06_114024_thumb"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2/images/2017-05-06_114024_thumb" title="2017-05-06_114024" alt="2017-05-06_114024" width="699" height="422"></a><a href="images/2017-05-06_114144_thumb1"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2/images/2017-05-06_114144_thumb1" title="2017-05-06_114144" alt="2017-05-06_114144" width="714" height="442"></a><a href="images/2017-05-06_114210_thumb"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2/images/2017-05-06_114210_thumb" title="2017-05-06_114210" alt="2017-05-06_114210" width="600" height="134"></a></p>
+<p><a href="images/17-05-06_114024.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2/images/17-05-06_114024.png" title="2017-05-06_114024" alt="2017-05-06_114024"></a><a href="images/17-05-06_114144_1.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2/images/17-05-06_114144_1.png" title="2017-05-06_114144" alt="2017-05-06_114144"></a><a href="images/17-05-06_114210.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2/images/17-05-06_114210.png" title="2017-05-06_114210" alt="2017-05-06_114210"></a></p>
 <p>Create an API method that requires authorization. The method checks for evidence a user authorized (and not just the application).</p>
 <blockquote>
-<p><strong>Note</strong><br>
-Code shamelessly stolen from the IdentityServer samples</p>
+<p><strong>Note</strong> Code shamelessly stolen from the IdentityServer samples</p>
 </blockquote>
 <p><strong>TestController.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Net</span>;
-<span class="kw">using</span> System.<span class="fu">Net</span>.<span class="fu">Http</span>;
-<span class="kw">using</span> System.<span class="fu">Web</span>.<span class="fu">Http</span>;
-<span class="co">//Added</span>
-<span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Claims</span>;
-
-<span class="kw">namespace</span> AuthAndApi.<span class="fu">Controllers</span>
-{
-[<span class="fu">Route</span>(<span class="st">"test"</span>)]
-[Authorize]
-<span class="kw">public</span> <span class="kw">class</span> TestController : ApiController
-{
-<span class="kw">public</span> IHttpActionResult <span class="fu">Get</span>()
-{
-<span class="dt">var</span> user = User <span class="kw">as</span> ClaimsPrincipal;
-
-<span class="dt">var</span> subjectClaim = user.<span class="fu">FindFirst</span>(<span class="st">"sub"</span>);
-<span class="kw">if</span> (subjectClaim != <span class="kw">null</span>)
-{
-<span class="kw">return</span> <span class="fu">Json</span>(<span class="kw">new</span>
-{
-message = <span class="st">"OK user"</span>,
-client = user.<span class="fu">FindFirst</span>(<span class="st">"client_id"</span>).<span class="fu">Value</span>,
-subject = subjectClaim.<span class="fu">Value</span>,
-email = user.<span class="fu">FindFirst</span>(<span class="st">"email"</span>).<span class="fu">Value</span>
-});
-}
-<span class="kw">else</span>
-{
-<span class="kw">return</span> <span class="fu">Json</span>(<span class="kw">new</span>
-{
-message = <span class="st">"User claim not found for this client_id"</span>,
-client = user.<span class="fu">FindFirst</span>(<span class="st">"client_id"</span>).<span class="fu">Value</span>
-});
-}
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Net</span>;</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">using</span> System.<span class="fu">Net</span>.<span class="fu">Http</span>;</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">using</span> System.<span class="fu">Web</span>.<span class="fu">Http</span>;</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">//Added</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Claims</span>;</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">namespace</span> AuthAndApi.<span class="fu">Controllers</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">[<span class="fu">Route</span>(<span class="st">"test"</span>)]</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">[Authorize]</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">public</span> <span class="kw">class</span> TestController : ApiController</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="kw">public</span> IHttpActionResult <span class="fu">Get</span>()</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">{</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="dt">var</span> user = User <span class="kw">as</span> ClaimsPrincipal;</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="dt">var</span> subjectClaim = user.<span class="fu">FindFirst</span>(<span class="st">"sub"</span>);</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="kw">if</span> (subjectClaim != <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="kw">return</span> <span class="fu">Json</span>(<span class="kw">new</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">{</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">message = <span class="st">"OK user"</span>,</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">client = user.<span class="fu">FindFirst</span>(<span class="st">"client_id"</span>).<span class="fu">Value</span>,</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">subject = subjectClaim.<span class="fu">Value</span>,</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">email = user.<span class="fu">FindFirst</span>(<span class="st">"email"</span>).<span class="fu">Value</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">});</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="kw">else</span></a>
+<a class="sourceLine" id="cb3-32" data-line-number="32">{</a>
+<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="kw">return</span> <span class="fu">Json</span>(<span class="kw">new</span></a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">{</a>
+<a class="sourceLine" id="cb3-35" data-line-number="35">message = <span class="st">"User claim not found for this client_id"</span>,</a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">client = user.<span class="fu">FindFirst</span>(<span class="st">"client_id"</span>).<span class="fu">Value</span></a>
+<a class="sourceLine" id="cb3-37" data-line-number="37">});</a>
+<a class="sourceLine" id="cb3-38" data-line-number="38">}</a>
+<a class="sourceLine" id="cb3-39" data-line-number="39">}</a>
+<a class="sourceLine" id="cb3-40" data-line-number="40">}</a>
+<a class="sourceLine" id="cb3-41" data-line-number="41">}</a></code></pre></div>
 <p>The API server now has a protected resource. Let's prove it requires authorization. Run the application. The console will still get an access token, but we're not doing anything with it, yet. Leave the project running and manually enter this URL into a browser to try to access the protected resource.</p>
 <p><code>http://localhost:27230/test</code></p>
 <p>The server will return something like this:</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;Error&gt;</span>
-<span class="kw">&lt;Message&gt;</span>Authorization has been denied for this request.<span class="kw">&lt;/Message&gt;</span>
-<span class="kw">&lt;/Error&gt;</span></code></pre></div>
-<h2 id="pretend-mobile-app---access-protected-resource">Pretend Mobile App - Access Protected Resource</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">&lt;Error&gt;</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">&lt;Message&gt;</span>Authorization has been denied for this request.<span class="kw">&lt;/Message&gt;</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">&lt;/Error&gt;</span></a></code></pre></div>
+<h2>Pretend Mobile App - Access Protected Resource</h2>
 <p>In the PretendMobile project, add and call a method that access the protected Web API resource. The token is added to the request in the Authorization header.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-{
-<span class="co">//get token</span>
-<span class="dt">var</span> response = <span class="fu">GetAccessToken</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Access Token: "</span> + response.<span class="fu">AccessToken</span>);
-<span class="co">//use token</span>
-<span class="fu">CallProtectedApiResource</span>(response.<span class="fu">AccessToken</span>);
-Console.<span class="fu">ReadLine</span>();
-}
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">CallProtectedApiResource</span>(<span class="dt">string</span> access_token)
-{
-<span class="dt">var</span> client = <span class="kw">new</span> <span class="fu">HttpClient</span>();
-client.<span class="fu">SetBearerToken</span>(access_token);
-Console.<span class="fu">WriteLine</span>(client.<span class="fu">GetStringAsync</span>(<span class="st">"http://localhost:27230/test"</span>).<span class="fu">Result</span>);
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">//get token</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="dt">var</span> response = <span class="fu">GetAccessToken</span>();</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">Console.<span class="fu">WriteLine</span>(<span class="st">"Access Token: "</span> + response.<span class="fu">AccessToken</span>);</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">//use token</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="fu">CallProtectedApiResource</span>(response.<span class="fu">AccessToken</span>);</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">Console.<span class="fu">ReadLine</span>();</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">CallProtectedApiResource</span>(<span class="dt">string</span> access_token)</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">{</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="dt">var</span> client = <span class="kw">new</span> <span class="fu">HttpClient</span>();</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">client.<span class="fu">SetBearerToken</span>(access_token);</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">Console.<span class="fu">WriteLine</span>(client.<span class="fu">GetStringAsync</span>(<span class="st">"http://localhost:27230/test"</span>).<span class="fu">Result</span>);</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">}</a></code></pre></div>
 <p>Run the solution. After authorizing, the application successfully gets the protected resource's data.</p>
-<p><a href="images/2017-05-06_121035_thumb1"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2/images/2017-05-06_121035_thumb1" title="2017-05-06_121035" alt="2017-05-06_121035" width="749" height="99"></a></p>
-<h1 id="wrap-up">Wrap Up</h1>
+<p><a href="images/17-05-06_121035_1.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-2/images/17-05-06_121035_1.png" title="2017-05-06_121035" alt="2017-05-06_121035"></a></p>
+<h1>Wrap Up</h1>
 <p>We now have a fully functioning mobile application! Next up, persisting the IdentityServer configuration.</p>
 </div>
               </div>
@@ -217,12 +213,10 @@ Console.<span class="fu">WriteLine</span>(client.<span class="fu">GetStringAsync
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
-This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
+<p><strong>Important</strong> This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
-<h2 id="overview---why-pkce">Overview - Why PKCE?</h2>
-<p><strong>References</strong><br>
-<a href="https://alexbilbie.com/guide-to-oauth-2-grants/">A Guide to OAuth 2.0 Grants</a> <a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange</a></p>
+<h2>Overview - Why PKCE?</h2>
+<p><strong>References</strong> <a href="https://alexbilbie.com/guide-to-oauth-2-grants/">A Guide to OAuth 2.0 Grants</a> <a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange</a></p>
 <p>Mobile (i.e. "native") applications are difficult when it comes to authorizing users. The reasons are: they are long-lived, and can't keep a secret.</p>
 <p>In the descriptions below, "two-step" means calling the authorization endpoint then the token endpoint, "one-step" means calling just the token endpoint, "trusted" means the client can keep a secret key, "short-lived" means only an access token, and "long-lived" means an access+refresh token.</p>
 <p>The standard OAuth 2 grants are:</p>
@@ -234,168 +228,163 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 <li>Refresh token grant (one-step, requires access token)</li>
 </ul>
 <p>None of these fits well for a mobile app, which is untrusted but long-lived. The solution is Proof Key for Code Exchange (PKCE). PKCE generates a temporary secret string and a way to verify that string. It sends the secret to the authorization endpoint, which stores it, then sends the validator to the token endpoint, which verifies the stored secret. This mitigates the threat of another application capturing the authorization code; without the secret/validator, the auth code is useless.</p>
-<h2 id="authorization-server---simplistic">Authorization Server - Simplistic</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
-<a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
+<h2>Authorization Server - Simplistic</h2>
+<p><strong>References</strong> <a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a> <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>We'll create a simple OAuth2 server using IdentityServer3. We won't even create a Web API, so we can see just the server in operation. In other words, we'll be able to get tokens, but have nothing to use them with.</p>
 <p>Create a new Empty web application project named AuthAndApi</p>
-<p><a href="images/2017-05-03_135031_thumb1"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/2017-05-03_135031_thumb1" title="2017-05-03_135031" alt="2017-05-03_135031" width="714" height="567"></a></p>
+<p><a href="images/17-05-03_135031_1.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/17-05-03_135031_1.png" title="2017-05-03_135031" alt="2017-05-03_135031"></a></p>
 <p>Install packages for the authentication server. This assumes using IIS for the web host.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Install-Package IdentityServer3 -Project AuthAndApi
-Install-Package Microsoft.<span class="fu">Owin</span>.<span class="fu">Host</span>.<span class="fu">Systemweb</span> -Version <span class="fl">3.1</span>.<span class="fu">0</span> -Project AuthAndApi</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">Install-Package IdentityServer3 -Project AuthAndApi</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">Install-Package Microsoft.<span class="fu">Owin</span>.<span class="fu">Host</span>.<span class="fu">Systemweb</span> -Version <span class="dv">3</span>.<span class="fu">1</span><span class="fl">.0</span> -Project AuthAndApi</a></code></pre></div>
 <p>All the IdentityServer documents say RAMFAR should be enabled in web.config.</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;system.webServer&gt;</span>
-<span class="kw">&lt;modules</span><span class="ot"> runAllManagedModulesForAllRequests=</span><span class="st">"true"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/system.webServer&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">&lt;system.webServer&gt;</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">&lt;modules</span><span class="ot"> runAllManagedModulesForAllRequests=</span><span class="st">"true"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">&lt;/system.webServer&gt;</span></a></code></pre></div>
 <p>Add Folders for IdOptions and IdUsers. These represent the database storage we'll configure later.</p>
 <p>In IdOptions folder, add these classes.</p>
 <p><strong>Scopes.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Web</span>;
-<span class="co">//Added</span>
-<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Models</span>;
-
-<span class="kw">namespace</span> AuthAndApi.<span class="fu">IdOptions</span>
-{
-<span class="kw">public</span> <span class="kw">class</span> Scopes
-{
-<span class="kw">public</span> <span class="kw">static</span> List&lt;Scope&gt; <span class="fu">Get</span>()
-{
-<span class="kw">return</span> <span class="kw">new</span> List&lt;Scope&gt;
-{
-<span class="co">//Create the email scope for OAuth. Later, when using OpenID Connect, return StandardScopes.Email instead</span>
-<span class="kw">new</span> <span class="fu">Scope</span>() { Name = <span class="st">"email"</span>, DisplayName = <span class="st">"Email"</span>, Claims = <span class="kw">new</span> List&lt;ScopeClaim&gt;() { <span class="kw">new</span> <span class="fu">ScopeClaim</span>(<span class="st">"email"</span>, <span class="kw">true</span>) } }
-};
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Web</span>;</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">//Added</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Models</span>;</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">namespace</span> AuthAndApi.<span class="fu">IdOptions</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">public</span> <span class="kw">class</span> Scopes</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw">public</span> <span class="kw">static</span> List&lt;Scope&gt; <span class="fu">Get</span>()</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">return</span> <span class="kw">new</span> List&lt;Scope&gt;</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">//Create the email scope for OAuth. Later, when using OpenID Connect, return StandardScopes.Email instead</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw">new</span> <span class="fu">Scope</span>() { Name = <span class="st">"email"</span>, DisplayName = <span class="st">"Email"</span>, Claims = <span class="kw">new</span> List&lt;ScopeClaim&gt;() { <span class="kw">new</span> <span class="fu">ScopeClaim</span>(<span class="st">"email"</span>, <span class="kw">true</span>) } }</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">};</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">}</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">}</a></code></pre></div>
 <p><strong>Clients.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Web</span>;
-<span class="co">//Added</span>
-<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Models</span>;
-
-<span class="kw">namespace</span> AuthAndApi.<span class="fu">IdOptions</span>
-{
-<span class="kw">public</span> <span class="kw">class</span> Clients
-{
-<span class="kw">public</span> <span class="kw">static</span> List&lt;Client&gt; <span class="fu">Get</span>()
-{
-<span class="kw">return</span> <span class="kw">new</span> List&lt;Client&gt;()
-{
-<span class="co">//A client is an application configured to request tokens.</span>
-<span class="co">//The resource, such as Web API, is configured to accept these tokens.</span>
-<span class="kw">new</span> <span class="fu">Client</span>()
-{
-ClientName = <span class="st">"Pretend Android Mobile App"</span>,
-ClientId = <span class="st">"a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef"</span>,
-Enabled = <span class="kw">true</span>,
-<span class="co">//About Reference vs JWT tokens</span>
-<span class="co">//https://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/</span>
-AccessTokenType = AccessTokenType.<span class="fu">Reference</span>,
-Flow = Flows.<span class="fu">AuthorizationCodeWithProofKey</span>,
-AllowedScopes = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;
-{
-<span class="st">"email"</span>
-},
-<span class="co">//URIs the authorization code is allowed to be redirected to</span>
-RedirectUris = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;()
-{
-<span class="st">"http://localhost:19191/"</span>
-},
-<span class="co">//Shouldn't be required for this flow, but is</span>
-ClientSecrets = <span class="kw">new</span> List&lt;Secret&gt;()
-{
-<span class="kw">new</span> <span class="fu">Secret</span>(<span class="st">"e9711973-edd7-496f-b415-b10ad0667305"</span>.<span class="fu">Sha256</span>())
-}
-}
-};
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Web</span>;</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">//Added</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Models</span>;</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">namespace</span> AuthAndApi.<span class="fu">IdOptions</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">public</span> <span class="kw">class</span> Clients</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="kw">public</span> <span class="kw">static</span> List&lt;Client&gt; <span class="fu">Get</span>()</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="kw">return</span> <span class="kw">new</span> List&lt;Client&gt;()</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">//A client is an application configured to request tokens.</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">//The resource, such as Web API, is configured to accept these tokens.</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="kw">new</span> <span class="fu">Client</span>()</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">{</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">ClientName = <span class="st">"Pretend Android Mobile App"</span>,</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">ClientId = <span class="st">"a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef"</span>,</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">Enabled = <span class="kw">true</span>,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">//About Reference vs JWT tokens</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">//https://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">AccessTokenType = AccessTokenType.<span class="fu">Reference</span>,</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">Flow = Flows.<span class="fu">AuthorizationCodeWithProofKey</span>,</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">AllowedScopes = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">{</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="st">"email"</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">},</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">//URIs the authorization code is allowed to be redirected to</span></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">RedirectUris = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;()</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">{</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="st">"http://localhost:19191/"</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">},</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co">//Shouldn't be required for this flow, but is</span></a>
+<a class="sourceLine" id="cb4-37" data-line-number="37">ClientSecrets = <span class="kw">new</span> List&lt;Secret&gt;()</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">{</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="kw">new</span> <span class="fu">Secret</span>(<span class="st">"e9711973-edd7-496f-b415-b10ad0667305"</span>.<span class="fu">Sha256</span>())</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">}</a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">}</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">};</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">}</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">}</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">}</a></code></pre></div>
 <p>In IdUsers folder:</p>
 <p><strong>Users.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Web</span>;
-<span class="co">//Added</span>
-<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>.<span class="fu">InMemory</span>;
-<span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Claims</span>;
-<span class="kw">namespace</span> AuthAndApi.<span class="fu">IdUsers</span>
-{
-<span class="kw">public</span> <span class="kw">class</span> Users
-{
-<span class="kw">public</span> <span class="kw">static</span> List&lt;InMemoryUser&gt; <span class="fu">Get</span>()
-{
-<span class="kw">return</span> <span class="kw">new</span> List&lt;InMemoryUser&gt;
-{
-<span class="kw">new</span> InMemoryUser
-{
-<span class="co">//Subject is identifier? Could be external identity,</span>
-<span class="co">//so it's not our own database primary key</span>
-Subject = <span class="st">"1"</span>,
-Username = <span class="st">"alice"</span>,
-Password = <span class="st">"secret"</span>,
-Claims = <span class="kw">new</span> List&lt;Claim&gt;()
-{
-<span class="kw">new</span> <span class="fu">Claim</span>(<span class="st">"email"</span>, <span class="st">"alice@example.com"</span>)
-}
-}
-};
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Web</span>;</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">//Added</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>.<span class="fu">InMemory</span>;</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Claims</span>;</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">namespace</span> AuthAndApi.<span class="fu">IdUsers</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">public</span> <span class="kw">class</span> Users</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">public</span> <span class="kw">static</span> List&lt;InMemoryUser&gt; <span class="fu">Get</span>()</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="kw">return</span> <span class="kw">new</span> List&lt;InMemoryUser&gt;</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="kw">new</span> InMemoryUser</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">{</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">//Subject is identifier? Could be external identity,</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">//so it's not our own database primary key</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">Subject = <span class="st">"1"</span>,</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">Username = <span class="st">"alice"</span>,</a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">Password = <span class="st">"secret"</span>,</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">Claims = <span class="kw">new</span> List&lt;Claim&gt;()</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">{</a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="kw">new</span> <span class="fu">Claim</span>(<span class="st">"email"</span>, <span class="st">"alice@example.com"</span>)</a>
+<a class="sourceLine" id="cb5-26" data-line-number="26">}</a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">}</a>
+<a class="sourceLine" id="cb5-28" data-line-number="28">};</a>
+<a class="sourceLine" id="cb5-29" data-line-number="29">}</a>
+<a class="sourceLine" id="cb5-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb5-31" data-line-number="31">}</a></code></pre></div>
 <p>Add Startup.cs. This is the class that builds the OWIN pipeline, so the order in which features are added is important.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Web</span>;
-<span class="co">//Added</span>
-<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Configuration</span>;
-<span class="kw">using</span> Owin;
-<span class="kw">using</span> AuthAndApi.<span class="fu">IdOptions</span>;
-<span class="kw">using</span> AuthAndApi.<span class="fu">IdUsers</span>;
-
-
-<span class="kw">namespace</span> AuthAndApi
-{
-<span class="kw">public</span> <span class="kw">class</span> Startup
-{
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">Configuration</span>(IAppBuilder app)
-{
-<span class="co">//Configure IdentityServer for issuing authentication tokens</span>
-<span class="dt">var</span> options = <span class="kw">new</span> IdentityServerOptions
-{
-Factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>()
-.<span class="fu">UseInMemoryClients</span>(Clients.<span class="fu">Get</span>())
-.<span class="fu">UseInMemoryScopes</span>(Scopes.<span class="fu">Get</span>())
-.<span class="fu">UseInMemoryUsers</span>(Users.<span class="fu">Get</span>()),
-<span class="co">//SSL MUST be used in production</span>
-<span class="kw">#if</span> DEBUG
-RequireSsl = <span class="kw">false</span>
-<span class="kw">#endif</span>
-};
-<span class="co">//add to the pipeline</span>
-app.<span class="fu">UseIdentityServer</span>(options);
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Web</span>;</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">//Added</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Configuration</span>;</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">using</span> Owin;</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw">using</span> AuthAndApi.<span class="fu">IdOptions</span>;</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="kw">using</span> AuthAndApi.<span class="fu">IdUsers</span>;</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="kw">namespace</span> AuthAndApi</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="kw">public</span> <span class="kw">class</span> Startup</a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">Configuration</span>(IAppBuilder app)</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">{</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">//Configure IdentityServer for issuing authentication tokens</span></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="dt">var</span> options = <span class="kw">new</span> IdentityServerOptions</a>
+<a class="sourceLine" id="cb6-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21">Factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>()</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22">.<span class="fu">UseInMemoryClients</span>(Clients.<span class="fu">Get</span>())</a>
+<a class="sourceLine" id="cb6-23" data-line-number="23">.<span class="fu">UseInMemoryScopes</span>(Scopes.<span class="fu">Get</span>())</a>
+<a class="sourceLine" id="cb6-24" data-line-number="24">.<span class="fu">UseInMemoryUsers</span>(Users.<span class="fu">Get</span>()),</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">//SSL MUST be used in production</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="kw">#if</span> DEBUG</a>
+<a class="sourceLine" id="cb6-27" data-line-number="27">RequireSsl = <span class="kw">false</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"><span class="kw">#endif</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29">};</a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co">//add to the pipeline</span></a>
+<a class="sourceLine" id="cb6-31" data-line-number="31">app.<span class="fu">UseIdentityServer</span>(options);</a>
+<a class="sourceLine" id="cb6-32" data-line-number="32">}</a>
+<a class="sourceLine" id="cb6-33" data-line-number="33">}</a>
+<a class="sourceLine" id="cb6-34" data-line-number="34">}</a></code></pre></div>
 <p>The basic IdentityServer is configured for OAuth. For now, we don't need a web page to open, since this is a server, so turn off displaying the page in project Properties.</p>
-<p><a href="images/2017-05-06_074519_thumb"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/2017-05-06_074519_thumb" title="2017-05-06_074519" alt="2017-05-06_074519" width="728" height="333"></a></p>
+<p><a href="images/17-05-06_074519.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_074519.png" title="2017-05-06_074519" alt="2017-05-06_074519"></a></p>
 <blockquote>
-<p><strong>Note about Reference vs JWT tokens</strong><br>
-There are two general types of access tokens IdentityServer can return: Reference, or JSON Web Token (JWT). JWTs are self-contained; they can be validated without contacting the server. But they're slightly more complicated to configure. One advantage of using Reference tokens is that they can be quickly revoked, since the resource must call the authorizing server on each use. The disadvantage is this increases network traffic.</p>
+<p><strong>Note about Reference vs JWT tokens</strong> There are two general types of access tokens IdentityServer can return: Reference, or JSON Web Token (JWT). JWTs are self-contained; they can be validated without contacting the server. But they're slightly more complicated to configure. One advantage of using Reference tokens is that they can be quickly revoked, since the resource must call the authorizing server on each use. The disadvantage is this increases network traffic.</p>
 </blockquote>
-<h2 id="pretend-mobile-app---get-token">Pretend Mobile App - Get Token</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
-<a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
+<h2>Pretend Mobile App - Get Token</h2>
+<p><strong>References</strong> <a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a> <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>Now we're going to get an authorization code and token from the server, using a native application that simulates a mobile app. In the Authorization Code Grant, the authorization code is retrieved by using an agent--normally a web browser. Mobile apps can open browsers on behalf of applications, providing a seamless experience. They can also register special URIs to receive requests. The basic flow is:</p>
 <p><strong>Front Channel</strong></p>
 <ol>
@@ -408,112 +397,111 @@ There are two general types of access tokens IdentityServer can return: Referenc
 <li>Server validates, then responds with the access token.</li>
 </ol>
 <p>Add a standard console application to the solution, named PretendMobile.</p>
-<p><a href="images/2017-05-06_083908_thumb1"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/2017-05-06_083908_thumb1" title="2017-05-06_083908" alt="2017-05-06_083908" width="722" height="510"></a></p>
+<p><a href="images/17-05-06_083908_1.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_083908_1.png" title="2017-05-06_083908" alt="2017-05-06_083908"></a></p>
 <p>Add packages. These aren't required (and wouldn't be available for a mobile application). They just include helper classes and methods for the HTTP communication. Anything they do could be done with HttpClient or some other appropriate network library.</p>
 <blockquote>
-<p><strong>Note</strong><br>
-Version number is important! Later versions are for .Net Core.</p>
+<p><strong>Note</strong> Version number is important! Later versions are for .Net Core.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Install-Package IdentityModel -Version <span class="fl">1.9</span>.<span class="fu">2</span> -Project PretendMobile</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" data-line-number="1">Install-Package IdentityModel -Version <span class="dv">1</span>.<span class="fu">9</span><span class="fl">.2</span> -Project PretendMobile</a></code></pre></div>
 <p>Program.cs</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Text</span>;
-<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
-<span class="co">//Added</span>
-<span class="kw">using</span> System.<span class="fu">Diagnostics</span>;
-<span class="kw">using</span> System.<span class="fu">IO</span>;
-<span class="kw">using</span> System.<span class="fu">Net</span>;
-<span class="kw">using</span> System.<span class="fu">Net</span>.<span class="fu">Http</span>;
-<span class="kw">using</span> IdentityModel;
-<span class="kw">using</span> IdentityModel.<span class="fu">Client</span>;
-
-<span class="kw">namespace</span> PretendMobile
-{
-<span class="kw">class</span> Program
-{
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-{
-<span class="dt">var</span> response = <span class="fu">GetAccessToken</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Access Token: "</span> + response.<span class="fu">AccessToken</span>);
-Console.<span class="fu">ReadLine</span>();
-}
-
-<span class="kw">static</span> TokenResponse <span class="fu">GetAccessToken</span>()
-{
-<span class="dt">string</span> clientId = <span class="st">"a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef"</span>;
-<span class="dt">string</span> clientSecret = <span class="st">"e9711973-edd7-496f-b415-b10ad0667305"</span>;
-<span class="dt">string</span> scope = <span class="st">"email"</span>;
-<span class="dt">string</span> redirectUri = <span class="st">"http://localhost:19191/"</span>;
-<span class="dt">string</span> verifier = CryptoRandom.<span class="fu">CreateUniqueId</span>(<span class="dv">64</span>);
-<span class="dt">string</span> codeChallenge = verifier.<span class="fu">ToCodeChallenge</span>();
-<span class="dt">string</span> authorizationEndpoint = <span class="st">"http://localhost:27230/connect/authorize"</span>;
-<span class="dt">string</span> tokenEndpoint = <span class="st">"http://localhost:27230/connect/token"</span>;
-
-<span class="co">//Front channel to get the authorization code</span>
-<span class="co">//This simulates the mobile app starting a browser session on the authorization server,</span>
-<span class="co">//allowing the user to authenticate,</span>
-<span class="co">//while the app waits for the redirect from the auth server that contains the code.</span>
-<span class="fu">OpenBrowserToAuthenticate</span>(authorizationEndpoint, clientId, scope, redirectUri, codeChallenge);
-<span class="dt">string</span> code = <span class="fu">ReceiveAuthCodeFromServer</span>(redirectUri);
-Console.<span class="fu">WriteLine</span>(<span class="st">"Authorization Code: "</span> + code);
-
-<span class="co">//Back channel to get the access token</span>
-<span class="co">//The client secret is still required by IdentityServer, even though it's not</span>
-<span class="co">//really secret. The code challenge and verifier are the real secret.</span>
-<span class="co">//The redirectUri is part of the verification process. There's no actual redirection.</span>
-<span class="dt">var</span> client = <span class="kw">new</span> <span class="fu">TokenClient</span>(
-tokenEndpoint,
-clientId,
-clientSecret);
-<span class="kw">return</span> client.<span class="fu">RequestAuthorizationCodeAsync</span>(code, redirectUri, verifier).<span class="fu">Result</span>;
-}
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">OpenBrowserToAuthenticate</span>(<span class="dt">string</span> authorizationEndpoint, <span class="dt">string</span> clientId, <span class="dt">string</span> scope, <span class="dt">string</span> redirectUri, <span class="dt">string</span> codeChallenge)
-{
-<span class="dt">string</span> nonce = CryptoRandom.<span class="fu">CreateUniqueId</span>(<span class="dv">64</span>);
-
-AuthorizeRequest request = <span class="kw">new</span> <span class="fu">AuthorizeRequest</span>(authorizationEndpoint);
-<span class="dt">string</span> url = request.<span class="fu">CreateAuthorizeUrl</span>(
-clientId: clientId,
-responseType: <span class="st">"code"</span>,
-scope: scope,
-redirectUri: redirectUri,
-nonce: nonce,
-responseMode: OidcConstants.<span class="fu">ResponseModes</span>.<span class="fu">FormPost</span>,
-codeChallenge: codeChallenge,
-codeChallengeMethod: OidcConstants.<span class="fu">CodeChallengeMethods</span>.<span class="fu">Sha256</span>);
-
-Debug.<span class="fu">WriteLine</span>(url);
-Process.<span class="fu">Start</span>(url);
-}
-
-<span class="kw">static</span> <span class="dt">string</span> <span class="fu">ReceiveAuthCodeFromServer</span>(<span class="dt">string</span> redirectUri)
-{
-<span class="dt">var</span> web = <span class="kw">new</span> <span class="fu">HttpListener</span>();
-web.<span class="fu">Prefixes</span>.<span class="fu">Add</span>(redirectUri);
-Console.<span class="fu">WriteLine</span>(<span class="st">"Listening for request from auth server..."</span>);
-web.<span class="fu">Start</span>();
-<span class="dt">var</span> req = web.<span class="fu">GetContext</span>().<span class="fu">Request</span>;
-Stream body = req.<span class="fu">InputStream</span>;
-<span class="dt">var</span> encoding = req.<span class="fu">ContentEncoding</span>;
-<span class="dt">var</span> reader = <span class="kw">new</span> <span class="fu">StreamReader</span>(body, encoding);
-<span class="dt">string</span> code = reader.<span class="fu">ReadToEnd</span>().<span class="fu">Replace</span>(<span class="st">"code="</span>, <span class="st">""</span>);
-Console.<span class="fu">WriteLine</span>(<span class="st">"Got it, closing."</span>);
-
-<span class="co">//Not sure how, but the mobile app should end the browser session, maybe when the app</span>
-<span class="co">//gets the response.</span>
-body.<span class="fu">Close</span>();
-reader.<span class="fu">Close</span>();
-web.<span class="fu">Close</span>();
-<span class="kw">return</span> code;
-}
-
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Text</span>;</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">//Added</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw">using</span> System.<span class="fu">Diagnostics</span>;</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="kw">using</span> System.<span class="fu">IO</span>;</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="kw">using</span> System.<span class="fu">Net</span>;</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw">using</span> System.<span class="fu">Net</span>.<span class="fu">Http</span>;</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="kw">using</span> IdentityModel;</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="kw">using</span> IdentityModel.<span class="fu">Client</span>;</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw">namespace</span> PretendMobile</a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="kw">class</span> Program</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">{</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">{</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20"><span class="dt">var</span> response = <span class="fu">GetAccessToken</span>();</a>
+<a class="sourceLine" id="cb8-21" data-line-number="21">Console.<span class="fu">WriteLine</span>(<span class="st">"Access Token: "</span> + response.<span class="fu">AccessToken</span>);</a>
+<a class="sourceLine" id="cb8-22" data-line-number="22">Console.<span class="fu">ReadLine</span>();</a>
+<a class="sourceLine" id="cb8-23" data-line-number="23">}</a>
+<a class="sourceLine" id="cb8-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb8-25" data-line-number="25"><span class="kw">static</span> TokenResponse <span class="fu">GetAccessToken</span>()</a>
+<a class="sourceLine" id="cb8-26" data-line-number="26">{</a>
+<a class="sourceLine" id="cb8-27" data-line-number="27"><span class="dt">string</span> clientId = <span class="st">"a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef"</span>;</a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="dt">string</span> clientSecret = <span class="st">"e9711973-edd7-496f-b415-b10ad0667305"</span>;</a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="dt">string</span> scope = <span class="st">"email"</span>;</a>
+<a class="sourceLine" id="cb8-30" data-line-number="30"><span class="dt">string</span> redirectUri = <span class="st">"http://localhost:19191/"</span>;</a>
+<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="dt">string</span> verifier = CryptoRandom.<span class="fu">CreateUniqueId</span>(<span class="dv">64</span>);</a>
+<a class="sourceLine" id="cb8-32" data-line-number="32"><span class="dt">string</span> codeChallenge = verifier.<span class="fu">ToCodeChallenge</span>();</a>
+<a class="sourceLine" id="cb8-33" data-line-number="33"><span class="dt">string</span> authorizationEndpoint = <span class="st">"http://localhost:27230/connect/authorize"</span>;</a>
+<a class="sourceLine" id="cb8-34" data-line-number="34"><span class="dt">string</span> tokenEndpoint = <span class="st">"http://localhost:27230/connect/token"</span>;</a>
+<a class="sourceLine" id="cb8-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">//Front channel to get the authorization code</span></a>
+<a class="sourceLine" id="cb8-37" data-line-number="37"><span class="co">//This simulates the mobile app starting a browser session on the authorization server,</span></a>
+<a class="sourceLine" id="cb8-38" data-line-number="38"><span class="co">//allowing the user to authenticate,</span></a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"><span class="co">//while the app waits for the redirect from the auth server that contains the code.</span></a>
+<a class="sourceLine" id="cb8-40" data-line-number="40"><span class="fu">OpenBrowserToAuthenticate</span>(authorizationEndpoint, clientId, scope, redirectUri, codeChallenge);</a>
+<a class="sourceLine" id="cb8-41" data-line-number="41"><span class="dt">string</span> code = <span class="fu">ReceiveAuthCodeFromServer</span>(redirectUri);</a>
+<a class="sourceLine" id="cb8-42" data-line-number="42">Console.<span class="fu">WriteLine</span>(<span class="st">"Authorization Code: "</span> + code);</a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="co">//Back channel to get the access token</span></a>
+<a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co">//The client secret is still required by IdentityServer, even though it's not</span></a>
+<a class="sourceLine" id="cb8-46" data-line-number="46"><span class="co">//really secret. The code challenge and verifier are the real secret.</span></a>
+<a class="sourceLine" id="cb8-47" data-line-number="47"><span class="co">//The redirectUri is part of the verification process. There's no actual redirection.</span></a>
+<a class="sourceLine" id="cb8-48" data-line-number="48"><span class="dt">var</span> client = <span class="kw">new</span> <span class="fu">TokenClient</span>(</a>
+<a class="sourceLine" id="cb8-49" data-line-number="49">tokenEndpoint,</a>
+<a class="sourceLine" id="cb8-50" data-line-number="50">clientId,</a>
+<a class="sourceLine" id="cb8-51" data-line-number="51">clientSecret);</a>
+<a class="sourceLine" id="cb8-52" data-line-number="52"><span class="kw">return</span> client.<span class="fu">RequestAuthorizationCodeAsync</span>(code, redirectUri, verifier).<span class="fu">Result</span>;</a>
+<a class="sourceLine" id="cb8-53" data-line-number="53">}</a>
+<a class="sourceLine" id="cb8-54" data-line-number="54"></a>
+<a class="sourceLine" id="cb8-55" data-line-number="55"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">OpenBrowserToAuthenticate</span>(<span class="dt">string</span> authorizationEndpoint, <span class="dt">string</span> clientId, <span class="dt">string</span> scope, <span class="dt">string</span> redirectUri, <span class="dt">string</span> codeChallenge)</a>
+<a class="sourceLine" id="cb8-56" data-line-number="56">{</a>
+<a class="sourceLine" id="cb8-57" data-line-number="57"><span class="dt">string</span> nonce = CryptoRandom.<span class="fu">CreateUniqueId</span>(<span class="dv">64</span>);</a>
+<a class="sourceLine" id="cb8-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb8-59" data-line-number="59">AuthorizeRequest request = <span class="kw">new</span> <span class="fu">AuthorizeRequest</span>(authorizationEndpoint);</a>
+<a class="sourceLine" id="cb8-60" data-line-number="60"><span class="dt">string</span> url = request.<span class="fu">CreateAuthorizeUrl</span>(</a>
+<a class="sourceLine" id="cb8-61" data-line-number="61">clientId: clientId,</a>
+<a class="sourceLine" id="cb8-62" data-line-number="62">responseType: <span class="st">"code"</span>,</a>
+<a class="sourceLine" id="cb8-63" data-line-number="63">scope: scope,</a>
+<a class="sourceLine" id="cb8-64" data-line-number="64">redirectUri: redirectUri,</a>
+<a class="sourceLine" id="cb8-65" data-line-number="65">nonce: nonce,</a>
+<a class="sourceLine" id="cb8-66" data-line-number="66">responseMode: OidcConstants.<span class="fu">ResponseModes</span>.<span class="fu">FormPost</span>,</a>
+<a class="sourceLine" id="cb8-67" data-line-number="67">codeChallenge: codeChallenge,</a>
+<a class="sourceLine" id="cb8-68" data-line-number="68">codeChallengeMethod: OidcConstants.<span class="fu">CodeChallengeMethods</span>.<span class="fu">Sha256</span>);</a>
+<a class="sourceLine" id="cb8-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb8-70" data-line-number="70">Debug.<span class="fu">WriteLine</span>(url);</a>
+<a class="sourceLine" id="cb8-71" data-line-number="71">Process.<span class="fu">Start</span>(url);</a>
+<a class="sourceLine" id="cb8-72" data-line-number="72">}</a>
+<a class="sourceLine" id="cb8-73" data-line-number="73"></a>
+<a class="sourceLine" id="cb8-74" data-line-number="74"><span class="kw">static</span> <span class="dt">string</span> <span class="fu">ReceiveAuthCodeFromServer</span>(<span class="dt">string</span> redirectUri)</a>
+<a class="sourceLine" id="cb8-75" data-line-number="75">{</a>
+<a class="sourceLine" id="cb8-76" data-line-number="76"><span class="dt">var</span> web = <span class="kw">new</span> <span class="fu">HttpListener</span>();</a>
+<a class="sourceLine" id="cb8-77" data-line-number="77">web.<span class="fu">Prefixes</span>.<span class="fu">Add</span>(redirectUri);</a>
+<a class="sourceLine" id="cb8-78" data-line-number="78">Console.<span class="fu">WriteLine</span>(<span class="st">"Listening for request from auth server..."</span>);</a>
+<a class="sourceLine" id="cb8-79" data-line-number="79">web.<span class="fu">Start</span>();</a>
+<a class="sourceLine" id="cb8-80" data-line-number="80"><span class="dt">var</span> req = web.<span class="fu">GetContext</span>().<span class="fu">Request</span>;</a>
+<a class="sourceLine" id="cb8-81" data-line-number="81">Stream body = req.<span class="fu">InputStream</span>;</a>
+<a class="sourceLine" id="cb8-82" data-line-number="82"><span class="dt">var</span> encoding = req.<span class="fu">ContentEncoding</span>;</a>
+<a class="sourceLine" id="cb8-83" data-line-number="83"><span class="dt">var</span> reader = <span class="kw">new</span> <span class="fu">StreamReader</span>(body, encoding);</a>
+<a class="sourceLine" id="cb8-84" data-line-number="84"><span class="dt">string</span> code = reader.<span class="fu">ReadToEnd</span>().<span class="fu">Replace</span>(<span class="st">"code="</span>, <span class="st">""</span>);</a>
+<a class="sourceLine" id="cb8-85" data-line-number="85">Console.<span class="fu">WriteLine</span>(<span class="st">"Got it, closing."</span>);</a>
+<a class="sourceLine" id="cb8-86" data-line-number="86"></a>
+<a class="sourceLine" id="cb8-87" data-line-number="87"><span class="co">//Not sure how, but the mobile app should end the browser session, maybe when the app</span></a>
+<a class="sourceLine" id="cb8-88" data-line-number="88"><span class="co">//gets the response.</span></a>
+<a class="sourceLine" id="cb8-89" data-line-number="89">body.<span class="fu">Close</span>();</a>
+<a class="sourceLine" id="cb8-90" data-line-number="90">reader.<span class="fu">Close</span>();</a>
+<a class="sourceLine" id="cb8-91" data-line-number="91">web.<span class="fu">Close</span>();</a>
+<a class="sourceLine" id="cb8-92" data-line-number="92"><span class="kw">return</span> code;</a>
+<a class="sourceLine" id="cb8-93" data-line-number="93">}</a>
+<a class="sourceLine" id="cb8-94" data-line-number="94"></a>
+<a class="sourceLine" id="cb8-95" data-line-number="95">}</a>
+<a class="sourceLine" id="cb8-96" data-line-number="96">}</a></code></pre></div>
 <p>Let's configure the solution to run both projects. Right-click Solution and choose Properties. Change the Startup Project to "Multiple startup projects," the Actions to "Start," and be sure the identity server project starts first.</p>
-<p><a href="images/2017-05-06_091226_thumb1"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/2017-05-06_091226_thumb1" title="2017-05-06_091226" alt="2017-05-06_091226" width="726" height="470"></a></p>
+<p><a href="images/17-05-06_091226_1.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_091226_1.png" title="2017-05-06_091226" alt="2017-05-06_091226"></a></p>
 <p>Run the solution.</p>
 <ol>
 <li>The server will start.</li>
@@ -524,8 +512,8 @@ web.<span class="fu">Close</span>();
 <li>The app sends a direct request to the /token endpoint, requesting an access token.</li>
 <li>The server returns the token.</li>
 </ol>
-<p><a href="images/2017-05-06_104414_thumb"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/2017-05-06_104414_thumb" title="2017-05-06_104414" alt="2017-05-06_104414" width="459" height="123"></a><a href="images/2017-05-06_104502_thumb"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/2017-05-06_104502_thumb" title="2017-05-06_104502" alt="2017-05-06_104502" width="598" height="435"></a><a href="images/2017-05-06_104651_thumb1"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/2017-05-06_104651_thumb1" title="2017-05-06_104651" alt="2017-05-06_104651" width="598" height="251"></a><a href="images/2017-05-06_104726_thumb"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/2017-05-06_104726_thumb" title="2017-05-06_104726" alt="2017-05-06_104726" width="459" height="99"></a></p>
-<h1 id="wrap-up">Wrap Up</h1>
+<p><a href="images/17-05-06_104414.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104414.png" title="2017-05-06_104414" alt="2017-05-06_104414"></a><a href="images/17-05-06_104502.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104502.png" title="2017-05-06_104502" alt="2017-05-06_104502"></a><a href="images/17-05-06_104651_1.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104651_1.png" title="2017-05-06_104651" alt="2017-05-06_104651"></a><a href="images/17-05-06_104726.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104726.png" title="2017-05-06_104726" alt="2017-05-06_104726"></a></p>
+<h1>Wrap Up</h1>
 <p>We've built a basic OAuth2 server that uses the Authorization Code Grant plus PKCE for dynamically generated client secrets, and can get an access token. In the next part, we'll build a protected resource that requires a token.</p>
 </div>
               </div>
@@ -534,10 +522,10 @@ web.<span class="fu">Close</span>();
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-03-28 09:31</span></p>
-                <div class='post-content'><p><a href="images/ci-logo_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/ci-logo_thumb.png" title="ci-logo" alt="ci-logo" width="126" height="126"></a> This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.</p>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/ci-logo.png" title="ci-logo" alt="ci-logo"></a> This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.</p>
 <p><a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples/src/default/CI%20Walk%20Through/TFS%20Continuous%20Integration%20Walk%20Through%20Part%205a%20-%20Multiple%20Solutions%20-%20Simple%20Project%20References.md">TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></p>
-<h1 id="what-im-talking-about">What I'm Talking About</h1>
+<h1>What I'm Talking About</h1>
 <p>Businesses often have source code that's years or decades old, and accumulate problems due to how that code was structured into folders. Especially difficult is how dependencies were managed. It's common to see:</p>
 <ul>
 <li>Projects with project references to other projects in other solutions, sometimes nesting/cascading in a tangled mess.</li>
@@ -550,24 +538,24 @@ web.<span class="fu">Close</span>();
 <li>Over the years, different developers did things how they liked.</li>
 <li>Source control wasn't used, or changed.</li>
 </ul>
-<h1 id="where-ill-end-up">Where I'll End Up</h1>
+<h1>Where I'll End Up</h1>
 <p>I'll start with a set of solutions that have some dependency problems. I'll show how they can work with continuous integration. Then, I'll improve the dependency handling.</p>
-<h1 id="a-problematic-structure">A Problematic Structure</h1>
+<h1>A Problematic Structure</h1>
 <p>Let's imagine a TFS repository. Instead of a separate Team Project for each solution, there's a single Team Project named $Main that has all the solutions underneath it.</p>
 <p>In this folder structure, I'm showing solution folders with their project folders below. So, ReverseIt is a solution folder with the ReverseIt project folder below it, which is the default Visual Studio layout.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">$/Main
-_Shared
-NameDb
-NameDb
-ReverseIt
-ReverseIt
-&gt; Depends on <span class="fu">RevEngine</span> (project reference)
-RevEngine
-&gt; Depends on jamma.<span class="fu">dll</span>
-ReverseNames
-ReverseNames
-&gt; Depends on <span class="fu">RevEngine</span> (project reference)
-&gt; Depends on <span class="fu">NameDb</span> (NuGet package)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">$/Main</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">_Shared</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">NameDb</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">NameDb</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">ReverseIt</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">ReverseIt</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">&gt; Depends on <span class="fu">RevEngine</span> (project reference)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">RevEngine</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">&gt; Depends on jamma.<span class="fu">dll</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">ReverseNames</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">ReverseNames</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">&gt; Depends on <span class="fu">RevEngine</span> (project reference)</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">&gt; Depends on <span class="fu">NameDb</span> (NuGet package)</a></code></pre></div>
 <ul>
 <li>NameDb DLL returns a list of names, is packaged using NuGet, and stored in a local source.</li>
 <li>ReverseIt Console reverses whatever text you type in.</li>
@@ -587,7 +575,7 @@ ReverseNames
 <li>You can't use TFS's project management tools effectively.</li>
 <li>Doesn't scale. What if you had fifty solutions using this approach?</li>
 </ul>
-<h1 id="creating-ci-builds-as-is">Creating CI Builds As Is</h1>
+<h1>Creating CI Builds As Is</h1>
 <p>My manager says, "We need to get these projects into TFS Build."</p>
 <p>I ask, "Can I restructure TFS?"</p>
 <p>He says, "Not yet."</p>
@@ -603,71 +591,71 @@ ReverseNames
 <p><strong>BONUS CODE!</strong></p>
 <p>If I had lots of solutions, I could build all of of them using two files in the root of the folder than has all the solution folders.</p>
 <p><strong>BuildAllSolutions.targets</strong></p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;Project</span><span class="ot"> ToolsVersion=</span><span class="st">"14.0"</span>
-<span class="ot">xmlns=</span><span class="st">"http://schemas.microsoft.com/developer/msbuild/2003"</span>
-<span class="ot">DefaultTargets=</span><span class="st">"Default"</span><span class="kw">&gt;</span>
-<span class="co">&lt;!-- http://stackoverflow.com/a/9609086/1628707 --&gt;</span>
-<span class="kw">&lt;ItemGroup&gt;</span>
-<span class="kw">&lt;AllFiles</span><span class="ot"> Include=</span><span class="st">".\**\*.sln"</span><span class="kw">/&gt;</span>
-<span class="kw">&lt;/ItemGroup&gt;</span>
-<span class="kw">&lt;Target</span><span class="ot"> Name=</span><span class="st">"Default"</span><span class="kw">&gt;</span>
-<span class="kw">&lt;PropertyGroup&gt;</span>
-<span class="kw">&lt;BuildCmd&gt;</span>@(AllFiles-&gt;'<span class="dv">&amp;quot;</span>$(MSBuildToolsPath)\msbuild.exe<span class="dv">&amp;quot;</span> <span class="dv">&amp;quot;</span>%(Identity)<span class="dv">&amp;quot;</span> /v:q /fl /flp:errorsonly;logfile=build-logs\%(filename)-log.txt','%0D%0A')<span class="kw">&lt;/BuildCmd&gt;</span>
-<span class="kw">&lt;/PropertyGroup&gt;</span>
-<span class="kw">&lt;Exec</span><span class="ot"> Command=</span><span class="st">"mkdir build-logs"</span><span class="ot"> Condition=</span><span class="st">"!Exists('build-logs')"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;Exec</span><span class="ot"> Command=</span><span class="st">"$(BuildCmd)"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/Target&gt;</span>
-<span class="kw">&lt;/Project&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">&lt;Project</span><span class="ot"> ToolsVersion=</span><span class="st">"14.0"</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="ot">xmlns=</span><span class="st">"http://schemas.microsoft.com/developer/msbuild/2003"</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="ot">DefaultTargets=</span><span class="st">"Default"</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">&lt;!-- http://stackoverflow.com/a/9609086/1628707 --&gt;</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">&lt;ItemGroup&gt;</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">&lt;AllFiles</span><span class="ot"> Include=</span><span class="st">".\**\*.sln"</span><span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">&lt;/ItemGroup&gt;</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">&lt;Target</span><span class="ot"> Name=</span><span class="st">"Default"</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">&lt;PropertyGroup&gt;</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">&lt;BuildCmd&gt;</span>@(AllFiles-&gt;'<span class="dv">&amp;quot;</span>$(MSBuildToolsPath)\msbuild.exe<span class="dv">&amp;quot;</span> <span class="dv">&amp;quot;</span>%(Identity)<span class="dv">&amp;quot;</span> /v:q /fl /flp:errorsonly;logfile=build-logs\%(filename)-log.txt','%0D%0A')<span class="kw">&lt;/BuildCmd&gt;</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw">&lt;/PropertyGroup&gt;</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw">&lt;Exec</span><span class="ot"> Command=</span><span class="st">"mkdir build-logs"</span><span class="ot"> Condition=</span><span class="st">"!Exists('build-logs')"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="kw">&lt;Exec</span><span class="ot"> Command=</span><span class="st">"$(BuildCmd)"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="kw">&lt;/Target&gt;</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="kw">&lt;/Project&gt;</span></a></code></pre></div>
 <p><strong>BuildAllSolutions.cmd</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">--rem path to your latest VS build version
-<span class="st">"C:\Program Files (x86)\MSBuild\14.0</span><span class="sc">\B</span><span class="st">in\msbuild.exe"</span> BuildAllSolutions.<span class="fu">targets</span>
-pause</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1">--rem path to your latest VS build version</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">"C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe"</span> BuildAllSolutions.<span class="fu">targets</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">pause</a></code></pre></div>
 <p>Running the cmd file creates a folder named "build-logs", recursively builds each solution, and outputs each solution's errors. If a solution's log file is not empty, there was a build problem.</p>
 <p><strong>END BONUS CODE</strong></p>
 <hr>
-<h2 id="dealing-with-a-local-nuget-package-source">Dealing With a Local NuGet Package Source</h2>
+<h2>Dealing With a Local NuGet Package Source</h2>
 <p>There are four (technically five or six!) places to store NuGet config files containing package source information, and two ways to configure package source in TFS Build.</p>
-<h3 id="nuget-config-file-locations">NuGet Config File Locations</h3>
+<h3>NuGet Config File Locations</h3>
 <p>Let's assume our in-house NuGet source is located at <a href="http://ngserver/nuget" class="uri">http://ngserver/nuget</a>.</p>
 <ol>
 <li><strong>User Profile</strong> - Enter it into Visual Studio's settings. This is fine for regular development, but not good for a build server because the build agent service will run as either Local System or a specific user account such as "tfsagent".</li>
 </ol>
-<p><a href="images/2017-03-17_155817_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-17_155817_thumb.png" title="2017-03-17_155817" alt="2017-03-17_155817" width="758" height="448"></a></p>
+<p><a href="images/17-03-17_155817.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-17_155817.png" title="2017-03-17_155817" alt="2017-03-17_155817"></a></p>
 <p>You can also manually edit the user profile's nuget.config, which is what the Visual Studio setting dialog is doing. The file is located at %APPDATA%\NuGet\NuGet.config. You add the source under packageSources.</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span>
-<span class="kw">&lt;configuration&gt;</span>
-<span class="kw">&lt;activePackageSource&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"nuget.org"</span><span class="ot"> value=</span><span class="st">"https://www.nuget.org/api/v2/"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/activePackageSource&gt;</span>
-<span class="kw">&lt;packageSources&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"nuget.org"</span><span class="ot"> value=</span><span class="st">"https://api.nuget.org/v3/index.json"</span><span class="ot"> protocolVersion=</span><span class="st">"3"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"NuGet Local Source"</span><span class="ot"> value=</span><span class="st">"http://ngserver/nuget"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageSources&gt;</span>
-<span class="kw">&lt;packageRestore&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"enabled"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"automatic"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageRestore&gt;</span>
-<span class="kw">&lt;bindingRedirects&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"skip"</span><span class="ot"> value=</span><span class="st">"False"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/bindingRedirects&gt;</span>
-<span class="kw">&lt;/configuration&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">&lt;configuration&gt;</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">&lt;activePackageSource&gt;</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"nuget.org"</span><span class="ot"> value=</span><span class="st">"https://www.nuget.org/api/v2/"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">&lt;/activePackageSource&gt;</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">&lt;packageSources&gt;</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"nuget.org"</span><span class="ot"> value=</span><span class="st">"https://api.nuget.org/v3/index.json"</span><span class="ot"> protocolVersion=</span><span class="st">"3"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"NuGet Local Source"</span><span class="ot"> value=</span><span class="st">"http://ngserver/nuget"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="kw">&lt;/packageSources&gt;</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">&lt;packageRestore&gt;</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"enabled"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"automatic"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="kw">&lt;/packageRestore&gt;</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="kw">&lt;bindingRedirects&gt;</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"skip"</span><span class="ot"> value=</span><span class="st">"False"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="kw">&lt;/bindingRedirects&gt;</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="kw">&lt;/configuration&gt;</span></a></code></pre></div>
 <ol>
 <li><strong>Solution</strong> - Create a solution-level nuget.config file.</li>
 </ol>
 <p>You can create a file named nuget.config, put it in your solution's root and add it to source control. This will determine which NuGet sources the solution uses.</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span>
-<span class="kw">&lt;configuration&gt;</span>
-<span class="kw">&lt;packageRestore&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"enabled"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"automatic"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageRestore&gt;</span>
-<span class="kw">&lt;packageSources&gt;</span>
-<span class="co">&lt;!-- uncomment clear if you want to ONLY use these sources --&gt;</span>
-<span class="co">&lt;!-- otherwise, these sources are added to your list --&gt;</span>
-<span class="co">&lt;!-- clear /&gt; --&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"NuGet Local Source"</span><span class="ot"> value=</span><span class="st">"http://ngserver/nuget"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageSources&gt;</span>
-<span class="kw">&lt;/configuration&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">&lt;configuration&gt;</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">&lt;packageRestore&gt;</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"enabled"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"automatic"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">&lt;/packageRestore&gt;</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw">&lt;packageSources&gt;</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">&lt;!-- uncomment clear if you want to ONLY use these sources --&gt;</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">&lt;!-- otherwise, these sources are added to your list --&gt;</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">&lt;!-- clear /&gt; --&gt;</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"NuGet Local Source"</span><span class="ot"> value=</span><span class="st">"http://ngserver/nuget"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">&lt;/packageSources&gt;</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="kw">&lt;/configuration&gt;</span></a></code></pre></div>
 <p><strong>Note: NuGet 3.3 and earlier looked for a config file in a solution's .nuget folder. Not recommended.</strong></p>
 <ol>
 <li><strong>Machine-Wide</strong> - Create a machine-wide config file.</li>
@@ -679,12 +667,12 @@ pause</code></pre></div>
 </ul>
 <p>It can be named anything that ends with .config, including <code>NuGet.config</code>. However, a custom name seems recommended.</p>
 <p>For example, I could name the file <code>SoftwareMeadows.Online.config</code>. It would contain the package source like this:</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span>
-<span class="kw">&lt;configuration&gt;</span>
-<span class="kw">&lt;packageSources&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"NuGet Local Source"</span><span class="ot"> value=</span><span class="st">"http://ngserver/nuget"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageSources&gt;</span>
-<span class="kw">&lt;/configuration&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">&lt;configuration&gt;</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">&lt;packageSources&gt;</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"NuGet Local Source"</span><span class="ot"> value=</span><span class="st">"http://ngserver/nuget"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">&lt;/packageSources&gt;</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw">&lt;/configuration&gt;</span></a></code></pre></div>
 <p>Network Administrators will like this option because they can use it with Group Policies. A policy could target computers in Developers and Build Servers groups and always create the desired config file.</p>
 <p><strong>Note: NuGet 4.x does not look for config files in ProgramData.</strong></p>
 <ol>
@@ -701,14 +689,14 @@ pause</code></pre></div>
 <li>Testing shows that in some cases if the package source URL is the same, only one source key is used. For example, if NuGet.config and NuGetDefaults.config have an identical source URL, the key from NuGet.config is used.</li>
 <li>It appears a source listed in NuGetDefaults.config cannot be removed using the <code>&lt;clear /&gt;</code> tag. It can only be disabled.</li>
 </ul>
-<h3 id="specifying-the-config-in-tfs-build">Specifying the Config in TFS Build</h3>
+<h3>Specifying the Config in TFS Build</h3>
 <p>Whichever method you use below, ensure the agent service has permissions to the config file. The service name will be something like "VSO Agent ([AgentName])". Microsoft recommends creating a user named "tfsagent". The default is Local Service.</p>
-<p><a href="images/2017-03-17_162121_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-17_162121_thumb.png" title="2017-03-17_162121" alt="2017-03-17_162121" width="420" height="482"></a></p>
+<p><a href="images/17-03-17_162121.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-17_162121.png" title="2017-03-17_162121" alt="2017-03-17_162121"></a></p>
 <ol>
 <li>TFS Machine-Wide Path - RECOMMENDED</li>
 </ol>
 <p>Personally, for internal development, I'd add the package source to the build server's machine-wide config file and be done with it. So, my path--assuming VS 2015 installed--would be something like: <code>%ProgramData%\NuGet\Config\SoftwareMeadows.Online.config</code></p>
-<p><a href="images/2017-03-17_162400_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-17_162400_thumb_25255B1_25255D.png" title="2017-03-17_162400" alt="2017-03-17_162400" width="565" height="293"></a></p>
+<p><a href="images/17-03-17_162400.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-17_162400.png" title="2017-03-17_162400" alt="2017-03-17_162400"></a></p>
 <p>Remember from above this will change if you install Visual Studio 2017 on the build server (or use NuGet 4.x).</p>
 <ol>
 <li>Add nuget.config to the build agent's profile.</li>
@@ -718,13 +706,13 @@ pause</code></pre></div>
 <li>TFS NuGet Installer Path Field</li>
 </ol>
 <p>If you check in a nuget.config file with the solution, enter the path in your build definition's NuGet Installer step. This path is relative to the Path to Solution. I would use this solution if my team didn't all work in the same network, and so needed to use an authenticated NuGet server such as <a href="http://myget.org/">MyGet</a>.</p>
-<p><a href="images/2017-03-17_162452_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-17_162452_thumb.png" title="2017-03-17_162452" alt="2017-03-17_162452" width="507" height="111"></a></p>
+<p><a href="images/17-03-17_162452.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-17_162452.png" title="2017-03-17_162452" alt="2017-03-17_162452"></a></p>
 <ol>
 <li>Use the -configFile switch</li>
 </ol>
 <p>You could also put a nuget.config file somewhere on the build server (or network?), and use the -configFile switch. Remember the build agent service needs permission to read the file.</p>
-<p><a href="images/2017-03-17_162410_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-17_162410_thumb.png" title="2017-03-17_162410" alt="2017-03-17_162410" width="497" height="166"></a></p>
-<h2 id="dealing-with-barry">Dealing with Barry</h2>
+<p><a href="images/17-03-17_162410.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-17_162410.png" title="2017-03-17_162410" alt="2017-03-17_162410"></a></p>
+<h2>Dealing with Barry</h2>
 <p>Barry's been with us for five years. Barry drinks his coffee black, and lots of it. Barry knows where every file on his machine is, and would prefer you didn't look over his shoulder. Barry has his code, please leave it alone.</p>
 <p>Unfortunately, Barry assumes he'll always be here, and hasn't ever tested what would happen if his machine imploded in a fiery death. I go to Barry and say, "Your code doesn't build on a clean checkout." Barry storms over to my computer and starts typing. I observe, take notes, and when I see him copying jamma.dll, ask, "What's that?"</p>
 <p>"Oh," he mumbles, "license dll. Forgot about that. Kinda important. RevEngine won't run without it."</p>
@@ -732,73 +720,72 @@ pause</code></pre></div>
 <ol>
 <li>Ensure it's in a folder under the solution or project, reference it there, and add it to source control.</li>
 </ol>
-<p><a href="images/2017-03-17_164300_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-17_164300_thumb_25255B1_25255D.png" title="2017-03-17_164300" alt="2017-03-17_164300" width="722" height="481"></a></p>
+<p><a href="images/17-03-17_164300.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-17_164300.png" title="2017-03-17_164300" alt="2017-03-17_164300"></a></p>
 <ol>
 <li>Create the dll as a NuGet package, and add it to my NuGet server.</li>
 </ol>
 <p><a href="https://dist.nuget.org/index.html">Download nuget.exe</a> and put in same folder as the dll (or put in its own folder and add to the system path variables).</p>
 <p>Open a command prompt, change directories to where the dll is, and run <code>nuget spec jamma.dll</code>.</p>
 <p>Edit the resulting damma.dll.nuspec file, change or remove elements as desired.</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version="1.0"<span class="kw">?&gt;</span>
-<span class="kw">&lt;package</span> <span class="kw">&gt;</span>
-<span class="kw">&lt;metadata&gt;</span>
-<span class="kw">&lt;id&gt;</span>jamma.dll<span class="kw">&lt;/id&gt;</span>
-<span class="kw">&lt;version&gt;</span>3.2.52<span class="kw">&lt;/version&gt;</span>
-<span class="kw">&lt;authors&gt;</span>Jamma Ltd<span class="kw">&lt;/authors&gt;</span>
-<span class="kw">&lt;owners&gt;</span>Jamma Ltd<span class="kw">&lt;/owners&gt;</span>
-<span class="kw">&lt;requireLicenseAcceptance&gt;</span>false<span class="kw">&lt;/requireLicenseAcceptance&gt;</span>
-<span class="kw">&lt;description&gt;</span>License file<span class="kw">&lt;/description&gt;</span>
-<span class="kw">&lt;copyright&gt;</span>Copyright 2017<span class="kw">&lt;/copyright&gt;</span>
-<span class="kw">&lt;/metadata&gt;</span>
-<span class="kw">&lt;/package&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">&lt;?xml</span> version="1.0"<span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">&lt;package</span> <span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">&lt;metadata&gt;</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">&lt;id&gt;</span>jamma.dll<span class="kw">&lt;/id&gt;</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">&lt;version&gt;</span>3.2.52<span class="kw">&lt;/version&gt;</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">&lt;authors&gt;</span>Jamma Ltd<span class="kw">&lt;/authors&gt;</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">&lt;owners&gt;</span>Jamma Ltd<span class="kw">&lt;/owners&gt;</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="kw">&lt;requireLicenseAcceptance&gt;</span>false<span class="kw">&lt;/requireLicenseAcceptance&gt;</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="kw">&lt;description&gt;</span>License file<span class="kw">&lt;/description&gt;</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="kw">&lt;copyright&gt;</span>Copyright 2017<span class="kw">&lt;/copyright&gt;</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="kw">&lt;/metadata&gt;</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="kw">&lt;/package&gt;</span></a></code></pre></div>
 <p><strong>Important: Now move the dll into a subfolder named "lib"</strong></p>
 <p>Package the dll using <code>nuget pack</code>.</p>
 <p>Add the package (jamma.dll and jamma.dll.nuspect) to your NuGet server however is appropriate, might just be copy/paste, or using nuget push commands. See the NuGet documentation.</p>
 <p>Remove the reference from the project, and re-add from NuGet. Build and test. If everything's OK, delete the old jamma.dll file and folder.</p>
 <p>Which would I do? Number 2, so that all my external dependencies are handled the same way (NuGet).</p>
-<h2 id="its-building-so-add-to-ci">It's Building, so Add to CI</h2>
+<h2>It's Building, so Add to CI</h2>
 <p>I test again by deleting and re-getting all the source code, open each and restore any NuGet packages, and build all the solutions. Everything builds, so I'm ready to configure TFS Build for continuous integration.</p>
 <p>All my solutions are under the same team project. I'll need to be careful when I create my build definitions that I'm only checking out and building the solutions I want. The key to that is not saving the definition until its Repository and Triggers have been configured.</p>
 <p>I'll create the first definition in detail, then just list settings for the remainders.</p>
 <p><strong>But first, the NuGet Package Source</strong></p>
 <p>If I haven't done it already, I'll add a machine-wide nuget configuration file that has my custom package source.</p>
 <p>Create the file <code>%ProgramData%\NuGet\Config\MySource.config</code> with the source definition. In my case, I'm testing with a local NuGet server.</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span>
-<span class="kw">&lt;configuration&gt;</span>
-<span class="kw">&lt;packageSources&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"NuGet Test Server"</span><span class="ot"> value=</span><span class="st">"http://localhost:7275/"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageSources&gt;</span>
-<span class="kw">&lt;/configuration&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">&lt;configuration&gt;</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">&lt;packageSources&gt;</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"NuGet Test Server"</span><span class="ot"> value=</span><span class="st">"http://localhost:7275/"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">&lt;/packageSources&gt;</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">&lt;/configuration&gt;</span></a></code></pre></div>
 <p><strong>NameDb</strong></p>
 <p>Let's start at the top with the simple one, NameDb. In TFS, navigate to the correct collection and the Main team project. Then open the Build tab, start a new build and choose the Visual Studio template.</p>
-<p><a href="images/2017-03-25_143134_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_143134_thumb_25255B1_25255D.png" title="2017-03-25_143134" alt="2017-03-25_143134" width="742" height="330"></a></p>
+<p><a href="images/17-03-_143134.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_143134.png" title="2017-03-25_143134" alt="2017-03-25_143134"></a></p>
 <p>Create using the repository source Main Team Project.</p>
-<p><a href="images/2017-03-25_143854_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_143854_thumb.png" title="2017-03-25_143854" alt="2017-03-25_143854" width="617" height="618"></a></p>
+<p><a href="images/17-03-_143854.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_143854.png" title="2017-03-25_143854" alt="2017-03-25_143854"></a></p>
 <p>Delete the Index, Copy and Publish steps. I can add those back if we want them. I don't need the NuGet installer step, either, but I'll configure it as an example since the other projects need it.</p>
-<p><a href="images/2017-03-25_144248_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_144248_thumb.png" title="2017-03-25_144248" alt="2017-03-25_144248" width="567" height="366"></a></p>
+<p><a href="images/17-03-_144248.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_144248.png" title="2017-03-25_144248" alt="2017-03-25_144248"></a></p>
 <p>Set the NuGet Installer path to the NameDb solution file.</p>
-<p><a href="images/2017-03-25_145021_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_145021_thumb_25255B1_25255D.png" title="2017-03-25_145021" alt="2017-03-25_145021" width="736" height="256"></a></p>
+<p><a href="images/17-03-_145021.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_145021.png" title="2017-03-25_145021" alt="2017-03-25_145021"></a></p>
 <p>Set the Visual Studio Build path to the NameDb solution file.</p>
-<p><a href="images/2017-03-25_145758_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_145758_thumb_25255B1_25255D.png" title="2017-03-25_145758" alt="2017-03-25_145758" width="739" height="263"></a></p>
+<p><a href="images/17-03-_145758.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_145758.png" title="2017-03-25_145758" alt="2017-03-25_145758"></a></p>
 <p>Set the Visual Studio Test "Test Assembly" to the solution folder path. This is the physical folder where the agent will have pulled the files from TFS, the same as the LocalPath path we'll choose in Repository. The path definition means "Run any dll with "test" in its name under the build definition name, but not in the obj folders." Since our build definition will be Release, it'll run Release/NameDb.Tests.dll.</p>
-<p><a href="images/2017-03-25_150526_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_150526_thumb_25255B1_25255D.png" title="2017-03-25_150526" alt="2017-03-25_150526" width="747" height="276"></a></p>
+<p><a href="images/17-03-_150526.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_150526.png" title="2017-03-25_150526" alt="2017-03-25_150526"></a></p>
 <p>Do NOT Save!</p>
 <p>Change to the Repository tab. This controls what source code gets checked out by the build. Change the mapped paths. We'll keep the cloaked Drops folder, even though we aren't publishing anything yet.</p>
 <p>Notice the LocalPath is set. This is so the contents of the NameDb solution folder are placed under a _Shared\NameDb folder, just like in the repository. It's not strictly needed for this build, but remember how this works if you're building multiple solutions with project dependencies in relative folders.</p>
-<p><a href="images/2017-03-25_151640_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_151640_thumb.png" title="2017-03-25_151640" alt="2017-03-25_151640" width="731" height="392"></a></p>
+<p><a href="images/17-03-_151640.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_151640.png" title="2017-03-25_151640" alt="2017-03-25_151640"></a></p>
 <p>Change to the Variables tab and ensure the BuildConfiguration is "release".</p>
-<p><a href="images/2017-03-25_152836_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_152836_thumb_25255B1_25255D.png" title="2017-03-25_152836" alt="2017-03-25_152836" width="736" height="344"></a></p>
+<p><a href="images/17-03-_1528.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_1528.png" title="2017-03-25_152836" alt="2017-03-25_152836"></a></p>
 <p>Change to the Triggers tab. This controls what starts a build. Check Continuous Integration and set the path to the NameDb folder. We only want to build if a file in NameDb changes.</p>
-<p><a href="images/2017-03-25_153129_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_153129_thumb.png" title="2017-03-25_153129" alt="2017-03-25_153129" width="546" height="314"></a></p>
+<p><a href="images/17-03-_153129.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_153129.png" title="2017-03-25_153129" alt="2017-03-25_153129"></a></p>
 <p>Now Save the definition and give it a good name like "DbName".</p>
-<p><a href="images/2017-03-25_153325_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_153325_thumb.png" title="2017-03-25_153325" alt="2017-03-25_153325" width="515" height="235"></a></p>
+<p><a href="images/17-03-_1533.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_1533.png" title="2017-03-25_153325" alt="2017-03-25_153325"></a></p>
 <p>Finally, queue the build and see if it succeeds!</p>
 <blockquote>
-<p><strong>Important</strong><br>
-Check each step's output for what you expect. Especially, check that tests ran! The test step will success even if it doesn't find tests!</p>
+<p><strong>Important</strong> Check each step's output for what you expect. Especially, check that tests ran! The test step will success even if it doesn't find tests!</p>
 </blockquote>
-<p><a href="images/2017-03-25_153438_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_153438_thumb.png" title="2017-03-25_153438" alt="2017-03-25_153438" width="340" height="138"></a></p>
-<p><a href="images/2017-03-25_155144_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-25_155144_thumb_25255B1_25255D.png" title="2017-03-25_155144" alt="2017-03-25_155144" width="742" height="202"></a></p>
+<p><a href="images/17-03-_153438.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_153438.png" title="2017-03-25_153438" alt="2017-03-25_153438"></a></p>
+<p><a href="images/17-03-_155144.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-_155144.png" title="2017-03-25_155144" alt="2017-03-25_155144"></a></p>
 <p>For the next solutions, I'll just list the settings for the build definitions. All of them use the Visual Studio template, and only keep the NuGet, Build and Test steps.</p>
 <p><strong>ReverseIt</strong></p>
 <p>BUILD TAB</p>
@@ -838,8 +825,7 @@ Check each step's output for what you expect. Especially, check that tests ran! 
 <li><p>Test ReverseNames</p></li>
 <li><p>Assembly path: <code>ReverseNames\**\$(BuildConfiguration)\*test*.dll;-:**\obj\**</code></p></li>
 </ul>
-<p>REPOSITORY TAB<br>
-This is critical. I'm telling the build <em>exactly</em> which project folders to pull from ReverseIt, i.e. RevEngine and RevEngine.Tests. This way I don't pull and build ReverseIt.csproj.</p>
+<p>REPOSITORY TAB This is critical. I'm telling the build <em>exactly</em> which project folders to pull from ReverseIt, i.e. RevEngine and RevEngine.Tests. This way I don't pull and build ReverseIt.csproj.</p>
 <p>If I add a test project later, I'll need to add its mapped path here. Note that I removed the Drops cloaked path since I don't need it.</p>
 <ul>
 <li>Map Server Path <code>$/Main/ReverseIt/RevEngine</code> to Local Path <code>ReverseIt\RevEngine</code></li>
@@ -850,22 +836,21 @@ This is critical. I'm telling the build <em>exactly</em> which project folders t
 <ul>
 <li>BuildConfiguration: release</li>
 </ul>
-<p>TRIGGERS TAB<br>
-I'm triggering the build if ReverseNames changes.</p>
+<p>TRIGGERS TAB I'm triggering the build if ReverseNames changes.</p>
 <ul>
 <li>Include <code>$/Main/ReverseNames</code></li>
 </ul>
 <p>Here are some screenshots of the ReverseNames definition.</p>
-<p><a href="images/2017-03-26_190426_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-26_190426_thumb.png" title="2017-03-26_190426" alt="2017-03-26_190426" width="520" height="366"></a></p>
-<p><a href="images/2017-03-26_190546_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-26_190546_thumb.png" title="2017-03-26_190546" alt="2017-03-26_190546" width="758" height="371"></a></p>
-<p><a href="images/2017-03-26_190620_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-26_190620_thumb.png" title="2017-03-26_190620" alt="2017-03-26_190620" width="527" height="278"></a></p>
-<h1 id="improving-the-solutions-dependencies-and-team-projects">Improving the Solutions, Dependencies and Team Projects</h1>
+<p><a href="images/17-03-26_190426.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-26_190426.png" title="2017-03-26_190426" alt="2017-03-26_190426"></a></p>
+<p><a href="images/17-03-26_190546.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-26_190546.png" title="2017-03-26_190546" alt="2017-03-26_190546"></a></p>
+<p><a href="images/17-03-26_1906_.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-26_1906_.png" title="2017-03-26_190620" alt="2017-03-26_190620"></a></p>
+<h1>Improving the Solutions, Dependencies and Team Projects</h1>
 <p>What I've done so far works. Sort of. But it's not exactly ideal, especially if there were fifty solutions, not just three. One big thing I lose is the ability to maintain separate project boards and work items per project. To do that, I'd really like a separate Team Project per solution (or in some cases it could be multiple solutions).</p>
 <p>The team projects might look like this.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">$\NameDb
-$\RevEngine
-$\ReverseIt
-$\ReverseNames</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb9-1" data-line-number="1">$\NameDb</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">$\RevEngine</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">$\ReverseIt</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">$\ReverseNames</a></code></pre></div>
 <p>And then there's the project reference. The project reference is bound to cause headaches in the future. One developer will change RevEngine and silently break the ReverseNames build. I say "silently," because it could be something like adding a new unit test project that doesn't get run by ReverseNames because it doesn't get pulled from source control.</p>
 <p>Because it's a shared dependency, RevEngine needs to be in its own solution under _Shared and published as a NuGet package.</p>
 <p>Right about now, someone's saying, "But but but! I need to be able to step through that code! And make changes that I can test against ReverseIt!!"</p>
@@ -888,14 +873,14 @@ $\ReverseNames</code></pre></div>
 </ol>
 <p>In other words, you need to treat RevEngine as if it were some third party assembly like Entity Framework or NLog.</p>
 <p>All of this leads to...</p>
-<h1 id="key-thinking-to-managing-dependencies">Key Thinking to Managing Dependencies</h1>
+<h1>Key Thinking to Managing Dependencies</h1>
 <ol>
 <li>Treat your dependencies as if they're third party.</li>
 <li>Shared dependencies need to be in their own solutions.</li>
 <li>What does it take to check out, build and test the solution on a new computer?</li>
 <li>How would you store the project(s) on GitHub or other public remote repository?</li>
 </ol>
-<h1 id="the-plan">The Plan</h1>
+<h1>The Plan</h1>
 <p>I'm going to do just three things, but they'll make a big difference.</p>
 <ol>
 <li>Reorganize the solutions into discrete team projects</li>
@@ -903,55 +888,53 @@ $\ReverseNames</code></pre></div>
 <li>Update projects to use the packages</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
-Before getting started in a production environment, I'd disable all of the affected TFS Build definitions. I don't want anything running if I don't need to.</p>
+<p><strong>Important</strong> Before getting started in a production environment, I'd disable all of the affected TFS Build definitions. I don't want anything running if I don't need to.</p>
 <p>I would also make a backup copy of all the affected source code, just in case something gets lost.</p>
 </blockquote>
-<h1 id="reorganizing-into-team-projects">Reorganizing into Team Projects</h1>
+<h1>Reorganizing into Team Projects</h1>
 <p>First, I'll create my new team projects. Then I'll move my code.</p>
 <blockquote>
-<p><strong>Note</strong><br>
-You can also add team projects using the Visual Studio Team Explorer.</p>
+<p><strong>Note</strong> You can also add team projects using the Visual Studio Team Explorer.</p>
 </blockquote>
 <ol>
 <li><p>Open TFS in the browser, e.g. <a href="http://nesbit:8080/tfs" class="uri">http://nesbit:8080/tfs</a>. Or, if you know your collection's name, you can open it directly and skip to step 4. (e.g. <a href="http://nesbit:8080/tfs/CICollection3/_admin" class="uri">http://nesbit:8080/tfs/CICollection3/_admin</a>)</p></li>
 <li><p>Click the upper right hand corner settings "gear" icon to open the Manage Server page.</p></li>
 </ol>
-<p><a href="images/2017-03-27_085328_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_085328_thumb.png" title="2017-03-27_085328" alt="2017-03-27_085328" width="267" height="90"></a></p>
+<p><a href="images/17-03-27_085328.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_085328.png" title="2017-03-27_085328" alt="2017-03-27_085328"></a></p>
 <ol>
 <li>Select the Collection holding your team projects, and click "View the collection administration page".</li>
 </ol>
-<p><a href="images/2017-03-27_085913_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_085913_thumb.png" title="2017-03-27_085913" alt="2017-03-27_085913" width="506" height="400"></a></p>
+<p><a href="images/17-03-27_085913.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_085913.png" title="2017-03-27_085913" alt="2017-03-27_085913"></a></p>
 <ol>
 <li>Click New Team Project, enter the information and Create.</li>
 </ol>
-<p><a href="images/2017-03-27_090645_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_090645_thumb_25255B1_25255D.png" title="2017-03-27_090645" alt="2017-03-27_090645" width="706" height="545"></a></p>
+<p><a href="images/17-03-27_090645.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_090645.png" title="2017-03-27_090645" alt="2017-03-27_090645"></a></p>
 <p>Repeat to create the four team projects.</p>
-<p><a href="images/2017-03-27_091136_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_091136_thumb.png" title="2017-03-27_091136" alt="2017-03-27_091136" width="219" height="288"></a></p>
+<p><a href="images/17-03-27_0911.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_0911.png" title="2017-03-27_091136" alt="2017-03-27_091136"></a></p>
 <p>We can't move the code using the TFS web application, so</p>
 <ol>
 <li><p>Open Visual Studio</p></li>
 <li><p>Open Team Explorer and click the plug icon to Manage Connections</p></li>
 </ol>
-<p><a href="images/2017-03-27_091617_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_091617_thumb.png" title="2017-03-27_091617" alt="2017-03-27_091617" width="433" height="367"></a></p>
+<p><a href="images/17-03-27_091617.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_091617.png" title="2017-03-27_091617" alt="2017-03-27_091617"></a></p>
 <ol>
 <li>Double click the collection you're using to connect to it.</li>
 </ol>
-<p><a href="images/2017-03-27_091812_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_091812_thumb.png" title="2017-03-27_091812" alt="2017-03-27_091812" width="305" height="210"></a></p>
+<p><a href="images/17-03-27_091812.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_091812.png" title="2017-03-27_091812" alt="2017-03-27_091812"></a></p>
 <ol>
 <li>Open Source Control Explorer.</li>
 </ol>
-<p><a href="images/2017-03-27_091911_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_091911_thumb.png" title="2017-03-27_091911" alt="2017-03-27_091911" width="240" height="283"></a></p>
+<p><a href="images/17-03-27_091911.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_091911.png" title="2017-03-27_091911" alt="2017-03-27_091911"></a></p>
 <ol>
 <li><p>The new team project folders need to be mapped to local folders. This is kind of a pain, but with TFS Version Control there's no getting around it. It's easier with git. I would create a new folder named something like TempTeams to hold the new team projects, finish the moves, then delete all my source code mappings and start over. Like I said, a pain. <strong>Be <em>very</em> careful when doing all this that you don't accidentally delete source code from TFS you didn't want to.</strong></p></li>
 <li><p>To map a team project folder, select it and click the Not Mapped link. Enter the destination folder, and when prompted Get the latest code (there won't be any, that's OK). Map all the team project folders.</p></li>
 </ol>
-<p><a href="images/2017-03-27_093743_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_093743_thumb.png" title="2017-03-27_093743" alt="2017-03-27_093743" width="686" height="329"></a></p>
+<p><a href="images/17-03-27_093743.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_093743.png" title="2017-03-27_093743" alt="2017-03-27_093743"></a></p>
 <ol>
 <li>Open the NameDb solution. TFS still doesn't natively allow moving multiple files/folders at once, so we need to move the project contents one a time. First, I'll move the solution file. Right-click, select Move, and enter the NameDb team project. The file will be moved to the NameDb team project.</li>
 </ol>
-<p><a href="images/2017-03-27_092818_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_092818_thumb.png" title="2017-03-27_092818" alt="2017-03-27_092818" width="384" height="497"></a></p>
-<p><a href="images/2017-03-27_094508_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_094508_thumb.png" title="2017-03-27_094508" alt="2017-03-27_094508" width="528" height="234"></a></p>
+<p><a href="images/17-03-27_092818.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_092818.png" title="2017-03-27_092818" alt="2017-03-27_092818"></a></p>
+<p><a href="images/17-03-27_094508.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_094508.png" title="2017-03-27_094508" alt="2017-03-27_094508"></a></p>
 <ol>
 <li><p>Move the NameDb and NameDb.Tests project folders the same way. You <em>can</em> right-click and move an entire folder, just not multiple folders.</p></li>
 <li><p>When finished, Commit the changes.</p></li>
@@ -959,30 +942,30 @@ You can also add team projects using the Visual Studio Team Explorer.</p>
 </ol>
 <p>Now I'm going to move just the RevEngine project folders to the new RevEngine team project. Later, I'll create their solution file.</p>
 <p>Open the ReverseIt folder. Move the RevEngine and RevEngine.Test folders.</p>
-<p><a href="images/2017-03-27_095844_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_095844_thumb.png" title="2017-03-27_095844" alt="2017-03-27_095844" width="595" height="163"></a></p>
-<p><a href="images/2017-03-27_100012_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_100012_thumb.png" title="2017-03-27_100012" alt="2017-03-27_100012" width="610" height="164"></a></p>
+<p><a href="images/17-03-27_095844.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_095844.png" title="2017-03-27_095844" alt="2017-03-27_095844"></a></p>
+<p><a href="images/17-03-27_100012.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_100012.png" title="2017-03-27_100012" alt="2017-03-27_100012"></a></p>
 <p>At this point, I move the remaining ReverseIt files/folders to their new team project. Likewise the ReverseNames solution.</p>
 <p>Commit the changes. Delete the folders from $/Main, and commit that change, too.</p>
 <p><strong>Do NOT delete the $/Main team project! The TFS Build definitions would be deleted, too.!</strong></p>
 <p>Finally, go to the RevEngine project in your local working folder, i.e. <code>..TempTeams\RevEngine\RevEngine</code>, open RevEngine.csproj. This will open the project in a solution, we just haven't saved the solution file yet.</p>
 <p>Add the RevEngine.Tests project to the solution.</p>
-<p><a href="images/2017-03-27_101947_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_101947_thumb.png" title="2017-03-27_101947" alt="2017-03-27_101947" width="269" height="293"></a></p>
+<p><a href="images/17-03-27_101947.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_101947.png" title="2017-03-27_101947" alt="2017-03-27_101947"></a></p>
 <p>Now I have to be careful. I select the solution in Solution Explorer. Then, File &gt; Save RevEngine.sln As.</p>
-<p><a href="images/2017-03-27_102153_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_102153_thumb.png" title="2017-03-27_102153" alt="2017-03-27_102153" width="334" height="446"></a></p>
+<p><a href="images/17-03-27_102153.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_102153.png" title="2017-03-27_102153" alt="2017-03-27_102153"></a></p>
 <p>In the Save As dialog, I navigate <em>up</em> one folder, so my solution file is at the root of RevEngine.</p>
-<p><a href="images/2017-03-27_102556_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_102556_thumb.png" title="2017-03-27_102556" alt="2017-03-27_102556" width="670" height="473"></a></p>
+<p><a href="images/17-03-27_1056.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_1056.png" title="2017-03-27_102556" alt="2017-03-27_102556"></a></p>
 <p>Now, I drag and drop the solution file into the Source Control Explorer's RevEngine team project.</p>
-<p><a href="images/2017-03-27_102848_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_102848_thumb_25255B1_25255D.png" title="2017-03-27_102848" alt="2017-03-27_102848" width="741" height="276"></a></p>
+<p><a href="images/17-03-27_102848.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_102848.png" title="2017-03-27_102848" alt="2017-03-27_102848"></a></p>
 <p>Commit the change.</p>
 <p>My projects are reorganized, and a couple will build (NameDb and RevEngine). Time to turn handle the RevEngine dependency.</p>
-<h1 id="publish-shared-project-references-as-nuget-packages">Publish shared project references as NuGet packages</h1>
+<h1>Publish shared project references as NuGet packages</h1>
 <p>I'm still working in the TempTeams folder. I'll wait until everything's working before going back to my preferred folders.</p>
 <p>Creating NuGet packages can be complex. For this walkthrough, I'm showing the simplest thing that works; I'm sure these steps are not ideal. The following assumes I have a local NuGet server at <a href="http://localhost:7275/nuget" class="uri">http://localhost:7275/nuget</a> that doesn't require an API key for pushing packages (not recommended), and does allow pushing symbols.</p>
 <ol>
 <li><p>Open the solution, and edit the RevEngine Project Properties &gt; Application &gt; Assembly Information.</p></li>
 <li><p>Ensure Title, Description, Company and Product are filled in.</p></li>
 </ol>
-<p><a href="images/2017-03-27_113329_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_113329_thumb.png" title="2017-03-27_113329" alt="2017-03-27_113329" width="589" height="450"></a></p>
+<p><a href="images/17-03-27_113329.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_113329.png" title="2017-03-27_113329" alt="2017-03-27_113329"></a></p>
 <ol>
 <li><p>Save <em>and build</em> the solution. You must build, because nuget packs the built dll. It does not build the solution for you.</p></li>
 <li><p>Download the latest recommended <a href="https://dist.nuget.org/index.html">NuGet.exe file</a>.</p></li>
@@ -991,35 +974,34 @@ You can also add team projects using the Visual Studio Team Explorer.</p>
 <li><p>Run <code>nuget spec</code> to create a RevEngine.nuspec file</p></li>
 <li><p>Edit RevEngine.nuspec and make these changes:</p></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version="1.0"<span class="kw">?&gt;</span>
-<span class="kw">&lt;package</span> <span class="kw">&gt;</span>
-<span class="kw">&lt;metadata&gt;</span>
-<span class="kw">&lt;id&gt;</span>$id$<span class="kw">&lt;/id&gt;</span>
-<span class="kw">&lt;version&gt;</span>$version$<span class="kw">&lt;/version&gt;</span>
-<span class="kw">&lt;title&gt;</span>$title$<span class="kw">&lt;/title&gt;</span>
-<span class="kw">&lt;authors&gt;</span>$author$<span class="kw">&lt;/authors&gt;</span>
-<span class="kw">&lt;owners&gt;</span>$author$<span class="kw">&lt;/owners&gt;</span>
-<span class="kw">&lt;description&gt;</span>$description$<span class="kw">&lt;/description&gt;</span>
-<span class="kw">&lt;/metadata&gt;</span>
-<span class="kw">&lt;/package&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">&lt;?xml</span> version="1.0"<span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">&lt;package</span> <span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">&lt;metadata&gt;</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">&lt;id&gt;</span>$id$<span class="kw">&lt;/id&gt;</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">&lt;version&gt;</span>$version$<span class="kw">&lt;/version&gt;</span></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="kw">&lt;title&gt;</span>$title$<span class="kw">&lt;/title&gt;</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7"><span class="kw">&lt;authors&gt;</span>$author$<span class="kw">&lt;/authors&gt;</span></a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="kw">&lt;owners&gt;</span>$author$<span class="kw">&lt;/owners&gt;</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="kw">&lt;description&gt;</span>$description$<span class="kw">&lt;/description&gt;</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"><span class="kw">&lt;/metadata&gt;</span></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="kw">&lt;/package&gt;</span></a></code></pre></div>
 <ol>
 <li><p>Run <code>nuget pack -Symbols</code> to create the regular and symbols package. Remember that, in our case, we want a symbols package so that we can step through the assembly without using a project reference.</p></li>
 <li><p>Run <code>nuget push *.nupkg -Source http://localhost:7275/api/v2/package</code>. This will push both of the packages.</p></li>
 </ol>
-<h1 id="update-projects-to-use-the-packages">Update projects to use the packages</h1>
+<h1>Update projects to use the packages</h1>
 <p>This one should be pretty easy. In any solution that has RevEngine as a project reference, remove the project and the reference, then install the NuGet package. Notice that jamma.dll is installed as well, because RevEngine depends on it and the RevEngine project was referencing the jamma.dll NuGet package when it was packages.</p>
 <p>After updating, if I open ReverseIt (for example), put a breakpoint on this line,</p>
 <p><code>Console.WriteLine(util.ReverseText(text));</code></p>
 <p>then run the program, I can step into RevEngine.TextUtilities.cs, which is now part of the debugging symbols.</p>
-<h1 id="update-tfs-build-definitions">Update TFS Build Definitions</h1>
+<h1>Update TFS Build Definitions</h1>
 <p>It's time to get our builds working again!</p>
 <p>TFS doesn't natively support copying/moving build definitions. One solution is to write code using the TFS web API to clone definitions:</p>
 <p><a href="http://www.eidias.com/blog/2016/3/7/tfs-2015-cloneimportexport-build-definition-between-team-projects" class="uri">http://www.eidias.com/blog/2016/3/7/tfs-2015-cloneimportexport-build-definition-between-team-projects</a></p>
 <p>However, there's a TFS extension for this, which really saves the day. You can download it here.</p>
 <p><a href="https://marketplace.visualstudio.com/items?itemName=onlyutkarsh.ExportImportBuildDefinition">Export/Import Build Definitions</a></p>
 <blockquote>
-<p><strong>Note</strong><br>
-If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/ExportImportBuildDefinition/releases/tag/v0.0.2">v0.0.2</a>. Later versions only work with TFS 2017.</p>
+<p><strong>Note</strong> If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/ExportImportBuildDefinition/releases/tag/v0.0.2">v0.0.2</a>. Later versions only work with TFS 2017.</p>
 </blockquote>
 <p>Follow the instructions to install the extension.</p>
 <p>To install 'Export/Import Build Definition' (EIBD) on Team Foundation Server 2015 Update 2 and above, perform the following steps:</p>
@@ -1032,7 +1014,7 @@ If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/
 <ol>
 <li>In the Main team project Build tab, right-click the build definition and choose Export. Save the json file to a folder such as TfsBuildExports.</li>
 </ol>
-<p><a href="images/2017-03-27_144558_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_144558_thumb.png" title="2017-03-27_144558" alt="2017-03-27_144558" width="198" height="528"></a></p>
+<p><a href="images/17-03-27_144558.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_144558.png" title="2017-03-27_144558" alt="2017-03-27_144558"></a></p>
 <ol>
 <li><p>Change to the NameDb team project Build tab. EIBD has a known limitation: the Export/Import menu items can only be seen on a build definition name, not the "All build definitions" item. So, if necessary, create an empty definition and save it with a non-conflicting name.</p></li>
 <li><p>Right-click a definition and choose Import, selecting the .json file.</p></li>
@@ -1049,11 +1031,12 @@ If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/
 <ul>
 <li>Map $/NameDb, leave Local Path empty</li>
 </ul>
-<p><a href="images/2017-03-27_145831_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_145831_thumb.png" title="2017-03-27_145831" alt="2017-03-27_145831" width="686" height="119"></a></p>
+<p><a href="images/17-03-27_145831.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_145831.png" title="2017-03-27_145831" alt="2017-03-27_145831"></a></p>
 <p>TRIGGERS</p>
 <ul>
 <li>Include $/NameDb</li>
 </ul>
+<!-- end list -->
 <ol>
 <li>Test!</li>
 </ol>
@@ -1063,25 +1046,20 @@ If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/
 <p>Likewise, ReverseNames can be simplified because I no longer have the RevEngine project to deal with. In fact, all I have to do is delete anything related to RevEngine, then update the remaining paths as I've done above.</p>
 <p><strong>RevEngine</strong></p>
 <p>This is a new build definition, and it follows the same simplified pattern as above.</p>
-<h1 id="what-just-happened">What Just Happened?</h1>
+<h1>What Just Happened?</h1>
 <p>I'll tell you what. Our build definitions got simpler because</p>
 <ol>
 <li>We converted our project references to NuGet packages.</li>
 <li>We contained our code in team projects.</li>
 </ol>
 <p>Admittedly, the sample was a pretty simple case. I could have a team project that legitimately encompasses multiple solutions. But if I still apply the key principles from above, I can have clean maintenance and simpler builds. As a bonus, it should be much easier to switch to git if I want, since I'm now treating my code as discrete instead of monolithic.</p>
-<h1 id="clean-up">Clean Up</h1>
+<h1>Clean Up</h1>
 <p>I can now delete the $/Main team project. But, despite there being a right-click menu item, I can't do it from Source Control Explorer. So, (sigh), back to the web interface and my collection administration page. Select Delete from the dropdown to the left of the team project.</p>
-<p><a href="images/2017-03-27_101321_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_101321_thumb.png" title="2017-03-27_101321" alt="2017-03-27_101321" width="238" height="281"></a></p>
+<p><a href="images/17-03-27_101321.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_101321.png" title="2017-03-27_101321" alt="2017-03-27_101321"></a></p>
 <p>Am I <em>sure</em> the team project is empty? If so, enter its name and delete it.</p>
-<p><a href="images/2017-03-27_101437_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/2017-03-27_101437_thumb.png" title="2017-03-27_101437" alt="2017-03-27_101437" width="515" height="314"></a></p>
-<h1 id="references">References</h1>
-<p><a href="https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package">Creating a Package</a><br>
-<a href="https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior">Configuring NuGet Behavior</a><br>
-<a href="http://softwareengineering.stackexchange.com/a/336984">Using Private NuGet Repository</a><br>
-<a href="http://stackoverflow.com/a/32624016/1628707">How to Get TFS2015 Build to Restore from Custom NuGet Source 1</a><br>
-<a href="http://stackoverflow.com/a/31384347/1628707">How to Get TFS2015 Build to Restore from Custom NuGet Source 2</a><br>
-<a href="http://stackoverflow.com/a/28593688/1628707">NuGet Package Source Config Locations</a> <a href="http://blog.nuget.org/20161121/introducing-nuget4.0.html">Introducing NuGet 4</a> <a href="http://stackoverflow.com/a/27569020/1628707">Specifying NuGet Config path for TFS Build</a></p>
+<p><a href="images/17-03-27_101437.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through/images/17-03-27_101437.png" title="2017-03-27_101437" alt="2017-03-27_101437"></a></p>
+<h1>References</h1>
+<p><a href="https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package">Creating a Package</a> <a href="https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior">Configuring NuGet Behavior</a> <a href="http://softwareengineering.stackexchange.com/a/336984">Using Private NuGet Repository</a> <a href="http://stackoverflow.com/a/32624016/1628707">How to Get TFS2015 Build to Restore from Custom NuGet Source 1</a> <a href="http://stackoverflow.com/a/31384347/1628707">How to Get TFS2015 Build to Restore from Custom NuGet Source 2</a> <a href="http://stackoverflow.com/a/28593688/1628707">NuGet Package Source Config Locations</a> <a href="http://blog.nuget.org/20161121/introducing-nuget4.0.html">Introducing NuGet 4</a> <a href="http://stackoverflow.com/a/27569020/1628707">Specifying NuGet Config path for TFS Build</a></p>
 <p>Next Part: <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples/src/default/CI%20Walk%20Through/TFS%20Continuous%20Integration%20Walk%20Through%20Part%205a%20-%20Multiple%20Solutions%20-%20Build%20Settings.md">TFS Continuous Integration Walk Through Part 5d - Multiple Solutions: Build Settings</a></p>
 </div>
               </div>

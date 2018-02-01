@@ -42,10 +42,9 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-20 13:45</span></p>
-                <div class='post-content'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126"></a> This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br>
-<a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a><br>
-Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_24.html">TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></p>
-<h2 id="where-im-headed">Where I'm Headed</h2>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20/images/ci-logo.png" title="ci-logo" alt="ci-logo"></a> This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository. <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
+<p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_24.html">TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></p>
+<h2>Where I'm Headed</h2>
 <p>For the next walkthroughs, I'm starting with new team projects and sample applications, building a suite of solutions with shared dependencies. My goal is to uncover the various problems that come from:</p>
 <ul>
 <li>DLL dependencies</li>
@@ -56,16 +55,15 @@ Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-in
 <li>BONUS: Migrating to Git</li>
 </ul>
 <p>Along the way, I'm going to <em>completely abuse</em> the TFS team project structure and show how to clean up and organize a repository.</p>
-<h2 id="relationship-of-team-projects-solutions-and-build-definitions">Relationship of Team Projects, Solutions and Build Definitions</h2>
-<p>Team Projects are intended to manage a software project.<br>
-But that doesn't mean there's just one Visual Studio solution for a project. There might be several. For example, our CI Sample projects might end up looking like this:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">$/CI <span class="fu">Sample</span> (team project)
-|_CIConsoleSample
-|_CIRestSample
-|_CIDocumentation
-
-$/CI <span class="fu">Shared</span> (team project)
-|_CINuGetSample</code></pre></div>
+<h2>Relationship of Team Projects, Solutions and Build Definitions</h2>
+<p>Team Projects are intended to manage a software project. But that doesn't mean there's just one Visual Studio solution for a project. There might be several. For example, our CI Sample projects might end up looking like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">$/CI <span class="fu">Sample</span> (team project)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">|_CIConsoleSample</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">|_CIRestSample</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">|_CIDocumentation</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">$/CI <span class="fu">Shared</span> (team project)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">|_CINuGetSample</a></code></pre></div>
 <p>What does this mean for automated builds?</p>
 <ul>
 <li>Maybe the Console now has a dependency on the REST solution, and we need Console to build any time REST changes.</li>
@@ -77,22 +75,22 @@ $/CI <span class="fu">Shared</span> (team project)
 </blockquote>
 <p>This feature of a build definition means that much of the time we'll configure a definition to build just one solution. However, as pointed out above, for a solution that builds an assembly used by multiple projects, you might want to rebuild all the solutions that depend on it, to catch bugs.</p>
 <p>As this diagram shows, a team project can include multiple solutions. A build definition can build multiple solutions. A build definition belongs to a single team project, <em>but</em>, it can (with effort) build solutions in <em>other</em> team projects.</p>
-<p><a href="images/team-projects-and-builds_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20/images/team-projects-and-builds_thumb.png" title="team-projects-and-builds" alt="team-projects-and-builds" width="547" height="556"></a></p>
-<h2 id="the-projects---a-turing-oracle">The Projects - A Turing Oracle</h2>
+<p><a href="images/team-projects-and-builds.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20/images/team-projects-and-builds.png" title="team-projects-and-builds" alt="team-projects-and-builds"></a></p>
+<h2>The Projects - A Turing Oracle</h2>
 <p>My sample suite of applications is a pseudo <a href="https://en.wikipedia.org/wiki/Turing_test">Turing Test</a>, and is made up of desktop and web apps. The user can ask questions, and get answers that seem to be from a human. I'll start simple, imitating a real-world project progression. In the end, this will be my structure in the TFS repository.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">_$Shared
-|_$/Magic8Engine
-
-$/TuringDesktop
-|_TuringDesktop.<span class="fu">sln</span>
-|_TuringConsole.<span class="fu">csproj</span> (Dependencies: Magic8Engine, TextColor)
-|_TextColor.<span class="fu">csproj</span>
-
-$/TuringWeb
-|_TuringWeb.<span class="fu">sln</span>
-|_TuringWeb.<span class="fu">csproj</span> (Dependencies: TuringSoap)
-|_TuringSoap.<span class="fu">sln</span>
-|_TuringSoap.<span class="fu">csproj</span> (Dependencies: Magic8Engine)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1">_$Shared</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">|_$/Magic8Engine</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">$/TuringDesktop</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">|_TuringDesktop.<span class="fu">sln</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">|_TuringConsole.<span class="fu">csproj</span> (Dependencies: Magic8Engine, TextColor)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">|_TextColor.<span class="fu">csproj</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">$/TuringWeb</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">|_TuringWeb.<span class="fu">sln</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">|_TuringWeb.<span class="fu">csproj</span> (Dependencies: TuringSoap)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">|_TuringSoap.<span class="fu">sln</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">|_TuringSoap.<span class="fu">csproj</span> (Dependencies: Magic8Engine)</a></code></pre></div>
 <p><strong>Magic8Engine</strong> The Magic8Engine produces the answers, using the eerily accurate Magic 8-Ball Algorithm. It's a shared dll, and lives in a separate folder. It's published as a NuGet package.</p>
 <p><strong>TuringDesktop</strong> TuringDesktop is a console application for asking questions. The team project has one solution, which itself has two projects.</p>
 <p><em>TuringConsole</em>, the UI, has two dependencies. One is the Magic8Engine dll, the other is on TextColor, which is configured as a project reference.</p>
@@ -100,9 +98,9 @@ $/TuringWeb
 <p><strong>TuringWeb</strong> This is our web interface. The team project has two solutions.</p>
 <p><em>TuringWeb Solution</em> This solution has one project, TuringWeb, which is dependent on the TuringSoap web service.</p>
 <p><em>TuringSoap Solution</em> Our old-fashioned SOAP web service is dependent on the Magic8Engine dll. In the future, the web service <em>could</em> become shared by other applications.</p>
-<h2 id="next-up">Next Up</h2>
-<p>In the next part, I'll build my desktop application as if I didn't know anything about the future web application.<br>
-Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_22.html">TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></p>
+<h2>Next Up</h2>
+<p>In the next part, I'll build my desktop application as if I didn't know anything about the future web application.</p>
+<p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_22.html">TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></p>
 </div>
               </div>
               

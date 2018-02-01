@@ -42,23 +42,22 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-09-09 12:50</span></p>
-                <div class='post-content'><p><a href="images/image_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb.png" title="image" alt="image" width="244" height="158"></a></p>
+                <div class='post-content'><p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image.png" title="image" alt="image"></a></p>
 <p>It’s dumb that:</p>
 <ol>
-<li>Windows 10’s default photo viewing app automatically creates albums for you.<br>
-<a href="images/image_thumb_25255B4_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="319" height="146"></a></li>
+<li>Windows 10’s default photo viewing app automatically creates albums for you. <a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-001.png" title="image" alt="image"></a></li>
 <li>You can’t disable that feature.</li>
 <li>Instead, you have to remove the application using PowerShell.</li>
 <li>Which means your default photo viewing app becomes something dumb like Paint.</li>
 </ol>
-<p><a href="images/image_thumb_255B5_255D"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_255B5_255D" title="image" alt="image" width="190" height="293"></a></p>
-<p><a href="http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1" class="uri">http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1</a></p>
+<p><a href="images/image-002.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-002.png" title="image" alt="image"></a></p>
+<p><a href="http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1" class="uri" title="http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1">http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1</a></p>
 <p>PowerShell command to remove Photos:</p>
 <p>Get-AppxPackage *photo* | Remove-AppxPackage</p>
 <p>Note: According to some, setting another program (like Paint) as your default photo viewer <em>might</em> disable automatic album generation without removing the app. I didn’t test it, because the <em>only</em> thing I’d use the app for is as a viewer. Not an editor. Just an on-the-fly viewer.</p>
 <p><strong>------------ EDIT 1 -------------</strong></p>
 <p>It’s possible to restore using the Windows 7 Windows Photo Viewer as the default. The program is still installed in Windows 10, it just doesn’t have its file associations enabled by default. Follow these instructions:</p>
-<p><a href="http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html" class="uri">http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html</a></p>
+<p><a href="http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html" class="uri" title="http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html">http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html</a></p>
 <blockquote>
 <p>Note: I haven’t tried the above, but TenForums (and its sister, SevenForums) is reputable.</p>
 </blockquote>
@@ -69,8 +68,7 @@
 <ol>
 <li>Open FastStone</li>
 <li>Settings (F12) &gt; Viewer</li>
-<li>Associated image launches in: Windowed View<br>
-<a href="images/image_thumb_25255B2_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B2_25255D.png" title="image" alt="image" width="485" height="178"></a></li>
+<li>Associated image launches in: Windowed View <a href="images/image-003.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-003.png" title="image" alt="image"></a></li>
 </ol>
 <p><strong>Features</strong></p>
 <p>In full screen mode, moving the mouse to the top, bottom, right or left of the screen reveals a specific menu. For instance, at the top is thumbnails and some command buttons.</p>
@@ -80,27 +78,26 @@
 <li>Search &gt; Default Programs</li>
 <li>For Photo viewer, choose FastStone.</li>
 </ol>
-<p><a href="images/image_thumb_25255B5_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B5_25255D.png" title="image" alt="image" width="345" height="311"></a></p>
+<p><a href="images/image-004.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-004.png" title="image" alt="image"></a></p>
 <p><strong>Easily move to next/previous image.</strong></p>
 <ul>
 <li>In any view, use the arrows to navigate.</li>
 <li>In windowed view, there are buttons in the tool bar.</li>
 <li>In any view, bring the mouse toward the screen bottom and arrows will appear/</li>
 </ul>
-<p><a href="images/image_thumb_25255B7_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B7_25255D.png" title="image" alt="image" width="292" height="165"></a></p>
+<p><a href="images/image-005.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-005.png" title="image" alt="image"></a></p>
 <p><strong>Quickly get some image properties.</strong></p>
 <ul>
-<li>In any view, press “I”.<br>
-<a href="images/image_thumb_25255B13_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B13_25255D.png" title="image" alt="image" width="190" height="373"></a></li>
+<li>In any view, press “I”. <a href="images/image-006.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-006.png" title="image" alt="image"></a></li>
 <li>In full screen view, move cursor to right side.</li>
 </ul>
 <p><strong>View as a slide show.</strong></p>
 <ul>
-<li>In windowed view, click the Slide Show button <a href="images/image_thumb_25255B3_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B3_25255D.png" title="image" alt="image" width="27" height="23"></a></li>
+<li>In windowed view, click the Slide Show button <a href="images/image-007.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-007.png" title="image" alt="image"></a></li>
 <li>In full screen, move mouse to top, bottom or left and find the Slide Show option in the menu.</li>
 </ul>
-<p><a href="images/image_thumb_25255B12_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B12_25255D.png" title="image" alt="image" width="367" height="279"></a></p>
-<h1 id="references">References</h1>
+<p><a href="images/image-008.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-008.png" title="image" alt="image"></a></p>
+<h1>References</h1>
 <p><a href="http://gettinggeek.com/4-best-image-viewers-windows-10/">Here are 4 Best Image Viewers for Windows 10</a></p>
 </div>
               </div>

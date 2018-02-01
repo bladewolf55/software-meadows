@@ -45,17 +45,17 @@
                 <div class='post-content'><p>This has been bugging me, and today I finally researched a solution. When using Word (and, possibly, other Office apps), if one or more documents are minimized and then a new document is opened, the minimized documents are restored. You can easily imagine how irritating this is. I’ve seen this behavior in SQL Management Studio as well.</p>
 <p>There are two solutions (with attribution links) below, depending on your version of Word. As far as I can tell, these are independent of which Windows version is installed. Note that it’s important to update the registry keys for both docx and doc file types.</p>
 <p><strong>Word 2010 and later</strong></p>
-<p><a href="http://answers.microsoft.com/en-us/office/forum/office_2007-word/how-do-i-prevent-word-from-redisplaying-multiple/3b7594f1-0c1e-4108-9d5f-ced532781812?page=12" class="uri">http://answers.microsoft.com/en-us/office/forum/office_2007-word/how-do-i-prevent-word-from-redisplaying-multiple/3b7594f1-0c1e-4108-9d5f-ced532781812?page=12</a></p>
+<p><a href="http://answers.microsoft.com/en-us/office/forum/office_2007-word/how-do-i-prevent-word-from-redisplaying-multiple/3b7594f1-0c1e-4108-9d5f-ced532781812?page=12" class="uri" title="http://answers.microsoft.com/en-us/office/forum/office_2007-word/how-do-i-prevent-word-from-redisplaying-multiple/3b7594f1-0c1e-4108-9d5f-ced532781812?page=12">http://answers.microsoft.com/en-us/office/forum/office_2007-word/how-do-i-prevent-word-from-redisplaying-multiple/3b7594f1-0c1e-4108-9d5f-ced532781812?page=12</a></p>
 <p>(The encoded command value may differ depending on your installation.)</p>
 <p>My registry had these settings under HKEY_CLASSES_ROOT\Word.Document.12\shell\Open\command:</p>
 <p><strong>Default: "C:\Program Files (x86)\Microsoft Office\Office15\WINWORD.EXE" /n "%1" /o "%u"</strong></p>
-<p><strong>Command: <a href="mailto:yh1BV5!!!!!!!!!MKKSkWORDFiles%3E!2-1&amp;m&amp;8y@Nmo2r">yh1BV5!!!!!!!!!MKKSkWORDFiles&gt;!2-1&amp;m&amp;8y@Nmo2r</a>)^f-C /n "%1" /o "%u"</strong></p>
+<p><strong>Command: yh1BV5!!!!!!!!!MKKSkWORDFiles&gt;!2-1\&amp;<a href="mailto:m&amp;8y@Nmo2r">m&amp;8y@Nmo2r</a>)^f-C /n "%1" /o "%u"</strong></p>
 <p>I changed them to this (removing the, "/o "%u"" and adding "/q" before "/n" to remove the splash screen :</p>
 <p><strong>Default: "C:\Program Files (x86)\Microsoft Office\Office15\WINWORD.EXE" /q /n "%1"</strong></p>
-<p><strong>Command: <a href="mailto:yh1BV5!!!!!!!!!MKKSkWORDFiles%3E!2-1&amp;m&amp;8y@Nmo2r">yh1BV5!!!!!!!!!MKKSkWORDFiles&gt;!2-1&amp;m&amp;8y@Nmo2r</a>)^f-C /q /n "%1"</strong></p>
+<p><strong>Command: yh1BV5!!!!!!!!!MKKSkWORDFiles&gt;!2-1\&amp;<a href="mailto:m&amp;8y@Nmo2r">m&amp;8y@Nmo2r</a>)^f-C /q /n "%1"</strong></p>
 <p>I did the same for HKEY_CLASSES_ROOT\Word.Document.8\shell\Open\command, and am now able to open other files without restoring or maxmizing other minimized Word .doc or .docx files.</p>
 <p><strong>Word 2007 and earlier</strong></p>
-<p><a href="http://superuser.com/a/118967" class="uri">http://superuser.com/a/118967</a></p>
+<p><a href="http://superuser.com/a/118967" class="uri" title="http://superuser.com/a/118967">http://superuser.com/a/118967</a></p>
 <p>You can fix this problem by blocking Word from using DDE to open files.</p>
 <p>In the <code>HKEY_CLASSES_ROOT\Word.Document.12\shell\Open</code> key:</p>
 <ul>

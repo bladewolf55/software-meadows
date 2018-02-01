@@ -42,82 +42,72 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-06 07:56</span></p>
-                <div class='post-content'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br>
-<a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/ci-logo.png" title="ci-logo" alt="ci-logo"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository. <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_63.html">TFS Continuous Integration Walk Through Part 3 - Notifications</a></p>
-<p><strong>References</strong><br>
-<a href="https://www.visualstudio.com/en-us/docs/build/steps/test/visual-studio-test">Test: Visual Studio Test</a><br>
-<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2012/11/20/part-2using-traits-with-different-test-frameworks-in-the-unit-test-explorer/">Part 2: Using Traits with different test frameworks</a><br>
-<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2013/06/11/part-3-unit-testing-with-traits-and-code-coverage-in-visual-studio-2012-using-the-tfs-build-and-the-new-nuget-adapter-approach/">Part 3: Unit testing with Traits and filtering...</a> &lt;-Note that the documentation on mapping "Category" is wrong, see below!<br>
-<a href="https://blogs.msdn.microsoft.com/vikramagrawal/2012/07/23/running-selective-unit-tests-in-vs-2012-rc-using-testcasefilter/">Running selective unit tests in VS 2012 RC using TestCaseFilter</a><br>
-<a href="http://www.dotnetcatch.com/2016/03/11/vststfs-visual-studio-test-task-filter-criteria/">VSTS/TFS Visual Studio Test Task - Filter Criteria</a><br>
-<a href="https://msdn.microsoft.com/en-us/library/hh270865.aspx#BKMK_Group_and_filter_the_test_list">Running unit tests with Test Explorer: Group and Filter</a><br>
-<a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">How to: Group and Run Automated Tests Using Test Categories</a><br>
-<a href="https://github.com/Microsoft/vsts-tasks/blob/releases/m109/Tasks/VsTest/README.md">Run Tests using Visual Studio task</a></p>
+<p><strong>References</strong> <a href="https://www.visualstudio.com/en-us/docs/build/steps/test/visual-studio-test">Test: Visual Studio Test</a> <a href="https://blogs.msdn.microsoft.com/visualstudioalm/2012/11/20/part-2using-traits-with-different-test-frameworks-in-the-unit-test-explorer/">Part 2: Using Traits with different test frameworks</a> <a href="https://blogs.msdn.microsoft.com/visualstudioalm/2013/06/11/part-3-unit-testing-with-traits-and-code-coverage-in-visual-studio-2012-using-the-tfs-build-and-the-new-nuget-adapter-approach/">Part 3: Unit testing with Traits and filtering...</a> &lt;-Note that the documentation on mapping "Category" is wrong, see below! <a href="https://blogs.msdn.microsoft.com/vikramagrawal/2012/07/23/running-selective-unit-tests-in-vs-2012-rc-using-testcasefilter/">Running selective unit tests in VS 2012 RC using TestCaseFilter</a> <a href="http://www.dotnetcatch.com/2016/03/11/vststfs-visual-studio-test-task-filter-criteria/">VSTS/TFS Visual Studio Test Task - Filter Criteria</a> <a href="https://msdn.microsoft.com/en-us/library/hh270865.aspx#BKMK_Group_and_filter_the_test_list">Running unit tests with Test Explorer: Group and Filter</a> <a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">How to: Group and Run Automated Tests Using Test Categories</a> <a href="https://github.com/Microsoft/vsts-tasks/blob/releases/m109/Tasks/VsTest/README.md">Run Tests using Visual Studio task</a></p>
 <p>In some environments, not all unit tests should be run on the CI server. For example, there might be tests with external dependencies that are expensive to run, such as a fee for verifying data was saved to an external cloud-based site. Or legacy tests that require manual setup or interaction. Or, the most likely, a test that takes a very long time to run. While these should probably be refactored or replaced, the fact is sometimes we don't want all our tests running automatically.</p>
 <p>One way to restrict tests running is to use the "Test filter criteria" setting. A simple example is using test categories to isolate the manual tests. "TestCategory", "Priority", "Name", etc are all generically referred to as <em>traits</em>.</p>
 <p>Before showing the example, there are two rules for using traits with the Microsoft test console, which is the executable that runs tests regardless of framework.</p>
 <blockquote>
-<p><strong>Test Filter Criteria Rule</strong><br>
-If you set test filter criteria, at least one of your unit tests in every assembly <em>must</em> match that criteria. Otherwise, an error will occur.</p>
+<p><strong>Test Filter Criteria Rule</strong> If you set test filter criteria, at least one of your unit tests in every assembly <em>must</em> match that criteria. Otherwise, an error will occur.</p>
 </blockquote>
 <p>In practice, this means that if your filter is looking for <code>TestCategory=weekly</code>, any project that uses the build definition, and has tests, must have at least one test with a trait named "TestCategory". (For more detail, see <em>Part 4b - Problems With Traits</em>.)</p>
 <p>This will make more sense as you go through the code below.</p>
 <p>Add the following class to Program.cs. This is <em>simulating</em> a cloud-based retrieval of a greeting. For some fictitious reason, it's very expensive to do this.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> CloudMan
-{
-<span class="co">//This takes ten minutes to run!</span>
-<span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetLastGreeting</span>()
-{
-<span class="co">//Set up connection, pass credentials, etc.</span>
-<span class="kw">return</span> <span class="st">""</span>;
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> CloudMan</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">//This takes ten minutes to run!</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetLastGreeting</span>()</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">{</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">//Set up connection, pass credentials, etc.</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">return</span> <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">}</a></code></pre></div>
 <p>Add the following test methods:</p>
 <p><strong>MSTest</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">[TestMethod]
-[<span class="fu">TestCategory</span>(<span class="st">"manual"</span>)]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">SaveGreetingToCloud</span>()
-{
-<span class="co">//arrange</span>
-<span class="dt">string</span> value = <span class="st">"Cloud Atlas"</span>;
-<span class="dt">string</span> expectedResult = <span class="st">"Hello, Charles"</span>;
-TextMan textMan = <span class="kw">new</span> <span class="fu">TextMan</span>();
-CloudMan cloudMan = <span class="kw">new</span> <span class="fu">CloudMan</span>();
-<span class="co">//act</span>
-<span class="dt">string</span> actualResult = textMan.<span class="fu">Greeter</span>(value);
-<span class="co">//assert</span>
-Assert.<span class="fu">AreEqual</span>(expectedResult, cloudMan.<span class="fu">GetLastGreeting</span>());
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1">[TestMethod]</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">[<span class="fu">TestCategory</span>(<span class="st">"manual"</span>)]</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">SaveGreetingToCloud</span>()</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">//arrange</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="dt">string</span> value = <span class="st">"Cloud Atlas"</span>;</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="dt">string</span> expectedResult = <span class="st">"Hello, Charles"</span>;</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">TextMan textMan = <span class="kw">new</span> <span class="fu">TextMan</span>();</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">CloudMan cloudMan = <span class="kw">new</span> <span class="fu">CloudMan</span>();</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">//act</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="dt">string</span> actualResult = textMan.<span class="fu">Greeter</span>(value);</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">//assert</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">Assert.<span class="fu">AreEqual</span>(expectedResult, cloudMan.<span class="fu">GetLastGreeting</span>());</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">}</a></code></pre></div>
 <p><strong>xUnit</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">[Fact]
-[<span class="fu">Trait</span>(<span class="st">"TestCategory"</span>, <span class="st">"manual"</span>)]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">SaveGreetingToCloud</span>()
-{
-<span class="co">//arrange</span>
-<span class="dt">string</span> value = <span class="st">"Cloud Atlas"</span>;
-<span class="dt">string</span> expectedResult = <span class="st">"Hello, Charles"</span>;
-TextMan textMan = <span class="kw">new</span> <span class="fu">TextMan</span>();
-CloudMan cloudMan = <span class="kw">new</span> <span class="fu">CloudMan</span>();
-<span class="co">//act</span>
-<span class="dt">string</span> actualResult = textMan.<span class="fu">Greeter</span>(value);
-<span class="co">//assert</span>
-Assert.<span class="fu">Equal</span>(expectedResult, cloudMan.<span class="fu">GetLastGreeting</span>());
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1">[Fact]</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">[<span class="fu">Trait</span>(<span class="st">"TestCategory"</span>, <span class="st">"manual"</span>)]</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">SaveGreetingToCloud</span>()</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">//arrange</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="dt">string</span> value = <span class="st">"Cloud Atlas"</span>;</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="dt">string</span> expectedResult = <span class="st">"Hello, Charles"</span>;</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">TextMan textMan = <span class="kw">new</span> <span class="fu">TextMan</span>();</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">CloudMan cloudMan = <span class="kw">new</span> <span class="fu">CloudMan</span>();</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">//act</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="dt">string</span> actualResult = textMan.<span class="fu">Greeter</span>(value);</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">//assert</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">Assert.<span class="fu">Equal</span>(expectedResult, cloudMan.<span class="fu">GetLastGreeting</span>());</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">}</a></code></pre></div>
 <p>MSTest uses a TestCategory attribute for categories. xUnit uses its Trait attribute to set a "TestCategory" trait (traits are also the way to set "Priority").</p>
 <blockquote>
 <p><strong>Note</strong> You <em>must</em> set the xUnit trait name to TestCategory in this example, or the test won't be discovered. See <em>Part 4b - Problems With Traits</em> for more information.</p>
 </blockquote>
 <p>If you run the tests locally right now, the new tests will still fail because the category is ignored. Likewise, if you check in the code, the tests will fail on the CI server because there's no filter, yet.</p>
-<h2 id="applying-the-filters">Applying the Filters</h2>
+<h2>Applying the Filters</h2>
 <p>It's possible to filter tests locally. One way is from the command line.</p>
 <p><a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx" class="uri">https://msdn.microsoft.com/en-us/library/dd286683.aspx</a></p>
 <p>But you can also group by traits in the Text Explorer, and selectively run the tests. (This doesn't work so well if you're using multiple test frameworks).</p>
-<p><a href="images/2017-02-02_102530_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/2017-02-02_102530_thumb.png" title="2017-02-02_102530" alt="2017-02-02_102530" width="406" height="548"></a></p>
+<p><a href="images/17-02-02_1030.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_1030.png" title="2017-02-02_102530" alt="2017-02-02_102530"></a></p>
 <p>We want our CI server to only run the non-manual tests. Let's apply the filter in TFS Build. Edit the build definition as shown above, and select the Visual Studio Test step. Add the "Test Filter criteria" <code>TestCategory!=manual</code> and Save.</p>
-<p><a href="images/2017-02-02_103011_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/2017-02-02_103011_thumb_25255B1_25255D.png" title="2017-02-02_103011" alt="2017-02-02_103011" width="749" height="337"></a></p>
+<p><a href="images/17-02-02_103011.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_103011.png" title="2017-02-02_103011" alt="2017-02-02_103011"></a></p>
 <p>Click "Queue build" to rerun the build. If you haven't checked in the code with the test categories, do that instead. The result should be just two tests run, and both pass. Here are the Test Results detailed report. Be sure to change the Outcome to show all the tests.</p>
-<p><a href="images/2017-02-02_112051_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/2017-02-02_112051_thumb_25255B1_25255D.png" title="2017-02-02_112051" alt="2017-02-02_112051" width="750" height="394"></a></p>
+<p><a href="images/17-02-02_11_51.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_11_51.png" title="2017-02-02_112051" alt="2017-02-02_112051"></a></p>
 <p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_24.html">TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></p>
 </div>
               </div>

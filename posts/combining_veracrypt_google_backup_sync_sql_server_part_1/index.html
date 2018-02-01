@@ -47,8 +47,7 @@
 <p>It's important to protect business data. Employee access and use of data should be managed by the IT department. But a contractor is often entrusted with data on their own computers. We certainly don't want our laptop to be stolen and have to tell the client that source code or databases with sensitive data just got lost, and, no, it wasn't encrypted.</p>
 <p>Below, I discuss how I used VeraCrypt for my encryption. In Part 2, I show how I solved problems relating to Google Backup and Sync, and Microsoft SQL Server.</p>
 <p>For Windows users, there are a few encryption solutions.</p>
-<p><strong>BitLocker</strong><br>
-BitLocker is available on these editions:</p>
+<p><strong>BitLocker</strong> BitLocker is available on these editions:</p>
 <ul>
 <li>Ultimate and Enterprise editions of Windows Vista and Windows 7</li>
 <li>Pro and Enterprise editions of Windows 8 and 8.1</li>
@@ -59,25 +58,22 @@ BitLocker is available on these editions:</p>
 <p>To use BitLocker, your computer hardware must have a compatible <a href="https://docs.microsoft.com/en-us/windows/device-security/tpm/trusted-platform-module-overview">Trusted Platform Module</a>.</p>
 <p>I won't go into how to configure BitLocker. Suffice to say, if you have this option available, I think you should use it unless you have a reasonable security objection. And if that's the case, you're already looking into alternatives.</p>
 <p>I do <em>not</em> use BitLocker because my hardware doesn't support it.</p>
-<p><strong>Windows Encrypting File System (EFS)</strong><br>
-EFS is available on all Windows editions from 2000 onward, Professional and above. When configured, decryption happens transparently. It's important to export and separately store the encryption password. There are <a href="https://en.wikipedia.org/wiki/Encrypting_File_System#Security">security issues</a> with EFS, but for my purposes I thought it would be an acceptable solution.</p>
+<p><strong>Windows Encrypting File System (EFS)</strong> EFS is available on all Windows editions from 2000 onward, Professional and above. When configured, decryption happens transparently. It's important to export and separately store the encryption password. There are <a href="https://en.wikipedia.org/wiki/Encrypting_File_System#Security">security issues</a> with EFS, but for my purposes I thought it would be an acceptable solution.</p>
 <p>I tried setting a client folder to use EFS, but ran into a significant problem: a showstopper, in fact. If found that I couldn't create a new Visual Studio ASP.NET project from a template.</p>
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2012_39_36.png"></p>
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2012_42_46.png"></p>
 <p>Since I'm primarily a web developer, this simply wouldn't work.</p>
 <blockquote>
-<p><strong>More Information</strong><br>
-If you want to read more about BitLocker and EFS, try <a href="https://www.howtogeek.com/236719/whats-the-difference-between-bitlocker-and-efs-encrypting-file-system-on-windows/">this article</a>.</p>
+<p><strong>More Information</strong> If you want to read more about BitLocker and EFS, try <a href="https://www.howtogeek.com/236719/whats-the-difference-between-bitlocker-and-efs-encrypting-file-system-on-windows/">this article</a>.</p>
 </blockquote>
-<p><strong>VeraCrypt</strong><br>
-<a href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a> is the successor to TrueCrypt, which I used many years ago before the author abruptly <a href="https://en.wikipedia.org/wiki/TrueCrypt">shut down the project</a>. VeraCrypt has been security-audited, and I'm glad to be using it (again). It can be installed on any edition of Windows, as well as Linux and Mac OS X.</p>
+<p><strong>VeraCrypt</strong> <a href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a> is the successor to TrueCrypt, which I used many years ago before the author abruptly <a href="https://en.wikipedia.org/wiki/TrueCrypt">shut down the project</a>. VeraCrypt has been security-audited, and I'm glad to be using it (again). It can be installed on any edition of Windows, as well as Linux and Mac OS X.</p>
 <p>VeraCrypt has two main configuration scenarios:</p>
 <ul>
 <li>Using a container file, create a virtual encrypted drive with its own drive letter.</li>
 <li>Encrypt an entire partition or drive.</li>
 </ul>
 <p>Arguably, as with BitLocker, the best thing to do is encrypt the entire drive and deal with the extra passphrase prompt when booting up. However, I opted for the quicker option of container file.</p>
-<h1 id="veracrypt-walkthrough">VeraCrypt Walkthrough</h1>
+<h1>VeraCrypt Walkthrough</h1>
 <p>Here's a simple walkthrough to install and configure VeraCrypt the way I did.</p>
 <p><a href="https://www.veracrypt.fr/en/Downloads.html">Download</a> and install the latest Windows version.</p>
 <p>Open the application and click Create Volume</p>
@@ -88,8 +84,7 @@ If you want to read more about BitLocker and EFS, try <a href="https://www.howto
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_07_33.png"></p>
 <p>Enter a new filename and path, which you can also set via the dialog. It doesn't matter what the filename or extention are. It doesn't even need an extension.</p>
 <blockquote>
-<p><strong>Warning</strong><br>
-If you choose an existing file, it will be <em>overwritten</em>. Don't do that. Create a new filename.</p>
+<p><strong>Warning</strong> If you choose an existing file, it will be <em>overwritten</em>. Don't do that. Create a new filename.</p>
 </blockquote>
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_10_37.png"></p>
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_12_19.png"></p>
@@ -97,8 +92,7 @@ If you choose an existing file, it will be <em>overwritten</em>. Don't do that. 
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_14_17.png"></p>
 <p>Choose the maximum size of the drive. Remember, any size you choose here subtracts from your available physical drive space. If you ever need a larger encrypted drive, you'll need to create one and move all the files. For this exercise, choose 50MB.</p>
 <blockquote>
-<p><strong>Note</strong><br>
-I know the screenshot shows 5MB, but it needs to be higher to create the database later.</p>
+<p><strong>Note</strong> I know the screenshot shows 5MB, but it needs to be higher to create the database later.</p>
 </blockquote>
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_17_01.png"></p>
 <p>Enter your password or passphrase. I like passphrases, because they can be long but easy to remember. Here's one:</p>

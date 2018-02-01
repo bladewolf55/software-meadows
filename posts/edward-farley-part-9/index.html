@@ -42,22 +42,26 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:46</span></p>
-                <div class='post-content'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Parts
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="many-to-many-simple">Many to Many, Simple</h3>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>Many to Many, Simple</h3>
 <p><em>Edward reminds the Professor of something important. The Professor expounds on the meaning of a library.</em></p>
 <p>“Professor,” said Edward the next day, “something has been bothering me.”</p>
 <p>“Oh, what is that my boy?”</p>
@@ -67,101 +71,105 @@
 <p>Look around you, [he said]. Books! Music! Paintings! How many books can a person read in a lifetime? How many readers has a book had?</p>
 <p>This is a simple relationship. Many to Many. A person reads many books, a book has many readers. The Framework makes this relationship even easier. In the database, such a relationship requires a joining table. Here are the tables we’re about to create.</p>
 <p><strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Books</span> (
-BookId <span class="dt">int</span> not <span class="kw">null</span> primary key,
-Title <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
-)
-
-create table <span class="fu">PersonBooks</span> (
-PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId),
-BookId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Books</span>(BookId),
-constraint pkPersonBook primary <span class="fu">key</span> (PersonId, BookId)
-)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">create table <span class="fu">Books</span> (</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">BookId <span class="dt">int</span> not <span class="kw">null</span> primary key,</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">Title <span class="fu">nvarchar</span>(max) not <span class="kw">null</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">create table <span class="fu">PersonBooks</span> (</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId),</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">BookId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Books</span>(BookId),</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">constraint pkPersonBook primary <span class="fu">key</span> (PersonId, BookId)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">)</a></code></pre></div>
 <p>In this case, a diagram may help.</p>
-<p><a href="images/image00.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-9/images/image00.png"></a></p>
+<div class="separator" style="clear: both; text-align: center;">
+
+[![](images/image00.png)](images/image00.png)
+
+</div>
 <p>A many-to-many relationship is two one-to-many relationships that meet in the middle, so to speak.</p>
 <p>While we could (and tomorrow will) explicitly create a joining class, for this simple case we don’t need to. The Framework manages the join behind the scenes.</p>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="kw">virtual</span> ReadingRoom ReadingRoom { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="fu">Person</span>()
-{
-LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();
-Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();
-Pencils = <span class="kw">new</span> HashSet&lt;Pencil&gt;();
-Books = <span class="kw">new</span> HashSet&lt;Book&gt;();
-}
-....
-
-<span class="kw">public</span> <span class="kw">class</span> Book
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> BookId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> Title { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="fu">Book</span>()
-{
-Persons = <span class="kw">new</span> HashSet&lt;Person&gt;();
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">[Required]</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">public</span> <span class="kw">virtual</span> ReadingRoom ReadingRoom { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">public</span> <span class="fu">Person</span>()</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">Pencils = <span class="kw">new</span> HashSet&lt;Pencil&gt;();</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">Books = <span class="kw">new</span> HashSet&lt;Book&gt;();</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">}</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">....</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="kw">public</span> <span class="kw">class</span> Book</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="kw">public</span> <span class="dt">int</span> BookId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">[Required]</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="kw">public</span> <span class="dt">string</span> Title { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="kw">public</span> <span class="fu">Book</span>()</a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">{</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">Persons = <span class="kw">new</span> HashSet&lt;Person&gt;();</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32">}</a>
+<a class="sourceLine" id="cb2-33" data-line-number="33">}</a></code></pre></div>
 <p>In our Context, we have some extra work to do. As with our previous examples, the Framework will happily create foreign key names according to its whims.* Moreover, it will create the joining table with a name that I personally find unattractive. And so, dear Edward, we must venture into your father’s favorite realm, the Fluent API.</p>
 <p>First, we add the DbSet as usual.</p>
 <p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">public</span> DbSet&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }</a></code></pre></div>
 <p>Now, we override the OnModelCreating procedure and explicitly tell the Framework how we want things named. I have tried many times to enforce my desired naming via attributes, to no avail. Someday I must ask the fine people who manage the Framework why they seemingly overlooked such useful attributes for such a common relationship. But here we are:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnModelCreating</span>(DbModelBuilder modelBuilder)
-{
-modelBuilder.<span class="fu">Entity</span>&lt;Person&gt;()
-.<span class="fu">HasMany</span>(e =&gt; e.<span class="fu">Books</span>)
-.<span class="fu">WithMany</span>(e =&gt; e.<span class="fu">Persons</span>)
-.<span class="fu">Map</span>(t =&gt; t
-.<span class="fu">MapLeftKey</span>(<span class="st">"PersonId"</span>)
-.<span class="fu">MapRightKey</span>(<span class="st">"BookId"</span>)
-.<span class="fu">ToTable</span>(<span class="st">"PersonBooks"</span>)
-);
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnModelCreating</span>(DbModelBuilder modelBuilder)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">modelBuilder.<span class="fu">Entity</span>&lt;Person&gt;()</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">.<span class="fu">HasMany</span>(e =&gt; e.<span class="fu">Books</span>)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">.<span class="fu">WithMany</span>(e =&gt; e.<span class="fu">Persons</span>)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">.<span class="fu">Map</span>(t =&gt; t</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">.<span class="fu">MapLeftKey</span>(<span class="st">"PersonId"</span>)</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">.<span class="fu">MapRightKey</span>(<span class="st">"BookId"</span>)</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">.<span class="fu">ToTable</span>(<span class="st">"PersonBooks"</span>)</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">);</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">}</a></code></pre></div>
 <p>Back to our program. To show the many-to-many relationship, we will enlist the help of our nearby Librarian.</p>
 <p>[They had reached an information desk, and an elderly lady smiled at the Professor.]</p>
 <p>Mrs. Jane Eager, I am illustrating for young Edward Farley, here, the many-to-many relationship. Would you work your magic on that temperamental machine and find books you and Edward have both read? [She typed and showed him the screen.] Really? Edward, I must say, you have been well raised. These titles come from a writer who is a master of us all. Now, attend, Edward. There is quite a bit of code.</p>
 <p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">"Add two books and save"</span>);
-Book book1 = <span class="kw">new</span> <span class="fu">Book</span>() { Title = <span class="st">"The House of Arden"</span> };
-Book book2 = <span class="kw">new</span> <span class="fu">Book</span>() { Title = <span class="st">"Harding's Luck"</span> };
-_db.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);
-_db.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);
-<span class="fu">SaveChanges</span>();
-
-Console.<span class="fu">WriteLine</span>(<span class="st">"Add another person and save"</span>);
-Person person2 = <span class="kw">new</span> <span class="fu">Person</span>() { Name = <span class="st">"Jane Eager"</span> };
-person2.<span class="fu">LibraryCards</span>.<span class="fu">Add</span>(person.<span class="fu">LibraryCards</span>.<span class="fu">First</span>());
-person2.<span class="fu">ReadingRoom</span> = <span class="kw">new</span> <span class="fu">ReadingRoom</span>() { Location = <span class="st">"NorthEast Wing"</span> };
-_db.<span class="fu">Persons</span>.<span class="fu">Add</span>(person2);
-<span class="fu">SaveChanges</span>();
-
-Console.<span class="fu">WriteLine</span>(<span class="st">"Each person has read both books"</span>);
-person.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);
-person.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);
-person2.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);
-person2.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(person.<span class="fu">Name</span> + <span class="st">"'s books: "</span>
-+ String.<span class="fu">Join</span>(<span class="st">", "</span>, person.<span class="fu">Books</span>.<span class="fu">Select</span>(a =&gt; a.<span class="fu">Title</span>)));
-Console.<span class="fu">WriteLine</span>(person2.<span class="fu">Name</span> + <span class="st">"'s books: "</span>
-+ String.<span class="fu">Join</span>(<span class="st">", "</span>, person.<span class="fu">Books</span>.<span class="fu">Select</span>(a =&gt; a.<span class="fu">Title</span>)));</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1">Console.<span class="fu">WriteLine</span>(<span class="st">"Add two books and save"</span>);</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">Book book1 = <span class="kw">new</span> <span class="fu">Book</span>() { Title = <span class="st">"The House of Arden"</span> };</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">Book book2 = <span class="kw">new</span> <span class="fu">Book</span>() { Title = <span class="st">"Harding's Luck"</span> };</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">_db.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">_db.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">Console.<span class="fu">WriteLine</span>(<span class="st">"Add another person and save"</span>);</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">Person person2 = <span class="kw">new</span> <span class="fu">Person</span>() { Name = <span class="st">"Jane Eager"</span> };</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">person2.<span class="fu">LibraryCards</span>.<span class="fu">Add</span>(person.<span class="fu">LibraryCards</span>.<span class="fu">First</span>());</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">person2.<span class="fu">ReadingRoom</span> = <span class="kw">new</span> <span class="fu">ReadingRoom</span>() { Location = <span class="st">"NorthEast Wing"</span> };</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">_db.<span class="fu">Persons</span>.<span class="fu">Add</span>(person2);</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">Console.<span class="fu">WriteLine</span>(<span class="st">"Each person has read both books"</span>);</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">person.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17">person.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">person2.<span class="fu">Books</span>.<span class="fu">Add</span>(book1);</a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">person2.<span class="fu">Books</span>.<span class="fu">Add</span>(book2);</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">Console.<span class="fu">WriteLine</span>(person.<span class="fu">Name</span> + <span class="st">"'s books: "</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">+ String.<span class="fu">Join</span>(<span class="st">", "</span>, person.<span class="fu">Books</span>.<span class="fu">Select</span>(a =&gt; a.<span class="fu">Title</span>)));</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">Console.<span class="fu">WriteLine</span>(person2.<span class="fu">Name</span> + <span class="st">"'s books: "</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24">+ String.<span class="fu">Join</span>(<span class="st">", "</span>, person.<span class="fu">Books</span>.<span class="fu">Select</span>(a =&gt; a.<span class="fu">Title</span>)));</a></code></pre></div>
 <p>Let’s run the program.</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
@@ -219,10 +227,7 @@ Finished</code></pre>
 <p>“And there you have the many-to-many relationship! Thank you, Jane,” said the Professor. When they reached Edward’s reading room, the Professor paused and said quietly, “Edward, you may not know this, but Jane’s husband is a fine author himself. If you enjoyed the the masterful E. Nesbit’s writing, you would surely like his as well. Come, let me show you....”</p>
 <hr>
 <p>*This isn’t quite fair on the Professor’s part. Entity Framework is consistent in its naming.</p>
-<p><a href="http://dictionary.reference.com/browse/library?&amp;path=/">Library</a></p>
-<p><a href="http://en.wikipedia.org/wiki/Pinakes">Pinakes</a></p>
-<p><a href="http://en.wikipedia.org/wiki/E._Nesbit">E. Nesbit, author of <em>The House of Arden</em> and <em>Harding’s Luck</em>, and others</a></p>
-<p><a href="http://en.wikipedia.org/wiki/Edward_Eager">Edward Eager, author of <em>Half Magic</em> and others</a></p>
+<p><a href="http://dictionary.reference.com/browse/library?&amp;path=/">Library</a> <a href="http://en.wikipedia.org/wiki/Pinakes">Pinakes</a> <a href="http://en.wikipedia.org/wiki/E._Nesbit">E. Nesbit, author of <em>The House of Arden</em> and <em>Harding’s Luck</em>, and others</a> <a href="http://en.wikipedia.org/wiki/Edward_Eager">Edward Eager, author of <em>Half Magic</em> and others</a></p>
 <hr>
 </div>
               </div>

@@ -45,24 +45,16 @@
                 <div class='post-content'><p>For some reason, my laptop’s Synaptics touchpad settings dialog doesn’t include two-finger <em>tap</em> to bring up a context menu (mimicking the right-click).</p>
 <p>Having to position the mouse and physically right-click is error-prone and slower. Likewise with the included feature to two-finger click (in fact, that’s worse). It turns out the touchpad is capable of double-tap. You just have to go to the registry.</p>
 <p>Here are the steps, mostly copied.</p>
-<p><a href="http://www.tomshardware.com/answers/id-1851375/finger-tap-click-windows.html" class="uri">http://www.tomshardware.com/answers/id-1851375/finger-tap-click-windows.html</a></p>
-<p><a href="https://forums.lenovo.com/t5/Idea-Windows-based-Tablets-and/2-Finger-Tap-right-click-not-working-Win-8-0/td-p/1324087" class="uri">https://forums.lenovo.com/t5/Idea-Windows-based-Tablets-and/2-Finger-Tap-right-click-not-working-Win-8-0/td-p/1324087</a></p>
-<ol>
-<li>To re-enable two finger tap, press <strong>Windows key + R</strong>, enter "<strong>regedit</strong>" then press enter, and on the left pane browse to the following locations:<br>
-<strong>HKEY_CURRENT_USER\Software\Synaptics\SynTP\TouchPadPS2</strong></li>
-</ol>
+<p><a href="http://www.tomshardware.com/answers/id-1851375/finger-tap-click-windows.html" class="uri" title="http://www.tomshardware.com/answers/id-1851375/finger-tap-click-windows.html">http://www.tomshardware.com/answers/id-1851375/finger-tap-click-windows.html</a></p>
+<p><a href="https://forums.lenovo.com/t5/Idea-Windows-based-Tablets-and/2-Finger-Tap-right-click-not-working-Win-8-0/td-p/1324087" class="uri" title="https://forums.lenovo.com/t5/Idea-Windows-based-Tablets-and/2-Finger-Tap-right-click-not-working-Win-8-0/td-p/1324087">https://forums.lenovo.com/t5/Idea-Windows-based-Tablets-and/2-Finger-Tap-right-click-not-working-Win-8-0/td-p/1324087</a></p>
+<p>1. To re-enable two finger tap, press <strong>Windows key + R</strong>, enter "<strong>regedit</strong>" then press enter, and on the left pane browse to the following locations: <strong>HKEY_CURRENT_USER\Software\Synaptics\SynTP\TouchPadPS2</strong></p>
 <p>AND</p>
-<p><strong>HKEY_CURRENT_USER\Software\Synaptics\SynTP\TouchPadSMB2c</strong><br>
-(the first location didn't work for me, but the second location did)</p>
-<ol>
-<li><p>In the right pane, <strong>double click on 2FingerTapAction</strong> and change the value to a "<strong>2</strong>" (Hexadecimal) for <strong>right click</strong>, or a "<strong>4</strong>" (Hexadecimal) for <strong>middle click</strong>.</p></li>
-<li><p><strong>Double click</strong> on <strong>2FingerTapPluginID</strong> and <strong>clear any value</strong> it may have.</p></li>
-<li><p>In the right pane, find the <strong>MultiFingerTapFlags key</strong> and <strong>change it from a 2 to a 3</strong>.</p></li>
-</ol>
+<p><strong>HKEY_CURRENT_USER\Software\Synaptics\SynTP\<span class="underline">TouchPadSMB2c</span></strong> (the first location didn't work for me, but the second location did)</p>
+<p>2. In the right pane, <strong>double click on 2FingerTapAction</strong> and change the value to a "<strong>2</strong>" (Hexadecimal) for <strong>right click</strong>, or a "<strong>4</strong>" (Hexadecimal) for <strong>middle click</strong>.</p>
+<p>3. <strong>Double click</strong> on <strong>2FingerTapPluginID</strong> and <strong>clear any value</strong> it may have.</p>
+<p>4. In the right pane, find the <strong>MultiFingerTapFlags key</strong> and <strong>change it from a 2 to a 3</strong>.</p>
 <p>4b. Additionally, if you want to enable three finger tap for middle click, double click on 3FingerTapAction and change the value to a "4", also clear any value for 3FingerTapPluginID and set 3FingerTapPluginActionID to "0".</p>
-<ol>
-<li>Restart your PC and you can see the changes well enough.</li>
-</ol>
+<p>5. Restart your PC and you can see the changes well enough.</p>
 <p>Note that if you change any setting using the Synaptic dialog, the above will get unset and you’ll have to manually do it again.</p>
 </div>
               </div>

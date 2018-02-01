@@ -42,65 +42,69 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:50</span></p>
-                <div class='post-content'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Parts
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="enumerables">Enumerables</h3>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>Enumerables</h3>
 <p><em>The Professor solves a spelling problem.</em></p>
 <p>After lunch, (deviled eggs and radishes for the Professor, which made Edward gag and silently thank his mother for her peanut butter and kiwi sandwich), the Professor continued discussing umbrellas.</p>
 <p>I’m afraid, [he said clearly, despite the radish in his mouth], I’ve deceived you. While it’s true that an umbrella changes color depending on who uses it, we do not store the color as a word. That is, not as a string. We tried that, but the umbrellas would misspell the color names. Another mystery that Mrs. Gamp assures me she’ll solve some day.</p>
 <p>To keep my own sanity, if not anyone else’s, in the face of the color blue being spelled “blew,” we required the umbrellas to choose from a list of colors. An enumeration. This has only been possible recently, and is quite practical and intuitive despite the challenges to the Framework designers.</p>
 <p>For our example, we’ll say an umbrella can be one of three colors.* Here is the updated class schema.</p>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> PersonUmbrella
-{
-<span class="co">//Primary Key</span>
-[Key, <span class="fu">Column</span>(Order = <span class="dv">0</span>)]
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Key, <span class="fu">Column</span>(Order = <span class="dv">1</span>)]
-<span class="kw">public</span> <span class="dt">int</span> UmbrellaId { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-[Required]
-<span class="kw">public</span> UmbrellaColors Color { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> Umbrella Umbrella { <span class="kw">get</span>; <span class="kw">set</span>; }
-}
-
-<span class="kw">public</span> <span class="kw">enum</span> UmbrellaColors
-{
-Red,
-Green,
-Blue
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> PersonUmbrella</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">[Key, <span class="fu">Column</span>(Order = <span class="dv">0</span>)]</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">[Key, <span class="fu">Column</span>(Order = <span class="dv">1</span>)]</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">public</span> <span class="dt">int</span> UmbrellaId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">[Required]</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">public</span> UmbrellaColors Color { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">public</span> <span class="kw">virtual</span> Umbrella Umbrella { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">public</span> <span class="kw">enum</span> UmbrellaColors</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">Red,</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">Green,</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">Blue</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">}</a></code></pre></div>
 <p>Notice we have changed the Color property to use an Enum. Now, we change the code.</p>
 <p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">PersonUmbrella personUmbrella = <span class="kw">new</span> <span class="fu">PersonUmbrella</span>()
-{
-Person = edward,
-Umbrella = umbrella,
-Color = <span class="st">"Red"</span>
-};
-edward.<span class="fu">PersonUmbrellas</span>.<span class="fu">Add</span>(personUmbrella);
-Console.<span class="fu">WriteLine</span>(<span class="st">"Jane uses it, too."</span>);
-jane.<span class="fu">PersonUmbrellas</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">PersonUmbrella</span>()
-{
-Umbrella = umbrella,
-Color = <span class="st">"Green"</span>
-});</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1">PersonUmbrella personUmbrella = <span class="kw">new</span> <span class="fu">PersonUmbrella</span>()</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">Person = edward,</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">Umbrella = umbrella,</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">Color = <span class="st">"Red"</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">};</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">edward.<span class="fu">PersonUmbrellas</span>.<span class="fu">Add</span>(personUmbrella);</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">Console.<span class="fu">WriteLine</span>(<span class="st">"Jane uses it, too."</span>);</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">jane.<span class="fu">PersonUmbrellas</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">PersonUmbrella</span>()</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">{</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">Umbrella = umbrella,</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">Color = <span class="st">"Green"</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">});</a></code></pre></div>
 <p>And that is all! We run the program, which produces exactly the same results.</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
@@ -164,17 +168,16 @@ Jane's Umbrella: Green
 Finished</code></pre>
 <p>Our table has changed, though. We now store the integer value of the Enum.</p>
 <p><strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">PersonUmbrellas</span> (
-PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId),
-UmbrellaId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Umbrella</span>(UmbrellaId),
-Color <span class="dt">int</span> not <span class="kw">null</span>,
-constraint pkPersonUmbrella primary <span class="fu">key</span> (PersonId, UmbrellaId)
-)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1">create table <span class="fu">PersonUmbrellas</span> (</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId),</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">UmbrellaId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Umbrella</span>(UmbrellaId),</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">Color <span class="dt">int</span> not <span class="kw">null</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">constraint pkPersonUmbrella primary <span class="fu">key</span> (PersonId, UmbrellaId)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">)</a></code></pre></div>
 <p>Wonderful!</p>
 <hr>
 <p>*In reality, Mrs. Gamp’s umbrellas could be one of three hundred colors, and counting....</p>
-<p><a href="http://www.c-sharpcorner.com/UploadFile/abhikumarvatsa/enum-support-code-first-in-entity-framework-5/">Enum Support (Code First) in Entity Framework 5</a></p>
-<p><a href="http://blogs.msdn.com/b/efdesign/archive/2011/06/29/enumeration-support-in-entity-framework.aspx">Enumeration Support in Entity Framework</a></p>
+<p><a href="http://www.c-sharpcorner.com/UploadFile/abhikumarvatsa/enum-support-code-first-in-entity-framework-5/">Enum Support (Code First) in Entity Framework 5</a> <a href="http://blogs.msdn.com/b/efdesign/archive/2011/06/29/enumeration-support-in-entity-framework.aspx">Enumeration Support in Entity Framework</a></p>
 <hr>
 </div>
               </div>

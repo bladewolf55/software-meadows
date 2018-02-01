@@ -38,7 +38,7 @@
     <div id="site-subtitle">A pleasant walk through computing</div>
   </header>
   <section id="content">
-    <h1 id="home">Home</h1>
+    <h1>Home</h1>
 
   </section>
   <!-- posts only appear in home index -->
@@ -51,49 +51,49 @@
 <p><a href="https://ayende.com/blog/176770/answer-what-does-this-code-do">What does this code do?</a></p>
 <p>But I'm not as bright as his readers, and was still mighty confused. It took me about ten minutes to finally see what was going on.</p>
 <p>Ayende's original code is this:</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="dt">var</span> doc = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>,<span class="dt">object</span>&gt;
-{
-[<span class="st">"@metadata"</span>] = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt;
-{
-[<span class="st">"@id"</span>] = <span class="st">"users/1"</span>
-}
-[<span class="st">"Name"</span>] = <span class="st">"Oren"</span>
-};
-
-
-Console.<span class="fu">WriteLine</span>(doc[<span class="st">"Name"</span>]);</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cs"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">var</span> doc = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>,<span class="dt">object</span>&gt;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">[<span class="st">"@metadata"</span>] = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">[<span class="st">"@id"</span>] = <span class="st">"users/1"</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">[<span class="st">"Name"</span>] = <span class="st">"Oren"</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">};</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">Console.<span class="fu">WriteLine</span>(doc[<span class="st">"Name"</span>]);</a></code></pre></div>
 <p>The final statement fails, because doc is actually equal to a string value of "Oren", not the dictionary object. Why? And--for me--I couldn't understand why it was compiling at all.</p>
 <p>It took me a while to see the syntax parsing, and remember that C# can be very forgiving of spaces. I'm not a beginner, but it's sort of a beginner mistake. For other readers like me who aren't as bright (if you have any!), here's another look.</p>
 <p>While it appeared to me an element was being set completely outside of the declaration, the element is being set <em>on</em> the declared dictionary.</p>
 <p>The final syntax is:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="dt">var</span> item = NewDictionary[element] = value;</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">var</span> item = NewDictionary[element] = value;</a></code></pre></div>
 <p>But that syntax can look like this:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="dt">var</span> item = NewDictionary              [element] = value;</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">var</span> item = NewDictionary              [element] = value;</a></code></pre></div>
 <p>Code samples</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">//spaces before the element don't matter</span>
-<span class="dt">var</span> item = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; {}    [<span class="st">"a"</span>] = <span class="dv">1</span>;
-<span class="co">//is the same as</span>
-<span class="dt">var</span> item = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; { }[<span class="st">"a"</span>] = <span class="dv">1</span>;
-
-<span class="co">//For clarity, we replace the declaration with its assignment.</span>
-<span class="dt">var</span> dic = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; {};
-<span class="dt">var</span> item = dic     [<span class="st">"a"</span>] = <span class="dv">1</span>;
-<span class="co">//is the same as</span>
-<span class="dt">var</span> item = dic[<span class="st">"a"</span>] = <span class="dv">1</span>;</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cs"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">//spaces before the element don't matter</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="dt">var</span> item = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; {}    [<span class="st">"a"</span>] = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">//is the same as</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="dt">var</span> item = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; { }[<span class="st">"a"</span>] = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">//For clarity, we replace the declaration with its assignment.</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="dt">var</span> dic = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; {};</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="dt">var</span> item = dic     [<span class="st">"a"</span>] = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">//is the same as</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="dt">var</span> item = dic[<span class="st">"a"</span>] = <span class="dv">1</span>;</a></code></pre></div>
 <p>I looked for other examples of where this can be done. The simplest array case doesn't compile:</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">//This is OK.</span>
-<span class="dt">int</span>[] items = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">1</span>] {<span class="dv">1</span>};
-<span class="dt">int</span> item = items [<span class="dv">0</span>] = <span class="dv">2</span>;
-
-<span class="co">//But this isn't.</span>
-<span class="dt">int</span>[] items = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">1</span>] { <span class="dv">1</span> } [<span class="dv">0</span>] = <span class="dv">2</span>;</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cs"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">//This is OK.</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="dt">int</span>[] items = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">1</span>] {<span class="dv">1</span>};</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="dt">int</span> item = items [<span class="dv">0</span>] = <span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">//But this isn't.</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="dt">int</span>[] items = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">1</span>] { <span class="dv">1</span> } [<span class="dv">0</span>] = <span class="dv">2</span>;</a></code></pre></div>
 <p>Hashtable works the same as Dictionary, which is logical.</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">//OK</span>
-<span class="dt">var</span> h = <span class="kw">new</span> <span class="fu">Hashtable</span>();
-h [<span class="dv">0</span>] = <span class="dv">1</span>;
-
-<span class="co">//OK, too.</span>
-<span class="dt">var</span> h = <span class="kw">new</span> <span class="fu">Hashtable</span>() [<span class="dv">0</span>] = <span class="dv">1</span>;</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cs"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">//OK</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="dt">var</span> h = <span class="kw">new</span> <span class="fu">Hashtable</span>();</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">h [<span class="dv">0</span>] = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">//OK, too.</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="dt">var</span> h = <span class="kw">new</span> <span class="fu">Hashtable</span>() [<span class="dv">0</span>] = <span class="dv">1</span>;</a></code></pre></div>
 <p>Thanks, Ayende, for getting my brain working!</p>
 </div>
               </div>
@@ -143,15 +143,15 @@ h [<span class="dv">0</span>] = <span class="dv">1</span>;
 <p>There were zero problems. The next test is drive into a more congested area, like downtown. And I won't really be convinced until I've been message-free for several days. So, where will I navigate to next!?</p>
 <p>2017-01-03</p>
 <p>Zero problems the last three days. I have one big drive tomorrow. If that goes well, I'll consider the problem licked. I'll also be filing a bug report to Google. After all, if High Accuracy triggers this problem, then I consider that a significant defect.</p>
-<hr>
-<h1 id="location-accuracy">Location Accuracy</h1>
+<p>---------------------------------------------------</p>
+<h1>Location Accuracy</h1>
 <p>You'd think that using the most accurate location setting would be the right thing to do. But, at least in my case, it isn't. I don't know why the locking problem only started up in Denver. I've never experienced it anywhere else. But here's the solution that has worked for me.</p>
 <ol>
 <li>Open Settings &gt; Location</li>
 <li>Change Mode to "Device Only"</li>
 <li>Restart. (May make no difference, just a habit.)</li>
 </ol>
-<h1 id="gps-state">GPS State</h1>
+<h1>GPS State</h1>
 <p>The second thing to try is to install the excellent <a href="https://play.google.com/store/apps/details?id=com.eclipsim.gpsstatus2">GPS Status &amp; Toolbox</a> app and follow the instructions at the blog entry, below. There free version of the app works just fine for this.</p>
 <p><a href="https://mobiwia.com/78-gps/76-tip1" class="uri">https://mobiwia.com/78-gps/76-tip1</a></p>
 <p>Here's a copy of the instructions.</p>
@@ -166,7 +166,7 @@ h [<span class="dv">0</span>] = <span class="dv">1</span>;
 <li>Make sure you have the 'Keep the screen on' settings turned on (in Menu / Settings / Display &amp; Tools'.</li>
 <li>Let the program run and try to acquire your GPS position for at least 15 minutes.</li>
 </ol>
-<h1 id="antenna-connection">Antenna Connection</h1>
+<h1>Antenna Connection</h1>
 <p>Finally, some Nexus 5 phones don't make a good connection from the back of the phone to the GPS antenna. This video explains how to <a href="https://en.wikipedia.org/wiki/MacGyver">MacGyver</a> the situation. Warning: Requires opening the phone, and delicate operations that might damage the phone. Watch the whole video to see what's entailed.</p>
 <p><a href="https://www.youtube.com/watch?v=K1-uCIb-t8I&amp;feature=youtu.be">Nexus 5 GPS Signal Antenna Fix</a></p>
 </div>
@@ -177,9 +177,9 @@ h [<span class="dv">0</span>] = <span class="dv">1</span>;
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-11-27 15:11</span></p>
                 <div class='post-content'><p>Starting with Office 2013, there are two changes that some people will like and use, but that I hate and don't.</p>
-<h1 id="startup-screen">Startup Screen</h1>
+<h1>Startup Screen</h1>
 <p>I rarely need to open a template other than the blank one. However, the default Office behavior is to show a Van Gogh <em>Starry Night</em> of choices.</p>
-<p><a href="images/image_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image_thumb_25255B1_25255D.png" title="image" alt="image" width="612" height="432"></a></p>
+<p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image.png" title="image" alt="image"></a></p>
 <p>Do this to disable the new startup screen and go immediately to a blank document, as it has been for two decades. Instructions are for Word 2016.</p>
 <ol>
 <li>Open Word</li>
@@ -188,10 +188,10 @@ h [<span class="dv">0</span>] = <span class="dv">1</span>;
 <li>In the General &gt; Start up options, uncheck "Show the Start screen when this application starts"</li>
 <li>Click OK. Word now opens to a blank document.</li>
 </ol>
-<p><a href="images/image_thumb_25255B4_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="592" height="516"></a></p>
-<h1 id="backstage-view-save-screen">Backstage View (Save Screen)</h1>
+<p><a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image-001.png" title="image" alt="image"></a></p>
+<h1>Backstage View (Save Screen)</h1>
 <p>Microsoft OneDrive is intended to be deeply integrated into MS Office. Microsoft wants you saving there by default. The Save screen reflects that when you save a new document (or Save As an existing one).</p>
-<p><a href="images/image_thumb_25255B6_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image_thumb_25255B6_25255D.png" title="image" alt="image" width="606" height="428"></a></p>
+<p><a href="images/image-002.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image-002.png" title="image" alt="image"></a></p>
 <p>However, many people prefer to save locally, even if that means saving to the local OneDrive folder for later synchronization.</p>
 <p>Do this to show the file Save As dialog that you've seen since raptors tried to eat your computer.</p>
 <ol>
@@ -201,11 +201,11 @@ h [<span class="dv">0</span>] = <span class="dv">1</span>;
 <li>In Save &gt; Save documents, check "Don't show the Backstage when opening or saving files"</li>
 <li>Click OK. Save/Save As shows the good, old dialog.</li>
 </ol>
-<p><a href="images/image_thumb_25255B8_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image_thumb_25255B8_25255D.png" title="image" alt="image" width="628" height="537"></a></p>
+<p><a href="images/image-003.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image-003.png" title="image" alt="image"></a></p>
 <p>Hello, old friend.</p>
-<p><a href="images/image_thumb_25255B11_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image_thumb_25255B11_25255D.png" title="image" alt="image" width="468" height="316"></a></p>
-<h1 id="references">References</h1>
-<p><a href="http://www.howtogeek.com/tips/how-to-bypass-the-backstage-view-when-saving-new-files-in-office-2013/" class="uri">http://www.howtogeek.com/tips/how-to-bypass-the-backstage-view-when-saving-new-files-in-office-2013/</a></p>
+<p><a href="images/image-004.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/how-to-bypass-new-microsoft-office/images/image-004.png" title="image" alt="image"></a></p>
+<h1>References</h1>
+<p><a href="http://www.howtogeek.com/tips/how-to-bypass-the-backstage-view-when-saving-new-files-in-office-2013/" class="uri" title="http://www.howtogeek.com/tips/how-to-bypass-the-backstage-view-when-saving-new-files-in-office-2013/">http://www.howtogeek.com/tips/how-to-bypass-the-backstage-view-when-saving-new-files-in-office-2013/</a></p>
 </div>
               </div>
               

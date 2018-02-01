@@ -42,12 +42,12 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-03-23 12:11</span></p>
-                <div class='post-content'><h1 id="rationale">Rationale</h1>
+                <div class='post-content'><h1>Rationale</h1>
 <p>These are sane conventions for constructing and naming a database schema. They aren't new, and there's sure to be something someone doesn't like. They are biased toward the .Net EntityFramework, which itself was influenced by the Ruby on Rails ActiveRecord conventions by David Heinemeier Hansson.</p>
 <p>Using these conventions makes it easier to translate the tables into classes. While this isn't always desirable (or correct), it often is.</p>
-<h1 id="sample">Sample</h1>
+<h1>Sample</h1>
 <p>This sample schema exemplifies the conventions, and shows most relationships you'll encounter. It's semi-realistic. PropertyRecords is contrived to show a pseudo one-to-one relationship. (Note: MS SQL doesn't allow a <em>true</em> one-to-one structure, as different tables' rows can't be simultaneously created.)</p>
-<p><a href="images/sample-schema_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions/images/sample-schema_thumb.png" title="sample-schema" alt="sample-schema" width="642" height="703"></a></p>
+<p><a href="images/sample-schema.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/sane-database-schema-conventions/images/sample-schema.png" title="sample-schema" alt="sample-schema"></a></p>
 <ul>
 <li>A Customer has an Initial contact Employee, Support Employee and a Salesperson. An Employee can service multiple Customers.</li>
 <li>An Employee can be a Salesperson.</li>
@@ -58,7 +58,7 @@
 <li>An Order can have many Promotions, a Promotion is for zero or more Orders.</li>
 <li>An Order Promotion has zero or more customer notifications.</li>
 </ul>
-<h1 id="table-column-layout">Table Column Layout</h1>
+<h1>Table Column Layout</h1>
 <p>I like my table columns ordered this way.</p>
 <ol>
 <li>Primary key</li>
@@ -66,133 +66,130 @@
 <li>Regular columns</li>
 <li>Audit columns</li>
 </ol>
-<h1 id="general-names">General Names</h1>
-<h2 id="pluralize-most-table-names">Pluralize Most Table Names</h2>
+<h1>General Names</h1>
+<h2>Pluralize Most Table Names</h2>
 <p>Pluralizing table names reduces the chances of keyword conflicts, and matches how the table will (typically) be treated in an ORM tool.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes            |No
----------------|-----------------
-Customers      |Customer
-Salespeople    |Salesperson</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">Yes            |No</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">---------------|-----------------</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">Customers      |Customer</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">Salespeople    |Salesperson</a></code></pre></div>
 <p>Don't pluralize many-to-many join tables. By convention, keep the table name parts alphabetical.</p>
 <blockquote>
-<p><strong>Note</strong><br>
-Using Code First, Entity Framework might pluralize this to OrderVendors. Personally, I'd use the FluentAPI to force the table name to the OrderVendor.</p>
+<p><strong>Note</strong> Using Code First, Entity Framework might pluralize this to OrderVendors. Personally, I'd use the FluentAPI to force the table name to the OrderVendor.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes            |No
----------------|-----------------
-OrderVendor    |OrdersVendors, OrderVendors, VendorOrder</code></pre></div>
-<h2 id="use-pascalcase">Use PascalCase</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1">Yes            |No</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">---------------|-----------------</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">OrderVendor    |OrdersVendors, OrderVendors, VendorOrder</a></code></pre></div>
+<h2>Use PascalCase</h2>
 <p>Tables and columns should be in <a href="https://en.wikipedia.org/wiki/PascalCase">PascalCase</a>.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes            |No
----------------|-----------------
-Customers      |customer
-OrderNbr       |orderNbr</code></pre></div>
-<h2 id="no-dashes-or-underscores">No Dashes or Underscores</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1">Yes            |No</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">---------------|-----------------</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">Customers      |customer</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">OrderNbr       |orderNbr</a></code></pre></div>
+<h2>No Dashes or Underscores</h2>
 <p>It's tempting to separate words in either table or column names, but don't. Keeping them PascalCased makes the transition to classes easier and clearer. Also, some databases don't play nicely with underscores, or dashes, depending on how they're used.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes            |No
----------------|-----------------
-OrderVendor    |Order_Vendor
-OrderNbr       |order-number
-CustomerId     |Customer_ID</code></pre></div>
-<h1 id="keys">Keys</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1">Yes            |No</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">---------------|-----------------</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">OrderVendor    |Order_Vendor</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">OrderNbr       |order-number</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">CustomerId     |Customer_ID</a></code></pre></div>
+<h1>Keys</h1>
 <p>My personal preference is to end key names with "Id", rather than "ID". It reads just as well, and is consistent with PascalCasing and .Net naming conventions.</p>
-<h2 id="primary-key">Primary Key</h2>
+<h2>Primary Key</h2>
 <p>Some people prefer a primary key of just "Id", but if you need to run SQL queries (and you will), it's easier to have the table name in the primary key for creating joins and reading the results.</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span>  c.CustomerId, c.Name, a.AddressId, a.Address1
-<span class="kw">FROM</span>    Customers c
-<span class="kw">JOIN</span> Addresses a <span class="kw">on</span> c.CustomerId = a.CustomerId
-
-<span class="co">--Result:</span>
-
-CustomerId  Name  AddressId Address1
-<span class="co">----------  ----  --------- ----------</span>
-<span class="dv">23</span>  Ron         <span class="dv">402</span> <span class="dv">12</span> Main St
-<span class="dv">47</span>  Eve          <span class="dv">11</span> <span class="dv">3</span> Polo Ave</code></pre></div>
-<p><strong>Simple Tables</strong><br>
-TableName + "Id"</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes            |No
----------------|-----------------
-CustomerId     |CustomerID, Customer_id, Customer_ID</code></pre></div>
-<p><strong>Many-to-Many Tables</strong><br>
-A <strong>regular</strong> join table doesn't need its own primary key. Just use the other tables' primary keys to form a composite key.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">OrderVendor
-===========
-<span class="fu">OrderId</span>  (PK, FK)
-<span class="fu">VendorId</span> (PK, FK)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">SELECT</span>  c.CustomerId, c.Name, a.AddressId, a.Address1</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">FROM</span>    Customers c</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">JOIN</span> Addresses a <span class="kw">on</span> c.CustomerId = a.CustomerId</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">--Result:</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">CustomerId  Name  AddressId Address1</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">----------  ----  --------- ----------</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="dv">23</span>  Ron         <span class="dv">402</span> <span class="dv">12</span> Main St</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="dv">47</span>  Eve          <span class="dv">11</span> <span class="dv">3</span> Polo Ave</a></code></pre></div>
+<p><strong>Simple Tables</strong> TableName + "Id"</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1">Yes            |No</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">---------------|-----------------</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">CustomerId     |CustomerID, Customer_id, Customer_ID</a></code></pre></div>
+<p><strong>Many-to-Many Tables</strong> A <strong>regular</strong> join table doesn't need its own primary key. Just use the other tables' primary keys to form a composite key.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" data-line-number="1">OrderVendor</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">===========</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="fu">OrderId</span>  (PK, FK)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="fu">VendorId</span> (PK, FK)</a></code></pre></div>
 <p>The resulting classes should have these properties</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">class</span> Order
-{
-IEnumerable&lt;Vendor&gt; Vendors
-}
-
-<span class="kw">class</span> Vendor
-{
-IEnumerable&lt;Order&gt; Orders
-}</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">class</span> Order</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">IEnumerable&lt;Vendor&gt; Vendors</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">class</span> Vendor</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">IEnumerable&lt;Order&gt; Orders</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">}</a></code></pre></div>
 <p>A join table <strong>with payload</strong>--one that has its own columns <em>and/or</em> will be joined to another table, should have its own primary key of Table1+Table2+Id</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">OrderPromotion
-==============
-<span class="fu">OrderPromotionId</span> (PK)
-<span class="fu">OrderId</span>          (FK)
-<span class="fu">PromotionId</span>      (FK)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb9-1" data-line-number="1">OrderPromotion</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">==============</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="fu">OrderPromotionId</span> (PK)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="fu">OrderId</span>          (FK)</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="fu">PromotionId</span>      (FK)</a></code></pre></div>
 <p>The resulting classes</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">class</span> Order
-{
-IEnumerable&lt;OrderPromotion&gt; OrderPromotions
-<span class="co">//You can manually add this method to get Promotions</span>
-IEnumerable&lt;Promotion&gt; Promotions
-{<span class="kw">get</span> {<span class="kw">return</span> OrderPromotions.<span class="fu">Select</span>(op =&gt; op.<span class="fu">Promotion</span>);}}
-}
-
-<span class="kw">class</span> Promotion
-{
-IEnumerable&lt;OrderPromotion&gt; Order Promotions
-}</code></pre></div>
-<h2 id="foreign-key">Foreign Key</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">class</span> Order</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">IEnumerable&lt;OrderPromotion&gt; OrderPromotions</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">//You can manually add this method to get Promotions</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">IEnumerable&lt;Promotion&gt; Promotions</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">{<span class="kw">get</span> {<span class="kw">return</span> OrderPromotions.<span class="fu">Select</span>(op =&gt; op.<span class="fu">Promotion</span>);}}</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="kw">class</span> Promotion</a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">{</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11">IEnumerable&lt;OrderPromotion&gt; Order Promotions</a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">}</a></code></pre></div>
+<h2>Foreign Key</h2>
 <p>When possible, use the referenced primary key name. If there are multiple foreign keys to the same table, end with the foreign primary key name.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes                       No
--------------             -----------------
-Employees
-=========
-<span class="fu">EmployeeId</span> (PK)
-
-Customers                 Customers
-=========                 =========
-<span class="fu">CustomerId</span> (PK)           <span class="fu">Customer_Id</span> (PK)
-<span class="fu">SupportEmployeeId</span> (FK)    <span class="fu">SupportPerson</span> (FK)
-<span class="fu">InitialEmployeeId</span> (FK)    <span class="fu">InitialEmp_ID</span> (FK)
-
-Addresses                 Addresses
-=========                 =========
-<span class="fu">AddressId</span>  (PK)           <span class="fu">AddressId</span> (PK)
-<span class="fu">CustomerId</span> (FK)           <span class="fu">CustID</span>    (FK)</code></pre></div>
-<h1 id="date-columns">Date Columns</h1>
+<div class="sourceCode" id="cb11"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb11-1" data-line-number="1">Yes                       No</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">-------------             -----------------</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">Employees</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">=========</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="fu">EmployeeId</span> (PK)</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">Customers                 Customers</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">=========                 =========</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="fu">CustomerId</span> (PK)           <span class="fu">Customer_Id</span> (PK)</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="fu">SupportEmployeeId</span> (FK)    <span class="fu">SupportPerson</span> (FK)</a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="fu">InitialEmployeeId</span> (FK)    <span class="fu">InitialEmp_ID</span> (FK)</a>
+<a class="sourceLine" id="cb11-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13">Addresses                 Addresses</a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">=========                 =========</a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="fu">AddressId</span>  (PK)           <span class="fu">AddressId</span> (PK)</a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="fu">CustomerId</span> (FK)           <span class="fu">CustID</span>    (FK)</a></code></pre></div>
+<h1>Date Columns</h1>
 <p>Use a verb, and end the date or datetime column names with "On".</p>
 <p>Following this convention often leads to clearer column meanings, and consistency. For example, DateToPlace or PlaceDateTime becomes PlaceOrderOn.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes            |No
----------------|-----------------
-OrderedOn      |OrderDateTime
-ShouldShipOn   |DateShipExpect, ExpectedShip_DT, AnticipatedDate</code></pre></div>
-<h1 id="dont-abbreviate">Don't Abbreviate</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb12-1" data-line-number="1">Yes            |No</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">---------------|-----------------</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">OrderedOn      |OrderDateTime</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">ShouldShipOn   |DateShipExpect, ExpectedShip_DT, AnticipatedDate</a></code></pre></div>
+<h1>Don't Abbreviate</h1>
 <p>Abbreviations are, by their nature, ambiguous and culture-centric. Avoid them unless they are very common, consistent, and/or well-known in the organization or industry.</p>
 <p>A good example of ambiguity is how to abbreviate "number". Even my schema example, "InvoiceNbr", is potentially ambiguous. But InvNo is worse. Is there another column "InvYes"?</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes            |No
----------------|-----------------
-Customers      |Custs
-CustomerId     |CustId
-FirstName      |Fname
-InvoiceNbr     |InvNo</code></pre></div>
-<h1 id="use-consistent-names-and-abbreviations-if-you-must">Use Consistent Names (and Abbreviations if You Must)</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb13-1" data-line-number="1">Yes            |No</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">---------------|-----------------</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">Customers      |Custs</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">CustomerId     |CustId</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">FirstName      |Fname</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">InvoiceNbr     |InvNo</a></code></pre></div>
+<h1>Use Consistent Names (and Abbreviations if You Must)</h1>
 <ul>
 <li>If you must abbreviate, be consistent.</li>
 <li>If it's spelled "InvoiceNbr" in one table, it's that way in <em>all</em> tables.</li>
 <li>If everyone knows what DestinationBOL means, that might be OK. But maybe it's better to expand it to DestinationBillOfLading.</li>
 </ul>
 <p>When in doubt, refer to <strong>Flatt's Law #6: Clarity is more important than brevity.</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Yes            |No
----------------|-----------------
-InvoiceNbr     |InvoiceNum, InvNumber, Inv_Nmbr</code></pre></div>
-<h1 id="auditing">Auditing</h1>
+<div class="sourceCode" id="cb14"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb14-1" data-line-number="1">Yes            |No</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">---------------|-----------------</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">InvoiceNbr     |InvoiceNum, InvNumber, Inv_Nmbr</a></code></pre></div>
+<h1>Auditing</h1>
 <p>To be honest, I've often found audit columns to be more trouble than they're worth. I think if auditing is needed, it's better to have a separate audit history table where you can record many kinds of changes, including deletions.</p>
 <p>But, if I am using them, and am tracking who took an action, I don't link to another table (such as Users or Employees), but instead record the physical name. This significantly reduces linking, and makes it easy to indicate that a process (rather than a person) performed an action. In other words, UpdatedBy is a string column and contains a value like "cflatt" or "Nightly Batch Process".</p>
 <ul>
@@ -201,27 +198,27 @@ InvoiceNbr     |InvoiceNum, InvNumber, Inv_Nmbr</code></pre></div>
 <li>UpdatedOn</li>
 <li>UpdatedBy</li>
 </ul>
-<h1 id="inheritance">Inheritance</h1>
+<h1>Inheritance</h1>
 <p>Inheritance can be modeled in the database a couple of different ways. I prefer Table Per Type, as shown by the Employee and Salesperson tables. Note that the Salesperson table has an <em>EmployeeId</em> primary key. This is what implies the inheritance. In the application's class model, these would become:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Employee
-{
-<span class="dt">int</span> EmployeeId
-<span class="dt">string</span> Name
-}
-
-<span class="kw">public</span> <span class="kw">class</span> Salesperson: Employee
-{
-<span class="dt">double</span> CommissionPercent
-}
-
-<span class="kw">public</span> <span class="kw">class</span> Customer
-{
-<span class="dt">int</span> CustomerId
-<span class="dt">string</span> Name
-Employee SupportEmployee
-Employee InitialEmployee
-Salesperson Salesperson
-}</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> Employee</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="dt">int</span> EmployeeId</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="dt">string</span> Name</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="kw">public</span> <span class="kw">class</span> Salesperson: Employee</a>
+<a class="sourceLine" id="cb15-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="dt">double</span> CommissionPercent</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">}</a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12"><span class="kw">public</span> <span class="kw">class</span> Customer</a>
+<a class="sourceLine" id="cb15-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb15-14" data-line-number="14"><span class="dt">int</span> CustomerId</a>
+<a class="sourceLine" id="cb15-15" data-line-number="15"><span class="dt">string</span> Name</a>
+<a class="sourceLine" id="cb15-16" data-line-number="16">Employee SupportEmployee</a>
+<a class="sourceLine" id="cb15-17" data-line-number="17">Employee InitialEmployee</a>
+<a class="sourceLine" id="cb15-18" data-line-number="18">Salesperson Salesperson</a>
+<a class="sourceLine" id="cb15-19" data-line-number="19">}</a></code></pre></div>
 </div>
               </div>
               

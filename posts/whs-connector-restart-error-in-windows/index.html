@@ -48,14 +48,10 @@
 <li>Open a command prompt and run <span style="font-family: Consolas;">ipconfig /flushdns</span>.</li>
 <li>Reinstall the connector by going to <a href="http://%5Bwhsname%5D/connect">http://[WHSname]/connect</a>.</li>
 </ol>
-<p>However, in my case I would get an error “Cannot connect the computer to the server because either another software installation is in progress or, the computer has a restart pending….”</p>
-<p>Try restarting. If that doesn't solve the problem, a registry key needs to be deleted.</p>
-<p><a href="http://social.microsoft.com/Forums/en-US/a90b4679-d2dc-4820-94f0-dce22da245a4/solved-cannot-install-connector-software-error-regarding-another-installation-is-in-progress?forum=whsvailbeta" class="uri">http://social.microsoft.com/Forums/en-US/a90b4679-d2dc-4820-94f0-dce22da245a4/solved-cannot-install-connector-software-error-regarding-another-installation-is-in-progress?forum=whsvailbeta</a></p>
-<p>Summary:</p>
+<p>However, in my case I would get an error “Cannot connect the computer to the server because either another software installation is in progress or, the computer has a restart pending….” Try restarting. If that doesn't solve the problem, a registry key needs to be deleted. <a href="http://social.microsoft.com/Forums/en-US/a90b4679-d2dc-4820-94f0-dce22da245a4/solved-cannot-install-connector-software-error-regarding-another-installation-is-in-progress?forum=whsvailbeta" class="uri">http://social.microsoft.com/Forums/en-US/a90b4679-d2dc-4820-94f0-dce22da245a4/solved-cannot-install-connector-software-error-regarding-another-installation-is-in-progress?forum=whsvailbeta</a> Summary:</p>
 <ol>
 <li>Open regedit.exe.</li>
-<li>Navigate to<br>
-<strong>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager</strong></li>
+<li>Navigate to <strong>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager</strong></li>
 <li>Delete the key <strong>PendingFileRenameOperations</strong></li>
 </ol>
 </div>

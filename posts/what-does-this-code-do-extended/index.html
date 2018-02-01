@@ -46,49 +46,49 @@
 <p><a href="https://ayende.com/blog/176770/answer-what-does-this-code-do">What does this code do?</a></p>
 <p>But I'm not as bright as his readers, and was still mighty confused. It took me about ten minutes to finally see what was going on.</p>
 <p>Ayende's original code is this:</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="dt">var</span> doc = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>,<span class="dt">object</span>&gt;
-{
-[<span class="st">"@metadata"</span>] = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt;
-{
-[<span class="st">"@id"</span>] = <span class="st">"users/1"</span>
-}
-[<span class="st">"Name"</span>] = <span class="st">"Oren"</span>
-};
-
-
-Console.<span class="fu">WriteLine</span>(doc[<span class="st">"Name"</span>]);</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cs"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dt">var</span> doc = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>,<span class="dt">object</span>&gt;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">[<span class="st">"@metadata"</span>] = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">[<span class="st">"@id"</span>] = <span class="st">"users/1"</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">[<span class="st">"Name"</span>] = <span class="st">"Oren"</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">};</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">Console.<span class="fu">WriteLine</span>(doc[<span class="st">"Name"</span>]);</a></code></pre></div>
 <p>The final statement fails, because doc is actually equal to a string value of "Oren", not the dictionary object. Why? And--for me--I couldn't understand why it was compiling at all.</p>
 <p>It took me a while to see the syntax parsing, and remember that C# can be very forgiving of spaces. I'm not a beginner, but it's sort of a beginner mistake. For other readers like me who aren't as bright (if you have any!), here's another look.</p>
 <p>While it appeared to me an element was being set completely outside of the declaration, the element is being set <em>on</em> the declared dictionary.</p>
 <p>The final syntax is:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="dt">var</span> item = NewDictionary[element] = value;</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="dt">var</span> item = NewDictionary[element] = value;</a></code></pre></div>
 <p>But that syntax can look like this:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="dt">var</span> item = NewDictionary              [element] = value;</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dt">var</span> item = NewDictionary              [element] = value;</a></code></pre></div>
 <p>Code samples</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">//spaces before the element don't matter</span>
-<span class="dt">var</span> item = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; {}    [<span class="st">"a"</span>] = <span class="dv">1</span>;
-<span class="co">//is the same as</span>
-<span class="dt">var</span> item = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; { }[<span class="st">"a"</span>] = <span class="dv">1</span>;
-
-<span class="co">//For clarity, we replace the declaration with its assignment.</span>
-<span class="dt">var</span> dic = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; {};
-<span class="dt">var</span> item = dic     [<span class="st">"a"</span>] = <span class="dv">1</span>;
-<span class="co">//is the same as</span>
-<span class="dt">var</span> item = dic[<span class="st">"a"</span>] = <span class="dv">1</span>;</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cs"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">//spaces before the element don't matter</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="dt">var</span> item = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; {}    [<span class="st">"a"</span>] = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">//is the same as</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="dt">var</span> item = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; { }[<span class="st">"a"</span>] = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">//For clarity, we replace the declaration with its assignment.</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="dt">var</span> dic = <span class="kw">new</span> Dictionary&lt;<span class="dt">string</span>, <span class="dt">object</span>&gt; {};</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="dt">var</span> item = dic     [<span class="st">"a"</span>] = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">//is the same as</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="dt">var</span> item = dic[<span class="st">"a"</span>] = <span class="dv">1</span>;</a></code></pre></div>
 <p>I looked for other examples of where this can be done. The simplest array case doesn't compile:</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">//This is OK.</span>
-<span class="dt">int</span>[] items = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">1</span>] {<span class="dv">1</span>};
-<span class="dt">int</span> item = items [<span class="dv">0</span>] = <span class="dv">2</span>;
-
-<span class="co">//But this isn't.</span>
-<span class="dt">int</span>[] items = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">1</span>] { <span class="dv">1</span> } [<span class="dv">0</span>] = <span class="dv">2</span>;</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cs"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">//This is OK.</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="dt">int</span>[] items = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">1</span>] {<span class="dv">1</span>};</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="dt">int</span> item = items [<span class="dv">0</span>] = <span class="dv">2</span>;</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">//But this isn't.</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="dt">int</span>[] items = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">1</span>] { <span class="dv">1</span> } [<span class="dv">0</span>] = <span class="dv">2</span>;</a></code></pre></div>
 <p>Hashtable works the same as Dictionary, which is logical.</p>
-<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">//OK</span>
-<span class="dt">var</span> h = <span class="kw">new</span> <span class="fu">Hashtable</span>();
-h [<span class="dv">0</span>] = <span class="dv">1</span>;
-
-<span class="co">//OK, too.</span>
-<span class="dt">var</span> h = <span class="kw">new</span> <span class="fu">Hashtable</span>() [<span class="dv">0</span>] = <span class="dv">1</span>;</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cs"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">//OK</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="dt">var</span> h = <span class="kw">new</span> <span class="fu">Hashtable</span>();</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">h [<span class="dv">0</span>] = <span class="dv">1</span>;</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">//OK, too.</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="dt">var</span> h = <span class="kw">new</span> <span class="fu">Hashtable</span>() [<span class="dv">0</span>] = <span class="dv">1</span>;</a></code></pre></div>
 <p>Thanks, Ayende, for getting my brain working!</p>
 </div>
               </div>

@@ -42,7 +42,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-03-03 11:01</span></p>
-                <div class='post-content'><h1 id="the-summary">The Summary</h1>
+                <div class='post-content'><h1>The Summary</h1>
 <p>What if you</p>
 <ol>
 <li>Don't store your NuGet packages in source control.</li>
@@ -56,7 +56,7 @@
 <li>Set up public access to the private source. Not likely.</li>
 <li>For testing, set up a local private NuGet source (just point to the folder).</li>
 </ol>
-<h1 id="the-problems">The Problems</h1>
+<h1>The Problems</h1>
 <p>NuGet packages are generally great. But there can be problems when it comes to source control and continuous integration.</p>
 <p>Most sites' advice on storing NuGet packages in source control (regardless of git, Mercurial, TFS, SVN, etc) is: don't.</p>
 <p>The reason is pretty simple. If package restore is enabled, they'll get downloaded and rebuilt anyway, so why store them and take up repository space? With the later NuGet installations, a cache is maintained in the user's profile, so a trip to the NuGet servers might not even be necessary.</p>
@@ -73,7 +73,7 @@
 <p>Most of the above can be solved by building the solution immediately after getting it. But here's a real-world example of number 4. I was working for a client, and had access to their Team Foundation Server. I got the source via a VPN connection, copied it to my laptop, and tried to build. This client has several NuGet packages they host locally. They're proprietary, so hosting them on a public site like NuGet would be wrong.</p>
 <p>And I didn't have access to that package source, so I couldn't build.</p>
 <p>Again, these problems could be solved, and maybe they point to some environment changes needing to be made. But wouldn't it be just as easy to include the package in source control?</p>
-<h1 id="including-the-nuget-package-folder-in-tfs">Including the NuGet Package Folder in TFS</h1>
+<h1>Including the NuGet Package Folder in TFS</h1>
 <p>If you're using a version of TFS prior to 2012, I can't help you (and you should upgrade). Starting in TFS 2012, the tfignore file became available. The purpose of tfignore is just like gitignore and hgignore: tell source control which files to not display for adding/tracking.</p>
 <p>But it can also be used to explicitly allow files. Why is this needed? Because, unlike git or Mercurial, TFS + Visual Studio ignores certain files by default, and I haven't found a way to change that or even find out what files those are. Dlls are ignored by default, for example.</p>
 <ol>
@@ -90,7 +90,7 @@
 <p>See the trailing period? That's the magic sauce. Otherwise, Windows doesn't let you create a file/folder with a leading period.</p>
 <p>Visual Studio shows package folders in Excluded Changes by default. But dlls, and sometimes lib folders, are <em>not</em> included, and we absolutely need those.</p>
 <p>Here's how to include the <em>entire</em> packages folder. The leading ! means "don't ignore".</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">!packages\*</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">!packages\*</a></code></pre></div>
 <p>These don't work. Note, especially, that leading backslash doesn't work, even thought that's what VS itself will create via the GUI.</p>
 <ul>
 <li>!\packages*.*</li>
@@ -98,28 +98,28 @@
 <li>!packages\</li>
 </ul>
 <p>To include a specific package, such as one that's hosted in a private NuGet source, ignore the packages folder, then specify the package path without the version number.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">packages
-!packages\My.<span class="fu">Private</span>.<span class="fu">Utility</span>.*</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1">packages</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">!packages\My.<span class="fu">Private</span>.<span class="fu">Utility</span>.*</a></code></pre></div>
 <p>In Visual Studio Team Explorer, choose Pending Changes, find Excluded Changes, click Detected: x adds(s).</p>
-<p><a href="images/2017-03-03_101910_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private/images/2017-03-03_101910_thumb_25255B1_25255D.png" title="2017-03-03_101910" alt="2017-03-03_101910" width="355" height="369"></a></p>
+<p><a href="images/17-03-03_101910.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private/images/17-03-03_101910.png" title="2017-03-03_101910" alt="2017-03-03_101910"></a></p>
 <p>Deselect all files (they're selected by default, a <em>bad</em> choice), then check the ones you want and Promote them (which is the same as "add" in git or Mercurial).</p>
-<p><a href="images/2017-03-03_103218_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private/images/2017-03-03_103218_thumb_25255B1_25255D.png" title="2017-03-03_103218" alt="2017-03-03_103218" width="744" height="378"></a></p>
-<h1 id="using-a-private-repo-for-testing">Using a Private Repo for Testing</h1>
+<p><a href="images/17-03-03_103218.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private/images/17-03-03_103218.png" title="2017-03-03_103218" alt="2017-03-03_103218"></a></p>
+<h1>Using a Private Repo for Testing</h1>
 <p>If you're testing CI on a separate machine, you can use or modify a nuget.config file to include that source. I tried this at the project level, but it didn't work, so I created the nuget.config file at the solution level. (But that ability is supposedly removed in later NuGet versions. So confusing!)</p>
 <p>Here's an example file:</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span>
-<span class="kw">&lt;configuration&gt;</span>
-<span class="kw">&lt;packageRestore&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"enabled"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"automatic"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageRestore&gt;</span>
-<span class="kw">&lt;packageSources&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"nuget.org"</span><span class="ot"> value=</span><span class="st">"https://api.nuget.org/v3/index.json"</span><span class="ot"> protocolVersion=</span><span class="st">"3"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"local"</span><span class="ot"> value=</span><span class="st">"C:\Users\charles\Documents\Testing\NuGet\"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageSources&gt;</span>
-<span class="kw">&lt;/configuration&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">&lt;configuration&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">&lt;packageRestore&gt;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"enabled"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"automatic"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">&lt;/packageRestore&gt;</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">&lt;packageSources&gt;</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"nuget.org"</span><span class="ot"> value=</span><span class="st">"https://api.nuget.org/v3/index.json"</span><span class="ot"> protocolVersion=</span><span class="st">"3"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"local"</span><span class="ot"> value=</span><span class="st">"C:\Users\charles\Documents\Testing\NuGet\"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">&lt;/packageSources&gt;</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">&lt;/configuration&gt;</span></a></code></pre></div>
 <p>Again, this must not end up in the production source control repository!</p>
-<h1 id="the-wrap-up">The Wrap Up</h1>
+<h1>The Wrap Up</h1>
 <p>I'm not weighing in on storing NuGet packages in source control, except to say that there are some situations where it's clear to me it's a good ideal. Having a private NuGet source involved is one.</p>
 </div>
               </div>

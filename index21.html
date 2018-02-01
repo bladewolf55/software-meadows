@@ -38,7 +38,7 @@
     <div id="site-subtitle">A pleasant walk through computing</div>
   </header>
   <section id="content">
-    <h1 id="home">Home</h1>
+    <h1>Home</h1>
 
   </section>
   <!-- posts only appear in home index -->
@@ -52,14 +52,13 @@
 <p>Today, I found a setting that might do the job.</p>
 <ol>
 <li>Connect to the wireless network giving problems. (In my case, my home router.)</li>
-<li>Right-click the connection icon and choose “Open Network and Sharing Center.”<br>
-<a href="images/image_thumb_25255B4_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="144" height="36"></a></li>
+<li>Right-click the connection icon and choose “Open Network and Sharing Center.” <a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem/images/image.png" title="image" alt="image"></a></li>
 <li>Open “Change adapter settings.</li>
 <li>Right-click the Wi-Fi adapter and choose Status.</li>
 <li>Open Wireless Properties. These are the properties for the network profile.</li>
 <li>Uncheck “Look for other wireless networks while connected to this network.”</li>
 </ol>
-<p><a href="images/image_thumb_25255B3_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem/images/image_thumb_25255B3_25255D.png" title="image" alt="image" width="382" height="391"></a></p>
+<p><a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem/images/image-001.png" title="image" alt="image"></a></p>
 <p>I’m <em>hoping</em> this will stop Windows from trying to find other networks, which seems similar to the “roaming” setting (which I’ve set back to its default of “Highest.”</p>
 <p>I’ll update this post in a week or less with whether this solved my problem.</p>
 <p><strong>Update 1/26/14 9:30p</strong></p>
@@ -77,14 +76,10 @@
 <li>Open a command prompt and run <span style="font-family: Consolas;">ipconfig /flushdns</span>.</li>
 <li>Reinstall the connector by going to <a href="http://%5Bwhsname%5D/connect">http://[WHSname]/connect</a>.</li>
 </ol>
-<p>However, in my case I would get an error “Cannot connect the computer to the server because either another software installation is in progress or, the computer has a restart pending….”</p>
-<p>Try restarting. If that doesn't solve the problem, a registry key needs to be deleted.</p>
-<p><a href="http://social.microsoft.com/Forums/en-US/a90b4679-d2dc-4820-94f0-dce22da245a4/solved-cannot-install-connector-software-error-regarding-another-installation-is-in-progress?forum=whsvailbeta" class="uri">http://social.microsoft.com/Forums/en-US/a90b4679-d2dc-4820-94f0-dce22da245a4/solved-cannot-install-connector-software-error-regarding-another-installation-is-in-progress?forum=whsvailbeta</a></p>
-<p>Summary:</p>
+<p>However, in my case I would get an error “Cannot connect the computer to the server because either another software installation is in progress or, the computer has a restart pending….” Try restarting. If that doesn't solve the problem, a registry key needs to be deleted. <a href="http://social.microsoft.com/Forums/en-US/a90b4679-d2dc-4820-94f0-dce22da245a4/solved-cannot-install-connector-software-error-regarding-another-installation-is-in-progress?forum=whsvailbeta" class="uri">http://social.microsoft.com/Forums/en-US/a90b4679-d2dc-4820-94f0-dce22da245a4/solved-cannot-install-connector-software-error-regarding-another-installation-is-in-progress?forum=whsvailbeta</a> Summary:</p>
 <ol>
 <li>Open regedit.exe.</li>
-<li>Navigate to<br>
-<strong>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager</strong></li>
+<li>Navigate to <strong>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager</strong></li>
 <li>Delete the key <strong>PendingFileRenameOperations</strong></li>
 </ol>
 </div>

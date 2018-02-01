@@ -42,7 +42,8 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-05-22 11:08</span></p>
-                <div class='post-content'><p>If you’re looking for a thorough comparative review, this isn’t it! But, here are a few tools I looked at for converting a complex VB.NET project to C#.</p>
+                <div class='post-content'><h1></h1>
+<p>If you’re looking for a thorough comparative review, this isn’t it! But, here are a few tools I looked at for converting a complex VB.NET project to C#.</p>
 <p><a href="https://visualstudiogallery.msdn.microsoft.com/fab9aebd-a821-4480-b79f-73722535b3e4">Convert.NET</a> by <a href="http://fishcodelib.com/">fish’s dotNET</a></p>
 <ul>
 <li>Cannot be used commercially with buying the (reasonably priced) license.</li>
@@ -71,22 +72,22 @@
 <li>Has free edition for smaller projects, 2000 line project conversion limit.</li>
 </ul>
 <p>My choice: VBConversions, because of the better post conversion tools that show where errors are. However, one thing Instant C# did that I like is automatically generate a variable copy when a VB.NET for…each manipulated the iterating variable.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">foreach</span> (<span class="dt">string</span> field <span class="kw">in</span> fields)
-{
-<span class="dt">string</span> fieldCopy = field;
-fieldCopy = fieldCopy.<span class="fu">Trim</span>();
-...
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">foreach</span> (<span class="dt">string</span> field <span class="kw">in</span> fields)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dt">string</span> fieldCopy = field;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">fieldCopy = fieldCopy.<span class="fu">Trim</span>();</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">...</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">}</a></code></pre></div>
 <p>VBConversions marked it with an error, essentially leaving the code with a bug. If I weren’t to check the errors, this could be a problem because the code would still compile.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">foreach</span> (<span class="dt">string</span> field <span class="kw">in</span> fields)
-{
-<span class="co">// field = field.Trim(); VBConversions Warning: A foreach variable can't be assigned to in C#.</span>
-<span class="dt">string</span> fieldType = <span class="st">""</span>;
-...
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">foreach</span> (<span class="dt">string</span> field <span class="kw">in</span> fields)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">// field = field.Trim(); VBConversions Warning: A foreach variable can't be assigned to in C#.</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="dt">string</span> fieldType = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">...</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">}</a></code></pre></div>
 <p>In both cases, it would be wise to set up Visual Studio to treat their comments as Tasks, assuming they consistently start with “VBConversions” or&nbsp; “INSTANT C#”. Then, go through each comment and remove it after evaluation.</p>
 <p>Regardless of the tool, professional diligence says to review every error/message the conversion reports.</p>
-<h1 id="references">References</h1>
+<h1>References</h1>
 <p><a href="http://bartwullems.blogspot.com/2013/05/get-rid-of-missing-xml-comment-for.html">Get rid of the ‘Missing XML comment for publicly visible type or member’ warning</a></p>
 </div>
               </div>

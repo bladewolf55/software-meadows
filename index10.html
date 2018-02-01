@@ -38,7 +38,7 @@
     <div id="site-subtitle">A pleasant walk through computing</div>
   </header>
   <section id="content">
-    <h1 id="home">Home</h1>
+    <h1>Home</h1>
 
   </section>
   <!-- posts only appear in home index -->
@@ -50,7 +50,7 @@
                 <div class='post-content'><p>I wouldn’t care that Windows 10 restarts my computer after updates, <em>if</em> it would capture and restore my <em>entire desktop state</em>. That’s perfectly possible; I have hibernation enabled.</p>
 <p>But I don’t like discovering my computer no longer has the twenty developer-related browser tabs open that took me two hours to find.</p>
 <p>It feels like this.</p>
-<p><img src="http://bladewolf55.gitlab.io/smblog/posts/windows-10-complaint-1-auto-update/images/149699704_deb53eca4e_z.jpg"></p>
+<p><img src="http://bladewolf55.gitlab.io/smblog/posts/windows-10-complaint-1-auto-update/https://c1.staticflickr.com/1/55/149699704_deb53eca4e_z.jpg?zz=1"></p>
 <p>Photo: <a href="https://www.flickr.com/photos/popcorncx/with/149699742/">Stephen Edmonds</a></p>
 <hr>
 <p><strong>EDIT 2016-10-12</strong></p>
@@ -69,23 +69,22 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-09-09 12:50</span></p>
-                <div class='post-content'><p><a href="images/image_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb.png" title="image" alt="image" width="244" height="158"></a></p>
+                <div class='post-content'><p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image.png" title="image" alt="image"></a></p>
 <p>It’s dumb that:</p>
 <ol>
-<li>Windows 10’s default photo viewing app automatically creates albums for you.<br>
-<a href="images/image_thumb_25255B4_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="319" height="146"></a></li>
+<li>Windows 10’s default photo viewing app automatically creates albums for you. <a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-001.png" title="image" alt="image"></a></li>
 <li>You can’t disable that feature.</li>
 <li>Instead, you have to remove the application using PowerShell.</li>
 <li>Which means your default photo viewing app becomes something dumb like Paint.</li>
 </ol>
-<p><a href="images/image_thumb_255B5_255D"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_255B5_255D" title="image" alt="image" width="190" height="293"></a></p>
-<p><a href="http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1" class="uri">http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1</a></p>
+<p><a href="images/image-002.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-002.png" title="image" alt="image"></a></p>
+<p><a href="http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1" class="uri" title="http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1">http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-photos/is-there-any-way-to-disable-the-windows-10-photo/ce616a54-7ce0-44e3-8d47-d56589fc3743?page=1</a></p>
 <p>PowerShell command to remove Photos:</p>
 <p>Get-AppxPackage *photo* | Remove-AppxPackage</p>
 <p>Note: According to some, setting another program (like Paint) as your default photo viewer <em>might</em> disable automatic album generation without removing the app. I didn’t test it, because the <em>only</em> thing I’d use the app for is as a viewer. Not an editor. Just an on-the-fly viewer.</p>
 <p><strong>------------ EDIT 1 -------------</strong></p>
 <p>It’s possible to restore using the Windows 7 Windows Photo Viewer as the default. The program is still installed in Windows 10, it just doesn’t have its file associations enabled by default. Follow these instructions:</p>
-<p><a href="http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html" class="uri">http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html</a></p>
+<p><a href="http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html" class="uri" title="http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html">http://www.tenforums.com/tutorials/14312-windows-photo-viewer-restore-windows-10-a.html</a></p>
 <blockquote>
 <p>Note: I haven’t tried the above, but TenForums (and its sister, SevenForums) is reputable.</p>
 </blockquote>
@@ -96,8 +95,7 @@
 <ol>
 <li>Open FastStone</li>
 <li>Settings (F12) &gt; Viewer</li>
-<li>Associated image launches in: Windowed View<br>
-<a href="images/image_thumb_25255B2_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B2_25255D.png" title="image" alt="image" width="485" height="178"></a></li>
+<li>Associated image launches in: Windowed View <a href="images/image-003.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-003.png" title="image" alt="image"></a></li>
 </ol>
 <p><strong>Features</strong></p>
 <p>In full screen mode, moving the mouse to the top, bottom, right or left of the screen reveals a specific menu. For instance, at the top is thumbnails and some command buttons.</p>
@@ -107,27 +105,26 @@
 <li>Search &gt; Default Programs</li>
 <li>For Photo viewer, choose FastStone.</li>
 </ol>
-<p><a href="images/image_thumb_25255B5_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B5_25255D.png" title="image" alt="image" width="345" height="311"></a></p>
+<p><a href="images/image-004.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-004.png" title="image" alt="image"></a></p>
 <p><strong>Easily move to next/previous image.</strong></p>
 <ul>
 <li>In any view, use the arrows to navigate.</li>
 <li>In windowed view, there are buttons in the tool bar.</li>
 <li>In any view, bring the mouse toward the screen bottom and arrows will appear/</li>
 </ul>
-<p><a href="images/image_thumb_25255B7_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B7_25255D.png" title="image" alt="image" width="292" height="165"></a></p>
+<p><a href="images/image-005.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-005.png" title="image" alt="image"></a></p>
 <p><strong>Quickly get some image properties.</strong></p>
 <ul>
-<li>In any view, press “I”.<br>
-<a href="images/image_thumb_25255B13_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B13_25255D.png" title="image" alt="image" width="190" height="373"></a></li>
+<li>In any view, press “I”. <a href="images/image-006.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-006.png" title="image" alt="image"></a></li>
 <li>In full screen view, move cursor to right side.</li>
 </ul>
 <p><strong>View as a slide show.</strong></p>
 <ul>
-<li>In windowed view, click the Slide Show button <a href="images/image_thumb_25255B3_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B3_25255D.png" title="image" alt="image" width="27" height="23"></a></li>
+<li>In windowed view, click the Slide Show button <a href="images/image-007.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-007.png" title="image" alt="image"></a></li>
 <li>In full screen, move mouse to top, bottom or left and find the Slide Show option in the menu.</li>
 </ul>
-<p><a href="images/image_thumb_25255B12_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image_thumb_25255B12_25255D.png" title="image" alt="image" width="367" height="279"></a></p>
-<h1 id="references">References</h1>
+<p><a href="images/image-008.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/disable-windows-10-photo-automatic/images/image-008.png" title="image" alt="image"></a></p>
+<h1>References</h1>
 <p><a href="http://gettinggeek.com/4-best-image-viewers-windows-10/">Here are 4 Best Image Viewers for Windows 10</a></p>
 </div>
               </div>
@@ -136,8 +133,8 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-09-05 12:28</span></p>
-                <div class='post-content'><h1 id="a-sad-tale-of-woe-again">A Sad Tale of Woe Again</h1>
-<p><a href="images/image_thumb_255B2_255D"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_255B2_255D" title="image" alt="image" width="263" height="88"></a></p>
+                <div class='post-content'><h1>A Sad Tale of Woe Again</h1>
+<p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image.png" title="image" alt="image"></a></p>
 <p>So your husband or wife is a software engineer, and you’re not. You like the <em>idea</em> of software, you even <em>use</em> software, but you are as interested in what goes into creating software as you are in soap manufacturing. He (or she, but programming is still a stupidly male-dominated field, so we’ll stick with the percentages) comes home, blathering on about his day. The conversation goes something like this:</p>
 <p>Him: “They handed me a legacy codebase today. It’s ancient .Net 2 stuff. I’m supposed to refactor the existing code and, in parallel, rewrite it to .Net 4.5.”</p>
 <p>You: (silent, but thinking, “I wonder if crocodiles attack alligators. Or can they mate with them? You only hear about crocodiles <em>or</em> alligators, not crocodiles <em>and</em> alligators. Is a ‘crocogator’ a thing?”)</p>
@@ -147,11 +144,12 @@
 <p>You: (nodding slowly, thinking, “O! M! G! Just cut off my head and pour cabbage into it! Still, he’s a good man. All I have to do is listen.”</p>
 <p>Him: “Stop me any time if I can explain how something works.”</p>
 <p>You: “OK, honey.” (but thinking, “The weeds. I was going to pull the weeds.”)</p>
-<h1 id="unbaffling-language-to-the-rescue">Unbaffling Language to the Rescue!</h1>
+<h1></h1>
+<h1>Unbaffling Language to the Rescue!</h1>
 <p>The only thing worse than listening to a software developer talk about code is asking a sailor about an upcoming voyage. Here are some actual nautical terms and phrases: cumshaw, geedunk, abeam, baggywrinkle, beat to quarters, by and large, coxswain. The definition of “death roll”?:&nbsp; “In a keel boat, a death roll is the act of broaching to windward, putting the spinnaker pole into the water and causing a crash-gybe of the boom and mainsail, which sweep across the deck and plunge down into the water.” [<a href="https://en.wikipedia.org/wiki/Glossary_of_nautical_terms">Wikipedia</a>]</p>
 <p>Water. I drink water. I understand water.</p>
 <p>Programmers don’t need to live lives of unending, habitual obfuscation. We can explain, if we but remember the lessons of literature.</p>
-<h1 id="the-totally-contrived-ridiculous-metaphor">The Totally Contrived, Ridiculous Metaphor</h1>
+<h1>The Totally Contrived, Ridiculous Metaphor</h1>
 <p>Imagine you’re a high school teacher. Now, imagine that you have a four-inch wood splinter going through your left eyelid. Which is easier on your mental state? If you say “splinter,” you must be a teacher.</p>
 <p>Now, imagine a magical school where you don’t have to grade your own papers. You finish your eight-hour work day, go home, take an hour planning the next day’s lessons, have dinner, and study an hour or two for your required continuing education course, but you <em>don’t</em> have to grade at least twenty-five of the 120 five-page essays from mid-term exams.</p>
 <p>Instead, you get to hand the exams to your Grading And Reports Department. It works like this:</p>
@@ -168,11 +166,11 @@
 </ol>
 <p>Here’s a lousy illustration.</p>
 <p>You give the papers to Mr Murphy</p>
-<p><a href="images/image_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B1_25255D.png" title="image" alt="image" width="417" height="217"></a></p>
+<p><a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-001.png" title="image" alt="image"></a></p>
 <p>Mr Murphy gives the papers to Dr Malone, who does mysterious, magical mischief.</p>
-<p><a href="images/image_thumb_25255B3_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B3_25255D.png" title="image" alt="image" width="420" height="245"></a></p>
+<p><a href="images/image-002.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-002.png" title="image" alt="image"></a></p>
 <p>Mr Murphy gives you back the papers.</p>
-<p><a href="images/image_thumb_25255B5_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B5_25255D.png" title="image" alt="image" width="426" height="222"></a></p>
+<p><a href="images/image-003.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-003.png" title="image" alt="image"></a></p>
 <p>You have only been asked to test the report formatting. This is critical! You are <strong><em>not</em></strong> verifying the grades are correct. You only care about the report. You devise this test</p>
 <blockquote>
 <p>Given a stack of 120 papers, if the grades are abc, then report should look like xyz.</p>
@@ -188,24 +186,24 @@
 </ol>
 <p>More laughable illustrations, but let’s include the programming terms.</p>
 <p>We have a dependency on our grader, Dr Malone. We’ll change the GARD room so that we can give it a real <em>or fake</em> grader. This is called Dependency Injection.</p>
-<p><a href="images/image12_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image12_thumb.png" title="image" alt="image" width="467" height="259"></a></p>
+<p><a href="images/image12.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image12.png" title="image" alt="image"></a></p>
 <p>Mr Murphy doesn’t care which grader he gets answers from. For our test, he uses the fake one. That is, he uses a Mock (also called a fake, or stub, or substitute).</p>
-<p><a href="images/image_thumb_25255B12_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B12_25255D.png" title="image" alt="image" width="465" height="269"></a></p>
+<p><a href="images/image-004.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-004.png" title="image" alt="image"></a></p>
 <p>We get back the report made from data we injected. We just want to compare the reports, the work Mr Murphy does.</p>
-<p><a href="images/image_thumb_25255B13_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B13_25255D.png" title="image" alt="image" width="223" height="238"></a></p>
+<p><a href="images/image-005.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-005.png" title="image" alt="image"></a></p>
 <p>If they match, the test passes. If not, fail!</p>
-<p><a href="images/image_thumb_25255B14_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B14_25255D.png" title="image" alt="image" width="244" height="113"></a></p>
-<h1 id="how-a-programmer-sees-this">How a programmer sees this</h1>
+<p><a href="images/image-006.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-006.png" title="image" alt="image"></a></p>
+<h1>How a programmer sees this</h1>
 <p>A programmer sees it the same way. Except it’s all words that look like English, but are alien-ese.</p>
 <p><strong>The Interface</strong></p>
-<p><a href="images/image_thumb_25255B16_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B16_25255D.png" title="image" alt="image" width="473" height="96"></a></p>
+<p><a href="images/image-007.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-007.png" title="image" alt="image"></a></p>
 <p><strong>The Production Code</strong></p>
-<p><a href="images/image_thumb_25255B21_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B21_25255D.png" title="image" alt="image" width="619" height="364"></a></p>
+<p><a href="images/image-008.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-008.png" title="image" alt="image"></a></p>
 <p><strong>Using the Production Code</strong></p>
-<p><a href="images/image_thumb_25255B30_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B30_25255D.png" title="image" alt="image" width="752" height="193"></a></p>
+<p><a href="images/image-009.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-009.png" title="image" alt="image"></a></p>
 <p><strong>The Test Code</strong></p>
-<p><a href="images/image_thumb_25255B24_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image_thumb_25255B24_25255D.png" title="image" alt="image" width="750" height="509"></a></p>
-<h1 id="wrap-up">Wrap Up</h1>
+<p><a href="images/image-010.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/a-laymans-explanation-of-mocking-and/images/image-010.png" title="image" alt="image"></a></p>
+<h1>Wrap Up</h1>
 <p>Dependency Injection and Mocking solve two problems that affect how well software can be tested.</p>
 <ol>
 <li>Dependency Injection lets us control what external dependencies, like a grading engine, a method uses. If we couldn’t do this, we’d have to always use production data, when that’s not what we’re always testing.</li>

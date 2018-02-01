@@ -42,7 +42,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-03-06 15:45</span></p>
-                <div class='post-content'><h1 id="the-summary">The Summary</h1>
+                <div class='post-content'><h1>The Summary</h1>
 <p>Oh, ClickOnce, you bane of development! You're always so attractive: easily created, self-updating installations. But, like a 21st century TV vampire, you end up sucking the life out of me when things get complicated.</p>
 <p>In the case of continuous integration, we need to sign our application using a security certificate, to guarantee the publisher's identity. This makes sense, since the intent is that ClickOnce is installed and maintained from a web site.</p>
 <p><a href="http://stackoverflow.com/questions/8955332/what-is-signing-clickonce-manifests-for" class="uri">http://stackoverflow.com/questions/8955332/what-is-signing-clickonce-manifests-for</a></p>
@@ -54,42 +54,37 @@
 <li>A temporary certificate</li>
 </ul>
 <blockquote>
-<p><strong>Note</strong><br>
-This post will <em>not</em> deal with publishing a ClickOnce application via CI.</p>
+<p><strong>Note</strong> This post will <em>not</em> deal with publishing a ClickOnce application via CI.</p>
 </blockquote>
-<h1 id="the-problems">The Problems</h1>
+<h1>The Problems</h1>
 <p>So what happens when you try to build a ClickOnce app and on a separate CI server (without Visual Studio installed)?</p>
 <p>It fails, that's what. At minimum, in the above scenario of using the default temporary certificate (which you shouldn't), it will fail because the signing utility, signtool.exe, isn't installed on the server.</p>
 <p>How do you manage the signing process on a locally hosted machine?</p>
-<h1 id="locally-installed-tfs">Locally Installed TFS</h1>
-<h2 id="install-signtool.exe-on-the-server">Install SignTool.exe on the Server</h2>
+<h1>Locally Installed TFS</h1>
+<h2>Install SignTool.exe on the Server</h2>
 <p>When a developer creates a ClickOnce app, she must have the ClickOnce tools installed. In Visual Studio 2015, this is a feature checkbox during installation. If your forgot, you can open Programs and Features, right-click Visual Studio, and choose Change to rerun the installation.</p>
 <p><a href="https://social.msdn.microsoft.com/Forums/en-US/2d9414f5-1e78-4d33-b651-d09be74db80d/clickonce-publish-in-visual-studio-2015?forum=winformssetup" class="uri">https://social.msdn.microsoft.com/Forums/en-US/2d9414f5-1e78-4d33-b651-d09be74db80d/clickonce-publish-in-visual-studio-2015?forum=winformssetup</a></p>
-<p><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce/images/714414"></p>
+<p><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce/https://social.msdn.microsoft.com/Forums/getfile/714414"></p>
 <p>But we're not going to install Visual Studio on the server.</p>
-<h3 id="just-the-files">Just the Files?</h3>
+<h3>Just the Files?</h3>
 <p>Can we create the appropriate folder path on the server and just copy the needed files, instead of installing 1GB of utilities? Maybe. It looks like the required files are:</p>
-<p>signtool.exe<br>
-mssign32.dll<br>
-wintrust.dll</p>
+<p>signtool.exe mssign32.dll wintrust.dll</p>
 <p>And the paths are:</p>
-<p>C:\Program Files (x86)\Windows Kits\8.1\bin\x86<br>
-C:\Program Files (x86)\Windows Kits\10\bin\x86</p>
+<p>C:\Program Files (x86)\Windows Kits\8.1\bin\x86 C:\Program Files (x86)\Windows Kits\10\bin\x86</p>
 <p>I used the first path on Windows 10 and it worked fine. This is definitely worth testing before installing the SDK.</p>
-<h3 id="via-the-windows-sdk">Via the Windows SDK</h3>
+<h3>Via the Windows SDK</h3>
 <p>We need to install the super-bloated SDK. Which one?</p>
 <p>If you're on Windows 8.1/10/2012/2012R2, install the Windows 10 SDK.</p>
 <p><a href="https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk" class="uri">https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk</a></p>
 <p>If you're on Windows 7/8/2008R2, install the Windows 8 SDK.</p>
 <p><a href="https://developer.microsoft.com/en-us/windows/downloads/windows-8-1-sdk" class="uri">https://developer.microsoft.com/en-us/windows/downloads/windows-8-1-sdk</a></p>
 <p>During installation, choose the Windows Software Development Kit. Funny, in Windows 10 they moved the SDK to the bottom!</p>
-<p><a href="images/2017-03-03_151212_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce/images/2017-03-03_151212_thumb.png" title="2017-03-03_151212" alt="2017-03-03_151212" width="760" height="562"></a></p>
-<p><a href="images/2017-03-03_151303_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce/images/2017-03-03_151303_thumb.png" title="2017-03-03_151303" alt="2017-03-03_151303" width="760" height="562"></a></p>
+<p><a href="images/17-03-03_151212.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce/images/17-03-03_151212.png" title="2017-03-03_151212" alt="2017-03-03_151212"></a></p>
+<p><a href="images/17-03-03_151303.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-clickonce/images/17-03-03_151303.png" title="2017-03-03_151303" alt="2017-03-03_151303"></a></p>
 <blockquote>
-<p><strong>Note</strong><br>
-On my Windows 10 machine, running Visual Studio 2015, when I installed the ClickOnce tools, signtool.exe was installed to the Windows 8.1 SDK folder instead of Windows 10. It works...but go figure.</p>
+<p><strong>Note</strong> On my Windows 10 machine, running Visual Studio 2015, when I installed the ClickOnce tools, signtool.exe was installed to the Windows 8.1 SDK folder instead of Windows 10. It works...but go figure.</p>
 </blockquote>
-<h1 id="the-wrap-up">The Wrap Up</h1>
+<h1>The Wrap Up</h1>
 <p>For my specific case, it was relatively easy to get signing to work during the build. If a non-temporary certificate had been involved, I could have installed that to the server.</p>
 <p>This doesn't answer what to do if using Visual Studio Online or some other continuous integration server. That will be an adventure for another day.</p>
 </div>

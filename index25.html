@@ -38,7 +38,7 @@
     <div id="site-subtitle">A pleasant walk through computing</div>
   </header>
   <section id="content">
-    <h1 id="home">Home</h1>
+    <h1>Home</h1>
 
   </section>
   <!-- posts only appear in home index -->
@@ -47,22 +47,26 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:42</span></p>
-                <div class='post-content'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Parts
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="one-to-zero-or-one">One to Zero or One</h3>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>One to Zero or One</h3>
 <p><em>In which the Professor demonstrates that travel is educational.</em></p>
 <p>Edward had sprinted from the bicycle lot, walked quickly (but did not run) in the library’s main floor, then took the stairs two at a time and jogged to his reading room where Professor Relvar was waiting. Edward was exactly thirty-seven seconds early.</p>
 <p>“My dear boy, you look exhausted.” The Professor smiled slightly and adjusted his reading glasses. “Isn’t your bicycle in good repair?”</p>
@@ -76,48 +80,48 @@
 <p>The answer is, you could. But what if, later, you wanted to know more about this bicycle? You might end up with twenty properties. Would it make sense to have those all in the Persons table when a person might not even own a bicycle? No.*</p>
 <p>I will describe the way I solve this problem, and you will have to imagine the code.** First, the schema.</p>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Person: IValidatableObject
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection Pencils&lt;Pencil&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection Magnifiers&lt;Magnifier&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }
-....
-
-<span class="kw">public</span> <span class="kw">class</span> Bicycle
-{
-<span class="co">//Primary Key same as Person</span>
-[Key, <span class="fu">ForeignKey</span>(<span class="st">"Person"</span>)]
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> Model { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> Person: IValidatableObject</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">[Required]</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">public</span> <span class="kw">virtual</span> ICollection Pencils&lt;Pencil&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">public</span> <span class="kw">virtual</span> ICollection Magnifiers&lt;Magnifier&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">....</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">public</span> <span class="kw">class</span> Bicycle</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">{</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">//Primary Key same as Person</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">[Key, <span class="fu">ForeignKey</span>(<span class="st">"Person"</span>)]</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">[Required]</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="kw">public</span> <span class="dt">string</span> Model { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">}</a></code></pre></div>
 <p>The important items are that the Person class references just one Bicycle that is not required, and Bicycle references just one Person where the PersonId property is both the primary key and the foreign key. In essence, we are extending the Person table.</p>
 <p>The Context class gets the expected DbSet.</p>
 <p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }</a></code></pre></div>
 <p>We add to our program.</p>
 <p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">"Add Bicycle without a Person"</span>);
-Bicycle bicycle = <span class="kw">new</span> <span class="fu">Bicycle</span>() { Model = <span class="st">"Herman"</span> };
-_db.<span class="fu">Bicycles</span>.<span class="fu">Add</span>(bicycle);
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Set the Person, save, retrieve and show"</span>);
-bicycle.<span class="fu">Person</span> = edward;
-<span class="fu">SaveChanges</span>();
-bicycle = _db.<span class="fu">Bicycles</span>.<span class="fu">First</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Model: "</span> + bicycle.<span class="fu">Model</span> + <span class="st">", Person: "</span> + bicycle.<span class="fu">Person</span>.<span class="fu">Name</span>);</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1">Console.<span class="fu">WriteLine</span>(<span class="st">"Add Bicycle without a Person"</span>);</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">Bicycle bicycle = <span class="kw">new</span> <span class="fu">Bicycle</span>() { Model = <span class="st">"Herman"</span> };</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">_db.<span class="fu">Bicycles</span>.<span class="fu">Add</span>(bicycle);</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">Console.<span class="fu">WriteLine</span>(<span class="st">"Set the Person, save, retrieve and show"</span>);</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">bicycle.<span class="fu">Person</span> = edward;</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">bicycle = _db.<span class="fu">Bicycles</span>.<span class="fu">First</span>();</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">Console.<span class="fu">WriteLine</span>(<span class="st">"Model: "</span> + bicycle.<span class="fu">Model</span> + <span class="st">", Person: "</span> + bicycle.<span class="fu">Person</span>.<span class="fu">Name</span>);</a></code></pre></div>
 <p>And run it.</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
@@ -161,19 +165,16 @@ Model: Herman, Person: Edward Farley
 Finished</code></pre>
 <p>It is not a lovely error, but suits our educational purpose. The resulting table would be scripted so:</p>
 <p><strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Bicycles</span> (
-PersonId not <span class="kw">null</span> primary key foreign key references <span class="fu">Persons</span>(PersonId),
-Model <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1">create table <span class="fu">Bicycles</span> (</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">PersonId not <span class="kw">null</span> primary key foreign key references <span class="fu">Persons</span>(PersonId),</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">Model <span class="fu">nvarchar</span>(max) not <span class="kw">null</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">)</a></code></pre></div>
 <p>With that, Edward and Professor Relvar had arrived at Sunderland Library which, as anyone knows, maintains the finest collection of ice cream recipe books found anywhere. Plus, chefs who prepare scoops for anyone who cares to taste.</p>
 <p>“And if it weren’t for the bicycles,” the Professor stated, licking happily at his Chocolate Peanut Butter and Pretzel Sundae, “all Sunderland regulars would be fat. Another scoop, Edward?”</p>
 <hr>
 <p>*Though some would say, “Yes.” The question is when to use table-per-type, table-per-hierarchy, or table-per-concrete-type, which will come up again in Inheritance. Also, the Professor might be thinking ahead too much. Some Agile development methods would say to do the simplest thing first (TPH), then change to TPT if needed. The fact is, the author doesn’t like TPH and discriminator columns.</p>
 <p>**Which, fortunately, we don’t have to wait for.</p>
-<p><a href="http://www.imdb.com/title/tt0079588/?ref_=fn_al_tt_1">The Muppet Movie</a></p>
-<p><a href="http://www.imdb.com/title/tt0089791/?ref_=sr_1">Pee-wee’s Big Adventure</a></p>
-<p><a href="http://weblogs.asp.net/manavi/archive/2010/12/24/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-1-table-per-hierarchy-tph.aspx">EF Inheritance Models</a></p>
-<p><a href="http://www.amazon.com/The-Perfect-Scoop-Granitas-Accompaniments/dp/158008219X/ref=sr_1_1?ie=UTF8&amp;qid=1367882906&amp;sr=8-1&amp;keywords=ice+cream+recipes">The Perfect Scoop</a></p>
+<p><a href="http://www.imdb.com/title/tt0079588/?ref_=fn_al_tt_1">The Muppet Movie</a> <a href="http://www.imdb.com/title/tt0089791/?ref_=sr_1">Pee-wee’s Big Adventure</a> <a href="http://weblogs.asp.net/manavi/archive/2010/12/24/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-1-table-per-hierarchy-tph.aspx">EF Inheritance Models</a> <a href="http://www.amazon.com/The-Perfect-Scoop-Granitas-Accompaniments/dp/158008219X/ref=sr_1_1?ie=UTF8&amp;qid=1367882906&amp;sr=8-1&amp;keywords=ice+cream+recipes">The Perfect Scoop</a></p>
 <hr>
 </div>
               </div>
@@ -182,22 +183,26 @@ Model <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:40</span></p>
-                <div class='post-content'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Parts
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="one-to-zero-or-many">One to Zero or Many</h3>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>One to Zero or Many</h3>
 <p><em>Our hero see his pencils in a new light.</em></p>
 <p>“Take me to your reading room,” commanded the Professor. “We shall eat en route.”</p>
 <p>Edward’s room was modest. He was too young to have acquired many items, but he hoped someday to study something so interesting that he’d have to build an addition. For now, he just had a desk, some chairs and a couch. Plus, his framed mosaic of his favorite authors.</p>
@@ -213,71 +218,71 @@ Model <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
 <p>Everyone, [he continued, sitting behind the desk], can have a Pencil. Not everyone does, and, while I personally don’t understand them, many people have done great work without a pencil. So, a person can whittle and own zero or more pencils. But a pencil always belongs to just one person. This is called a One to Zero or Many relationship, and it is very common. In fact, it may be the most common relationship.</p>
 <p>Here is how we’ll model it:</p>
 <p><strong>LearingEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Person...
-...
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="fu">Person</span>()
-{
-LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();
-Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();
-Pencils = <span class="kw">new</span> HashSet&lt;Pencil&gt;();
-}
-
-<span class="kw">public</span> <span class="kw">class</span> Pencil
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> PencilId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[<span class="fu">Required</span>(AllowEmptyStrings = <span class="kw">true</span>)]
-<span class="kw">public</span> <span class="dt">string</span> Nickname { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="co">//Foreign Key column</span>
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="fu">Pencil</span>()
-{
-Nickname = <span class="st">""</span>;
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> Person...</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">...</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">public</span> <span class="fu">Person</span>()</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">Pencils = <span class="kw">new</span> HashSet&lt;Pencil&gt;();</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">}</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">public</span> <span class="kw">class</span> Pencil</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">{</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="kw">public</span> <span class="dt">int</span> PencilId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">[<span class="fu">Required</span>(AllowEmptyStrings = <span class="kw">true</span>)]</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="kw">public</span> <span class="dt">string</span> Nickname { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">//Foreign Key column</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb1-27" data-line-number="27"><span class="kw">public</span> <span class="fu">Pencil</span>()</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">{</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">Nickname = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">}</a></code></pre></div>
 <p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> DbSet&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">public</span> DbSet&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">public</span> DbSet&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</a></code></pre></div>
 <p>We introduce one new wrinkle, today. We’re requiring a Nickname, and yet we’re not! We allow an empty string. Why, you may ask?</p>
 <p>[The Professor waited patiently until Edward sheepishly asked, “Why, Professor?”]</p>
 <p>I’m so glad you asked. Many fields should not allow nulls. Names are a good example. Let’s say we stored first, middle and last names in nullable table columns. To concatenate them and display the full name, we would have to convert nulls to empty strings, otherwise the full name would become null. I’m sure there’s something philosophical to say about how objects added to a void becoming the void, but that isn’t my field.</p>
 <p>Let’s add to our program and try to set a pencil’s nickname to null.</p>
 <p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">"Add/save Pencil setting Nickname to null."</span>);
-Pencil pencil = <span class="kw">new</span> <span class="fu">Pencil</span>() { Nickname = <span class="kw">null</span>, Person = edward };
-_db.<span class="fu">Pencils</span>.<span class="fu">Add</span>(pencil);
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Set Nickname to empty string and save"</span>);
-pencil.<span class="fu">Nickname</span> = <span class="st">""</span>;
-<span class="fu">SaveChanges</span>();
-
-Console.<span class="fu">WriteLine</span>(<span class="st">"Retrieve pencil, change Nickname, save"</span>);
-pencil = _db.<span class="fu">Pencils</span>.<span class="fu">First</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Pencil: "</span> + pencil.<span class="fu">Nickname</span> + <span class="st">", Person: "</span> + pencil.<span class="fu">Person</span>.<span class="fu">Name</span>);
-pencil.<span class="fu">Nickname</span> = <span class="st">"Blue"</span>;
-<span class="fu">SaveChanges</span>();
-pencil = _db.<span class="fu">Pencils</span>.<span class="fu">First</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Pencil: "</span> + pencil.<span class="fu">Nickname</span> + <span class="st">", Person: "</span> + pencil.<span class="fu">Person</span>.<span class="fu">Name</span>);</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1">Console.<span class="fu">WriteLine</span>(<span class="st">"Add/save Pencil setting Nickname to null."</span>);</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">Pencil pencil = <span class="kw">new</span> <span class="fu">Pencil</span>() { Nickname = <span class="kw">null</span>, Person = edward };</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">_db.<span class="fu">Pencils</span>.<span class="fu">Add</span>(pencil);</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">Console.<span class="fu">WriteLine</span>(<span class="st">"Set Nickname to empty string and save"</span>);</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">pencil.<span class="fu">Nickname</span> = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">Console.<span class="fu">WriteLine</span>(<span class="st">"Retrieve pencil, change Nickname, save"</span>);</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">pencil = _db.<span class="fu">Pencils</span>.<span class="fu">First</span>();</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">Console.<span class="fu">WriteLine</span>(<span class="st">"Pencil: "</span> + pencil.<span class="fu">Nickname</span> + <span class="st">", Person: "</span> + pencil.<span class="fu">Person</span>.<span class="fu">Name</span>);</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">pencil.<span class="fu">Nickname</span> = <span class="st">"Blue"</span>;</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">pencil = _db.<span class="fu">Pencils</span>.<span class="fu">First</span>();</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">Console.<span class="fu">WriteLine</span>(<span class="st">"Pencil: "</span> + pencil.<span class="fu">Nickname</span> + <span class="st">", Person: "</span> + pencil.<span class="fu">Person</span>.<span class="fu">Name</span>);</a></code></pre></div>
 <p>Running the program now produces a Pencils table like so:</p>
 <p><strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Pencils</span> (
-PencilId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
-Nickname <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>,
-PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId)
-)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1">create table <span class="fu">Pencils</span> (</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">PencilId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">Nickname <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">)</a></code></pre></div>
 <p>And produces the following output:</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
@@ -313,9 +318,7 @@ Pencil: Blackwing, Person: Edward Farley
 Finished</code></pre>
 <p>Tomorrow, Edward, we’ll meet here. Do not keep me waiting! That’s simply bad manners. Now, what are you grinning at?</p>
 <hr>
-<p><a href="http://en.wikipedia.org/wiki/Shunyata">Sunyata (Void-ness)</a></p>
-<p><a href="http://en.wikipedia.org/wiki/VoiD">Vocabulary of Interlinked Datasets</a></p>
-<p><a href="http://www.pencils.com/all-brands/blackwing">Blackwing Pencil</a></p>
+<p><a href="http://en.wikipedia.org/wiki/Shunyata">Sunyata (Void-ness)</a> <a href="http://en.wikipedia.org/wiki/VoiD">Vocabulary of Interlinked Datasets</a> <a href="http://www.pencils.com/all-brands/blackwing">Blackwing Pencil</a></p>
 <hr>
 </div>
               </div>
@@ -324,22 +327,26 @@ Finished</code></pre>
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:38</span></p>
-                <div class='post-content'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Parts
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="zero-or-one-to-zero-or-many">Zero or One to Zero or Many</h3>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>Zero or One to Zero or Many</h3>
 <p><em>The Professor produces his favorite Magnifier.</em></p>
 <p>“Hi, Professor,” said Edward Farley. “Mom added raisins to your sandwich.”</p>
 <p>The Professor accepted the sandwich with a delighted smile, then scowled and said, “Today, young man, I will lavish great salivary care on this culinary delicacy before accepting interrogatives.”</p>
@@ -351,51 +358,51 @@ Finished</code></pre>
 <p>Magnifiers are hand-crafted in Birmuthe. Lovely work. A person blessed with excellent vision doesn’t have to own one. A magnifier might not ever be used, but if it is it belongs to that person for life.</p>
 <p>This is a Zero or One to Zero or Many relationship. A magnifier doesn’t require a person, and a person can have zero or more magnifiers. Here is how the relationship is modeled.</p>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Person : IValidatableObject
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="fu">Person</span>()
-{
-LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();
-Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();
-}
-
-<span class="kw">public</span> <span class="kw">class</span> Magnifier
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> MagnifierId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> SerialNbr { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="co">//Foreign Key column</span>
-<span class="kw">public</span> <span class="dt">int</span>? PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> Person : IValidatableObject</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">[Required]</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">public</span> <span class="fu">Person</span>()</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">}</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="kw">public</span> <span class="kw">class</span> Magnifier</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">{</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="kw">public</span> <span class="dt">int</span> MagnifierId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">[Required]</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="kw">public</span> <span class="dt">string</span> SerialNbr { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="co">//Foreign Key column</span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="kw">public</span> <span class="dt">int</span>? PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb1-27" data-line-number="27"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-28" data-line-number="28"><span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">}</a></code></pre></div>
 <p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> DbSet&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">public</span> DbSet&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</a></code></pre></div>
 <p>You have already observed that this is almost identical to our Library Card. The differences are:</p>
 <p>A person doesn’t have to have a magnifier, so there is no validation for that.</p>
 <p>A magnifier doesn’t require a person, so the PersonId foreign key property is nullable.</p>
 <p>If we run our program, the following table gets created.</p>
 <p><strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Magnifiers</span> (
-MagnifierId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
-SerialNbr <span class="fu">nvarchar</span>(max) not <span class="kw">null</span> unique nonclustered,
-PersonId <span class="dt">int</span> <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId)
-)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1">create table <span class="fu">Magnifiers</span> (</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">MagnifierId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">SerialNbr <span class="fu">nvarchar</span>(max) not <span class="kw">null</span> unique nonclustered,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">PersonId <span class="dt">int</span> <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">)</a></code></pre></div>
 <p>And, we’re finished, right? Wrong! We have a problem. In fact, we have a problem that exists in Library Cards, too, and that I was waiting for you to cry havoc about and let slip the dogs of code. Pardon me? Really, my boy, you should read more Shakespeare.</p>
 <p>The problem in Library Cards is with their Number, and in Magnifiers with their SerialNbr. Do you suppose two cards or magnifiers can have the same number? I should say not. Mr. Barrows at Birmuthe is very careful on that point. Each magnifier is given a unique serial number.</p>
 <p>We already have a primary key (MagnifierId) on our Magnifier table, which uniquely identifies a row. The SerialNbr column is called by some a candidate key. It could be the primary key, but isn’t. Why don’t I just use it as my primary key? Because I don’t like to. It’s really that simple. Oh, I could go on and on about how consistency is glorious, and how Mr. Barrows might decide to recall all his magnifiers and change their serial numbers (or a library could change its card numbering scheme), and those are, indeed, good reasons. But they can be worked around.</p>
@@ -403,77 +410,77 @@ PersonId <span class="dt">int</span> <span class="kw">null</span> foreign key re
 <p>So, our serial number must be unique. How do we tell the Framework about that? Sadly, we don’t. At least, not directly. Remember, a class doesn’t know about the Framework, so it can’t check itself for uniqueness. There are no doubt other (possibly more clever) solutions than the one I’m about to show. Perhaps you, Edward, will improve on my work, eh?</p>
 <p>We turn to our IValidatable interface, and add code that, in effect, tells the class “If you receive any errors from the context, return them as validation errors.” We are coupling the class to a context, but notice that a ValidationContext does not have to be a Framework context. In our case, of course, it will be the DBContext.</p>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Magnifier : IValidatableObject
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> MagnifierId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> SerialNbr { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="co">//Foreign Key column</span>
-<span class="kw">public</span> <span class="dt">int</span>? PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-IEnumerable IValidatableObject.<span class="fu">Validate</span>(ValidationContext validationContext)
-{
-<span class="co">//Check for any Items in context. If they're ValidationResults, yield them.</span>
-<span class="kw">if</span> (validationContext.<span class="fu">Items</span> != <span class="kw">null</span>)
-{
-<span class="kw">foreach</span> (var item <span class="kw">in</span> validationContext.<span class="fu">Items</span>)
-{
-<span class="kw">if</span> (item.<span class="fu">Value</span> <span class="kw">is</span> ValidationResult)
-{
-<span class="kw">yield</span> <span class="kw">return</span> (ValidationResult)item.<span class="fu">Value</span>;
-}
-}
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> Magnifier : IValidatableObject</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">public</span> <span class="dt">int</span> MagnifierId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">[Required]</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">public</span> <span class="dt">string</span> SerialNbr { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">//Foreign Key column</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">public</span> <span class="dt">int</span>? PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">IEnumerable IValidatableObject.<span class="fu">Validate</span>(ValidationContext validationContext)</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">{</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">//Check for any Items in context. If they're ValidationResults, yield them.</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="kw">if</span> (validationContext.<span class="fu">Items</span> != <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">{</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="kw">foreach</span> (var item <span class="kw">in</span> validationContext.<span class="fu">Items</span>)</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">{</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="kw">if</span> (item.<span class="fu">Value</span> <span class="kw">is</span> ValidationResult)</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="kw">yield</span> <span class="kw">return</span> (ValidationResult)item.<span class="fu">Value</span>;</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">}</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">}</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">}</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">}</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">}</a></code></pre></div>
 <p>In our Context, we add a using statement:</p>
 <p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System.<span class="fu">ComponentModel</span>.<span class="fu">DataAnnotations</span>;</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">using</span> System.<span class="fu">ComponentModel</span>.<span class="fu">DataAnnotations</span>;</a></code></pre></div>
 <p>We add a method to check for duplicate SerialNbrs.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="dt">bool</span> <span class="fu">IsUniqueMagnifierSerialNbr</span>(Magnifier magnifier)
-{
-<span class="dt">var</span> entity = <span class="kw">this</span>.<span class="fu">Magnifiers</span>.<span class="fu">SingleOrDefault</span>(a =&gt; a.<span class="fu">MagnifierId</span> != magnifier.<span class="fu">MagnifierId</span> &amp; a.<span class="fu">SerialNbr</span> == magnifier.<span class="fu">SerialNbr</span>);
-<span class="kw">return</span> (entity == <span class="kw">null</span>);
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">public</span> <span class="dt">bool</span> <span class="fu">IsUniqueMagnifierSerialNbr</span>(Magnifier magnifier)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="dt">var</span> entity = <span class="kw">this</span>.<span class="fu">Magnifiers</span>.<span class="fu">SingleOrDefault</span>(a =&gt; a.<span class="fu">MagnifierId</span> != magnifier.<span class="fu">MagnifierId</span> &amp; a.<span class="fu">SerialNbr</span> == magnifier.<span class="fu">SerialNbr</span>);</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">return</span> (entity == <span class="kw">null</span>);</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">}</a></code></pre></div>
 <p>Finally, we override the ValidateEntity method, and add the following code.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">protected</span> <span class="kw">override</span> System.<span class="fu">Data</span>.<span class="fu">Entity</span>.<span class="fu">Validation</span>.<span class="fu">DbEntityValidationResult</span> <span class="fu">ValidateEntity</span>(System.<span class="fu">Data</span>.<span class="fu">Entity</span>.<span class="fu">Infrastructure</span>.<span class="fu">DbEntityEntry</span> entityEntry, IDictionary&lt;<span class="dt">object</span>, <span class="dt">object</span>&gt; items)
-{
-<span class="kw">if</span> (items == <span class="kw">null</span>) { items = <span class="kw">new</span> Dictionary&lt;<span class="dt">object</span>, <span class="dt">object</span>&gt;(); }
-<span class="co">//Magnifier Serial Number</span>
-<span class="kw">if</span> (entityEntry.<span class="fu">Entity</span> <span class="kw">is</span> Magnifier) { var entity = (Magnifier)entityEntry.<span class="fu">Entity</span>;
-<span class="kw">if</span> (!<span class="fu">IsUniqueMagnifierSerialNbr</span>(entity))
-{
-items.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">KeyValuePair</span>(Guid.<span class="fu">NewGuid</span>(), <span class="kw">new</span> <span class="fu">ValidationResult</span>(<span class="st">"Magnifier with this serial nbr already exists."</span>, <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;() { <span class="st">"SerialNbr"</span> })));
-}
-}
-<span class="kw">return</span> <span class="kw">base</span>.<span class="fu">ValidateEntity</span>(entityEntry, items);
-}</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">protected</span> <span class="kw">override</span> System.<span class="fu">Data</span>.<span class="fu">Entity</span>.<span class="fu">Validation</span>.<span class="fu">DbEntityValidationResult</span> <span class="fu">ValidateEntity</span>(System.<span class="fu">Data</span>.<span class="fu">Entity</span>.<span class="fu">Infrastructure</span>.<span class="fu">DbEntityEntry</span> entityEntry, IDictionary&lt;<span class="dt">object</span>, <span class="dt">object</span>&gt; items)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">if</span> (items == <span class="kw">null</span>) { items = <span class="kw">new</span> Dictionary&lt;<span class="dt">object</span>, <span class="dt">object</span>&gt;(); }</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">//Magnifier Serial Number</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">if</span> (entityEntry.<span class="fu">Entity</span> <span class="kw">is</span> Magnifier) { var entity = (Magnifier)entityEntry.<span class="fu">Entity</span>;</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">if</span> (!<span class="fu">IsUniqueMagnifierSerialNbr</span>(entity))</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">items.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">KeyValuePair</span>(Guid.<span class="fu">NewGuid</span>(), <span class="kw">new</span> <span class="fu">ValidationResult</span>(<span class="st">"Magnifier with this serial nbr already exists."</span>, <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;() { <span class="st">"SerialNbr"</span> })));</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">}</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="kw">return</span> <span class="kw">base</span>.<span class="fu">ValidateEntity</span>(entityEntry, items);</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">}</a></code></pre></div>
 <p>Do you see? The Framework validates for uniqueness when the entity, itself, is being validated, and tells the entity if there were errors. Unfortunately, the Framework is unable (some would say unwilling) to create the table with unique columns**. Let’s add to our program a rather lengthy test.</p>
 <p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">"Create and save Magnifier with required serial number"</span>);
-Magnifier magnifier = <span class="kw">new</span> <span class="fu">Magnifier</span>() { SerialNbr = <span class="st">"Bar123"</span> };
-_db.<span class="fu">Magnifiers</span>.<span class="fu">Add</span>(magnifier);
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Retrieve Magnifier, show it doesn't belong to someone."</span>);
-magnifier = _db.<span class="fu">Magnifiers</span>.<span class="fu">First</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Magnifier: "</span> + magnifier.<span class="fu">SerialNbr</span> + <span class="st">", Person: "</span>
-+ (magnifier.<span class="fu">Person</span> != <span class="kw">null</span> ? magnifier.<span class="fu">Person</span>.<span class="fu">Name</span> : <span class="st">"available"</span>));
-Console.<span class="fu">WriteLine</span>(<span class="st">"Edward gets the Magnifier. Save and retrieve."</span>);
-magnifier.<span class="fu">Person</span> = edward;
-<span class="fu">SaveChanges</span>();
-magnifier = _db.<span class="fu">Magnifiers</span>.<span class="fu">First</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Magnifier: "</span> + magnifier.<span class="fu">SerialNbr</span> + <span class="st">", Person: "</span>
-+ (magnifier.<span class="fu">Person</span> != <span class="kw">null</span> ? magnifier.<span class="fu">Person</span>.<span class="fu">Name</span> : <span class="st">"available"</span>));
-Console.<span class="fu">WriteLine</span>(<span class="st">"Try to add duplicate magnifier"</span>);
-magnifier = <span class="kw">new</span> <span class="fu">Magnifier</span>() { SerialNbr = <span class="st">"Bar123"</span> };
-_db.<span class="fu">Magnifiers</span>.<span class="fu">Add</span>(magnifier);
-<span class="fu">SaveChanges</span>();
-<span class="co">//Clean up. Remove the magnifier;</span>
-_db.<span class="fu">Magnifiers</span>.<span class="fu">Remove</span>(magnifier);</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb8-1" data-line-number="1">Console.<span class="fu">WriteLine</span>(<span class="st">"Create and save Magnifier with required serial number"</span>);</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">Magnifier magnifier = <span class="kw">new</span> <span class="fu">Magnifier</span>() { SerialNbr = <span class="st">"Bar123"</span> };</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">_db.<span class="fu">Magnifiers</span>.<span class="fu">Add</span>(magnifier);</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">Console.<span class="fu">WriteLine</span>(<span class="st">"Retrieve Magnifier, show it doesn't belong to someone."</span>);</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">magnifier = _db.<span class="fu">Magnifiers</span>.<span class="fu">First</span>();</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">Console.<span class="fu">WriteLine</span>(<span class="st">"Magnifier: "</span> + magnifier.<span class="fu">SerialNbr</span> + <span class="st">", Person: "</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">+ (magnifier.<span class="fu">Person</span> != <span class="kw">null</span> ? magnifier.<span class="fu">Person</span>.<span class="fu">Name</span> : <span class="st">"available"</span>));</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">Console.<span class="fu">WriteLine</span>(<span class="st">"Edward gets the Magnifier. Save and retrieve."</span>);</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">magnifier.<span class="fu">Person</span> = edward;</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">magnifier = _db.<span class="fu">Magnifiers</span>.<span class="fu">First</span>();</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">Console.<span class="fu">WriteLine</span>(<span class="st">"Magnifier: "</span> + magnifier.<span class="fu">SerialNbr</span> + <span class="st">", Person: "</span></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14">+ (magnifier.<span class="fu">Person</span> != <span class="kw">null</span> ? magnifier.<span class="fu">Person</span>.<span class="fu">Name</span> : <span class="st">"available"</span>));</a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">Console.<span class="fu">WriteLine</span>(<span class="st">"Try to add duplicate magnifier"</span>);</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">magnifier = <span class="kw">new</span> <span class="fu">Magnifier</span>() { SerialNbr = <span class="st">"Bar123"</span> };</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">_db.<span class="fu">Magnifiers</span>.<span class="fu">Add</span>(magnifier);</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co">//Clean up. Remove the magnifier;</span></a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">_db.<span class="fu">Magnifiers</span>.<span class="fu">Remove</span>(magnifier);</a></code></pre></div>
 <p>Run the program. Ah, it works as expected! (If only this were more often the case, my boy.)</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
@@ -499,9 +506,9 @@ Finished</code></pre>
 <p>That should give you enough to think about, young man. If, in fact, you do any thinking at all.</p>
 <hr>
 <p>*The Professor later wrote to Edward, saying there are practical exceptions to this. For instance, a Logins table might use GUIDs as primary keys to reduce security risks. A States table should use the state abbreviation as the key, and likewise a zip code table. These relationships are already established by the US Postal Service. **We could, however, add the unique constraint when the database is created by EF. Here’s the code that might run in a DbContext DatabaseInitializer.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">************* Unique Constraints ***************
-db.<span class="fu">Database</span>.<span class="fu">ExecuteSqlCommand</span>(<span class="st">"ALTER TABLE AppMachines ADD CONSTRAINT u_AppIdMachineId UNIQUE(AppId,MachineId)"</span>);
-************************************************</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb10-1" data-line-number="1">************* Unique Constraints ***************</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">db.<span class="fu">Database</span>.<span class="fu">ExecuteSqlCommand</span>(<span class="st">"ALTER TABLE AppMachines ADD CONSTRAINT u_AppIdMachineId UNIQUE(AppId,MachineId)"</span>);</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">************************************************</a></code></pre></div>
 <p><a href="http://en.wikipedia.org/wiki/The_dogs_of_war_(phrase)">“Cry ‘Havoc!’ and let slip the dogs of war.”</a></p>
 <hr>
 </div>

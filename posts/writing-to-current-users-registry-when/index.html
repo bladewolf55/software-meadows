@@ -45,49 +45,49 @@
                 <div class='post-content'><p>In a project I’m working on, I need to change the Group Policy Object (GPO) registry settings, both for the computer and for the logged in user. Both of these present problems. This article addresses the logged in user scenario.</p>
 <p>The actual application is a Windows service running on the client that accepts requests from a remote machine. The complication is that the service will need to run as System so that it can write to any part of the registry.</p>
 <p>Below is prototyping and troubleshooting using a Console application.</p>
-<h1 id="goal">Goal</h1>
+<h1>Goal</h1>
 <p>Run a Console application as the System user and write to the GPO that restricts running applications. Here’s the GPO if you want to look it up in Group Policy Editor (gpedit.msc).</p>
 <p>User Configuration\Administrative Templates\System\<strong>Don't run specified Windows applications.</strong></p>
-<h1 id="challengesissues">Challenges/Issues</h1>
+<h1>Challenges/Issues</h1>
 <p>64-bit Windows has both logical and physical registry entries. This is a problem when updating keys that are used by other programs (in this case, Windows itself). You have to be sure you’re updating the right key. The problem really presents itself when writing to the LOCAL_MACHINE hive. The physical location—such as the Wow6432Node key—depends on whether the application is 64 or 32 bits.</p>
 <p>The CURRENT_USER hive doesn’t care about 64/32 bits. But remember that a computer can have multiple users logged on. Also, where does the System user’s settings go? Finally, how will we find out who is logged in? What a mess!</p>
-<h1 id="tools-and-environment">Tools and Environment</h1>
+<h1>Tools and Environment</h1>
 <p>I’m running Visual Studio 2015 Community on 64-bit Windows 10.</p>
 <p>This is the registry key/value we’ll be creating throughout, setting its value to 1.</p>
 <p>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun</p>
-<h1 id="test-writing-to-the-registry">Test Writing to the Registry</h1>
+<h1>Test Writing to the Registry</h1>
 <p>We first need to write to the registry and see the results. Create a Console Application with the following code.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> Microsoft.<span class="fu">Win32</span>;
-
-<span class="kw">namespace</span> RegistryPrototyping
-{
-<span class="kw">class</span> Program
-{
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-{
-<span class="kw">try</span>
-{
-<span class="fu">WriteRegistry</span>();
-}
-<span class="kw">catch</span> (Exception ex)
-{
-Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-}
-Console.<span class="fu">WriteLine</span>(<span class="st">"Finished. Press any key to close."</span>);
-Console.<span class="fu">ReadLine</span>();
-}
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>()
-{
-<span class="dt">string</span> keyName = @<span class="st">"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer"</span>;
-<span class="dt">string</span> valueName = <span class="st">"DisallowRun"</span>;
-<span class="dt">string</span> value = <span class="st">"1"</span>;
-RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
-Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">using</span> Microsoft.<span class="fu">Win32</span>;</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">namespace</span> RegistryPrototyping</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">{</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">class</span> Program</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="fu">WriteRegistry</span>();</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">}</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">Console.<span class="fu">WriteLine</span>(<span class="st">"Finished. Press any key to close."</span>);</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">Console.<span class="fu">ReadLine</span>();</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">}</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>()</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">{</a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="dt">string</span> keyName = @<span class="st">"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"</span>;</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="dt">string</span> valueName = <span class="st">"DisallowRun"</span>;</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26"><span class="dt">string</span> value = <span class="st">"1"</span>;</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27">RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;</a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">}</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb1-31" data-line-number="31">}</a></code></pre></div>
 <p>Run the application. You should get an error</p>
 <blockquote>
 <p>Access to the registry key 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' is denied.</p>
@@ -97,12 +97,12 @@ Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
 <p>For some developers, this problem will be hidden because they turn off UAC or <em>always</em> run Visual Studio as administrator. I don’t do either of these exactly because I’ll catch some permissions issue early.</p>
 </blockquote>
 <p>The obvious next step is to close our app, open Visual Studio using Run as Administrator, then reopen/run the app.</p>
-<p><a href="images/image_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_thumb.png" title="image" alt="image" width="254" height="218"></a></p>
+<p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image.png" title="image" alt="image"></a></p>
 <p>No error, and the key is written to the expected registry key (i.e. the currently logged in user).</p>
-<p><a href="images/image_thumb3.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_thumb3.png" title="image" alt="image" width="626" height="196"></a></p>
+<p><a href="images/image_3.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_3.png" title="image" alt="image"></a></p>
 <p>Great! Next task, testing as Local System.</p>
 <p><strong><em>But first, delete the DisallowRun key!</em></strong></p>
-<h1 id="testing-as-local-system">Testing as Local System</h1>
+<h1>Testing as Local System</h1>
 <p>We need to run our app—either the .exe or Visual Studio—as Local System. I didn’t find a built-in Windows way to do this. The recommended method is to use Sysinternals’ psexec utility, which is normally used to execute commands on remote domain machines.</p>
 <ol>
 <li>Download <a href="https://technet.microsoft.com/en-us/sysinternals/bb897553.aspx">psexec</a>.</li>
@@ -118,9 +118,9 @@ Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
 <li>Open your Console solution; you’ll need to navigate to its location via C:\Users\[username].</li>
 <li>Run it. Check your registry key. Where the heck is the new value? Because we’re running as System, the registry value will be written to the .Default user key.</li>
 </ol>
-<p><a href="images/image_thumb6.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_thumb6.png" title="image" alt="image" width="645" height="209"></a></p>
+<p><a href="images/image_6.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_6.png" title="image" alt="image"></a></p>
 <p>Well, heck! This obviously isn’t what we want. We need to write to the currently logged on user’s profile. But this result gives us a clue how we’ll solve our problem later.</p>
-<h1 id="impersonation-false-start">Impersonation – False Start</h1>
+<h1>Impersonation – False Start</h1>
 <p>At first, <a href="https://msdn.microsoft.com/en-us/library/w070t6ka(v=vs.110).aspx">impersonation</a> seems like the way to go. If I can just find out who’s currently logged on and working, I should be able to impersonate that user and write to the registry on that user’s behalf.</p>
 <p>There are two problems with this.</p>
 <ol>
@@ -131,139 +131,140 @@ Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
 <p>But maybe someone more clever than me wants to figure this out. There might be a way by looking at the active desktop(s).</p>
 <p>The second problem is, for us, the impractical barrier to overcome. Writing to the registry requires elevation. The way we’d be impersonating the user would be to get a handle to a running process, then impersonating via that handle. But the user will <em>not</em> be running a known-elevated process. So, we’d be stuck. As soon as we tried to write to the registry, it would fail. And if we try to elevate the process (if we even could do that), the user would get prompted, defeating the goal of the program.</p>
 <p>But we can still do what we want. After all, as System we can write to most parts of the physical registry.</p>
-<h1 id="writing-to-the-users-key">Writing to the User’s Key</h1>
+<h1>Writing to the User’s Key</h1>
 <p>When we wrote to the System user’s logical hive CURRENT_USER, we ended up in the physical hive USERS. That’s where all the user registry settings are. CURRENT_USER is a symbolic link, a redirection for the active user. Here’s my computer’s USERS hive:</p>
-<p><a href="images/image_thumb1.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_thumb1.png" title="image" alt="image" width="629" height="197"></a></p>
+<p><a href="images/image_1.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_1.png" title="image" alt="image"></a></p>
 <p>Those long SIDs are the users. If I can get those, I can write to the user’s Group Policy setting.</p>
 <p>Step one, revise the WriteRegistry method.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>(<span class="dt">string</span> sid)
-{
-<span class="dt">string</span> keyName = @<span class="st">"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer"</span>;
-<span class="dt">string</span> valueName = <span class="st">"DisallowRun"</span>;
-<span class="dt">string</span> value = <span class="st">"1"</span>;
-keyName = keyName.<span class="fu">Replace</span>(<span class="st">"HKEY_CURRENT_USER"</span>, @<span class="st">"HKEY_USERS</span><span class="sc">\"</span><span class="st"> + sid);</span>
-RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
-Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>(<span class="dt">string</span> sid)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="dt">string</span> keyName = @<span class="st">"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"</span>;</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="dt">string</span> valueName = <span class="st">"DisallowRun"</span>;</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="dt">string</span> value = <span class="st">"1"</span>;</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">keyName = keyName.<span class="fu">Replace</span>(<span class="st">"HKEY_CURRENT_USER"</span>, @<span class="st">"HKEY_USERS</span><span class="sc">\"</span><span class="st"> + sid);</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">}</a></code></pre></div>
 <p>Step two, <strong>crazy lots of code!</strong></p>
 <p>You’ll need these addtional references.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System.<span class="fu">Runtime</span>.<span class="fu">InteropServices</span>;
-<span class="kw">using</span> System.<span class="fu">Security</span>;
-<span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Principal</span>;
-<span class="kw">using</span> System.<span class="fu">Diagnostics</span>;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">using</span> System.<span class="fu">Runtime</span>.<span class="fu">InteropServices</span>;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Security</span>;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Principal</span>;</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Diagnostics</span>;</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a></code></pre></div>
 <p>Use a Win32 API function to get the logged on users. This is some deeper stuff, and I didn’t write it. The most I did was put it in a class and make the function return all the users.</p>
 <p>The meat of this—the cool part—is using Process.GetProcessesByName with an argument of “explorer”. This will return anyone logged on, because explorer is (typically) always running.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">class</span> WindowsIdentityHelper
-{
-
-[<span class="fu">DllImport</span>(<span class="st">"advapi32"</span>, SetLastError = <span class="kw">true</span>),
-SuppressUnmanagedCodeSecurityAttribute]
-<span class="kw">static</span> <span class="kw">extern</span> <span class="dt">int</span> <span class="fu">OpenProcessToken</span>(
-System.<span class="fu">IntPtr</span> ProcessHandle, <span class="co">// handle to process</span>
-<span class="dt">int</span> DesiredAccess, <span class="co">// desired access to process</span>
-<span class="kw">ref</span> IntPtr TokenHandle <span class="co">// handle to open access token</span>
-);
-
-[<span class="fu">DllImport</span>(<span class="st">"kernel32"</span>, SetLastError = <span class="kw">true</span>),
-SuppressUnmanagedCodeSecurityAttribute]
-<span class="kw">static</span> <span class="kw">extern</span> <span class="dt">bool</span> <span class="fu">CloseHandle</span>(IntPtr handle);
-[<span class="fu">DllImport</span>(<span class="st">"advapi32.dll"</span>, CharSet = CharSet.<span class="fu">Auto</span>, SetLastError = <span class="kw">true</span>)]
-<span class="kw">public</span> <span class="kw">extern</span> <span class="kw">static</span> <span class="dt">bool</span> <span class="fu">DuplicateToken</span>(IntPtr ExistingTokenHandle,
-<span class="dt">int</span> SECURITY_IMPERSONATION_LEVEL, <span class="kw">ref</span> IntPtr DuplicateTokenHandle);
-
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ASSIGN_PRIMARY = <span class="bn">0x0001</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_DUPLICATE = <span class="bn">0x0002</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_IMPERSONATE = <span class="bn">0x0004</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY = <span class="bn">0x0008</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY_SOURCE = <span class="bn">0x0010</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_PRIVILEGES = <span class="bn">0x0020</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_GROUPS = <span class="bn">0x0040</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_DEFAULT = <span class="bn">0x0080</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_SESSIONID = <span class="bn">0x0100</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_READ = <span class="bn">0x00020000</span> | TOKEN_QUERY;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_WRITE = <span class="bn">0x00020000</span> | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_DEFAULT;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_EXECUTE = <span class="bn">0x00020000</span>;
-
-<span class="kw">public</span> <span class="kw">static</span> List <span class="fu">GetLoggedOnUsers</span>()
-{
-List users = <span class="kw">new</span> <span class="fu">List</span>();
-<span class="dt">string</span> errs = <span class="st">""</span>;
-IntPtr hToken = IntPtr.<span class="fu">Zero</span>;
-<span class="co">//Get a process that will always be available.</span>
-<span class="kw">foreach</span> (Process proc <span class="kw">in</span> Process.<span class="fu">GetProcessesByName</span>(<span class="st">"explorer"</span>))
-{
-<span class="kw">try</span>
-{
-<span class="kw">if</span> (<span class="fu">OpenProcessToken</span>(proc.<span class="fu">Handle</span>,
-TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,
-<span class="kw">ref</span> hToken) != <span class="dv">0</span>)
-{
-WindowsIdentity newId = <span class="kw">new</span> <span class="fu">WindowsIdentity</span>(hToken);
-<span class="fu">CloseHandle</span>(hToken);
-users.<span class="fu">Add</span>(newId);
-}
-<span class="kw">else</span>
-{
-errs += String.<span class="fu">Format</span>(<span class="st">"OpenProcess Failed {0}, privilege not held</span><span class="sc">\r\n</span><span class="st">"</span>, Marshal.<span class="fu">GetLastWin32Error</span>());
-}
-
-}
-<span class="kw">catch</span> (Exception ex)
-{
-errs += String.<span class="fu">Format</span>(<span class="st">"OpenProcess Failed {0}</span><span class="sc">\r\n</span><span class="st">"</span>, ex.<span class="fu">Message</span>);
-}
-}
-<span class="kw">if</span> (errs.<span class="fu">Length</span> &gt; <span class="dv">0</span>) { <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(errs); }
-<span class="kw">return</span> users;
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">class</span> WindowsIdentityHelper</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">[<span class="fu">DllImport</span>(<span class="st">"advapi32"</span>, SetLastError = <span class="kw">true</span>),</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">SuppressUnmanagedCodeSecurityAttribute]</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">static</span> <span class="kw">extern</span> <span class="dt">int</span> <span class="fu">OpenProcessToken</span>(</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">System.<span class="fu">IntPtr</span> ProcessHandle, <span class="co">// handle to process</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="dt">int</span> DesiredAccess, <span class="co">// desired access to process</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="kw">ref</span> IntPtr TokenHandle <span class="co">// handle to open access token</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">);</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">[<span class="fu">DllImport</span>(<span class="st">"kernel32"</span>, SetLastError = <span class="kw">true</span>),</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">SuppressUnmanagedCodeSecurityAttribute]</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="kw">static</span> <span class="kw">extern</span> <span class="dt">bool</span> <span class="fu">CloseHandle</span>(IntPtr handle);</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">[<span class="fu">DllImport</span>(<span class="st">"advapi32.dll"</span>, CharSet = CharSet.<span class="fu">Auto</span>, SetLastError = <span class="kw">true</span>)]</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="kw">public</span> <span class="kw">extern</span> <span class="kw">static</span> <span class="dt">bool</span> <span class="fu">DuplicateToken</span>(IntPtr ExistingTokenHandle,</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="dt">int</span> SECURITY_IMPERSONATION_LEVEL, <span class="kw">ref</span> IntPtr DuplicateTokenHandle);</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ASSIGN_PRIMARY = <span class="bn">0x0001</span>;</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_DUPLICATE = <span class="bn">0x0002</span>;</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_IMPERSONATE = <span class="bn">0x0004</span>;</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY = <span class="bn">0x0008</span>;</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY_SOURCE = <span class="bn">0x0010</span>;</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_PRIVILEGES = <span class="bn">0x0020</span>;</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_GROUPS = <span class="bn">0x0040</span>;</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_DEFAULT = <span class="bn">0x0080</span>;</a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_SESSIONID = <span class="bn">0x0100</span>;</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_READ = <span class="bn">0x00020000</span> | TOKEN_QUERY;</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_WRITE = <span class="bn">0x00020000</span> | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_DEFAULT;</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_EXECUTE = <span class="bn">0x00020000</span>;</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="kw">public</span> <span class="kw">static</span> List <span class="fu">GetLoggedOnUsers</span>()</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">{</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">List users = <span class="kw">new</span> <span class="fu">List</span>();</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="dt">string</span> errs = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">IntPtr hToken = IntPtr.<span class="fu">Zero</span>;</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co">//Get a process that will always be available.</span></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="kw">foreach</span> (Process proc <span class="kw">in</span> Process.<span class="fu">GetProcessesByName</span>(<span class="st">"explorer"</span>))</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">{</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">{</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42"><span class="kw">if</span> (<span class="fu">OpenProcessToken</span>(proc.<span class="fu">Handle</span>,</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44"><span class="kw">ref</span> hToken) != <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">{</a>
+<a class="sourceLine" id="cb4-46" data-line-number="46">WindowsIdentity newId = <span class="kw">new</span> <span class="fu">WindowsIdentity</span>(hToken);</a>
+<a class="sourceLine" id="cb4-47" data-line-number="47"><span class="fu">CloseHandle</span>(hToken);</a>
+<a class="sourceLine" id="cb4-48" data-line-number="48">users.<span class="fu">Add</span>(newId);</a>
+<a class="sourceLine" id="cb4-49" data-line-number="49">}</a>
+<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="kw">else</span></a>
+<a class="sourceLine" id="cb4-51" data-line-number="51">{</a>
+<a class="sourceLine" id="cb4-52" data-line-number="52">errs += String.<span class="fu">Format</span>(<span class="st">"OpenProcess Failed {0}, privilege not held</span><span class="sc">\r\n</span><span class="st">"</span>, Marshal.<span class="fu">GetLastWin32Error</span>());</a>
+<a class="sourceLine" id="cb4-53" data-line-number="53">}</a>
+<a class="sourceLine" id="cb4-54" data-line-number="54"></a>
+<a class="sourceLine" id="cb4-55" data-line-number="55">}</a>
+<a class="sourceLine" id="cb4-56" data-line-number="56"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb4-57" data-line-number="57">{</a>
+<a class="sourceLine" id="cb4-58" data-line-number="58">errs += String.<span class="fu">Format</span>(<span class="st">"OpenProcess Failed {0}</span><span class="sc">\r\n</span><span class="st">"</span>, ex.<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb4-59" data-line-number="59">}</a>
+<a class="sourceLine" id="cb4-60" data-line-number="60">}</a>
+<a class="sourceLine" id="cb4-61" data-line-number="61"><span class="kw">if</span> (errs.<span class="fu">Length</span> &gt; <span class="dv">0</span>) { <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(errs); }</a>
+<a class="sourceLine" id="cb4-62" data-line-number="62"><span class="kw">return</span> users;</a>
+<a class="sourceLine" id="cb4-63" data-line-number="63">}</a></code></pre></div>
 <p>And a method to write to the users’ registries.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteToLoggedOnUsers</span>()
-{
-<span class="kw">foreach</span> (var user <span class="kw">in</span> WindowsIdentityHelper.<span class="fu">GetLoggedOnUsers</span>())
-{
-<span class="kw">try</span>
-{
-<span class="fu">WriteRegistry</span>(user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
-Console.<span class="fu">WriteLine</span>(<span class="st">"Updated user "</span> + user.<span class="fu">Name</span> + <span class="st">"  SID "</span> + user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
-}
-<span class="kw">catch</span> (Exception ex)
-{
-Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteToLoggedOnUsers</span>()</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">foreach</span> (var user <span class="kw">in</span> WindowsIdentityHelper.<span class="fu">GetLoggedOnUsers</span>())</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="fu">WriteRegistry</span>(user.<span class="fu">Owner</span>.<span class="fu">Value</span>);</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">Console.<span class="fu">WriteLine</span>(<span class="st">"Updated user "</span> + user.<span class="fu">Name</span> + <span class="st">"  SID "</span> + user.<span class="fu">Owner</span>.<span class="fu">Value</span>);</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">}</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">}</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">}</a></code></pre></div>
 <blockquote>
 <p>Notice we’re using WindowsIdentity.Owner.Value to return the SID. The property .Owner.AccountDomainSid doesn’t return the full, correct SID.</p>
 </blockquote>
 <p>Finally, change the Main method.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-{
-<span class="kw">try</span>
-{
-<span class="fu">WriteToLoggedOnUsers</span>();
-}
-<span class="kw">catch</span> (Exception ex)
-{
-Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-}
-Console.<span class="fu">WriteLine</span>(<span class="st">"Finished. Press any key to close."</span>);
-Console.<span class="fu">ReadLine</span>();
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="fu">WriteToLoggedOnUsers</span>();</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">}</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">Console.<span class="fu">WriteLine</span>(<span class="st">"Finished. Press any key to close."</span>);</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">Console.<span class="fu">ReadLine</span>();</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">}</a></code></pre></div>
 <p>One last thing before running the app. If you <em>really</em> want to test it, create a local user (named Test would be good), log that user on, leave it running and switch back to your regular user.</p>
 <p>Now, run the application.</p>
-<p><a href="images/image_thumb14.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_thumb14.png" title="image" alt="image" width="543" height="309"></a></p>
+<p><a href="images/image_14.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_14.png" title="image" alt="image"></a></p>
 <p>Check those User SIDs!</p>
-<p><a href="images/image_thumb9.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_thumb9.png" title="image" alt="image" width="589" height="189"></a></p>
-<p><a href="images/image_thumb11.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_thumb11.png" title="image" alt="image" width="596" height="191"></a></p>
+<p><a href="images/image_9.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_9.png" title="image" alt="image"></a></p>
+<p><a href="images/image_11.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_11.png" title="image" alt="image"></a></p>
 <p>And finally, to prove the redirection, we’ll look at our CURRENT_USER hive.</p>
-<p><a href="images/image_thumb13.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_thumb13.png" title="image" alt="image" width="613" height="197"></a></p>
+<p><a href="images/image_13.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/writing-to-current-users-registry-when/images/image_13.png" title="image" alt="image"></a></p>
 <p>(Remember, now, to delete those keys. You might also log off and delete the test user.)</p>
-<h1 id="wrap-up">Wrap Up</h1>
+<h1>Wrap Up</h1>
 <p>Our goal was to write to the logged on users’ Group Policy keys, with the future intention of preventing them from running certain applications. We need to do this running as System, and found that impersonation wouldn’t work because we had use an elevated process. Instead, we wrote to the running users’ physical registry keys.</p>
 <p>One interesting aspect of this session is that there’s not a certain automated way to test for correctness. If I wrote a test that looked at a logical key (like CURRENT_USERS\…), and then checked if the value existed, I wouldn’t know if the correct physical key was updated. This may be a time when a human needs to test. (Maybe there’s a clever way around this, though.)</p>
 <p>Full source code can be found after the References.</p>
-<h1 id="references">References</h1>
+<h1></h1>
+<h1>References</h1>
 <p><a href="https://msdn.microsoft.com/en-gb/library/aa384232(VS.85).aspx">Registry Redirector</a></p>
 <p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384253(v=vs.85).aspx">Registry Keys Affected by WOW64</a></p>
 <p><a href="https://technet.microsoft.com/en-us/library/cc960900.aspx">Group Policy Object – Disallow Run</a></p>
@@ -274,136 +275,136 @@ Console.<span class="fu">ReadLine</span>();
 <p><a href="http://www.pinvoke.net/default.aspx/advapi32.openprocesstoken">Constants for Token Access Rights</a></p>
 <p><a href="https://msdn.microsoft.com/en-us/library/z3w4xdc9(v=vs.110).aspx">Process.GetProcessesByName</a></p>
 <p>My machine’s named <a href="https://en.wikipedia.org/wiki/E._Nesbit">Nesbit</a>, after the great children’s fantasy author.</p>
-<h1 id="full-source">Full Source</h1>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> Microsoft.<span class="fu">Win32</span>;
-<span class="kw">using</span> System.<span class="fu">Runtime</span>.<span class="fu">InteropServices</span>;
-<span class="kw">using</span> System.<span class="fu">Security</span>;
-<span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Principal</span>;
-<span class="kw">using</span> System.<span class="fu">Diagnostics</span>;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-
-<span class="kw">namespace</span> RegistryPrototyping
-{
-<span class="kw">class</span> Program
-{
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-{
-<span class="kw">try</span>
-{
-<span class="fu">WriteToLoggedOnUsers</span>();
-}
-<span class="kw">catch</span> (Exception ex)
-{
-Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-}
-Console.<span class="fu">WriteLine</span>(<span class="st">"Finished. Press any key to close."</span>);
-Console.<span class="fu">ReadLine</span>();
-}
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>(<span class="dt">string</span> sid)
-{
-<span class="dt">string</span> keyName = @<span class="st">"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer"</span>;
-<span class="dt">string</span> valueName = <span class="st">"DisallowRun"</span>;
-<span class="dt">string</span> value = <span class="st">"1"</span>;
-keyName = keyName.<span class="fu">Replace</span>(<span class="st">"HKEY_CURRENT_USER"</span>, @<span class="st">"HKEY_USERS</span><span class="sc">\"</span><span class="st"> + sid);</span>
-RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
-Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
-}
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>()
-{
-<span class="dt">string</span> keyName = @<span class="st">"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies</span><span class="sc">\E</span><span class="st">xplorer"</span>;
-<span class="dt">string</span> valueName = <span class="st">"DisallowRun"</span>;
-<span class="dt">string</span> value = <span class="st">"1"</span>;
-RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;
-Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);
-}
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteToLoggedOnUsers</span>()
-{
-<span class="kw">foreach</span> (var user <span class="kw">in</span> WindowsIdentityHelper.<span class="fu">GetLoggedOnUsers</span>())
-{
-<span class="kw">try</span>
-{
-<span class="fu">WriteRegistry</span>(user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
-Console.<span class="fu">WriteLine</span>(<span class="st">"Updated user "</span> + user.<span class="fu">Name</span> + <span class="st">"  SID "</span> + user.<span class="fu">Owner</span>.<span class="fu">Value</span>);
-}
-<span class="kw">catch</span> (Exception ex)
-{
-Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-}
-}
-}
-}
-}
-
-
-<span class="kw">class</span> WindowsIdentityHelper
-{
-
-[<span class="fu">DllImport</span>(<span class="st">"advapi32"</span>, SetLastError = <span class="kw">true</span>),
-SuppressUnmanagedCodeSecurityAttribute]
-<span class="kw">static</span> <span class="kw">extern</span> <span class="dt">int</span> <span class="fu">OpenProcessToken</span>(
-System.<span class="fu">IntPtr</span> ProcessHandle, <span class="co">// handle to process</span>
-<span class="dt">int</span> DesiredAccess, <span class="co">// desired access to process</span>
-<span class="kw">ref</span> IntPtr TokenHandle <span class="co">// handle to open access token</span>
-);
-
-[<span class="fu">DllImport</span>(<span class="st">"kernel32"</span>, SetLastError = <span class="kw">true</span>),
-SuppressUnmanagedCodeSecurityAttribute]
-<span class="kw">static</span> <span class="kw">extern</span> <span class="dt">bool</span> <span class="fu">CloseHandle</span>(IntPtr handle);
-[<span class="fu">DllImport</span>(<span class="st">"advapi32.dll"</span>, CharSet = CharSet.<span class="fu">Auto</span>, SetLastError = <span class="kw">true</span>)]
-<span class="kw">public</span> <span class="kw">extern</span> <span class="kw">static</span> <span class="dt">bool</span> <span class="fu">DuplicateToken</span>(IntPtr ExistingTokenHandle,
-<span class="dt">int</span> SECURITY_IMPERSONATION_LEVEL, <span class="kw">ref</span> IntPtr DuplicateTokenHandle);
-
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ASSIGN_PRIMARY = <span class="bn">0x0001</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_DUPLICATE = <span class="bn">0x0002</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_IMPERSONATE = <span class="bn">0x0004</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY = <span class="bn">0x0008</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY_SOURCE = <span class="bn">0x0010</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_PRIVILEGES = <span class="bn">0x0020</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_GROUPS = <span class="bn">0x0040</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_DEFAULT = <span class="bn">0x0080</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_SESSIONID = <span class="bn">0x0100</span>;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_READ = <span class="bn">0x00020000</span> | TOKEN_QUERY;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_WRITE = <span class="bn">0x00020000</span> | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_DEFAULT;
-<span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_EXECUTE = <span class="bn">0x00020000</span>;
-
-<span class="kw">public</span> <span class="kw">static</span> List <span class="fu">GetLoggedOnUsers</span>()
-{
-List users = <span class="kw">new</span> <span class="fu">List</span>();
-<span class="dt">string</span> errs = <span class="st">""</span>;
-IntPtr hToken = IntPtr.<span class="fu">Zero</span>;
-<span class="co">//Get a process that will always be available.</span>
-<span class="kw">foreach</span> (Process proc <span class="kw">in</span> Process.<span class="fu">GetProcessesByName</span>(<span class="st">"explorer"</span>))
-{
-<span class="kw">try</span>
-{
-<span class="kw">if</span> (<span class="fu">OpenProcessToken</span>(proc.<span class="fu">Handle</span>,
-TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,
-<span class="kw">ref</span> hToken) != <span class="dv">0</span>)
-{
-WindowsIdentity newId = <span class="kw">new</span> <span class="fu">WindowsIdentity</span>(hToken);
-<span class="fu">CloseHandle</span>(hToken);
-users.<span class="fu">Add</span>(newId);
-}
-<span class="kw">else</span>
-{
-errs += String.<span class="fu">Format</span>(<span class="st">"OpenProcess Failed {0}, privilege not held</span><span class="sc">\r\n</span><span class="st">"</span>, Marshal.<span class="fu">GetLastWin32Error</span>());
-}
-
-}
-<span class="kw">catch</span> (Exception ex)
-{
-errs += String.<span class="fu">Format</span>(<span class="st">"OpenProcess Failed {0}</span><span class="sc">\r\n</span><span class="st">"</span>, ex.<span class="fu">Message</span>);
-}
-}
-<span class="kw">if</span> (errs.<span class="fu">Length</span> &gt; <span class="dv">0</span>) { <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(errs); }
-<span class="kw">return</span> users;
-}
-
-}</code></pre></div>
+<h1>Full Source</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">using</span> Microsoft.<span class="fu">Win32</span>;</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Runtime</span>.<span class="fu">InteropServices</span>;</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Security</span>;</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">using</span> System.<span class="fu">Security</span>.<span class="fu">Principal</span>;</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw">using</span> System.<span class="fu">Diagnostics</span>;</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="kw">namespace</span> RegistryPrototyping</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">{</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="kw">class</span> Program</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">{</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">{</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">{</a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="fu">WriteToLoggedOnUsers</span>();</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">}</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">Console.<span class="fu">WriteLine</span>(<span class="st">"Finished. Press any key to close."</span>);</a>
+<a class="sourceLine" id="cb7-24" data-line-number="24">Console.<span class="fu">ReadLine</span>();</a>
+<a class="sourceLine" id="cb7-25" data-line-number="25">}</a>
+<a class="sourceLine" id="cb7-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>(<span class="dt">string</span> sid)</a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">{</a>
+<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="dt">string</span> keyName = @<span class="st">"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"</span>;</a>
+<a class="sourceLine" id="cb7-30" data-line-number="30"><span class="dt">string</span> valueName = <span class="st">"DisallowRun"</span>;</a>
+<a class="sourceLine" id="cb7-31" data-line-number="31"><span class="dt">string</span> value = <span class="st">"1"</span>;</a>
+<a class="sourceLine" id="cb7-32" data-line-number="32">keyName = keyName.<span class="fu">Replace</span>(<span class="st">"HKEY_CURRENT_USER"</span>, @<span class="st">"HKEY_USERS</span><span class="sc">\"</span><span class="st"> + sid);</span></a>
+<a class="sourceLine" id="cb7-33" data-line-number="33">RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;</a>
+<a class="sourceLine" id="cb7-34" data-line-number="34">Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);</a>
+<a class="sourceLine" id="cb7-35" data-line-number="35">}</a>
+<a class="sourceLine" id="cb7-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteRegistry</span>()</a>
+<a class="sourceLine" id="cb7-38" data-line-number="38">{</a>
+<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="dt">string</span> keyName = @<span class="st">"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer"</span>;</a>
+<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="dt">string</span> valueName = <span class="st">"DisallowRun"</span>;</a>
+<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="dt">string</span> value = <span class="st">"1"</span>;</a>
+<a class="sourceLine" id="cb7-42" data-line-number="42">RegistryValueKind dataType = RegistryValueKind.<span class="fu">DWord</span>;</a>
+<a class="sourceLine" id="cb7-43" data-line-number="43">Registry.<span class="fu">SetValue</span>(keyName, valueName, value, dataType);</a>
+<a class="sourceLine" id="cb7-44" data-line-number="44">}</a>
+<a class="sourceLine" id="cb7-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteToLoggedOnUsers</span>()</a>
+<a class="sourceLine" id="cb7-47" data-line-number="47">{</a>
+<a class="sourceLine" id="cb7-48" data-line-number="48"><span class="kw">foreach</span> (var user <span class="kw">in</span> WindowsIdentityHelper.<span class="fu">GetLoggedOnUsers</span>())</a>
+<a class="sourceLine" id="cb7-49" data-line-number="49">{</a>
+<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb7-51" data-line-number="51">{</a>
+<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="fu">WriteRegistry</span>(user.<span class="fu">Owner</span>.<span class="fu">Value</span>);</a>
+<a class="sourceLine" id="cb7-53" data-line-number="53">Console.<span class="fu">WriteLine</span>(<span class="st">"Updated user "</span> + user.<span class="fu">Name</span> + <span class="st">"  SID "</span> + user.<span class="fu">Owner</span>.<span class="fu">Value</span>);</a>
+<a class="sourceLine" id="cb7-54" data-line-number="54">}</a>
+<a class="sourceLine" id="cb7-55" data-line-number="55"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb7-56" data-line-number="56">{</a>
+<a class="sourceLine" id="cb7-57" data-line-number="57">Console.<span class="fu">WriteLine</span>(ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb7-58" data-line-number="58">}</a>
+<a class="sourceLine" id="cb7-59" data-line-number="59">}</a>
+<a class="sourceLine" id="cb7-60" data-line-number="60">}</a>
+<a class="sourceLine" id="cb7-61" data-line-number="61">}</a>
+<a class="sourceLine" id="cb7-62" data-line-number="62">}</a>
+<a class="sourceLine" id="cb7-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb7-64" data-line-number="64"></a>
+<a class="sourceLine" id="cb7-65" data-line-number="65"><span class="kw">class</span> WindowsIdentityHelper</a>
+<a class="sourceLine" id="cb7-66" data-line-number="66">{</a>
+<a class="sourceLine" id="cb7-67" data-line-number="67"></a>
+<a class="sourceLine" id="cb7-68" data-line-number="68">[<span class="fu">DllImport</span>(<span class="st">"advapi32"</span>, SetLastError = <span class="kw">true</span>),</a>
+<a class="sourceLine" id="cb7-69" data-line-number="69">SuppressUnmanagedCodeSecurityAttribute]</a>
+<a class="sourceLine" id="cb7-70" data-line-number="70"><span class="kw">static</span> <span class="kw">extern</span> <span class="dt">int</span> <span class="fu">OpenProcessToken</span>(</a>
+<a class="sourceLine" id="cb7-71" data-line-number="71">System.<span class="fu">IntPtr</span> ProcessHandle, <span class="co">// handle to process</span></a>
+<a class="sourceLine" id="cb7-72" data-line-number="72"><span class="dt">int</span> DesiredAccess, <span class="co">// desired access to process</span></a>
+<a class="sourceLine" id="cb7-73" data-line-number="73"><span class="kw">ref</span> IntPtr TokenHandle <span class="co">// handle to open access token</span></a>
+<a class="sourceLine" id="cb7-74" data-line-number="74">);</a>
+<a class="sourceLine" id="cb7-75" data-line-number="75"></a>
+<a class="sourceLine" id="cb7-76" data-line-number="76">[<span class="fu">DllImport</span>(<span class="st">"kernel32"</span>, SetLastError = <span class="kw">true</span>),</a>
+<a class="sourceLine" id="cb7-77" data-line-number="77">SuppressUnmanagedCodeSecurityAttribute]</a>
+<a class="sourceLine" id="cb7-78" data-line-number="78"><span class="kw">static</span> <span class="kw">extern</span> <span class="dt">bool</span> <span class="fu">CloseHandle</span>(IntPtr handle);</a>
+<a class="sourceLine" id="cb7-79" data-line-number="79">[<span class="fu">DllImport</span>(<span class="st">"advapi32.dll"</span>, CharSet = CharSet.<span class="fu">Auto</span>, SetLastError = <span class="kw">true</span>)]</a>
+<a class="sourceLine" id="cb7-80" data-line-number="80"><span class="kw">public</span> <span class="kw">extern</span> <span class="kw">static</span> <span class="dt">bool</span> <span class="fu">DuplicateToken</span>(IntPtr ExistingTokenHandle,</a>
+<a class="sourceLine" id="cb7-81" data-line-number="81"><span class="dt">int</span> SECURITY_IMPERSONATION_LEVEL, <span class="kw">ref</span> IntPtr DuplicateTokenHandle);</a>
+<a class="sourceLine" id="cb7-82" data-line-number="82"></a>
+<a class="sourceLine" id="cb7-83" data-line-number="83"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ASSIGN_PRIMARY = <span class="bn">0x0001</span>;</a>
+<a class="sourceLine" id="cb7-84" data-line-number="84"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_DUPLICATE = <span class="bn">0x0002</span>;</a>
+<a class="sourceLine" id="cb7-85" data-line-number="85"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_IMPERSONATE = <span class="bn">0x0004</span>;</a>
+<a class="sourceLine" id="cb7-86" data-line-number="86"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY = <span class="bn">0x0008</span>;</a>
+<a class="sourceLine" id="cb7-87" data-line-number="87"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_QUERY_SOURCE = <span class="bn">0x0010</span>;</a>
+<a class="sourceLine" id="cb7-88" data-line-number="88"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_PRIVILEGES = <span class="bn">0x0020</span>;</a>
+<a class="sourceLine" id="cb7-89" data-line-number="89"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_GROUPS = <span class="bn">0x0040</span>;</a>
+<a class="sourceLine" id="cb7-90" data-line-number="90"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_DEFAULT = <span class="bn">0x0080</span>;</a>
+<a class="sourceLine" id="cb7-91" data-line-number="91"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_ADJUST_SESSIONID = <span class="bn">0x0100</span>;</a>
+<a class="sourceLine" id="cb7-92" data-line-number="92"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_READ = <span class="bn">0x00020000</span> | TOKEN_QUERY;</a>
+<a class="sourceLine" id="cb7-93" data-line-number="93"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_WRITE = <span class="bn">0x00020000</span> | TOKEN_ADJUST_PRIVILEGES | TOKEN_ADJUST_GROUPS | TOKEN_ADJUST_DEFAULT;</a>
+<a class="sourceLine" id="cb7-94" data-line-number="94"><span class="kw">public</span> <span class="dt">const</span> <span class="dt">int</span> TOKEN_EXECUTE = <span class="bn">0x00020000</span>;</a>
+<a class="sourceLine" id="cb7-95" data-line-number="95"></a>
+<a class="sourceLine" id="cb7-96" data-line-number="96"><span class="kw">public</span> <span class="kw">static</span> List <span class="fu">GetLoggedOnUsers</span>()</a>
+<a class="sourceLine" id="cb7-97" data-line-number="97">{</a>
+<a class="sourceLine" id="cb7-98" data-line-number="98">List users = <span class="kw">new</span> <span class="fu">List</span>();</a>
+<a class="sourceLine" id="cb7-99" data-line-number="99"><span class="dt">string</span> errs = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb7-100" data-line-number="100">IntPtr hToken = IntPtr.<span class="fu">Zero</span>;</a>
+<a class="sourceLine" id="cb7-101" data-line-number="101"><span class="co">//Get a process that will always be available.</span></a>
+<a class="sourceLine" id="cb7-102" data-line-number="102"><span class="kw">foreach</span> (Process proc <span class="kw">in</span> Process.<span class="fu">GetProcessesByName</span>(<span class="st">"explorer"</span>))</a>
+<a class="sourceLine" id="cb7-103" data-line-number="103">{</a>
+<a class="sourceLine" id="cb7-104" data-line-number="104"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb7-105" data-line-number="105">{</a>
+<a class="sourceLine" id="cb7-106" data-line-number="106"><span class="kw">if</span> (<span class="fu">OpenProcessToken</span>(proc.<span class="fu">Handle</span>,</a>
+<a class="sourceLine" id="cb7-107" data-line-number="107">TOKEN_QUERY | TOKEN_IMPERSONATE | TOKEN_DUPLICATE,</a>
+<a class="sourceLine" id="cb7-108" data-line-number="108"><span class="kw">ref</span> hToken) != <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb7-109" data-line-number="109">{</a>
+<a class="sourceLine" id="cb7-110" data-line-number="110">WindowsIdentity newId = <span class="kw">new</span> <span class="fu">WindowsIdentity</span>(hToken);</a>
+<a class="sourceLine" id="cb7-111" data-line-number="111"><span class="fu">CloseHandle</span>(hToken);</a>
+<a class="sourceLine" id="cb7-112" data-line-number="112">users.<span class="fu">Add</span>(newId);</a>
+<a class="sourceLine" id="cb7-113" data-line-number="113">}</a>
+<a class="sourceLine" id="cb7-114" data-line-number="114"><span class="kw">else</span></a>
+<a class="sourceLine" id="cb7-115" data-line-number="115">{</a>
+<a class="sourceLine" id="cb7-116" data-line-number="116">errs += String.<span class="fu">Format</span>(<span class="st">"OpenProcess Failed {0}, privilege not held</span><span class="sc">\r\n</span><span class="st">"</span>, Marshal.<span class="fu">GetLastWin32Error</span>());</a>
+<a class="sourceLine" id="cb7-117" data-line-number="117">}</a>
+<a class="sourceLine" id="cb7-118" data-line-number="118"></a>
+<a class="sourceLine" id="cb7-119" data-line-number="119">}</a>
+<a class="sourceLine" id="cb7-120" data-line-number="120"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb7-121" data-line-number="121">{</a>
+<a class="sourceLine" id="cb7-122" data-line-number="122">errs += String.<span class="fu">Format</span>(<span class="st">"OpenProcess Failed {0}</span><span class="sc">\r\n</span><span class="st">"</span>, ex.<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb7-123" data-line-number="123">}</a>
+<a class="sourceLine" id="cb7-124" data-line-number="124">}</a>
+<a class="sourceLine" id="cb7-125" data-line-number="125"><span class="kw">if</span> (errs.<span class="fu">Length</span> &gt; <span class="dv">0</span>) { <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(errs); }</a>
+<a class="sourceLine" id="cb7-126" data-line-number="126"><span class="kw">return</span> users;</a>
+<a class="sourceLine" id="cb7-127" data-line-number="127">}</a>
+<a class="sourceLine" id="cb7-128" data-line-number="128"></a>
+<a class="sourceLine" id="cb7-129" data-line-number="129">}</a></code></pre></div>
 </div>
               </div>
               

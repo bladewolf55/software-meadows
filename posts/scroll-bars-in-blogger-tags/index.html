@@ -44,29 +44,27 @@
                 <p class='post-info'><span class='posted-on'>2016-02-28 08:35</span></p>
                 <div class='post-content'><p>EDIT</p>
 <p>I just discovered the fix below only works in Chrome. Sigh. Poor testing on my part, but is this also poor work on Google’s? I am, after all, using Google’s own “prettify”! What will it take to have scrolling pre blocks???</p>
-<p>===============</p>
+<p>\===============</p>
 <p>EDIT 2</p>
 <p>Finally! Ignore the code in the main post, and <strong><em>use this</em></strong>.</p>
-<p><a href="http://stackoverflow.com/questions/13946182/scrollbars-for-code-prettified-using-google-code-prettify" class="uri">http://stackoverflow.com/questions/13946182/scrollbars-for-code-prettified-using-google-code-prettify</a></p>
-<p>pre {display:block; overflow:auto; width:auto; white-space:pre; word-wrap:normal;}<br>
-pre.prettyprint {background-color: aliceblue;}<br>
-pre.console {background-color: black; color: white;}</p>
-<p>===== DON’T USE THIS CSS, BUT LEAVING HERE FOR HISTORICAL (HYSTERICAL) REASONS======</p>
+<p><a href="http://stackoverflow.com/questions/13946182/scrollbars-for-code-prettified-using-google-code-prettify" class="uri" title="http://stackoverflow.com/questions/13946182/scrollbars-for-code-prettified-using-google-code-prettify">http://stackoverflow.com/questions/13946182/scrollbars-for-code-prettified-using-google-code-prettify</a></p>
+<p>pre {display:block; overflow:auto; width:auto; white-space:pre; word-wrap:normal;} pre.prettyprint {background-color: aliceblue;} pre.console {background-color: black; color: white;}</p>
+<p>\===== DON’T USE THIS CSS, BUT LEAVING HERE FOR HISTORICAL (HYSTERICAL) REASONS======</p>
 <p>I guess I didn’t look hard enough. For well over a year, I accepted that my blog’s source code sections would always wrap. I put the code in a &lt;pre class=”prettyprint”&gt; tag, and I had added the following to my template.</p>
-<p><a href="images/image_thumb_25255B4_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/scroll-bars-in-blogger-tags/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="595" height="213"></a></p>
+<p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/scroll-bars-in-blogger-tags/images/image.png" title="image" alt="image"></a></p>
 <p>overflow: auto is pretty standard stuff I’ve used before, and no one pointed me elsewhere. Finally, today, I found the answer on this Stack Overflow page.</p>
-<p><a href="http://stackoverflow.com/a/15639868" class="uri">http://stackoverflow.com/a/15639868</a></p>
+<p><a href="http://stackoverflow.com/a/15639868" class="uri" title="http://stackoverflow.com/a/15639868">http://stackoverflow.com/a/15639868</a></p>
 <p>I needed to include overflow-wrap: normal.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">pre.<span class="fu">prettyprint</span> {background-color: aliceblue; overflow:auto;overflow-wrap:normal;}
-pre.<span class="fu">console</span> {background-color: black; color: white; padding: 5px; overflow:auto;overflow-wrap:normal;}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">pre.<span class="fu">prettyprint</span> {background-color: aliceblue; overflow:auto;overflow-wrap:normal;}</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">pre.<span class="fu">console</span> {background-color: black; color: white; padding: 5px; overflow:auto;overflow-wrap:normal;}</a></code></pre></div>
 <p>As you can see in the example below, it now adds the expected scroll bar.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> <span class="fu">LongCode</span>()
-{
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">PrintLongCode</span>()
-{
-Console.<span class="fu">Write</span>(<span class="st">"This is some pretty long code that shouldn't wrap so that the reader isn't confused by unexpected line breaks."</span>);
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> <span class="fu">LongCode</span>()</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">PrintLongCode</span>()</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">Console.<span class="fu">Write</span>(<span class="st">"This is some pretty long code that shouldn't wrap so that the reader isn't confused by unexpected line breaks."</span>);</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">}</a></code></pre></div>
 </div>
               </div>
               

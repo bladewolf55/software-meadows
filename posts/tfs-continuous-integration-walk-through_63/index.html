@@ -42,68 +42,62 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-05 18:42</span></p>
-                <div class='post-content'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br>
-<a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/ci-logo.png" title="ci-logo" alt="ci-logo"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository. <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_5.html">TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></p>
 <p>That's great, right? It worked. But it's not going to help me if I don't know the build failed, and I'm not going to keep a TFS page open, watching it like a hawk. I want email alerts.</p>
 <blockquote>
 <p><strong>Note</strong> There used to be another option for notifications: the Build Notification application. It would show build failure notifications in the status tray. But that only works for XAML builds. There appears to be a third party utility that does the same thing for the modern builds: <a href="https://catlight.io/">CatLight</a>.</p>
 </blockquote>
-<h2 id="configure-smtp-for-email">Configure SMTP for Email</h2>
-<p><strong>References</strong><br>
-<a href="https://www.visualstudio.com/en-us/docs/setup-admin/tfs/admin/setup-customize-alerts">Configure an SMTP server and customize email for alerts and feedback requests in TFS</a><br>
-<a href="https://www.youtube.com/watch?v=bdJvYgK9XnU">TFS Email via Gmail Account</a> &lt;- He enables POP3, but you don't have to.</p>
+<h2>Configure SMTP for Email</h2>
+<p><strong>References</strong> <a href="https://www.visualstudio.com/en-us/docs/setup-admin/tfs/admin/setup-customize-alerts">Configure an SMTP server and customize email for alerts and feedback requests in TFS</a> <a href="https://www.youtube.com/watch?v=bdJvYgK9XnU">TFS Email via Gmail Account</a> &lt;- He enables POP3, but you don't have to.</p>
 <p>These steps assume you have administrative access to the administration console.</p>
 <p>Open the Team Foundation Server Administration Console, select Application Tier, scroll down to and open Alert Settings.</p>
-<p><a href="images/2017-01-31_114324_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_114324_thumb_25255B1_25255D.png" title="2017-01-31_114324" alt="2017-01-31_114324" width="749" height="599"></a></p>
+<p><a href="images/17-01-31_114324.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_114324.png" title="2017-01-31_114324" alt="2017-01-31_114324"></a></p>
 <p>In the Settings window, check Enable Email Alerts and configure your SMTP server settings. In my case, I used my Gmail account for testing.</p>
 <blockquote>
 <p><strong>Note</strong> There are challenges getting Gmail SMTP to work in TFS that are beyond the scope of this article. That means, it would take too much space to document it all.</p>
 </blockquote>
-<p><a href="images/2017-01-31_114911_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_114911_thumb.png" title="2017-01-31_114911" alt="2017-01-31_114911" width="557" height="440"></a></p>
+<p><a href="images/17-01-31_114911.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_114911.png" title="2017-01-31_114911" alt="2017-01-31_114911"></a></p>
 <p>Send a test email.</p>
-<p><a href="images/2017-01-31_115054_thumb_25255B2_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_115054_thumb_25255B2_25255D.png" title="2017-01-31_115054" alt="2017-01-31_115054" width="737" height="596"></a><br>
-<a href="images/2017-01-31_115205_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_115205_thumb.png" title="2017-01-31_115205" alt="2017-01-31_115205" width="557" height="179"></a></p>
-<h2 id="configure-tfs-alerts">Configure TFS Alerts</h2>
-<p><strong>References</strong><br>
-<a href="https://msdn.microsoft.com/en-us/library/ms181725.aspx">Receive build notifications</a></p>
+<p><a href="images/17-01-31_115054.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_115054.png" title="2017-01-31_115054" alt="2017-01-31_115054"></a> <a href="images/17-01-31_115_5.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_115_5.png" title="2017-01-31_115205" alt="2017-01-31_115205"></a></p>
+<h2>Configure TFS Alerts</h2>
+<p><strong>References</strong> <a href="https://msdn.microsoft.com/en-us/library/ms181725.aspx">Receive build notifications</a></p>
 <p>Alerts are configured per team project. You can create project alerts from the Team Explorer &gt; Settings, but below I show how to do it from the web site.</p>
 <p>Open the main TFS page and click the Settings gear icon.</p>
-<p><a href="images/2017-01-31_123851_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_123851_thumb_25255B1_25255D.png" title="2017-01-31_123851" alt="2017-01-31_123851" width="722" height="233"></a></p>
+<p><a href="images/17-01-31_123851.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_123851.png" title="2017-01-31_123851" alt="2017-01-31_123851"></a></p>
 <p>Select the CI Console Sample project. Click "View the project administration page"</p>
-<p><a href="images/2017-01-31_124017_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_124017_thumb.png" title="2017-01-31_124017" alt="2017-01-31_124017" width="565" height="497"></a></p>
+<p><a href="images/17-01-31_124017.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_124017.png" title="2017-01-31_124017" alt="2017-01-31_124017"></a></p>
 <p>Open the Alerts tab. Click the link under Create New Alert When... "A build fails". In the dialog, enter the Send To email address and click OK.</p>
-<p><a href="images/2017-01-31_124245_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_124245_thumb_25255B1_25255D.png" title="2017-01-31_124245" alt="2017-01-31_124245" width="743" height="518"></a></p>
-<h2 id="configure-team-tfs-alerts">Configure Team TFS Alerts</h2>
+<p><a href="images/17-01-31_124245.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_124245.png" title="2017-01-31_124245" alt="2017-01-31_124245"></a></p>
+<h2>Configure Team TFS Alerts</h2>
 <p>Here's a simple configuration for build notifications. It assumes</p>
 <ul>
 <li>Not everyone on the team should be notified of build failures.</li>
 <li>There are two developers on the team who should receive notifications if <em>any</em> build fails.</li>
 </ul>
 <p>Open the Overview tab in the Control panel. Click "New team".</p>
-<p><a href="images/2017-03-07_120812_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-03-07_120812_thumb_25255B1_25255D.png" title="2017-03-07_120812" alt="2017-03-07_120812" width="696" height="227"></a></p>
+<p><a href="images/17-03-07_1_812.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-03-07_1_812.png" title="2017-03-07_120812" alt="2017-03-07_120812"></a></p>
 <p>Name the team something like "Build Failures". In the Permissions, leave as Contributers. Click Create Team.</p>
 <blockquote>
-<p><strong>Option</strong><br>
-You could also allow anyone on the team to be a Build Admin by choosing that group.</p>
+<p><strong>Option</strong> You could also allow anyone on the team to be a Build Admin by choosing that group.</p>
 </blockquote>
-<p><a href="images/2017-03-07_121236_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-03-07_121236_thumb.png" title="2017-03-07_121236" alt="2017-03-07_121236" width="577" height="563"></a></p>
+<p><a href="images/17-03-07_1212.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-03-07_1212.png" title="2017-03-07_121236" alt="2017-03-07_121236"></a></p>
 <p>Edit the team and add any desired team members.</p>
 <p>Open the Alerts tab. Click the link under Create New Alert When... "A build fails". Rename as desired. The only difference from a personal alert is the Subscriber. In this case, "Build Failures" is the team who will receive the alert. Click OK.</p>
-<p><a href="images/2017-03-07_121630_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-03-07_121630_thumb_25255B1_25255D.png" title="2017-03-07_121630" alt="2017-03-07_121630" width="750" height="515"></a></p>
-<h2 id="test-notification">Test Notification</h2>
+<p><a href="images/17-03-07_121630.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-03-07_121630.png" title="2017-03-07_121630" alt="2017-03-07_121630"></a></p>
+<h2>Test Notification</h2>
 <p>Make a change of some kind to the source code (but that <em>doesn't</em> pass the tests!) and check in your changes. That will start a build. When the build fails, you should get an email.</p>
-<p><a href="images/2017-01-31_124659_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_124659_thumb.png" title="2017-01-31_124659" alt="2017-01-31_124659" width="637" height="599"></a></p>
-<h2 id="test-success">Test Success</h2>
+<p><a href="images/17-01-31_124659.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_124659.png" title="2017-01-31_124659" alt="2017-01-31_124659"></a></p>
+<h2>Test Success</h2>
 <p>Let's finally get our test passing. Update the Greeting code, confirm the tests pass locally, then check in. You should not get an email alert, and you should see a successful build.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> TextMan
-{
-<span class="kw">public</span> <span class="dt">string</span> <span class="fu">Greeter</span>(<span class="dt">string</span> value)
-{
-<span class="kw">return</span> <span class="st">"Hello, "</span> + value;
-}
-}</code></pre></div>
-<p><a href="images/2017-01-31_125046_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/2017-01-31_125046_thumb.png" title="2017-01-31_125046" alt="2017-01-31_125046" width="304" height="262"></a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> TextMan</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">public</span> <span class="dt">string</span> <span class="fu">Greeter</span>(<span class="dt">string</span> value)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">return</span> <span class="st">"Hello, "</span> + value;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">}</a></code></pre></div>
+<p><a href="images/17-01-31_1046.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_63/images/17-01-31_1046.png" title="2017-01-31_125046" alt="2017-01-31_125046"></a></p>
 <p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_6.html">TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></p>
 </div>
               </div>

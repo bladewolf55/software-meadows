@@ -42,344 +42,343 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></h2>
                 <p class='post-info'><span class='posted-on'>2015-08-10 19:13</span></p>
-                <div class='post-content'><h1 id="prologue">Prologue</h1>
+                <div class='post-content'><h1>Prologue</h1>
 <p>In my previous post, I detailed a solution for <a href="http://www.softwaremeadows.com/2015/07/encrypting-appconfig.html">encrypting sections of the app.config</a> (the technique is similar in a web app). Since then, I ran into some issues in a Windows Form application I was developing.</p>
 <ul>
 <li>I needed to encrypt email SMTP data.</li>
 <li>Initially, I’d get an error when trying to access the smtp section.</li>
 <li>When published as ClickOnce, the application threw an error and wouldn’t open.</li>
 </ul>
-<h1 id="act-i">Act I</h1>
-<p>Let’s create a simple app. First, a Windows Form app with three labels. All the code will be in the same page as the Form1 class, to keep things simple.</p>
-<p><a href="images/image_thumb_25255B2_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B2_25255D.png" title="image" alt="image" width="229" height="244"></a></p>
+<h1>Act I</h1>
+<p>Let’s create a simple app. First, a Windows Form app with three labels. All the code will be in the same page as the Form1 class, to keep things simple. <a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image.png" title="image" alt="image"></a></p>
 <p>Add connectionString, appSettings and smtp sections to the app.config.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">&lt;?xml version=<span class="st">"1.0"</span> encoding=<span class="st">"utf-8"</span> ?&gt;
-&lt;configuration&gt;
-&lt;startup&gt;
-&lt;supportedRuntime version=<span class="st">"v4.0"</span> sku=<span class="st">".NETFramework,Version=v4.5"</span> /&gt;
-&lt;/startup&gt;
-&lt;connectionStrings&gt;
-&lt;add name=<span class="st">"MashDb"</span>
-connectionString=<span class="st">"Server=.\SQLExpress2012;Database=MASH;Trusted Connection=True;"</span>
-providerName=<span class="st">"System.Data.SqlClient"</span>/&gt;
-&lt;/connectionStrings&gt;
-&lt;appSettings&gt;
-&lt;add key=<span class="st">"Password"</span> value=<span class="st">"4077"</span>/&gt;
-&lt;/appSettings&gt;
-&lt;system.<span class="fu">net</span>&gt;
-&lt;mailSettings&gt;
-&lt;smtp deliveryMethod=<span class="st">"Network"</span> from=<span class="st">"pierce@mash.net"</span>&gt;
-&lt;network
-host=<span class="st">"ohmyseoul.kr"</span>
-port=<span class="st">"25"</span>
-defaultCredentials=<span class="st">"true"</span>/&gt;
-&lt;/smtp&gt;
-&lt;/mailSettings&gt;
-&lt;/system.<span class="fu">net</span>&gt;
-&lt;/configuration&gt;</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">&lt;?xml version=<span class="st">"1.0"</span> encoding=<span class="st">"utf-8"</span> ?&gt;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">&lt;configuration&gt;</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">&lt;startup&gt;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">&lt;supportedRuntime version=<span class="st">"v4.0"</span> sku=<span class="st">".NETFramework,Version=v4.5"</span> /&gt;</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">&lt;/startup&gt;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">&lt;connectionStrings&gt;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">&lt;add name=<span class="st">"MashDb"</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">connectionString=<span class="st">"Server=.\SQLExpress2012;Database=MASH;Trusted Connection=True;"</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">providerName=<span class="st">"System.Data.SqlClient"</span>/&gt;</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">&lt;/connectionStrings&gt;</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">&lt;appSettings&gt;</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">&lt;add key=<span class="st">"Password"</span> value=<span class="st">"4077"</span>/&gt;</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">&lt;/appSettings&gt;</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">&lt;system.<span class="fu">net</span>&gt;</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">&lt;mailSettings&gt;</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">&lt;smtp deliveryMethod=<span class="st">"Network"</span> from=<span class="st">"pierce@mash.net"</span>&gt;</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">&lt;network</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">host=<span class="st">"ohmyseoul.kr"</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">port=<span class="st">"25"</span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">defaultCredentials=<span class="st">"true"</span>/&gt;</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">&lt;/smtp&gt;</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">&lt;/mailSettings&gt;</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">&lt;/system.<span class="fu">net</span>&gt;</a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">&lt;/configuration&gt;</a></code></pre></div>
 <p>Add reference to System.Configuration to the project.</p>
-<p><a href="images/image4_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image4_thumb.png" title="image" alt="image" width="498" height="84"></a></p>
+<p><a href="images/image4.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image4.png" title="image" alt="image"></a></p>
 <p>The static Settings class, to get the app.config data. This is personal preference; I know you can also use the Settings designer for this, but it’s kind of hidden and finicky.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> Settings
-{
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> MashDb { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">ConnectionStrings</span>[<span class="st">"MashDb"</span>].<span class="fu">Name</span>; } }
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> Password { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">AppSettings</span>[<span class="st">"Password"</span>]; } }
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> Settings</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> MashDb { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">ConnectionStrings</span>[<span class="st">"MashDb"</span>].<span class="fu">Name</span>; } }</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> Password { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">AppSettings</span>[<span class="st">"Password"</span>]; } }</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">}</a></code></pre></div>
 <p>The static ConfigSettings classes. (Or whatever you’d name your general security utilities.) This is different than what I showed previously. Specifically, they don’t optionally take an executable name. Instead, they take the full path to a config file, essential to solving the ClickOnce problem.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> ConfigSettings
-{
-
-<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
-<span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span>
-<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"encryption"</span><span class="kw">&gt;&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"configPath"</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;remarks&gt;https:</span><span class="ot">//msdn.microsoft.com/en-us/library/ms254494(v=</span>vs<span class="ot">.110).aspx&lt;/remarks</span><span class="kw">&gt;</span>
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetDefaultConfigEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> configPath = <span class="kw">null</span>)
-{
-<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"appSettings"</span>, configPath);
-<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"connectionStrings"</span>, configPath);
-<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"system.net/mailSettings/smtp"</span>, configPath);
-}
-
-<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
-<span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span>
-<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"encryption"</span><span class="kw">&gt;&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"sectionName"</span><span class="kw">&gt;&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"configPath"</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;remarks&gt;&lt;</span><span class="ot">/remarks</span><span class="kw">&gt;</span>
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetConfigSectionEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> sectionName, <span class="dt">string</span> configPath = <span class="kw">null</span>)
-{
-<span class="co">//if no configPath supplied, get the currently executing exe's config.</span>
-<span class="kw">if</span> (<span class="dt">string</span>.<span class="fu">IsNullOrWhiteSpace</span>(configPath))
-{
-configPath = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span> + <span class="st">".config"</span>;
-<span class="kw">#if</span> (DEBUG)
-AppDomain domain = System.<span class="fu">AppDomain</span>.<span class="fu">CurrentDomain</span>;
-configPath = Path.<span class="fu">Combine</span>(domain.<span class="fu">SetupInformation</span>.<span class="fu">ApplicationBase</span>, domain.<span class="fu">FriendlyName</span> + <span class="st">".config"</span>);
-<span class="kw">#endif</span>
-}
-
-<span class="kw">try</span>
-{
-<span class="co">//Open the configuration file and retrieve the connectionStrings section.</span>
-ExeConfigurationFileMap fileMap = <span class="kw">new</span> <span class="fu">ExeConfigurationFileMap</span>();
-fileMap.<span class="fu">ExeConfigFilename</span> = configPath;
-Configuration config = ConfigurationManager.<span class="fu">OpenMappedExeConfiguration</span>(fileMap, ConfigurationUserLevel.<span class="fu">None</span>);
-ConfigurationSection section = config.<span class="fu">GetSection</span>(sectionName);
-<span class="kw">if</span> (section == <span class="kw">null</span>)
-{
-<span class="kw">return</span>;
-}
-<span class="co">// Encrypt the section.</span>
-<span class="kw">if</span> (encryption)
-{
-<span class="kw">if</span> (!section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
-{
-section.<span class="fu">SectionInformation</span>.<span class="fu">ForceSave</span> = <span class="kw">true</span>;
-section.<span class="fu">SectionInformation</span>.<span class="fu">ProtectSection</span>(<span class="st">"DataProtectionConfigurationProvider"</span>);
-}
-}
-<span class="co">// Remove encryption.</span>
-<span class="kw">if</span> (!encryption)
-{
-<span class="kw">if</span> (section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
-{
-section.<span class="fu">SectionInformation</span>.<span class="fu">UnprotectSection</span>();
-}
-}
-<span class="co">// Save the current configuration.</span>
-config.<span class="fu">Save</span>();
-}
-<span class="kw">catch</span> (Exception ex)
-{
-<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">"Unable to encrypt. "</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> ConfigSettings</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">/// </span><span class="kw">&lt;summary&gt;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">/// </span><span class="kw">&lt;/summary&gt;</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"encryption"</span><span class="kw">&gt;&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"configPath"</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">/// </span><span class="kw">&lt;remarks&gt;</span><span class="co">https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx</span><span class="kw">&lt;/remarks&gt;</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetDefaultConfigEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> configPath = <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"appSettings"</span>, configPath);</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"connectionStrings"</span>, configPath);</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"system.net/mailSettings/smtp"</span>, configPath);</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">/// </span><span class="kw">&lt;summary&gt;</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">/// </span><span class="kw">&lt;/summary&gt;</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"encryption"</span><span class="kw">&gt;&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"sectionName"</span><span class="kw">&gt;&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"configPath"</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">/// </span><span class="kw">&lt;remarks&gt;&lt;/remarks&gt;</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetConfigSectionEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> sectionName, <span class="dt">string</span> configPath = <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">//if no configPath supplied, get the currently executing exe's config.</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="kw">if</span> (<span class="dt">string</span>.<span class="fu">IsNullOrWhiteSpace</span>(configPath))</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">{</a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">configPath = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span> + <span class="st">".config"</span>;</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="kw">#if</span> (DEBUG)</a>
+<a class="sourceLine" id="cb3-31" data-line-number="31">AppDomain domain = System.<span class="fu">AppDomain</span>.<span class="fu">CurrentDomain</span>;</a>
+<a class="sourceLine" id="cb3-32" data-line-number="32">configPath = Path.<span class="fu">Combine</span>(domain.<span class="fu">SetupInformation</span>.<span class="fu">ApplicationBase</span>, domain.<span class="fu">FriendlyName</span> + <span class="st">".config"</span>);</a>
+<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="kw">#endif</span></a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">}</a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb3-36" data-line-number="36"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb3-37" data-line-number="37">{</a>
+<a class="sourceLine" id="cb3-38" data-line-number="38"><span class="co">//Open the configuration file and retrieve the connectionStrings section.</span></a>
+<a class="sourceLine" id="cb3-39" data-line-number="39">ExeConfigurationFileMap fileMap = <span class="kw">new</span> <span class="fu">ExeConfigurationFileMap</span>();</a>
+<a class="sourceLine" id="cb3-40" data-line-number="40">fileMap.<span class="fu">ExeConfigFilename</span> = configPath;</a>
+<a class="sourceLine" id="cb3-41" data-line-number="41">Configuration config = ConfigurationManager.<span class="fu">OpenMappedExeConfiguration</span>(fileMap, ConfigurationUserLevel.<span class="fu">None</span>);</a>
+<a class="sourceLine" id="cb3-42" data-line-number="42">ConfigurationSection section = config.<span class="fu">GetSection</span>(sectionName);</a>
+<a class="sourceLine" id="cb3-43" data-line-number="43"><span class="kw">if</span> (section == <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb3-44" data-line-number="44">{</a>
+<a class="sourceLine" id="cb3-45" data-line-number="45"><span class="kw">return</span>;</a>
+<a class="sourceLine" id="cb3-46" data-line-number="46">}</a>
+<a class="sourceLine" id="cb3-47" data-line-number="47"><span class="co">// Encrypt the section.</span></a>
+<a class="sourceLine" id="cb3-48" data-line-number="48"><span class="kw">if</span> (encryption)</a>
+<a class="sourceLine" id="cb3-49" data-line-number="49">{</a>
+<a class="sourceLine" id="cb3-50" data-line-number="50"><span class="kw">if</span> (!section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)</a>
+<a class="sourceLine" id="cb3-51" data-line-number="51">{</a>
+<a class="sourceLine" id="cb3-52" data-line-number="52">section.<span class="fu">SectionInformation</span>.<span class="fu">ForceSave</span> = <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb3-53" data-line-number="53">section.<span class="fu">SectionInformation</span>.<span class="fu">ProtectSection</span>(<span class="st">"DataProtectionConfigurationProvider"</span>);</a>
+<a class="sourceLine" id="cb3-54" data-line-number="54">}</a>
+<a class="sourceLine" id="cb3-55" data-line-number="55">}</a>
+<a class="sourceLine" id="cb3-56" data-line-number="56"><span class="co">// Remove encryption.</span></a>
+<a class="sourceLine" id="cb3-57" data-line-number="57"><span class="kw">if</span> (!encryption)</a>
+<a class="sourceLine" id="cb3-58" data-line-number="58">{</a>
+<a class="sourceLine" id="cb3-59" data-line-number="59"><span class="kw">if</span> (section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)</a>
+<a class="sourceLine" id="cb3-60" data-line-number="60">{</a>
+<a class="sourceLine" id="cb3-61" data-line-number="61">section.<span class="fu">SectionInformation</span>.<span class="fu">UnprotectSection</span>();</a>
+<a class="sourceLine" id="cb3-62" data-line-number="62">}</a>
+<a class="sourceLine" id="cb3-63" data-line-number="63">}</a>
+<a class="sourceLine" id="cb3-64" data-line-number="64"><span class="co">// Save the current configuration.</span></a>
+<a class="sourceLine" id="cb3-65" data-line-number="65">config.<span class="fu">Save</span>();</a>
+<a class="sourceLine" id="cb3-66" data-line-number="66">}</a>
+<a class="sourceLine" id="cb3-67" data-line-number="67"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb3-68" data-line-number="68">{</a>
+<a class="sourceLine" id="cb3-69" data-line-number="69"><span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">"Unable to encrypt. "</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb3-70" data-line-number="70">}</a>
+<a class="sourceLine" id="cb3-71" data-line-number="71">}</a>
+<a class="sourceLine" id="cb3-72" data-line-number="72">}</a></code></pre></div>
 <p>In the Form1 class, add the form Load event, and also the method for encrypting the config. You might be tempted to use System.AppDomain.CurrentDomain.FriendlyName, but in a ClickOnce application this will return “DefaultDomain,” and no site I’ve seen has an answer why.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">partial</span> <span class="kw">class</span> Form1 : Form
-{
-<span class="kw">public</span> <span class="fu">Form1</span>()
-{
-<span class="fu">EncryptClickOnceConfig</span>();
-<span class="fu">InitializeComponent</span>();
-}
-
-<span class="kw">private</span> <span class="dt">void</span> <span class="fu">Form1_Load</span>(<span class="dt">object</span> sender, EventArgs e)
-{
-label1.<span class="fu">Text</span> = Settings.<span class="fu">MashDb</span>;
-label2.<span class="fu">Text</span> = Settings.<span class="fu">Password</span>;
-label3.<span class="fu">Text</span> = <span class="kw">new</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>.<span class="fu">SmtpClient</span>().<span class="fu">Host</span>;
-}
-
-<span class="kw">private</span> <span class="dt">void</span> <span class="fu">EncryptClickOnceConfig</span>()
-{
-<span class="co">//Encrypt config. This didn't work properly in Load. Would lead to error "Unrecognized attribute ‘configProtectionProvider’</span>
-<span class="co">//after encrypting app.config when reading smtp</span>
-<span class="co">//Weird stuff for ClickOnce Deployment.</span>
-<span class="co">//https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</span>
-<span class="co">//ClickOnce writes two config files for some reason.</span>
-{
-<span class="kw">if</span> (ApplicationDeployment.<span class="fu">IsNetworkDeployed</span> &amp;&amp; ApplicationDeployment.<span class="fu">CurrentDeployment</span>.<span class="fu">IsFirstRun</span>)
-{
-<span class="co">//GetPaths</span>
-<span class="dt">string</span> exeFile = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span>;
-<span class="co">//get directory above the executable's.</span>
-<span class="dt">string</span> parentPath = Path.<span class="fu">GetDirectoryName</span>(Path.<span class="fu">GetDirectoryName</span>(exeFile));
-<span class="dt">string</span> configName = Path.<span class="fu">GetFileName</span>(exeFile) + <span class="st">".config"</span>;
-<span class="co">//get the matching files</span>
-<span class="kw">foreach</span> (<span class="dt">string</span> configFile <span class="kw">in</span> Directory.<span class="fu">GetDirectories</span>(parentPath, <span class="st">"*"</span> + configName, SearchOption.<span class="fu">AllDirectories</span>))
-{
-ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>, configFile);
-}
-}
-<span class="kw">else</span>
-{
-<span class="co">//good for debugging, sets the vshost config</span>
-ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>);
-}
-}
-}
-}</code></pre></div>
-<h1 id="act-ii">Act II</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">public</span> <span class="kw">partial</span> <span class="kw">class</span> Form1 : Form</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">public</span> <span class="fu">Form1</span>()</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="fu">EncryptClickOnceConfig</span>();</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="fu">InitializeComponent</span>();</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">Form1_Load</span>(<span class="dt">object</span> sender, EventArgs e)</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">{</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">label1.<span class="fu">Text</span> = Settings.<span class="fu">MashDb</span>;</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">label2.<span class="fu">Text</span> = Settings.<span class="fu">Password</span>;</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">label3.<span class="fu">Text</span> = <span class="kw">new</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>.<span class="fu">SmtpClient</span>().<span class="fu">Host</span>;</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">}</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">EncryptClickOnceConfig</span>()</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">{</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">//Encrypt config. This didn't work properly in Load. Would lead to error "Unrecognized attribute ‘configProtectionProvider’</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">//after encrypting app.config when reading smtp</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">//Weird stuff for ClickOnce Deployment.</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">//https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">//ClickOnce writes two config files for some reason.</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">{</a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="kw">if</span> (ApplicationDeployment.<span class="fu">IsNetworkDeployed</span> &amp;&amp; ApplicationDeployment.<span class="fu">CurrentDeployment</span>.<span class="fu">IsFirstRun</span>)</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">//GetPaths</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="dt">string</span> exeFile = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span>;</a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">//get directory above the executable's.</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="dt">string</span> parentPath = Path.<span class="fu">GetDirectoryName</span>(Path.<span class="fu">GetDirectoryName</span>(exeFile));</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="dt">string</span> configName = Path.<span class="fu">GetFileName</span>(exeFile) + <span class="st">".config"</span>;</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">//get the matching files</span></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="kw">foreach</span> (<span class="dt">string</span> configFile <span class="kw">in</span> Directory.<span class="fu">GetDirectories</span>(parentPath, <span class="st">"*"</span> + configName, SearchOption.<span class="fu">AllDirectories</span>))</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">{</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>, configFile);</a>
+<a class="sourceLine" id="cb4-35" data-line-number="35">}</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36">}</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="kw">else</span></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38">{</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="co">//good for debugging, sets the vshost config</span></a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>);</a>
+<a class="sourceLine" id="cb4-41" data-line-number="41">}</a>
+<a class="sourceLine" id="cb4-42" data-line-number="42">}</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43">}</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">}</a></code></pre></div>
+<h1>Act II</h1>
 <p>Publish the application. This will automatically create a self-signed certificate. (In a follow up post, I’ll document (for my easy reference) how to create a certificate that lasts more than a year.) There are two important things to do here:</p>
 <ul>
 <li>Set the project to Release.&nbsp; This is critical. It should be obvious, but it’s easy to forget and leads to one of the errors.</li>
 <li>It’s important to install it from a network location, which you can fake by sharing your publish folder and using the UNC path to it. I published to the solution folder. Give the share full permissions (for testing only).</li>
 </ul>
-<p><a href="images/image_thumb_25255B16_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B16_25255D.png" title="image" alt="image" width="597" height="476"></a></p>
+<p><a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image-001.png" title="image" alt="image"></a></p>
 <p>You should also enable automatic updating.</p>
-<p><a href="images/image_thumb_25255B17_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B17_25255D.png" title="image" alt="image" width="606" height="300"></a></p>
+<p><a href="images/image-002.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image-002.png" title="image" alt="image"></a></p>
 <p>Install from the UNC path. The app should open.</p>
-<p><a href="images/image_thumb_25255B19_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B19_25255D.png" title="image" alt="image" width="215" height="236"></a></p>
+<p><a href="images/image-003.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image-003.png" title="image" alt="image"></a></p>
 <p>With the app open, open Task Manager, right-click the app, and choose “open file location.”</p>
-<p><a href="images/image_thumb_25255B21_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B21_25255D.png" title="image" alt="image" width="612" height="562"></a></p>
+<p><a href="images/image-004.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image-004.png" title="image" alt="image"></a></p>
 <p>The folder will contain a EncryptedConfigClickOnceSample.exe.config file, which should be encrypted. But you’ll also find <em>another</em> folder, a sibling above or below the one you’re in, also with a EncryptedConfigClickOnceSample.exe.config, which should also be encrypted.</p>
 <p>So, fine, it works. How were the problems fixed?</p>
-<h1 id="act-iii">Act III</h1>
-<h2 id="encrypt-the-smtp-info">Encrypt the SMTP Info</h2>
+<h1>Act III</h1>
+<h2>Encrypt the SMTP Info</h2>
 <p>This one’s pretty easy. Pass the SetConfigSectionEncryption() method the string “system.net/mailSettings/smtp”. What I found interesting is that you can’t submit just “system.net”, or “system.net/mailSettings” Apparently, in some&nbsp; Orwellian programming community, some sections are more equal than others.</p>
-<h2 id="error-accessing-the-smtp-info">Error Accessing the SMTP Info</h2>
+<h2>Error Accessing the SMTP Info</h2>
 <p>Set the program to Debug mode and republish. Run the app, letting it self-update. You should receive an error</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Unrecognized attribute 'configProtectionProvider'</code></pre></div>
-<p><a href="images/image_thumb_25255B22_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image_thumb_25255B22_25255D.png" title="image" alt="image" width="408" height="194"></a></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1">Unrecognized attribute 'configProtectionProvider'</a></code></pre></div>
+<p><a href="images/image-005.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/more-encrypted-config-filesclickonce/images/image-005.png" title="image" alt="image"></a></p>
 <p>Some sites say to call <span style="font-family: Consolas;">ConfigurationManager.RefreshSection</span><span style="font-family: Calibri;">, but the problem really seems to be the behavior when in Debug mode. </span>The error seems to be caused by how configuration info is accessed after the application starts. It’s not clear to me, and no web page mentioned debug mode. But it worked.</p>
-<h2 id="clickonce-error">ClickOnce Error</h2>
+<h2>ClickOnce Error</h2>
 <p>In one application, when I tried to install it simply wouldn’t open. I believe this was also due to publishing in Debug mode. However, I also moved my call to configure the config file from Form_Load to the constructor. In my testing app, that’s not making any difference.</p>
-<h1 id="epilogue">Epilogue</h1>
+<h1>Epilogue</h1>
 <p>Encrypting the app.config could be critical for certain organizations where the highest security is preferred, even if the risk is very low.</p>
-<h1 id="references">References</h1>
-<p><a href="http://stackoverflow.com/questions/7856951/unrecognized-attribute-configprotectionprovider-after-encrypting-app-config" class="uri">http://stackoverflow.com/questions/7856951/unrecognized-attribute-configprotectionprovider-after-encrypting-app-config</a></p>
-<p><a href="https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup" class="uri">https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</a></p>
-<h1 id="source-code">Source Code</h1>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">ComponentModel</span>;
-<span class="kw">using</span> System.<span class="fu">Data</span>;
-<span class="kw">using</span> System.<span class="fu">Drawing</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Text</span>;
-<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
-<span class="kw">using</span> System.<span class="fu">Windows</span>.<span class="fu">Forms</span>;
-
-<span class="kw">using</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>;
-<span class="kw">using</span> System.<span class="fu">Configuration</span>;
-<span class="kw">using</span> System.<span class="fu">IO</span>;
-<span class="kw">using</span> System.<span class="fu">Deployment</span>.<span class="fu">Application</span>;
-<span class="kw">using</span> System.<span class="fu">Reflection</span>;
-
-<span class="kw">namespace</span> EncryptedConfigClickOnceSample
-{
-<span class="kw">public</span> <span class="kw">partial</span> <span class="kw">class</span> Form1 : Form
-{
-<span class="kw">public</span> <span class="fu">Form1</span>()
-{
-<span class="fu">EncryptClickOnceConfig</span>();
-<span class="fu">InitializeComponent</span>();
-}
-
-<span class="kw">private</span> <span class="dt">void</span> <span class="fu">Form1_Load</span>(<span class="dt">object</span> sender, EventArgs e)
-{
-label1.<span class="fu">Text</span> = Settings.<span class="fu">MashDb</span>;
-label2.<span class="fu">Text</span> = Settings.<span class="fu">Password</span>;
-label3.<span class="fu">Text</span> = <span class="kw">new</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>.<span class="fu">SmtpClient</span>().<span class="fu">Host</span>;
-}
-
-<span class="kw">private</span> <span class="dt">void</span> <span class="fu">EncryptClickOnceConfig</span>()
-{
-<span class="co">//Encrypt config. This didn't work properly in Load. Would lead to error "Unrecognized attribute ‘configProtectionProvider’</span>
-<span class="co">//after encrypting app.config when reading smtp</span>
-<span class="co">//Weird stuff for ClickOnce Deployment.</span>
-<span class="co">//https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</span>
-<span class="co">//ClickOnce writes two config files for some reason.</span>
-{
-<span class="kw">if</span> (ApplicationDeployment.<span class="fu">IsNetworkDeployed</span> &amp;&amp; ApplicationDeployment.<span class="fu">CurrentDeployment</span>.<span class="fu">IsFirstRun</span>)
-{
-<span class="co">//GetPaths</span>
-<span class="dt">string</span> exeFile = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span>;
-<span class="co">//get directory above the executable's.</span>
-<span class="dt">string</span> parentPath = Path.<span class="fu">GetDirectoryName</span>(Path.<span class="fu">GetDirectoryName</span>(exeFile));
-<span class="dt">string</span> configName = Path.<span class="fu">GetFileName</span>(exeFile) + <span class="st">".config"</span>;
-<span class="co">//get the matching files</span>
-<span class="kw">foreach</span> (<span class="dt">string</span> configFile <span class="kw">in</span> Directory.<span class="fu">GetFiles</span>(parentPath, <span class="st">"*"</span> + configName, SearchOption.<span class="fu">AllDirectories</span>))
-{
-ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>, configFile);
-}
-
-}
-<span class="kw">else</span>
-{
-<span class="kw">#if</span> (DEBUG)
-<span class="co">//good for debugging, sets the vshost config</span>
-ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>);
-<span class="kw">#endif</span>
-}
-}
-}
-}
-
-<span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> Settings
-{
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> MashDb { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">ConnectionStrings</span>[<span class="st">"MashDb"</span>].<span class="fu">Name</span>; } }
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> Password { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">AppSettings</span>[<span class="st">"Password"</span>]; } }
-}
-
-
-<span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> ConfigSettings
-{
-
-<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
-<span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span>
-<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"encryption"</span><span class="kw">&gt;&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"configPath"</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;remarks&gt;https:</span><span class="ot">//msdn.microsoft.com/en-us/library/ms254494(v=</span>vs<span class="ot">.110).aspx&lt;/remarks</span><span class="kw">&gt;</span>
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetDefaultConfigEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> configPath = <span class="kw">null</span>)
-{
-<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"appSettings"</span>, configPath);
-<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"connectionStrings"</span>, configPath);
-<span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"system.net/mailSettings/smtp"</span>, configPath);
-}
-
-<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
-<span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span>
-<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"encryption"</span><span class="kw">&gt;&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"sectionName"</span><span class="kw">&gt;&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"configPath"</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;remarks&gt;&lt;</span><span class="ot">/remarks</span><span class="kw">&gt;</span>
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetConfigSectionEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> sectionName, <span class="dt">string</span> configPath = <span class="kw">null</span>)
-{
-<span class="co">//if no configPath supplied, get the currently executing exe's config.</span>
-<span class="kw">if</span> (<span class="dt">string</span>.<span class="fu">IsNullOrWhiteSpace</span>(configPath))
-{
-configPath = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span> + <span class="st">".config"</span>;
-<span class="kw">#if</span> (DEBUG)
-AppDomain domain = System.<span class="fu">AppDomain</span>.<span class="fu">CurrentDomain</span>;
-configPath = Path.<span class="fu">Combine</span>(domain.<span class="fu">SetupInformation</span>.<span class="fu">ApplicationBase</span>, domain.<span class="fu">FriendlyName</span> + <span class="st">".config"</span>);
-<span class="kw">#endif</span>
-}
-
-<span class="kw">try</span>
-{
-<span class="co">//Open the configuration file and retrieve the connectionStrings section.</span>
-ExeConfigurationFileMap fileMap = <span class="kw">new</span> <span class="fu">ExeConfigurationFileMap</span>();
-fileMap.<span class="fu">ExeConfigFilename</span> = configPath;
-Configuration config = ConfigurationManager.<span class="fu">OpenMappedExeConfiguration</span>(fileMap, ConfigurationUserLevel.<span class="fu">None</span>);
-ConfigurationSection section = config.<span class="fu">GetSection</span>(sectionName);
-<span class="kw">if</span> (section == <span class="kw">null</span>)
-{
-<span class="kw">return</span>;
-}
-<span class="co">// Encrypt the section.</span>
-<span class="kw">if</span> (encryption)
-{
-<span class="kw">if</span> (!section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
-{
-section.<span class="fu">SectionInformation</span>.<span class="fu">ForceSave</span> = <span class="kw">true</span>;
-section.<span class="fu">SectionInformation</span>.<span class="fu">ProtectSection</span>(<span class="st">"DataProtectionConfigurationProvider"</span>);
-}
-}
-<span class="co">// Remove encryption.</span>
-<span class="kw">if</span> (!encryption)
-{
-<span class="kw">if</span> (section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
-{
-section.<span class="fu">SectionInformation</span>.<span class="fu">UnprotectSection</span>();
-}
-}
-<span class="co">// Save the current configuration.</span>
-config.<span class="fu">Save</span>();
-}
-<span class="kw">catch</span> (Exception ex)
-{
-<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">"Unable to encrypt. "</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-}
-}
-}
-}</code></pre></div>
+<h1>References</h1>
+<p><a href="http://stackoverflow.com/questions/7856951/unrecognized-attribute-configprotectionprovider-after-encrypting-app-config" class="uri" title="http://stackoverflow.com/questions/7856951/unrecognized-attribute-configprotectionprovider-after-encrypting-app-config">http://stackoverflow.com/questions/7856951/unrecognized-attribute-configprotectionprovider-after-encrypting-app-config</a></p>
+<p><a href="https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup" class="uri" title="https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup">https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</a></p>
+<h1>Source Code</h1>
+<div class="sourceCode" id="cb6"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">ComponentModel</span>;</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Data</span>;</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">using</span> System.<span class="fu">Drawing</span>;</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">using</span> System.<span class="fu">Text</span>;</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="kw">using</span> System.<span class="fu">Windows</span>.<span class="fu">Forms</span>;</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="kw">using</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>;</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="kw">using</span> System.<span class="fu">Configuration</span>;</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="kw">using</span> System.<span class="fu">IO</span>;</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="kw">using</span> System.<span class="fu">Deployment</span>.<span class="fu">Application</span>;</a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="kw">using</span> System.<span class="fu">Reflection</span>;</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="kw">namespace</span> EncryptedConfigClickOnceSample</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="kw">public</span> <span class="kw">partial</span> <span class="kw">class</span> Form1 : Form</a>
+<a class="sourceLine" id="cb6-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="kw">public</span> <span class="fu">Form1</span>()</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="fu">EncryptClickOnceConfig</span>();</a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="fu">InitializeComponent</span>();</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25">}</a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">Form1_Load</span>(<span class="dt">object</span> sender, EventArgs e)</a>
+<a class="sourceLine" id="cb6-28" data-line-number="28">{</a>
+<a class="sourceLine" id="cb6-29" data-line-number="29">label1.<span class="fu">Text</span> = Settings.<span class="fu">MashDb</span>;</a>
+<a class="sourceLine" id="cb6-30" data-line-number="30">label2.<span class="fu">Text</span> = Settings.<span class="fu">Password</span>;</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31">label3.<span class="fu">Text</span> = <span class="kw">new</span> System.<span class="fu">Net</span>.<span class="fu">Mail</span>.<span class="fu">SmtpClient</span>().<span class="fu">Host</span>;</a>
+<a class="sourceLine" id="cb6-32" data-line-number="32">}</a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">EncryptClickOnceConfig</span>()</a>
+<a class="sourceLine" id="cb6-35" data-line-number="35">{</a>
+<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="co">//Encrypt config. This didn't work properly in Load. Would lead to error "Unrecognized attribute ‘configProtectionProvider’</span></a>
+<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">//after encrypting app.config when reading smtp</span></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">//Weird stuff for ClickOnce Deployment.</span></a>
+<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">//https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup</span></a>
+<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">//ClickOnce writes two config files for some reason.</span></a>
+<a class="sourceLine" id="cb6-41" data-line-number="41">{</a>
+<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="kw">if</span> (ApplicationDeployment.<span class="fu">IsNetworkDeployed</span> &amp;&amp; ApplicationDeployment.<span class="fu">CurrentDeployment</span>.<span class="fu">IsFirstRun</span>)</a>
+<a class="sourceLine" id="cb6-43" data-line-number="43">{</a>
+<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">//GetPaths</span></a>
+<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="dt">string</span> exeFile = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span>;</a>
+<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="co">//get directory above the executable's.</span></a>
+<a class="sourceLine" id="cb6-47" data-line-number="47"><span class="dt">string</span> parentPath = Path.<span class="fu">GetDirectoryName</span>(Path.<span class="fu">GetDirectoryName</span>(exeFile));</a>
+<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="dt">string</span> configName = Path.<span class="fu">GetFileName</span>(exeFile) + <span class="st">".config"</span>;</a>
+<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="co">//get the matching files</span></a>
+<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="kw">foreach</span> (<span class="dt">string</span> configFile <span class="kw">in</span> Directory.<span class="fu">GetFiles</span>(parentPath, <span class="st">"*"</span> + configName, SearchOption.<span class="fu">AllDirectories</span>))</a>
+<a class="sourceLine" id="cb6-51" data-line-number="51">{</a>
+<a class="sourceLine" id="cb6-52" data-line-number="52">ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>, configFile);</a>
+<a class="sourceLine" id="cb6-53" data-line-number="53">}</a>
+<a class="sourceLine" id="cb6-54" data-line-number="54"></a>
+<a class="sourceLine" id="cb6-55" data-line-number="55">}</a>
+<a class="sourceLine" id="cb6-56" data-line-number="56"><span class="kw">else</span></a>
+<a class="sourceLine" id="cb6-57" data-line-number="57">{</a>
+<a class="sourceLine" id="cb6-58" data-line-number="58"><span class="kw">#if</span> (DEBUG)</a>
+<a class="sourceLine" id="cb6-59" data-line-number="59"><span class="co">//good for debugging, sets the vshost config</span></a>
+<a class="sourceLine" id="cb6-60" data-line-number="60">ConfigSettings.<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>);</a>
+<a class="sourceLine" id="cb6-61" data-line-number="61"><span class="kw">#endif</span></a>
+<a class="sourceLine" id="cb6-62" data-line-number="62">}</a>
+<a class="sourceLine" id="cb6-63" data-line-number="63">}</a>
+<a class="sourceLine" id="cb6-64" data-line-number="64">}</a>
+<a class="sourceLine" id="cb6-65" data-line-number="65">}</a>
+<a class="sourceLine" id="cb6-66" data-line-number="66"></a>
+<a class="sourceLine" id="cb6-67" data-line-number="67"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> Settings</a>
+<a class="sourceLine" id="cb6-68" data-line-number="68">{</a>
+<a class="sourceLine" id="cb6-69" data-line-number="69"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> MashDb { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">ConnectionStrings</span>[<span class="st">"MashDb"</span>].<span class="fu">Name</span>; } }</a>
+<a class="sourceLine" id="cb6-70" data-line-number="70"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">string</span> Password { <span class="kw">get</span> { <span class="kw">return</span> ConfigurationManager.<span class="fu">AppSettings</span>[<span class="st">"Password"</span>]; } }</a>
+<a class="sourceLine" id="cb6-71" data-line-number="71">}</a>
+<a class="sourceLine" id="cb6-72" data-line-number="72"></a>
+<a class="sourceLine" id="cb6-73" data-line-number="73"></a>
+<a class="sourceLine" id="cb6-74" data-line-number="74"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> ConfigSettings</a>
+<a class="sourceLine" id="cb6-75" data-line-number="75">{</a>
+<a class="sourceLine" id="cb6-76" data-line-number="76"></a>
+<a class="sourceLine" id="cb6-77" data-line-number="77"><span class="co">/// </span><span class="kw">&lt;summary&gt;</span></a>
+<a class="sourceLine" id="cb6-78" data-line-number="78"><span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span></a>
+<a class="sourceLine" id="cb6-79" data-line-number="79"><span class="co">/// </span><span class="kw">&lt;/summary&gt;</span></a>
+<a class="sourceLine" id="cb6-80" data-line-number="80"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"encryption"</span><span class="kw">&gt;&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb6-81" data-line-number="81"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"configPath"</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb6-82" data-line-number="82"><span class="co">/// </span><span class="kw">&lt;remarks&gt;</span><span class="co">https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx</span><span class="kw">&lt;/remarks&gt;</span></a>
+<a class="sourceLine" id="cb6-83" data-line-number="83"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetDefaultConfigEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> configPath = <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb6-84" data-line-number="84">{</a>
+<a class="sourceLine" id="cb6-85" data-line-number="85"><span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"appSettings"</span>, configPath);</a>
+<a class="sourceLine" id="cb6-86" data-line-number="86"><span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"connectionStrings"</span>, configPath);</a>
+<a class="sourceLine" id="cb6-87" data-line-number="87"><span class="fu">SetConfigSectionEncryption</span>(encryption, <span class="st">"system.net/mailSettings/smtp"</span>, configPath);</a>
+<a class="sourceLine" id="cb6-88" data-line-number="88">}</a>
+<a class="sourceLine" id="cb6-89" data-line-number="89"></a>
+<a class="sourceLine" id="cb6-90" data-line-number="90"><span class="co">/// </span><span class="kw">&lt;summary&gt;</span></a>
+<a class="sourceLine" id="cb6-91" data-line-number="91"><span class="co">/// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.</span></a>
+<a class="sourceLine" id="cb6-92" data-line-number="92"><span class="co">/// </span><span class="kw">&lt;/summary&gt;</span></a>
+<a class="sourceLine" id="cb6-93" data-line-number="93"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"encryption"</span><span class="kw">&gt;&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb6-94" data-line-number="94"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"sectionName"</span><span class="kw">&gt;&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb6-95" data-line-number="95"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"configPath"</span><span class="kw">&gt;</span><span class="co">Full path to config file</span><span class="kw">&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb6-96" data-line-number="96"><span class="co">/// </span><span class="kw">&lt;remarks&gt;&lt;/remarks&gt;</span></a>
+<a class="sourceLine" id="cb6-97" data-line-number="97"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetConfigSectionEncryption</span>(<span class="dt">bool</span> encryption, <span class="dt">string</span> sectionName, <span class="dt">string</span> configPath = <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb6-98" data-line-number="98">{</a>
+<a class="sourceLine" id="cb6-99" data-line-number="99"><span class="co">//if no configPath supplied, get the currently executing exe's config.</span></a>
+<a class="sourceLine" id="cb6-100" data-line-number="100"><span class="kw">if</span> (<span class="dt">string</span>.<span class="fu">IsNullOrWhiteSpace</span>(configPath))</a>
+<a class="sourceLine" id="cb6-101" data-line-number="101">{</a>
+<a class="sourceLine" id="cb6-102" data-line-number="102">configPath = Assembly.<span class="fu">GetEntryAssembly</span>().<span class="fu">Location</span> + <span class="st">".config"</span>;</a>
+<a class="sourceLine" id="cb6-103" data-line-number="103"><span class="kw">#if</span> (DEBUG)</a>
+<a class="sourceLine" id="cb6-104" data-line-number="104">AppDomain domain = System.<span class="fu">AppDomain</span>.<span class="fu">CurrentDomain</span>;</a>
+<a class="sourceLine" id="cb6-105" data-line-number="105">configPath = Path.<span class="fu">Combine</span>(domain.<span class="fu">SetupInformation</span>.<span class="fu">ApplicationBase</span>, domain.<span class="fu">FriendlyName</span> + <span class="st">".config"</span>);</a>
+<a class="sourceLine" id="cb6-106" data-line-number="106"><span class="kw">#endif</span></a>
+<a class="sourceLine" id="cb6-107" data-line-number="107">}</a>
+<a class="sourceLine" id="cb6-108" data-line-number="108"></a>
+<a class="sourceLine" id="cb6-109" data-line-number="109"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb6-110" data-line-number="110">{</a>
+<a class="sourceLine" id="cb6-111" data-line-number="111"><span class="co">//Open the configuration file and retrieve the connectionStrings section.</span></a>
+<a class="sourceLine" id="cb6-112" data-line-number="112">ExeConfigurationFileMap fileMap = <span class="kw">new</span> <span class="fu">ExeConfigurationFileMap</span>();</a>
+<a class="sourceLine" id="cb6-113" data-line-number="113">fileMap.<span class="fu">ExeConfigFilename</span> = configPath;</a>
+<a class="sourceLine" id="cb6-114" data-line-number="114">Configuration config = ConfigurationManager.<span class="fu">OpenMappedExeConfiguration</span>(fileMap, ConfigurationUserLevel.<span class="fu">None</span>);</a>
+<a class="sourceLine" id="cb6-115" data-line-number="115">ConfigurationSection section = config.<span class="fu">GetSection</span>(sectionName);</a>
+<a class="sourceLine" id="cb6-116" data-line-number="116"><span class="kw">if</span> (section == <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb6-117" data-line-number="117">{</a>
+<a class="sourceLine" id="cb6-118" data-line-number="118"><span class="kw">return</span>;</a>
+<a class="sourceLine" id="cb6-119" data-line-number="119">}</a>
+<a class="sourceLine" id="cb6-120" data-line-number="120"><span class="co">// Encrypt the section.</span></a>
+<a class="sourceLine" id="cb6-121" data-line-number="121"><span class="kw">if</span> (encryption)</a>
+<a class="sourceLine" id="cb6-122" data-line-number="122">{</a>
+<a class="sourceLine" id="cb6-123" data-line-number="123"><span class="kw">if</span> (!section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)</a>
+<a class="sourceLine" id="cb6-124" data-line-number="124">{</a>
+<a class="sourceLine" id="cb6-125" data-line-number="125">section.<span class="fu">SectionInformation</span>.<span class="fu">ForceSave</span> = <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb6-126" data-line-number="126">section.<span class="fu">SectionInformation</span>.<span class="fu">ProtectSection</span>(<span class="st">"DataProtectionConfigurationProvider"</span>);</a>
+<a class="sourceLine" id="cb6-127" data-line-number="127">}</a>
+<a class="sourceLine" id="cb6-128" data-line-number="128">}</a>
+<a class="sourceLine" id="cb6-129" data-line-number="129"><span class="co">// Remove encryption.</span></a>
+<a class="sourceLine" id="cb6-130" data-line-number="130"><span class="kw">if</span> (!encryption)</a>
+<a class="sourceLine" id="cb6-131" data-line-number="131">{</a>
+<a class="sourceLine" id="cb6-132" data-line-number="132"><span class="kw">if</span> (section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)</a>
+<a class="sourceLine" id="cb6-133" data-line-number="133">{</a>
+<a class="sourceLine" id="cb6-134" data-line-number="134">section.<span class="fu">SectionInformation</span>.<span class="fu">UnprotectSection</span>();</a>
+<a class="sourceLine" id="cb6-135" data-line-number="135">}</a>
+<a class="sourceLine" id="cb6-136" data-line-number="136">}</a>
+<a class="sourceLine" id="cb6-137" data-line-number="137"><span class="co">// Save the current configuration.</span></a>
+<a class="sourceLine" id="cb6-138" data-line-number="138">config.<span class="fu">Save</span>();</a>
+<a class="sourceLine" id="cb6-139" data-line-number="139">}</a>
+<a class="sourceLine" id="cb6-140" data-line-number="140"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb6-141" data-line-number="141">{</a>
+<a class="sourceLine" id="cb6-142" data-line-number="142"><span class="kw">throw</span> <span class="kw">new</span> <span class="fu">Exception</span>(<span class="st">"Unable to encrypt. "</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb6-143" data-line-number="143">}</a>
+<a class="sourceLine" id="cb6-144" data-line-number="144">}</a>
+<a class="sourceLine" id="cb6-145" data-line-number="145">}</a>
+<a class="sourceLine" id="cb6-146" data-line-number="146">}</a></code></pre></div>
 </div>
               </div>
               

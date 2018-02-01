@@ -42,27 +42,21 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-11-06 18:58</span></p>
-                <div class='post-content'><h1 id="section"><a href="images/the-magician_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6/images/the-magician_thumb_25255B1_25255D.png" title="the-magician" alt="the-magician" width="229" height="295"></a></h1>
+                <div class='post-content'><h1><a href="images/the-magician.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6/images/the-magician.png" title="the-magician" alt="the-magician"></a></h1>
 <p>I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
 <p>Claims-based identity isn't hard to understand, but it's been challenging to learn and implement in a legacy environment. In part one, we'll look at the concepts. In future posts, I'll have code samples using current (at the moment) frameworks.</p>
 <p>Like <a href="https://www.youtube.com/watch?v=lDnxuMh0JG4">Tony Blake producing a flock of doves</a>, we'll learn some security sleight-of-hand.</p>
-<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-3.html">TDD Part 3</a><br>
-Next Episode: Claims-Based Identity Part 2</p>
-<h1 id="claims-based-identity-basics">Claims-Based Identity Basics</h1>
-<h2 id="what-were-used-to---passwords">What We're Used To - Passwords</h2>
+<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-3.html">TDD Part 3</a> Next Episode: Claims-Based Identity Part 2</p>
+<h1>Claims-Based Identity Basics</h1>
+<h2>What We're Used To - Passwords</h2>
 <p>The convention in authentication for decades--for millennia, in a sense--has been this exchange:</p>
-<p>"Let me in."<br>
-"What's the password?"<br>
-"Swordfish."</p>
+<p>"Let me in." "What's the password?" "Swordfish."</p>
 <p>You're allowed in because you know something only a few people should: the password. Once you're in, the exchange continues.</p>
-<p>"I want to see the boss."<br>
-"Oh yeah? Who's asking?"<br>
-"I carry packages for Don Crosetti."<br>
-"A courier? Delivery boys don't see the boss, chum."</p>
+<p>"I want to see the boss." "Oh yeah? Who's asking?" "I carry packages for Don Crosetti." "A courier? Delivery boys don't see the boss, chum."</p>
 <p>What you get to do is defined by your role. A lieutenant can see the boss. A courier can't.</p>
 <p>This is very much how people understand software security to work. You enter a username and password on a web site, let's say a Content Management System. Once in the site, if you're a Viewer, you can look at all the pages but not edit anything. An Blogger can create posts for her own blogs, but not anyone else's. A Site Editor can modify anyone's posts.</p>
 <p>This system works well enough for many situations (in both software and life). But there's another common approach: claims.</p>
-<h2 id="what-were-also-used-to---claims">What We're Also Used To - Claims</h2>
+<h2>What We're Also Used To - Claims</h2>
 <p>It's Friday night and you go out to a dance club. To get in, you have to show your driver's license. The guy at the door looks it over, then waves you in. What was he checking? Two things.</p>
 <ul>
 <li>Were you over 21?</li>
@@ -77,7 +71,7 @@ Next Episode: Claims-Based Identity Part 2</p>
 <li>The bar authorized entry based on a claim, not a role.</li>
 </ol>
 <p>With those two real-world examples in mind, we're ready to look at claims-based identity in software.</p>
-<h2 id="whats-an-identity-provider-security-token-service">What's an Identity Provider (Security Token Service)?</h2>
+<h2>What's an Identity Provider (Security Token Service)?</h2>
 <p>In the bar example, the identity provider is the BMV.</p>
 <p>An STS takes care of authenticating identity, if needed, and returns a token than contains claims about the identity. An STS could be local or remote. Examples include:</p>
 <ul>
@@ -86,7 +80,7 @@ Next Episode: Claims-Based Identity Part 2</p>
 <li>Azure Active Directory</li>
 <li>Google</li>
 </ul>
-<h2 id="whats-a-token">What's a Token?</h2>
+<h2>What's a Token?</h2>
 <p>In the bar example, the token is the driver's license.</p>
 <p>A token is just data about the identity and issuer. It could be an XML document, for instance. Generally speaking, it can have:</p>
 <ul>
@@ -94,7 +88,7 @@ Next Episode: Claims-Based Identity Part 2</p>
 <li>An issuer certificate id</li>
 <li>A collection of claims</li>
 </ul>
-<h2 id="whats-a-claim">What's a Claim?</h2>
+<h2>What's a Claim?</h2>
 <p>In the bar example, the claim is the age.</p>
 <p>A claim is a fact about the identity (i.e., the user). A claim is trusted if the identity provider is trusted. Claims could include:</p>
 <ul>
@@ -103,7 +97,7 @@ Next Episode: Claims-Based Identity Part 2</p>
 <li>Date of Birth</li>
 <li>Country</li>
 </ul>
-<h2 id="whats-federated-identity">What's Federated Identity?</h2>
+<h2>What's Federated Identity?</h2>
 <p>The word "federation" means "union by agreement."</p>
 <blockquote>
 <p>A body formed by a number of nations, states, societies, unions, etc., each retaining control of its own internal affairs. [<a href="http://www.dictionary.com/browse/federation">Dictionary.com</a>]</p>
@@ -117,41 +111,68 @@ Next Episode: Claims-Based Identity Part 2</p>
 </ol>
 <p>A customer's user would log into their computer using their corporate credentials. When she opened the background check web site, the site would check if there was an authenticate token, and find the user's credentials in a cookie (perhaps). The web site would contact the STS, which would contact the customer's AD and verify the token's validity and return claims. The site would then authorize access if the claims allowed.</p>
 <p>At no time did the user retype credentials.</p>
-<h2 id="simplest-steps-of-getting-authenticated-claims---code-neutral">Simplest Steps of Getting Authenticated Claims - Code Neutral</h2>
+<h2>Simplest Steps of Getting Authenticated Claims - Code Neutral</h2>
 <p>Here's some pseudo-code (C# style) showing how an application might get and use a claims token. <strong>Note: These are not real .Net classes!</strong></p>
 <p>A simple user.</p>
-<pre class="sourcecode"><code>class User
+<div class="sourceCode">
+
+``` sourceCode cs
+class User
 {
 public string Email { get; set; }
-}</code></pre>
+}
+```
+
+</div>
 <p>The claims class. (The real .Net class is just about this simple.)</p>
-<pre class="sourcecode"><code>class Claim
+<div class="sourceCode">
+
+``` sourceCode cs
+class Claim
 {
 public string Type { get; set; }
 public string Value { get; set; }
-}</code></pre>
+}
+```
+
+</div>
 <p>A token/identity class, which contains a collection of claims.</p>
-<pre class="sourcecode"><code>class IdentityToken
+<div class="sourceCode">
+
+``` sourceCode cs
+class IdentityToken
 {
 public string TokenId { get; set; }
-public IEnumerable&lt;Claim&gt; Claims { get; set; }
-}</code></pre>
+public IEnumerable<claim> Claims { get; set; }
+}
+```
+
+</claim></div>
 <p>A helper class that checks authentication status.</p>
-<pre class="sourcecode"><code>static class AuthenticationManager
+<div class="sourceCode">
+
+``` sourceCode cs
+static class AuthenticationManager
 {
 public static bool IsAuthenticated(User user)
 {
 bool authState = false;
 //check a cookie, or database, or session state, etc.
 return authState;
-}</code></pre>
+}
+```
+
+</div>
 <p>A provider service to handle getting the token. This is the complex part if you wrote it yourself, since it needs to properly manage the network connection, protocol, certificates, trust, etc.</p>
-<pre class="sourcecode"><code>class Provider
+<div class="sourceCode">
+
+``` sourceCode cs
+class Provider
 {
 public string SignOnUri { get; set; }
 public string ProviderId { get; set; }
 public string ApplicationId { get; set;}
-public IEnumerable&lt;Claim&gt; GetClaims(string email)
+public IEnumerable<claim> GetClaims(string email)
 {
 //Set up network connection, such as to a remote Azure AD server
 var connection = GetConnected();
@@ -162,7 +183,7 @@ var response = connection.Authenticate(email, SignOnUri);
 if (response.Authenticated)
 {
 //The framework-specific provider takes care of the messy work of parsing the claims.
-var claims = new List&lt;Claim&gt;();
+var claims = new List<claim>();
 foreach (string clm in response.TokenClaimCollection)
 {
 claims.Add(new Claim() { Name = clm.Identifier, Value = clm.ValueUri }
@@ -177,9 +198,15 @@ else
 throw new Exception("Not a valid user.");
 }
 }
-}</code></pre>
+}
+```
+
+</claim></claim></div>
 <p>And here's how authentication might look, using that provider.</p>
-<pre class="sourcecode"><code>void Main()
+<div class="sourceCode">
+
+``` sourceCode cs
+void Main()
 {
 //The user who wants access.
 User user = new User() { Email = "jane.doe@example.com" };
@@ -204,7 +231,10 @@ if (claims.First(c =&gt; c.Name == "Company").Value == "XyloTech")
 //Show their reports
 }
 }
-}</code></pre>
+}
+```
+
+</div>
 <p>In the above method, we</p>
 <ol>
 <li>Found the user wasn't authenticated</li>
@@ -214,9 +244,9 @@ if (claims.First(c =&gt; c.Name == "Company").Value == "XyloTech")
 <li>Checked for a specific claim and took action.</li>
 </ol>
 <p>In the next post, we'll look at some of the various namespaces Microsoft uses for claims-based identity.</p>
-<hr>
+<p>--------------------</p>
 <p>Tony Blake's Corvette, license plate: "SPIRIT"</p>
-<p><a href="images/image_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6/images/image_thumb.png" title="image" alt="image" width="244" height="150"></a></p>
+<p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/catching-up-on-coding-claims-based-identity-part-1_6/images/image.png" title="image" alt="image"></a></p>
 </div>
               </div>
               

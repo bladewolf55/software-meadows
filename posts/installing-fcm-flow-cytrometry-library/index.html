@@ -44,77 +44,60 @@
                 <p class='post-info'><span class='posted-on'>2014-05-14 16:28</span></p>
                 <div class='post-content'><p>My friend Andrew is working with flow cytrometry, which is a fancy way of saying “a field I don’t understand.” He wanted to use a python library for analyzing data, but was having trouble getting it installed. After some effort, I found this worked. The core problem is that py-fcm hasn’t been updated to work with later versions of its dependencies. It also doesn’t list the versions of its dependent libraries, making installation difficult.</p>
 <p>Fortunately, I happened across a site that maintains Windows binaries for lots of packages, plus a science-ready Python distribution. I don’t know if this will install properly on Windows 7, but believe it will.</p>
-<h1 id="downloads">Downloads</h1>
+<h1>Downloads</h1>
 <p><strong>Enthought Canopy Express</strong></p>
 <p>This is a free Python distribution. I installed the x64 version, specifically 1.4.0-win-64, which used Python 2.7. It includes the following packages that py-fcm depends on: numpy, scipy, matplotlib, cython.</p>
-<p><a href="https://www.enthought.com/downloads/" class="uri">https://www.enthought.com/downloads/</a></p>
+<p><a href="https://www.enthought.com/downloads/" class="uri" title="https://www.enthought.com/downloads/">https://www.enthought.com/downloads/</a></p>
 <p><strong>DPMix</strong></p>
 <p>The Windows installer version of DPMix. I used version dpmix-01.win-amd64-py2.7.exe.</p>
-<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#dpmix" class="uri">http://www.lfd.uci.edu/~gohlke/pythonlibs/#dpmix</a></p>
+<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#dpmix" class="uri" title="http://www.lfd.uci.edu/~gohlke/pythonlibs/#dpmix">http://www.lfd.uci.edu/~gohlke/pythonlibs/#dpmix</a></p>
 <p><strong>Py-FCM</strong></p>
 <p>Download the Windows installer fcm‑0.9.1.win‑amd64‑py2.7.exe from</p>
-<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#py-fcm" class="uri">http://www.lfd.uci.edu/~gohlke/pythonlibs/#py-fcm</a></p>
+<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#py-fcm" class="uri" title="http://www.lfd.uci.edu/~gohlke/pythonlibs/#py-fcm">http://www.lfd.uci.edu/~gohlke/pythonlibs/#py-fcm</a></p>
 <p>Also, download the latest source. This just makes it easier to get the sample file.</p>
-<p><a href="https://code.google.com/p/py-fcm/source/browse/" class="uri">https://code.google.com/p/py-fcm/source/browse/</a></p>
+<p><a href="https://code.google.com/p/py-fcm/source/browse/" class="uri" title="https://code.google.com/p/py-fcm/source/browse/">https://code.google.com/p/py-fcm/source/browse/</a></p>
 <p><strong>NOTE</strong></p>
 <p>I did not install mpi4py, as it is an optional dependency, but here are the links. I also didn’t install the fcm GPU support.</p>
-<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mpi4py" class="uri">http://www.lfd.uci.edu/~gohlke/pythonlibs/#mpi4py</a></p>
-<p><a href="https://bitbucket.org/mpi4py/mpi4py/downloads" class="uri">https://bitbucket.org/mpi4py/mpi4py/downloads</a></p>
-<h1 id="installation">Installation</h1>
-<ol>
-<li>Run the Canopy installer. It does not require administrative privileges. I stuck with the defaults.</li>
-</ol>
-<p><a href="images/image_thumb_25255B15_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image_thumb_25255B15_25255D.png" title="image" alt="image" width="332" height="272"></a></p>
-<p><a href="images/image_thumb_25255B14_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image_thumb_25255B14_25255D.png" title="image" alt="image" width="337" height="204"></a></p>
-<p><a href="images/image_thumb_25255B13_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image_thumb_25255B13_25255D.png" title="image" alt="image" width="339" height="248"></a></p>
+<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mpi4py" class="uri" title="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mpi4py">http://www.lfd.uci.edu/~gohlke/pythonlibs/#mpi4py</a></p>
+<p><a href="https://bitbucket.org/mpi4py/mpi4py/downloads" class="uri" title="https://bitbucket.org/mpi4py/mpi4py/downloads">https://bitbucket.org/mpi4py/mpi4py/downloads</a></p>
+<h1>Installation</h1>
+<p>1. Run the Canopy installer. It does not require administrative privileges. I stuck with the defaults.</p>
+<p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image.png" title="image" alt="image"></a></p>
+<p><a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image-001.png" title="image" alt="image"></a></p>
+<p><a href="images/image-002.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image-002.png" title="image" alt="image"></a></p>
 <p>Clicking “Start using Canopy” will configured the environment. When configured, a window will open, which you can then close. Your desktop will have two icons, one for Canopy, the other for PyLab.</p>
-<ol>
-<li>Run the DPMix Windows installer. It will find the Python installation and use it.</li>
-</ol>
-<p><a href="images/image_thumb_25255B12_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image_thumb_25255B12_25255D.png" title="image" alt="image" width="344" height="222"></a></p>
-<p><a href="images/image_thumb_25255B11_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image_thumb_25255B11_25255D.png" title="image" alt="image" width="347" height="224"></a></p>
-<p><a href="images/image_thumb_25255B10_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image_thumb_25255B10_25255D.png" title="image" alt="image" width="352" height="227"></a></p>
-<ol>
-<li>Run the py-fcm Windows installer. It likewise will find and use the Python installation.</li>
-</ol>
-<p><a href="images/image_thumb_25255B9_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image_thumb_25255B9_25255D.png" title="image" alt="image" width="358" height="231"></a></p>
-<ol>
-<li>Modify gate.py script. This is critical, as the matplotlib library no longer uses nxutils.</li>
-</ol>
+<p>2. Run the DPMix Windows installer. It will find the Python installation and use it.</p>
+<p><a href="images/image-003.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image-003.png" title="image" alt="image"></a></p>
+<p><a href="images/image-004.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image-004.png" title="image" alt="image"></a></p>
+<p><a href="images/image-005.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image-005.png" title="image" alt="image"></a></p>
+<p>3. Run the py-fcm Windows installer. It likewise will find and use the Python installation.</p>
+<p><a href="images/image-006.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image-006.png" title="image" alt="image"></a></p>
+<p>4. Modify gate.py script. This is critical, as the matplotlib library no longer uses nxutils.</p>
 <p>a) Open this file in a text editor (using your own Username for the directory): C:\Users\Charles\AppData\Local\Enthought\Canopy\User\Lib\site-packages\fcm\core\gate.py</p>
 <p>b) Comment out line 56, and uncomment line 52.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">if</span> name <span class="kw">is</span> None:
-name = self.<span class="fu">name</span>
-idxs = <span class="fu">points_in_poly</span>(self.<span class="fu">vert</span>, fcm.<span class="fu">view</span>()[:, chan])
-
-# matplotlib has points <span class="kw">in</span> poly routine <span class="kw">in</span> C
-# no faster than our numpy version
-#idxs = <span class="fu">points_inside_poly</span>(fcm.<span class="fu">view</span>()[:, chan], self.<span class="fu">vert</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">if</span> name <span class="kw">is</span> None:</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">name = self.<span class="fu">name</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">idxs = <span class="fu">points_in_poly</span>(self.<span class="fu">vert</span>, fcm.<span class="fu">view</span>()[:, chan])</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"># matplotlib has points <span class="kw">in</span> poly routine <span class="kw">in</span> C</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"># no faster than our numpy version</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">#idxs = <span class="fu">points_inside_poly</span>(fcm.<span class="fu">view</span>()[:, chan], self.<span class="fu">vert</span>)</a></code></pre></div>
 <p>Also comment out the nxutils import on line 2</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">import numpy
-#from matplotlib.<span class="fu">nxutils</span> import points_inside_poly</code></pre></div>
-<h1 id="test">Test</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1">import numpy</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">#from matplotlib.<span class="fu">nxutils</span> import points_inside_poly</a></code></pre></div>
+<h1>Test</h1>
 <ol>
 <li>Unzip the py-fcm source. In the sample_data folder is a file named 3FITC_4PE_004.fcs.</li>
-<li>Open a text editor, and copy the complete path to the file, e.g.<br>
-C:\Users\Charles\Documents\FCM Flow Cytometry\Py-FCM\py-fcm-91701cc7a98e\sample_data\3FITC_4PE_004.fcs</li>
-<li>Now, replace all back slashes with forward slashes.<br>
-C:/Users/Charles/Documents/FCM Flow Cytometry/Py-FCM/3FITC_4PE_004.fcs</li>
+<li>Open a text editor, and copy the complete path to the file, e.g. C:\Users\Charles\Documents\FCM Flow Cytometry\Py-FCM\py-fcm-91701cc7a98e\sample_data\3FITC_4PE_004.fcs</li>
+<li>Now, replace all back slashes with forward slashes. C:/Users/Charles/Documents/FCM Flow Cytometry/Py-FCM/3FITC_4PE_004.fcs</li>
 <li>Open PyLab from the icon on the desktop, and run the samples found <a href="https://pythonhosted.org/fcm/basic.html">here</a> (reproduced below).</li>
 </ol>
-<p><a href="images/image_thumb_25255B8_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image_thumb_25255B8_25255D.png" title="image" alt="image" width="462" height="319"></a></p>
+<p><a href="images/image-007.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/image-007.png" title="image" alt="image"></a></p>
 <p>fcm provides the <a href="https://pythonhosted.org/fcm/documentation.html#fcm.loadFCS"><code>loadFCS()</code></a> function to load fcs files:</p>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>from fcm import loadFCS<br>
-data = loadFCS('../sample_data/3FITC_4PE_004.fcs')<br>
-data<br>
-3FITC_4PE_004<br>
-data.channels<br>
-['FSC-H', 'SSC-H', 'FL1-H', 'FL2-H']<br>
-data.shape<br>
-(94569, 4)</p>
+<p>from fcm import loadFCS data = loadFCS('../sample_data/3FITC_4PE_004.fcs') data 3FITC_4PE_004 data.channels ['FSC-H', 'SSC-H', 'FL1-H', 'FL2-H'] data.shape (94569, 4)</p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -122,31 +105,14 @@ data.shape<br>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>import numpy as np<br>
-np.mean(data)<br>
-410.38791252947584<br>
-np.mean(data,0)<br>
-array([ 538.76464803, 421.57733507, 340.03599488, 341.17367213])<br>
-import pylab<br>
-pylab.scatter(data[:,0],data[:,1], s=1, edgecolors='none')<br>
-pylab.xlabel(data.channels[0])<br>
-pylab.ylabel(data.channels[1])<br>
-pylab.show()</p>
+<p>import numpy as np np.mean(data) 410.38791252947584 np.mean(data,0) array([ 538.76464803, 421.57733507, 340.03599488, 341.17367213]) import pylab pylab.scatter(data[:,0],data[:,1], s=1, edgecolors='none') pylab.xlabel(data.channels[0]) pylab.ylabel(data.channels[1]) pylab.show()</p>
 </blockquote>
 </blockquote>
 </blockquote>
-<p><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/images/basic-1.png" alt="_images/basic-1.png"></p>
-<h1 id="references">References</h1>
-<p>Info about the nxutiles error. <a href="https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY" class="uri">https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY</a></p>
-<p><a href="https://pythonhosted.org/fcm/install.html" class="uri">https://pythonhosted.org/fcm/install.html</a><br>
-<a href="https://code.google.com/p/py-fcm/" class="uri">https://code.google.com/p/py-fcm/</a><br>
-<a href="https://www.enthought.com/" class="uri">https://www.enthought.com/</a><br>
-<a href="http://www.scipy.org/index.html" class="uri">http://www.scipy.org/index.html</a><br>
-<a href="http://matplotlib.org/" class="uri">http://matplotlib.org/</a><br>
-<a href="https://github.com/andrewcron/dpmix" class="uri">https://github.com/andrewcron/dpmix</a><br>
-<a href="http://docs.cython.org/src/quickstart/install.html" class="uri">http://docs.cython.org/src/quickstart/install.html</a><br>
-<a href="https://bitbucket.org/mpi4py/mpi4py/downloads" class="uri">https://bitbucket.org/mpi4py/mpi4py/downloads</a><br>
-<a href="http://mpi4py.scipy.org/docs/usrman/install.html#requirements" class="uri">http://mpi4py.scipy.org/docs/usrman/install.html#requirements</a></p>
+<p><img src="http://bladewolf55.gitlab.io/smblog/posts/installing-fcm-flow-cytrometry-library/https://pythonhosted.org/fcm/_images/basic-1.png" alt="_images/basic-1.png"></p>
+<h1>References</h1>
+<p>Info about the nxutiles error. <a href="https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY" class="uri" title="https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY">https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY</a></p>
+<p><a href="https://pythonhosted.org/fcm/install.html" class="uri" title="https://pythonhosted.org/fcm/install.html">https://pythonhosted.org/fcm/install.html</a> <a href="https://code.google.com/p/py-fcm/" class="uri" title="https://code.google.com/p/py-fcm/">https://code.google.com/p/py-fcm/</a> <a href="https://www.enthought.com/" class="uri" title="https://www.enthought.com/">https://www.enthought.com/</a> <a href="http://www.scipy.org/index.html" class="uri" title="http://www.scipy.org/index.html">http://www.scipy.org/index.html</a> <a href="http://matplotlib.org/" class="uri" title="http://matplotlib.org/">http://matplotlib.org/</a> <a href="https://github.com/andrewcron/dpmix" class="uri" title="https://github.com/andrewcron/dpmix">https://github.com/andrewcron/dpmix</a> <a href="http://docs.cython.org/src/quickstart/install.html" class="uri" title="http://docs.cython.org/src/quickstart/install.html">http://docs.cython.org/src/quickstart/install.html</a> <a href="https://bitbucket.org/mpi4py/mpi4py/downloads" class="uri" title="https://bitbucket.org/mpi4py/mpi4py/downloads">https://bitbucket.org/mpi4py/mpi4py/downloads</a> <a href="http://mpi4py.scipy.org/docs/usrman/install.html#requirements" class="uri" title="http://mpi4py.scipy.org/docs/usrman/install.html#requirements">http://mpi4py.scipy.org/docs/usrman/install.html#requirements</a></p>
 </div>
               </div>
               

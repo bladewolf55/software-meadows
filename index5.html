@@ -38,7 +38,7 @@
     <div id="site-subtitle">A pleasant walk through computing</div>
   </header>
   <section id="content">
-    <h1 id="home">Home</h1>
+    <h1>Home</h1>
 
   </section>
   <!-- posts only appear in home index -->
@@ -47,7 +47,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-03-03 11:01</span></p>
-                <div class='post-content'><h1 id="the-summary">The Summary</h1>
+                <div class='post-content'><h1>The Summary</h1>
 <p>What if you</p>
 <ol>
 <li>Don't store your NuGet packages in source control.</li>
@@ -61,7 +61,7 @@
 <li>Set up public access to the private source. Not likely.</li>
 <li>For testing, set up a local private NuGet source (just point to the folder).</li>
 </ol>
-<h1 id="the-problems">The Problems</h1>
+<h1>The Problems</h1>
 <p>NuGet packages are generally great. But there can be problems when it comes to source control and continuous integration.</p>
 <p>Most sites' advice on storing NuGet packages in source control (regardless of git, Mercurial, TFS, SVN, etc) is: don't.</p>
 <p>The reason is pretty simple. If package restore is enabled, they'll get downloaded and rebuilt anyway, so why store them and take up repository space? With the later NuGet installations, a cache is maintained in the user's profile, so a trip to the NuGet servers might not even be necessary.</p>
@@ -78,7 +78,7 @@
 <p>Most of the above can be solved by building the solution immediately after getting it. But here's a real-world example of number 4. I was working for a client, and had access to their Team Foundation Server. I got the source via a VPN connection, copied it to my laptop, and tried to build. This client has several NuGet packages they host locally. They're proprietary, so hosting them on a public site like NuGet would be wrong.</p>
 <p>And I didn't have access to that package source, so I couldn't build.</p>
 <p>Again, these problems could be solved, and maybe they point to some environment changes needing to be made. But wouldn't it be just as easy to include the package in source control?</p>
-<h1 id="including-the-nuget-package-folder-in-tfs">Including the NuGet Package Folder in TFS</h1>
+<h1>Including the NuGet Package Folder in TFS</h1>
 <p>If you're using a version of TFS prior to 2012, I can't help you (and you should upgrade). Starting in TFS 2012, the tfignore file became available. The purpose of tfignore is just like gitignore and hgignore: tell source control which files to not display for adding/tracking.</p>
 <p>But it can also be used to explicitly allow files. Why is this needed? Because, unlike git or Mercurial, TFS + Visual Studio ignores certain files by default, and I haven't found a way to change that or even find out what files those are. Dlls are ignored by default, for example.</p>
 <ol>
@@ -95,7 +95,7 @@
 <p>See the trailing period? That's the magic sauce. Otherwise, Windows doesn't let you create a file/folder with a leading period.</p>
 <p>Visual Studio shows package folders in Excluded Changes by default. But dlls, and sometimes lib folders, are <em>not</em> included, and we absolutely need those.</p>
 <p>Here's how to include the <em>entire</em> packages folder. The leading ! means "don't ignore".</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">!packages\*</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">!packages\*</a></code></pre></div>
 <p>These don't work. Note, especially, that leading backslash doesn't work, even thought that's what VS itself will create via the GUI.</p>
 <ul>
 <li>!\packages*.*</li>
@@ -103,28 +103,28 @@
 <li>!packages\</li>
 </ul>
 <p>To include a specific package, such as one that's hosted in a private NuGet source, ignore the packages folder, then specify the package path without the version number.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">packages
-!packages\My.<span class="fu">Private</span>.<span class="fu">Utility</span>.*</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1">packages</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">!packages\My.<span class="fu">Private</span>.<span class="fu">Utility</span>.*</a></code></pre></div>
 <p>In Visual Studio Team Explorer, choose Pending Changes, find Excluded Changes, click Detected: x adds(s).</p>
-<p><a href="images/2017-03-03_101910_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private/images/2017-03-03_101910_thumb_25255B1_25255D.png" title="2017-03-03_101910" alt="2017-03-03_101910" width="355" height="369"></a></p>
+<p><a href="images/17-03-03_101910.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private/images/17-03-03_101910.png" title="2017-03-03_101910" alt="2017-03-03_101910"></a></p>
 <p>Deselect all files (they're selected by default, a <em>bad</em> choice), then check the ones you want and Promote them (which is the same as "add" in git or Mercurial).</p>
-<p><a href="images/2017-03-03_103218_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private/images/2017-03-03_103218_thumb_25255B1_25255D.png" title="2017-03-03_103218" alt="2017-03-03_103218" width="744" height="378"></a></p>
-<h1 id="using-a-private-repo-for-testing">Using a Private Repo for Testing</h1>
+<p><a href="images/17-03-03_103218.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-and-private/images/17-03-03_103218.png" title="2017-03-03_103218" alt="2017-03-03_103218"></a></p>
+<h1>Using a Private Repo for Testing</h1>
 <p>If you're testing CI on a separate machine, you can use or modify a nuget.config file to include that source. I tried this at the project level, but it didn't work, so I created the nuget.config file at the solution level. (But that ability is supposedly removed in later NuGet versions. So confusing!)</p>
 <p>Here's an example file:</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span>
-<span class="kw">&lt;configuration&gt;</span>
-<span class="kw">&lt;packageRestore&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"enabled"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"automatic"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageRestore&gt;</span>
-<span class="kw">&lt;packageSources&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"nuget.org"</span><span class="ot"> value=</span><span class="st">"https://api.nuget.org/v3/index.json"</span><span class="ot"> protocolVersion=</span><span class="st">"3"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"local"</span><span class="ot"> value=</span><span class="st">"C:\Users\charles\Documents\Testing\NuGet\"</span> <span class="kw">/&gt;</span>
-<span class="kw">&lt;/packageSources&gt;</span>
-<span class="kw">&lt;/configuration&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">&lt;?xml</span> version="1.0" encoding="utf-8"<span class="kw">?&gt;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">&lt;configuration&gt;</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">&lt;packageRestore&gt;</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"enabled"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"automatic"</span><span class="ot"> value=</span><span class="st">"True"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">&lt;/packageRestore&gt;</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">&lt;packageSources&gt;</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"nuget.org"</span><span class="ot"> value=</span><span class="st">"https://api.nuget.org/v3/index.json"</span><span class="ot"> protocolVersion=</span><span class="st">"3"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">&lt;add</span><span class="ot"> key=</span><span class="st">"local"</span><span class="ot"> value=</span><span class="st">"C:\Users\charles\Documents\Testing\NuGet\"</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">&lt;/packageSources&gt;</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">&lt;/configuration&gt;</span></a></code></pre></div>
 <p>Again, this must not end up in the production source control repository!</p>
-<h1 id="the-wrap-up">The Wrap Up</h1>
+<h1>The Wrap Up</h1>
 <p>I'm not weighing in on storing NuGet packages in source control, except to say that there are some situations where it's clear to me it's a good ideal. Having a private NuGet source involved is one.</p>
 </div>
               </div>
@@ -133,134 +133,130 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-22 14:05</span></p>
-                <div class='post-content'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.</p>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/ci-logo.png" title="ci-logo" alt="ci-logo"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.</p>
 <p><a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_20.html">TFS Continuous Integration Walk Through Part 5a - Multiple Solutions - Overview</a></p>
-<h1 id="a-new-beginning">A New Beginning</h1>
+<h1>A New Beginning</h1>
 <p>One of my goals for the Multiple Solutions walkthroughs is to put the TFS repository in a, let's say, less than stellar organizational state, and then clean up. To do that, I'll start with a new, clean TFS collection.</p>
 <p>Open TFS Administration Console, select Team Project Collections, and click Create Collection.</p>
-<p><a href="images/2017-02-20_145443_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_145443_thumb_25255B1_25255D.png" title="2017-02-20_145443" alt="2017-02-20_145443" width="755" height="573"></a></p>
+<p><a href="images/17-02-__145443.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__145443.png" title="2017-02-20_145443" alt="2017-02-20_145443"></a></p>
 <p>Choose a silly name like "CICollection2". Next.</p>
-<p><a href="images/2017-02-20_145927_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_145927_thumb_25255B1_25255D.png" title="2017-02-20_145927" alt="2017-02-20_145927" width="751" height="577"></a></p>
+<p><a href="images/17-02-__145927.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__145927.png" title="2017-02-20_145927" alt="2017-02-20_145927"></a></p>
 <p>Verify the SQL server instance and create a new database. Next, Verify, Create.</p>
-<p><a href="images/2017-02-20_150035_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_150035_thumb_25255B1_25255D.png" title="2017-02-20_150035" alt="2017-02-20_150035" width="745" height="572"></a></p>
+<p><a href="images/17-02-__150035.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__150035.png" title="2017-02-20_150035" alt="2017-02-20_150035"></a></p>
 <p>It'll take a few minute to create the collection. Click Complete, then Close. You can close the Admin Console, too.</p>
-<p><a href="images/2017-02-20_150517_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_150517_thumb_25255B1_25255D.png" title="2017-02-20_150517" alt="2017-02-20_150517" width="736" height="565"></a></p>
-<h1 id="connect-visual-studio-to-the-new-collection">Connect Visual Studio to the New Collection</h1>
+<p><a href="images/17-02-__150517.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__150517.png" title="2017-02-20_150517" alt="2017-02-20_150517"></a></p>
+<h1>Connect Visual Studio to the New Collection</h1>
 <blockquote>
-<p><strong>Complaint</strong><br>
-This was stupidly difficult to figure out. Google searches yielded nothing.</p>
+<p><strong>Complaint</strong> This was stupidly difficult to figure out. Google searches yielded nothing.</p>
 </blockquote>
 <p>Open Visual Studio and the Team Explorer, then open Manage Connections.</p>
-<p><a href="images/2017-02-20_161007_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_161007_thumb.png" title="2017-02-20_161007" alt="2017-02-20_161007" width="452" height="184"></a></p>
+<p><a href="images/17-02-__161007.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161007.png" title="2017-02-20_161007" alt="2017-02-20_161007"></a></p>
 <p>Drop down "Manage Connections" and choose Connect to Team Project.</p>
-<p><a href="images/2017-02-20_161132_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_161132_thumb.png" title="2017-02-20_161132" alt="2017-02-20_161132" width="340" height="173"></a></p>
+<p><a href="images/17-02-__161132.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161132.png" title="2017-02-20_161132" alt="2017-02-20_161132"></a></p>
 <p>Select CICollection2, then click Connect.</p>
-<p><a href="images/2017-02-20_161318_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_161318_thumb.png" title="2017-02-20_161318" alt="2017-02-20_161318" width="639" height="468"></a></p>
+<p><a href="images/17-02-__161318.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161318.png" title="2017-02-20_161318" alt="2017-02-20_161318"></a></p>
 <p>This is the first time I'm using this collection, so I need to map my TFS Workspaces.</p>
 <blockquote>
-<p><strong>Complaint</strong><br>
-I <em>hate</em> TFS workspaces.</p>
+<p><strong>Complaint</strong> I <em>hate</em> TFS workspaces.</p>
 </blockquote>
-<p><a href="images/2017-02-20_161528_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_161528_thumb.png" title="2017-02-20_161528" alt="2017-02-20_161528" width="387" height="412"></a></p>
+<p><a href="images/17-02-__161528.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161528.png" title="2017-02-20_161528" alt="2017-02-20_161528"></a></p>
 <p>Pick one of the "map workspaces" links, take the defaults, click Map &amp; Get.</p>
-<p><a href="images/2017-02-20_161942_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_161942_thumb.png" title="2017-02-20_161942" alt="2017-02-20_161942" width="360" height="208"></a></p>
+<p><a href="images/17-02-__161942.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161942.png" title="2017-02-20_161942" alt="2017-02-20_161942"></a></p>
 <p>Now I'm connected to the new collection.</p>
-<p><a href="images/2017-02-20_162046_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_162046_thumb.png" title="2017-02-20_162046" alt="2017-02-20_162046" width="372" height="232"></a></p>
-<h1 id="create-a-new-team-project">Create a new Team Project</h1>
+<p><a href="images/17-02-__16_46.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__16_46.png" title="2017-02-20_162046" alt="2017-02-20_162046"></a></p>
+<h1>Create a new Team Project</h1>
 <p>In Visual Studio Team Manager, create a new Team Project by choosing Home &gt; Projects &amp; My Teams &gt; Create Team Project.</p>
-<p><a href="images/2017-02-20_162400_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_162400_thumb.png" title="2017-02-20_162400" alt="2017-02-20_162400" width="472" height="227"></a></p>
+<p><a href="images/17-02-__162400.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162400.png" title="2017-02-20_162400" alt="2017-02-20_162400"></a></p>
 <p>Remember, one of my intentions is a messy collection. So, I'll name my team project Main. (I'm tempted to name it "Turing" and make life even worse, but this will do.) Click Next.</p>
-<p><a href="images/2017-02-20_162607_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_162607_thumb.png" title="2017-02-20_162607" alt="2017-02-20_162607" width="630" height="519"></a></p>
+<p><a href="images/17-02-__162607.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162607.png" title="2017-02-20_162607" alt="2017-02-20_162607"></a></p>
 <p>The default Agile process is fine. Next.</p>
-<p><a href="images/2017-02-20_162652_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_162652_thumb.png" title="2017-02-20_162652" alt="2017-02-20_162652" width="630" height="519"></a></p>
+<p><a href="images/17-02-__162652.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162652.png" title="2017-02-20_162652" alt="2017-02-20_162652"></a></p>
 <p>We're sticking with Team Foundation Version Control. Click Finish.</p>
-<p><a href="images/2017-02-20_162805_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_162805_thumb.png" title="2017-02-20_162805" alt="2017-02-20_162805" width="630" height="519"></a></p>
+<p><a href="images/17-02-__162805.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162805.png" title="2017-02-20_162805" alt="2017-02-20_162805"></a></p>
 <p>After a few seconds our team project is created.</p>
-<p><a href="images/2017-02-20_162930_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_162930_thumb.png" title="2017-02-20_162930" alt="2017-02-20_162930" width="630" height="519"></a></p>
-<h1 id="add-the-turingdesktop-solution">Add the TuringDesktop Solution</h1>
+<p><a href="images/17-02-__162930.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162930.png" title="2017-02-20_162930" alt="2017-02-20_162930"></a></p>
+<h1>Add the TuringDesktop Solution</h1>
 <p>In Visual Studio, create a new Console project. In the dialog, check the Add to Source Control box.</p>
-<p><a href="images/2017-02-20_163059_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_163059_thumb_25255B1_25255D.png" title="2017-02-20_163059" alt="2017-02-20_163059" width="739" height="522"></a></p>
+<p><a href="images/17-02-__163059.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__163059.png" title="2017-02-20_163059" alt="2017-02-20_163059"></a></p>
 <p>In the source control dialog, accept the defaults. We're adding our solution folder to the root.</p>
-<p><a href="images/2017-02-20_163216_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_163216_thumb.png" title="2017-02-20_163216" alt="2017-02-20_163216" width="547" height="556"></a></p>
+<p><a href="images/17-02-__163216.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__163216.png" title="2017-02-20_163216" alt="2017-02-20_163216"></a></p>
 <p>So, right now our TFS collection structure is:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">CICollection2
-|_$/Main
-|_TuringDesktop</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">CICollection2</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">|_$/Main</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">|_TuringDesktop</a></code></pre></div>
 <p>If you remember from the previous part, our desktop app is going to have two dependencies: the Magic8Engine, and TextColor. Right now, I don't know Magic8 is going to be a shared NuGet package, so I just add it as a new Class Library project. The same with TextColor.</p>
 <p>I'm also going to need a unit test project, so I'll add an MSTest project now as well. I'm going to name it TuringDesktop.Tests, even though it's going to contain tests for all my projects.</p>
-<p><a href="images/2017-02-20_164651_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_164651_thumb_25255B1_25255D.png" title="2017-02-20_164651" alt="2017-02-20_164651" width="741" height="524"></a></p>
+<p><a href="images/17-02-__164651.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__164651.png" title="2017-02-20_164651" alt="2017-02-20_164651"></a></p>
 <p>In the end, this is my solution's folder structure.</p>
-<p><a href="images/2017-02-20_164939_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-20_164939_thumb.png" title="2017-02-20_164939" alt="2017-02-20_164939" width="288" height="214"></a></p>
-<h1 id="our-first-suite">Our First Suite</h1>
+<p><a href="images/17-02-__164939.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-__164939.png" title="2017-02-20_164939" alt="2017-02-20_164939"></a></p>
+<h1>Our First Suite</h1>
 <p><strong>References</strong></p>
-<p><a href="http://stackoverflow.com/a/9663588/1628707">Assign TextWriter to MemoryWriter</a><br>
-<a href="http://stackoverflow.com/a/5852991/1628707">Mocking System Console Behaviour</a><br>
-<a href="https://en.wikipedia.org/wiki/Magic_8-Ball">Magic 8-Ball</a></p>
+<p><a href="http://stackoverflow.com/a/9663588/1628707">Assign TextWriter to MemoryWriter</a> <a href="http://stackoverflow.com/a/5852991/1628707">Mocking System Console Behaviour</a> <a href="https://en.wikipedia.org/wiki/Magic_8-Ball">Magic 8-Ball</a></p>
 <p>Below is all the code and tests for the solution. This is my super-pre-release versions, and has some (mostly intentional) problems.</p>
-<h2 id="the-solution-projects">The Solution Projects</h2>
+<h2>The Solution Projects</h2>
 <p>Right now I've got everything in one solution. I'll explain each project in turn.</p>
-<h3 id="turingdesktop">TuringDesktop</h3>
+<h3>TuringDesktop</h3>
 <p>This is a Console application. It references the Magic8Engine and TextColor projects.</p>
-<p><a href="images/2017-02-22_102302_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_102302_thumb.png" title="2017-02-22_102302" alt="2017-02-22_102302" width="700" height="357"></a></p>
+<p><a href="images/17-02-22_102302.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_102302.png" title="2017-02-22_102302" alt="2017-02-22_102302"></a></p>
 <p>I'm simulating a database with a class that returns a list of answers, and is initialized with a connection string. For this simple sample, the connection string is just a name like "production". If the connection string is named something other than "production", then the name is prepended to each answer. For example, if the connection string were "stage", an answer might be "STAGE: It is certain."</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-
-<span class="kw">namespace</span> TuringDesktop
-{
-<span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> AnswerDatabase
-{
-<span class="co">/// </span><span class="kw">&lt;summary&gt;</span>
-<span class="co">/// Any dbName other than "prod" prepends answers with dbName.</span>
-<span class="co">/// Ex. dbName = "stage", then answer is "STAGE: It could be so."</span>
-<span class="co">/// </span><span class="kw">&lt;/summary&gt;</span>
-<span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"connectionString"</span><span class="kw">&gt;&lt;/param&gt;</span>
-<span class="kw">public</span> <span class="kw">static</span> IEnumerable&lt;<span class="dt">string</span>&gt; <span class="fu">GetAnswers</span>(<span class="dt">string</span> connectionString)
-{
-<span class="kw">if</span> (String.<span class="fu">IsNullOrWhiteSpace</span>(connectionString))
-{
-<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">ArgumentException</span>(<span class="st">"dbName cannot be null or empty"</span>);
-}
-<span class="kw">if</span> (connectionString == <span class="st">"production"</span>)
-{
-<span class="kw">return</span> DefaultAnswers;
-}
-<span class="kw">else</span>
-{
-<span class="kw">return</span> DefaultAnswers.<span class="fu">Select</span>(a =&gt; connectionString.<span class="fu">ToUpper</span>() + <span class="st">": "</span> + a);
-}
-}
-
-<span class="kw">private</span> <span class="kw">static</span> IEnumerable&lt;<span class="dt">string</span>&gt; DefaultAnswers
-{
-get
-{
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"It is certain"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"It is decidedly so"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Without a doubt"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Yes, definitely"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"You may rely on it"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"As I see it, yes"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Most likely"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Outlook good"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Yes"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Signs point to yes"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Reply hazy try again"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Ask again later"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Better not tell you now"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Cannot predict now"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Concentrate and ask again"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Don't count on it"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"My reply is no"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"My sources say no"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Outlook not so good"</span>;
-<span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Very doubtful"</span>;
-}
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">namespace</span> TuringDesktop</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> AnswerDatabase</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">/// </span><span class="kw">&lt;summary&gt;</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">/// Any dbName other than "prod" prepends answers with dbName.</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">/// Ex. dbName = "stage", then answer is "STAGE: It could be so."</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">/// </span><span class="kw">&lt;/summary&gt;</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">/// </span><span class="kw">&lt;param</span><span class="ot"> name=</span><span class="dt">"connectionString"</span><span class="kw">&gt;&lt;/param&gt;</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="kw">public</span> <span class="kw">static</span> IEnumerable&lt;<span class="dt">string</span>&gt; <span class="fu">GetAnswers</span>(<span class="dt">string</span> connectionString)</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="kw">if</span> (String.<span class="fu">IsNullOrWhiteSpace</span>(connectionString))</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">{</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="kw">throw</span> <span class="kw">new</span> <span class="fu">ArgumentException</span>(<span class="st">"dbName cannot be null or empty"</span>);</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">}</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="kw">if</span> (connectionString == <span class="st">"production"</span>)</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="kw">return</span> DefaultAnswers;</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">}</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="kw">else</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="kw">return</span> DefaultAnswers.<span class="fu">Select</span>(a =&gt; connectionString.<span class="fu">ToUpper</span>() + <span class="st">": "</span> + a);</a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">}</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">}</a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="kw">private</span> <span class="kw">static</span> IEnumerable&lt;<span class="dt">string</span>&gt; DefaultAnswers</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">{</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32">get</a>
+<a class="sourceLine" id="cb2-33" data-line-number="33">{</a>
+<a class="sourceLine" id="cb2-34" data-line-number="34"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"It is certain"</span>;</a>
+<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"It is decidedly so"</span>;</a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Without a doubt"</span>;</a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Yes, definitely"</span>;</a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"You may rely on it"</span>;</a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"As I see it, yes"</span>;</a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Most likely"</span>;</a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Outlook good"</span>;</a>
+<a class="sourceLine" id="cb2-42" data-line-number="42"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Yes"</span>;</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Signs point to yes"</span>;</a>
+<a class="sourceLine" id="cb2-44" data-line-number="44"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Reply hazy try again"</span>;</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Ask again later"</span>;</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Better not tell you now"</span>;</a>
+<a class="sourceLine" id="cb2-47" data-line-number="47"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Cannot predict now"</span>;</a>
+<a class="sourceLine" id="cb2-48" data-line-number="48"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Concentrate and ask again"</span>;</a>
+<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Don't count on it"</span>;</a>
+<a class="sourceLine" id="cb2-50" data-line-number="50"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"My reply is no"</span>;</a>
+<a class="sourceLine" id="cb2-51" data-line-number="51"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"My sources say no"</span>;</a>
+<a class="sourceLine" id="cb2-52" data-line-number="52"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Outlook not so good"</span>;</a>
+<a class="sourceLine" id="cb2-53" data-line-number="53"><span class="kw">yield</span> <span class="kw">return</span> <span class="st">"Very doubtful"</span>;</a>
+<a class="sourceLine" id="cb2-54" data-line-number="54">}</a>
+<a class="sourceLine" id="cb2-55" data-line-number="55">}</a>
+<a class="sourceLine" id="cb2-56" data-line-number="56">}</a>
+<a class="sourceLine" id="cb2-57" data-line-number="57">}</a></code></pre></div>
 <p>Here's the Program class with my <code>Main</code> code. There are a few things to note:</p>
 <ul>
 <li>I removed the args parameter from the <code>Main</code> method. I don't need it.</li>
@@ -268,387 +264,387 @@ get
 <li>I'm using Dependency Injection for the answer engine (<code>Oracle</code>) and the console text colorizer (<code>ConsoleColorizer</code>).</li>
 <li>There are three settings using a string literal: <code>_connectionString</code>, <code>questionColor</code> and <code>answerColor</code>.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> TextColor;
-<span class="kw">using</span> Magic8Engine;
-
-<span class="kw">namespace</span> TuringDesktop
-{
-<span class="kw">public</span> <span class="kw">class</span> Program
-{
-<span class="kw">static</span> <span class="dt">string</span> _connectionString = <span class="st">"production"</span>;
-<span class="kw">static</span> IConsoleColorizer _colorizer = <span class="kw">new</span> <span class="fu">ConsoleColorizer</span>();
-<span class="kw">static</span> IOracle _oracle = <span class="kw">new</span> <span class="fu">Oracle</span>(AnswerDatabase.<span class="fu">GetAnswers</span>(_connectionString));
-
-<span class="kw">public</span> <span class="fu">Program</span>() { }
-<span class="kw">public</span> <span class="fu">Program</span>(IConsoleColorizer colorizer, IOracle oracle)
-{
-_colorizer = colorizer;
-_oracle = oracle;
-}
-
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>()
-{
-<span class="dt">string</span> name = <span class="st">""</span>;
-<span class="dt">string</span> answer = <span class="st">""</span>;
-<span class="dt">string</span> question = <span class="st">""</span>;
-<span class="dt">string</span> questionColor = <span class="st">"Red"</span>;
-<span class="dt">string</span> answerColor = <span class="st">"green"</span>;
-
-Console.<span class="fu">Write</span>(<span class="st">"Welcome! I'm AT. Please tell me your name. &gt;&gt; "</span>);
-name = Console.<span class="fu">ReadLine</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Good to meet you, "</span> + name + <span class="st">". "</span>
-+ <span class="st">"Ask me a yes-or-no question and I'll give you an answer. "</span>
-+ <span class="st">"When you're finished, say 'bye'."</span>);
-<span class="kw">do</span>
-{
-<span class="kw">try</span>
-{
-_colorizer.<span class="fu">ColorizeWriteLine</span>(<span class="st">"Question?"</span>, questionColor);
-question = Console.<span class="fu">ReadLine</span>();
-<span class="kw">if</span> (question.<span class="fu">ToLower</span>() == <span class="st">"bye"</span>) { <span class="kw">break</span>; }
-answer = _oracle.<span class="fu">GetAnswer</span>();
-_colorizer.<span class="fu">ColorizeWriteLine</span>(answer, answerColor);
-Console.<span class="fu">WriteLine</span>();
-}
-<span class="kw">catch</span> (Exception ex)
-{
-Console.<span class="fu">WriteLine</span>(<span class="st">"Error: "</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);
-Console.<span class="fu">Write</span>(<span class="st">"Press any key to quit."</span>);
-Console.<span class="fu">Read</span>();
-<span class="kw">return</span>;
-}
-}
-<span class="kw">while</span> (<span class="kw">true</span>);
-}
-}
-}</code></pre></div>
+<!-- end list -->
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">using</span> TextColor;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">using</span> Magic8Engine;</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">namespace</span> TuringDesktop</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">public</span> <span class="kw">class</span> Program</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">static</span> <span class="dt">string</span> _connectionString = <span class="st">"production"</span>;</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw">static</span> IConsoleColorizer _colorizer = <span class="kw">new</span> <span class="fu">ConsoleColorizer</span>();</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">static</span> IOracle _oracle = <span class="kw">new</span> <span class="fu">Oracle</span>(AnswerDatabase.<span class="fu">GetAnswers</span>(_connectionString));</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="kw">public</span> <span class="fu">Program</span>() { }</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">public</span> <span class="fu">Program</span>(IConsoleColorizer colorizer, IOracle oracle)</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">_colorizer = colorizer;</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">_oracle = oracle;</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>()</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="dt">string</span> name = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="dt">string</span> answer = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="dt">string</span> question = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="dt">string</span> questionColor = <span class="st">"Red"</span>;</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="dt">string</span> answerColor = <span class="st">"green"</span>;</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">Console.<span class="fu">Write</span>(<span class="st">"Welcome! I'm AT. Please tell me your name. &gt;&gt; "</span>);</a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">name = Console.<span class="fu">ReadLine</span>();</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30">Console.<span class="fu">WriteLine</span>(<span class="st">"Good to meet you, "</span> + name + <span class="st">". "</span></a>
+<a class="sourceLine" id="cb3-31" data-line-number="31">+ <span class="st">"Ask me a yes-or-no question and I'll give you an answer. "</span></a>
+<a class="sourceLine" id="cb3-32" data-line-number="32">+ <span class="st">"When you're finished, say 'bye'."</span>);</a>
+<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="kw">do</span></a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">{</a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">{</a>
+<a class="sourceLine" id="cb3-37" data-line-number="37">_colorizer.<span class="fu">ColorizeWriteLine</span>(<span class="st">"Question?"</span>, questionColor);</a>
+<a class="sourceLine" id="cb3-38" data-line-number="38">question = Console.<span class="fu">ReadLine</span>();</a>
+<a class="sourceLine" id="cb3-39" data-line-number="39"><span class="kw">if</span> (question.<span class="fu">ToLower</span>() == <span class="st">"bye"</span>) { <span class="kw">break</span>; }</a>
+<a class="sourceLine" id="cb3-40" data-line-number="40">answer = _oracle.<span class="fu">GetAnswer</span>();</a>
+<a class="sourceLine" id="cb3-41" data-line-number="41">_colorizer.<span class="fu">ColorizeWriteLine</span>(answer, answerColor);</a>
+<a class="sourceLine" id="cb3-42" data-line-number="42">Console.<span class="fu">WriteLine</span>();</a>
+<a class="sourceLine" id="cb3-43" data-line-number="43">}</a>
+<a class="sourceLine" id="cb3-44" data-line-number="44"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb3-45" data-line-number="45">{</a>
+<a class="sourceLine" id="cb3-46" data-line-number="46">Console.<span class="fu">WriteLine</span>(<span class="st">"Error: "</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>);</a>
+<a class="sourceLine" id="cb3-47" data-line-number="47">Console.<span class="fu">Write</span>(<span class="st">"Press any key to quit."</span>);</a>
+<a class="sourceLine" id="cb3-48" data-line-number="48">Console.<span class="fu">Read</span>();</a>
+<a class="sourceLine" id="cb3-49" data-line-number="49"><span class="kw">return</span>;</a>
+<a class="sourceLine" id="cb3-50" data-line-number="50">}</a>
+<a class="sourceLine" id="cb3-51" data-line-number="51">}</a>
+<a class="sourceLine" id="cb3-52" data-line-number="52"><span class="kw">while</span> (<span class="kw">true</span>);</a>
+<a class="sourceLine" id="cb3-53" data-line-number="53">}</a>
+<a class="sourceLine" id="cb3-54" data-line-number="54">}</a>
+<a class="sourceLine" id="cb3-55" data-line-number="55">}</a></code></pre></div>
 <p>The program's output is simple enough. It greets the user, asks for a name, then starts answering questions. Text coloring is used to make things clear.</p>
-<p><a href="images/2017-02-22_105715_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_105715_thumb.png" title="2017-02-22_105715" alt="2017-02-22_105715" width="572" height="336"></a></p>
-<h3 id="magic8engine">Magic8Engine</h3>
+<p><a href="images/17-02-22_105715.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_105715.png" title="2017-02-22_105715" alt="2017-02-22_105715"></a></p>
+<h3>Magic8Engine</h3>
 <p>I have an IOracle inteface, so that it's easier to use in unit tests.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">namespace</span> Magic8Engine
-{
-<span class="kw">public</span> <span class="kw">interface</span> IOracle
-{
-<span class="dt">string</span> <span class="fu">GetAnswer</span>();
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">namespace</span> Magic8Engine</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">public</span> <span class="kw">interface</span> IOracle</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="dt">string</span> <span class="fu">GetAnswer</span>();</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">}</a></code></pre></div>
 <p>The concrete class is initialized with a list of answers (the "database") from which it randomly selects.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-
-<span class="kw">namespace</span> Magic8Engine
-{
-<span class="kw">public</span> <span class="kw">class</span> Oracle : IOracle
-{
-Random _random = <span class="kw">new</span> <span class="fu">Random</span>();
-<span class="kw">private</span> IEnumerable&lt;<span class="dt">string</span>&gt; _answers = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;();
-
-<span class="kw">public</span> <span class="fu">Oracle</span>(IEnumerable&lt;<span class="dt">string</span>&gt; answers)
-{
-_answers = answers;
-}
-
-<span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetAnswer</span>()
-{
-<span class="kw">if</span> (_answers.<span class="fu">Count</span>() == <span class="dv">0</span>)
-{
-<span class="kw">return</span> <span class="st">""</span>;
-}
-<span class="dt">int</span> index = _random.<span class="fu">Next</span>(_answers.<span class="fu">Count</span>());
-<span class="kw">return</span> _answers.<span class="fu">ToArray</span>()[index];
-}
-}
-}</code></pre></div>
-<h3 id="textcolor">TextColor</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">namespace</span> Magic8Engine</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw">public</span> <span class="kw">class</span> Oracle : IOracle</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">Random _random = <span class="kw">new</span> <span class="fu">Random</span>();</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">private</span> IEnumerable&lt;<span class="dt">string</span>&gt; _answers = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;();</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">public</span> <span class="fu">Oracle</span>(IEnumerable&lt;<span class="dt">string</span>&gt; answers)</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">_answers = answers;</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetAnswer</span>()</a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="kw">if</span> (_answers.<span class="fu">Count</span>() == <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">{</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="kw">return</span> <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb5-22" data-line-number="22">}</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="dt">int</span> index = _random.<span class="fu">Next</span>(_answers.<span class="fu">Count</span>());</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="kw">return</span> _answers.<span class="fu">ToArray</span>()[index];</a>
+<a class="sourceLine" id="cb5-25" data-line-number="25">}</a>
+<a class="sourceLine" id="cb5-26" data-line-number="26">}</a>
+<a class="sourceLine" id="cb5-27" data-line-number="27">}</a></code></pre></div>
+<h3>TextColor</h3>
 <p>The ConsoleColorizer class also implements an interface to improve unit testing.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-
-<span class="kw">namespace</span> TextColor
-{
-<span class="kw">public</span> <span class="kw">interface</span> IConsoleColorizer
-{
-<span class="dt">void</span> <span class="fu">ColorizeWriteLine</span>(<span class="dt">string</span> text, <span class="dt">string</span> colorName, <span class="dt">bool</span> resetColor = <span class="kw">true</span>);
-ConsoleColor <span class="fu">GetConsoleColor</span>(<span class="dt">string</span> colorName);
-<span class="dt">void</span> <span class="fu">ResetConsoleColor</span>();
-<span class="dt">void</span> <span class="fu">SetConsoleColor</span>(<span class="dt">string</span> colorName);
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">namespace</span> TextColor</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw">public</span> <span class="kw">interface</span> IConsoleColorizer</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="dt">void</span> <span class="fu">ColorizeWriteLine</span>(<span class="dt">string</span> text, <span class="dt">string</span> colorName, <span class="dt">bool</span> resetColor = <span class="kw">true</span>);</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">ConsoleColor <span class="fu">GetConsoleColor</span>(<span class="dt">string</span> colorName);</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="dt">void</span> <span class="fu">ResetConsoleColor</span>();</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="dt">void</span> <span class="fu">SetConsoleColor</span>(<span class="dt">string</span> colorName);</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">}</a></code></pre></div>
 <p>The concrete class sets properties on the Console object.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-
-<span class="kw">namespace</span> TextColor
-{
-<span class="kw">public</span> <span class="kw">class</span> ConsoleColorizer : IConsoleColorizer
-{
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ColorizeWriteLine</span>(<span class="dt">string</span> text, <span class="dt">string</span> colorName, <span class="dt">bool</span> resetColor = <span class="kw">true</span>)
-{
-<span class="fu">SetConsoleColor</span>(colorName);
-Console.<span class="fu">WriteLine</span>(text);
-<span class="kw">if</span> (resetColor) { Console.<span class="fu">ResetColor</span>(); }
-}
-
-<span class="kw">public</span> ConsoleColor <span class="fu">GetConsoleColor</span>(<span class="dt">string</span> colorName)
-{
-ConsoleColor color;
-<span class="kw">if</span> (Enum.<span class="fu">TryParse</span>&lt;ConsoleColor&gt;(colorName, <span class="kw">true</span>, <span class="kw">out</span> color))
-{
-<span class="kw">return</span> color;
-}
-<span class="kw">else</span>
-{
-<span class="kw">throw</span> <span class="kw">new</span> <span class="fu">ArgumentException</span>(<span class="st">"Invalid ConsoleColor: "</span> + colorName);
-}
-}
-
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">SetConsoleColor</span>(<span class="dt">string</span> colorName)
-{
-Console.<span class="fu">ForegroundColor</span> = <span class="fu">GetConsoleColor</span>(colorName);
-}
-
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ResetConsoleColor</span>()
-{
-Console.<span class="fu">ResetColor</span>();
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">namespace</span> TextColor</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">public</span> <span class="kw">class</span> ConsoleColorizer : IConsoleColorizer</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">ColorizeWriteLine</span>(<span class="dt">string</span> text, <span class="dt">string</span> colorName, <span class="dt">bool</span> resetColor = <span class="kw">true</span>)</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="fu">SetConsoleColor</span>(colorName);</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">Console.<span class="fu">WriteLine</span>(text);</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="kw">if</span> (resetColor) { Console.<span class="fu">ResetColor</span>(); }</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="kw">public</span> ConsoleColor <span class="fu">GetConsoleColor</span>(<span class="dt">string</span> colorName)</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">ConsoleColor color;</a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="kw">if</span> (Enum.<span class="fu">TryParse</span>&lt;ConsoleColor&gt;(colorName, <span class="kw">true</span>, <span class="kw">out</span> color))</a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="kw">return</span> color;</a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">}</a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="kw">else</span></a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23"><span class="kw">throw</span> <span class="kw">new</span> <span class="fu">ArgumentException</span>(<span class="st">"Invalid ConsoleColor: "</span> + colorName);</a>
+<a class="sourceLine" id="cb7-24" data-line-number="24">}</a>
+<a class="sourceLine" id="cb7-25" data-line-number="25">}</a>
+<a class="sourceLine" id="cb7-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">SetConsoleColor</span>(<span class="dt">string</span> colorName)</a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">{</a>
+<a class="sourceLine" id="cb7-29" data-line-number="29">Console.<span class="fu">ForegroundColor</span> = <span class="fu">GetConsoleColor</span>(colorName);</a>
+<a class="sourceLine" id="cb7-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb7-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">ResetConsoleColor</span>()</a>
+<a class="sourceLine" id="cb7-33" data-line-number="33">{</a>
+<a class="sourceLine" id="cb7-34" data-line-number="34">Console.<span class="fu">ResetColor</span>();</a>
+<a class="sourceLine" id="cb7-35" data-line-number="35">}</a>
+<a class="sourceLine" id="cb7-36" data-line-number="36">}</a>
+<a class="sourceLine" id="cb7-37" data-line-number="37">}</a></code></pre></div>
 <p>This should raise a red flag. <code>System.Console</code> is a dependency. Why didn't I abstract that out? I could have. For example, I could have created an IConsole interface with just the features I'm using, then an explicit SystemConsole wrapper class that implented the interface. But it turned out I could test Console successfully without needing to make it entirely replacable.</p>
 <p>Good question though. Glad you're thinking.</p>
-<h3 id="tests">Tests</h3>
+<h3>Tests</h3>
 <p>Finally, our test project has a class for each project we're testing.</p>
-<p><a href="images/2017-02-22_112309_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_112309_thumb.png" title="2017-02-22_112309" alt="2017-02-22_112309" width="248" height="141"></a></p>
+<p><a href="images/17-02-22_112309.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_112309.png" title="2017-02-22_112309" alt="2017-02-22_112309"></a></p>
 <p>Here are the unit tests for each project. I'm using nested classes to keep the tests readable.</p>
-<h4 id="magic8-tests">Magic8 Tests</h4>
+<h4>Magic8 Tests</h4>
 <p>Note how these test make use of passing in a custom "answer database".</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> Microsoft.<span class="fu">VisualStudio</span>.<span class="fu">TestTools</span>.<span class="fu">UnitTesting</span>;
-<span class="kw">using</span> Magic8Engine;
-
-<span class="kw">namespace</span> TuringDesktop.<span class="fu">Tests</span>
-{
-[TestClass]
-<span class="kw">public</span> <span class="kw">class</span> OracleClass
-{
-[TestClass]
-<span class="kw">public</span> <span class="kw">class</span> GetAnswer_Should: OracleClass
-{
-<span class="kw">static</span> List&lt;<span class="dt">string</span>&gt; _answers;
-
-[TestInitialize]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">TestInitialize</span>()
-{
-<span class="co">//Start each test with empty list;</span>
-_answers = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;();
-}
-
-[TestMethod]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnARandomAnswerEachTimeItIsCalled</span>()
-{
-<span class="co">//arrange</span>
-_answers.<span class="fu">AddRange</span>(<span class="kw">new</span> <span class="dt">string</span>[] { <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span> });
-<span class="dt">var</span> oracle = <span class="kw">new</span> <span class="fu">Oracle</span>(_answers);
-<span class="co">//act</span>
-List&lt;<span class="dt">string</span>&gt; answers = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;();
-<span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; i++)
-{
-answers.<span class="fu">Add</span>(oracle.<span class="fu">GetAnswer</span>());
-}
-<span class="dt">int</span> uniqueAnswers = answers.<span class="fu">Distinct</span>().<span class="fu">Count</span>();
-<span class="co">//assert</span>
-Assert.<span class="fu">IsTrue</span>(uniqueAnswers &gt; <span class="dv">1</span>);
-}
-
-[TestMethod]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnAnEmptyAnswerIfAnswerListIsEmpty</span>()
-{
-<span class="co">//arrange</span>
-<span class="dt">var</span> oracle = <span class="kw">new</span> <span class="fu">Oracle</span>(_answers);
-<span class="co">//act</span>
-<span class="dt">string</span> actual = oracle.<span class="fu">GetAnswer</span>();
-<span class="co">//assert</span>
-Assert.<span class="fu">AreEqual</span>(<span class="st">""</span>, actual, <span class="st">"Answer list count: "</span> + _answers.<span class="fu">Count</span>());
-}
-}
-}
-}</code></pre></div>
-<h4 id="textcolor-tests">TextColor Tests</h4>
+<div class="sourceCode" id="cb8"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">using</span> Microsoft.<span class="fu">VisualStudio</span>.<span class="fu">TestTools</span>.<span class="fu">UnitTesting</span>;</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">using</span> Magic8Engine;</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw">namespace</span> TuringDesktop.<span class="fu">Tests</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">[TestClass]</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="kw">public</span> <span class="kw">class</span> OracleClass</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">{</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">[TestClass]</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="kw">public</span> <span class="kw">class</span> GetAnswer_Should: OracleClass</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw">static</span> List&lt;<span class="dt">string</span>&gt; _answers;</a>
+<a class="sourceLine" id="cb8-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">[TestInitialize]</a>
+<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">TestInitialize</span>()</a>
+<a class="sourceLine" id="cb8-18" data-line-number="18">{</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19"><span class="co">//Start each test with empty list;</span></a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">_answers = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;();</a>
+<a class="sourceLine" id="cb8-21" data-line-number="21">}</a>
+<a class="sourceLine" id="cb8-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb8-23" data-line-number="23">[TestMethod]</a>
+<a class="sourceLine" id="cb8-24" data-line-number="24"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnARandomAnswerEachTimeItIsCalled</span>()</a>
+<a class="sourceLine" id="cb8-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb8-26" data-line-number="26"><span class="co">//arrange</span></a>
+<a class="sourceLine" id="cb8-27" data-line-number="27">_answers.<span class="fu">AddRange</span>(<span class="kw">new</span> <span class="dt">string</span>[] { <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span> });</a>
+<a class="sourceLine" id="cb8-28" data-line-number="28"><span class="dt">var</span> oracle = <span class="kw">new</span> <span class="fu">Oracle</span>(_answers);</a>
+<a class="sourceLine" id="cb8-29" data-line-number="29"><span class="co">//act</span></a>
+<a class="sourceLine" id="cb8-30" data-line-number="30">List&lt;<span class="dt">string</span>&gt; answers = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;();</a>
+<a class="sourceLine" id="cb8-31" data-line-number="31"><span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; i++)</a>
+<a class="sourceLine" id="cb8-32" data-line-number="32">{</a>
+<a class="sourceLine" id="cb8-33" data-line-number="33">answers.<span class="fu">Add</span>(oracle.<span class="fu">GetAnswer</span>());</a>
+<a class="sourceLine" id="cb8-34" data-line-number="34">}</a>
+<a class="sourceLine" id="cb8-35" data-line-number="35"><span class="dt">int</span> uniqueAnswers = answers.<span class="fu">Distinct</span>().<span class="fu">Count</span>();</a>
+<a class="sourceLine" id="cb8-36" data-line-number="36"><span class="co">//assert</span></a>
+<a class="sourceLine" id="cb8-37" data-line-number="37">Assert.<span class="fu">IsTrue</span>(uniqueAnswers &gt; <span class="dv">1</span>);</a>
+<a class="sourceLine" id="cb8-38" data-line-number="38">}</a>
+<a class="sourceLine" id="cb8-39" data-line-number="39"></a>
+<a class="sourceLine" id="cb8-40" data-line-number="40">[TestMethod]</a>
+<a class="sourceLine" id="cb8-41" data-line-number="41"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnAnEmptyAnswerIfAnswerListIsEmpty</span>()</a>
+<a class="sourceLine" id="cb8-42" data-line-number="42">{</a>
+<a class="sourceLine" id="cb8-43" data-line-number="43"><span class="co">//arrange</span></a>
+<a class="sourceLine" id="cb8-44" data-line-number="44"><span class="dt">var</span> oracle = <span class="kw">new</span> <span class="fu">Oracle</span>(_answers);</a>
+<a class="sourceLine" id="cb8-45" data-line-number="45"><span class="co">//act</span></a>
+<a class="sourceLine" id="cb8-46" data-line-number="46"><span class="dt">string</span> actual = oracle.<span class="fu">GetAnswer</span>();</a>
+<a class="sourceLine" id="cb8-47" data-line-number="47"><span class="co">//assert</span></a>
+<a class="sourceLine" id="cb8-48" data-line-number="48">Assert.<span class="fu">AreEqual</span>(<span class="st">""</span>, actual, <span class="st">"Answer list count: "</span> + _answers.<span class="fu">Count</span>());</a>
+<a class="sourceLine" id="cb8-49" data-line-number="49">}</a>
+<a class="sourceLine" id="cb8-50" data-line-number="50">}</a>
+<a class="sourceLine" id="cb8-51" data-line-number="51">}</a>
+<a class="sourceLine" id="cb8-52" data-line-number="52">}</a></code></pre></div>
+<h4>TextColor Tests</h4>
 <p>Neither of these tests confirms the correct color gets set. That's really something best left to a human to verify. But notice in <code>WriteTheUserEnteredString</code> how I'm using the Console.SetOut property to let me verify that user input actually gets written to the console.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> Microsoft.<span class="fu">VisualStudio</span>.<span class="fu">TestTools</span>.<span class="fu">UnitTesting</span>;
-<span class="kw">using</span> System.<span class="fu">IO</span>;
-<span class="kw">using</span> TextColor;
-
-<span class="kw">namespace</span> TuringDesktop.<span class="fu">Tests</span>
-{
-[TestClass]
-<span class="kw">public</span> <span class="kw">class</span> ConsoleColorizerClass
-{
-[TestClass]
-<span class="kw">public</span> <span class="kw">class</span> GetConsoleColor_Should
-{
-[TestMethod]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnTheEnumUsingCaseInsensitive</span>()
-{
-<span class="co">//arrange</span>
-<span class="dt">var</span> tc = <span class="kw">new</span> <span class="fu">ConsoleColorizer</span>();
-<span class="dt">string</span> colorName = <span class="st">"gReEn"</span>;
-Exception actualEx = <span class="kw">null</span>;
-<span class="dt">string</span> errorMsg = <span class="st">""</span>;
-<span class="co">//Will change to Green below.</span>
-ConsoleColor color = ConsoleColor.<span class="fu">Black</span>;
-<span class="co">//act</span>
-<span class="kw">try</span>
-{
-color = tc.<span class="fu">GetConsoleColor</span>(colorName);
-}
-<span class="kw">catch</span> (Exception ex) { actualEx = ex; errorMsg = <span class="st">"Threw error "</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>; }
-Assert.<span class="fu">IsNull</span>(actualEx, errorMsg);
-Assert.<span class="fu">AreEqual</span>(ConsoleColor.<span class="fu">Green</span>, color);
-}
-
-[TestMethod]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">WriteTheUserEnteredString</span>()
-{
-<span class="co">//arrange</span>
-<span class="co">//Store the Console output in a stringwriter.</span>
-StringWriter sw = <span class="kw">new</span> <span class="fu">StringWriter</span>();
-Console.<span class="fu">SetOut</span>(sw);
-<span class="dt">var</span> tc = <span class="kw">new</span> <span class="fu">ConsoleColorizer</span>();
-<span class="co">//act</span>
-tc.<span class="fu">ColorizeWriteLine</span>(<span class="st">"blamo"</span>, <span class="st">"Red"</span>);
-<span class="co">//assert</span>
-Assert.<span class="fu">AreEqual</span>(<span class="st">"blamo</span><span class="sc">\r\n</span><span class="st">"</span>, sw.<span class="fu">ToString</span>());
-}
-}
-}
-}</code></pre></div>
-<h4 id="console-app-tests">Console App Tests</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">using</span> Microsoft.<span class="fu">VisualStudio</span>.<span class="fu">TestTools</span>.<span class="fu">UnitTesting</span>;</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">IO</span>;</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">using</span> TextColor;</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="kw">namespace</span> TuringDesktop.<span class="fu">Tests</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">[TestClass]</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="kw">public</span> <span class="kw">class</span> ConsoleColorizerClass</a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">{</a>
+<a class="sourceLine" id="cb9-11" data-line-number="11">[TestClass]</a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="kw">public</span> <span class="kw">class</span> GetConsoleColor_Should</a>
+<a class="sourceLine" id="cb9-13" data-line-number="13">{</a>
+<a class="sourceLine" id="cb9-14" data-line-number="14">[TestMethod]</a>
+<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">ReturnTheEnumUsingCaseInsensitive</span>()</a>
+<a class="sourceLine" id="cb9-16" data-line-number="16">{</a>
+<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">//arrange</span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="dt">var</span> tc = <span class="kw">new</span> <span class="fu">ConsoleColorizer</span>();</a>
+<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="dt">string</span> colorName = <span class="st">"gReEn"</span>;</a>
+<a class="sourceLine" id="cb9-20" data-line-number="20">Exception actualEx = <span class="kw">null</span>;</a>
+<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="dt">string</span> errorMsg = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">//Will change to Green below.</span></a>
+<a class="sourceLine" id="cb9-23" data-line-number="23">ConsoleColor color = ConsoleColor.<span class="fu">Black</span>;</a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">//act</span></a>
+<a class="sourceLine" id="cb9-25" data-line-number="25"><span class="kw">try</span></a>
+<a class="sourceLine" id="cb9-26" data-line-number="26">{</a>
+<a class="sourceLine" id="cb9-27" data-line-number="27">color = tc.<span class="fu">GetConsoleColor</span>(colorName);</a>
+<a class="sourceLine" id="cb9-28" data-line-number="28">}</a>
+<a class="sourceLine" id="cb9-29" data-line-number="29"><span class="kw">catch</span> (Exception ex) { actualEx = ex; errorMsg = <span class="st">"Threw error "</span> + ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>; }</a>
+<a class="sourceLine" id="cb9-30" data-line-number="30">Assert.<span class="fu">IsNull</span>(actualEx, errorMsg);</a>
+<a class="sourceLine" id="cb9-31" data-line-number="31">Assert.<span class="fu">AreEqual</span>(ConsoleColor.<span class="fu">Green</span>, color);</a>
+<a class="sourceLine" id="cb9-32" data-line-number="32">}</a>
+<a class="sourceLine" id="cb9-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb9-34" data-line-number="34">[TestMethod]</a>
+<a class="sourceLine" id="cb9-35" data-line-number="35"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">WriteTheUserEnteredString</span>()</a>
+<a class="sourceLine" id="cb9-36" data-line-number="36">{</a>
+<a class="sourceLine" id="cb9-37" data-line-number="37"><span class="co">//arrange</span></a>
+<a class="sourceLine" id="cb9-38" data-line-number="38"><span class="co">//Store the Console output in a stringwriter.</span></a>
+<a class="sourceLine" id="cb9-39" data-line-number="39">StringWriter sw = <span class="kw">new</span> <span class="fu">StringWriter</span>();</a>
+<a class="sourceLine" id="cb9-40" data-line-number="40">Console.<span class="fu">SetOut</span>(sw);</a>
+<a class="sourceLine" id="cb9-41" data-line-number="41"><span class="dt">var</span> tc = <span class="kw">new</span> <span class="fu">ConsoleColorizer</span>();</a>
+<a class="sourceLine" id="cb9-42" data-line-number="42"><span class="co">//act</span></a>
+<a class="sourceLine" id="cb9-43" data-line-number="43">tc.<span class="fu">ColorizeWriteLine</span>(<span class="st">"blamo"</span>, <span class="st">"Red"</span>);</a>
+<a class="sourceLine" id="cb9-44" data-line-number="44"><span class="co">//assert</span></a>
+<a class="sourceLine" id="cb9-45" data-line-number="45">Assert.<span class="fu">AreEqual</span>(<span class="st">"blamo</span><span class="sc">\r\n</span><span class="st">"</span>, sw.<span class="fu">ToString</span>());</a>
+<a class="sourceLine" id="cb9-46" data-line-number="46">}</a>
+<a class="sourceLine" id="cb9-47" data-line-number="47">}</a>
+<a class="sourceLine" id="cb9-48" data-line-number="48">}</a>
+<a class="sourceLine" id="cb9-49" data-line-number="49">}</a></code></pre></div>
+<h4>Console App Tests</h4>
 <p>If you're thinking the <code>Main</code> method should be refactored, you're right. I'll do that later. For now, it's interesting to see how we <em>can</em> test a console app.</p>
 <p>First, I'll create my mock objects. I'm not even checking MockOracle's <code>GetAnswer</code> method, but that's OK. What I'm guaranteeing is my unit tests have no external dependencies.</p>
 <p><strong>MockOracle</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> MockOracle : Magic8Engine.<span class="fu">IOracle</span>
-{
-<span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetAnswer</span>()
-{
-<span class="kw">return</span> <span class="st">"This is a fake answer"</span>;
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> MockOracle : Magic8Engine.<span class="fu">IOracle</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">public</span> <span class="dt">string</span> <span class="fu">GetAnswer</span>()</a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">return</span> <span class="st">"This is a fake answer"</span>;</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">}</a></code></pre></div>
 <p><strong>MockColorizer</strong></p>
 <p>In this mock, I store the simulated user's input in a list, and I always return a black console color. I don't set or reset console colors.</p>
 <blockquote>
-<p><strong>Important</strong><br>
-Remember, I'm not testing if the colorizer works. There are already unit tests for that. I'm testing if the Main method works. I just need my mock objects to return consistent results quickly.</p>
+<p><strong>Important</strong> Remember, I'm not testing if the colorizer works. There are already unit tests for that. I'm testing if the Main method works. I just need my mock objects to return consistent results quickly.</p>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> MockColorizer : TextColor.<span class="fu">IConsoleColorizer</span>
-{
-<span class="kw">public</span> List&lt;<span class="dt">string</span>&gt; ConsoleLines = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;();
-
-
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ColorizeWriteLine</span>(<span class="dt">string</span> text, <span class="dt">string</span> colorName, <span class="dt">bool</span> resetColor = <span class="kw">true</span>)
-{
-ConsoleLines.<span class="fu">Add</span>(text);
-}
-
-<span class="kw">public</span> ConsoleColor <span class="fu">GetConsoleColor</span>(<span class="dt">string</span> colorName)
-{
-<span class="kw">return</span> ConsoleColor.<span class="fu">Black</span>;
-}
-
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">ResetConsoleColor</span>() { }
-
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">SetConsoleColor</span>(<span class="dt">string</span> colorName) { }
-}</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> MockColorizer : TextColor.<span class="fu">IConsoleColorizer</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">public</span> List&lt;<span class="dt">string</span>&gt; ConsoleLines = <span class="kw">new</span> List&lt;<span class="dt">string</span>&gt;();</a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">ColorizeWriteLine</span>(<span class="dt">string</span> text, <span class="dt">string</span> colorName, <span class="dt">bool</span> resetColor = <span class="kw">true</span>)</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">ConsoleLines.<span class="fu">Add</span>(text);</a>
+<a class="sourceLine" id="cb11-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11"><span class="kw">public</span> ConsoleColor <span class="fu">GetConsoleColor</span>(<span class="dt">string</span> colorName)</a>
+<a class="sourceLine" id="cb11-12" data-line-number="12">{</a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="kw">return</span> ConsoleColor.<span class="fu">Black</span>;</a>
+<a class="sourceLine" id="cb11-14" data-line-number="14">}</a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">ResetConsoleColor</span>() { }</a>
+<a class="sourceLine" id="cb11-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb11-18" data-line-number="18"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">SetConsoleColor</span>(<span class="dt">string</span> colorName) { }</a>
+<a class="sourceLine" id="cb11-19" data-line-number="19">}</a></code></pre></div>
 <p>Here are the tests for the <code>Main</code> method. Notice how I'm using StringWriters for both Console.In and Console.Out. This lets me buffer all the responses a user would make, and capture the console's output. I use a couple of helper methods to make this work.</p>
 <p>What I'm <em>not</em> trying to do is test if Console works. I'm testing if I'm my code that writes to the console works. But, unfortunately, I do have a dependency on Console.</p>
 <blockquote>
 <p>So, are these unit tests, or integration tests? Short answer: integration. I'll make some improvements later to isolate code that doesn't depend on Console.</p>
 </blockquote>
 <p>There's a real danger here that I'll forget to use <code>SendUserInputs</code>, leading to the application hanging. I know this danger exists because I did it. The tests are brittle.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">[TestClass]
-<span class="kw">public</span> <span class="kw">class</span> ProgramClass
-{
-[TestClass]
-<span class="kw">public</span> <span class="kw">class</span> Main_Should
-{
-StringWriter _consoleOut = <span class="kw">new</span> <span class="fu">StringWriter</span>();
-<span class="dt">string</span> UserInputs = <span class="st">""</span>;
-
-[TestInitialize]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">TestInitialize</span>()
-{
-<span class="co">//Store the Console output in a stringwriter.</span>
-Console.<span class="fu">SetOut</span>(_consoleOut);
-}
-
-[TestMethod]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">DisplayInitialGreetingMessage</span>()
-{
-<span class="co">//arrange</span>
-<span class="fu">AddUserInput</span>(<span class="st">"Charles"</span>);
-<span class="fu">AddUserInput</span>(<span class="st">"bye"</span>);
-<span class="fu">SendUserInputs</span>();
-<span class="dt">var</span> mockColorizer = <span class="kw">new</span> <span class="fu">MockColorizer</span>();
-<span class="dt">var</span> mockOracle = <span class="kw">new</span> <span class="fu">MockOracle</span>();
-<span class="dt">var</span> program = <span class="kw">new</span> <span class="fu">Program</span>(mockColorizer, mockOracle);
-<span class="dt">string</span> expected = <span class="st">"Welcome! I'm AT. Please tell me your name."</span>;
-<span class="co">//act</span>
-Program.<span class="fu">Main</span>();
-<span class="co">//assert</span>
-<span class="dt">string</span> output = _consoleOut.<span class="fu">ToString</span>();
-Assert.<span class="fu">IsTrue</span>(output.<span class="fu">IndexOf</span>(expected) &gt;= <span class="dv">0</span>);
-}
-
-[TestMethod]
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">DisplayWelcomeWithName</span>()
-{
-<span class="co">//arrange</span>
-<span class="fu">AddUserInput</span>(<span class="st">"Charles"</span>);
-<span class="fu">AddUserInput</span>(<span class="st">"bye"</span>);
-<span class="fu">SendUserInputs</span>();
-<span class="dt">var</span> mockColorizer = <span class="kw">new</span> <span class="fu">MockColorizer</span>();
-<span class="dt">var</span> mockOracle = <span class="kw">new</span> <span class="fu">MockOracle</span>();
-<span class="dt">var</span> program = <span class="kw">new</span> <span class="fu">Program</span>(mockColorizer, mockOracle);
-<span class="dt">string</span> expected = <span class="st">"Good to meet you, Charles."</span>;
-<span class="co">//act</span>
-Program.<span class="fu">Main</span>();
-<span class="co">//</span>
-<span class="co">//assert</span>
-<span class="dt">string</span> output = _consoleOut.<span class="fu">ToString</span>();
-Assert.<span class="fu">IsTrue</span>(output.<span class="fu">IndexOf</span>(expected) &gt;= <span class="dv">0</span>, <span class="st">"Output was: "</span> + output);
-}
-
-<span class="dv">#region "Test Helpers"</span>
-<span class="kw">private</span> <span class="dt">void</span> <span class="fu">AddUserInput</span>(<span class="dt">string</span> value)
-{
-UserInputs += value + Environment.<span class="fu">NewLine</span>;
-}
-
-<span class="kw">private</span> <span class="dt">void</span> <span class="fu">SendUserInputs</span>()
-{
-<span class="co">//Send all the inputs needed for the Read and ReadLine statements</span>
-StringReader consoleIn = <span class="kw">new</span> <span class="fu">StringReader</span>(UserInputs);
-Console.<span class="fu">SetIn</span>(consoleIn);
-}
-<span class="dv">#endregion</span>
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb12-1" data-line-number="1">[TestClass]</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">public</span> <span class="kw">class</span> ProgramClass</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">[TestClass]</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">public</span> <span class="kw">class</span> Main_Should</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">StringWriter _consoleOut = <span class="kw">new</span> <span class="fu">StringWriter</span>();</a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="dt">string</span> UserInputs = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">[TestInitialize]</a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">TestInitialize</span>()</a>
+<a class="sourceLine" id="cb12-12" data-line-number="12">{</a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">//Store the Console output in a stringwriter.</span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14">Console.<span class="fu">SetOut</span>(_consoleOut);</a>
+<a class="sourceLine" id="cb12-15" data-line-number="15">}</a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17">[TestMethod]</a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">DisplayInitialGreetingMessage</span>()</a>
+<a class="sourceLine" id="cb12-19" data-line-number="19">{</a>
+<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="co">//arrange</span></a>
+<a class="sourceLine" id="cb12-21" data-line-number="21"><span class="fu">AddUserInput</span>(<span class="st">"Charles"</span>);</a>
+<a class="sourceLine" id="cb12-22" data-line-number="22"><span class="fu">AddUserInput</span>(<span class="st">"bye"</span>);</a>
+<a class="sourceLine" id="cb12-23" data-line-number="23"><span class="fu">SendUserInputs</span>();</a>
+<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="dt">var</span> mockColorizer = <span class="kw">new</span> <span class="fu">MockColorizer</span>();</a>
+<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="dt">var</span> mockOracle = <span class="kw">new</span> <span class="fu">MockOracle</span>();</a>
+<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="dt">var</span> program = <span class="kw">new</span> <span class="fu">Program</span>(mockColorizer, mockOracle);</a>
+<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="dt">string</span> expected = <span class="st">"Welcome! I'm AT. Please tell me your name."</span>;</a>
+<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co">//act</span></a>
+<a class="sourceLine" id="cb12-29" data-line-number="29">Program.<span class="fu">Main</span>();</a>
+<a class="sourceLine" id="cb12-30" data-line-number="30"><span class="co">//assert</span></a>
+<a class="sourceLine" id="cb12-31" data-line-number="31"><span class="dt">string</span> output = _consoleOut.<span class="fu">ToString</span>();</a>
+<a class="sourceLine" id="cb12-32" data-line-number="32">Assert.<span class="fu">IsTrue</span>(output.<span class="fu">IndexOf</span>(expected) &gt;= <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb12-33" data-line-number="33">}</a>
+<a class="sourceLine" id="cb12-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb12-35" data-line-number="35">[TestMethod]</a>
+<a class="sourceLine" id="cb12-36" data-line-number="36"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">DisplayWelcomeWithName</span>()</a>
+<a class="sourceLine" id="cb12-37" data-line-number="37">{</a>
+<a class="sourceLine" id="cb12-38" data-line-number="38"><span class="co">//arrange</span></a>
+<a class="sourceLine" id="cb12-39" data-line-number="39"><span class="fu">AddUserInput</span>(<span class="st">"Charles"</span>);</a>
+<a class="sourceLine" id="cb12-40" data-line-number="40"><span class="fu">AddUserInput</span>(<span class="st">"bye"</span>);</a>
+<a class="sourceLine" id="cb12-41" data-line-number="41"><span class="fu">SendUserInputs</span>();</a>
+<a class="sourceLine" id="cb12-42" data-line-number="42"><span class="dt">var</span> mockColorizer = <span class="kw">new</span> <span class="fu">MockColorizer</span>();</a>
+<a class="sourceLine" id="cb12-43" data-line-number="43"><span class="dt">var</span> mockOracle = <span class="kw">new</span> <span class="fu">MockOracle</span>();</a>
+<a class="sourceLine" id="cb12-44" data-line-number="44"><span class="dt">var</span> program = <span class="kw">new</span> <span class="fu">Program</span>(mockColorizer, mockOracle);</a>
+<a class="sourceLine" id="cb12-45" data-line-number="45"><span class="dt">string</span> expected = <span class="st">"Good to meet you, Charles."</span>;</a>
+<a class="sourceLine" id="cb12-46" data-line-number="46"><span class="co">//act</span></a>
+<a class="sourceLine" id="cb12-47" data-line-number="47">Program.<span class="fu">Main</span>();</a>
+<a class="sourceLine" id="cb12-48" data-line-number="48"><span class="co">//</span></a>
+<a class="sourceLine" id="cb12-49" data-line-number="49"><span class="co">//assert</span></a>
+<a class="sourceLine" id="cb12-50" data-line-number="50"><span class="dt">string</span> output = _consoleOut.<span class="fu">ToString</span>();</a>
+<a class="sourceLine" id="cb12-51" data-line-number="51">Assert.<span class="fu">IsTrue</span>(output.<span class="fu">IndexOf</span>(expected) &gt;= <span class="dv">0</span>, <span class="st">"Output was: "</span> + output);</a>
+<a class="sourceLine" id="cb12-52" data-line-number="52">}</a>
+<a class="sourceLine" id="cb12-53" data-line-number="53"></a>
+<a class="sourceLine" id="cb12-54" data-line-number="54"><span class="dv">#region "Test Helpers"</span></a>
+<a class="sourceLine" id="cb12-55" data-line-number="55"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">AddUserInput</span>(<span class="dt">string</span> value)</a>
+<a class="sourceLine" id="cb12-56" data-line-number="56">{</a>
+<a class="sourceLine" id="cb12-57" data-line-number="57">UserInputs += value + Environment.<span class="fu">NewLine</span>;</a>
+<a class="sourceLine" id="cb12-58" data-line-number="58">}</a>
+<a class="sourceLine" id="cb12-59" data-line-number="59"></a>
+<a class="sourceLine" id="cb12-60" data-line-number="60"><span class="kw">private</span> <span class="dt">void</span> <span class="fu">SendUserInputs</span>()</a>
+<a class="sourceLine" id="cb12-61" data-line-number="61">{</a>
+<a class="sourceLine" id="cb12-62" data-line-number="62"><span class="co">//Send all the inputs needed for the Read and ReadLine statements</span></a>
+<a class="sourceLine" id="cb12-63" data-line-number="63">StringReader consoleIn = <span class="kw">new</span> <span class="fu">StringReader</span>(UserInputs);</a>
+<a class="sourceLine" id="cb12-64" data-line-number="64">Console.<span class="fu">SetIn</span>(consoleIn);</a>
+<a class="sourceLine" id="cb12-65" data-line-number="65">}</a>
+<a class="sourceLine" id="cb12-66" data-line-number="66"><span class="dv">#endregion</span></a>
+<a class="sourceLine" id="cb12-67" data-line-number="67">}</a>
+<a class="sourceLine" id="cb12-68" data-line-number="68">}</a></code></pre></div>
 <p>Running my tests, I get nice, readable output.</p>
-<p><a href="images/2017-02-22_115207_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_115207_thumb.png" title="2017-02-22_115207" alt="2017-02-22_115207" width="370" height="390"></a></p>
-<h1 id="initial-continuous-integration-build-definition">Initial Continuous Integration Build Definition</h1>
+<p><a href="images/17-02-22_115_7.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_115_7.png" title="2017-02-22_115207" alt="2017-02-22_115207"></a></p>
+<h1>Initial Continuous Integration Build Definition</h1>
 <p>In Visual Studio Team Explorer, click Builds.</p>
-<p><a href="images/2017-02-22_115629_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_115629_thumb.png" title="2017-02-22_115629" alt="2017-02-22_115629" width="352" height="316"></a></p>
+<p><a href="images/17-02-22_115629.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_115629.png" title="2017-02-22_115629" alt="2017-02-22_115629"></a></p>
 <p>Click New Build Definition.</p>
-<p><a href="images/2017-02-22_115709_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_115709_thumb.png" title="2017-02-22_115709" alt="2017-02-22_115709" width="367" height="261"></a></p>
+<p><a href="images/17-02-22_115709.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_115709.png" title="2017-02-22_115709" alt="2017-02-22_115709"></a></p>
 <p>This will open the web page and prompt for a definition. This is nice because we're taken directly to our team project builds.</p>
-<p><a href="images/2017-02-22_115934_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_115934_thumb_25255B1_25255D.png" title="2017-02-22_115934" alt="2017-02-22_115934" width="736" height="408"></a></p>
+<p><a href="images/17-02-22_115934.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_115934.png" title="2017-02-22_115934" alt="2017-02-22_115934"></a></p>
 <p>Choose the Visual Studio template, check the box that says Continuous Integration and accept the defaults. Save the definition, naming it TuringDesktop Suite Build.</p>
 <p>If you've been following along, you'll realize that we've never committed <em>any</em> of our source code! Do so now and the build should happen automatically and successfully. Be sure to verify that all the tests ran!</p>
-<p><a href="images/2017-02-22_122709_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_122709_thumb.png" title="2017-02-22_122709" alt="2017-02-22_122709" width="521" height="277"></a></p>
-<p><a href="images/2017-02-22_122936_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/2017-02-22_122936_thumb.png" title="2017-02-22_122936" alt="2017-02-22_122936" width="583" height="165"></a></p>
-<h1 id="next-up">Next Up</h1>
+<p><a href="images/17-02-22_122709.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_122709.png" title="2017-02-22_122709" alt="2017-02-22_122709"></a></p>
+<p><a href="images/17-02-22_1229.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_1229.png" title="2017-02-22_122936" alt="2017-02-22_122936"></a></p>
+<h1>Next Up</h1>
 <p>We have a working application that's automatically built in our CI server. But we've also got some problems:</p>
 <ul>
 <li>Refactoring for the main application's Console dependency.</li>
@@ -665,10 +661,9 @@ Console.<span class="fu">SetIn</span>(consoleIn);
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-20 13:45</span></p>
-                <div class='post-content'><p><a href="images/ci-logo_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20/images/ci-logo_thumb_25255B1_25255D.png" title="ci-logo" alt="ci-logo" width="126" height="126"></a> This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br>
-<a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a><br>
-Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_24.html">TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></p>
-<h2 id="where-im-headed">Where I'm Headed</h2>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20/images/ci-logo.png" title="ci-logo" alt="ci-logo"></a> This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository. <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" class="uri">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
+<p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_24.html">TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></p>
+<h2>Where I'm Headed</h2>
 <p>For the next walkthroughs, I'm starting with new team projects and sample applications, building a suite of solutions with shared dependencies. My goal is to uncover the various problems that come from:</p>
 <ul>
 <li>DLL dependencies</li>
@@ -679,16 +674,15 @@ Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-in
 <li>BONUS: Migrating to Git</li>
 </ul>
 <p>Along the way, I'm going to <em>completely abuse</em> the TFS team project structure and show how to clean up and organize a repository.</p>
-<h2 id="relationship-of-team-projects-solutions-and-build-definitions">Relationship of Team Projects, Solutions and Build Definitions</h2>
-<p>Team Projects are intended to manage a software project.<br>
-But that doesn't mean there's just one Visual Studio solution for a project. There might be several. For example, our CI Sample projects might end up looking like this:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">$/CI <span class="fu">Sample</span> (team project)
-|_CIConsoleSample
-|_CIRestSample
-|_CIDocumentation
-
-$/CI <span class="fu">Shared</span> (team project)
-|_CINuGetSample</code></pre></div>
+<h2>Relationship of Team Projects, Solutions and Build Definitions</h2>
+<p>Team Projects are intended to manage a software project. But that doesn't mean there's just one Visual Studio solution for a project. There might be several. For example, our CI Sample projects might end up looking like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">$/CI <span class="fu">Sample</span> (team project)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">|_CIConsoleSample</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">|_CIRestSample</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">|_CIDocumentation</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">$/CI <span class="fu">Shared</span> (team project)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">|_CINuGetSample</a></code></pre></div>
 <p>What does this mean for automated builds?</p>
 <ul>
 <li>Maybe the Console now has a dependency on the REST solution, and we need Console to build any time REST changes.</li>
@@ -700,22 +694,22 @@ $/CI <span class="fu">Shared</span> (team project)
 </blockquote>
 <p>This feature of a build definition means that much of the time we'll configure a definition to build just one solution. However, as pointed out above, for a solution that builds an assembly used by multiple projects, you might want to rebuild all the solutions that depend on it, to catch bugs.</p>
 <p>As this diagram shows, a team project can include multiple solutions. A build definition can build multiple solutions. A build definition belongs to a single team project, <em>but</em>, it can (with effort) build solutions in <em>other</em> team projects.</p>
-<p><a href="images/team-projects-and-builds_thumb.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20/images/team-projects-and-builds_thumb.png" title="team-projects-and-builds" alt="team-projects-and-builds" width="547" height="556"></a></p>
-<h2 id="the-projects---a-turing-oracle">The Projects - A Turing Oracle</h2>
+<p><a href="images/team-projects-and-builds.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-walk-through_20/images/team-projects-and-builds.png" title="team-projects-and-builds" alt="team-projects-and-builds"></a></p>
+<h2>The Projects - A Turing Oracle</h2>
 <p>My sample suite of applications is a pseudo <a href="https://en.wikipedia.org/wiki/Turing_test">Turing Test</a>, and is made up of desktop and web apps. The user can ask questions, and get answers that seem to be from a human. I'll start simple, imitating a real-world project progression. In the end, this will be my structure in the TFS repository.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">_$Shared
-|_$/Magic8Engine
-
-$/TuringDesktop
-|_TuringDesktop.<span class="fu">sln</span>
-|_TuringConsole.<span class="fu">csproj</span> (Dependencies: Magic8Engine, TextColor)
-|_TextColor.<span class="fu">csproj</span>
-
-$/TuringWeb
-|_TuringWeb.<span class="fu">sln</span>
-|_TuringWeb.<span class="fu">csproj</span> (Dependencies: TuringSoap)
-|_TuringSoap.<span class="fu">sln</span>
-|_TuringSoap.<span class="fu">csproj</span> (Dependencies: Magic8Engine)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1">_$Shared</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">|_$/Magic8Engine</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">$/TuringDesktop</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">|_TuringDesktop.<span class="fu">sln</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">|_TuringConsole.<span class="fu">csproj</span> (Dependencies: Magic8Engine, TextColor)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">|_TextColor.<span class="fu">csproj</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">$/TuringWeb</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10">|_TuringWeb.<span class="fu">sln</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">|_TuringWeb.<span class="fu">csproj</span> (Dependencies: TuringSoap)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">|_TuringSoap.<span class="fu">sln</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">|_TuringSoap.<span class="fu">csproj</span> (Dependencies: Magic8Engine)</a></code></pre></div>
 <p><strong>Magic8Engine</strong> The Magic8Engine produces the answers, using the eerily accurate Magic 8-Ball Algorithm. It's a shared dll, and lives in a separate folder. It's published as a NuGet package.</p>
 <p><strong>TuringDesktop</strong> TuringDesktop is a console application for asking questions. The team project has one solution, which itself has two projects.</p>
 <p><em>TuringConsole</em>, the UI, has two dependencies. One is the Magic8Engine dll, the other is on TextColor, which is configured as a project reference.</p>
@@ -723,9 +717,9 @@ $/TuringWeb
 <p><strong>TuringWeb</strong> This is our web interface. The team project has two solutions.</p>
 <p><em>TuringWeb Solution</em> This solution has one project, TuringWeb, which is dependent on the TuringSoap web service.</p>
 <p><em>TuringSoap Solution</em> Our old-fashioned SOAP web service is dependent on the Magic8Engine dll. In the future, the web service <em>could</em> become shared by other applications.</p>
-<h2 id="next-up">Next Up</h2>
-<p>In the next part, I'll build my desktop application as if I didn't know anything about the future web application.<br>
-Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_22.html">TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></p>
+<h2>Next Up</h2>
+<p>In the next part, I'll build my desktop application as if I didn't know anything about the future web application.</p>
+<p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_22.html">TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></p>
 </div>
               </div>
               

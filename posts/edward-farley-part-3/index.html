@@ -42,217 +42,230 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 09:34</span></p>
-                <div class='post-content'><p>Chapters</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Chapters
+
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="a-simple-table">A Simple Table</h3>
-<p><em>Professor Relvar lays the framework for learning the Framework.</em><br>
-First, Edward [said the Professor], we’re going to write some code that will make it easier to learn about the Framework. And we’ll always strive to be a simple as possible--but not simpler.* You’re familiar with Visual Studio, I assume? Good. We’ll create a Console Application and name it something whimsical. How about “GnomeMobile”? No? Well, then, we’ll name it “LearningEF.” Next, we’ll add the Entity Framework 5 NuGet package. We’ll use SQL Express, so that we can easily run queries using Enterprise Manager. Are you following? Good. Normally, I like a file per class, but today I feel abnormal, so we’ll put the entire schema in one file. Here is the class for our first table.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Text</span>;
-<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
-
-<span class="kw">namespace</span> LearningEF
-{
-<span class="kw">public</span> <span class="kw">class</span> Person
-{
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
-}
-}</code></pre></div>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>A Simple Table</h3>
+<p><em>Professor Relvar lays the framework for learning the Framework.</em></p>
+<p>First, Edward [said the Professor], we’re going to write some code that will make it easier to learn about the Framework. And we’ll always strive to be a simple as possible--but not simpler.* You’re familiar with Visual Studio, I assume? Good. We’ll create a Console Application and name it something whimsical. How about “GnomeMobile”? No? Well, then, we’ll name it “LearningEF.” Next, we’ll add the Entity Framework 5 NuGet package. We’ll use SQL Express, so that we can easily run queries using Enterprise Manager. Are you following? Good. Normally, I like a file per class, but today I feel abnormal, so we’ll put the entire schema in one file. Here is the class for our first table.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Text</span>;</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">namespace</span> LearningEF</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">public</span> <span class="kw">class</span> Person</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">{</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">}</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">}</a></code></pre></div>
 <p>And now, in another file, code to create the database itself. Notice the using statements.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Text</span>;
-<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
-<span class="kw">using</span> System.<span class="fu">Data</span>.<span class="fu">Entity</span>;
-
-<span class="kw">namespace</span> LearningEF
-{
-<span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet Persons { <span class="kw">get</span>; <span class="kw">set</span>; }
-}
-}</code></pre></div>
-<p>[“But Professor,” protested Edward, “Shouldn’t that be ‘People’?”]<br>
-I am illustrating a point, young man. Youth and impatience go together like peanut butter and bananas, I suppose. Before answering your question, in our Program class, we write code to instantiate and return items from our database. Using ToList() forces eager loading of the data, which in turn forces the Framework to create the database.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;
-<span class="kw">using</span> System.<span class="fu">Linq</span>;
-<span class="kw">using</span> System.<span class="fu">Text</span>;
-<span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;
-
-<span class="kw">namespace</span> LearningEF
-{
-<span class="kw">class</span> Program
-{
-<span class="kw">static</span> LearningEFDb _db = <span class="kw">new</span> <span class="fu">LearningEFDb</span>();
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-{
-<span class="dt">var</span> list = _db.<span class="fu">Persons</span>.<span class="fu">ToList</span>();
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Text</span>;</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">using</span> System.<span class="fu">Data</span>.<span class="fu">Entity</span>;</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">namespace</span> LearningEF</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">{</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw">public</span> DbSet Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">}</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">}</a></code></pre></div>
+<p>[“But Professor,” protested Edward, “Shouldn’t that be ‘People’?”]</p>
+<p>I am illustrating a point, young man. Youth and impatience go together like peanut butter and bananas, I suppose. Before answering your question, in our Program class, we write code to instantiate and return items from our database. Using ToList() forces eager loading of the data, which in turn forces the Framework to create the database.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Collections</span>.<span class="fu">Generic</span>;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">using</span> System.<span class="fu">Linq</span>;</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">using</span> System.<span class="fu">Text</span>;</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">using</span> System.<span class="fu">Threading</span>.<span class="fu">Tasks</span>;</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">namespace</span> LearningEF</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">class</span> Program</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">{</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">static</span> LearningEFDb _db = <span class="kw">new</span> <span class="fu">LearningEFDb</span>();</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">{</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="dt">var</span> list = _db.<span class="fu">Persons</span>.<span class="fu">ToList</span>();</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">}</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">}</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">}</a></code></pre></div>
 <p>Let’s run our program and see what’s created.</p>
-<p><a href="images/image02.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3/images/image02.png" width="320" height="213"></a></p>
-<p>Ah. So. We get a database with the rather excessive name LearningEF.LearningEFDb, with a table named People. Apparently the Framework thinks it knows more about grammar than I**. This is a byproduct of convention over configuration. We, um, borrowed this idea from the DHH Library, and heaven knows where they got it from. Regardless, the Framework doesn’t care how I named my DbSet. I could have named it Kumquats and the database table would be named People. But I don’t like People. So, I’ll inform the Framework of my preference. I’ll also enforce my own database name, which means a trip to the app.config file. Enough talk. Here, look:<br>
-<strong>app.config</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">&lt;?xml version=<span class="st">"1.0"</span> encoding=<span class="st">"utf-8"</span>?&gt;
-&lt;configuration&gt;
-&lt;configSections&gt;
-&lt;!-- For more information on Entity Framework configuration, visit http:<span class="co">//go.microsoft.com/fwlink/?LinkID=237468 --&gt;</span>
-&lt;section name=<span class="st">"entityFramework"</span> type=<span class="st">"System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"</span> requirePermission=<span class="st">"false"</span> /&gt;
-&lt;/configSections&gt;
-&lt;connectionStrings&gt;
-&lt;add name=<span class="st">"LearningEFDb"</span>
-connectionString=<span class="st">"Server=.\SQLEXPRESS;Database=EFDb;Trusted_Connection=True"</span>
-providerName=<span class="st">"System.Data.SqlClient"</span>/&gt;
-&lt;/connectionStrings&gt;</code></pre></div>
+<div class="separator" style="text-align: center; clear: both">
+
+[![](images/image02.png)](images/image02.png)
+
+</div>
+<p>Ah. So. We get a database with the rather excessive name LearningEF.LearningEFDb, with a table named People. Apparently the Framework thinks it knows more about grammar than I**. This is a byproduct of convention over configuration. We, um, borrowed this idea from the DHH Library, and heaven knows where they got it from. Regardless, the Framework doesn’t care how I named my DbSet. I could have named it Kumquats and the database table would be named People. But I don’t like People. So, I’ll inform the Framework of my preference. I’ll also enforce my own database name, which means a trip to the app.config file. Enough talk. Here, look:</p>
+<p><strong>app.config</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1">&lt;?xml version=<span class="st">"1.0"</span> encoding=<span class="st">"utf-8"</span>?&gt;</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">&lt;configuration&gt;</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">&lt;configSections&gt;</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">&lt;!-- For more information on Entity Framework configuration, visit http:<span class="co">//go.microsoft.com/fwlink/?LinkID=237468 --&gt;</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">&lt;section name=<span class="st">"entityFramework"</span> type=<span class="st">"System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"</span> requirePermission=<span class="st">"false"</span> /&gt;</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">&lt;/configSections&gt;</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">&lt;connectionStrings&gt;</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">&lt;add name=<span class="st">"LearningEFDb"</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">connectionString=<span class="st">"Server=.\SQLEXPRESS;Database=EFDb;Trusted_Connection=True"</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">providerName=<span class="st">"System.Data.SqlClient"</span>/&gt;</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">&lt;/connectionStrings&gt;</a></code></pre></div>
 <p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="fu">LearningEFDb</span>(): <span class="kw">base</span>(<span class="st">"LearningEFDb"</span>)
-{
-
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">public</span> <span class="fu">LearningEFDb</span>(): <span class="kw">base</span>(<span class="st">"LearningEFDb"</span>)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">}</a></code></pre></div>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System.<span class="fu">ComponentModel</span>.<span class="fu">DataAnnotations</span>;
-<span class="kw">using</span> System.<span class="fu">ComponentModel</span>.<span class="fu">DataAnnotations</span>.<span class="fu">Schema</span>;
-
-<span class="kw">namespace</span> LearningEF
-{
-[<span class="fu">Table</span>(<span class="st">"Persons"</span>)]
-<span class="kw">public</span> <span class="kw">class</span> Person
-{
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">using</span> System.<span class="fu">ComponentModel</span>.<span class="fu">DataAnnotations</span>;</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">ComponentModel</span>.<span class="fu">DataAnnotations</span>.<span class="fu">Schema</span>;</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">namespace</span> LearningEF</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">{</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">[<span class="fu">Table</span>(<span class="st">"Persons"</span>)]</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw">public</span> <span class="kw">class</span> Person</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">{</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">}</a></code></pre></div>
 <p>Now, we drop the database and rerun the program.</p>
-<p><a href="images/image01.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-3/images/image01.png"></a></p>
-<p>That’s better, isn’t it? The database has a rational name, and the table has a name whose rationality cannot be denied. We’ll do one more thing. Well, no, we’ll do many more things, of course. What I mean to say is, I don’t want to manually drop the database each time, and I already know I’ll need help saving and displaying information, so, in the interests of time....<br>
-[The Professor’s hands fluttered over the keyboard, and in a minute the following code appeared.]<br>
-<strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }
+<div class="separator" style="text-align: center; clear: both">
 
-<span class="kw">public</span> <span class="fu">LearningEFDb</span>(): <span class="kw">base</span>(<span class="st">"LearningEFDb"</span>)
-{
-<span class="fu">KillConnections</span>();
-Database.<span class="fu">SetInitializer</span>(<span class="kw">new</span> <span class="fu">DatabaseInitializer</span>());
-<span class="co">//run with force:true so recreated immediately instead of upon first query.</span>
-Database.<span class="fu">Initialize</span>(force: <span class="kw">true</span>);
-}
+[![](images/image01.png)](images/image01.png)
 
-<span class="kw">public</span> <span class="dt">void</span> <span class="fu">KillConnections</span>()
-{
-<span class="dt">string</span> kill = @<span class="st">"declare @kill varchar(8000) = '';</span>
-select @kill=@kill+'kill '+<span class="fu">convert</span>(<span class="fu">varchar</span>(<span class="dv">5</span>),spid)+<span class="ch">';'</span>
-from master..<span class="fu">sysprocesses</span>
-where dbid=<span class="fu">db_id</span>('<span class="st">" + Database.Connection.Database + @"</span>');
-<span class="fu">exec</span> (@kill);<span class="st">";</span>
-<span class="dt">string</span> connectionString = Database.<span class="fu">Connection</span>.<span class="fu">ConnectionString</span>;
-<span class="kw">using</span> (<span class="dt">var</span> cn = Database
-.<span class="fu">DefaultConnectionFactory</span>
-.<span class="fu">CreateConnection</span>(connectionString))
-{
-cn.<span class="fu">Open</span>();
-cn.<span class="fu">ChangeDatabase</span>(<span class="st">"master"</span>);
-<span class="dt">var</span> cmd = cn.<span class="fu">CreateCommand</span>();
-cmd.<span class="fu">CommandText</span> = kill;
-cmd.<span class="fu">ExecuteNonQuery</span>();
-cn.<span class="fu">Close</span>();
-}
-}
-
-<span class="kw">public</span> <span class="kw">class</span> DatabaseInitializer : DropCreateDatabaseAlways
-{
-
-}</code></pre></div>
+</div>
+<p>That’s better, isn’t it? The database has a rational name, and the table has a name whose rationality cannot be denied. We’ll do one more thing. Well, no, we’ll do many more things, of course. What I mean to say is, I don’t want to manually drop the database each time, and I already know I’ll need help saving and displaying information, so, in the interests of time....</p>
+<p>[The Professor’s hands fluttered over the keyboard, and in a minute the following code appeared.]</p>
+<p><strong>LearningEFDb.cs</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="kw">public</span> <span class="fu">LearningEFDb</span>(): <span class="kw">base</span>(<span class="st">"LearningEFDb"</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="fu">KillConnections</span>();</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">Database.<span class="fu">SetInitializer</span>(<span class="kw">new</span> <span class="fu">DatabaseInitializer</span>());</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">//run with force:true so recreated immediately instead of upon first query.</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">Database.<span class="fu">Initialize</span>(force: <span class="kw">true</span>);</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">KillConnections</span>()</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">{</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="dt">string</span> kill = @<span class="st">"declare @kill varchar(8000) = '';</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16">select @kill=@kill+'kill '+<span class="fu">convert</span>(<span class="fu">varchar</span>(<span class="dv">5</span>),spid)+<span class="ch">';'</span></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17">from master..<span class="fu">sysprocesses</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">where dbid=<span class="fu">db_id</span>('<span class="st">" + Database.Connection.Database + @"</span>');</a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="fu">exec</span> (@kill);<span class="st">";</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="dt">string</span> connectionString = Database.<span class="fu">Connection</span>.<span class="fu">ConnectionString</span>;</a>
+<a class="sourceLine" id="cb7-21" data-line-number="21"><span class="kw">using</span> (<span class="dt">var</span> cn = Database</a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">.<span class="fu">DefaultConnectionFactory</span></a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">.<span class="fu">CreateConnection</span>(connectionString))</a>
+<a class="sourceLine" id="cb7-24" data-line-number="24">{</a>
+<a class="sourceLine" id="cb7-25" data-line-number="25">cn.<span class="fu">Open</span>();</a>
+<a class="sourceLine" id="cb7-26" data-line-number="26">cn.<span class="fu">ChangeDatabase</span>(<span class="st">"master"</span>);</a>
+<a class="sourceLine" id="cb7-27" data-line-number="27"><span class="dt">var</span> cmd = cn.<span class="fu">CreateCommand</span>();</a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">cmd.<span class="fu">CommandText</span> = kill;</a>
+<a class="sourceLine" id="cb7-29" data-line-number="29">cmd.<span class="fu">ExecuteNonQuery</span>();</a>
+<a class="sourceLine" id="cb7-30" data-line-number="30">cn.<span class="fu">Close</span>();</a>
+<a class="sourceLine" id="cb7-31" data-line-number="31">}</a>
+<a class="sourceLine" id="cb7-32" data-line-number="32">}</a>
+<a class="sourceLine" id="cb7-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="kw">public</span> <span class="kw">class</span> DatabaseInitializer : DropCreateDatabaseAlways</a>
+<a class="sourceLine" id="cb7-35" data-line-number="35">{</a>
+<a class="sourceLine" id="cb7-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb7-37" data-line-number="37">}</a></code></pre></div>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">[<span class="fu">Table</span>(<span class="st">"Persons"</span>)]
-<span class="kw">public</span> <span class="kw">class</span> Person
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
-}</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb8-1" data-line-number="1">[<span class="fu">Table</span>(<span class="st">"Persons"</span>)]</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">public</span> <span class="kw">class</span> Person</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">[Required]</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">}</a></code></pre></div>
 <p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">static</span> LearningEFDb _db = <span class="kw">new</span> <span class="fu">LearningEFDb</span>();
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-{
-Console.<span class="fu">WriteLine</span>(<span class="st">"Create Person without a name."</span>);
-Person edward = <span class="kw">new</span> <span class="fu">Person</span>();
-_db.<span class="fu">Persons</span>.<span class="fu">Add</span>(edward);
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Add the required name and save."</span>);
-edward.<span class="fu">Name</span> = <span class="st">"Edward Farley"</span>;
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(“Get the record we just saved, and display.”);
-edward = _db.<span class="fu">Persons</span>.<span class="fu">First</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Person: "</span> + edward.<span class="fu">Name</span>);
-
-Console.<span class="fu">WriteLine</span>(<span class="st">"Finished"</span>);
-Console.<span class="fu">ReadLine</span>();
-}
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">SaveChanges</span>()
-{
-Console.<span class="fu">WriteLine</span>(<span class="st">"Saving changes."</span>);
-<span class="kw">try</span> { _db.<span class="fu">SaveChanges</span>(); Console.<span class="fu">WriteLine</span>(<span class="st">"Successful save."</span>); }
-<span class="kw">catch</span> (Exception ex)
-{
-<span class="dt">string</span> exceptionError = ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>;
-<span class="kw">if</span> (exceptionError.<span class="fu">ToLower</span>().<span class="fu">Contains</span>(<span class="st">"Validation failed for one or more entities."</span>.<span class="fu">ToLower</span>()))
-{
-exceptionError = <span class="st">""</span>;
-}
-<span class="fu">WriteValidationErrors</span>(exceptionError);
-}
-}
-
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteValidationErrors</span>(<span class="dt">string</span> exceptionError)
-{
-<span class="kw">if</span> (!String.<span class="fu">IsNullOrWhiteSpace</span>(exceptionError))
-{
-Console.<span class="fu">WriteLine</span>(<span class="st">"  ERROR: "</span> + exceptionError);
-}
-<span class="dt">var</span> errors = _db.<span class="fu">GetValidationErrors</span>();
-<span class="kw">foreach</span> (var entry <span class="kw">in</span> errors)
-{
-<span class="kw">foreach</span> (var error <span class="kw">in</span> entry.<span class="fu">ValidationErrors</span>)
-{
-Console.<span class="fu">WriteLine</span>(<span class="st">"  ERROR: "</span> + error.<span class="fu">ErrorMessage</span>);
-}
-}
-}</code></pre></div>
-<p>Young man, you are allowed to say “Wow” on occasion, though there’s nothing extraordinary here. I’ve simply provided a way to drop and recreate the database each time we run the program. In addition, I have a method to save Framework changes and display validation errors. For good measure, I made it required that a person has a name--everyone does here, you know. I’ve updated the program to create a person and show off our work. When we run the program, the Persons table is slightly different. Names cannot be null. Well, I suppose someone’s name could, technically, be “Null,” but I’ve never heard of it. I think I’ll dispense with the pictures, and provide equivalent SQL scripts.<br>
-<strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Persons</span> (
-PersonId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
-Name <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">static</span> LearningEFDb _db = <span class="kw">new</span> <span class="fu">LearningEFDb</span>();</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">Console.<span class="fu">WriteLine</span>(<span class="st">"Create Person without a name."</span>);</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">Person edward = <span class="kw">new</span> <span class="fu">Person</span>();</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">_db.<span class="fu">Persons</span>.<span class="fu">Add</span>(edward);</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9">Console.<span class="fu">WriteLine</span>(<span class="st">"Add the required name and save."</span>);</a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">edward.<span class="fu">Name</span> = <span class="st">"Edward Farley"</span>;</a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb9-12" data-line-number="12">Console.<span class="fu">WriteLine</span>(“Get the record we just saved, and display.”);</a>
+<a class="sourceLine" id="cb9-13" data-line-number="13">edward = _db.<span class="fu">Persons</span>.<span class="fu">First</span>();</a>
+<a class="sourceLine" id="cb9-14" data-line-number="14">Console.<span class="fu">WriteLine</span>(<span class="st">"Person: "</span> + edward.<span class="fu">Name</span>);</a>
+<a class="sourceLine" id="cb9-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16">Console.<span class="fu">WriteLine</span>(<span class="st">"Finished"</span>);</a>
+<a class="sourceLine" id="cb9-17" data-line-number="17">Console.<span class="fu">ReadLine</span>();</a>
+<a class="sourceLine" id="cb9-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb9-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb9-20" data-line-number="20"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">SaveChanges</span>()</a>
+<a class="sourceLine" id="cb9-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb9-22" data-line-number="22">Console.<span class="fu">WriteLine</span>(<span class="st">"Saving changes."</span>);</a>
+<a class="sourceLine" id="cb9-23" data-line-number="23"><span class="kw">try</span> { _db.<span class="fu">SaveChanges</span>(); Console.<span class="fu">WriteLine</span>(<span class="st">"Successful save."</span>); }</a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="kw">catch</span> (Exception ex)</a>
+<a class="sourceLine" id="cb9-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb9-26" data-line-number="26"><span class="dt">string</span> exceptionError = ex.<span class="fu">GetBaseException</span>().<span class="fu">Message</span>;</a>
+<a class="sourceLine" id="cb9-27" data-line-number="27"><span class="kw">if</span> (exceptionError.<span class="fu">ToLower</span>().<span class="fu">Contains</span>(<span class="st">"Validation failed for one or more entities."</span>.<span class="fu">ToLower</span>()))</a>
+<a class="sourceLine" id="cb9-28" data-line-number="28">{</a>
+<a class="sourceLine" id="cb9-29" data-line-number="29">exceptionError = <span class="st">""</span>;</a>
+<a class="sourceLine" id="cb9-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb9-31" data-line-number="31"><span class="fu">WriteValidationErrors</span>(exceptionError);</a>
+<a class="sourceLine" id="cb9-32" data-line-number="32">}</a>
+<a class="sourceLine" id="cb9-33" data-line-number="33">}</a>
+<a class="sourceLine" id="cb9-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb9-35" data-line-number="35"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">WriteValidationErrors</span>(<span class="dt">string</span> exceptionError)</a>
+<a class="sourceLine" id="cb9-36" data-line-number="36">{</a>
+<a class="sourceLine" id="cb9-37" data-line-number="37"><span class="kw">if</span> (!String.<span class="fu">IsNullOrWhiteSpace</span>(exceptionError))</a>
+<a class="sourceLine" id="cb9-38" data-line-number="38">{</a>
+<a class="sourceLine" id="cb9-39" data-line-number="39">Console.<span class="fu">WriteLine</span>(<span class="st">"  ERROR: "</span> + exceptionError);</a>
+<a class="sourceLine" id="cb9-40" data-line-number="40">}</a>
+<a class="sourceLine" id="cb9-41" data-line-number="41"><span class="dt">var</span> errors = _db.<span class="fu">GetValidationErrors</span>();</a>
+<a class="sourceLine" id="cb9-42" data-line-number="42"><span class="kw">foreach</span> (var entry <span class="kw">in</span> errors)</a>
+<a class="sourceLine" id="cb9-43" data-line-number="43">{</a>
+<a class="sourceLine" id="cb9-44" data-line-number="44"><span class="kw">foreach</span> (var error <span class="kw">in</span> entry.<span class="fu">ValidationErrors</span>)</a>
+<a class="sourceLine" id="cb9-45" data-line-number="45">{</a>
+<a class="sourceLine" id="cb9-46" data-line-number="46">Console.<span class="fu">WriteLine</span>(<span class="st">"  ERROR: "</span> + error.<span class="fu">ErrorMessage</span>);</a>
+<a class="sourceLine" id="cb9-47" data-line-number="47">}</a>
+<a class="sourceLine" id="cb9-48" data-line-number="48">}</a>
+<a class="sourceLine" id="cb9-49" data-line-number="49">}</a></code></pre></div>
+<p>Young man, you are allowed to say “Wow” on occasion, though there’s nothing extraordinary here. I’ve simply provided a way to drop and recreate the database each time we run the program. In addition, I have a method to save Framework changes and display validation errors. For good measure, I made it required that a person has a name--everyone does here, you know. I’ve updated the program to create a person and show off our work. When we run the program, the Persons table is slightly different. Names cannot be null. Well, I suppose someone’s name could, technically, be “Null,” but I’ve never heard of it. I think I’ll dispense with the pictures, and provide equivalent SQL scripts.</p>
+<p><strong>T-SQL</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb10-1" data-line-number="1">create table <span class="fu">Persons</span> (</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">PersonId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">Name <span class="fu">nvarchar</span>(max) not <span class="kw">null</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">)</a></code></pre></div>
 <p>Here is the program output.</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
@@ -265,12 +278,7 @@ Person: Edward Farley
 Finished</code></pre>
 <p>Well, I think that’s quite enough for one day, don’t you? Come back tomorrow. Oh, and one last thing! Ask your dear mother if she’d make me one of her famous peanut butter and banana sandwiches. Off you go!</p>
 <hr>
-<p>*<a href="http://quoteinvestigator.com/2011/05/13/einstein-simple/">Quote attributed to Albert Einstein</a>: ”Everything should be made as simple as possible, but not simpler.”<br>
-**The Professor seems to be joking, or he likes old usages of words. Or, it’s possible--but unlikely--he expects to know the number of people in the Persons table. Regardless, EF’s pluralization to “People” is standard. <a href="http://www.dailywritingtips.com/people-versus-persons/">People vs. Persons</a><br>
-<a href="http://en.wikipedia.org/wiki/Convention_over_configuration">Convention over configuration</a><br>
-<a href="http://dictionary.reference.com/browse/kumquat?&amp;path=/">Kumquat</a><br>
-<a href="http://www.imdb.com/title/tt0061715/?ref_=fn_al_tt_1">The Gnome-Mobile</a><br>
-<a href="http://en.wikipedia.org/wiki/David_Heinemeier_Hansson">DHH</a></p>
+<p>*<a href="http://quoteinvestigator.com/2011/05/13/einstein-simple/">Quote attributed to Albert Einstein</a>: ”Everything should be made as simple as possible, but not simpler.” **The Professor seems to be joking, or he likes old usages of words. Or, it’s possible--but unlikely--he expects to know the number of people in the Persons table. Regardless, EF’s pluralization to “People” is standard. <a href="http://www.dailywritingtips.com/people-versus-persons/">People vs. Persons</a> <a href="http://en.wikipedia.org/wiki/Convention_over_configuration">Convention over configuration</a> <a href="http://dictionary.reference.com/browse/kumquat?&amp;path=/">Kumquat</a> <a href="http://www.imdb.com/title/tt0061715/?ref_=fn_al_tt_1">The Gnome-Mobile</a> <a href="http://en.wikipedia.org/wiki/David_Heinemeier_Hansson">DHH</a></p>
 <hr>
 </div>
               </div>

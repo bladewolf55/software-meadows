@@ -46,7 +46,7 @@
 <p><br></p>
 <p>Team Foundation Server 2015 Update 2 includes Release Management. However, I found myself in a position where a client hadn't upgraded yet, and during development I still wanted to publish ASP.NET MVC and WebApi projects to a test server. I did this through a combination of Build tasks running the msbuild publish command line, and Robocopy.</p>
 <p>Also, while TFS Build includes steps for staging artifacts, an ASP.NET project doesn't simply move all files to a bin folder. Many files are taken directly from the project source folders, requiring me to use the MSBuild Publish command line switches.</p>
-<h1 id="the-tfs-build-definition">The TFS Build Definition</h1>
+<h1>The TFS Build Definition</h1>
 <p>In my Build, I'm going to do the following steps:</p>
 <ol>
 <li>Get the source code</li>
@@ -57,7 +57,7 @@
 </ol>
 <p>The first three steps are pretty standard, so I won't cover them. If you don't know how to set up a build, you'll need to read up on that. The last two are the fun ones.</p>
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs_2015_publish_asp_net_using_robocopy/images/2018-01-07%2015_56_14.png"></p>
-<h1 id="publishing-asp.net-from-command-line">Publishing ASP.NET from command line</h1>
+<h1>Publishing ASP.NET from command line</h1>
 <p>In Visual Studio, it's easy (and nice) to publish an ASP.NET project to the file system. But what if you want to publish in an ad-hoc manner? It can be done, but the info is hard-won.</p>
 <pre><code>msbuild ProjectFile.csproj /p:Configuration=Release ^
 /p:Platform=AnyCPU ^
@@ -78,11 +78,10 @@ msbuild Solution.sln /p:Configuration=Release ^
 <p>In the Solution field, enter the path to the web <em>project</em> you're going to build. The MSBuild Arguments are shown below. Note the variables used for both the build configuration and the destination folder. I'm publishing locally first.</p>
 <p><code>/p:Configuration=$(BuildConfiguration) /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="$(build.artifactstagingdirectory)\deploy\web"</code></p>
 <blockquote>
-<p><strong>Note</strong><br>
-If I was also publishing a WebApi project in the same definition, I'd have a separate build step, and the publishUrl might be <code>$(build.artifactstagingdirectory)\deploy\api</code></p>
+<p><strong>Note</strong> If I was also publishing a WebApi project in the same definition, I'd have a separate build step, and the publishUrl might be <code>$(build.artifactstagingdirectory)\deploy\api</code></p>
 </blockquote>
 <p><img src="http://bladewolf55.gitlab.io/smblog/posts/tfs_2015_publish_asp_net_using_robocopy/images/2018-01-07%2015_45_51.png"></p>
-<h1 id="copy-the-site-to-its-destination-using-robocopy">Copy the site to its destination using Robocopy</h1>
+<h1>Copy the site to its destination using Robocopy</h1>
 <p>Why am I not using the publishUrl, above, to publish to the destination server? In many cases, I could, and that's fine. But what if I expect a destination file to be in use, and isn't normally updated? For example, I had a site using the NHunspell.dll. That file would often be in use, and wasn't changing. If I used publishUrl, the publish would always fail.</p>
 <p>Microsoft's <a href="https://technet.microsoft.com/en-us/library/cc733145(v=ws.11).aspx">Robocopy</a> ("Robust Copy"), included in all Windows editions, will skip and retry files it can't copy. This will still show as an error, but I'll set the step to "continue on error". It's not a perfect solution, but fine for many environments.</p>
 <p>Add a Command Line step to the definition.</p>
@@ -99,9 +98,9 @@ If I was also publishing a WebApi project in the same definition, I'd have a sep
 <li><code>/w:5</code> = Wait five seconds between retry attempts.</li>
 </ol>
 <p>When the step runs, Robocopy outputs a nice report of what happened, very useful when viewing the build log.</p>
-<h1 id="wrap-up">Wrap Up</h1>
+<h1>Wrap Up</h1>
 <p>While not ideal, the above is a useful workaround for publishing ASP.NET build artifacts to a remote machine. It also shows the flexibility that can be obtained through using other tools.</p>
-<h1 id="references">References</h1>
+<h1>References</h1>
 <p><a href="https://stackoverflow.com/a/20982171/1628707">How to use MsBuild MsDeployPublish to target local file system?</a></p>
 <p><a href="https://www.benday.com/2016/09/08/an-asp-net-mvc-site-thats-easy-to-deploy-from-a-tfs-build/">An ASP.NET MVC Site That’s Easy to Deploy from a TFS Build</a></p>
 <p><a href="https://technet.microsoft.com/en-us/library/cc733145(v=ws.11).aspx">Robocopy</a></p>

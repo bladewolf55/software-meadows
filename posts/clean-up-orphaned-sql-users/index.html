@@ -43,35 +43,35 @@
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-04-14 12:23</span></p>
                 <div class='post-content'><p>This used to be done with sp_change_users_login, but that procedure is being removed in favor of alter user.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">--http:<span class="co">//ask.sqlservercentral.com/questions/3173/identifying-orphaned-users.html</span>
---http:<span class="co">//stackoverflow.com/a/2874493</span>
---Modified by me to use correct search <span class="kw">for</span> orphans
-DECLARE @Username <span class="fu">VARCHAR</span>(<span class="dv">100</span>),
-@cmd      <span class="fu">VARCHAR</span>(<span class="dv">100</span>)
-
-DECLARE userlogin_cursor CURSOR FAST_FORWARD FOR
-SELECT UserName = dp.<span class="fu">name</span>
---, UserSID = dp.<span class="fu">sid</span>
-FROM sys.<span class="fu">database_principals</span> dp
-WHERE dp.<span class="fu">type</span> = <span class="ch">'S'</span>
-<span class="fu">AND</span> (dp.<span class="fu">sid</span> <span class="kw">is</span> not <span class="kw">null</span> AND dp.<span class="fu">sid</span> &lt;&gt; <span class="bn">0x0</span>)
-<span class="fu">AND</span> (<span class="fu">LEN</span>(dp.<span class="fu">sid</span>) &lt;= <span class="dv">16</span>)
-AND <span class="fu">SUSER_SNAME</span>(dp.<span class="fu">sid</span>) <span class="kw">is</span> <span class="kw">null</span>
-ORDER BY dp.<span class="fu">name</span>
-FOR READ ONLY
-
-OPEN userlogin_cursor
-FETCH NEXT FROM userlogin_cursor INTO @Username
-
-WHILE @@FETCH_STATUS = <span class="dv">0</span>
-BEGIN
-SET @cmd = 'ALTER USER [' + @username + '] WITH LOGIN = [' + @username + <span class="ch">']'</span>
-<span class="fu">EXECUTE</span>(@cmd)
-FETCH NEXT FROM userlogin_cursor INTO @Username
-END
-
-CLOSE userlogin_cursor
-DEALLOCATE userlogin_cursor</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">--http:<span class="co">//ask.sqlservercentral.com/questions/3173/identifying-orphaned-users.html</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">--http:<span class="co">//stackoverflow.com/a/2874493</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">--Modified by me to use correct search <span class="kw">for</span> orphans</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">DECLARE @Username <span class="fu">VARCHAR</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">@cmd      <span class="fu">VARCHAR</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">DECLARE userlogin_cursor CURSOR FAST_FORWARD FOR</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">SELECT UserName = dp.<span class="fu">name</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">--, UserSID = dp.<span class="fu">sid</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">FROM sys.<span class="fu">database_principals</span> dp</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">WHERE dp.<span class="fu">type</span> = <span class="ch">'S'</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="fu">AND</span> (dp.<span class="fu">sid</span> <span class="kw">is</span> not <span class="kw">null</span> AND dp.<span class="fu">sid</span> &lt;&gt; <span class="bn">0x0</span>)</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="fu">AND</span> (<span class="fu">LEN</span>(dp.<span class="fu">sid</span>) &lt;= <span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">AND <span class="fu">SUSER_SNAME</span>(dp.<span class="fu">sid</span>) <span class="kw">is</span> <span class="kw">null</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">ORDER BY dp.<span class="fu">name</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">FOR READ ONLY</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">OPEN userlogin_cursor</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">FETCH NEXT FROM userlogin_cursor INTO @Username</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">WHILE @@FETCH_STATUS = <span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">BEGIN</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">SET @cmd = 'ALTER USER [' + @username + '] WITH LOGIN = [' + @username + <span class="ch">']'</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="fu">EXECUTE</span>(@cmd)</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">FETCH NEXT FROM userlogin_cursor INTO @Username</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">END</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">CLOSE userlogin_cursor</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">DEALLOCATE userlogin_cursor</a></code></pre></div>
 </div>
               </div>
               

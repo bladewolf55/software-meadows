@@ -38,7 +38,7 @@
     <div id="site-subtitle">A pleasant walk through computing</div>
   </header>
   <section id="content">
-    <h1 id="home">Home</h1>
+    <h1>Home</h1>
 
   </section>
   <!-- posts only appear in home index -->
@@ -47,22 +47,26 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 09:30</span></p>
-                <div class='post-content'><p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Parts
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="preface">Preface</h3>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>Preface</h3>
 <p>When I started this series about Entity Framework, I needed a good metaphor for the database relationships. I decided on a library, but soon realized my examples were becoming contrived. I was “fitting facts to suit theories.”* And yet I liked the library story.</p>
 <p>Imagination floated in--as she often does--and in that kind yet firm tone said, “Why constrain yourself to reality? Why not invent?”</p>
 <p>I listened, and after assembling all the material, wrote the light story of of a boy, Edward Farley, and his desire to learn. Following Netflix’s example with House of Cards, I’m releasing all the parts at once.</p>
@@ -71,9 +75,7 @@
 <p>Finally, many thanks to my wife, Stephanie, for proof-reading these posts.</p>
 <hr>
 <p>*<a href="http://sherlockholmesquotes.com/">Sherlock Holmes</a>: 'It is a capital mistake to theorize before one has data. Insensibly one begins to twist facts to suit theories, instead of theories to suit facts.'</p>
-<p><a href="http://movies.netflix.com/movie/House-of-Cards/70178217">Netflix House of Cards</a></p>
-<p><a href="http://dictionary.reference.com/browse/folly?&amp;path=/">Folly</a></p>
-<p><a href="http://stephkayeturner.com/">Stephanie Kaye Turner</a></p>
+<p><a href="http://movies.netflix.com/movie/House-of-Cards/70178217">Netflix House of Cards</a> <a href="http://dictionary.reference.com/browse/folly?&amp;path=/">Folly</a> <a href="http://stephkayeturner.com/">Stephanie Kaye Turner</a></p>
 <hr>
 </div>
               </div>
@@ -83,35 +85,35 @@
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-04-14 12:23</span></p>
                 <div class='post-content'><p>This used to be done with sp_change_users_login, but that procedure is being removed in favor of alter user.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">--http:<span class="co">//ask.sqlservercentral.com/questions/3173/identifying-orphaned-users.html</span>
---http:<span class="co">//stackoverflow.com/a/2874493</span>
---Modified by me to use correct search <span class="kw">for</span> orphans
-DECLARE @Username <span class="fu">VARCHAR</span>(<span class="dv">100</span>),
-@cmd      <span class="fu">VARCHAR</span>(<span class="dv">100</span>)
-
-DECLARE userlogin_cursor CURSOR FAST_FORWARD FOR
-SELECT UserName = dp.<span class="fu">name</span>
---, UserSID = dp.<span class="fu">sid</span>
-FROM sys.<span class="fu">database_principals</span> dp
-WHERE dp.<span class="fu">type</span> = <span class="ch">'S'</span>
-<span class="fu">AND</span> (dp.<span class="fu">sid</span> <span class="kw">is</span> not <span class="kw">null</span> AND dp.<span class="fu">sid</span> &lt;&gt; <span class="bn">0x0</span>)
-<span class="fu">AND</span> (<span class="fu">LEN</span>(dp.<span class="fu">sid</span>) &lt;= <span class="dv">16</span>)
-AND <span class="fu">SUSER_SNAME</span>(dp.<span class="fu">sid</span>) <span class="kw">is</span> <span class="kw">null</span>
-ORDER BY dp.<span class="fu">name</span>
-FOR READ ONLY
-
-OPEN userlogin_cursor
-FETCH NEXT FROM userlogin_cursor INTO @Username
-
-WHILE @@FETCH_STATUS = <span class="dv">0</span>
-BEGIN
-SET @cmd = 'ALTER USER [' + @username + '] WITH LOGIN = [' + @username + <span class="ch">']'</span>
-<span class="fu">EXECUTE</span>(@cmd)
-FETCH NEXT FROM userlogin_cursor INTO @Username
-END
-
-CLOSE userlogin_cursor
-DEALLOCATE userlogin_cursor</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">--http:<span class="co">//ask.sqlservercentral.com/questions/3173/identifying-orphaned-users.html</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">--http:<span class="co">//stackoverflow.com/a/2874493</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">--Modified by me to use correct search <span class="kw">for</span> orphans</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">DECLARE @Username <span class="fu">VARCHAR</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">@cmd      <span class="fu">VARCHAR</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">DECLARE userlogin_cursor CURSOR FAST_FORWARD FOR</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">SELECT UserName = dp.<span class="fu">name</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">--, UserSID = dp.<span class="fu">sid</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">FROM sys.<span class="fu">database_principals</span> dp</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">WHERE dp.<span class="fu">type</span> = <span class="ch">'S'</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="fu">AND</span> (dp.<span class="fu">sid</span> <span class="kw">is</span> not <span class="kw">null</span> AND dp.<span class="fu">sid</span> &lt;&gt; <span class="bn">0x0</span>)</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="fu">AND</span> (<span class="fu">LEN</span>(dp.<span class="fu">sid</span>) &lt;= <span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">AND <span class="fu">SUSER_SNAME</span>(dp.<span class="fu">sid</span>) <span class="kw">is</span> <span class="kw">null</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15">ORDER BY dp.<span class="fu">name</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">FOR READ ONLY</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">OPEN userlogin_cursor</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">FETCH NEXT FROM userlogin_cursor INTO @Username</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21">WHILE @@FETCH_STATUS = <span class="dv">0</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">BEGIN</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">SET @cmd = 'ALTER USER [' + @username + '] WITH LOGIN = [' + @username + <span class="ch">']'</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="fu">EXECUTE</span>(@cmd)</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">FETCH NEXT FROM userlogin_cursor INTO @Username</a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">END</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">CLOSE userlogin_cursor</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">DEALLOCATE userlogin_cursor</a></code></pre></div>
 </div>
               </div>
               
@@ -121,24 +123,24 @@ DEALLOCATE userlogin_cursor</code></pre></div>
                 <p class='post-info'><span class='posted-on'>2013-03-23 13:48</span></p>
                 <div class='post-content'><p>I'm preparing a series on Entity Framework, and discovered something yesterday I never knew. In MS SQL Server, you can't successfully model a true one-to-one relationship, where both sides are required. I say "successfully," because you can configure the tables, but they won't work. This is because SQL won't allow deferred constraint resolution, which is fine by me.</p>
 <p>The insert statements, below, will fail. Note you have to remove one of the foreign key constraints before you can drop the tables!</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">One</span> (
-OneId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
-Name <span class="fu">varchar</span>(<span class="dv">10</span>) <span class="kw">null</span>
-)
-
-create table <span class="fu">Two</span> (
-OneId <span class="dt">int</span> not <span class="kw">null</span> primary key references <span class="fu">One</span>(OneId),
-Name <span class="fu">varchar</span>(<span class="dv">10</span>)
-)
-
-alter table One add constraint fk1 foreign <span class="fu">key</span> (OneId) references <span class="fu">Two</span>(OneId)
-
-insert <span class="fu">One</span>(Name) <span class="fu">values</span>('asdf')
-insert <span class="fu">Two</span>(Name) <span class="fu">values</span>('qwer')
-
-alter table One drop constraint fk1
-drop table Two
-drop table One</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">create table <span class="fu">One</span> (</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">OneId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">Name <span class="fu">varchar</span>(<span class="dv">10</span>) <span class="kw">null</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">create table <span class="fu">Two</span> (</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">OneId <span class="dt">int</span> not <span class="kw">null</span> primary key references <span class="fu">One</span>(OneId),</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">Name <span class="fu">varchar</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">alter table One add constraint fk1 foreign <span class="fu">key</span> (OneId) references <span class="fu">Two</span>(OneId)</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">insert <span class="fu">One</span>(Name) <span class="fu">values</span>('asdf')</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">insert <span class="fu">Two</span>(Name) <span class="fu">values</span>('qwer')</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">alter table One drop constraint fk1</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">drop table Two</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">drop table One</a></code></pre></div>
 </div>
               </div>
               

@@ -44,25 +44,17 @@
                 <p class='post-info'><span class='posted-on'>2014-09-25 06:33</span></p>
                 <div class='post-content'><p>I received this email yesterday (links altered for safety).</p>
 <blockquote>
-<p>From: <a href="mailto:info@gruppobertoli.it">info@gruppobertoli.it</a><br>
-Thanks for shopping with us today! Your purchase will be processed shortly.<br>
-BILLING DETAILS<br>
-Purchase Number: SGF578308436<br>
-Order Date: 7.46 Thu, Sep 18, 2014<br>
-Customer Email: <a href="mailto:charles@example.com">charles@example.com</a><br>
-Outright Purchase: 4687 USD<br>
-<a href="https://www.dropbox.com/s/XXXXXrzddrc2a4k/Order_AA9883.zip?dl=1"><strong>Get details</strong></a><br>
-Please click the link provided at the top to get more info about this issue.</p>
+<p>From: <a href="mailto:info@gruppobertoli.it">info@gruppobertoli.it</a> Thanks for shopping with us today! Your purchase will be processed shortly. BILLING DETAILS Purchase Number: SGF578308436 Order Date: 7.46 Thu, Sep 18, 2014 Customer Email: <a href="mailto:charles@example.com">charles@example.com</a> Outright Purchase: 4687 USD <a href="https://www.dropbox.com/s/XXXXXrzddrc2a4k/Order_AA9883.zip?dl=1"><strong>Get details</strong></a> Please click the link provided at the top to get more info about this issue.</p>
 </blockquote>
 <p>Of course, I checked the domain and I'd never heard of it. But nothing came up immediately when searching "gruppo bertoli spam". I was pretty sure it was a phishing email, but it was possible someone stole my identity. Unlikely, though, given the weirdness of the email.</p>
 <p>Next, I hovered over link to see source. It's a DropBox location. I opened IE in InPrivate Browsing mode for some added safety. Next, I copied the link and pasted into the URL. (I've obfuscated the link so it doesn't work anymore.)</p>
 <p><a href="https://www.dropbox.com/s/XXXXXzddrc2a4k/Order_AA9883.zip?dl=1" class="uri">https://www.dropbox.com/s/XXXXXzddrc2a4k/Order_AA9883.zip?dl=1</a></p>
 <p>I removed the file part of the path, just to see if the DropBox folder would open. Nope. So, I can see they want me to download a zip file. I'm OK with that, because I won't open it yet.</p>
 <p>I downloaded the zip file, then opened—but didn’t extract!—it using 7-zip. Huh. At <em>first glance</em> it's a PDF—with a funny extension. Also, the packed size is the same as the file size. But this <em>might</em> be true for a PDF since they’re binary files, and besides most people won't open in 7-zip, they’ll use Windows Explorer.</p>
-<p><a href="images/image_thumb_25255B4_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/clever-phish/images/image_thumb_25255B4_25255D.png" title="image" alt="image" width="474" height="61"></a></p>
+<p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/clever-phish/images/image.png" title="image" alt="image"></a></p>
 <p>OK. I extracted the file but, of course, didn’t double click it to open.</p>
 <p>Now, I looked at the file in Windows Explorer and it really does look like a PDF.</p>
-<p><a href="images/image_thumb_25255B5_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/clever-phish/images/image_thumb_25255B5_25255D.png" title="image" alt="image" width="471" height="74"></a></p>
+<p><a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/clever-phish/images/image-001.png" title="image" alt="image"></a></p>
 <p>Why? Because the clever bastards have added a bunch of spaces to hide the real extension. Here's the real file name.</p>
 <p>"PAYMENT DETAILS.PDF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _27102.scr"</p>
 <p>Windows (and Mac) by default don't show extensions, anyway, so many will be fooled by a file that advertises itself as a PDF. What's worse, most people don't show their file listings in Detail view, so they wouldn't see the Type, which is the giveaway.</p>

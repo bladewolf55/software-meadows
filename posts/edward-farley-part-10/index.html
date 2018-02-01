@@ -42,22 +42,26 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:48</span></p>
-                <div class='post-content'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Parts
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="many-to-many-with-payload">Many to Many with Payload</h3>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>Many to Many with Payload</h3>
 <p><em>Serendipity gets applied.</em></p>
 <p>Rain poured for hours before Edward bicycled to the library, red umbrella overhead. He, with help from friends and the manufacturers, had modified his Herman to hold an umbrella. In hindsight, it didn’t do much to keep the rain off. But he thought it looked wicked, eclectic cool.</p>
 <p>In the bicycle lot, he removed the umbrella and sprinted. Professor Relvar met him at the front doors, which surprised Edward.</p>
@@ -75,109 +79,113 @@
 <p>But our umbrellas have a rather lovely feature, being the result of that artisan and scientist Mrs. Freda Gamp. There is a story connected with one of her ancestors; I believe our Mrs. Gamp is making up for it. Regardless, as you know, our umbrellas are clear when in their library bin, but upon being taken out instantly transform into the holder’s favorite color at that moment! How she achieves this is a great mystery.</p>
 <p>Now we have a complication. The color doesn’t belong to the umbrella, nor does it belong to the person (because it changes, you see). The color belongs to the combination. Our tables should end up like this.</p>
 <p><strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Umbrellas</span> (
-UmbrellaId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
-IsAutomatic bit not <span class="kw">null</span>
-)
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">create table <span class="fu">Umbrellas</span> (</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">UmbrellaId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">IsAutomatic bit not <span class="kw">null</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">create table <span class="fu">PersonUmbrellas</span> (</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId),</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">UmbrellaId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Umbrella</span>(UmbrellaId),</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">Color <span class="fu">varchar</span>(max) not <span class="kw">null</span>,</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">constraint pkPersonUmbrella primary <span class="fu">key</span> (PersonId, UmbrellaId)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">)</a></code></pre></div>
+<div class="separator" style="clear: both; text-align: center;">
 
-create table <span class="fu">PersonUmbrellas</span> (
-PersonId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Persons</span>(PersonId),
-UmbrellaId <span class="dt">int</span> not <span class="kw">null</span> foreign key references <span class="fu">Umbrella</span>(UmbrellaId),
-Color <span class="fu">varchar</span>(max) not <span class="kw">null</span>,
-constraint pkPersonUmbrella primary <span class="fu">key</span> (PersonId, UmbrellaId)
-)</code></pre></div>
-<p><a href="images/image03.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-10/images/image03.png" width="320" height="65"></a></p>
+[![](images/image03.png)](images/image03.png)
+
+</div>
 <p>This relationship is called Many to Many with Payload. The payload is the Color property. For our Umbrella class, we indicate whether it opens automatically or manually. I prefer manual. You, I see, are more modern.</p>
 <p>Unlike the Simple version, with Payload we must create a class for the join table. There are two ways to do this, of which I will instruct you in one.*</p>
 <p>In our schema class changes:</p>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="kw">virtual</span> ReadingRoom ReadingRoom { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;PersonUmbrella&gt; PersonUmbrellas { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="fu">Person</span>()
-{
-LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();
-Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();
-Pencils = <span class="kw">new</span> HashSet&lt;Pencil&gt;();
-Books = <span class="kw">new</span> HashSet&lt;Book&gt;();
-PersonUmbrellas = <span class="kw">new</span> HashSet&lt;PersonUmbrella&gt;();
-}
-....
-
-<span class="kw">public</span> <span class="kw">class</span> Umbrella
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> UmbrellaId { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="dt">bool</span> IsAutomatic { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;PersonUmbrella&gt; PersonUmbrellas { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="kw">public</span> <span class="fu">Umbrella</span>()
-{
-IsAutomatic = <span class="kw">false</span>;
-PersonUmbrellas = <span class="kw">new</span> HashSetPersonUmbrella&gt;();
-}
-}
-
-<span class="kw">public</span> <span class="kw">class</span> PersonUmbrella
-{
-<span class="co">//Primary Key</span>
-[Key, <span class="fu">Column</span>(Order = <span class="dv">0</span>)]
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Key, <span class="fu">Column</span>(Order = <span class="dv">1</span>)]
-<span class="kw">public</span> <span class="dt">int</span> UmbrellaId { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> Color { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> Umbrella Umbrella { <span class="kw">get</span>; <span class="kw">set</span>; }
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">[Required]</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="kw">public</span> <span class="kw">virtual</span> ReadingRoom ReadingRoom { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;PersonUmbrella&gt; PersonUmbrellas { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw">public</span> <span class="fu">Person</span>()</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">{</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">LibraryCards = <span class="kw">new</span> HashSet&lt;LibraryCard&gt;();</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">Magnifiers = <span class="kw">new</span> HashSet&lt;Magnifier&gt;();</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15">Pencils = <span class="kw">new</span> HashSet&lt;Pencil&gt;();</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">Books = <span class="kw">new</span> HashSet&lt;Book&gt;();</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">PersonUmbrellas = <span class="kw">new</span> HashSet&lt;PersonUmbrella&gt;();</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19">....</a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="kw">public</span> <span class="kw">class</span> Umbrella</a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="kw">public</span> <span class="dt">int</span> UmbrellaId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="kw">public</span> <span class="dt">bool</span> IsAutomatic { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;PersonUmbrella&gt; PersonUmbrellas { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="kw">public</span> <span class="fu">Umbrella</span>()</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">{</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32">IsAutomatic = <span class="kw">false</span>;</a>
+<a class="sourceLine" id="cb2-33" data-line-number="33">PersonUmbrellas = <span class="kw">new</span> HashSetPersonUmbrella&gt;();</a>
+<a class="sourceLine" id="cb2-34" data-line-number="34">}</a>
+<a class="sourceLine" id="cb2-35" data-line-number="35">}</a>
+<a class="sourceLine" id="cb2-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"><span class="kw">public</span> <span class="kw">class</span> PersonUmbrella</a>
+<a class="sourceLine" id="cb2-38" data-line-number="38">{</a>
+<a class="sourceLine" id="cb2-39" data-line-number="39"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb2-40" data-line-number="40">[Key, <span class="fu">Column</span>(Order = <span class="dv">0</span>)]</a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-42" data-line-number="42">[Key, <span class="fu">Column</span>(Order = <span class="dv">1</span>)]</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43"><span class="kw">public</span> <span class="dt">int</span> UmbrellaId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">[Required]</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46"><span class="kw">public</span> <span class="dt">string</span> Color { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-47" data-line-number="47"></a>
+<a class="sourceLine" id="cb2-48" data-line-number="48"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-50" data-line-number="50"><span class="kw">public</span> <span class="kw">virtual</span> Umbrella Umbrella { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb2-51" data-line-number="51">}</a></code></pre></div>
 <p>Our Context class: note both PersonUmbrellas and Umbrellas are declared.</p>
 <p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> DbSet&lt;PersonUmbrella&gt; PersonUmbrellas { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">public</span> DbSet&lt;Book&gt; Books { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">public</span> DbSet&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">public</span> DbSet&lt;Magnifier&gt; Magnifiers { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="kw">public</span> DbSet&lt;Pencil&gt; Pencils { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">public</span> DbSet&lt;Person&gt; Persons { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">public</span> DbSet&lt;PersonUmbrella&gt; PersonUmbrellas { <span class="kw">get</span>; <span class="kw">set</span>; }</a></code></pre></div>
 <p>public DbSet&lt;ReadingRoom&gt; ReadingRooms { get; set; } public DbSet&lt;Umbrella&gt; Umbrellas { get; set; }</p>
 <p>And our program. Again, we will make use of our wonderful librarian, Jane Eager, for the example.</p>
 <p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">"Create an umbrella for Edward"</span>);
-Umbrella umbrella = <span class="kw">new</span> <span class="fu">Umbrella</span>() { IsAutomatic = <span class="kw">true</span> };
-PersonUmbrella personUmbrella = <span class="kw">new</span> <span class="fu">PersonUmbrella</span>()
-{
-Person = edward,
-Umbrella = umbrella,
-Color = <span class="st">"Red"</span>
-};
-edward.<span class="fu">PersonUmbrellas</span>.<span class="fu">Add</span>(personUmbrella);
-Console.<span class="fu">WriteLine</span>(<span class="st">"Jane uses it, too."</span>);
-jane.<span class="fu">PersonUmbrellas</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">PersonUmbrella</span>()
-{
-Umbrella = umbrella,
-Color = <span class="st">"Green"</span>
-});
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"PersonUmbrellas: "</span>
-+ _db.<span class="fu">PersonUmbrellas</span>.<span class="fu">Count</span>());
-Console.<span class="fu">WriteLine</span>(<span class="st">"Edward's Umbrella: "</span>
-+ edward.<span class="fu">PersonUmbrellas</span>.<span class="fu">First</span>().<span class="fu">Color</span>);
-Console.<span class="fu">WriteLine</span>(<span class="st">"Jane's Umbrella: "</span>
-+ jane.<span class="fu">PersonUmbrellas</span>.<span class="fu">First</span>().<span class="fu">Color</span>);</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1">Console.<span class="fu">WriteLine</span>(<span class="st">"Create an umbrella for Edward"</span>);</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">Umbrella umbrella = <span class="kw">new</span> <span class="fu">Umbrella</span>() { IsAutomatic = <span class="kw">true</span> };</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">PersonUmbrella personUmbrella = <span class="kw">new</span> <span class="fu">PersonUmbrella</span>()</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">Person = edward,</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">Umbrella = umbrella,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">Color = <span class="st">"Red"</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">};</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">edward.<span class="fu">PersonUmbrellas</span>.<span class="fu">Add</span>(personUmbrella);</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">Console.<span class="fu">WriteLine</span>(<span class="st">"Jane uses it, too."</span>);</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">jane.<span class="fu">PersonUmbrellas</span>.<span class="fu">Add</span>(<span class="kw">new</span> <span class="fu">PersonUmbrella</span>()</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">{</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">Umbrella = umbrella,</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">Color = <span class="st">"Green"</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">});</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">Console.<span class="fu">WriteLine</span>(<span class="st">"PersonUmbrellas: "</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">+ _db.<span class="fu">PersonUmbrellas</span>.<span class="fu">Count</span>());</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">Console.<span class="fu">WriteLine</span>(<span class="st">"Edward's Umbrella: "</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">+ edward.<span class="fu">PersonUmbrellas</span>.<span class="fu">First</span>().<span class="fu">Color</span>);</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">Console.<span class="fu">WriteLine</span>(<span class="st">"Jane's Umbrella: "</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">+ jane.<span class="fu">PersonUmbrellas</span>.<span class="fu">First</span>().<span class="fu">Color</span>);</a></code></pre></div>
 <p>We run our now somewhat long program:</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
@@ -243,10 +251,7 @@ Finished</code></pre>
 <p>Let us walk back to the library. Ah! I see the sun has come out. Oh well, I have thought enough for this morning, and lunch beckons with her frail arms!</p>
 <hr>
 <p>*The Professor chooses the easier and more common method, where the PersonUmbrellas table’s primary key is a composite of the Person and Umbrella primary keys. This works well if the join table, itself, does not have a relationship to another table. But what if an umbrella had zero or more umbrella cases? While we could carry the PersonId+UmbrellaId key forward as a foreign key in the UmbrellaCase table, many prefer to add a new primary key to the PersonUmbrellas table, and make PersonId+UmbrellaId a unique key (aka candidate key). I show how this is done in the <a href="http://www.softwaremeadows.com/2013/09/edward-farley-epilogue.html">Epilogue</a>.</p>
-<p><a href="http://dictionary.reference.com/browse/synchronicity?s=t">Synchronicity</a></p>
-<p><a href="http://dictionary.reference.com/browse/convalesce?&amp;path=/">Convalesce</a></p>
-<p><a href="http://en.wikipedia.org/wiki/Sarah_Gamp">Sarah Gamp</a></p>
-<p><a href="http://stackoverflow.com/questions/7050404/create-code-first-many-to-many-with-additional-fields-in-association-table">Create code first, many to many, with additional fields in association table</a></p>
+<p><a href="http://dictionary.reference.com/browse/synchronicity?s=t">Synchronicity</a> <a href="http://dictionary.reference.com/browse/convalesce?&amp;path=/">Convalesce</a> <a href="http://en.wikipedia.org/wiki/Sarah_Gamp">Sarah Gamp</a> <a href="http://stackoverflow.com/questions/7050404/create-code-first-many-to-many-with-additional-fields-in-association-table">Create code first, many to many, with additional fields in association table</a></p>
 <hr>
 </div>
               </div>

@@ -43,45 +43,29 @@
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></h2>
                 <p class='post-info'><span class='posted-on'>2014-02-02 16:35</span></p>
                 <div class='post-content'><p>This may not be a Lenovo and/or Intel driver issue. It might be Windows 8/8.1. I’m trying a couple of different fixes to see what sticks.</p>
-<h2 id="disable-energy-management">Disable Energy Management</h2>
+<h2>Disable Energy Management</h2>
 <p>Maybe the OS isn’t telling the adapter the right thing regarding when to shut down?</p>
 <ol>
 <li>Network and Sharing Center &gt; Change adapter settings</li>
 <li>Edit your wifi adapter &gt; Properties &gt; Configure</li>
 <li>Choose Power Management tab and uncheck everything.</li>
 </ol>
-<p><a href="images/image_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued/images/image_thumb_25255B1_25255D.png" title="image" alt="image" width="427" height="270"></a></p>
-<h2 id="disable-msi-support">Disable MSI Support</h2>
-<p>I don’t know what MSI Support is, but there’s some evidence that Win8 doesn’t communicate with WiFi adapters in the same way regarding it. See Mark Hanna’s answer in this thread. <a href="https://communities.intel.com/thread/32169" class="uri">https://communities.intel.com/thread/32169</a><br>
-[Here’s his answer copy/pasted]<br>
-Some Intel engineers did investigate this issue and this is what they found. When the system is in battery mode to save power, Windows 8 is doing something different compared to Windows 7 and earlier versions of Windows. For some reason the driver is not getting called by the OS in battery mode resulting in transmit hangs.<br>
-I do not anticipate any driver update for this issue, but you should be able to make a registry change to the interrupt type from MSI to legacy to work around the issue. After disabling MSI on a test machine here, the hang was no longer happening.<br>
-MSI can be disabled from registry. You can use Windows Device Manager to find the hardware device ID information that will be part of the path to the registry setting shown <strong><em>in brackets and highlighted</em></strong>below. Hardware IDs can be found in the device's "Details" tab.<br>
-Here is an example for my network connection. The numbers are different because I have a different network connection, but this does show where to find the hardware IDs.<br>
-<a href="images/HardwareIDs.jpg"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued/images/HardwareIDs.jpg" alt="HardwareIDs.jpg" width="407" height="285"></a><br>
-The above information is what you will need from your network connection in order to locate the right place in the Windows registry.<br>
-<strong>Caution</strong>: Make sure you back up your registry before proceeding. Changing or deleting registry keys can have unintended consequences.<br>
-Registry Setting Path:<br>
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\[<strong><em>VEN_8086&amp;DEV_XXXX&amp;...]</em></strong>\3&amp;33fd14ca&amp;0&amp;C8\Device Parameters\InterruptManagement\MessageSignaledInterruptProperties<br>
-Change "MSISupported" value to '0'. The value is '1' by default. You can always go back and change to '1' again if you run into any new issues.<br>
-Here is a screen shot of my registry setting that I navigated to using the hardware IDs I found in Windows device manager:<br>
-<a href="images/MSI.jpg"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued/images/MSI.jpg" alt="MSI.jpg" width="450" height="403"></a></p>
-<ul>
-<li></li>
-</ul>
-<h2 id="update-2014-02-02">Update 2014-02-02</h2>
-<p>Neither of the above solved my problem. However, I finally found a forum from Intel discussing the issue, and discovered I’m not running the latest Intel drivers (I <em>am</em> running the latest driver on Lenovo’s site). There were several steps to deal with, but I’m install both the Bluetooth and WiFi drivers soon. I’ll check that the other changes I made aren’t in place—running default settings—and report back.<br>
-<a href="http://www.intel.com/p/en_US/support/detect" class="uri">http://www.intel.com/p/en_US/support/detect</a></p>
-<h2 id="update-2014-02-03">Update 2014-02-03</h2>
+<p><a href="images/image.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued/images/image.png" title="image" alt="image"></a></p>
+<h2>Disable MSI Support</h2>
+<p>I don’t know what MSI Support is, but there’s some evidence that Win8 doesn’t communicate with WiFi adapters in the same way regarding it. See Mark Hanna’s answer in this thread. <a href="https://communities.intel.com/thread/32169" class="uri" title="https://communities.intel.com/thread/32169">https://communities.intel.com/thread/32169</a> [Here’s his answer copy/pasted] Some Intel engineers did investigate this issue and this is what they found. When the system is in battery mode to save power, Windows 8 is doing something different compared to Windows 7 and earlier versions of Windows. For some reason the driver is not getting called by the OS in battery mode resulting in transmit hangs. I do not anticipate any driver update for this issue, but you should be able to make a registry change to the interrupt type from MSI to legacy to work around the issue. After disabling MSI on a test machine here, the hang was no longer happening. MSI can be disabled from registry. You can use Windows Device Manager to find the hardware device ID information that will be part of the path to the registry setting shown <strong><em>in brackets and highlighted</em></strong>below. Hardware IDs can be found in the device's "Details" tab. Here is an example for my network connection. The numbers are different because I have a different network connection, but this does show where to find the hardware IDs. <a href="https://communities.intel.com/servlet/JiveServlet/showImage/2-185710-231663/HardwareIDs.jpg"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued/https://communities.intel.com/servlet/JiveServlet/downloadImage/2-185710-231663/407-285/HardwareIDs.jpg" alt="HardwareIDs.jpg"></a> The above information is what you will need from your network connection in order to locate the right place in the Windows registry. <strong>Caution</strong>: Make sure you back up your registry before proceeding. Changing or deleting registry keys can have unintended consequences. Registry Setting Path: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\[<strong><em>VEN_8086\&amp;DEV_XXXX&amp;...]</em></strong>\3&amp;33fd14ca&amp;0\&amp;C8\Device Parameters\InterruptManagement\MessageSignaledInterruptProperties Change "MSISupported" value to '0'. The value is '1' by default. You can always go back and change to '1' again if you run into any new issues. Here is a screen shot of my registry setting that I navigated to using the hardware IDs I found in Windows device manager: <a href="https://communities.intel.com/servlet/JiveServlet/showImage/2-185710-231664/MSI.jpg"><img src="http://bladewolf55.gitlab.io/smblog/posts/lenovo-u530-touch-wifi-problem-continued/https://communities.intel.com/servlet/JiveServlet/downloadImage/2-185710-231664/450-403/MSI.jpg" alt="MSI.jpg"></a></p>
+<h2></h2>
+<h2>Update 2014-02-02</h2>
+<p>Neither of the above solved my problem. However, I finally found a forum from Intel discussing the issue, and discovered I’m not running the latest Intel drivers (I <em>am</em> running the latest driver on Lenovo’s site). There were several steps to deal with, but I’m install both the Bluetooth and WiFi drivers soon. I’ll check that the other changes I made aren’t in place—running default settings—and report back. <a href="http://www.intel.com/p/en_US/support/detect" class="uri" title="http://www.intel.com/p/en_US/support/detect">http://www.intel.com/p/en_US/support/detect</a></p>
+<h2>Update 2014-02-03</h2>
 <p>I don’t know yet if the latest drivers prevent the adapter from dropping down to 11mbps, but I do know the adapter got turned off while in sleep mode, and came on shortly after coming out of sleep. The power profile definitely isn’t set to do that, so I’m turning off the adapter’s Properties &gt; Power Management &gt; Allow the computer to turn off this device to save power.</p>
-<h2 id="update-2014-02-05">Update 2014-02-05</h2>
+<h2>Update 2014-02-05</h2>
 <p>The laptop hasn’t dropped to 11mbps since installing the latest drivers. I’m also letting Intel PROSet manage wireless. I just realized that of <em>course</em> the wireless goes to sleep while the laptop’s in sleep mode. That’s what it’s supposed to do.The import thing to me is that it properly wakes up, which it appears to be now. I have a daily backup using Windows Home Server, and the laptop is configured to wake from sleep or hibernate to perform that. Haven’t tried it in hibernate, yet!</p>
 <p>Here’s another nugget: running System File Checker, e.g. sfc /scannow, found corrupt files it couldn’t repair. “Cannot repair member file”. I found this link that suggested running, as administrator,</p>
 <p>dism /online /cleanup-image /restorehealth.</p>
 <p>This indeed repaired the image, and running sfc again found no errors.</p>
 <p><a href="http://answers.microsoft.com/en-us/windows/forum/windows_8-performance/hash-mismatch/08ef49a6-84e8-47ad-bd69-48b829d495c9">Cannot repair member file [l:36{18}]"Amd64\CNBJ2530.DPB"</a></p>
 <p><a href="http://social.technet.microsoft.com/Forums/windows/en-US/26f35def-6f55-4c07-9ba8-73e2d402e6cc/sfc-scannow-cannot-repair-member-file?forum=w8itprogeneral">sfc /scannow – Cannot repair member file</a></p>
-<h2 id="update-2014-02-17">Update 2014-02-17</h2>
+<h2>Update 2014-02-17</h2>
 <p>I tried letting Windows manage my WiFi, and began having troubles again (suddenly slower speed, dropping connection). So, for some reason, letting PROSet manage the wireless makes a big difference.</p>
 <p>Sadly, I was unable to connect to a Days Inn wireless recently. But I had no problem connecting with my smart phone. Windows 8 issue? Maybe the next W8 update will make an improvement.</p>
 </div>

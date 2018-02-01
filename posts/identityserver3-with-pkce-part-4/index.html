@@ -50,99 +50,95 @@
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
-This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
+<p><strong>Important</strong> This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
-<h1 id="where-were-at">Where We're At</h1>
+<h1>Where We're At</h1>
 <p>We're persisting IdentityServer configuration data, but still using in-memory users. IdentityServer can be extended to validate against an identity store, and supports Microsoft's AspNet.Identity via Entity Framework on SQL Server.</p>
 <blockquote>
 <p><strong>Important</strong> IdentityServer is <em>not</em> intended or used to add, edit or delete users. They make that clear. The server's job is only to verify identity. In this sample, there's a klunky method for populating the user database, and there are <em>no</em> API methods for registering a user. The API could be added using controller code similar to what's in the default ASP.NET Web API templates.</p>
 </blockquote>
-<h2 id="aspnetidentity">AspNetIdentity</h2>
-<p><strong>References</strong><br>
-<a href="https://github.com/IdentityServer/IdentityServer3.AspNetIdentity">IdentityServer3.AspNetIdentity Sample</a><br>
-<a href="https://www.scottbrady91.com/Identity-Server/Identity-Server-3-using-ASPNET-Identity">Identity Server 3 using ASP.NET Identity</a><br>
-<a href="https://mindfulsoftware.com.au/guidance/oauth2-walkthrough-using-identity-server-and-aspnet/creating-an-identity-server-using-aspnet-identity-and-entity-framework-storage">OAuth2 Walkthrough using Identity Server and ASP.NET</a></p>
+<h2>AspNetIdentity</h2>
+<p><strong>References</strong> <a href="https://github.com/IdentityServer/IdentityServer3.AspNetIdentity">IdentityServer3.AspNetIdentity Sample</a> <a href="https://www.scottbrady91.com/Identity-Server/Identity-Server-3-using-ASPNET-Identity">Identity Server 3 using ASP.NET Identity</a> <a href="https://mindfulsoftware.com.au/guidance/oauth2-walkthrough-using-identity-server-and-aspnet/creating-an-identity-server-using-aspnet-identity-and-entity-framework-storage">OAuth2 Walkthrough using Identity Server and ASP.NET</a></p>
 <p>Install these packages.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Install-Package IdentityServer3.<span class="fu">AspNetIdentity</span> -Project AuthAndApi
-Install-Package Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>.<span class="fu">EntityFramework</span> -Version <span class="fl">2.2</span>.<span class="fu">1</span> -Project AuthAndApi</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">Install-Package IdentityServer3.<span class="fu">AspNetIdentity</span> -Project AuthAndApi</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">Install-Package Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>.<span class="fu">EntityFramework</span> -Version <span class="dv">2</span>.<span class="fu">2</span><span class="fl">.1</span> -Project AuthAndApi</a></code></pre></div>
 <p>Add a new connection string to web.config, for the AspNet Identity database.</p>
-<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">"IdUsersDb"</span><span class="ot"> connectionString=</span><span class="st">"Server=(localDb)\MSSQLLocalDb;AttachDbFilename=|DataDirectory|IdUsers.mdb;Database=IdUsers-ncacpkce;Integrated Security=true;"</span><span class="ot"> providerName=</span><span class="st">"System.Data.SqlClient"</span> <span class="kw">/&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">&lt;add</span><span class="ot"> name=</span><span class="st">"IdUsersDb"</span><span class="ot"> connectionString=</span><span class="st">"Server=(localDb)\MSSQLLocalDb;AttachDbFilename=|DataDirectory|IdUsers.mdb;Database=IdUsers-ncacpkce;Integrated Security=true;"</span><span class="ot"> providerName=</span><span class="st">"System.Data.SqlClient"</span> <span class="kw">/&gt;</span></a></code></pre></div>
 <p>Update Factory.cs</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="co">//Add these usings</span>
-<span class="kw">using</span> Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>.<span class="fu">EntityFramework</span>;
-<span class="kw">using</span> Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>;
-<span class="kw">using</span> IdentityServer3.<span class="fu">AspNetIdentity</span>;
-<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>;
-<span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>.<span class="fu">InMemory</span>;</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">//Add these usings</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">using</span> Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>.<span class="fu">EntityFramework</span>;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">using</span> Microsoft.<span class="fu">AspNet</span>.<span class="fu">Identity</span>;</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">using</span> IdentityServer3.<span class="fu">AspNetIdentity</span>;</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>;</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">using</span> IdentityServer3.<span class="fu">Core</span>.<span class="fu">Services</span>.<span class="fu">InMemory</span>;</a></code></pre></div>
 <p>Change the Configure method, adding code to persist the users, and a new method to populate the database.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> IdentityServerServiceFactory <span class="fu">Configure</span>(<span class="dt">string</span> optionsConnectionString, <span class="dt">string</span> usersConnectionString)
-{
-<span class="co">//Configure persisting IdentityServer operational services</span>
-<span class="co">//The database will be created if needed. The default schema is being used.</span>
-<span class="dt">var</span> efConfig = <span class="kw">new</span> EntityFrameworkServiceOptions
-{
-ConnectionString = optionsConnectionString
-};
-
-<span class="co">// these two calls just pre-populate the test DB from the in-memory config.</span>
-<span class="co">// clf note: there's probably a better way to do this for a production app.</span>
-<span class="fu">ConfigureClients</span>(Clients.<span class="fu">Get</span>(), efConfig);
-<span class="fu">ConfigureScopes</span>(Scopes.<span class="fu">Get</span>(), efConfig);
-
-<span class="dt">var</span> factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>();
-factory.<span class="fu">RegisterConfigurationServices</span>(efConfig);
-factory.<span class="fu">RegisterOperationalServices</span>(efConfig);
-factory.<span class="fu">ConfigureClientStoreCache</span>();
-factory.<span class="fu">ConfigureScopeStoreCache</span>();
-<span class="co">//persist users</span>
-<span class="co">//populate the database. This creates the database, if needed.</span>
-<span class="fu">ConfigureUsers</span>(Users.<span class="fu">Get</span>(), usersConnectionString);
-<span class="co">//configure IdentityServer to use the database</span>
-factory.<span class="fu">UserService</span> = <span class="kw">new</span> Registration&lt;IUserService&gt;(UserServiceFactory.<span class="fu">Create</span>(usersConnectionString));
-
-<span class="co">//configure cleanup for expired data</span>
-<span class="dt">var</span> cleanup = <span class="kw">new</span> <span class="fu">TokenCleanup</span>(efConfig); <span class="co">//by default every 60 seconds</span>
-
-<span class="kw">return</span> factory;
-}
-
-<span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">ConfigureUsers</span>(IEnumerable&lt;InMemoryUser&gt; users, <span class="dt">string</span> connectionString)
-{
-<span class="co">//create the Identity UserManager</span>
-<span class="dt">var</span> context = <span class="kw">new</span> <span class="fu">IdentityDbContext</span>(connectionString);
-<span class="dt">var</span> userStore = <span class="kw">new</span> UserStore&lt;IdentityUser&gt;(context);
-<span class="dt">var</span> userManager = <span class="kw">new</span> UserManager&lt;IdentityUser&gt;(userStore);
-<span class="kw">foreach</span> (var user <span class="kw">in</span> users)
-{
-<span class="co">//no error checking!</span>
-<span class="co">//only add if doesn't exist</span>
-<span class="dt">var</span> test = userManager.<span class="fu">FindByName</span>(user.<span class="fu">Username</span>);
-<span class="kw">if</span> (test != <span class="kw">null</span>) { <span class="kw">continue</span>; }
-userManager.<span class="fu">Create</span>(<span class="kw">new</span> <span class="fu">IdentityUser</span>(user.<span class="fu">Username</span>), user.<span class="fu">Password</span>);
-test = userManager.<span class="fu">FindByName</span>(user.<span class="fu">Username</span>);
-<span class="kw">foreach</span> (var claim <span class="kw">in</span> user.<span class="fu">Claims</span>)
-{
-<span class="kw">if</span> (claim.<span class="fu">Type</span>.<span class="fu">ToLower</span>() == <span class="st">"email"</span>) { test.<span class="fu">Email</span> = claim.<span class="fu">Value</span>; }
-userManager.<span class="fu">AddClaim</span>(test.<span class="fu">Id</span>, claim);
-}
-userManager.<span class="fu">Update</span>(test);
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">public</span> <span class="kw">static</span> IdentityServerServiceFactory <span class="fu">Configure</span>(<span class="dt">string</span> optionsConnectionString, <span class="dt">string</span> usersConnectionString)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">//Configure persisting IdentityServer operational services</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">//The database will be created if needed. The default schema is being used.</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="dt">var</span> efConfig = <span class="kw">new</span> EntityFrameworkServiceOptions</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">{</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">ConnectionString = optionsConnectionString</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">};</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">// these two calls just pre-populate the test DB from the in-memory config.</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">// clf note: there's probably a better way to do this for a production app.</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="fu">ConfigureClients</span>(Clients.<span class="fu">Get</span>(), efConfig);</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="fu">ConfigureScopes</span>(Scopes.<span class="fu">Get</span>(), efConfig);</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="dt">var</span> factory = <span class="kw">new</span> <span class="fu">IdentityServerServiceFactory</span>();</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">factory.<span class="fu">RegisterConfigurationServices</span>(efConfig);</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">factory.<span class="fu">RegisterOperationalServices</span>(efConfig);</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">factory.<span class="fu">ConfigureClientStoreCache</span>();</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">factory.<span class="fu">ConfigureScopeStoreCache</span>();</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">//persist users</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">//populate the database. This creates the database, if needed.</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="fu">ConfigureUsers</span>(Users.<span class="fu">Get</span>(), usersConnectionString);</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">//configure IdentityServer to use the database</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">factory.<span class="fu">UserService</span> = <span class="kw">new</span> Registration&lt;IUserService&gt;(UserServiceFactory.<span class="fu">Create</span>(usersConnectionString));</a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">//configure cleanup for expired data</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="dt">var</span> cleanup = <span class="kw">new</span> <span class="fu">TokenCleanup</span>(efConfig); <span class="co">//by default every 60 seconds</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="kw">return</span> factory;</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">}</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="kw">public</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">ConfigureUsers</span>(IEnumerable&lt;InMemoryUser&gt; users, <span class="dt">string</span> connectionString)</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">{</a>
+<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co">//create the Identity UserManager</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="dt">var</span> context = <span class="kw">new</span> <span class="fu">IdentityDbContext</span>(connectionString);</a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="dt">var</span> userStore = <span class="kw">new</span> UserStore&lt;IdentityUser&gt;(context);</a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="dt">var</span> userManager = <span class="kw">new</span> UserManager&lt;IdentityUser&gt;(userStore);</a>
+<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="kw">foreach</span> (var user <span class="kw">in</span> users)</a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">{</a>
+<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co">//no error checking!</span></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co">//only add if doesn't exist</span></a>
+<a class="sourceLine" id="cb4-42" data-line-number="42"><span class="dt">var</span> test = userManager.<span class="fu">FindByName</span>(user.<span class="fu">Username</span>);</a>
+<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="kw">if</span> (test != <span class="kw">null</span>) { <span class="kw">continue</span>; }</a>
+<a class="sourceLine" id="cb4-44" data-line-number="44">userManager.<span class="fu">Create</span>(<span class="kw">new</span> <span class="fu">IdentityUser</span>(user.<span class="fu">Username</span>), user.<span class="fu">Password</span>);</a>
+<a class="sourceLine" id="cb4-45" data-line-number="45">test = userManager.<span class="fu">FindByName</span>(user.<span class="fu">Username</span>);</a>
+<a class="sourceLine" id="cb4-46" data-line-number="46"><span class="kw">foreach</span> (var claim <span class="kw">in</span> user.<span class="fu">Claims</span>)</a>
+<a class="sourceLine" id="cb4-47" data-line-number="47">{</a>
+<a class="sourceLine" id="cb4-48" data-line-number="48"><span class="kw">if</span> (claim.<span class="fu">Type</span>.<span class="fu">ToLower</span>() == <span class="st">"email"</span>) { test.<span class="fu">Email</span> = claim.<span class="fu">Value</span>; }</a>
+<a class="sourceLine" id="cb4-49" data-line-number="49">userManager.<span class="fu">AddClaim</span>(test.<span class="fu">Id</span>, claim);</a>
+<a class="sourceLine" id="cb4-50" data-line-number="50">}</a>
+<a class="sourceLine" id="cb4-51" data-line-number="51">userManager.<span class="fu">Update</span>(test);</a>
+<a class="sourceLine" id="cb4-52" data-line-number="52">}</a>
+<a class="sourceLine" id="cb4-53" data-line-number="53">}</a></code></pre></div>
 <p>And finally, add a new factory class, which is used in the line <code>factory.UserServce =</code>.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> UserServiceFactory
-{
-<span class="kw">public</span> <span class="kw">static</span> AspNetIdentityUserService&lt;IdentityUser, <span class="dt">string</span>&gt; <span class="fu">Create</span>(<span class="dt">string</span> connectionString)
-{
-<span class="dt">var</span> context = <span class="kw">new</span> <span class="fu">IdentityDbContext</span>(connectionString);
-<span class="dt">var</span> userStore = <span class="kw">new</span> UserStore&lt;IdentityUser&gt;(context);
-<span class="dt">var</span> userManager = <span class="kw">new</span> UserManager&lt;IdentityUser&gt;(userStore);
-<span class="kw">return</span> <span class="kw">new</span> AspNetIdentityUserService&lt;IdentityUser, <span class="dt">string</span>&gt;(userManager);
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">public</span> <span class="kw">static</span> <span class="kw">class</span> UserServiceFactory</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">public</span> <span class="kw">static</span> AspNetIdentityUserService&lt;IdentityUser, <span class="dt">string</span>&gt; <span class="fu">Create</span>(<span class="dt">string</span> connectionString)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="dt">var</span> context = <span class="kw">new</span> <span class="fu">IdentityDbContext</span>(connectionString);</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="dt">var</span> userStore = <span class="kw">new</span> UserStore&lt;IdentityUser&gt;(context);</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="dt">var</span> userManager = <span class="kw">new</span> UserManager&lt;IdentityUser&gt;(userStore);</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">return</span> <span class="kw">new</span> AspNetIdentityUserService&lt;IdentityUser, <span class="dt">string</span>&gt;(userManager);</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">}</a></code></pre></div>
 <p>That's it! The Startup class doesn't change. Running the solution creates the new database, and the authentication works as before.</p>
-<p><a href="images/2017-05-06_165055_thumb"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-4/images/2017-05-06_165055_thumb" title="2017-05-06_165055" alt="2017-05-06_165055" width="426" height="139"></a></p>
-<h1 id="wrap-up">Wrap Up</h1>
+<p><a href="images/17-05-06_165055.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/identityserver3-with-pkce-part-4/images/17-05-06_165055.png" title="2017-05-06_165055" alt="2017-05-06_165055"></a></p>
+<h1>Wrap Up</h1>
 <p>In this series, I demonstrated authorizing a mobile application in a secure way. This was necessarily a simple sample. Some natural next steps and questions to answer would be:</p>
 <ol>
 <li>How to customize the IdentityServer login and authorization screens</li>

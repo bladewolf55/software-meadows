@@ -44,24 +44,24 @@
                 <p class='post-info'><span class='posted-on'>2013-03-23 13:48</span></p>
                 <div class='post-content'><p>I'm preparing a series on Entity Framework, and discovered something yesterday I never knew. In MS SQL Server, you can't successfully model a true one-to-one relationship, where both sides are required. I say "successfully," because you can configure the tables, but they won't work. This is because SQL won't allow deferred constraint resolution, which is fine by me.</p>
 <p>The insert statements, below, will fail. Note you have to remove one of the foreign key constraints before you can drop the tables!</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">One</span> (
-OneId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,
-Name <span class="fu">varchar</span>(<span class="dv">10</span>) <span class="kw">null</span>
-)
-
-create table <span class="fu">Two</span> (
-OneId <span class="dt">int</span> not <span class="kw">null</span> primary key references <span class="fu">One</span>(OneId),
-Name <span class="fu">varchar</span>(<span class="dv">10</span>)
-)
-
-alter table One add constraint fk1 foreign <span class="fu">key</span> (OneId) references <span class="fu">Two</span>(OneId)
-
-insert <span class="fu">One</span>(Name) <span class="fu">values</span>('asdf')
-insert <span class="fu">Two</span>(Name) <span class="fu">values</span>('qwer')
-
-alter table One drop constraint fk1
-drop table Two
-drop table One</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">create table <span class="fu">One</span> (</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">OneId <span class="dt">int</span> not <span class="kw">null</span> identity primary key,</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">Name <span class="fu">varchar</span>(<span class="dv">10</span>) <span class="kw">null</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">create table <span class="fu">Two</span> (</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">OneId <span class="dt">int</span> not <span class="kw">null</span> primary key references <span class="fu">One</span>(OneId),</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">Name <span class="fu">varchar</span>(<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">alter table One add constraint fk1 foreign <span class="fu">key</span> (OneId) references <span class="fu">Two</span>(OneId)</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">insert <span class="fu">One</span>(Name) <span class="fu">values</span>('asdf')</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">insert <span class="fu">Two</span>(Name) <span class="fu">values</span>('qwer')</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">alter table One drop constraint fk1</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17">drop table Two</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">drop table One</a></code></pre></div>
 </div>
               </div>
               

@@ -38,7 +38,7 @@
     <div id="site-subtitle">A pleasant walk through computing</div>
   </header>
   <section id="content">
-    <h1 id="home">Home</h1>
+    <h1>Home</h1>
 
   </section>
   <!-- posts only appear in home index -->
@@ -48,13 +48,13 @@
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/encrypting-appconfig'>Encrypting app.config</a></h2>
                 <p class='post-info'><span class='posted-on'>2015-07-25 07:23</span></p>
                 <div class='post-content'><p>Developers often use the app.config (or web.config) file to hold database connection strings and application settings. For example:</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">&lt;connectionStrings&gt;
-&lt;add name=<span class="st">"WonderDb"</span> connectionString=<span class="st">"Server=BigServe1;Database=Wonder;Integrated Security=True"</span> providerName=<span class="st">"System.Data.SqlClient"</span> /&gt;
-&lt;/connectionStrings&gt;
-&lt;appSettings&gt;
-&lt;add key=<span class="st">"FtpUser"</span> value=<span class="st">"ariadne"</span> /&gt;
-&lt;add key=<span class="st">"FtpPassword"</span> value=<span class="st">"maze1$"</span> /&gt;
-&lt;/appSettings&gt;</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1">&lt;connectionStrings&gt;</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">&lt;add name=<span class="st">"WonderDb"</span> connectionString=<span class="st">"Server=BigServe1;Database=Wonder;Integrated Security=True"</span> providerName=<span class="st">"System.Data.SqlClient"</span> /&gt;</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">&lt;/connectionStrings&gt;</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">&lt;appSettings&gt;</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">&lt;add key=<span class="st">"FtpUser"</span> value=<span class="st">"ariadne"</span> /&gt;</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">&lt;add key=<span class="st">"FtpPassword"</span> value=<span class="st">"maze1$"</span> /&gt;</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">&lt;/appSettings&gt;</a></code></pre></div>
 <p>You can find several pages on how to encrypt these settings, but they don’t usually show a typical solution, which, for me, includes:</p>
 <ol>
 <li>Encrypting/decrypting both connectionStrings and appSettings in one step.</li>
@@ -64,71 +64,69 @@
 <p>Granted, this is a simple case, where I don’t care about <em>selectively</em> encrypting settings. For that, Jon Galloway has a <a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">good post</a>. In fact, we’ll use Jon’s post as our basis.</p>
 <p><strong><em>Important: In your project, you need to add the System.Configuration assembly. You also add</em> <span style="font-family: consolas;">using System.Configuration</span><em>, but that by itself doesn’t include all the methods we need without referencing the assembly.</em></strong></p>
 <p>In my version, I removed the check for whether the section is locked, because I want an error thrown.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">if</span> (!section.<span class="fu">ElementInformation</span>.<span class="fu">IsLocked</span>)
-{. . .
-}</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">if</span> (!section.<span class="fu">ElementInformation</span>.<span class="fu">IsLocked</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{. . .</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">}</a></code></pre></div>
 <p>I also allow either encrypting or decrypting. Finally, I wrap up the default behavior, encrypting both appSettings and connectionStrings, in a single method call. Here’s the complete Console Application code.</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">using</span> System;
-<span class="kw">using</span> System.<span class="fu">Configuration</span>;
-
-<span class="kw">namespace</span> EncryptConfig
-{
-<span class="kw">class</span> Program
-{
-<span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)
-{
-<span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>);
-Console.<span class="fu">ReadLine</span>(); <span class="co">//check the file, see if it’s encrypted.</span>
-}
-
-<span class="kw">private</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetDefaultConfigEncryption</span>(<span class="dt">bool</span> encrypt)
-{
-<span class="fu">SetConfigSectionEncryption</span>(encrypt,<span class="st">"appSettings"</span>);
-<span class="fu">SetConfigSectionEncryption</span>(encrypt, <span class="st">"connectionStrings"</span>);
-}
-
-<span class="kw">private</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetConfigSectionEncryption</span>(<span class="dt">bool</span> encrypt, <span class="dt">string</span> sectionKey)
-{
-Configuration config = ConfigurationManager.<span class="fu">OpenExeConfiguration</span>(ConfigurationUserLevel.<span class="fu">None</span>);
-ConfigurationSection section = config.<span class="fu">GetSection</span>(sectionKey);
-<span class="kw">if</span> (section != <span class="kw">null</span>)
-{
-<span class="kw">if</span> (encrypt &amp;&amp; !section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
-{
-section.<span class="fu">SectionInformation</span>.<span class="fu">ProtectSection</span>(<span class="st">"DataProtectionConfigurationProvider"</span>);
-}
-<span class="kw">if</span> (!encrypt &amp;&amp; section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)
-{
-section.<span class="fu">SectionInformation</span>.<span class="fu">UnprotectSection</span>();
-}
-section.<span class="fu">SectionInformation</span>.<span class="fu">ForceSave</span> = <span class="kw">true</span>;
-config.<span class="fu">Save</span>(ConfigurationSaveMode.<span class="fu">Full</span>);
-}
-}
-}
-}</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">using</span> System;</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">using</span> System.<span class="fu">Configuration</span>;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">namespace</span> EncryptConfig</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">{</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">class</span> Program</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">{</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>(<span class="dt">string</span>[] args)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">{</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="fu">SetDefaultConfigEncryption</span>(<span class="kw">true</span>);</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">Console.<span class="fu">ReadLine</span>(); <span class="co">//check the file, see if it’s encrypted.</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">private</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetDefaultConfigEncryption</span>(<span class="dt">bool</span> encrypt)</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">{</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="fu">SetConfigSectionEncryption</span>(encrypt,<span class="st">"appSettings"</span>);</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="fu">SetConfigSectionEncryption</span>(encrypt, <span class="st">"connectionStrings"</span>);</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="kw">private</span> <span class="kw">static</span> <span class="dt">void</span> <span class="fu">SetConfigSectionEncryption</span>(<span class="dt">bool</span> encrypt, <span class="dt">string</span> sectionKey)</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">{</a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">Configuration config = ConfigurationManager.<span class="fu">OpenExeConfiguration</span>(ConfigurationUserLevel.<span class="fu">None</span>);</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">ConfigurationSection section = config.<span class="fu">GetSection</span>(sectionKey);</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="kw">if</span> (section != <span class="kw">null</span>)</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">{</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="kw">if</span> (encrypt &amp;&amp; !section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">{</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">section.<span class="fu">SectionInformation</span>.<span class="fu">ProtectSection</span>(<span class="st">"DataProtectionConfigurationProvider"</span>);</a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">}</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="kw">if</span> (!encrypt &amp;&amp; section.<span class="fu">SectionInformation</span>.<span class="fu">IsProtected</span>)</a>
+<a class="sourceLine" id="cb3-31" data-line-number="31">{</a>
+<a class="sourceLine" id="cb3-32" data-line-number="32">section.<span class="fu">SectionInformation</span>.<span class="fu">UnprotectSection</span>();</a>
+<a class="sourceLine" id="cb3-33" data-line-number="33">}</a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">section.<span class="fu">SectionInformation</span>.<span class="fu">ForceSave</span> = <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb3-35" data-line-number="35">config.<span class="fu">Save</span>(ConfigurationSaveMode.<span class="fu">Full</span>);</a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">}</a>
+<a class="sourceLine" id="cb3-37" data-line-number="37">}</a>
+<a class="sourceLine" id="cb3-38" data-line-number="38">}</a>
+<a class="sourceLine" id="cb3-39" data-line-number="39">}</a></code></pre></div>
 <p>Assuming an executable named EncryptConfig.exe, when running the above in Debug mode, the file that’s encrypted is <span style="font-family: consolas;">bin\Debug\EncryptConfig.vshost.exe.Config</span></p>
 <p>That’s nice and makes sense, because that’s the executable that’s actually in use, even though the regular exe has been built, too.The vshost config file is immediately reverted back when debugging ends. Here’s the encrypted version. Whew!</p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">&lt;connectionStrings configProtectionProvider=<span class="st">"DataProtectionConfigurationProvider"</span>&gt;
-&lt;EncryptedData&gt;
-&lt;CipherData&gt;
-&lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAkgsqGn6mo3noCKO2peA8w799u8ajWVLado9goQ8esSAAAAAAOgAAAAAIAACAAAADqB7GDKmDFY9buAJlgMDyUoos81ALB/<span class="dv">3</span>/UKAtk3wT53TADAAAHixr6r15/5eNFgPHnXPJD950sY5F9oAjYRF4Cpfu9sfd532WpEOxFnST1W4LgX+u+d8so2rf5FqN3ikxsJY4Y1p3xpQeJEA1xa4i9L4n5arPabK4mmNn7fKTKjxri1Xktqkhkb1FLV/opfFFRnOlRy64nFOzWr4Ucwwsr8VR7d3TTt6MD2Bg3pJDZiUgjcQ+tXdD8cHkEhfKfxbMdeLfO65uG6VbyAm+ldjp7p9D6c2Z9DyBbq+rEShrMvMTL+lZ52j9H63sD+V93ESJ9FMgjOMX48TG2ZvboQE6EbiLmM0uH50BqziGUat3ft3Frc+0mQHfoqhnVs2M7mCt5mkjE3Tb0pcvjN3XvWVqo9wy5jxB0K/9yRuPTtSdVBV1q4chHGUZ4XsvBjTnt67LP2XdAYcu/Xju6Swv/dkgXMuXPzuAMgizX86CYuLebR0hMNH3Spiz9ODX98wUFCJMzJ4kQupxpdRNafNKISQWZI7119Anjehz4x3yeWJjUNoatTMWxoQ2xeYr+SlyiRoTOI3BrvfPGgpkDG9nQH2S+8dWMJyWRPHBs2GbrPqjjtLA1yR+2rqt9Uocv29oBJ6DwvnT+FA0p9P/Qp91jzEpRmcTEz+EYoIJfwSsBOIZuRXllcNJkaO1Ni/ThvGpTg0aqotXrhY0MoQlI4m/iPly2qkKVKr3O1qMwY9GrYERTrbj5pKb+hXFPgsOAEDgRBiAHsH6FuoZjG0MIXVTGg4zmJ+7rhsa8EPh61ROI6DwW1rRTA9DSKs9LS1sxeHTR/8QWaLxZuRWSwjuZJaVybPyllU1rvOFzDY9Nv96wk1n9u6s21fSf233l4nuu+7np8VfUdYUxNGfn0TwH69bh8cg1wqaJVCEoSioMHFidrKArtSCciJHW27jn3/SsRz4HWNudebTY8WZTf9YsLTuP0jC7dxuX9CIpuhcJBXitpvyVGxwC5NfmKDAsl/Dws4Rt+/YXVJ/4j5JvT35ZxYbTm/cZgvhL/z6j5odkCkIxey3ulqt1o57VNWJ18Ks0lTStRN0esejDVL6ThnqSVtlP2BCB5bThoRGXvyxhuz6Y/ON4SgeK8vBAAAAAX9I6BKGWYUcUHSscMRV2a6VGisOj9FzqTTWn0YAbeQ2hK0ZuYgK2x7hgp6iZcFJnvvuvXWTHzdvDtEliixpHQQ==&lt;/CipherValue&gt;
-&lt;/CipherData&gt;
-&lt;/EncryptedData&gt;
-&lt;/connectionStrings&gt;
-&lt;appSettings configProtectionProvider=<span class="st">"DataProtectionConfigurationProvider"</span>&gt;
-&lt;EncryptedData&gt;
-&lt;CipherData&gt;
-&lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAcT/dxC/l5+9h0pizxo4Thn6rgtJlRVLwGediRA8DpywAAAAAOgAAAAAIAACAAAADHdhTfi7lUXxm6CwB3S252W+lo63eEXsNwxrnPOdfQUCABAACM0LuV5c69abxGbAY6Btx9i/lUhfqjGd8B5MvNCmkwN9hQW90sPzgwBYc7o7EJPM9M2PrgbMXmCo1fUn45ZZdoL68b9andNZe78AJAKz+HNRPBaW3UD2ruwZMKr8F/FVlFxrVnrgytRxDbNNZGfwOR8WrfLsISJdOJHjZcOhLU+hsSVeA2WeSPoH/QR7L+zGqZ15/9VmULHK/0J2KacFKyqn8d4SNIOehAR+t7tlec/qdSsFYtsIWq+c4k4mgWWOVwhCXqzc+3dXRforeEYuBHfsG5KyYsxsaZZdg2dm3wooCJCCv8tK86FuDCBym8L5R1oreRWT8WAq73UM4GJn5in5ZDeAK00lnhjB8DddOy7GjrflIIM63Rc1ClXUrfm3lAAAAA+KiFbW8vRL7rF6Kl9uKDpVp8uzCMs5JcPM9lqHz5XNNQ3m7zEk8TaVoOLC56AKu5rJ+ecX76XYWfQqvpQxDj/g==&lt;/CipherValue&gt;
-&lt;/CipherData&gt;
-&lt;/EncryptedData&gt;
-&lt;/appSettings&gt;</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb4-1" data-line-number="1">&lt;connectionStrings configProtectionProvider=<span class="st">"DataProtectionConfigurationProvider"</span>&gt;</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">&lt;EncryptedData&gt;</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">&lt;CipherData&gt;</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">&lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAkgsqGn6mo3noCKO2peA8w799u8ajWVLado9goQ8esSAAAAAAOgAAAAAIAACAAAADqB7GDKmDFY9buAJlgMDyUoos81ALB/<span class="dv">3</span>/UKAtk3wT53TADAAAHixr6r15/5eNFgPHnXPJD950sY5F9oAjYRF4Cpfu9sfd532WpEOxFnST1W4LgX+u+d8so2rf5FqN3ikxsJY4Y1p3xpQeJEA1xa4i9L4n5arPabK4mmNn7fKTKjxri1Xktqkhkb1FLV/opfFFRnOlRy64nFOzWr4Ucwwsr8VR7d3TTt6MD2Bg3pJDZiUgjcQ+tXdD8cHkEhfKfxbMdeLfO65uG6VbyAm+ldjp7p9D6c2Z9DyBbq+rEShrMvMTL+lZ52j9H63sD+V93ESJ9FMgjOMX48TG2ZvboQE6EbiLmM0uH50BqziGUat3ft3Frc+0mQHfoqhnVs2M7mCt5mkjE3Tb0pcvjN3XvWVqo9wy5jxB0K/9yRuPTtSdVBV1q4chHGUZ4XsvBjTnt67LP2XdAYcu/Xju6Swv/dkgXMuXPzuAMgizX86CYuLebR0hMNH3Spiz9ODX98wUFCJMzJ4kQupxpdRNafNKISQWZI7119Anjehz4x3yeWJjUNoatTMWxoQ2xeYr+SlyiRoTOI3BrvfPGgpkDG9nQH2S+8dWMJyWRPHBs2GbrPqjjtLA1yR+2rqt9Uocv29oBJ6DwvnT+FA0p9P/Qp91jzEpRmcTEz+EYoIJfwSsBOIZuRXllcNJkaO1Ni/ThvGpTg0aqotXrhY0MoQlI4m/iPly2qkKVKr3O1qMwY9GrYERTrbj5pKb+hXFPgsOAEDgRBiAHsH6FuoZjG0MIXVTGg4zmJ+7rhsa8EPh61ROI6DwW1rRTA9DSKs9LS1sxeHTR/8QWaLxZuRWSwjuZJaVybPyllU1rvOFzDY9Nv96wk1n9u6s21fSf233l4nuu+7np8VfUdYUxNGfn0TwH69bh8cg1wqaJVCEoSioMHFidrKArtSCciJHW27jn3/SsRz4HWNudebTY8WZTf9YsLTuP0jC7dxuX9CIpuhcJBXitpvyVGxwC5NfmKDAsl/Dws4Rt+/YXVJ/4j5JvT35ZxYbTm/cZgvhL/z6j5odkCkIxey3ulqt1o57VNWJ18Ks0lTStRN0esejDVL6ThnqSVtlP2BCB5bThoRGXvyxhuz6Y/ON4SgeK8vBAAAAAX9I6BKGWYUcUHSscMRV2a6VGisOj9FzqTTWn0YAbeQ2hK0ZuYgK2x7hgp6iZcFJnvvuvXWTHzdvDtEliixpHQQ==&lt;/CipherValue&gt;</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">&lt;/CipherData&gt;</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">&lt;/EncryptedData&gt;</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">&lt;/connectionStrings&gt;</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">&lt;appSettings configProtectionProvider=<span class="st">"DataProtectionConfigurationProvider"</span>&gt;</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">&lt;EncryptedData&gt;</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">&lt;CipherData&gt;</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">&lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAcT/dxC/l5+9h0pizxo4Thn6rgtJlRVLwGediRA8DpywAAAAAOgAAAAAIAACAAAADHdhTfi7lUXxm6CwB3S252W+lo63eEXsNwxrnPOdfQUCABAACM0LuV5c69abxGbAY6Btx9i/lUhfqjGd8B5MvNCmkwN9hQW90sPzgwBYc7o7EJPM9M2PrgbMXmCo1fUn45ZZdoL68b9andNZe78AJAKz+HNRPBaW3UD2ruwZMKr8F/FVlFxrVnrgytRxDbNNZGfwOR8WrfLsISJdOJHjZcOhLU+hsSVeA2WeSPoH/QR7L+zGqZ15/9VmULHK/0J2KacFKyqn8d4SNIOehAR+t7tlec/qdSsFYtsIWq+c4k4mgWWOVwhCXqzc+3dXRforeEYuBHfsG5KyYsxsaZZdg2dm3wooCJCCv8tK86FuDCBym8L5R1oreRWT8WAq73UM4GJn5in5ZDeAK00lnhjB8DddOy7GjrflIIM63Rc1ClXUrfm3lAAAAA+KiFbW8vRL7rF6Kl9uKDpVp8uzCMs5JcPM9lqHz5XNNQ3m7zEk8TaVoOLC56AKu5rJ+ecX76XYWfQqvpQxDj/g==&lt;/CipherValue&gt;</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">&lt;/CipherData&gt;</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">&lt;/EncryptedData&gt;</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">&lt;/appSettings&gt;</a></code></pre></div>
 <p>There’s nothing new here, I just wanted to document what I think of as a common implementation instead of the generic one. If I’ve made a security error let me know.</p>
-<h2 id="references">References</h2>
+<h2>References</h2>
 <p>Many pages reference David Hayden’s seminal post on the subject, but I was unable to locate the original.</p>
-<p><a href="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx" class="uri">https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx</a></p>
-<p><a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">Jon Galloway’s Post</a></p>
-<p><a href="http://www.4guysfromrolla.com/articles/021506-1.aspx">4 Guys from Rolla</a></p>
+<p><a href="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx" class="uri" title="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx">https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx</a> <a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">Jon Galloway’s Post</a> <a href="http://www.4guysfromrolla.com/articles/021506-1.aspx">4 Guys from Rolla</a></p>
 </div>
               </div>
               
@@ -144,25 +142,24 @@ config.<span class="fu">Save</span>(ConfigurationSaveMode.<span class="fu">Full<
 <p>It’s no secret that Google Sites themes are uniformly mediocre. I went searching for tutorials on how to do better, and found some help—not much—and a company, <a href="http://www.kirksvillewebdesign.com/google-sites">Kirksville Web Design</a>, who specializes in them. This was a pretty big help, because I got to look at actual sites that I knew could be done in GS. I could either pay them for templates, or figure it out.</p>
 <p>This isn’t a tutorial on how to use Google Sites, nor on how to create web images. I’m assuming you know enough about both. (I use <a href="http://inkscape.org">Inkscape</a> to create a lot of my graphics.)</p>
 <p>Now, if you want a really professional site, hire a professional designer like Kirksville. But if you want a decent looking site, here are instructions for creating a simple, better design. The reference web site—again, designed by Kirksville—is <a href="http://www.aim-for-a-revision-courses.co.uk/about-us-1">Aim for ‘A’</a>. The basic layout features a notched design.</p>
-<p><a href="images/Notched_252520Site_252520Design_252520Layout_thumb_25255B1_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/Notched_252520Site_252520Design_252520Layout_thumb_25255B1_25255D.png" title="Notched Site Design Layout" alt="Notched Site Design Layout" width="487" height="348"></a></p>
+<p><a href="images/Notched_Site_Design_Layout.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/Notched_Site_Design_Layout.png" title="Notched Site Design Layout" alt="Notched Site Design Layout"></a></p>
 <p>That’s not so attractive, but the <a href="http://www.hudsoncma.org/">final site I created</a> is.</p>
-<p><a href="images/image_25255B38_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_25255B38_25255D.png" title="image" alt="image" width="492" height="462"></a></p>
-<h1 id="initial-setup">Initial Setup</h1>
+<p><a href="http://www.hudsoncma.org/"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image.png" title="image" alt="image"></a></p>
+<h1>Initial Setup</h1>
 <p>Create a Google Site (GS) with a blank template and the Blank Slate theme. You’ll get a pretty ugly page.</p>
-<p><a href="images/image_thumb_25255B3_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B3_25255D.png" title="image" alt="image" width="502" height="182"></a></p>
+<p><a href="images/image-001.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-001.png" title="image" alt="image"></a></p>
 <p>Edit the page and add some text.</p>
-<p><a href="images/image_thumb_25255B5_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B5_25255D.png" title="image" alt="image" width="510" height="242"></a></p>
+<p><a href="images/image-002.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-002.png" title="image" alt="image"></a></p>
 <p>Now we’re ready to edit the Site Layout</p>
-<h1 id="site-layout">Site Layout</h1>
+<h1>Site Layout</h1>
 <ol>
 <li>Only activate Header and Horizontal Navigation (deactivate Sidebar). Set Site Width to Custom 1000px (press Enter in this text box to save the setting).</li>
-<li>Click the Header to edit, and set height to 130px. This is what gives the upper notched effect. Less height increases the notch.<br>
-<a href="images/image_thumb_25255B7_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B7_25255D.png" title="image" alt="image" width="301" height="265"></a></li>
+<li>Click the Header to edit, and set height to 130px. This is what gives the upper notched effect. Less height increases the notch. <a href="images/image-003.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-003.png" title="image" alt="image"></a></li>
 <li>Click the Close button. This gives us a centered site.</li>
 </ol>
-<p><a href="images/image_thumb_25255B10_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B10_25255D.png" title="image" alt="image" width="483" height="245"></a></p>
+<p><a href="images/image-004.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-004.png" title="image" alt="image"></a></p>
 <p>Now, choose Manage Site.</p>
-<h1 id="manage-site">Manage Site</h1>
+<h1>Manage Site</h1>
 <p>In the General page,</p>
 <ol>
 <li>Uncheck Show Site Name at Top of Pages</li>
@@ -180,25 +177,23 @@ config.<span class="fu">Save</span>(ConfigurationSaveMode.<span class="fu">Full<
 <ol>
 <li>Entire Page</li>
 <li>Background color: #c8c8c8.</li>
-<li>Image: header-background.png. Repeating horizontally fills the space without downloading a large file.<br>
-<a href="images/image_thumb_25255B12_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B12_25255D.png" title="image" alt="image" width="413" height="168"></a></li>
-<li>Wrapper: footer-background.png. Note Vertical Position is “bottom.”<br>
-<a href="images/image_thumb_25255B14_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B14_25255D.png" title="image" alt="image" width="413" height="166"></a></li>
+<li>Image: header-background.png. Repeating horizontally fills the space without downloading a large file. <a href="images/image-005.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-005.png" title="image" alt="image"></a></li>
+<li>Wrapper: footer-background.png. Note Vertical Position is “bottom.” <a href="images/image-006.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-006.png" title="image" alt="image"></a></li>
 <li>Site header</li>
-<li>Background Image: header.png. No repetition. (see <em>More about Headers</em>, below).<br>
-<a href="images/image_thumb_25255B16_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B16_25255D.png" title="image" alt="image" width="417" height="154"></a></li>
+<li>Background Image: header.png. No repetition. (see <em>More about Headers</em>, below). <a href="images/image-007.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-007.png" title="image" alt="image"></a></li>
 <li>Content area</li>
 <li>Background color: white</li>
 <li>Save.</li>
 </ol>
 <p>Et voila!</p>
-<p><a href="images/image_thumb_25255B19_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B19_25255D.png" title="image" alt="image" width="514" height="248"></a></p>
+<p><a href="images/image-008.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-008.png" title="image" alt="image"></a></p>
 <p>There’s clearly more that should be done to make this attractive, but this gives you a good start.</p>
-<h1 id="more-about-headers">More About Headers</h1>
+<h1>More About Headers</h1>
 <p>The Hudson CMA web site has a centered logo. I didn’t use a 130x1000 image for this. Instead, I surrounded the logo in a transparent box to give the margins I wanted. Then, <em>instead</em> of adding the logo using Manage Site &gt; Themes, I added it using Site Layout &gt; Header.</p>
-<p><a href="images/image_thumb_25255B21_25255D.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image_thumb_25255B21_25255D.png" title="image" alt="image" width="333" height="260"></a></p>
+<p><a href="images/image-009.png"><img src="http://bladewolf55.gitlab.io/smblog/posts/better-google-sites-designthe-notched/images/image-009.png" title="image" alt="image"></a></p>
 <p>One isn’t necessarily better than the other, though they can lead to differences in how the horizontal menu is placed. More on that in another post.</p>
-<h1 id="references">References</h1>
+<h1></h1>
+<h1>References</h1>
 <p><a href="http://blog.msbethea.com/?p=965">Google Sites: Build Your Own Theme</a></p>
 <p><a href="http://www.summitstuff.com/sites-and-blogs/designing-sites-part1">Summit Stuff: Designing Google Sites</a></p>
 <p><a href="https://sites.google.com/site/gsitesgallery/">GSites Gallery</a>&nbsp;&nbsp; Great inspiration</p>

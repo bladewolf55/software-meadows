@@ -42,22 +42,26 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:42</span></p>
-                <div class='post-content'><p>Parts</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a></p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
+                <div class='post-content'><div class="series">
+
+Parts
+[1) Preface](http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html)
+[2) Introduction](http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html)
+[3) A Simple Table](http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html)
+[4) One to One or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html)
+[5) Zero or One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html)
+[6) One to Zero or Many](http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html)
+[7) One to Zero or One](http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html)
+[8) One to One](http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html)
+[9) Many to Many, Simple](http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html)
+[10) Many to Many with Payload](http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html)
+[11) Enumerables](http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html)
+[12) Inheritance](http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html)
+
+</div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="one-to-zero-or-one">One to Zero or One</h3>
+<h2>Entity Framework 5 Code First Relationships</h2>
+<h3>One to Zero or One</h3>
 <p><em>In which the Professor demonstrates that travel is educational.</em></p>
 <p>Edward had sprinted from the bicycle lot, walked quickly (but did not run) in the library’s main floor, then took the stairs two at a time and jogged to his reading room where Professor Relvar was waiting. Edward was exactly thirty-seven seconds early.</p>
 <p>“My dear boy, you look exhausted.” The Professor smiled slightly and adjusted his reading glasses. “Isn’t your bicycle in good repair?”</p>
@@ -71,48 +75,48 @@
 <p>The answer is, you could. But what if, later, you wanted to know more about this bicycle? You might end up with twenty properties. Would it make sense to have those all in the Persons table when a person might not even own a bicycle? No.*</p>
 <p>I will describe the way I solve this problem, and you will have to imagine the code.** First, the schema.</p>
 <p><strong>LearningEFSchema.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> Person: IValidatableObject
-{
-<span class="co">//Primary Key</span>
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection Pencils&lt;Pencil&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> ICollection Magnifiers&lt;Magnifier&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }
-<span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }
-....
-
-<span class="kw">public</span> <span class="kw">class</span> Bicycle
-{
-<span class="co">//Primary Key same as Person</span>
-[Key, <span class="fu">ForeignKey</span>(<span class="st">"Person"</span>)]
-<span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }
-[Required]
-<span class="kw">public</span> <span class="dt">string</span> Model { <span class="kw">get</span>; <span class="kw">set</span>; }
-
-<span class="co">//Navigation</span>
-<span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> Person: IValidatableObject</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">//Primary Key</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">[Required]</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">public</span> <span class="dt">string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">public</span> <span class="kw">virtual</span> ICollection&lt;LibraryCard&gt; LibraryCards { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">public</span> <span class="kw">virtual</span> ICollection Pencils&lt;Pencil&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">public</span> <span class="kw">virtual</span> ICollection Magnifiers&lt;Magnifier&gt; { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">public</span> <span class="kw">virtual</span> Bicycle Bicycle { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">....</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">public</span> <span class="kw">class</span> Bicycle</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16">{</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">//Primary Key same as Person</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18">[Key, <span class="fu">ForeignKey</span>(<span class="st">"Person"</span>)]</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="kw">public</span> <span class="dt">int</span> PersonId { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">[Required]</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="kw">public</span> <span class="dt">string</span> Model { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb1-23" data-line-number="23"><span class="co">//Navigation</span></a>
+<a class="sourceLine" id="cb1-24" data-line-number="24"><span class="kw">public</span> <span class="kw">virtual</span> Person Person { <span class="kw">get</span>; <span class="kw">set</span>; }</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25">}</a></code></pre></div>
 <p>The important items are that the Person class references just one Bicycle that is not required, and Bicycle references just one Person where the PersonId property is both the primary key and the foreign key. In essence, we are extending the Person table.</p>
 <p>The Context class gets the expected DbSet.</p>
 <p><strong>LearningEFDb.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext
-{
-<span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">public</span> <span class="kw">class</span> LearningEFDb: DbContext</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">public</span> DbSet&lt;Bicycle&gt; Bicycles { <span class="kw">get</span>; <span class="kw">set</span>; }</a></code></pre></div>
 <p>We add to our program.</p>
 <p><strong>Program.cs</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">Console.<span class="fu">WriteLine</span>(<span class="st">"Add Bicycle without a Person"</span>);
-Bicycle bicycle = <span class="kw">new</span> <span class="fu">Bicycle</span>() { Model = <span class="st">"Herman"</span> };
-_db.<span class="fu">Bicycles</span>.<span class="fu">Add</span>(bicycle);
-<span class="fu">SaveChanges</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Set the Person, save, retrieve and show"</span>);
-bicycle.<span class="fu">Person</span> = edward;
-<span class="fu">SaveChanges</span>();
-bicycle = _db.<span class="fu">Bicycles</span>.<span class="fu">First</span>();
-Console.<span class="fu">WriteLine</span>(<span class="st">"Model: "</span> + bicycle.<span class="fu">Model</span> + <span class="st">", Person: "</span> + bicycle.<span class="fu">Person</span>.<span class="fu">Name</span>);</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb3-1" data-line-number="1">Console.<span class="fu">WriteLine</span>(<span class="st">"Add Bicycle without a Person"</span>);</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">Bicycle bicycle = <span class="kw">new</span> <span class="fu">Bicycle</span>() { Model = <span class="st">"Herman"</span> };</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">_db.<span class="fu">Bicycles</span>.<span class="fu">Add</span>(bicycle);</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">Console.<span class="fu">WriteLine</span>(<span class="st">"Set the Person, save, retrieve and show"</span>);</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">bicycle.<span class="fu">Person</span> = edward;</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="fu">SaveChanges</span>();</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">bicycle = _db.<span class="fu">Bicycles</span>.<span class="fu">First</span>();</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">Console.<span class="fu">WriteLine</span>(<span class="st">"Model: "</span> + bicycle.<span class="fu">Model</span> + <span class="st">", Person: "</span> + bicycle.<span class="fu">Person</span>.<span class="fu">Name</span>);</a></code></pre></div>
 <p>And run it.</p>
 <pre class="console"><code>Create Person without a name.
 Saving changes.
@@ -156,19 +160,16 @@ Model: Herman, Person: Edward Farley
 Finished</code></pre>
 <p>It is not a lovely error, but suits our educational purpose. The resulting table would be scripted so:</p>
 <p><strong>T-SQL</strong></p>
-<div class="sourceCode"><pre class="sourceCode csharp"><code class="sourceCode cs">create table <span class="fu">Bicycles</span> (
-PersonId not <span class="kw">null</span> primary key foreign key references <span class="fu">Persons</span>(PersonId),
-Model <span class="fu">nvarchar</span>(max) not <span class="kw">null</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode csharp"><code class="sourceCode cs"><a class="sourceLine" id="cb5-1" data-line-number="1">create table <span class="fu">Bicycles</span> (</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">PersonId not <span class="kw">null</span> primary key foreign key references <span class="fu">Persons</span>(PersonId),</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">Model <span class="fu">nvarchar</span>(max) not <span class="kw">null</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">)</a></code></pre></div>
 <p>With that, Edward and Professor Relvar had arrived at Sunderland Library which, as anyone knows, maintains the finest collection of ice cream recipe books found anywhere. Plus, chefs who prepare scoops for anyone who cares to taste.</p>
 <p>“And if it weren’t for the bicycles,” the Professor stated, licking happily at his Chocolate Peanut Butter and Pretzel Sundae, “all Sunderland regulars would be fat. Another scoop, Edward?”</p>
 <hr>
 <p>*Though some would say, “Yes.” The question is when to use table-per-type, table-per-hierarchy, or table-per-concrete-type, which will come up again in Inheritance. Also, the Professor might be thinking ahead too much. Some Agile development methods would say to do the simplest thing first (TPH), then change to TPT if needed. The fact is, the author doesn’t like TPH and discriminator columns.</p>
 <p>**Which, fortunately, we don’t have to wait for.</p>
-<p><a href="http://www.imdb.com/title/tt0079588/?ref_=fn_al_tt_1">The Muppet Movie</a></p>
-<p><a href="http://www.imdb.com/title/tt0089791/?ref_=sr_1">Pee-wee’s Big Adventure</a></p>
-<p><a href="http://weblogs.asp.net/manavi/archive/2010/12/24/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-1-table-per-hierarchy-tph.aspx">EF Inheritance Models</a></p>
-<p><a href="http://www.amazon.com/The-Perfect-Scoop-Granitas-Accompaniments/dp/158008219X/ref=sr_1_1?ie=UTF8&amp;qid=1367882906&amp;sr=8-1&amp;keywords=ice+cream+recipes">The Perfect Scoop</a></p>
+<p><a href="http://www.imdb.com/title/tt0079588/?ref_=fn_al_tt_1">The Muppet Movie</a> <a href="http://www.imdb.com/title/tt0089791/?ref_=sr_1">Pee-wee’s Big Adventure</a> <a href="http://weblogs.asp.net/manavi/archive/2010/12/24/inheritance-mapping-strategies-with-entity-framework-code-first-ctp5-part-1-table-per-hierarchy-tph.aspx">EF Inheritance Models</a> <a href="http://www.amazon.com/The-Perfect-Scoop-Granitas-Accompaniments/dp/158008219X/ref=sr_1_1?ie=UTF8&amp;qid=1367882906&amp;sr=8-1&amp;keywords=ice+cream+recipes">The Perfect Scoop</a></p>
 <hr>
 </div>
               </div>

@@ -42,7 +42,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='http://bladewolf55.gitlab.io/smblog/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-03-08 10:11</span></p>
-                <div class='post-content'><h1 id="the-summary">The Summary</h1>
+                <div class='post-content'><h1>The Summary</h1>
 <p>A build agent is what takes care of actually running a build definition. Agents can be installed on machines separate from the TFS server, allowing workload distribution.</p>
 <p>The simple way to understand an agent is to imagine how you'd create continuous integration yourself.</p>
 <ol>
@@ -60,10 +60,10 @@
 <blockquote>
 <p>Using Visual Studio on the Build Server: If you have one or more licensed users of Visual Studio Enterprise with MSDN, Visual Studio Professional with MSDN, or any Visual Studio cloud subscription then you may also install the Visual Studio software as part of Team Foundation Server 2017 Build Services. This way, you do not need to purchase a Visual Studio license to cover the running of Visual Studio on the build server for each person whose actions initiate a build.</p>
 </blockquote>
-<h1 id="references">References</h1>
+<h1>References</h1>
 <p>Installing an agent is pretty simple. Really, just read Ben Day's post and you'll find out what you need. It's slightly outdated, but close enough. I've also listed the steps, below.</p>
 <p><a href="https://www.benday.com/2016/01/01/walkthrough-create-a-new-tfs2015-build-server/" class="uri">https://www.benday.com/2016/01/01/walkthrough-create-a-new-tfs2015-build-server/</a></p>
-<h1 id="the-installation">The Installation</h1>
+<h1>The Installation</h1>
 <ol>
 <li>Install everything needed to build the software. It's best to do this first.</li>
 <li>Download the agent from the TFS web. Manage Server (click the right corner gear) &gt; click link "View collection administration page" &gt; open Agent Queues tab &gt; click "Download agent"</li>
@@ -72,14 +72,13 @@
 <li>Mostly accept the defaults. The TFS server URL will be something like <a href="http://servername:8080/tfs" class="uri">http://servername:8080/tfs</a>. Answer Y to installing as a service.</li>
 </ol>
 <p>After installation, you should see the agent in the Agent Queues.</p>
-<h1 id="maintenance">Maintenance</h1>
+<h1>Maintenance</h1>
 <p><strong>Agent Versions</strong></p>
 <p>If you're using a local TFS installation, the agent version is tied to the TFS version. If you update TFS, be sure to update the agents. It's easy. In Agent Queues, right-click the queue and choose Update All Agents.</p>
 <p><strong>Adding Agent Capabilities</strong></p>
 <p>Normally, all you need to do is install the software with the capability, then restart the agent. However, here are a couple of articles related to capabilities.</p>
-<p><a href="http://donovanbrown.com/post/how-to-register-capabilities-on-your-build-and-release-management-agents">How to Register Capabilities</a><br>
-<a href="https://www.visualstudio.com/en-us/docs/build/define/general">Demands</a></p>
-<h1 id="the-wrap-up">The Wrap Up</h1>
+<p><a href="http://donovanbrown.com/post/how-to-register-capabilities-on-your-build-and-release-management-agents">How to Register Capabilities</a> <a href="https://www.visualstudio.com/en-us/docs/build/define/general">Demands</a></p>
+<h1>The Wrap Up</h1>
 <p>Agents are just services that run build steps. An agent can be installed on almost any machine, letting you easily configure your build environment.</p>
 </div>
               </div>
