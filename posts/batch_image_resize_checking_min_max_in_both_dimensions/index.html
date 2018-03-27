@@ -11,7 +11,7 @@
 <link rel='stylesheet' href='http://www.softwaremeadows.com/css/prism.css' />
 
 
-  <title>Identityserver3 With PKCE Part 2 - Protected Resource Server | Software Meadows</title>
+  <title>Batch Image Resize Checking Min Max In Both Dimensions | Software Meadows</title>
 </head>
 
 <body>
@@ -42,168 +42,117 @@
   <section id="content">
     
               <div class='post'>
-                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></h2>
-                <p class='post-info'><span class='posted-on'>2017-05-08 10:07</span></p>
-                <div class='post-content'><p>This series simulates a native application accessing a protected Web API resource, using OAuth2 via <a href="https://github.com/IdentityServer/IdentityServer3">IdentityServer3</a>. It demonstrates using Proof Key for Code Exchange (PKCE), and is in four parts:</p>
+                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/batch_image_resize_checking_min_max_in_both_dimensions'>Batch Image Resize Checking Min Max in Both Dimensions</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-03-27 15:17</span></p>
+                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/batch_image_resize_checking_min_max_in_both_dimensions/images/image-resize.png" alt=""></p>
+<p>Here's some code that you can feel free to use, if it helps you. I had a large folder of photos that I use for Windows wallpaper. The sizes were all over the place, and I really wanted to better match my monitor's resolution. I looked around and didn't find a utility that exactly met my needs, which were:</p>
 <ol>
-<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-1-simple.html">Build a simple authorization server, consumed by native application</a>.</li>
-<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-2.html">Build a protected resource</a>.</li>
-<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-3.html">Persist server configuration to database</a>.</li>
-<li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
+<li>Batch resize photos using <em>not to exceed</em> values for width and height.</li>
+<li>Ignore files below specified minimum width or height.</li>
+<li>Simple way to ignore files based on name.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
-This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
+<p>Basically, I wanted to resize most of my pictures to not exceed the monitor's natural width or height, and ignore really small ones.</p>
 </blockquote>
-<h1 id="where-were-at">Where We're At</h1>
-<p>We can get a token, but there's nothing to use it on. We've configured IdentityServer with information about our client application (PretendMobile), and we used that information (Client ID, etc) to get a token.</p>
-<p>Now we'll add a Web API with a protected method that just returns some claim data. It will be configured to:</p>
+<p>For exampe, let's say I had these photos. (All dimensions are given in WIDTH x HEIGHT)</p>
 <ol>
-<li>Accept the access token our pretend mobile app gets from the authorization server.</li>
-<li>Validate that token against the authorization server.</li>
+<li>One in landscape mode at 2500x1600</li>
+<li>One in landscape mode at 1400x1300</li>
+<li>One in landscape mode at 1000x500</li>
+<li>One in portrait mode at 2400x400 (weird!)</li>
+<li>One in portrait mode at 400x500</li>
 </ol>
-<p>We'll use the same project as the authorization server, but it's important to know that the Web API could be in a completely separate project.</p>
-<h2 id="web-api">Web API</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
-<a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
-<p>Install the packages for Web API, and being able to accept the IdentityServer tokens. Note IdentityModel version, which is latest for .Net 4.6 (2.x is for .Net Core).</p>
-<pre><code class="language-csharp">Install-Package Microsoft.AspNet.WebApi.Client -Version 5.2.3 -Project AuthAndApi
-Install-Package Microsoft.AspNet.WebApi.Owin -Version 5.2.3 -Project AuthAndApi
-Install-Package IdentityModel -Version 1.9.2 -Project AuthAndApi
-Install-Package IdentityServer3.AccessTokenValidation -Version 2.15.0 -Project AuthAndApi
+<p>In the code, I set the variables this way:</p>
+<pre><code class="language-csharp">    // Set the min/max values of a LANDSCAPE photo.
+    // The code automatically handles if the photo is in portrait mode.
+    int maxWidth = 1800;
+    int maxHeight = 1190;
+
+    int minWidth = 900;
+    int minHeight = 600;
 </code></pre>
-<p>Add two things to the OWIN pipeline: accepting access tokens, and using WebApi.</p>
-<p><strong>Updated Startup.cs</strong></p>
-<pre><code class="language-csharp">using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-//Added
-using IdentityServer3.Core.Configuration;
-using Owin;
-using AuthAndApi.IdOptions;
-using AuthAndApi.IdUsers;
-using System.Web.Http;
-using IdentityServer3.AccessTokenValidation;
-
-namespace AuthAndApi
-{
-    public class Startup
-    {
-        public void Configuration(IAppBuilder app)
-        {
-            //Configure IdentityServer for issuing authentication tokens
-            var options = new IdentityServerOptions
-            {
-                Factory = new IdentityServerServiceFactory()
-                .UseInMemoryClients(Clients.Get())
-                .UseInMemoryScopes(Scopes.Get())
-                .UseInMemoryUsers(Users.Get()),
-                //SSL MUST be used in production
-#if DEBUG
-                RequireSsl = false
-#endif
-            };
-            app.UseIdentityServer(options);
-
-            // Configure Web API to accept access tokens from IdentityServer, and require a scope of 'email'
-            app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
-            {
-                //In this case, the authorization server is also the Web API server
-                Authority = "http://localhost:27230",
-                ValidationMode = ValidationMode.ValidationEndpoint,
-                RequiredScopes = new[] { "email" }
-            });
-
-            //Configure Web API
-            var config = new HttpConfiguration();
-            config.MapHttpAttributeRoutes();
-            app.UseWebApi(config);
-        }
-    }
-}
-</code></pre>
-<p>Add a Controllers folder, and a controller named Test.</p>
-<p><a href="images/17-05-06_114024.png"><img src="http://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114024.png" alt="2017-05-06_114024" title="2017-05-06_114024"></a><a href="images/17-05-06_114144_1.png"><img src="http://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114144_1.png" alt="2017-05-06_114144" title="2017-05-06_114144"></a><a href="images/17-05-06_114210.png"><img src="http://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114210.png" alt="2017-05-06_114210" title="2017-05-06_114210"></a></p>
-<p>Create an API method that requires authorization. The method checks for evidence a user authorized (and not just the application).</p>
+<p>In plain-Engish, I'm expecting this:</p>
+<ol>
+<li>The width is too big, so reduce to 1800x1152</li>
+<li>The height is too big, so reduce to 1281x1190</li>
+<li>Both are too small. Resize to best fit of 1800x900</li>
+<li>Height is too big, reduce to 1190x198</li>
+<li>Ignored, because both dimensions are below our min dimensions</li>
+</ol>
+<p>Here's the code. Happy resizing!</p>
 <blockquote>
-<p><strong>Note</strong><br>
-Code shamelessly stolen from the IdentityServer samples</p>
+<p><strong>Warning</strong><br>
+I'm not responsible if this doesn't work. Backup your photos, and I recommend using an empty target folder.</p>
 </blockquote>
-<p><strong>TestController.cs</strong></p>
-<pre><code class="language-csharp">using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-//Added
-using System.Security.Claims;
-
-namespace AuthAndApi.Controllers
+<p><strong>Dependency:</strong>  NuGet package <a href="https://www.nuget.org/packages/ImageLibrary/">ImageLibrary</a></p>
+<pre><code class="language-csharp">void Main()
 {
-    [Route("test")]
-    [Authorize]
-    public class TestController : ApiController
-    {
-        public IHttpActionResult Get()
-        {
-            var user = User as ClaimsPrincipal;
+	bool OkToSave = true;
+    
+    //Comment this to run in "test" mode
+	if (!OkToSave) { Console.WriteLine("Not OK to Save"); return;}
 
-            var subjectClaim = user.FindFirst("sub");
-            if (subjectClaim != null)
-            {
-                return Json(new
-                {
-                    message = "OK user",
-                    client = user.FindFirst("client_id").Value,
-                    subject = subjectClaim.Value,
-                    email = user.FindFirst("email").Value
-                });
-            }
-            else
-            {
-                return Json(new
-                {
-                    message = "User claim not found for this client_id",
-                    client = user.FindFirst("client_id").Value
-                });
-            }
-        }
-    }
+    // Set the min/max values of a LANDSCAPE photo.
+    // The code automatically handles if the photo is in portrait mode.
+    int maxWidth = 1800;
+    int maxHeight = 1190;
+
+    int minWidth = 900;
+    int minHeight = 600;
+
+    // Set the source and target folders
+    string sourceFolder = 	@"C:\Users\charl\Google Drive\Documents\Clients\_SM\SktBlogImages";
+	string targetFolder = @"C:\Users\charl\Google Drive\Documents\Clients\_SM\Apps\HCMA Web Site Slider\SktBlogImages";
+	Directory.CreateDirectory(targetFolder);
+	
+	string[] formats = { ".bmp", ".jpg", ".jpeg", ".png"};
+
+    //Exclude these files, if any. E.g. {"Bad Hair Day", "Music Date"}
+    //Note that if the filename includes the string, it will be exluded.
+    string[] files = { };
+    
+	foreach (string file in Directory.EnumerateFiles(sourceFolder))
+	{
+		string fileName = Path.GetFileName(file);
+		string ext = Path.GetExtension(file).ToLower();
+		if (formats.Contains(ext) &amp; !files.Contains(fileName))
+		{
+			var image = new KalikoImage(file);
+            //LANDSCAPE
+			int width = maxWidth;
+			int height = maxHeight;
+            //PORTRAIT            
+			if (image.IsPortrait)
+			{
+				width = maxHeight;
+				height = maxWidth;
+				minWidth = minHeight;
+				minHeight = minWidth;
+			}
+
+			KalikoImage scaledImage;
+			//ignore if
+			if (image.Height &lt; minHeight &amp; image.Width &lt; minWidth){
+				scaledImage = image;
+			}
+			else
+			{
+				//resize, preserve aspect ratio			
+				scaledImage = image.Scale(new FitScaling(maxWidth, maxHeight));
+			}
+			//save with original resolution
+			ImageFormat format;
+			if (new string[] { ".jpg", ".jpeg" }.Contains(ext)) { format = ImageFormat.Jpeg; }
+			else if (ext == ".gif") { format = ImageFormat.Gif; }
+			else if (ext == ".bmp") { format = ImageFormat.Bmp; }
+			else { format = ImageFormat.Png; }
+
+			Console.WriteLine(fileName + "   " + scaledImage.Width + " x " + scaledImage.Height);
+			if (OkToSave) { scaledImage.SaveImage(Path.Combine(targetFolder, fileName), format, true);}
+		}
+	}
 }
 </code></pre>
-<p>The API server now has a protected resource. Let's prove it requires authorization. Run the application. The console will still get an access token, but we're not doing anything with it, yet. Leave the project running and manually enter this URL into a browser to try to access the protected resource.</p>
-<p><code>http://localhost:27230/test</code></p>
-<p>The server will return something like this:</p>
-<pre><code class="language-xml">&lt;Error&gt;
-  &lt;Message&gt;Authorization has been denied for this request.&lt;/Message&gt;
-&lt;/Error&gt;
-</code></pre>
-<h2 id="pretend-mobile-app-access-protected-resource">Pretend Mobile App - Access Protected Resource</h2>
-<p>In the PretendMobile project, add and call a method that access the protected Web API resource. The token is added to the request in the Authorization header.</p>
-<pre><code class="language-csharp">        static void Main(string[] args)
-        {
-            //get token
-            var response = GetAccessToken();
-            Console.WriteLine("Access Token: " + response.AccessToken);
-            //use token
-            CallProtectedApiResource(response.AccessToken);
-            Console.ReadLine();
-        }
-
-        static void CallProtectedApiResource(string access_token)
-        {
-            var client = new HttpClient();
-            client.SetBearerToken(access_token);
-            Console.WriteLine(client.GetStringAsync("http://localhost:27230/test").Result);
-        }
-</code></pre>
-<p>Run the solution. After authorizing, the application successfully gets the protected resource's data.</p>
-<p><a href="images/17-05-06_121035_1.png"><img src="http://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_121035_1.png" alt="2017-05-06_121035" title="2017-05-06_121035"></a></p>
-<h1 id="wrap-up">Wrap Up</h1>
-<p>We now have a fully functioning mobile application! Next up, persisting the IdentityServer configuration.</p>
 </div>
               </div>
               
