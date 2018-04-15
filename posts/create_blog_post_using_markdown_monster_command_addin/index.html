@@ -11,7 +11,7 @@
 <link rel='stylesheet' href='http://www.softwaremeadows.com/css/prism.css' />
 
 
-  <title>Angularjs Service With Var Declarations Instead Of This. Assignments | Software Meadows</title>
+  <title>Create Blog Post Using Markdown Monster's Command Addin | Software Meadows</title>
 </head>
 
 <body>
@@ -42,52 +42,123 @@
   <section id="content">
     
               <div class='post'>
-                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></h2>
-                <p class='post-info'><span class='posted-on'>2017-07-12 17:09</span></p>
-                <div class='post-content'><p>So I spent a couple of hours trying to figure out why a <a href="https://www.codeproject.com/Articles/810892/Building-a-Kanban-board-application-using-AngularJ">generally very good Angular sample</a> I thought I'd implemented correctly wouldn't work. Specifically, the service had this code:</p>
-<pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
+                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin'>Create Blog Post Using Markdown Monster's Command Addin</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-04-15 12:29</span></p>
+                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin/images/header.png" alt=""></p>
+<p>This is a quick entry, mostly for me. I've been using the very good Markdown editor, <a href="https://markdownmonster.west-wind.com/">Markdown Monster</a>, and wanted to automate creating blog posts. I have a manual process that I thought I could somewhat automate.</p>
+<p>MM has an addin that lets me write C# scripting and control a lot of the editor.</p>
+<p><img src="http://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin/images/2018-04-15%2012_33_00.png" alt=""></p>
+<p>Through both the documentation plus trial-and-error, I was able to do the following:</p>
+<ol>
+<li>Prompt for a post title.</li>
+<li>Create the post file in a known folder.</li>
+<li>Add metadata (frontmatter).</li>
+<li>Open in a tab for editing.</li>
+<li>Open the post folder's "images" folder.</li>
+<li>Commit and publish</li>
+</ol>
+<p>Here's the code for creating the post, some of which is seen in the above screenshot.</p>
+<blockquote>
+<p>There were some things I couldn't accomplish, noted in the code comments, probably due to my ignorance of how the MM API is supposed to work.</p>
+</blockquote>
+<pre><code class="language-csharp">#r Westwind.Utilities.dll
+#r Microsoft.VisualBasic.dll
+using Westwind.Utilities;
+using System.IO;
 
-    var getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
-            return response.data;
-        }, function (error) {
-            return $q.reject(error.data.Message);
-        });
-    };
-</code></pre>
-<p>which was called this way in the controller.</p>
-<pre><code class="language-javascript">sulhome.kanbanBoardApp.controller('boardCtrl', function ($scope, boardService) {
-    boardService.getColumns();
-</code></pre>
-<p>The problem is, this doesn't work. The proper way to set a function in a service should look like this:</p>
-<pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
+string defaultPath = @"c:\path\to\posts";
 
-    this.getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
-            return response.data;
-        }, function (error) {
-            return $q.reject(error.data.Message);
-        });
-    };
-</code></pre>
-<p>See the difference? <code>this.getColumns</code>, not <code>var getColumns</code>.</p>
-<p>So, how was this other guy's code working? It was--I downloaded and ran his sample.</p>
-<p>A service is a function with nested functions. He returned the functions in the parent function, like so:</p>
-<pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
+string title = Microsoft.VisualBasic.Interaction.InputBox("File Name", "Enter file name", "", 600, 300);
 
-    var getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
-            return response.data;
-        }, function (error) {
-            return $q.reject(error.data.Message);
-        });
-    };
+if (String.IsNullOrWhiteSpace(title))
+{
+    return null;
+}
 
-    return {
-            getColumns: getColumns
-        };
+string datetime = DateTime.Now.ToString("yyyyMMdd-HHmm");
+string folder = Path.Combine(defaultPath, datetime + " " + title);
+string file = Path.Combine(folder, title + ".md");
+string images = Path.Combine(folder, "images");
+string publishedOn = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+string slug = title.ToLower();
+slug = slug.Replace(" ", "_");
+slug = slug.Replace("?", "_");
+slug = slug.Replace("&amp;", "_");
+slug = slug.Replace(".", "_");
+string meta = String.Format(@"---
+Title          : {0}
+PublishedOn    : {1}
+Slug           : {2}
+Tags           : 
+Status         : Draft
+---
+",title, publishedOn, slug);
+
+Directory.CreateDirectory(images);
+File.WriteAllText(file,meta);
+//Model.ExecuteProcess("explorer.exe", images);
+//System.Threading.Thread.Sleep(2000);
+Model.Window.OpenTab(file);
+//I can't figure out how to set the cursor position
+//The code seems right, but the cursor doesn't move unless I run the command
+//from the addin window. Even then, the Console.WriteLine is what
+//forces it to work.
+var editor = Model.ActiveEditor;
+var doc = Model.ActiveDocument;
+var len = doc.CurrentText.Split('\n').Length;
+Console.WriteLine(len);
+Console.WriteLine(editor.GetLineNumber());
+editor.SetCursorPosition(0,len);
+editor.SetEditorFocus();
+
+
+//Couldn't get this working
+//var editor = Model.ActiveEditor;
+////HACK: For some reason this allows the document to be edited.
+//Console.WriteLine(editor.GetLineNumber());
+//editor.SetSelection(meta);
+//editor.SaveDocument();
 </code></pre>
-<p>So far, I haven't seen any other samples do it this way. It works, but...why the extra code step?</p>
+<p>To open the images folder, I created this command-let:</p>
+<pre><code class="language-csharp">#r Westwind.Utilities.dll
+
+using Westwind.Utilities;
+using System.IO;
+using System.Windows;
+
+string folder = Model.ActiveDocument.Filename;
+folder = Directory.GetParent(folder).FullName;
+
+string images = Path.Combine(folder, "images");
+if (Directory.Exists(images)) {
+    Model.ExecuteProcess("explorer.exe", images);
+}
+else {
+    MessageBox.Show("No folder " + images);
+}
+</code></pre>
+<p>And, to publish, I do this. I have a batch file in my blog folder that takes care of the actual commit/push to Git.</p>
+<pre><code class="language-csharp">#r Westwind.Utilities.dll
+
+using Westwind.Utilities;
+using System.IO;
+using System.Windows;
+using System.Diagnostics;
+
+string folder = Model.ActiveDocument.Filename;
+folder = Directory.GetParent(Path.Combine(folder,@"..\..\..\")).FullName;
+
+string cmd = Path.Combine(folder, "publish.cmd");
+cmd = @"""" + cmd + @"""";
+Console.WriteLine(cmd);
+//Model.ExecuteProcess("cmd.exe", "/C " + cmd);
+var si = new ProcessStartInfo();
+si.FileName = "cmd.exe";
+si.Arguments = "/C " +  cmd;
+si.WorkingDirectory = folder;
+
+Process.Start(si);
+</code></pre>
 </div>
               </div>
               
