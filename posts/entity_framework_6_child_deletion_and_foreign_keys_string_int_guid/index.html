@@ -18,7 +18,7 @@
 <link rel='stylesheet' href='http://www.softwaremeadows.com/css/prism.css' />
 
 
-  <title>Batch Image Resize Checking Min Max In Both Dimensions | Software Meadows</title>
+  <title>Entity Framework 6 Child Deletion And Foreign Keys - String Int GUID | Software Meadows</title>
 </head>
 
 <body>
@@ -49,117 +49,533 @@
   <section id="content">
     
               <div class='post'>
-                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/batch_image_resize_checking_min_max_in_both_dimensions'>Batch Image Resize Checking Min Max in Both Dimensions</a></h2>
-                <p class='post-info'><span class='posted-on'>2018-03-27 15:17</span></p>
-                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/batch_image_resize_checking_min_max_in_both_dimensions/images/image-resize.png" alt=""></p>
-<p>Here's some code that you can feel free to use, if it helps you. I had a large folder of photos that I use for Windows wallpaper. The sizes were all over the place, and I really wanted to better match my monitor's resolution. I looked around and didn't find a utility that exactly met my needs, which were:</p>
-<ol>
-<li>Batch resize photos using <em>not to exceed</em> values for width and height.</li>
-<li>Ignore files below specified minimum width or height.</li>
-<li>Simple way to ignore files based on name.</li>
-</ol>
-<blockquote>
-<p>Basically, I wanted to resize most of my pictures to not exceed the monitor's natural width or height, and ignore really small ones.</p>
-</blockquote>
-<p>For exampe, let's say I had these photos. (All dimensions are given in WIDTH x HEIGHT)</p>
-<ol>
-<li>One in landscape mode at 2500x1600</li>
-<li>One in landscape mode at 1400x1300</li>
-<li>One in landscape mode at 1000x500</li>
-<li>One in portrait mode at 2400x400 (weird!)</li>
-<li>One in portrait mode at 400x500</li>
-</ol>
-<p>In the code, I set the variables this way:</p>
-<pre><code class="language-csharp">    // Set the min/max values of a LANDSCAPE photo.
-    // The code automatically handles if the photo is in portrait mode.
-    int maxWidth = 1800;
-    int maxHeight = 1190;
-
-    int minWidth = 900;
-    int minHeight = 600;
-</code></pre>
-<p>In plain-Engish, I'm expecting this:</p>
-<ol>
-<li>The width is too big, so reduce to 1800x1152</li>
-<li>The height is too big, so reduce to 1281x1190</li>
-<li>Both are too small. Resize to best fit of 1800x900</li>
-<li>Height is too big, reduce to 1190x198</li>
-<li>Ignored, because both dimensions are below our min dimensions</li>
-</ol>
-<p>Here's the code. Happy resizing!</p>
-<blockquote>
-<p><strong>Warning</strong><br>
-I'm not responsible if this doesn't work. Backup your photos, and I recommend using an empty target folder.</p>
-</blockquote>
-<p><strong>Dependency:</strong>  NuGet package <a href="https://www.nuget.org/packages/ImageLibrary/">ImageLibrary</a></p>
-<pre><code class="language-csharp">void Main()
+                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/entity_framework_6_child_deletion_and_foreign_keys_string_int_guid'>Entity Framework 6 Child Deletion and Foreign Keys - String Int GUID</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-04-27 14:52</span></p>
+                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/entity_framework_6_child_deletion_and_foreign_keys_string_int_guid/images/ef-delete-child.png" alt=""></p>
+<ul>
+<li><a href="#the-problem">The Problem</a></li>
+<li><a href="#the-solution-short-version-for-the-impatient">The Solution - Short Version for the Impatient</a></li>
+<li><a href="#foreign-keys-that-are-manually-generated-andor-a-string-int-or-guid">Foreign Keys That Are Manually Generated, And/Or a String, Int or GUID</a>
+<ul>
+<li><a href="#test-schema">Test Schema</a></li>
+<li><a href="#classes">Classes</a></li>
+<li><a href="#basic-dbcontext-class">Basic DbContext class</a></li>
+<li><a href="#string-key-manually-generated">String Key (Manually Generated)</a></li>
+<li><a href="#manually-generated-int-keys">Manually-generated Int keys</a></li>
+<li><a href="#identity-int-keys">Identity Int keys</a></li>
+<li><a href="#manually-generated-guid-keys">Manually-generated GUID keys</a></li>
+<li><a href="#identity-guid-default-sequential-guid-keys">"Identity" GUID (Default Sequential GUID keys)</a></li>
+</ul>
+</li>
+<li><a href="#lessons-learned">Lessons Learned</a></li>
+<li><a href="#references">References</a>
+<ul>
+<li><a href="#other-background-information">Other Background Information</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="the-problem">The Problem</h1>
+<p>Here's a typical pattern for deleting a child entity we've all tried when using EF6.</p>
+<pre><code class="language-csharp">public void DeleteItem(int orderId, int itemId)
 {
-	bool OkToSave = true;
-    
-    //Comment this to run in "test" mode
-	if (!OkToSave) { Console.WriteLine("Not OK to Save"); return;}
-
-    // Set the min/max values of a LANDSCAPE photo.
-    // The code automatically handles if the photo is in portrait mode.
-    int maxWidth = 1800;
-    int maxHeight = 1190;
-
-    int minWidth = 900;
-    int minHeight = 600;
-
-    // Set the source and target folders
-    string sourceFolder = 	@"C:\Users\charl\Google Drive\Documents\Clients\_SM\SktBlogImages";
-	string targetFolder = @"C:\Users\charl\Google Drive\Documents\Clients\_SM\Apps\HCMA Web Site Slider\SktBlogImages";
-	Directory.CreateDirectory(targetFolder);
-	
-	string[] formats = { ".bmp", ".jpg", ".jpeg", ".png"};
-
-    //Exclude these files, if any. E.g. {"Bad Hair Day", "Music Date"}
-    //Note that if the filename includes the string, it will be exluded.
-    string[] files = { };
-    
-	foreach (string file in Directory.EnumerateFiles(sourceFolder))
-	{
-		string fileName = Path.GetFileName(file);
-		string ext = Path.GetExtension(file).ToLower();
-		if (formats.Contains(ext) &amp; !files.Contains(fileName))
-		{
-			var image = new KalikoImage(file);
-            //LANDSCAPE
-			int width = maxWidth;
-			int height = maxHeight;
-            //PORTRAIT            
-			if (image.IsPortrait)
-			{
-				width = maxHeight;
-				height = maxWidth;
-				minWidth = minHeight;
-				minHeight = minWidth;
-			}
-
-			KalikoImage scaledImage;
-			//ignore if
-			if (image.Height &lt; minHeight &amp; image.Width &lt; minWidth){
-				scaledImage = image;
-			}
-			else
-			{
-				//resize, preserve aspect ratio			
-				scaledImage = image.Scale(new FitScaling(maxWidth, maxHeight));
-			}
-			//save with original resolution
-			ImageFormat format;
-			if (new string[] { ".jpg", ".jpeg" }.Contains(ext)) { format = ImageFormat.Jpeg; }
-			else if (ext == ".gif") { format = ImageFormat.Gif; }
-			else if (ext == ".bmp") { format = ImageFormat.Bmp; }
-			else { format = ImageFormat.Png; }
-
-			Console.WriteLine(fileName + "   " + scaledImage.Width + " x " + scaledImage.Height);
-			if (OkToSave) { scaledImage.SaveImage(Path.Combine(targetFolder, fileName), format, true);}
-		}
-	}
+  var db = MyDbContext();
+  var order = db.Orders.Find(orderId);
+  order.Items.Remove(order.Items.Find(itemId));
+  db.SaveChanges();
 }
 </code></pre>
+<p>Then we get one of these errors:</p>
+<blockquote>
+<p>Cannot insert the value NULL into column 'OrderId', table 'MyDbContext.dbo.Items'; column does not allow nulls. UPDATE fails.</p>
+</blockquote>
+<p>Or</p>
+<blockquote>
+<p>The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.</p>
+</blockquote>
+<p>This article explains why this happens and what to do about it. It also demonstrates configuring for five different key datatypes:</p>
+<ul>
+<li>String</li>
+<li>Manually-generated Int</li>
+<li>Identity Int</li>
+<li>Manually-generated GUID</li>
+<li>"Identity" GUID</li>
+</ul>
+<p>It's nigh-on impossible to find any EF examples of foreign key relationships that don't use a integer identity column for the primary key. Also, I haven't seen any author demonstrate the approach I'm taking, even though it's perfectly legitimate from an Entity Framework perspective. Simply put:</p>
+<blockquote>
+<p>We don't <em>have</em> to model the database exactly as it is.</p>
+</blockquote>
+<h1 id="the-solution-short-version-for-the-impatient">The Solution - Short Version for the Impatient</h1>
+<p>Most SQL databases I've seen create a one-to-many relationship this way. All of these columns are not nullable.</p>
+<pre><code class="language-txt">Order
+-----
+OrderId PK
+
+Item
+----
+ItemId  PK
+OrderId FK
+</code></pre>
+<p>This is technically called a <em>non-identifying relationship</em>. An item belongs to an order, but it's only required because OrderId is not null. OrderId <em>isn't</em> part of the item's primary key. The OrderId foreign key can change. The foreign key could be changed to nullable, and there could then be items that exist without an order.</p>
+<p>Here's an <em>identifying relationship</em>. And item's uniqueness is bound to an order. The foreign key is also part of the primary key (it's a composite key). Thus, the foreign key can't change and the item <em>must</em> be part of an order.</p>
+<pre><code class="language-txt">Order
+-----
+OrderId PK
+
+Item
+----
+ItemId  PK
+OrderId PK, FK
+</code></pre>
+<p>Entity Framework will automatically delete child entities that are part of an identifying relationship. If the relationshiop is non-identifying, EF will try to set the foreign key to null.</p>
+<blockquote>
+<p>I'm sure there's a reason for this behavior, but I don't understand it. If EF <em>knows</em> the foreign key can't be null, why not go ahead and delete the child entity?</p>
+</blockquote>
+<p>If your child table has a non-identifying relationship (which is common), you have two options:</p>
+<ol>
+<li>Change the table's foreign key to a composite key, as well as the entity's configuration in EF.</li>
+<li><em>Only</em> change the entity's EF configuration.</li>
+</ol>
+<p>I like the second one. Here's how this looks.</p>
+<p><strong>Again, the non-Identifying Item relationship in the table</strong></p>
+<pre><code class="language-txt">Order
+-----
+OrderId PK
+
+Item
+----
+ItemId  PK
+OrderId FK
+</code></pre>
+<p><strong>Identifying Item relationship in Entify Framework</strong></p>
+<pre><code class="language-csharp">protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+    modelBuilder.Entity&lt;Item&gt;()
+    .HasKey(a =&gt; new { a.ItemId, a.OrderId });
+}
+</code></pre>
+<p>With this in place, using <code>Order.Items.Remove(item)</code> will result in Entity Framework deleting the item.</p>
+<h1 id="foreign-keys-that-are-manually-generated-andor-a-string-int-or-guid">Foreign Keys That Are Manually Generated, And/Or a String, Int or GUID</h1>
+<p>Let's keep assuming a non-identifying relationship with non-nullable foreign keys. How does the EF configuration change if we're dealing with string or GUID primary keys? What if the keys aren't auto-generated?</p>
+<p>I wrote a console application to explore this. It turns out each flavor needs a little tweak because of EF conventions.</p>
+<h2 id="test-schema">Test Schema</h2>
+<p>Create a new database and run this script to create the tables.</p>
+<pre><code class="language-sql">--String Keys
+create table Customers (
+	CustomerId varchar(10) not null primary key,
+)
+
+create table Addresses (
+	AddressId varchar(10) not null primary key,
+	CustomerId varchar(10) not null foreign key references Customers(CustomerId),
+)
+
+--Manually-generated Int keys
+create table Orders (
+	OrderId int not null primary key,
+)
+
+create table Items (
+	ItemId int not null primary key,
+	OrderId int not null foreign key references Orders(OrderId),
+)
+
+--Identity Int keys
+create table Projects (
+	ProjectId int not null identity primary key,
+)
+
+create table Tasks (
+	TaskId int not null identity primary key,
+	ProjectId int not null foreign key references Projects(ProjectId),
+)
+
+--Manually-generated GUID keys
+create table Stores (
+	StoreId uniqueidentifier not null primary key,
+)
+
+create table Employees (
+	EmployeeId uniqueidentifier not null primary key,
+	StoreId uniqueidentifier not null foreign key references Stores(StoreId),
+)
+
+--"Identity" Default Sequential GUID keys
+create table Gardens (
+	GardenId uniqueidentifier default newsequentialid() not null primary key,
+)
+
+create table Flowers (
+	FlowerId uniqueidentifier default newsequentialid() not null primary key,
+	GardenId uniqueidentifier not null foreign key references Gardens(GardenId),
+)
+</code></pre>
+<h2 id="classes">Classes</h2>
+<p>Here are the classes that map to the above tables.</p>
+<pre><code class="language-csharp">//String Keys
+public class Customer
+{
+    public string CustomerId { get; set; }
+    public virtual ICollection&lt;Address&gt; Addresses { get; set; } = new HashSet&lt;Address&gt;();
+}
+
+public class Address
+{
+    public string AddressId { get; set; }
+    public string CustomerId { get; set; }
+    public Customer Customer { get; set; }
+}
+
+//Manually-generated Int keys
+public class Order
+{
+    public int OrderId { get; set; }
+    public virtual ICollection&lt;Item&gt; Items { get; set; } = new HashSet&lt;Item&gt;();
+}
+
+public class Item
+{
+    public int ItemId { get; set; }
+    public int OrderId { get; set; }
+    public Order Order { get; set; }
+}
+
+//Identity Int keys
+public class Project
+{
+    public int ProjectId { get; set; }
+    public virtual ICollection&lt;Task&gt; Tasks { get; set; } = new HashSet&lt;Task&gt;();
+}
+
+public class Task
+{
+    public int TaskId { get; set; }
+    public int ProjectId { get; set; }
+    public Project Project { get; set; }
+}
+
+//Manually-generated GUID keys
+public class Store
+{
+    public Guid StoreId { get; set; }
+    public ICollection&lt;Employee&gt; Employees { get; set; } = new HashSet&lt;Employee&gt;();
+}
+
+public class Employee
+{
+    public Guid EmployeeId { get; set; }
+    public Guid StoreId { get; set; }
+    public Store Store { get; set; }
+}
+
+//Identity GUID keys
+public class Garden
+{
+    public Guid GardenId { get; set; }
+    public ICollection&lt;Flower&gt; Flowers { get; set; } = new HashSet&lt;Flower&gt;();
+}
+
+public class Flower
+{
+    public Guid FlowerId { get; set; }
+    public Guid GardenId { get; set; }
+    public Garden Garden { get; set; }
+}
+</code></pre>
+<h2 id="basic-dbcontext-class">Basic DbContext class</h2>
+<p>My DbContext is named EfTestDb. The basic setup lets us view SQL statements.</p>
+<blockquote>
+<p>I've turned off lazy loading, because I'm finding that a typical enterprise practice. The configurations are the same if lazy loading is turned on.</p>
+</blockquote>
+<pre><code class="language-csharp">public class EfTestDb : DbContext
+{
+    public DbSet&lt;Customer&gt; Customers { get; set; }
+    public DbSet&lt;Address&gt; Addresses { get; set; }
+    public DbSet&lt;Order&gt; Orders { get; set; }
+    public DbSet&lt;Item&gt; Items { get; set; }
+    public DbSet&lt;Project&gt; Projects { get; set; }
+    public DbSet&lt;Task&gt; Tasks { get; set; }
+    public DbSet&lt;Store&gt; Stores { get; set; }
+    public DbSet&lt;Employee&gt; Employees { get; set; }
+    public DbSet&lt;Garden&gt; Gardens { get; set; }
+    public DbSet&lt;Flower&gt; Flowers { get; set; }
+
+    public EfTestDb()
+    {
+        Database.SetInitializer&lt;EfTestDb&gt;(null);
+        Configuration.LazyLoadingEnabled = false;
+        Configuration.ProxyCreationEnabled = false;
+
+        //Show SQL in Output Debug window.
+        this.Database.Log = s =&gt;
+        {
+            System.Diagnostics.Debug.Write(s);
+            System.Diagnostics.Trace.Write(s);
+            Console.WriteLine(s);
+        };
+    }
+}
+</code></pre>
+<h2 id="string-key-manually-generated">String Key (Manually Generated)</h2>
+<p>It's still pretty common to have primary keys that are "intelligent" strings such as "blue-washer-20050225" that are generated by the application.</p>
+<p>Here's the EF configuration.</p>
+<blockquote>
+<p>I'm relying on EF conventions for key column naming, otherwise I'd need more configurations for .HasKey, .HasColumnName, etc.</p>
+</blockquote>
+<pre><code class="language-csharp">// # String Keys
+modelBuilder.Entity&lt;Customer&gt;()
+    .HasMany(a =&gt; a.Addresses);
+
+modelBuilder.Entity&lt;Address&gt;()
+    .HasKey(a =&gt; new { a.AddressId, a.CustomerId })
+    .HasRequired(a =&gt; a.Customer);
+
+</code></pre>
+<p>This is the general pattern we'll see. The difference will be in how the keys and properties are defined.</p>
+<p>Here's the testing code. I'm using DetachAllEntities to simulate saving a complex entity in one session, then deleting a child in another.</p>
+<pre><code class="language-csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        StringKey();
+        ManualInt();
+        IdentityInt();
+        ManualGuid();
+        IdentityGuid();
+
+        Console.ReadLine();
+    }
+
+    static void DetachAllEntities(EfTestDb db)
+    {
+        foreach (var entry in db.ChangeTracker.Entries()) { entry.State = EntityState.Detached; }
+    }
+
+    static void StringKey()
+    {
+        using (var db = new EfTestDb())
+        {
+            //clean up
+            db.Addresses.RemoveRange(db.Addresses);
+            db.Customers.RemoveRange(db.Customers);
+            db.SaveChanges();
+            DetachAllEntities(db);
+
+            //add complex entity
+            var customer = new Customer()
+            {
+                CustomerId = "a",
+                Addresses = new HashSet&lt;Address&gt;()
+                {
+                    new Address() { AddressId = "aa" },
+                    new Address() { AddressId = "bb" }
+                }
+            };
+
+            db.Customers.Add(customer);
+            db.SaveChanges();
+            DetachAllEntities(db);
+
+            //delete child
+            customer = db.Customers.Include(a =&gt; a.Addresses).First();
+            var address = customer.Addresses.First();
+            customer.Addresses.Remove(address);
+            db.SaveChanges();
+        }
+    }
+    //... remaining test methods
+}
+</code></pre>
+<h2 id="manually-generated-int-keys">Manually-Generated Int keys</h2>
+<pre><code class="language-csharp">// # Manually-generated Int keys
+modelBuilder.Entity&lt;Order&gt;()
+    .HasMany(a =&gt; a.Items);
+modelBuilder.Entity&lt;Order&gt;()
+    // I don't know why this is required, except that 
+    // maybe EF assumes an int key is going to be an identity column
+    .Property(p =&gt; p.OrderId)
+        .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+
+modelBuilder.Entity&lt;Item&gt;()
+    .HasKey(a =&gt; new { a.ItemId, a.OrderId })
+    .HasRequired(a =&gt; a.Order);
+
+</code></pre>
+<pre><code class="language-csharp">static void ManualInt()
+{
+    var db = new EfTestDb();
+
+    //clean up
+    db.Items.RemoveRange(db.Items);
+    db.Orders.RemoveRange(db.Orders);
+    db.SaveChanges();
+    DetachAllEntities(db);
+
+    //add complex entity
+    var order = new Order()
+    {
+        OrderId = 1,
+        Items = new List&lt;Item&gt;()
+        {
+            new Item() { ItemId = 11 },
+            new Item() { ItemId = 22 }
+        }
+    };
+
+    db.Orders.Add(order);
+    db.SaveChanges();
+    DetachAllEntities(db);
+
+    //delete child
+    order = db.Orders.Include(a =&gt; a.Items).First();
+    var Item = order.Items.First();
+    order.Items.Remove(Item);
+    db.SaveChanges();
+}
+</code></pre>
+<h2 id="identity-int-keys">Identity Int keys</h2>
+<pre><code class="language-csharp">modelBuilder.Entity&lt;Task&gt;()
+    .HasKey(a =&gt; new { a.TaskId, a.ProjectId });
+modelBuilder.Entity&lt;Task&gt;()
+    .Property(p =&gt; p.TaskId)
+        // required because EF can't assume TaskId is an identity column since it's part of a composite key.
+        .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+</code></pre>
+<pre><code class="language-csharp">   static void IdentityInt()
+    {
+        var db = new EfTestDb();
+
+        //clean up
+        db.Tasks.RemoveRange(db.Tasks);
+        db.Projects.RemoveRange(db.Projects);
+        db.SaveChanges();
+        DetachAllEntities(db);
+
+        //add complex entity
+        var Project = new Project()
+        {
+            Tasks = new List&lt;Task&gt;()
+            {
+                new Task(),
+                new Task()
+            }
+        };
+
+        db.Projects.Add(Project);
+        db.SaveChanges();
+        DetachAllEntities(db);
+
+        //delete child
+        Project = db.Projects.Include(a =&gt; a.Tasks).First();
+        var Task = Project.Tasks.First();
+        Project.Tasks.Remove(Task);
+        db.SaveChanges();
+    }
+</code></pre>
+<h2 id="manually-generated-guid-keys">Manually-Generated GUID keys</h2>
+<pre><code class="language-csharp">modelBuilder.Entity&lt;Store&gt;()
+    .HasMany(a =&gt; a.Employees);
+
+modelBuilder.Entity&lt;Employee&gt;()
+    .HasKey(a =&gt; new { a.EmployeeId, a.StoreId })
+    .HasRequired(a =&gt; a.Store);
+</code></pre>
+<pre><code class="language-csharp">static void ManualGuid()
+{
+    var db = new EfTestDb();
+
+    //clean up
+    db.Employees.RemoveRange(db.Employees);
+    db.Stores.RemoveRange(db.Stores);
+    db.SaveChanges();
+    DetachAllEntities(db);
+
+    //add complex entity
+    var Store = new Store()
+    {
+        StoreId = Guid.NewGuid(),
+        Employees = new List&lt;Employee&gt;()
+        {
+            new Employee() { EmployeeId = Guid.NewGuid() },
+            new Employee() { EmployeeId = Guid.NewGuid() }
+        }
+    };
+
+    db.Stores.Add(Store);
+    db.SaveChanges();
+    DetachAllEntities(db);
+
+    //delete child
+    Store = db.Stores.Include(a =&gt; a.Employees).First();
+    var Employee = Store.Employees.First();
+    Store.Employees.Remove(Employee);
+    db.SaveChanges();
+}
+</code></pre>
+<h2 id="identity-guid-default-sequential-guid-keys">"Identity" GUID (Default Sequential GUID keys)</h2>
+<pre><code class="language-csharp">modelBuilder.Entity&lt;Garden&gt;()
+.Property(p =&gt; p.GardenId)
+    .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+modelBuilder.Entity&lt;Garden&gt;()
+    .HasMany(a =&gt; a.Flowers);
+
+modelBuilder.Entity&lt;Flower&gt;()
+.Property(p =&gt; p.FlowerId)
+    .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+modelBuilder.Entity&lt;Flower&gt;()
+    .HasKey(a =&gt; new { a.FlowerId, a.GardenId })
+    .HasRequired(a =&gt; a.Garden);
+</code></pre>
+<pre><code class="language-csharp">static void IdentityGuid()
+{
+    var db = new EfTestDb();
+
+    //clean up
+    db.Flowers.RemoveRange(db.Flowers);
+    db.Gardens.RemoveRange(db.Gardens);
+    db.SaveChanges();
+    DetachAllEntities(db);
+
+    //add complex entity
+    var Garden = new Garden()
+    {
+        Flowers = new List&lt;Flower&gt;()
+        {
+            new Flower(),
+            new Flower()
+        }
+    };
+
+    db.Gardens.Add(Garden);
+    db.SaveChanges();
+    DetachAllEntities(db);
+
+    //delete child
+    Garden = db.Gardens.Include(a =&gt; a.Flowers).First();
+    var Flower = Garden.Flowers.First();
+    Garden.Flowers.Remove(Flower);
+    db.SaveChanges();
+}
+</code></pre>
+<h1 id="lessons-learned">Lessons Learned</h1>
+<ul>
+<li>Non-identifying, but <em>required</em>, parent-child relationships are common.</li>
+<li>The database doesn't have to be changed to allow Entity Framework to easily delete child records.</li>
+<li>The most common key types can be modeled.</li>
+</ul>
+<h1 id="references">References</h1>
+<ul>
+<li><a href="https://stackoverflow.com/questions/23081096/entity-framework-6-guid-as-primary-key-cannot-insert-the-value-null-into-column">Entity Framework 6 GUID as primary key: Cannot insert the value NULL into column 'Id', table 'FileStore'; column does not allow nulls</a></li>
+<li><a href="https://www.mssqltips.com/sqlservertip/1600/auto-generated-sql-server-keys-with-the-uniqueidentifier-or-identity/">Auto generated SQL Server keys with the uniqueidentifier or IDENTITY</a></li>
+<li><a href="https://stackoverflow.com/questions/762937/whats-the-difference-between-identifying-and-non-identifying-relationships/762994#762994">What's the difference between identifying and non-identifying relationships?</a></li>
+<li><a href="https://stackoverflow.com/questions/11033348/is-it-possible-to-remove-child-from-collection-and-resolve-issues-on-savechanges">Is it possible to remove child from collection and resolve issues on SaveChanges?</a></li>
+<li><a href="https://stackoverflow.com/questions/11536963/delete-item-in-database-when-removed-from-collection-ef-4-3">Delete item in database when removed from collection (EF 4.3)</a></li>
+<li><a href="https://stackoverflow.com/questions/24523121/how-to-add-a-composite-unique-key-using-ef-6-fluent-api">How to add a composite unique key using EF 6 Fluent Api?</a></li>
+<li><a href="http://www.entityframeworktutorial.net/code-first/configure-property-mappings-using-fluent-api.aspx">Property Mappings using Fluent API:</a></li>
+</ul>
+<h2 id="other-background-information">Other Background Information</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/19325473/ef6-0-the-relationship-could-not-be-changed-because-one-or-more-of-the-foreign">EF6.0 “The relationship could not be changed because one or more of the foreign-key properties is non-nullable”</a></li>
+</ul>
 </div>
               </div>
               
