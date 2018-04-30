@@ -19,7 +19,7 @@
 <link rel='stylesheet' href='http://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Combining Veracrypt, Google Backup & Sync, And Sql Server Part 1 | Software Meadows</title>
+  <title>Home | Software Meadows</title>
 </head>
 
 <body>
@@ -53,91 +53,40 @@
           <div id="site-subtitle">A pleasant walk through computing</div>
         </header>
         <section id="content">
-          
-              <div class='post'>
-                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1'>Combining VeraCrypt, Google Backup & Sync, and Sql Server Part 1</a></h2>
-                <p class='post-info'><span class='posted-on'>2018-01-04 18:00</span></p>
-                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/simple-key.png" alt=""></p>
-<p>This is a two-part post. Read <a href="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2">Part 2 here</a>.</p>
-<p>It's important to protect business data. Employee access and use of data should be managed by the IT department. But a contractor is often entrusted with data on their own computers. We certainly don't want our laptop to be stolen and have to tell the client that source code or databases with sensitive data just got lost, and, no, it wasn't encrypted.</p>
-<p>Below, I discuss how I used VeraCrypt for my encryption. In Part 2, I show how I solved problems relating to Google Backup and Sync, and Microsoft SQL Server.</p>
-<p>For Windows users, there are a few encryption solutions.</p>
-<p><strong>BitLocker</strong><br>
-BitLocker is available on these editions:</p>
-<ul>
-<li>Ultimate and Enterprise editions of Windows Vista and Windows 7</li>
-<li>Pro and Enterprise editions of Windows 8 and 8.1</li>
-<li>Pro, Enterprise, and Education editions of Windows 10</li>
-<li>Windows Server 2008 and later</li>
-</ul>
-<p><sup><a href="https://en.wikipedia.org/wiki/BitLocker">source: Wikipedia</a></sup></p>
-<p>To use BitLocker, your computer hardware must have a compatible <a href="https://docs.microsoft.com/en-us/windows/device-security/tpm/trusted-platform-module-overview">Trusted Platform Module</a>.</p>
-<p>I won't go into how to configure BitLocker. Suffice to say, if you have this option available, I think you should use it unless you have a reasonable security objection. And if that's the case, you're already looking into alternatives.</p>
-<p>I do <em>not</em> use BitLocker because my hardware doesn't support it.</p>
-<p><strong>Windows Encrypting File System (EFS)</strong><br>
-EFS is available on all Windows editions from 2000 onward, Professional and above. When configured, decryption happens transparently. It's important to export and separately store the encryption password. There are <a href="https://en.wikipedia.org/wiki/Encrypting_File_System#Security">security issues</a> with EFS, but for my purposes I thought it would be an acceptable solution.</p>
-<p>I tried setting a client folder to use EFS, but ran into a significant problem: a showstopper, in fact. If found that I couldn't create a new Visual Studio ASP.NET project from a template.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2012_39_36.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2012_42_46.png" alt=""></p>
-<p>Since I'm primarily a web developer, this simply wouldn't work.</p>
-<blockquote>
-<p><strong>More Information</strong><br>
-If you want to read more about BitLocker and EFS, try <a href="https://www.howtogeek.com/236719/whats-the-difference-between-bitlocker-and-efs-encrypting-file-system-on-windows/">this article</a>.</p>
-</blockquote>
-<p><strong>VeraCrypt</strong><br>
-<a href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a> is the successor to TrueCrypt, which I used many years ago before the author abruptly <a href="https://en.wikipedia.org/wiki/TrueCrypt">shut down the project</a>. VeraCrypt has been security-audited, and I'm glad to be using it (again). It can be installed on any edition of Windows, as well as Linux and Mac OS X.</p>
-<p>VeraCrypt has two main configuration scenarios:</p>
-<ul>
-<li>Using a container file, create a virtual encrypted drive with its own drive letter.</li>
-<li>Encrypt an entire partition or drive.</li>
-</ul>
-<p>Arguably, as with BitLocker, the best thing to do is encrypt the entire drive and deal with the extra passphrase prompt when booting up. However, I opted for the quicker option of container file.</p>
-<h1 id="veracrypt-walkthrough">VeraCrypt Walkthrough</h1>
-<p>Here's a simple walkthrough to install and configure VeraCrypt the way I did.</p>
-<p><a href="https://www.veracrypt.fr/en/Downloads.html">Download</a> and install the latest Windows version.</p>
-<p>Open the application and click Create Volume</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_04_43.png" alt=""></p>
-<p>Choose "Create an encrypted file container" and Next.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_06_33.png" alt=""></p>
-<p>Choose "Standard VeraCrypt volume" and Next.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_07_33.png" alt=""></p>
-<p>Enter a new filename and path, which you can also set via the dialog. It doesn't matter what the filename or extention are. It doesn't even need an extension.</p>
-<blockquote>
-<p><strong>Warning</strong><br>
-If you choose an existing file, it will be <em>overwritten</em>. Don't do that. Create a new filename.</p>
-</blockquote>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_10_37.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_12_19.png" alt=""></p>
-<p>Choose your encryption options. The defaults are fine.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_14_17.png" alt=""></p>
-<p>Choose the maximum size of the drive. Remember, any size you choose here subtracts from your available physical drive space. If you ever need a larger encrypted drive, you'll need to create one and move all the files. For this exercise, choose 50MB.</p>
-<blockquote>
-<p><strong>Note</strong><br>
-I know the screenshot shows 5MB, but it needs to be higher to create the database later.</p>
-</blockquote>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_17_01.png" alt=""></p>
-<p>Enter your password or passphrase. I like passphrases, because they can be long but easy to remember. Here's one:</p>
-<pre><code>MyBoatDripsFeathers
-</code></pre>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_19_58.png" alt=""></p>
-<p>Choose the NTFS filesystem, then start moving your mouse around until the bar turns green. Click Format. I'll take awhile, depending on the size of the drive, and you'll be prompted by Windows to allow it.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_23_51.png" alt=""></p>
-<p>Exit the wizard.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_21_44.png" alt=""></p>
-<p>You've configured the container file that will hold your encrypted data. Now you'll mount the file. In the main window, choose the file you just created, select a drive letter, and click Mount. The file will be mounted and you'll have a new Windows drive letter.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_27_12.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_28_00.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_29_01.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_29_29.png" alt=""></p>
-<p>Now, any files you add to the F drive are encrypted. If someone were to steal your machine, they'd have to know your Windows password <em>and</em> your test.vc password. If they pulled out the the hard drive and installed it on another computer, all they'd see is a file named test.vc amongst all the other files, and they couldn't open it without VeraCrypt <em>and</em> knowing the password.</p>
-<p>The F drive is only available when you're logged in, and when you log in fresh you must start VeraCrypt and mount test.vc.</p>
-</div>
-              </div>
-              
+          <h1 id="home">Home</h1>
+
         </section>
         <!-- posts only appear in home index -->
         <section id="posts">
-           
+          
+              <div class='post'>
+                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/test-post-with-code'>Migrating Google Drive</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-01-26 14:06</span></p>
+                <div class='post-content'><p>My <a href="http://stephkayeturner.com/">wife</a>recently got her own domain name, and signed up for Google Apps for Business. She's been migrating her email and calendar from previous accounts, including a Google account.<br>
+The problem was Drive. She had a mixture of documents in Google Docs format and MS Office. Some items were shared. All in all, it looked like a big mess, complicated by the fact that Google doesn't let you give ownership of your files to someone in another domain. I don't know why. I assume the Ph.Ds who work there didn't properly sacrifice to the Domain Name God.<br>
+Also--and this burns me up--Google won't let you download files using their super-secret-must-be-tastier-than-Coke internal format. If you have Drive synchronization set up, you'll see documents with .gdoc extensions, but they're just text files with points to the web site. What this means is that there is no hope of downloading and uploading Google Docs and preserve true fidelity.<br>
+Thanks, Google. My files aren't really my files, because you own the format.<br>
+So, here's what I did--and what I could have done.<br>
+First, I think I could have paid for a tool that would migrate the documents. But I didn't, and I didn't even really look for one. Instead, I used a utility that I like a lot,<a href="http://gs.fhtino.it/gdocbackup">GDocBackup</a>. It's not only a nice free utility, but the web site has a great picture.<br>
+<img src="http://gs.fhtino.it/_/rsrc/1211547139810/config/app/images/io_piccolo.jpg" alt=""></p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Go through my wife's old Google Drive account--we'll call it Thing One--and remove me as a shared person.</li>
+<li>Go through my Drive and remove her as a shared person.</li>
+<li>Use GDocBackup&nbsp;to download all of her files. "Wait!" you interrupt (which is a little rude), "Why didn't you use Drive's ability to download all the files?" Simple. It doesn't preserve folder layout. I'm sure they'd argue that a file can have more than one label, so it's impossible. But then, why does local Drive sync work? Not impressed.</li>
+<li>Now here's where I crow about my wife. I told her that I could preserve which files were GDocs&nbsp;by keeping two sets of folders: one with only the Google format docs, and one with everything else. Then, I'd import the first ones with Drive set to convert the files. And she says, "Oh, that's all right. You can just upload them all as Microsoft docs." So, that saves me&nbsp;<em>huge</em> time.</li>
+<li>So, in the interests of saving her work, I determine a few files that really must be in Google format, and upload/convert those, then delete them.</li>
+<li>I then disconnect my local Drive sync, and reconnect using her new Business account--which we'll call Thing Two.</li>
+<li>I copy all of the Thing One files from the&nbsp;GDocBackup&nbsp;folder into the Google Drive folder (Thing Two).</li>
+<li>Wait for synchronization to complete.</li>
+</ol>
+<p>There. Wasn't that easy?*<br>
+I really hope Google makes this process better. What I really don't understand is why they don't allow assigning ownership across domains. I mean, it's probably just a primary key field in a database. But what do I know?<br>
+------------------------------<br>
+*No, it wasn't.</p>
+</div>
+              </div>
+               <div class='paging'><a href='index30.html'>Newer</a>&nbsp;&nbsp;&nbsp;</div>
         </section>
         <footer><p>Copyright (c) 2018 Charles L Flatt</p>
 </footer>

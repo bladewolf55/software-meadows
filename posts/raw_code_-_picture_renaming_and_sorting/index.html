@@ -19,7 +19,7 @@
 <link rel='stylesheet' href='http://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Combining Veracrypt, Google Backup & Sync, And Sql Server Part 1 | Software Meadows</title>
+  <title>Raw Code - Picture Renaming And Sorting | Software Meadows</title>
 </head>
 
 <body>
@@ -55,82 +55,117 @@
         <section id="content">
           
               <div class='post'>
-                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1'>Combining VeraCrypt, Google Backup & Sync, and Sql Server Part 1</a></h2>
-                <p class='post-info'><span class='posted-on'>2018-01-04 18:00</span></p>
-                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/simple-key.png" alt=""></p>
-<p>This is a two-part post. Read <a href="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2">Part 2 here</a>.</p>
-<p>It's important to protect business data. Employee access and use of data should be managed by the IT department. But a contractor is often entrusted with data on their own computers. We certainly don't want our laptop to be stolen and have to tell the client that source code or databases with sensitive data just got lost, and, no, it wasn't encrypted.</p>
-<p>Below, I discuss how I used VeraCrypt for my encryption. In Part 2, I show how I solved problems relating to Google Backup and Sync, and Microsoft SQL Server.</p>
-<p>For Windows users, there are a few encryption solutions.</p>
-<p><strong>BitLocker</strong><br>
-BitLocker is available on these editions:</p>
-<ul>
-<li>Ultimate and Enterprise editions of Windows Vista and Windows 7</li>
-<li>Pro and Enterprise editions of Windows 8 and 8.1</li>
-<li>Pro, Enterprise, and Education editions of Windows 10</li>
-<li>Windows Server 2008 and later</li>
-</ul>
-<p><sup><a href="https://en.wikipedia.org/wiki/BitLocker">source: Wikipedia</a></sup></p>
-<p>To use BitLocker, your computer hardware must have a compatible <a href="https://docs.microsoft.com/en-us/windows/device-security/tpm/trusted-platform-module-overview">Trusted Platform Module</a>.</p>
-<p>I won't go into how to configure BitLocker. Suffice to say, if you have this option available, I think you should use it unless you have a reasonable security objection. And if that's the case, you're already looking into alternatives.</p>
-<p>I do <em>not</em> use BitLocker because my hardware doesn't support it.</p>
-<p><strong>Windows Encrypting File System (EFS)</strong><br>
-EFS is available on all Windows editions from 2000 onward, Professional and above. When configured, decryption happens transparently. It's important to export and separately store the encryption password. There are <a href="https://en.wikipedia.org/wiki/Encrypting_File_System#Security">security issues</a> with EFS, but for my purposes I thought it would be an acceptable solution.</p>
-<p>I tried setting a client folder to use EFS, but ran into a significant problem: a showstopper, in fact. If found that I couldn't create a new Visual Studio ASP.NET project from a template.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2012_39_36.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2012_42_46.png" alt=""></p>
-<p>Since I'm primarily a web developer, this simply wouldn't work.</p>
-<blockquote>
-<p><strong>More Information</strong><br>
-If you want to read more about BitLocker and EFS, try <a href="https://www.howtogeek.com/236719/whats-the-difference-between-bitlocker-and-efs-encrypting-file-system-on-windows/">this article</a>.</p>
-</blockquote>
-<p><strong>VeraCrypt</strong><br>
-<a href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a> is the successor to TrueCrypt, which I used many years ago before the author abruptly <a href="https://en.wikipedia.org/wiki/TrueCrypt">shut down the project</a>. VeraCrypt has been security-audited, and I'm glad to be using it (again). It can be installed on any edition of Windows, as well as Linux and Mac OS X.</p>
-<p>VeraCrypt has two main configuration scenarios:</p>
-<ul>
-<li>Using a container file, create a virtual encrypted drive with its own drive letter.</li>
-<li>Encrypt an entire partition or drive.</li>
-</ul>
-<p>Arguably, as with BitLocker, the best thing to do is encrypt the entire drive and deal with the extra passphrase prompt when booting up. However, I opted for the quicker option of container file.</p>
-<h1 id="veracrypt-walkthrough">VeraCrypt Walkthrough</h1>
-<p>Here's a simple walkthrough to install and configure VeraCrypt the way I did.</p>
-<p><a href="https://www.veracrypt.fr/en/Downloads.html">Download</a> and install the latest Windows version.</p>
-<p>Open the application and click Create Volume</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_04_43.png" alt=""></p>
-<p>Choose "Create an encrypted file container" and Next.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_06_33.png" alt=""></p>
-<p>Choose "Standard VeraCrypt volume" and Next.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_07_33.png" alt=""></p>
-<p>Enter a new filename and path, which you can also set via the dialog. It doesn't matter what the filename or extention are. It doesn't even need an extension.</p>
-<blockquote>
-<p><strong>Warning</strong><br>
-If you choose an existing file, it will be <em>overwritten</em>. Don't do that. Create a new filename.</p>
-</blockquote>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_10_37.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_12_19.png" alt=""></p>
-<p>Choose your encryption options. The defaults are fine.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_14_17.png" alt=""></p>
-<p>Choose the maximum size of the drive. Remember, any size you choose here subtracts from your available physical drive space. If you ever need a larger encrypted drive, you'll need to create one and move all the files. For this exercise, choose 50MB.</p>
-<blockquote>
-<p><strong>Note</strong><br>
-I know the screenshot shows 5MB, but it needs to be higher to create the database later.</p>
-</blockquote>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_17_01.png" alt=""></p>
-<p>Enter your password or passphrase. I like passphrases, because they can be long but easy to remember. Here's one:</p>
-<pre><code>MyBoatDripsFeathers
+                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/raw_code_-_picture_renaming_and_sorting'>Raw Code - Picture Renaming and Sorting</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-04-30 10:26</span></p>
+                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/raw_code_-_picture_renaming_and_sorting/images/raw-code.png" alt=""></p>
+<p>A while back I needed to rename a bunch of pictures, prefixing them with numbers, so that they'd sort the way I wanted.</p>
+<p>Here's the code I used. I ran this in <a href="http://www.linqpad.net/">LINQPad</a>, but you could use it in a console app with minor modifications. One nice thing I learned to do: get image datetime <em>without</em> loading the whole image.</p>
+<p>Hope this is useful to you in some way!</p>
+<pre><code class="language-csharp">void Main()
+{
+	string path = @"C:\Users\charles\Pictures\Inbox\20160630";
+	List&lt;FileChange&gt; list = new List&lt;UserQuery.FileChange&gt;();
+
+    foreach (string fileName in Directory.GetFiles(path))
+	{
+		DateTime taken;
+		try
+		{
+			taken = GetDateTakenFromImage(fileName);
+		}
+		catch
+		{
+			try
+			{
+				taken = GetDateTakenFromFilename(fileName);
+			}
+			catch
+			{
+				taken = File.GetLastWriteTime(fileName);
+				if (File.GetCreationTime(fileName) &lt; taken) { taken = File.GetCreationTime(fileName); }
+			}
+		}
+		FileChange item = new FileChange(fileName, "", taken);
+		//set new taken on to old.
+		item.NewTakenOn = item.OldTakenOn;
+		list.Add(item);
+	}
+
+	//sort and set new name
+	int newNbr = 1;
+	foreach (var item in list.OrderBy(l =&gt; l.OldTakenOn))
+	{
+		item.DestinationFileName = GetNewFileName(item.SourceFileName, newNbr);
+		newNbr++;
+	}
+	
+	DumpList(list.OrderBy(l =&gt; l.OldTakenOn).ToList());
+	DumpList(list.OrderBy(l =&gt; l.NewTakenOn).ToList());
+	
+	//rename
+	list.ForEach(a =&gt; File.Move(a.SourceFileName, a.DestinationFileName));
+}
+
+public static void DumpList(List&lt;FileChange&gt; list)
+{
+	var newList = list
+	.Select(l =&gt; new { oldName = Path.GetFileName(l.SourceFileName), newName = Path.GetFileName(l.DestinationFileName), l.OldTakenOn, l.NewTakenOn });
+	newList.Dump();
+}
+
+//http://stackoverflow.com/questions/180030/how-can-i-find-out-when-a-picture-was-actually-taken-in-c-sharp-running-on-vista
+//we init this once so that if the function is repeatedly called
+//it isn't stressing the garbage man
+private static Regex r = new Regex(":");
+
+//retrieves the datetime WITHOUT loading the whole image
+public static DateTime GetDateTakenFromImage(string path)
+{
+	using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+	using (Image myImage = Image.FromStream(fs, false, false))
+	{
+		//if (!myImage.PropertyIdList.Any(a =&gt; a == 36867)){ return DateTime.Parse("1/1/1900");}
+		PropertyItem propItem = myImage.GetPropertyItem(36867);
+		string dateTaken = r.Replace(Encoding.UTF8.GetString(propItem.Value), "-", 2);
+		//string t = Encoding.UTF8.GetString(propItem.Value);
+		return DateTime.Parse(dateTaken);
+	}
+}
+
+public static DateTime GetDateTakenFromFilename(string path)
+{
+	var takenPartSplit = path.Substring(3, 15).Split('_');
+	string datePart = takenPartSplit[0];
+	string timePart = takenPartSplit[1];
+	datePart = datePart.Substring(0, 4) + "-" + datePart.Substring(4, 2) + "-" + datePart.Substring(6, 2);
+	timePart = timePart.Substring(0, 2) + ":" + timePart.Substring(2, 2) + ":" + timePart.Substring(4, 2);
+	string datetime = datePart + " " + timePart;
+	return DateTime.Parse(datetime);
+}
+
+public static string GetNewFileName(string path, int newNumber)
+{
+	string oldName = Path.GetFileName(path);
+	string newName = oldName;
+	newName = newNumber.ToString().PadLeft(3, '0') + " " + newName;
+	return path.Replace(oldName, newName);
+}
+
+public class FileChange
+{
+	public string SourceFileName { get; set; }
+	public string DestinationFileName { get; set; }
+	public DateTime OldTakenOn { get; set; }
+	public DateTime NewTakenOn { get; set; }
+
+	public FileChange(string source, string destination, DateTime takenOn)
+	{
+		SourceFileName = source;
+		DestinationFileName = destination;
+		OldTakenOn = takenOn;
+	}
+}
 </code></pre>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_19_58.png" alt=""></p>
-<p>Choose the NTFS filesystem, then start moving your mouse around until the bar turns green. Click Format. I'll take awhile, depending on the size of the drive, and you'll be prompted by Windows to allow it.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_23_51.png" alt=""></p>
-<p>Exit the wizard.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_21_44.png" alt=""></p>
-<p>You've configured the container file that will hold your encrypted data. Now you'll mount the file. In the main window, choose the file you just created, select a drive letter, and click Mount. The file will be mounted and you'll have a new Windows drive letter.</p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_27_12.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_28_00.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_29_01.png" alt=""></p>
-<p><img src="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_29_29.png" alt=""></p>
-<p>Now, any files you add to the F drive are encrypted. If someone were to steal your machine, they'd have to know your Windows password <em>and</em> your test.vc password. If they pulled out the the hard drive and installed it on another computer, all they'd see is a file named test.vc amongst all the other files, and they couldn't open it without VeraCrypt <em>and</em> knowing the password.</p>
-<p>The F drive is only available when you're logged in, and when you log in fresh you must start VeraCrypt and mount test.vc.</p>
 </div>
               </div>
               
