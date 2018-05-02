@@ -81,7 +81,7 @@
 <p>Of course, you can elect to commit the ignore files. For instance, I sometimes keep both ignore files in the Git repository.</p>
 <h1 id="checking-in-to-tfvc">Checking In to TFVC</h1>
 <p>The problem with checking in is that Visual Studio has a setting for Source Control Plugin, and naturally can't figure out whether to use Git or TFVC. The default behavior seems to be that it prefers Git to TFVC.</p>
-<p>If you're a Git user, your typical flow with addition of TFVC will be:</p>
+<p>If you're a Git user, your typical flow with the addition of TFVC will be:</p>
 <ol>
 <li>Make a bunch of code changes in a branch, committing to your local Git repo several times.</li>
 <li>When ready to integrate your changes to master, squash the commits, switch to master, and merge.</li>
@@ -102,7 +102,7 @@
 <h2 id="reopening-the-solution">Reopening the Solution</h2>
 <p>You'll usually get the prompt below no matter how you open the solution, and therefore have to open the solution twice. I like opening it right after check in.</p>
 <ol>
-<li>Open the solution, either from the Start Page, or File &gt; Open &gt; Recent Projects and Solutions. You'll get this message because your Source Control Plugin was changed to Visual Studio Team Services, and VS recognizes that Git source control is available. in your solution.<br>
+<li>Open the solution, either from the Start Page, or File &gt; Open &gt; Recent Projects and Solutions. You'll get this message because your Source Control Plugin was changed to Visual Studio Team Services, and VS recognizes that Git source control is available in your solution.<br>
 <img src="http://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc/images/2018-05-01%2014_25_58.png" alt=""></li>
 <li>Answer Yes. The solution will close. Reopen the solution and it should open without error.</li>
 </ol>
