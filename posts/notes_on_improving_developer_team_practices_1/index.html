@@ -19,7 +19,7 @@
 <link rel='stylesheet' href='http://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>The Google Photos Management Problem(S) | Software Meadows</title>
+  <title>Notes On Improving Developer Team Practices | Software Meadows</title>
 </head>
 
 <body>
@@ -55,64 +55,53 @@
         <section id="content">
           
               <div class='post'>
-                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></h2>
-                <p class='post-info'><span class='posted-on'>2015-08-23 11:40</span></p>
-                <div class='post-content'><h1 id="the-executive-summary-you-can-pretend-youre-an-exec">The Executive Summary (you can pretend you’re an exec)</h1>
+                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/notes_on_improving_developer_team_practices_1'>Notes on Improving Developer Team Practices</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-05-02 21:08</span></p>
+                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/notes_on_improving_developer_team_practices_1/images/team-improvement.png" alt=""></p>
+<p>I've been wondering lately about what practices, if changed or improved, will do the most to help a software development team.</p>
+<p>Personally, I'm interested in maintainability and automated systems. My question is: how to design so it's as easy as I can make it for someone else to bring my code up-to-date. This is never really just swapping out old stuff. I've been convinced for years that such a nirvana is not only unattainable, but wrong to seek. But having a museum of programming approaches makes technical debt hard to pay. It's not a matter of changing technology, or embracing yesterday's shiny article. It's building into the environment the practice of maintaining old code as a requirement. The adage "if it ain't broke don't fix it" doesn't apply to a software-dependent company (if it applies anywhere). The Japanese word <em>kaizen</em> indicates a better approach: continuous change for the better.</p>
+<p>Here are some notes I've made. By doing this, and based on years of experience and study, I came to a conclusion that won't be astounding to most people, but bears calling out.</p>
+<blockquote>
+<p>Improving team communication will yield the biggest long-term benefit in the shortest time.</p>
+</blockquote>
+<h2 id="key-goals">Key Goals</h2>
 <ul>
-<li>Storing photos in one place with one compelling interface is good. I wish Google had that.</li>
-<li>Google Photos is bad.</li>
-<li>Pictures on Google Drive is non-obvious.</li>
-<li>Blogger integration with pictures is non-obvious.</li>
-<li>I should be more careful.</li>
-<li>Picasa is still required to make my blog go.</li>
-<li>Google Photos is bad.</li>
+<li>Maintain</li>
+<li>Automate</li>
+<li>Test</li>
+<li>Communicate</li>
 </ul>
-<p>It’s not a mistake that I listed one item twice.</p>
-<h1 id="the-setup">The Setup</h1>
-<p>Google strives, mostly successfully, to keep their applications simple. Simple to understand, simple to use, simple to explain. Google also wants us to store our millions of pictures with them, because they are a gateway to marketing, and thus advertising.</p>
-<p>I have a blog, the very one you’re reading. It’s hosted on Blogger, which is owned by Google. I often use screen shots, a.k.a pictures, like this one.<br>
-<a href="images/Dewy_grass_sm.jpg"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/Dewy_grass_sm.jpg" alt="Dewy grass sm" title="Dewy grass sm"></a><br>
-And, I use Windows Live Writer to compose my posts, because it has easy copy/paste of pictures, good formatting control, and useful plugins. (It’s also quite old and unmaintained, so here’s hoping Scott Hanselman is successful getting Microsoft to <a href="http://winsupersite.com/software-development/microsoft-open-source-windows-live-writer">release it as open source</a>, because I think WLW would rapidly improve.)</p>
-<p>When I publish using WLW, the screen shots end up in a Google . . . somewhere. When I finish composing a blog post, WLW opens the post in my preferred browser, which is Google Chrome. It all looks hunky dory, and I’m pleased with my writing prowess, which I know is what chicks would dig if I weren’t a relatively old man.</p>
-<h1 id="the-story">The Story</h1>
-<p>So the other day I proudly opened my post about <a href="http://www.softwaremeadows.com/2015/08/more-encrypted-config-filesclickonce.html">encrypting app.config</a> in Microsoft’s new Edge browser (in Windows 10), and—what’s this? No images? Just gray boxes with a circle-dash icon?<br>
-<a href="images/image.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image.png" alt="image" title="image"></a><br>
-Well, this new browser certainly does suck daikon. Good thing the pictures show in Internet Explorer, right? Nope. Same problem. But they look great in Chrome. Must be Windows 10. Or Windows Live Writer, which led me on an <a href="https://productforums.google.com/forum/#!topic/blogger/-49FC2_0l-g">odyssey of reading</a> about how Google “broke” blogging apps by requiring better authentication, and giving something like two years’ notice. Maybe that’s the problem? No, it isn’t, that got fixed fairly quickly.</p>
-<p>Then it must be Windows 10. Somehow this got past the thousands of people testing the app for a year (as if). I’ll check in lovely Windows 7 from work.</p>
-<p>Same thing. Only now, I don’t see pictures in Chrome, either. Which is the clue to the solution. Because at work, I hadn’t logged into my Google account before viewing my blog.</p>
-<p>Ah ha. Maybe, somehow, the pictures aren’t public. And I never noticed, because I always viewed the blog while logged in. Bad on me for not testing other browsers. (I <em>did</em> test other browsers, though, in the past. I guess I unwittingly changed the permission.)</p>
-<p>OK, I’ll just check the album and set it for public, like I would if it were in Google Drive. Now . . . where is it?</p>
-<p><a href="https://photos.google.com/collections">Google Photos</a>? I’ve been hearing about that. It's the app on my phone I don't like. Yeah, there it is! All I have to do is . . . is . . . huh? This is your new, improved photo collecting and organizing application Mr Brin? This. Is. Bad.</p>
+<h2 id="key-principles-and-practices">Key Principles and Practices</h2>
 <ul>
-<li>Initial view is <em>all</em> your pictures, sorted descending by date, in every size imaginable (doubled, in my case, because of how WLW works).</li>
-<li>Choose the Collections view and you get what, exactly? What’s a collection? It looks like an album. So why’s it called a collection? Oh, it’s because a collection could be photos, movies or stories (whatever those are). And a collection of photos is called—I’m perfectly serious—an album. While a collection of movies is called “Movies.”<br>
-<a href="images/image7.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image7.png" alt="image" title="image"></a></li>
-<li>You can’t create an empty album. You have to create an album from <em>existing</em> pictures you’ve already uploaded. From that massive, date-sorted ocean you saw earlier. Which is the exact opposite of how a sane person creates an album. We, the people, create an album and then upload pictures from our phone or computer to that album. We at least want that option!</li>
-<li>You can’t change the sharing of an album, as far as public/private is concerned. You can share to Google+, Facebook or Twitter, or get a shareable link.</li>
+<li>Prefer smaller changes rolled out frequently</li>
+<li>Reduce platforms and frameworks</li>
+<li>Have routine, effective code reviews to improve maintainability and communication</li>
+<li>Ruthlessly improve code to be "as if had always been that way"</li>
+<li>Struggle with naming. To name well requires understanding how others think</li>
+<li>Have routine strategy sessions away from the workplace</li>
+<li>Use in-house templates and libraries for consistency</li>
+<li>Maintain all code as if it were a top-tier open-source project</li>
+<li>Use smaller projects to try new technologies. Either the new project will get normalized, or pieces from it will be applied to existing projects. (Or some combination of the two.)</li>
 </ul>
-<p>More reading. I dimly recall Google is storing lots more stuff on Drive. Are they storing photos? Why, yes!<br>
-<a href="images/image-001.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image-001.png" alt="image" title="image"></a></p>
-<p>Excitedly, I click the link and, indeed, I see my photos. <em>Some</em> of them. And some are different from what’s in Photos, despite the icon and text telling me I’m looking at, um, Photos. No albums. Too bad, because it looks like I can make individual photos publically accessible here. This is an illusion though, as far as my blog is concerned. The settings aren’t related. So this is useless. Gamely, I check the settings, and indeed there’s an intriguing option.<br>
-<a href="images/image13.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image13.png" alt="image" title="image"></a></p>
-<p>But I don’t check it. It doesn’t <em>feel</em> right. Why would I need to connect Google Photos to Google Drive in order to access sharing properties on Google Albums that are, somehow, already set? And I’m nervous that, according to some descriptions, I can make changes in Drive that affect Photos, but not the other way around. Or is it the reverse?</p>
-<h1 id="the-solution">The Solution</h1>
-<p>Wait . . . hang on. Isn’t Photos a <em>new</em> application? Weren’t we storing photos before? With some other program that I tried? (snap, snap, snap) Picasa. That’s it. Didn’t Picasa have albums? Is it possible? . . . Yes. Follow the trail.<br>
-<a href="images/image16.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image16.png" alt="image" title="image"></a><br>
-<a href="images/image19.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image19.png" alt="image" title="image"></a><br>
-<a href="images/image22.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image22.png" alt="image" title="image"></a><br>
-<a href="images/image-002.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image-002.png" alt="image" title="image"></a></p>
-<p>Save and done. Now all of my blog pictures are visible again. That was easy.<br>
-<a href="images/image28.png"><img src="http://www.softwaremeadows.com/posts/the-google-photos-management-problems/images/image28.png" alt="image" title="image"></a></p>
-<h1 id="section"></h1>
-<h1 id="the-problems">The Problems</h1>
-<p>Did you keep count? Google has <em>four</em> places you can manage your pictures:</p>
-<ol>
-<li><a href="https://photos.google.com/">photos.google.com</a>, the new kid, where G wants us to end up.</li>
-<li>Google Photos accessible from Google Drive.</li>
-<li>Pictures in a <em>folder</em> in Google Drive, somehow connected to Google Photos.</li>
-<li>Pictures in Picasa.</li>
-</ol>
-<p>It’s a mess. I’m sad.</p>
+<h2 id="key-areas">Key Areas</h2>
+<ul>
+<li>Personnel Interaction/Culture</li>
+<li>Security</li>
+<li>Project Management</li>
+<li>Continuous Integration and Deployment</li>
+<li>Source Control</li>
+<li>Testing</li>
+<li>Web UI framework</li>
+<li>Web Api framework</li>
+<li>ORM</li>
+<li>Database</li>
+<li>Architecture (DDD, etc.)</li>
+</ul>
+<blockquote>
+<p>There will be natural overlap in these areas.</p>
+</blockquote>
+<p>Improving which of these yields the most return? I would look at what improves communication first (project mgmt, Agile-based methods, studies on successful teams). Without communication and agreement, it's very difficult to improve other areas. I also think Security needs to be part of everyday work and thinking. Next, CI/CD, Testing, Source Control. Getting CI working will drive a <em>lot</em> of improvements. Then, the stack.</p>
+<p>I'll either update this post or follow up on it in a second part.</p>
 </div>
               </div>
               
