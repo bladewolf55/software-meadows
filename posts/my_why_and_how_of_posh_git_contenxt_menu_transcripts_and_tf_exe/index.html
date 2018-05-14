@@ -67,7 +67,7 @@
 <li><a href="#step-1-install-git-for-windows">Step 1 - Install Git for Windows</a></li>
 <li><a href="#step-2-install-posh-git">Step 2 - Install posh-git</a></li>
 <li><a href="#step-3-create-a-powershell-profile">Step 3 - Create a Powershell profile</a></li>
-<li><a href="#step-4-add-context-menu-entries">Step 4 - Add Context Menu Entries</a></li>
+<li><a href="#step-4-add-context-menu-entry">Step 4 - Add Context Menu Entry</a></li>
 <li><a href="#step-5-add-custom-posh-git-entry-to-visual-studio-open-command-line-extension">Step 5 - Add Custom posh-git entry to Visual Studio Open Command Line Extension</a></li>
 <li><a href="#results">Results</a></li>
 </ul>
@@ -155,7 +155,7 @@ Many sites that show examples of Powershell profiles for posh-git are for older 
     # Alias TFS command line
     Set-Alias tf "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\tf.exe"
 </code></pre>
-<h2 id="step-4-add-context-menu-entries">Step 4 - Add Context Menu Entries</h2>
+<h2 id="step-4-add-context-menu-entry">Step 4 - Add Context Menu Entry</h2>
 <p>I frequently want to open a Git console by right-clicking in the folder. Git for Windows adds that for Git-Bash (unless you say not to). Here's the registry file to add context menu entries for our new posh-git setup.</p>
 <blockquote>
 <p><strong>Note</strong><br>
@@ -190,7 +190,7 @@ You need to replace the user profile path below with your own.</p>
 <p>I'll get the same console if I have a solution open in Visual Studio and press ALT-Space.</p>
 <p><strong>To Do</strong></p>
 <ul>
-<li>Explore installing and using the TFS cmdlets, which might improve my weird workflow, see below)</li>
+<li>Explore installing and using the TFS cmdlets, which might improve my weird workflow, (see below).</li>
 </ul>
 <h1 id="a-summary-of-how-i-got-here">A Summary of How I Got Here</h1>
 <p>I originally was going to make this a review/comparison of the three command lines, but by the end of my research I realized there wasn't much point (to me) in that.</p>
@@ -206,7 +206,7 @@ You need to replace the user profile path below with your own.</p>
 <li>Scroll back through commands.</li>
 <li>Powerful command line if needed.</li>
 </ol>
-<p>[^2]:  I have a kind of crazy work flow where I use Git locally, but check in code to TFS remotely. So, using the VS Developer Command Prompt lets me run TFS <code>tf</code> commands if I want.</p>
+<p>[^2]:  I have a kind of crazy work flow where I use Git locally, but check in code to TFS remotely.</p>
 <h1 id="references">References</h1>
 <h2 id="posh-git">posh-git</h2>
 <ul>
