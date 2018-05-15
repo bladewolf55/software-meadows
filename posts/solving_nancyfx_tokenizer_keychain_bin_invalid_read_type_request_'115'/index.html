@@ -19,7 +19,7 @@
 <link rel='stylesheet' href='http://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>A Week (Or More!) Of Jolicloud - Day 2: THE END | Software Meadows</title>
+  <title>Solving Nancyfx Tokenizer Keychain.Bin Invalid Read Type Request '115' | Software Meadows</title>
 </head>
 
 <body>
@@ -55,12 +55,25 @@
         <section id="content">
           
               <div class='post'>
-                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></h2>
-                <p class='post-info'><span class='posted-on'>2013-07-22 19:22</span></p>
-                <div class='post-content'><p>My intent to use <a href="http://www.jolicloud.com/jolios">Joli OS</a> for a week came to an abrupt end today. I'm a software engineer, coding almost exclusively with .Net applications. I don't like working from home <em>after</em>&nbsp;working at the office, but for a current project I have to. Via VPN and RDP.</p>
-<p>Based on my <a href="http://www.softwaremeadows.com/2013/07/a-week-or-more-of-jolicloud-day-1.html">Day 1</a> experience, I decided it was going to take too long to get both VPN and RDP working, if the latter was even possible. Heck, I'd already spent two hours trying to get the monitor to display at its native resolution (failed). Never mind getting my network all-in-one printer to work (probably impossible). Netflix? Nope, not compatible.</p>
-<p>Joli OS is good at its original target market: netbooks. Computers not intended to do anything but surf the web and use web-based applications and services. And I don't blame Joli for not being super compatible. That's just the reality of Linux operating system.</p>
-<p>The plain fact is, I have to get back to work now.</p>
+                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/solving_nancyfx_tokenizer_keychain_bin_invalid_read_type_request_'115''>Solving NancyFx Tokenizer keyChain.bin Invalid read type request '115'</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-05-15 11:06</span></p>
+                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/solving_nancyfx_tokenizer_keychain_bin_invalid_read_type_request_'115'/images/nancylogo-transparent.png" alt=""> <img src="http://www.softwaremeadows.com/posts/solving_nancyfx_tokenizer_keychain_bin_invalid_read_type_request_'115'/images/user_security_token.png" alt=""></p>
+<h1 id="the-error">The Error</h1>
+<p>I was getting this error when running an ASP.NET solution using <a href="http://nancyfx.org/">NancyFx</a>:</p>
+<blockquote>
+<p>System.Runtime.Serialization.SerializationException: 'Invalid read type request '115'.'</p>
+</blockquote>
+<p>on this statement in my NancyBootstrapper:</p>
+<pre><code class="language-csharp">container.Register&lt;ITokenizer&gt;(new Tokenizer());
+</code></pre>
+<p>There is only one mention of this error when searching Google, and it refers to using a sync service of some kind. So, not apparently related.</p>
+<p>After quite a bit of sleuthing, I wondered about Nancy's keyChain.bin file, which I knew had been modified during a recent <code>git rebase</code> operation.</p>
+<p>Sure enough, I checked out the file from a working branch and the bug went away. Interestingly, I had renamed and saved the "bad" file. When I renamed it back, the bug didn't recur. So, I don't really understand what went wrong, but it got fixed.</p>
+<p>A simpler way to fix this would have been to rename or delete the keyChain.bin file, then let Nancy regenerate it.</p>
+<h1 id="make-it-better">Make it Better</h1>
+<p>I also was doing the wrong thing for the right reason. The (deprected) <a href="https://github.com/NancyFx/Nancy/wiki/Token-Authentication">Nancy Token-Authentication</a> requires a writable keyStore folder. By default, it gets created in the project root. I was marking the keyChain.bin file Build Type as Content and Copy Always, so it would be created in a first-deployment. But that meant storing the file in Git and it was always changing.</p>
+<p>My current solution is to use a readme.txt placeholder file, and ignore keyChain.bin.</p>
+<p>The better solution...I'll blog if successful...will be to write a custom FileSystemTokenKeyStore that stores the keyStore folder in App_Data, which is always writable.</p>
 </div>
               </div>
               
