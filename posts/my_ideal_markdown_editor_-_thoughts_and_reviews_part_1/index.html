@@ -19,7 +19,7 @@
 <link rel='stylesheet' href='http://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Create An Easily Debuggable Windows Service | Software Meadows</title>
+  <title>My Ideal Markdown Editor - Thoughts And Reviews Part 1 | Software Meadows</title>
 </head>
 
 <body>
@@ -55,173 +55,85 @@
         <section id="content">
           
               <div class='post'>
-                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></h2>
-                <p class='post-info'><span class='posted-on'>2016-06-15 12:53</span></p>
-                <div class='post-content'><p>In a previous job, I needed to create Windows services. One thing that had tripped me up in the past was being able to debug the service. I figured someone (or ones) had solved this, so I did a bunch of research, consolidated what I found, documented it, and am finally (three years later?) posting it.</p>
-<p>With the setup, below, you’ll have a Windows service that:</p>
-<p>Runs in debug mode as you’d expect, without having to set unnecessary breakpoints.</p>
-<p>Can run as a console app, allowing you to simply double-click the exe. This is useful for many things:</p>
+                <h2 class='post-title'><a href='http://www.softwaremeadows.com/posts/my_ideal_markdown_editor_-_thoughts_and_reviews_part_1'>My Ideal Markdown Editor - Thoughts and Reviews Part 1</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-05-14 16:25</span></p>
+                <div class='post-content'><p><img src="http://www.softwaremeadows.com/posts/my_ideal_markdown_editor_-_thoughts_and_reviews_part_1/images/markdown-editors-logo.png" alt=""></p>
+<h1 id="where-im-headed">Where I'm Headed</h1>
+<p>I've been meaning to blog about my ideal Mardown editor requirements, and which editors today get close to being my dream-editor-come-true.</p>
+<p>I'll probably be editing this post, but it gives a good idea of what matters to me. In upcoming parts, I'll review some--not all--of the editors and announce a winner.</p>
+<blockquote>
+<p><strong>Spoiler!</strong><br>
+My current Markdown editor is Markdown Monster, and I'm not expecting that to change. Still...we'll see!</p>
+</blockquote>
+<h1 id="requirements">Requirements</h1>
+<ol>
+<li>Use a Git parser that at least supports GFM.</li>
+<li>Ideally, support MarkDig because it's fast and, itself, supports all MD flavors.</li>
+<li>Scripting/snippet support.
+<ol>
+<li>Specifically, journal datetime, but I have other snippets I've become used to.</li>
+</ol>
+</li>
+<li>Addin support.
+<ol>
+<li>Want to be able to create/publish using Goat.</li>
+</ol>
+</li>
+<li>Standard MD behaviors</li>
+<li>Standard Editor behaviors
+<ol>
+<li>Including block editing</li>
+</ol>
+</li>
+<li>Supported. Editors seem to come and go.</li>
+<li>Drag-and-drop image paths.</li>
+</ol>
+<p><strong>Extras I've Found I Like</strong></p>
+<ol>
+<li>Preview window outside the editor.</li>
+<li>Automatic check-box bullets.
+<ol>
+<li>And, auto-checking from the editor. See the Android app iA Writer.</li>
+</ol>
+</li>
+<li>Open to end of document. Would love to do this per-document, so my journal opens to the end.</li>
+<li>YAML handling.</li>
+<li>Tabbed interface simultaneous with separate instances. I love being able to do my journal summary without changing settings.</li>
+<li>Using Ctrl-K (or whatever creates a link), automatically includes whatever's in the clipboard.'</li>
+<li>When pasting HTML, the ability to strip extras down to just the Markdown, instead of pasting the HTML styles, etc.</li>
+</ol>
+<h1 id="editors">Editors</h1>
+<h2 id="desktop">Desktop</h2>
 <ul>
-<li>Output running messages to the console (the same info you’re logging, most likely).</li>
-<li>Perform one-off runs for things like integration services that run on a schedule.</li>
-<li>Easily run elsewhere without having to install as a service.</li>
+<li><a href="https://markdownmonster.west-wind.com/">Markdown Monster</a></li>
+<li><a href="http://markdownedit.com/">Markdown Edit</a></li>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+<li><a href="https://typora.io/">Typora</a></li>
+<li><a href="http://pad.haroopress.com/">Haroopad</a></li>
+<li><a href="https://writeapp.co/">Write!</a>te!</li>
+<li><a href="https://caret.io/">Caret</a></li>
+<li><a href="https://wereturtle.github.io/ghostwriter/">Ghostwriter</a></li>
+<li><a href="http://markdownpad.com/">Markdown Pad 2</a> (no longer updated, but mention it)</li>
+<li><a href="http://www.texts.io/">Texts</a></li>
+<li><a href="http://writemonkey.com/">WriteMonkey</a></li>
+<li><a href="https://tylingsoft.com/markdown-plus/">Markdown Plus</a></li>
+<li><a href="https://github.com/brrd/Abricotine">Abricotine</a></li>
+<li><a href="https://github.com/marktext/marktext">MarkText</a></li>
 </ul>
-<p>In addition, my steps include Nice-to-Dos like file and service naming, startup type, etc. These are more for me than you, so that I don’t have to look them up again, so think of them as a bonus.</p>
-<p>The example below creates a sample FileImport service. Note that Visual Studio Express doesn’t have a Service project, but you can still create a service. (Sadly, I’m not covering that here, but might do so in a future post.)</p>
-<p>Create a new Windows Service project.</p>
-<p><a href="images/image.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image.png" alt="image" title="image"></a></p>
-<p>Change the Assembly output type to <strong>Console Application</strong> (for debugging).&nbsp; This, in my opinion, is the big deal. I can now write my program just like I would a console application, which is how I want to think of a service.</p>
-<p>This is also a good time to change the assembly information (title, company, etc.).</p>
-<p><a href="images/image-001.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-001.png" alt="image" title="image"></a></p>
-<p>Select Servic1.cs. Rename the Service1.cs file/class name, e.g. to FileImport.cs.</p>
-<p><a href="images/image-002.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-002.png" alt="image" title="image"></a><a href="images/image-003.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-003.png" alt="image" title="image"></a></p>
-<p><a href="images/image-004.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-004.png" alt="image" title="image"></a></p>
-<p>Select FileImport.cs and view the designer (Shift F7), change ServiceName, e.g. FileImport</p>
-<p><a href="images/image-005.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-005.png" alt="image" title="image"></a></p>
-<p>Rick-click design surface and choose Add Installer</p>
-<p><a href="images/image-006.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-006.png" alt="image" title="image"></a></p>
-<p>Open ProjectInstaller.cs designer, select ServiceInstaller1 and edit:</p>
-<p><a href="images/image-007.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-007.png" alt="image" title="image"></a></p>
+<h2 id="android">Android</h2>
 <ul>
-<li>Description</li>
-<li>DisplayName, e.g. “Sample File Import”</li>
-<li>ServiceName. Should be correct from Service1 designer change, otherwise FileImport</li>
-<li>StartType, e.g. Automatic</li>
+<li><a href="https://play.google.com/store/apps/details?id=net.ia.iawriter">iA Writer</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.jotterpad.x">JotterPad</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.underwood.monospace">Monospace</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=co.easy4u.writer">Writer Plus</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.ratfreedesserts.commonmarkeditor">WYSIWYG Markdown Editor</a></li>
 </ul>
-<p><a href="images/image-008.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-008.png" alt="image" title="image"></a></p>
-<p>If desired, in ProjectInstaller designer, select ServiceProcessInstaller and edit</p>
-<ul>
-<li>Account = User (set to NetworkService or LocalService if desired.)</li>
-</ul>
-<p><a href="images/image-009.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-009.png" alt="image" title="image"></a></p>
-<p><a href="images/image-010.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-010.png" alt="image" title="image"></a></p>
-<p>Open FileImport.cs code view, create a public member Start() for debugging.</p>
-<pre><code class="language-csharp">namespace FileImport
-{
-    public partial class FileImport : ServiceBase
-    {
-        public FileImport()
-        {
-            InitializeComponent();
-        }
-
-        protected override void OnStart(string[] args)
-        {
-        }
-
-        protected override void OnStop()
-        {
-        }
-
-        public void Start(string[] args)
-        {
-            OnStart(args);
-        }
-
-    }
-}
-</code></pre>
-<p>Change Program.Main() to this (or similar).</p>
-<pre><code class="language-csharp">namespace FileImport
-{
-    static class Program
-    {
-        /// 
-        /// The main entry point for the application.
-        /// 
-        static void Main()
-        {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
-            {
-                new FileImport()
-            };
-            // If you don’t want the exe to run as console when double-clicked, then use:
-            //   if (System.Diagnostics.Debugger.IsAttached)
-            if (Environment.UserInteractive)
-            {
-                Console.WriteLine("Service running, press  to stop.");
-                ((FileImport)ServicesToRun[0]).Start(null);
-                Console.ReadLine();
-                ((FileImport)ServicesToRun[0]).Stop();
-            }
-            else
-            {
-                ServiceBase.Run(ServicesToRun);
-            }
-        }
-    }
-}
-</code></pre>
-<p>At this point, you can run the project. It will open a console window and wait.</p>
-<p><a href="images/image-011.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-011.png" alt="image" title="image"></a></p>
-<p>If you install the service, when the service is started it behaves like any other service, i.e. doesn’t display the console window.</p>
-<p>Our service isn’t doing anything, so let’s see what the benefit is to creating a service as a console app instead of the default Windows app. We’re not going to do anything fancy like multithreading, I just want to give a flavor. In FileImport.cs, use the following code.</p>
-<pre><code class="language-csharp">using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-
-namespace FileImport
-{
-    public partial class FileImport : ServiceBase
-    {
-        Timer _timer = new Timer(5000);
-
-        public FileImport()
-        {
-            InitializeComponent();
-        }
-
-        protected override void OnStart(string[] args)
-        {
-            _timer.Elapsed += OnTimerElapsed;
-            _timer.Start();
-        }
-
-        private void OnTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            Console.WriteLine("The time is--or, to be precise, was: " + DateTime.Now.ToString());
-        }
-
-        protected override void OnStop()
-        {
-            Console.WriteLine("Stopping. Here's one method where you'd handle processes that shouldn't be interrupted, gracefully stop them, then end the service. Press  to finish stopping.");
-            _timer.Stop();
-            _timer.Dispose();
-            //etc.
-            Console.ReadLine();
-        }
-
-        public void Start(string[] args)
-        {
-            OnStart(args);
-        }
-
-    }
-}
-</code></pre>
-<p>Run the program and it will output something like this.</p>
-<p><a href="images/image-012.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-012.png" alt="image" title="image"></a></p>
-<p>Now, if you were to install and run this as a service, you still wouldn’t see anything. But you can imagine adding appending text to a file (for example) in the OnTimerElapsed event.</p>
-<pre><code class="language-csharp">        private void OnTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            string msg = "The time is--or, to be precise, was: " + DateTime.Now.ToString() + "\r\n";
-            System.IO.File.AppendAllText(Environment.ExpandEnvironmentVariables("%USERPROFILE%\\TestFileImport.txt"),msg);
-            Console.WriteLine(msg);
-        }
-</code></pre>
-<p>Of course, I can drop into the debugger as expected.</p>
-<p><a href="images/image-013.png"><img src="http://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service/images/image-013.png" alt="image" title="image"></a></p>
-<p>There you go! A simple way to build better Windows services.</p>
 <h1 id="references">References</h1>
-<p><strong><a href="http://einaregilsson.com/run-windows-service-as-a-console-program/">http://einaregilsson.com/run-windows-service-as-a-console-program/</a></strong></p>
+<ul>
+<li><a href="http://writemonkey.com/">Awesome Markdown Text Editors</a></li>
+<li><a href="https://www.sitepoint.com/best-markdown-editors-windows/">The Best Markdown Editor for Windows</a></li>
+<li><a href="https://www.slant.co/topics/1852/%7Emarkdown-editors-for-windows">18 Bewt Markdown Editors for Windows 2018</a></li>
+</ul>
 </div>
               </div>
               
