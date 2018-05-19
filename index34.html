@@ -19,7 +19,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>How To Remove Apps From Google Play My Apps Site | Software Meadows</title>
+  <title>Home | Software Meadows</title>
 </head>
 
 <body>
@@ -53,22 +53,40 @@
           <div id="site-subtitle">A pleasant walk through computing</div>
         </header>
         <section id="content">
-          
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></h2>
-                <p class='post-info'><span class='posted-on'>2013-12-05 18:51</span></p>
-                <div class='post-content'><p>In the last three years, I’ve downloaded lots of apps to my phone that I quickly deleted. Now I have a new phone, a spiffy Nexus 5, and decided to install from the web. And there I found <em>all</em> of those apps listed. Yuck. But surely I could remove them…right?</p>
-<p>Not from the web page. But it can be done from the phone. Thank you, author of this article!</p>
-<p><a href="http://howto.cnet.com/8301-11310_39-57556054-285/delete-downloaded-app-history-from-google-play/">http://howto.cnet.com/8301-11310_39-57556054-285/delete-downloaded-app-history-from-google-play/</a></p>
-<p>Bonus: I can remove apps that were preinstalled on my Samsung Charge (which I liked). Goodbye, Blockbuster app that no longer works!</p>
-<p>Too bad there’s no way to install multiple apps at once.</p>
-</div>
-              </div>
-              
+          <h1 id="home">Home</h1>
+
         </section>
         <!-- posts only appear in home index -->
         <section id="posts">
-           
+          
+              <div class='post'>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/test-post-with-code'>Migrating Google Drive</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-01-26 14:06</span></p>
+                <div class='post-content'><p>My <a href="http://stephkayeturner.com/">wife</a>recently got her own domain name, and signed up for Google Apps for Business. She's been migrating her email and calendar from previous accounts, including a Google account.<br>
+The problem was Drive. She had a mixture of documents in Google Docs format and MS Office. Some items were shared. All in all, it looked like a big mess, complicated by the fact that Google doesn't let you give ownership of your files to someone in another domain. I don't know why. I assume the Ph.Ds who work there didn't properly sacrifice to the Domain Name God.<br>
+Also--and this burns me up--Google won't let you download files using their super-secret-must-be-tastier-than-Coke internal format. If you have Drive synchronization set up, you'll see documents with .gdoc extensions, but they're just text files with points to the web site. What this means is that there is no hope of downloading and uploading Google Docs and preserve true fidelity.<br>
+Thanks, Google. My files aren't really my files, because you own the format.<br>
+So, here's what I did--and what I could have done.<br>
+First, I think I could have paid for a tool that would migrate the documents. But I didn't, and I didn't even really look for one. Instead, I used a utility that I like a lot,<a href="http://gs.fhtino.it/gdocbackup">GDocBackup</a>. It's not only a nice free utility, but the web site has a great picture.<br>
+<img src="http://gs.fhtino.it/_/rsrc/1211547139810/config/app/images/io_piccolo.jpg" alt=""></p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Go through my wife's old Google Drive account--we'll call it Thing One--and remove me as a shared person.</li>
+<li>Go through my Drive and remove her as a shared person.</li>
+<li>Use GDocBackup&nbsp;to download all of her files. "Wait!" you interrupt (which is a little rude), "Why didn't you use Drive's ability to download all the files?" Simple. It doesn't preserve folder layout. I'm sure they'd argue that a file can have more than one label, so it's impossible. But then, why does local Drive sync work? Not impressed.</li>
+<li>Now here's where I crow about my wife. I told her that I could preserve which files were GDocs&nbsp;by keeping two sets of folders: one with only the Google format docs, and one with everything else. Then, I'd import the first ones with Drive set to convert the files. And she says, "Oh, that's all right. You can just upload them all as Microsoft docs." So, that saves me&nbsp;<em>huge</em> time.</li>
+<li>So, in the interests of saving her work, I determine a few files that really must be in Google format, and upload/convert those, then delete them.</li>
+<li>I then disconnect my local Drive sync, and reconnect using her new Business account--which we'll call Thing Two.</li>
+<li>I copy all of the Thing One files from the&nbsp;GDocBackup&nbsp;folder into the Google Drive folder (Thing Two).</li>
+<li>Wait for synchronization to complete.</li>
+</ol>
+<p>There. Wasn't that easy?*<br>
+I really hope Google makes this process better. What I really don't understand is why they don't allow assigning ownership across domains. I mean, it's probably just a primary key field in a database. But what do I know?<br>
+------------------------------<br>
+*No, it wasn't.</p>
+</div>
+              </div>
+               <div class='paging'><a href='index33.html'>Newer</a>&nbsp;&nbsp;&nbsp;</div>
         </section>
         <footer><p>Copyright (c) 2018 Charles L Flatt</p>
 </footer>
