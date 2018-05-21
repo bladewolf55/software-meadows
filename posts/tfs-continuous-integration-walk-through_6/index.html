@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-06 07:56</span></p>
-                <div class='post-content'><p><a href="images/ci-logo.png"><img src="images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
+                <div class='post-content'><p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/ci-logo.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
 <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_63.html">TFS Continuous Integration Walk Through Part 3 - Notifications</a></p>
 <p><strong>References</strong><br />
@@ -131,11 +131,11 @@ If you set test filter criteria, at least one of your unit tests in every assemb
 <p>It's possible to filter tests locally. One way is from the command line.</p>
 <p><a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">https://msdn.microsoft.com/en-us/library/dd286683.aspx</a></p>
 <p>But you can also group by traits in the Text Explorer, and selectively run the tests. (This doesn't work so well if you're using multiple test frameworks).</p>
-<p><a href="images/17-02-02_1030.png"><img src="images/17-02-02_1030.png" alt="2017-02-02_102530" title="2017-02-02_102530" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_1030.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_1030.png" alt="2017-02-02_102530" title="2017-02-02_102530" /></a></p>
 <p>We want our CI server to only run the non-manual tests. Let's apply the filter in TFS Build. Edit the build definition as shown above, and select the Visual Studio Test step. Add the &quot;Test Filter criteria&quot; <code>TestCategory!=manual</code> and Save.</p>
-<p><a href="images/17-02-02_103011.png"><img src="images/17-02-02_103011.png" alt="2017-02-02_103011" title="2017-02-02_103011" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_103011.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_103011.png" alt="2017-02-02_103011" title="2017-02-02_103011" /></a></p>
 <p>Click &quot;Queue build&quot; to rerun the build. If you haven't checked in the code with the test categories, do that instead. The result should be just two tests run, and both pass. Here are the Test Results detailed report. Be sure to change the Outcome to show all the tests.</p>
-<p><a href="images/17-02-02_11_51.png"><img src="images/17-02-02_11_51.png" alt="2017-02-02_112051" title="2017-02-02_112051" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_11_51.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_11_51.png" alt="2017-02-02_112051" title="2017-02-02_112051" /></a></p>
 <p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_24.html">TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></p>
 </div>
               </div>

@@ -62,8 +62,8 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-05 14:10</span></p>
-                <div class='post-content'><p><a href="images/ci-logo.png"><br />
-<img src="images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
+                <div class='post-content'><p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/ci-logo.png"><br />
+<img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
 <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through.html">TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></p>
 <h2 id="add-the-solution-to-a-new-build-definition">Add the Solution to a New Build Definition</h2>
@@ -72,30 +72,30 @@
 <p>You can get to the web-based &quot;create new build&quot; wizard a couple of ways.</p>
 <ol>
 <li>In the Visual Studio solution, switch to Team Explorer, click the Home icon, then drop down Home and choose Builds.<br />
- <a href="images/17-01-31_101042.png"><img src="images/17-01-31_101042.png" alt="2017-01-31_101042" title="2017-01-31_101042" /></a></li>
+ <a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_101042.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_101042.png" alt="2017-01-31_101042" title="2017-01-31_101042" /></a></li>
 <li>On the TFS web site (<a href="http://%5Btfs-site%5D:8080/tfs">http://\[tfs-site\]:8080/t</a>), select your team project if visible, or click Browse and navigate to it that way. On the project page, open the Build menu and click the plus sign.<br />
- <a href="images/17-01-31_102849.png"><img src="images/17-01-31_102849.png" alt="2017-01-31_102849" title="2017-01-31_102849" /></a></li>
+ <a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_102849.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_102849.png" alt="2017-01-31_102849" title="2017-01-31_102849" /></a></li>
 </ol>
 <p>Either way gets to the &quot;Create new build definition&quot; wizard. Choose &quot;Visual Studio&quot; and click Next.</p>
-<p><a href="images/17-01-31_102926.png"><img src="images/17-01-31_102926.png" alt="2017-01-31_102926" title="2017-01-31_102926" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_102926.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_102926.png" alt="2017-01-31_102926" title="2017-01-31_102926" /></a></p>
 <p>Choose the Repository source, in this case the CI Console Sample. We only have one agent queue, the default. Click Create.</p>
-<p><a href="images/17-01-31_103317.png"><img src="images/17-01-31_103317.png" alt="2017-01-31_103317" title="2017-01-31_103317" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_103317.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_103317.png" alt="2017-01-31_103317" title="2017-01-31_103317" /></a></p>
 <p>This adds a set of build steps to the definition. Click Save and name the definition. Definitions can be used by multiple solutions, so something generic like &quot;Default Visual Studio Build&quot; will work.</p>
 <blockquote>
 <p><strong>Note</strong> The Visual Studio Test step will auto-discover many third-party test adapters, including xUnit. It's <em>not</em> necessary to set the path in the step's Advanced &gt; Path to Custom Test Adapters field for this example.</p>
 </blockquote>
-<p><a href="images/17-01-31_103740.png"><img src="images/17-01-31_103740.png" alt="2017-01-31_103740" title="2017-01-31_103740" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_103740.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_103740.png" alt="2017-01-31_103740" title="2017-01-31_103740" /></a></p>
 <p>Let's test the build with the default steps. Click &quot;Queue build&quot;, the OK.</p>
-<p><a href="images/17-01-31_104047.png"><img src="images/17-01-31_104047.png" alt="2017-01-31_104047" title="2017-01-31_104047" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104047.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104047.png" alt="2017-01-31_104047" title="2017-01-31_104047" /></a></p>
 <p>The build will run in a pretty cool web-based console window. As expected, the unit tests fail.</p>
-<p><a href="images/17-01-31_104540.png"><img src="images/17-01-31_104540.png" alt="2017-01-31_104540" title="2017-01-31_104540" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104540.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104540.png" alt="2017-01-31_104540" title="2017-01-31_104540" /></a></p>
 <p>There's also a summary error message at the end.</p>
-<p><a href="images/17-01-31_104648.png"><img src="images/17-01-31_104648.png" alt="2017-01-31_104648" title="2017-01-31_104648" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104648.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104648.png" alt="2017-01-31_104648" title="2017-01-31_104648" /></a></p>
 <h2 id="buildconfiguration-default-release">BuildConfiguration Default = Release</h2>
 <p><strong>References</strong><br />
 <a href="http://stackoverflow.com/questions/3416665/unit-testing-on-a-build-server-release-or-debug-code">Unit testing on a build server : Release or Debug code?</a></p>
 <p>Notice, above, when we queued the build that we got a dialog letting us set some variables. These variables are part of the build definition, in the Variables tab.</p>
-<p><a href="images/17-01-31_104700.png"><img src="images/17-01-31_104700.png" alt="2017-01-31_104700" title="2017-01-31_104700" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104700.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104700.png" alt="2017-01-31_104700" title="2017-01-31_104700" /></a></p>
 <p>At first, I thought this was a poor choice for a default. And, I do have a concern. But after reading the article referenced above, I realized...</p>
 <blockquote>
 <p><strong>CI Principle</strong><br />
@@ -131,9 +131,9 @@ Auto-build your application to the code your customers will be using.</p>
 <h2 id="enable-and-test-continuous-integration">Enable and Test Continuous Integration</h2>
 <p>Let's test that a build will run the next time we commit source code changes. And, let's be a sloppy developer, too.</p>
 <p>First, we need to configure the build definition to trigger when we check in. On the TFS site, in the team project, choose the Build menu, select the Default Visual Studio Build, and click Edit.</p>
-<p><a href="images/17-01-31_110712.png"><img src="images/17-01-31_110712.png" alt="2017-01-31_110712" title="2017-01-31_110712" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110712.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110712.png" alt="2017-01-31_110712" title="2017-01-31_110712" /></a></p>
 <p>Open Triggers, check Continuous Integration, leave the defaults, and Save.</p>
-<p><a href="images/17-01-31_110924.png"><img src="images/17-01-31_110924.png" alt="2017-01-31_110924" title="2017-01-31_110924" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110924.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110924.png" alt="2017-01-31_110924" title="2017-01-31_110924" /></a></p>
 <p>Back in our solution, change the TextMan.Greeter method as follows. Note that this will <em>not</em> pass.</p>
 <pre><code class="language-csharp">    public class TextMan
     {
@@ -144,17 +144,17 @@ Auto-build your application to the code your customers will be using.</p>
     }
 </code></pre>
 <p>You can run the tests if you want to prove they fail.</p>
-<p><a href="images/17-01-31_105424.png"><img src="images/17-01-31_105424.png" alt="2017-01-31_105424" title="2017-01-31_105424" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_105424.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_105424.png" alt="2017-01-31_105424" title="2017-01-31_105424" /></a></p>
 <p>Now for the fun. On the TFS web site, go to the team project's Build tab, select the Default Visual Studio Build, and open the Queued view. Keep this page visible if you can. We want to see the build automatically start.</p>
-<p><a href="images/17-01-31_1059.png"><img src="images/17-01-31_1059.png" alt="2017-01-31_105936" title="2017-01-31_105936" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_1059.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_1059.png" alt="2017-01-31_105936" title="2017-01-31_105936" /></a></p>
 <p>In Team Explorer, click Pending Changes</p>
-<p><a href="images/17-01-31_105614.png"><img src="images/17-01-31_105614.png" alt="2017-01-31_105614" title="2017-01-31_105614" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_105614.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_105614.png" alt="2017-01-31_105614" title="2017-01-31_105614" /></a></p>
 <p>Enter a comment and click Check In.</p>
-<p><a href="images/17-01-31_110109.png"><img src="images/17-01-31_110109.png" alt="2017-01-31_110109" title="2017-01-31_110109" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110109.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110109.png" alt="2017-01-31_110109" title="2017-01-31_110109" /></a></p>
 <p>Back on the TFS site page, click Refresh and the build should appear.</p>
-<p><a href="images/17-01-31_111112.png"><img src="images/17-01-31_111112.png" alt="2017-01-31_111112" title="2017-01-31_111112" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_111112.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_111112.png" alt="2017-01-31_111112" title="2017-01-31_111112" /></a></p>
 <p>You can open the build and wait for it to finish (i.e. &quot;fail&quot;). The summary page nicely tells you who authored the last changes.</p>
-<p><a href="images/17-01-31_111405.png"><img src="images/17-01-31_111405.png" alt="2017-01-31_111405" title="2017-01-31_111405" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_111405.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_111405.png" alt="2017-01-31_111405" title="2017-01-31_111405" /></a></p>
 <p>Our build server is successfully automatically building on check in!</p>
 <p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_63.html">TFS Continuous Integration Walk Through Part 3 - Notifications</a></p>
 </div>
@@ -164,7 +164,7 @@ Auto-build your application to the code your customers will be using.</p>
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-04 15:24</span></p>
-                <div class='post-content'><p><a href="images/ci-logo.png"><img src="images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
+                <div class='post-content'><p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/ci-logo.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
 <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples" title="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <div>
 </div>
@@ -197,61 +197,61 @@ Auto-build your application to the code your customers will be using.</p>
 <li><p>If you're using SQL 2016, Download and install the C++ Runtime prerequisite. <a href="http://support.microsoft.com/kb/3138367">http://support.microsoft.com/kb/3138367</a></p>
 </li>
 <li><p>Run installer<br />
-<a href="images/17-01-27_142237.png"><img src="images/17-01-27_142237.png" alt="2017-01-27_142237" title="2017-01-27_142237" /></a></p>
-<p><a href="images/17-01-27_142348.png"><img src="images/17-01-27_142348.png" alt="2017-01-27_142348" title="2017-01-27_142348" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_142237.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_142237.png" alt="2017-01-27_142237" title="2017-01-27_142237" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_142348.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_142348.png" alt="2017-01-27_142348" title="2017-01-27_142348" /></a></p>
 </li>
 <li><p>After installation, the Configuration Center opens. Select Basic Server and click Start Wizard.</p>
-<p><a href="images/17-01-27_143404.png"><img src="images/17-01-27_143404.png" alt="2017-01-27_143404" title="2017-01-27_143404" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_143404.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_143404.png" alt="2017-01-27_143404" title="2017-01-27_143404" /></a></p>
 </li>
 <li><p>Choose whether to participate in the Visual Studio Experience Improvement Program and click Next.<br />
-<a href="images/17-01-27_143548.png"><img src="images/17-01-27_143548.png" alt="2017-01-27_143548" title="2017-01-27_143548" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_143548.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_143548.png" alt="2017-01-27_143548" title="2017-01-27_143548" /></a></p>
 </li>
 <li><p>Choose whether to install SQL Express or use an existing instance. In my case, I already have SQL 2016 Express installed. Click Next.<br />
-<a href="images/17-01-27_1431.png"><img src="images/17-01-27_1431.png" alt="2017-01-27_143631" title="2017-01-27_143631" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_1431.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_1431.png" alt="2017-01-27_143631" title="2017-01-27_143631" /></a></p>
 </li>
 <li><p>The default SQL instance is displayed, or enter a named instance. This is the instance in which the TFS databases will be created. Click Next.<br />
-<a href="images/17-01-27_143755.png"><img src="images/17-01-27_143755.png" alt="2017-01-27_143755" title="2017-01-27_143755" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_143755.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_143755.png" alt="2017-01-27_143755" title="2017-01-27_143755" /></a></p>
 </li>
 <li><p>The next screen is what threw me. &quot;Install and configure a build and deployment agent&quot; is unchecked by default. You can install an agent later (I show how), but it's just as easy to install one now. Check the box and accept the defaults. Note the installation folder for later use. Click Next.</p>
-<p><a href="images/17-01-27_144005.png"><img src="images/17-01-27_144005.png" alt="2017-01-27_144005" title="2017-01-27_144005" /></a><br />
-<a href="images/17-01-27_144159.png"><img src="images/17-01-27_144159.png" alt="2017-01-27_144159" title="2017-01-27_144159" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144005.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144005.png" alt="2017-01-27_144005" title="2017-01-27_144005" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144159.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144159.png" alt="2017-01-27_144159" title="2017-01-27_144159" /></a></p>
 </li>
 <li><p>Click Next again at the review screen.<br />
-<a href="images/17-01-27_144341.png"><img src="images/17-01-27_144341.png" alt="2017-01-27_144341" title="2017-01-27_144341" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144341.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144341.png" alt="2017-01-27_144341" title="2017-01-27_144341" /></a></p>
 </li>
 <li><p>Readiness checks will run. If something fails, you'll need to fix it before continuing, then click &quot;Click here to rerun Readiness Checks. Once everything passes, click Configure.<br />
-<a href="images/17-01-27_144511.png"><img src="images/17-01-27_144511.png" alt="2017-01-27_144511" title="2017-01-27_144511" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144511.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144511.png" alt="2017-01-27_144511" title="2017-01-27_144511" /></a></p>
 </li>
 <li><p>TFS and the agent will be configured. This creates databases, the agent service, and the website. When complete, click Next.<br />
-<a href="images/17-01-27_144541.png"><img src="images/17-01-27_144541.png" alt="2017-01-27_144541" title="2017-01-27_144541" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144541.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_144541.png" alt="2017-01-27_144541" title="2017-01-27_144541" /></a></p>
 </li>
 <li><p>Note the web site location. It's a good idea to open the web site now. Click Close.<br />
-<a href="images/17-01-27_150639.png"><img src="images/17-01-27_150639.png" alt="2017-01-27_150639" title="2017-01-27_150639" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_150639.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_150639.png" alt="2017-01-27_150639" title="2017-01-27_150639" /></a></p>
 </li>
 <li><p>You're done with the wizard, so click Close. This will open the Server Administration Console.<br />
-<a href="images/17-01-27_150745.png"><img src="images/17-01-27_150745.png" alt="2017-01-27_150745" title="2017-01-27_150745" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_150745.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_150745.png" alt="2017-01-27_150745" title="2017-01-27_150745" /></a></p>
 </li>
 <li><p>Select Build and Release. This page has some instructions. You can go directly to the TFS Settings &gt; Agent page by click on Download Build and Deployment Agent. (<strong>Note: We will not be using the legacy XAML Build Configuration.</strong>). You can also get to the Settings page via the gear icon on the TFS web page.</p>
-<p><a href="images/17-01-27_151017.png"><img src="images/17-01-27_151017.png" alt="2017-01-27_151017" title="2017-01-27_151017" /></a></p>
-<p><a href="images/17-01-27_1511.png"><img src="images/17-01-27_1511.png" alt="2017-01-27_151136" title="2017-01-27_151136" /></a><br />
-<a href="images/17-01-27_151306.png"><img src="images/17-01-27_151306.png" alt="2017-01-27_151306" title="2017-01-27_151306" /></a><br />
-<a href="images/17-01-27_151349.png"><img src="images/17-01-27_151349.png" alt="2017-01-27_151349" title="2017-01-27_151349" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_151017.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_151017.png" alt="2017-01-27_151017" title="2017-01-27_151017" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_1511.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_1511.png" alt="2017-01-27_151136" title="2017-01-27_151136" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_151306.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_151306.png" alt="2017-01-27_151306" title="2017-01-27_151306" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_151349.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-27_151349.png" alt="2017-01-27_151349" title="2017-01-27_151349" /></a></p>
 </li>
 </ol>
 <h2 id="console-app-with-tests">Console App with Tests</h2>
 <ol>
 <li>Create a Console application<br />
- <a href="images/17-01-30_104608.png"><img src="images/17-01-30_104608.png" alt="2017-01-30_104608" title="2017-01-30_104608" /></a></li>
+ <a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_104608.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_104608.png" alt="2017-01-30_104608" title="2017-01-30_104608" /></a></li>
 <li>Add two Class Library projects to the solution. We'll show consuming different test frameworks.<br />
 CIConsoleSample.MSTests<br />
 CIConsoleSample.xUnitTests<br />
- <a href="images/17-01-30_105018.png"><img src="images/17-01-30_105018.png" alt="2017-01-30_105018" title="2017-01-30_105018" /></a></li>
+ <a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_105018.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_105018.png" alt="2017-01-30_105018" title="2017-01-30_105018" /></a></li>
 <li>In the MSTests class library, add an Extensions reference to <code>Microsoft.VisualStudio.QualityTools.UnitTestFramework</code><br />
-<a href="images/17-01-30_105737.png"><img src="images/17-01-30_105737.png" alt="2017-01-30_105737" title="2017-01-30_105737" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_105737.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_105737.png" alt="2017-01-30_105737" title="2017-01-30_105737" /></a><br />
 Also add a reference to the CIConsoleSample project.<br />
- <a href="images/17-01-30_111716.png"><img src="images/17-01-30_111716.png" alt="2017-01-30_111716" title="2017-01-30_111716" /></a></li>
+ <a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_111716.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_111716.png" alt="2017-01-30_111716" title="2017-01-30_111716" /></a></li>
 <li>In the xUnitTests class library, add the xUnit NuGet package, and the xunit.runner.visualstudio package.<br />
-<a href="images/17-01-30_113117.png"><img src="images/17-01-30_113117.png" alt="2017-01-30_113117" title="2017-01-30_113117" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_113117.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_113117.png" alt="2017-01-30_113117" title="2017-01-30_113117" /></a><br />
 And, as above, add the reference to the CIConsoleSample project.</li>
 </ol>
 <h2 id="create-msunit-tests">Create MSUnit Tests</h2>
@@ -324,9 +324,9 @@ namespace CIConsoleSample.xUnitTests
 <p>First, here's how I like to display my tests, taking advantage of the nested class structure.</p>
 <ul>
 <li>Tear off the Test Explorer into its own window, so that you can easily resize and see all the tests.<br />
-<a href="images/test-tearoff.png"><img src="images/test-tearoff.png" alt="test-tearoff" title="test-tearoff" /></a></li>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/test-tearoff.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/test-tearoff.png" alt="test-tearoff" title="test-tearoff" /></a></li>
 <li>Group the test results by class<br />
-<a href="images/test-byclass.png"><img src="images/test-byclass.png" alt="test-byclass" title="test-byclass" /></a></li>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/test-byclass.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/test-byclass.png" alt="test-byclass" title="test-byclass" /></a></li>
 <li>In your xUnitTests project, add an app.config file with the following setting. This causes the result to display only the method name instead of the fully qualified name.</li>
 </ul>
 <!-- end list -->
@@ -339,48 +339,48 @@ namespace CIConsoleSample.xUnitTests
 </code></pre>
 <ol>
 <li>Build the solution so the tests are displayed in the runner.<br />
- <a href="images/17-01-30_1_234.png"><img src="images/17-01-30_1_234.png" alt="2017-01-30_120234" title="2017-01-30_120234" /></a></li>
+ <a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_1_234.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_1_234.png" alt="2017-01-30_120234" title="2017-01-30_120234" /></a></li>
 <li>Run the tests. They should both fail.<br />
- <a href="images/17-01-30_1_353.png"><img src="images/17-01-30_1_353.png" alt="2017-01-30_120353" title="2017-01-30_120353" /></a></li>
+ <a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_1_353.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_1_353.png" alt="2017-01-30_120353" title="2017-01-30_120353" /></a></li>
 </ol>
 <p>This is enough for the moment. Let's add this solution to TFS, then to our CI server.</p>
 <h2 id="add-solution-to-tfs">Add Solution to TFS</h2>
 <p><strong>References</strong><br />
 <a href="https://www.visualstudio.com/en-us/docs/setup-admin/create-team-project%3E">Create a team project</a> <a href="https://www.visualstudio.com/en-us/docs/work/guidance/choose-process">Choose a process</a><br />
 Open the Team Explorer. If this is the first time connecting to TFS, you may see something like this (including the commercial).<br />
-<a href="images/17-01-30_145139.png"><img src="images/17-01-30_145139.png" alt="2017-01-30_145139" title="2017-01-30_145139" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_145139.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_145139.png" alt="2017-01-30_145139" title="2017-01-30_145139" /></a><br />
 Close the commercial, if you want, drop down Manage Connections and choose Connect to Team Project.<br />
-<a href="images/17-01-30_145415.png"><img src="images/17-01-30_145415.png" alt="2017-01-30_145415" title="2017-01-30_145415" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_145415.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_145415.png" alt="2017-01-30_145415" title="2017-01-30_145415" /></a><br />
 Select your local server. It will search for collections. Click Connect.<br />
-<a href="images/17-01-30_145611.png"><img src="images/17-01-30_145611.png" alt="2017-01-30_145611" title="2017-01-30_145611" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_145611.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_145611.png" alt="2017-01-30_145611" title="2017-01-30_145611" /></a><br />
 For this walk through, we're using TFS workspaces, not Git, for version control.<br />
 You can click &quot;Configure your workspace&quot; in the big mustard prompt. Or, click Project &gt; Configure Workspace<br />
-<a href="images/17-01-30_145755.png"><img src="images/17-01-30_145755.png" alt="2017-01-30_145755" title="2017-01-30_145755" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_145755.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_145755.png" alt="2017-01-30_145755" title="2017-01-30_145755" /></a><br />
 The dialog maps the remote collection's root folder to a folder on your local computer. You can accept the default (which I'll do for this example), or choose another folder (which I'd normally do). Click &quot;Map and Get&quot;. This is our first solution, so there are none to get.<br />
-<a href="images/17-01-30_150019.png"><img src="images/17-01-30_150019.png" alt="2017-01-30_150019" title="2017-01-30_150019" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_150019.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_150019.png" alt="2017-01-30_150019" title="2017-01-30_150019" /></a><br />
 Switch to Solution Explorer, right-click the solution, and choose Add Solution to Source Control.<br />
-<a href="images/17-01-30_150759.png"><img src="images/17-01-30_150759.png" alt="2017-01-30_150759" title="2017-01-30_150759" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_150759.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_150759.png" alt="2017-01-30_150759" title="2017-01-30_150759" /></a><br />
 I got this error message.</p>
 <blockquote>
 <p><strong>Full Disclosure</strong> I don't like TFS. This is an example of why. So much ceremony! I know there's a good reason, but sometimes I just want to get to work.</p>
 </blockquote>
-<p><a href="images/17-01-30_150946.png"><img src="images/17-01-30_150946.png" alt="2017-01-30_150946" title="2017-01-30_150946" /></a><br />
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_150946.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_150946.png" alt="2017-01-30_150946" title="2017-01-30_150946" /></a><br />
 Switch <em>back</em> to Team Explorer, and choose Home &gt; Projects and My Teams &gt; New Team Project.<br />
-<a href="images/17-01-30_153823.png"><img src="images/17-01-30_153823.png" alt="2017-01-30_153823" title="2017-01-30_153823" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_153823.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_153823.png" alt="2017-01-30_153823" title="2017-01-30_153823" /></a><br />
 Name your team project. Click Next.<br />
-<a href="images/17-01-30_153932.png"><img src="images/17-01-30_153932.png" alt="2017-01-30_153932" title="2017-01-30_153932" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_153932.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_153932.png" alt="2017-01-30_153932" title="2017-01-30_153932" /></a><br />
 Choose the Agile process. Click Next.<br />
-<a href="images/17-01-30_154431.png"><img src="images/17-01-30_154431.png" alt="2017-01-30_154431" title="2017-01-30_154431" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_154431.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_154431.png" alt="2017-01-30_154431" title="2017-01-30_154431" /></a><br />
 Choose Team Foundation Version Control. Click Next, then Finish.<br />
-<a href="images/17-01-30_154535.png"><img src="images/17-01-30_154535.png" alt="2017-01-30_154535" title="2017-01-30_154535" /></a><br />
-<a href="images/17-01-30_154613.png"><img src="images/17-01-30_154613.png" alt="2017-01-30_154613" title="2017-01-30_154613" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_154535.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_154535.png" alt="2017-01-30_154535" title="2017-01-30_154535" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_154613.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_154613.png" alt="2017-01-30_154613" title="2017-01-30_154613" /></a><br />
 <em>Now</em> switch to Solution Explorer and add the solution to the team project.<br />
-<a href="images/17-01-30_154745.png"><img src="images/17-01-30_154745.png" alt="2017-01-30_154745" title="2017-01-30_154745" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_154745.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_154745.png" alt="2017-01-30_154745" title="2017-01-30_154745" /></a><br />
 The solution files are added locally, but not yet committed (checked in) to the repository. Right-click the solution and choose Check In.<br />
-<a href="images/17-01-30_155043.png"><img src="images/17-01-30_155043.png" alt="2017-01-30_155043" title="2017-01-30_155043" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_155043.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_155043.png" alt="2017-01-30_155043" title="2017-01-30_155043" /></a><br />
 Enter a comment and click Check In.<br />
-<a href="images/17-01-30_155135.png"><img src="images/17-01-30_155135.png" alt="2017-01-30_155135" title="2017-01-30_155135" /></a><br />
-<a href="images/17-01-30_155242.png"><img src="images/17-01-30_155242.png" alt="2017-01-30_155242" title="2017-01-30_155242" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_155135.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_155135.png" alt="2017-01-30_155135" title="2017-01-30_155135" /></a><br />
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_155242.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-01-30_155242.png" alt="2017-01-30_155242" title="2017-01-30_155242" /></a><br />
 Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_5.html">TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></p>
 </div>
               </div>
@@ -393,15 +393,15 @@ Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integr
 <p>What follows is not a tutorial for regular (i.e. non-technical-programming-nerdy) people. It's an <em>example</em> of the kind of process I do in my job every day, and how I think about a problem. It requires tools, knowledge and experience.</p>
 <h2 id="getting-to-the-source-of-the-matter">Getting to the &quot;Source&quot; of the Matter</h2>
 <p>Now, the first problem is that I viewed the original FB post on my phone, and it turns out that's why I couldn't copy/paste the text. If I'd bothered to find it on my desktop, my problem would have been solved. Instead, I emailed myself a link to the page. That link still went to the mobile version. That's what the &quot;m.&quot; in the URL is telling me.</p>
-<p><a href="images/17-01-26_09_35_13.png"><img src="images/17-01-26_09_35_13.png" alt="2017-01-26 09_35_13" title="2017-01-26 09_35_13" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_35_13.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_35_13.png" alt="2017-01-26 09_35_13" title="2017-01-26 09_35_13" /></a></p>
 <p>Here's some of the text:</p>
-<p><a href="images/17-01-26_09_38_16.png"><img src="images/17-01-26_09_38_16.png" alt="2017-01-26 09_38_16" title="2017-01-26 09_38_16" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_38_16.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_38_16.png" alt="2017-01-26 09_38_16" title="2017-01-26 09_38_16" /></a></p>
 <p>I can't copy the text, it's sort of like it's an image, but I'm pretty sure it's <em>not</em> an image. My next step is to view the page source HTML. I right-click in Chrome and choose &quot;View page source&quot;.</p>
-<p><a href="images/17-01-26_09_40_46.png"><img src="images/17-01-26_09_40_46.png" alt="2017-01-26 09_40_46" title="2017-01-26 09_40_46" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_40_46.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_40_46.png" alt="2017-01-26 09_40_46" title="2017-01-26 09_40_46" /></a></p>
 <p>Which yields a huge mess of coded text, as befitting a complex web site. There are about three thousand more lines like this.</p>
-<p><a href="images/17-01-26_09_42_55.png"><img src="images/17-01-26_09_42_55.png" alt="2017-01-26 09_42_55" title="2017-01-26 09_42_55" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_42_55.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_42_55.png" alt="2017-01-26 09_42_55" title="2017-01-26 09_42_55" /></a></p>
 <p>I'm pretty sure buried in there is the text I want. And I'm also pretty sure I'll need to manipulate it. So, I open <a href="https://notepad-plus-plus.org/">Notepad++</a>, a sophisticated, free, open source text editor. Then I copy/paste the source from the browser into it.</p>
-<p><a href="images/17-01-26_09_46_56.png"><img src="images/17-01-26_09_46_56.png" alt="2017-01-26 09_46_56" title="2017-01-26 09_46_56" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_46_56.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_46_56.png" alt="2017-01-26 09_46_56" title="2017-01-26 09_46_56" /></a></p>
 <p>Now I'm ready to use my text editor.</p>
 <h2 id="text-editing-is-not-the-same-as-word-processing">Text Editing is Not the Same as Word Processing</h2>
 <p>In word processing, like you do with Microsoft Word, the concern is text formatting: making things bold, italic, different fonts, etc. The result of all that work is marked up text (or binary, but we'll stick with text) that tells the application how to display all of your words on the screen. Here's an example from a Word file that was saved in its standard .docx format. The document literally has one word: &quot;hello&quot;. But Word needs all of this information to display that those five characters.</p>
@@ -449,20 +449,20 @@ xmlns:wps=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingShap
 </code></pre>
 <p>The concern of text editing is working with raw content like that above. A good text editor lets you perform complex Find &amp; Replace, or do block editing (where you can select text not just in rows, but also in a columns).</p>
 <p>Back to our FB post source. I know that somewhere in the text is the bit that I want. So, I search for some text that's very likely unique to the content I'm looking for. &quot;Senator&quot; is a good choice.</p>
-<p><a href="images/17-01-26_10_00_34.png"><img src="images/17-01-26_10_00_34.png" alt="2017-01-26 10_00_34" title="2017-01-26 10_00_34" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_00_34.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_00_34.png" alt="2017-01-26 10_00_34" title="2017-01-26 10_00_34" /></a></p>
 <blockquote>
 <p><strong>TECH DIGRESSION!</strong></p>
 <p>I found, at this point, why I couldn't copy/paste the text in the first place. All of the content was inside a &lt;script&gt; tag. It was probably being processed by javascript, and displayed in some messed-up way.</p>
 </blockquote>
 <p>There's other markup in there, but I'll take care of that in a little bit. First, I copy what looks like the text want into a new Notepad++ tab.</p>
-<p><a href="images/17-01-26_10_06_45.png"><img src="images/17-01-26_10_06_45.png" alt="2017-01-26 10_06_45" title="2017-01-26 10_06_45" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_06_45.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_06_45.png" alt="2017-01-26 10_06_45" title="2017-01-26 10_06_45" /></a></p>
 <h2 id="i-need-a-replacement">I Need a Replacement</h2>
 <p>Now, I look at what's there, while thinking about what I want. Ideally, my end result is nicely formatted text, meaning it's got all the original line breaks. I could do that manually, but I'd prefer not to.</p>
 <p>The first thing I notice is the markup after &quot;Senator.&quot;</p>
 <pre><code class="language-csharp">From a high-level staffer for a Senator:\u003C\/p&gt;\u003Cp&gt; There are two things 
 </code></pre>
 <p>That sequence, <code>\u003C\/p&gt;\u003Cp&gt;</code> appears throughout the text exactly where line breaks are in the original.</p>
-<p><a href="images/17-01-26_10_13_55.png"><img src="images/17-01-26_10_13_55.png" alt="2017-01-26 10_13_55" title="2017-01-26 10_13_55" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_13_55.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_13_55.png" alt="2017-01-26 10_13_55" title="2017-01-26 10_13_55" /></a></p>
 <p>So let's see what happens if I just replace all of those instances with a new line and carriage return.</p>
 <blockquote>
 <p><strong>TECH DIGRESSION!</strong></p>
@@ -482,12 +482,12 @@ good
 </code></pre>
 </blockquote>
 <p>So, I select <code>\u003C\/p&gt;\u003Cp&gt;</code> and try to replace it with <code>\r\n\r\n</code> (two carriage return + new line). And it fails.</p>
-<p><a href="images/17-01-26_10_32_08.png"><img src="images/17-01-26_10_32_08.png" alt="2017-01-26 10_32_08" title="2017-01-26 10_32_08" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_32_08.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_32_08.png" alt="2017-01-26 10_32_08" title="2017-01-26 10_32_08" /></a></p>
 <p>Why? For the same reason the newline can be found: the escape character <code>\</code>. Notepad++ is looking at my &quot;Find what&quot; string and saying, &quot;Oh, you've got a back slash in front of that u. That must mean something special to me, so I won't treat it as '<code>\u</code>'. I can't find your text, sorry.&quot;</p>
 <p>What do we do if we want the back slash to be treated literally? Heh, heh. You <em>escape</em> it by putting another back slash in front of it. To find a literal occurrence of <code>\r</code> in text using C-style expressions, you search for <code>\\r</code>. Crazy logical, right?</p>
 <p>My search express becomes this: <code>\\u003C\\/p&gt;\\u003Cp&gt;</code></p>
 <p>I try my Find &amp; Replace again, and this time it works.</p>
-<p><a href="images/17-01-26_10_39_04.png"><img src="images/17-01-26_10_39_04.png" alt="2017-01-26 10_39_04" title="2017-01-26 10_39_04" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_39_04.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_39_04.png" alt="2017-01-26 10_39_04" title="2017-01-26 10_39_04" /></a></p>
 <p>I could live with this result if I weren't a perfectionist. But there's still lots of HTML markup in there (highlighted in yellow). So, I do my Find &amp; Replace magic a bunch more times. By looking at the original text, I can figure out what characters the markup stood for (or I could look it up). There's also some non-standard markup.</p>
 <pre><code class="language-csharp">&amp;#039;  =   '
 &amp;quot;  =   &quot;

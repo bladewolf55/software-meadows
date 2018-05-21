@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy'>TFS 2015: Publish ASP.NET Using Robocopy</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-01-07 14:49</span></p>
-                <div class='post-content'><p><img src="images/tfs-logo.png" alt="" /> <img src="images/robocopy-command.gif" alt="" /></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/tfs-logo.png" alt="" /> <img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/robocopy-command.gif" alt="" /></p>
 <br />
 <p>Team Foundation Server 2015 Update 2 includes Release Management. However, I found myself in a position where a client hadn't upgraded yet, and during development I still wanted to publish ASP.NET MVC and WebApi projects to a test server. I did this through a combination of Build tasks running the msbuild publish command line, and Robocopy.</p>
 <p>Also, while TFS Build includes steps for staging artifacts, an ASP.NET project doesn't simply move all files to a bin folder. Many files are taken directly from the project source folders, requiring me to use the MSBuild Publish command line switches.</p>
@@ -71,7 +71,7 @@
 <li>Use Robocopy to copy the files to another computer running IIS</li>
 </ol>
 <p>The first three steps are pretty standard, so I won't cover them. If you don't know how to set up a build, you'll need to read up on that. The last two are the fun ones.</p>
-<p><img src="images/2018-01-07%2015_56_14.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/2018-01-07%2015_56_14.png" alt="" /></p>
 <h1 id="publishing-asp.net-from-command-line">Publishing ASP.NET from command line</h1>
 <p>In Visual Studio, it's easy (and nice) to publish an ASP.NET project to the file system. But what if you want to publish in an ad-hoc manner? It can be done, but the info is hard-won.</p>
 <pre><code>msbuild ProjectFile.csproj /p:Configuration=Release ^
@@ -97,7 +97,7 @@ msbuild Solution.sln /p:Configuration=Release ^
 <p><strong>Note</strong><br />
 If I was also publishing a WebApi project in the same definition, I'd have a separate build step, and the publishUrl might be <code>$(build.artifactstagingdirectory)\deploy\api</code></p>
 </blockquote>
-<p><img src="images/2018-01-07%2015_45_51.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/2018-01-07%2015_45_51.png" alt="" /></p>
 <h1 id="copy-the-site-to-its-destination-using-robocopy">Copy the site to its destination using Robocopy</h1>
 <p>Why am I not using the publishUrl, above, to publish to the destination server? In many cases, I could, and that's fine. But what if I expect a destination file to be in use, and isn't normally updated? For example, I had a site using the NHunspell.dll. That file would often be in use, and wasn't changing. If I used publishUrl, the publish would always fail.</p>
 <p>Microsoft's <a href="https://technet.microsoft.com/en-us/library/cc733145(v=ws.11).aspx">Robocopy</a> (&quot;Robust Copy&quot;), included in all Windows editions, will skip and retry files it can't copy. This will still show as an error, but I'll set the step to &quot;continue on error&quot;. It's not a perfect solution, but fine for many environments.</p>
@@ -106,7 +106,7 @@ If I was also publishing a WebApi project in the same definition, I'd have a sep
 <li>Tool = robocopy.exe</li>
 <li>Arguments = <code>&quot;$(build.artifactstagingdirectory)\deploy\web&quot; &quot;\\iis-server\wwwroot$\my-web-site&quot; /e /r:2 /w:5</code></li>
 </ul>
-<p><img src="images/2018-01-07%2015_55_48.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/2018-01-07%2015_55_48.png" alt="" /></p>
 <p>The Robocopy arguments say:</p>
 <ol>
 <li>Copy from the local deploy\web folder to the remote server folder</li>

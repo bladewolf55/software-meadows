@@ -66,7 +66,7 @@
 </ul>
 <h1 id="act-i">Act I</h1>
 <p>Let’s create a simple app. First, a Windows Form app with three labels. All the code will be in the same page as the Form1 class, to keep things simple.<br />
-<a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image.png" alt="image" title="image" /></a></p>
 <p>Add connectionString, appSettings and smtp sections to the app.config.</p>
 <pre><code class="language-csharp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
 &lt;configuration&gt;
@@ -94,7 +94,7 @@
 &lt;/configuration&gt;
 </code></pre>
 <p>Add reference to System.Configuration to the project.</p>
-<p><a href="images/image4.png"><img src="images/image4.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image4.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image4.png" alt="image" title="image" /></a></p>
 <p>The static Settings class, to get the app.config data. This is personal preference; I know you can also use the Settings designer for this, but it’s kind of hidden and finicky.</p>
 <pre><code class="language-csharp">public static class Settings
     {
@@ -228,13 +228,13 @@
 <li>Set the project to Release.  This is critical. It should be obvious, but it’s easy to forget and leads to one of the errors.</li>
 <li>It’s important to install it from a network location, which you can fake by sharing your publish folder and using the UNC path to it. I published to the solution folder. Give the share full permissions (for testing only).</li>
 </ul>
-<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-001.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-001.png" alt="image" title="image" /></a></p>
 <p>You should also enable automatic updating.</p>
-<p><a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-002.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-002.png" alt="image" title="image" /></a></p>
 <p>Install from the UNC path. The app should open.</p>
-<p><a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-003.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-003.png" alt="image" title="image" /></a></p>
 <p>With the app open, open Task Manager, right-click the app, and choose “open file location.”</p>
-<p><a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-004.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-004.png" alt="image" title="image" /></a></p>
 <p>The folder will contain a EncryptedConfigClickOnceSample.exe.config file, which should be encrypted. But you’ll also find <em>another</em> folder, a sibling above or below the one you’re in, also with a EncryptedConfigClickOnceSample.exe.config, which should also be encrypted.</p>
 <p>So, fine, it works. How were the problems fixed?</p>
 <h1 id="act-iii">Act III</h1>
@@ -244,7 +244,7 @@
 <p>Set the program to Debug mode and republish. Run the app, letting it self-update. You should receive an error</p>
 <pre><code class="language-csharp">Unrecognized attribute 'configProtectionProvider'
 </code></pre>
-<p><a href="images/image-005.png"><img src="images/image-005.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-005.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-005.png" alt="image" title="image" /></a></p>
 <p>Some sites say to call <span style="font-family: Consolas;">ConfigurationManager.RefreshSection</span><span style="font-family: Calibri;">, but the problem really seems to be the behavior when in Debug mode. </span>The error seems to be caused by how configuration info is accessed after the application starts. It’s not clear to me, and no web page mentioned debug mode. But it worked.</p>
 <h2 id="clickonce-error">ClickOnce Error</h2>
 <p>In one application, when I tried to install it simply wouldn’t open. I believe this was also due to publishing in Debug mode. However, I also moved my call to configure the config file from Form_Load to the constructor. In my testing app, that’s not making any difference.</p>

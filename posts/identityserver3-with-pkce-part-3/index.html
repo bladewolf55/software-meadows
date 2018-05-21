@@ -183,7 +183,7 @@ namespace AuthAndApi.IdentityServerConfiguration
 <p><strong>ASIDE!</strong></p>
 <p>Running the app at this point, I got an error in Startup.cs that I was missing a dependency.</p>
 <p> </p>
-<p><a href="images/17-05-06_134432_1.png"><img src="images/17-05-06_134432_1.png" alt="2017-05-06_134432" title="2017-05-06_134432" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-3/images/17-05-06_134432_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-3/images/17-05-06_134432_1.png" alt="2017-05-06_134432" title="2017-05-06_134432" /></a></p>
 <p>When I installed the package <code>IdentityServer3.EntityFramework</code>, Newtonsoft.Json version 8 was uninstalled, because the package requires version 9 or greater. The package installer output confirms this.</p>
 <pre><code class="language-csharp">Successfully uninstalled 'Newtonsoft.Json.8.0.3' from AuthAndApi
 Successfully installed 'Newtonsoft.Json 9.0.1' to AuthAndApi
@@ -198,7 +198,7 @@ Successfully installed 'Newtonsoft.Json 9.0.1' to AuthAndApi
 <p><code>Update-Package -Reinstall Newtonsoft.Json -Project AuthAndApi</code></p>
 </blockquote>
 <p>When I run the application, it behaves exactly as before. Checking in the App_Data folder, I see my database was created.</p>
-<p><a href="images/17-05-06_140602.png"><img src="images/17-05-06_140602.png" alt="2017-05-06_140602" title="2017-05-06_140602" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-3/images/17-05-06_140602.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-3/images/17-05-06_140602.png" alt="2017-05-06_140602" title="2017-05-06_140602" /></a></p>
 <p>One difference, though. After the first time running the app, I no longer was prompted to authorize the scope. This might be related to these factory settings:</p>
 <pre><code class="language-csharp">factory.ConfigureClientStoreCache();
 factory.ConfigureScopeStoreCache();

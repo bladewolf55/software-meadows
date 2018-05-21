@@ -288,7 +288,7 @@ namespace LearningEF
 </code></pre>
 <p>Let’s run our program and see what’s created.</p>
 <div class="separator" style="text-align: center; clear: both">
-<p><a href="images/image02.png"><img src="images/image02.png" alt="" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/edward-farley-part-3/images/image02.png"><img src="https://www.softwaremeadows.com/posts/edward-farley-part-3/images/image02.png" alt="" /></a></p>
 </div>
 <p>Ah. So. We get a database with the rather excessive name LearningEF.LearningEFDb, with a table named People. Apparently the Framework thinks it knows more about grammar than I**. This is a byproduct of convention over configuration. We, um, borrowed this idea from the DHH Library, and heaven knows where they got it from. Regardless, the Framework doesn’t care how I named my DbSet. I could have named it Kumquats and the database table would be named People. But I don’t like People. So, I’ll inform the Framework of my preference. I’ll also enforce my own database name, which means a trip to the app.config file. Enough talk. Here, look:</p>
 <p><strong>app.config</strong></p>
@@ -330,7 +330,7 @@ namespace LearningEF
 </code></pre>
 <p>Now, we drop the database and rerun the program.</p>
 <div class="separator" style="text-align: center; clear: both">
-<p><a href="images/image01.png"><img src="images/image01.png" alt="" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/edward-farley-part-3/images/image01.png"><img src="https://www.softwaremeadows.com/posts/edward-farley-part-3/images/image01.png" alt="" /></a></p>
 </div>
 <p>That’s better, isn’t it? The database has a rational name, and the table has a name whose rationality cannot be denied. We’ll do one more thing. Well, no, we’ll do many more things, of course. What I mean to say is, I don’t want to manually drop the database each time, and I already know I’ll need help saving and displaying information, so, in the interests of time....</p>
 <p>[The Professor’s hands fluttered over the keyboard, and in a minute the following code appeared.]</p>

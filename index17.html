@@ -326,7 +326,7 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
 <p>Lesson: Sometimes these tools add complications. But other times, they reveal problems in your code.</p>
 </blockquote>
 <p>On the subject of complications, one of the stars of <em>Alias Smith and Jones</em> killed himself during the first season. He suffered from depression and alcoholism. To this day, that makes me sad. <a href="http://www.imdb.com/name/nm0240233/?ref_=fn_al_nm_1">Pete Duel</a>, I miss what you could have done.</p>
-<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-3/images/image.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-3/images/image.png" alt="image" title="image" /></a></p>
 </div>
               </div>
               
@@ -799,10 +799,10 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <p>Here’s a simple example of TDD, creating code that needs to be tested, and problems with it. I’m using xUnit.Net because I’ve always liked it. I won’t go into how to set up your environment; you can learn that at <a href="https://xunit.github.io/docs/getting-started-desktop.html">Getting Started with xUnit.net</a>. However, I do have three tips for using the VS Test Runner (which you open via Test &gt; Windows &gt; Test Explorer).</p>
 <ul>
 <li><p>Tear off the Test Explorer into its own window, so that you can easily resize and see all the tests.<br />
-<a href="images/image_3.png"><img src="images/image_3.png" alt="image" title="image" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image_3.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image_3.png" alt="image" title="image" /></a></p>
 </li>
 <li><p>Group the test results by class<br />
-<a href="images/image_5.png"><img src="images/image_5.png" alt="image" title="image" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image_5.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image_5.png" alt="image" title="image" /></a></p>
 </li>
 <li><p>In your unit test project, add an app.config file with the following setting. This causes the result to display only the method name instead of the fully qualified name.</p>
 <pre><code class="language-csharp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
@@ -842,7 +842,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
     }
 </code></pre>
 <p>Run it and it fails.</p>
-<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image.png" alt="image" title="image" /></a></p>
 <p>Write enough code for the test to pass.</p>
 <pre><code class="language-csharp">        public decimal GetPercent(decimal actual, decimal maximum)
         {
@@ -851,7 +851,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
         }
 </code></pre>
 <p>Run the test and it passes.</p>
-<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-001.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-001.png" alt="image" title="image" /></a></p>
 <p>Our next test will check if the result is rounded. This does <em>not</em> depend on the first test; they could be run in reverse order.</p>
 <pre><code class="language-csharp">    public class BasicTdd
     {
@@ -869,7 +869,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
     }
 </code></pre>
 <p>Run it, and it fails.</p>
-<p><a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-002.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-002.png" alt="image" title="image" /></a></p>
 <p>Update the code to make it pass.</p>
 <pre><code class="language-csharp">        public decimal GetPercent(decimal actual, decimal maximum)
         {
@@ -877,7 +877,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             return result;
         }
 </code></pre>
-<p><a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-003.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-003.png" alt="image" title="image" /></a></p>
 <p>That’s enough to demonstrate a basic test. Now, on to something that will require mocking.</p>
 <h1 id="act-3-mocu-mental-grades">Act 3 – Mocu-mental Grades</h1>
 <p>Let’s create a class that represents our fictional third-party service, GradeMark. Remember, it returns a grade when supplied a percent, but we can’t depend on what that grade will be. For our dummy service, we won’t even use the percent parameter.</p>
@@ -912,7 +912,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
         }
 </code></pre>
 <p>We got lucky; it failed. But, remember, we can’t guarantee what letter grade will be returned. It could have passed. Run the tests enough times and it <em>will</em> pass.</p>
-<p><a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-004.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-004.png" alt="image" title="image" /></a></p>
 <p>Our GetGradeMessage function has a dependency on the GradeMark service, and is tightly coupled to it. We need to loosely couple that dependency by injecting it. We could do that at the method level, like this:</p>
 <pre><code class="language-csharp">        public string GetGradeMessage(decimal actual, decimal maximum, GradeMarkService gradeService)
         {

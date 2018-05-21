@@ -74,25 +74,25 @@
 <ol>
 <li>Open Visual Studio</li>
 <li>You don’t need to create a project. Just Tools &gt; Connect to Database.<br />
-<a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></li>
+<a href="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image.png" alt="image" title="image" /></a></li>
 <li>Choose Data source = Microsoft SQL Server</li>
 <li>Enter Server name = (LocalDB)\v11.0</li>
 <li>Drop down the list of databases. You should at least see master, etc.<br />
-<a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></li>
+<a href="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-001.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-001.png" alt="image" title="image" /></a></li>
 <li>You will <em>not</em> see aspnetdb. Choose the master database.</li>
 <li>Open the Server Explorer, right-click the connection and choose New Query.<br />
-<a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></li>
+<a href="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-002.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-002.png" alt="image" title="image" /></a></li>
 <li>In the query window, enter and run:<br />
 select * from sysdatabases</li>
 <li>You’ll see aspnetdb listed.<br />
-<a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></li>
+<a href="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-003.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-003.png" alt="image" title="image" /></a></li>
 <li>Run this command:<br />
 drop database aspnetdb</li>
 <li>You’ll get an error message:<br />
 Unable to open the physical file &quot;C:\Users\charles\aspnetdb.mdf&quot;. Operating system error 2: &quot;2(The system cannot find the file specified.)&quot;.<br />
 File activation failure. The physical file name &quot;C:\Users\charles\aspnetdb_log.ldf&quot; may be incorrect.</li>
 <li>But that’s OK. If  you select from sysdatabases again, you’ll see the aspnetdb has been removed.<br />
-<a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></li>
+<a href="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-004.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-004.png" alt="image" title="image" /></a></li>
 </ol>
 <h1 id="creating-the-database-the-right-easy-way">Creating the Database the Right (Easy) Way</h1>
 <p>I didn’t find documentation saying I could do this, and tried it on a whim. Basically, if you configure your project to use a LocalDB as your membership provider, the first time the app tries to use it the database will be created with the correct tables. At least, this is true in Visual Studio 2015.</p>

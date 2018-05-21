@@ -77,16 +77,16 @@
 <p><a href="https://bitbucket.org/mpi4py/mpi4py/downloads" title="https://bitbucket.org/mpi4py/mpi4py/downloads">https://bitbucket.org/mpi4py/mpi4py/downloads</a></p>
 <h1 id="installation">Installation</h1>
 <p>1. Run the Canopy installer. It does not require administrative privileges. I stuck with the defaults.</p>
-<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
-<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
-<p><a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-001.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-001.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-002.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-002.png" alt="image" title="image" /></a></p>
 <p>Clicking “Start using Canopy” will configured the environment. When configured, a window will open, which you can then close. Your desktop will have two icons, one for Canopy, the other for PyLab.</p>
 <p>2. Run the DPMix Windows installer. It will find the Python installation and use it.</p>
-<p><a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></p>
-<p><a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></p>
-<p><a href="images/image-005.png"><img src="images/image-005.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-003.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-003.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-004.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-004.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-005.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-005.png" alt="image" title="image" /></a></p>
 <p>3. Run the py-fcm Windows installer. It likewise will find and use the Python installation.</p>
-<p><a href="images/image-006.png"><img src="images/image-006.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-006.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-006.png" alt="image" title="image" /></a></p>
 <p>4. Modify gate.py script. This is critical, as the matplotlib library no longer uses nxutils.</p>
 <ol type="a">
 <li><p>Open this file in a text editor (using your own Username for the directory): C:\Users\Charles\AppData\Local\Enthought\Canopy\User\Lib\site-packages\fcm\core\gate.py</p>
@@ -115,7 +115,7 @@ C:\Users\Charles\Documents\FCM Flow Cytometry\Py-FCM\py-fcm-91701cc7a98e\sample_
 C:/Users/Charles/Documents/FCM Flow Cytometry/Py-FCM/3FITC_4PE_004.fcs</li>
 <li>Open PyLab from the icon on the desktop, and run the samples found <a href="https://pythonhosted.org/fcm/basic.html">here</a> (reproduced below).</li>
 </ol>
-<p><a href="images/image-007.png"><img src="images/image-007.png" alt="image" title="image" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-007.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-007.png" alt="image" title="image" /></a></p>
 <p>fcm provides the <a href="https://pythonhosted.org/fcm/documentation.html#fcm.loadFCS"><code>loadFCS()</code></a> function to load fcs files:</p>
 <pre><code>&gt;&gt;&gt; from fcm import loadFCS
 &gt;&gt;&gt; data = loadFCS('../sample_data/3FITC_4PE_004.fcs')

@@ -61,15 +61,15 @@
 <p>What follows is not a tutorial for regular (i.e. non-technical-programming-nerdy) people. It's an <em>example</em> of the kind of process I do in my job every day, and how I think about a problem. It requires tools, knowledge and experience.</p>
 <h2 id="getting-to-the-source-of-the-matter">Getting to the &quot;Source&quot; of the Matter</h2>
 <p>Now, the first problem is that I viewed the original FB post on my phone, and it turns out that's why I couldn't copy/paste the text. If I'd bothered to find it on my desktop, my problem would have been solved. Instead, I emailed myself a link to the page. That link still went to the mobile version. That's what the &quot;m.&quot; in the URL is telling me.</p>
-<p><a href="images/17-01-26_09_35_13.png"><img src="images/17-01-26_09_35_13.png" alt="2017-01-26 09_35_13" title="2017-01-26 09_35_13" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_35_13.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_35_13.png" alt="2017-01-26 09_35_13" title="2017-01-26 09_35_13" /></a></p>
 <p>Here's some of the text:</p>
-<p><a href="images/17-01-26_09_38_16.png"><img src="images/17-01-26_09_38_16.png" alt="2017-01-26 09_38_16" title="2017-01-26 09_38_16" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_38_16.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_38_16.png" alt="2017-01-26 09_38_16" title="2017-01-26 09_38_16" /></a></p>
 <p>I can't copy the text, it's sort of like it's an image, but I'm pretty sure it's <em>not</em> an image. My next step is to view the page source HTML. I right-click in Chrome and choose &quot;View page source&quot;.</p>
-<p><a href="images/17-01-26_09_40_46.png"><img src="images/17-01-26_09_40_46.png" alt="2017-01-26 09_40_46" title="2017-01-26 09_40_46" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_40_46.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_40_46.png" alt="2017-01-26 09_40_46" title="2017-01-26 09_40_46" /></a></p>
 <p>Which yields a huge mess of coded text, as befitting a complex web site. There are about three thousand more lines like this.</p>
-<p><a href="images/17-01-26_09_42_55.png"><img src="images/17-01-26_09_42_55.png" alt="2017-01-26 09_42_55" title="2017-01-26 09_42_55" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_42_55.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_42_55.png" alt="2017-01-26 09_42_55" title="2017-01-26 09_42_55" /></a></p>
 <p>I'm pretty sure buried in there is the text I want. And I'm also pretty sure I'll need to manipulate it. So, I open <a href="https://notepad-plus-plus.org/">Notepad++</a>, a sophisticated, free, open source text editor. Then I copy/paste the source from the browser into it.</p>
-<p><a href="images/17-01-26_09_46_56.png"><img src="images/17-01-26_09_46_56.png" alt="2017-01-26 09_46_56" title="2017-01-26 09_46_56" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_46_56.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_46_56.png" alt="2017-01-26 09_46_56" title="2017-01-26 09_46_56" /></a></p>
 <p>Now I'm ready to use my text editor.</p>
 <h2 id="text-editing-is-not-the-same-as-word-processing">Text Editing is Not the Same as Word Processing</h2>
 <p>In word processing, like you do with Microsoft Word, the concern is text formatting: making things bold, italic, different fonts, etc. The result of all that work is marked up text (or binary, but we'll stick with text) that tells the application how to display all of your words on the screen. Here's an example from a Word file that was saved in its standard .docx format. The document literally has one word: &quot;hello&quot;. But Word needs all of this information to display that those five characters.</p>
@@ -117,20 +117,20 @@ xmlns:wps=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingShap
 </code></pre>
 <p>The concern of text editing is working with raw content like that above. A good text editor lets you perform complex Find &amp; Replace, or do block editing (where you can select text not just in rows, but also in a columns).</p>
 <p>Back to our FB post source. I know that somewhere in the text is the bit that I want. So, I search for some text that's very likely unique to the content I'm looking for. &quot;Senator&quot; is a good choice.</p>
-<p><a href="images/17-01-26_10_00_34.png"><img src="images/17-01-26_10_00_34.png" alt="2017-01-26 10_00_34" title="2017-01-26 10_00_34" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_00_34.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_00_34.png" alt="2017-01-26 10_00_34" title="2017-01-26 10_00_34" /></a></p>
 <blockquote>
 <p><strong>TECH DIGRESSION!</strong></p>
 <p>I found, at this point, why I couldn't copy/paste the text in the first place. All of the content was inside a &lt;script&gt; tag. It was probably being processed by javascript, and displayed in some messed-up way.</p>
 </blockquote>
 <p>There's other markup in there, but I'll take care of that in a little bit. First, I copy what looks like the text want into a new Notepad++ tab.</p>
-<p><a href="images/17-01-26_10_06_45.png"><img src="images/17-01-26_10_06_45.png" alt="2017-01-26 10_06_45" title="2017-01-26 10_06_45" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_06_45.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_06_45.png" alt="2017-01-26 10_06_45" title="2017-01-26 10_06_45" /></a></p>
 <h2 id="i-need-a-replacement">I Need a Replacement</h2>
 <p>Now, I look at what's there, while thinking about what I want. Ideally, my end result is nicely formatted text, meaning it's got all the original line breaks. I could do that manually, but I'd prefer not to.</p>
 <p>The first thing I notice is the markup after &quot;Senator.&quot;</p>
 <pre><code class="language-csharp">From a high-level staffer for a Senator:\u003C\/p&gt;\u003Cp&gt; There are two things 
 </code></pre>
 <p>That sequence, <code>\u003C\/p&gt;\u003Cp&gt;</code> appears throughout the text exactly where line breaks are in the original.</p>
-<p><a href="images/17-01-26_10_13_55.png"><img src="images/17-01-26_10_13_55.png" alt="2017-01-26 10_13_55" title="2017-01-26 10_13_55" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_13_55.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_13_55.png" alt="2017-01-26 10_13_55" title="2017-01-26 10_13_55" /></a></p>
 <p>So let's see what happens if I just replace all of those instances with a new line and carriage return.</p>
 <blockquote>
 <p><strong>TECH DIGRESSION!</strong></p>
@@ -150,12 +150,12 @@ good
 </code></pre>
 </blockquote>
 <p>So, I select <code>\u003C\/p&gt;\u003Cp&gt;</code> and try to replace it with <code>\r\n\r\n</code> (two carriage return + new line). And it fails.</p>
-<p><a href="images/17-01-26_10_32_08.png"><img src="images/17-01-26_10_32_08.png" alt="2017-01-26 10_32_08" title="2017-01-26 10_32_08" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_32_08.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_32_08.png" alt="2017-01-26 10_32_08" title="2017-01-26 10_32_08" /></a></p>
 <p>Why? For the same reason the newline can be found: the escape character <code>\</code>. Notepad++ is looking at my &quot;Find what&quot; string and saying, &quot;Oh, you've got a back slash in front of that u. That must mean something special to me, so I won't treat it as '<code>\u</code>'. I can't find your text, sorry.&quot;</p>
 <p>What do we do if we want the back slash to be treated literally? Heh, heh. You <em>escape</em> it by putting another back slash in front of it. To find a literal occurrence of <code>\r</code> in text using C-style expressions, you search for <code>\\r</code>. Crazy logical, right?</p>
 <p>My search express becomes this: <code>\\u003C\\/p&gt;\\u003Cp&gt;</code></p>
 <p>I try my Find &amp; Replace again, and this time it works.</p>
-<p><a href="images/17-01-26_10_39_04.png"><img src="images/17-01-26_10_39_04.png" alt="2017-01-26 10_39_04" title="2017-01-26 10_39_04" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_39_04.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_39_04.png" alt="2017-01-26 10_39_04" title="2017-01-26 10_39_04" /></a></p>
 <p>I could live with this result if I weren't a perfectionist. But there's still lots of HTML markup in there (highlighted in yellow). So, I do my Find &amp; Replace magic a bunch more times. By looking at the original text, I can figure out what characters the markup stood for (or I could look it up). There's also some non-standard markup.</p>
 <pre><code class="language-csharp">&amp;#039;  =   '
 &amp;quot;  =   &quot;

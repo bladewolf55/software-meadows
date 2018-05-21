@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-06 08:05</span></p>
-                <div class='post-content'><p><a href="images/ci-logo.png"><img src="images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
+                <div class='post-content'><p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/ci-logo.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
 <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_6.html">TFS Continuous Integration Walk Through Part 4a - Problems With Traits</a></p>
 <p> </p>
@@ -71,7 +71,7 @@
 <a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">How to: Group and Run Automated Tests Using Test Categories</a><br />
 <a href="https://github.com/Microsoft/vsts-tasks/blob/releases/m109/Tasks/VsTest/README.md">Run Tests using Visual Studio task</a></p>
 <p>I initially couldn't get the category filtering to work. The documentation noted in the References said that an xUnit trait of &quot;Category&quot; would be automatically matched to the test explorer's &quot;TestCategory&quot;.</p>
-<p><a href="images/17-02-02_112605.png"><img src="images/17-02-02_112605.png" alt="2017-02-02_112605" title="2017-02-02_112605" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_112605.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_112605.png" alt="2017-02-02_112605" title="2017-02-02_112605" /></a></p>
 <p>But, that's not true. xUnit (and presumably Nunit and others) passes its traits directly. See this exchange on the subject (Brad Wilson developed xUnit).</p>
 <p><a href="https://github.com/xunit/xunit/issues/1052">https://github.com/xunit/xunit/issues/1052</a></p>
 <p>If you use this attribute in xUnit:</p>
@@ -80,7 +80,7 @@
 <p>and this filter:</p>
 <p><code>TestCategory!=manual</code></p>
 <p>the tests will fail. The MS test console will report an error, not run the test as expected. To find the error, you need to look in the build's logs.</p>
-<p><a href="images/17-02-02_1_035.png"><img src="images/17-02-02_1_035.png" alt="2017-02-02_120035" title="2017-02-02_120035" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1_035.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1_035.png" alt="2017-02-02_120035" title="2017-02-02_120035" /></a></p>
 <p>Here's the error message. It's the same message you'd get if you used the command line to run the tests (which is how I first discovered the error).</p>
 <pre><code class="language-csharp">2017-02-02T18:55:03.9288278Z ##[error]Error: [xUnit.net 00:00:00.3802419]
 CIConsoleSample.xUnitTests: Exception discovering tests: No tests matched the filter 
@@ -131,9 +131,9 @@ are not valid (TestCategory). Specify filter expression containing valid propert
 Be sure to evaluate your test results when you change settings and look for sane expectations. For example, when I first tried my xUnit build step, I added an extra &quot;l&quot; to .dll. The build didn't fail, it just didn't find any xUnit tests! I needed to look at the log and check that it had found the tests I expected.</p>
 </blockquote>
 <p><strong>MSTest step</strong><br />
-<a href="images/17-02-02_1322.png"><img src="images/17-02-02_1322.png" alt="2017-02-02_125322" title="2017-02-02_125322" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1322.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1322.png" alt="2017-02-02_125322" title="2017-02-02_125322" /></a></p>
 <p><strong>xUnit step</strong><br />
-<a href="images/17-02-02_1431.png"><img src="images/17-02-02_1431.png" alt="2017-02-02_125431" title="2017-02-02_125431" /></a></p>
+<a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1431.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1431.png" alt="2017-02-02_125431" title="2017-02-02_125431" /></a></p>
 <p>Now, when running the automated build, there are two test runs, each with its own filter.</p>
 <p>Next Part: <a href="#">TFS Continuous Integration Walk Through Part 5 - Multiple Solutions in Team Project</a></p>
 </div>

@@ -57,39 +57,39 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2'>Combining VeraCrypt, Google Backup & Sync, and Sql Server Part 2</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-01-04 18:30</span></p>
-                <div class='post-content'><p><img src="images/simple-key.png" alt="" /></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/simple-key.png" alt="" /></p>
 <p>This is a two-part post. Read <a href="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1">Part 1 here</a></p>
 <p>It's important to protect business data. Employee access and use of data should be managed by the IT department. But a contractor is often entrusted with data on their own computers. We certainly don't want our laptop to be stolen and have to tell the client that source code or databases with sensitive data just got lost, and, no, it wasn't encrypted.</p>
 <p>In Part 1, I discussed how I used VeraCrypt for my encryption. Below is how I solved problems relating to Google Backup and Sync, and Microsoft SQL Server.</p>
 <h1 id="the-trouble-with-google-backup-and-sync-the-application-formerly-known-as-google-drive">The Trouble with Google Backup and Sync (the application formerly known as Google Drive)</h1>
 <p>I use Google Drive's desktop application to synchronize client files as well as personal. I think that's reasonable, since I can and should expect Google to be secure. Now that I have my test.vc file mounted as F, it's outside of the local Google folder. How do I get it into Drive?</p>
 <p>If you're still using the Drive application, one way is to use a symbolic link, which I won't go into here. I've done this for other folders, but didn't want or need to in this case. The reason is that Google has replaced the Drive app with <a href="https://support.google.com/drive/answer/2374987">Backup and Sync</a>. Backup and Sync allows backing up any folder on my computer, including other drive letters.</p>
-<p><img src="images/2018-01-04%2013_53_44.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2013_53_44.png" alt="" /></p>
 <p>The computer is then available on the web version of Drive (but not the Android app, yet, why not???).</p>
-<p><img src="images/2018-01-04%2013_57_12.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2013_57_12.png" alt="" /></p>
 <p>Great! So, what's the problem? Well, Backup and Sync is by default configured to run on login, which makes sense. I like to configure VeraCrypt to run on login, too. The problem is, by the time I get my password entered and the file mounted, Backup and Sync is already reporting that the F drive is unavailable, do I want to stop syncing the F drive? (no)...and the only thing I can do is restart Backup and Sync.</p>
 <p>There's a simple solution to this that I wish had worked out for me. It will for most people. A VeraCrypt drive can be configured to act as a Removable drive. And Backup and Sync will be notified if a removable drive comes back online.</p>
 <p>Let's show that. In Backup and Sync, stop backing up the F drive. In VeraCrypt, select the F drive and Dismount.</p>
-<p><img src="images/2018-01-04%2014_09_48.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_09_48.png" alt="" /></p>
 <p>Now, select test.fc and click Mount again, but before submitting the password click Mount Options.</p>
-<p><img src="images/2018-01-04%2014_12_32.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_12_32.png" alt="" /></p>
 <p>In the options, check &quot;Mount volume as removable medium&quot; and finish mounting the volume.</p>
-<p><img src="images/2018-01-04%2014_13_34.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_13_34.png" alt="" /></p>
 <p>The F drive will now show as a Removable drive, just as if you'd plugged in a USB external or flash drive.</p>
-<p><img src="images/2018-01-04%2014_23_10.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_23_10.png" alt="" /></p>
 <p>You might also be prompted to start backing up the USB device. Choose Not Now.</p>
-<p><img src="images/2018-01-04%2014_22_41.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_22_41.png" alt="" /></p>
 <p>Let's prove we can unmount and remount without restarting Backup and Sync.</p>
 <p>In Backup and Sync Preferences, choose to backup the F drive. Let the drive finish syncing (this might take a while, the app likes to reprocess everything). Then, in VeraCrypt, dismount it. You'll get a warning message. Don't take any action.</p>
-<p><img src="images/2018-01-04%2018_07_18.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2018_07_18.png" alt="" /></p>
 <p>Now remount the F drive, making sure you set it as removable in the options. Backup and Sync will see the drive is reconnected, and start syncing it.</p>
 <p>This is great, and I thought I was finished. If you don't run SQL Server, you probably <em>are</em>, but....</p>
 <h1 id="the-strangeness-of-sql-server-or-a-veracrypt-bug">The Strangeness of SQL Server (or a VeraCrypt Bug?)</h1>
 <p>I develop using SQL Server Express. The SQL service runs automatically at start up and attempts to start any configured databases. See where this is leading?</p>
 <p>If I put database files in my F drive, they won't be available to SQL Server on startup and the database will be marked as &quot;Pending&quot;, meaning it can't be started. I'd have to restart the SQL service.</p>
 <p>There's a solution, but first, what happens if I try to create a SQL database on my removable F drive? Create a &quot;Data&quot; folder first.</p>
-<p><img src="images/2018-01-04%2014_59_56.png" alt="" /></p>
-<p><img src="images/2018-01-04%2015_00_36.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_59_56.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_00_36.png" alt="" /></p>
 <p>Research this error and everyone says it's a permissions problem. I labored for hours under that belief, trying various correct-but-not-successful permissions settings.</p>
 <p>Close the error. Pause Backup and Sync. Dismount the F drive, remount it <em>without</em> making it removable. Try creating the Test database again.</p>
 <p>Yep, it works fine. What gives? Maybe SQL Server doesn't like installing databases on removable media? That's not the case. It's supported, and I was able to create a database just fine on a USB drive I plugged in.</p>
@@ -106,17 +106,17 @@
 <h2 id="backup-and-sync-task">Backup and Sync Task</h2>
 <p>In Backup and Sync's Preferences &gt; Settings, turn off &quot;Open Backup and Sync on system startup&quot;.</p>
 <p>Next, open Task Scheduler. Select the Task Scheduler Library, and choose Create Task. Here are the settings. Notice the &quot;log on&quot; trigger, and the one minute delayed start.</p>
-<p><img src="images/2018-01-04%2015_35_20.png" alt="" /></p>
-<p><img src="images/2018-01-04%2015_36_34.png" alt="" /></p>
-<p><img src="images/2018-01-04%2015_37_34.png" alt="" /></p>
-<p><img src="images/2018-01-04%2015_37_57.png" alt="" /></p>
-<p><img src="images/2018-01-04%2015_38_19.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_35_20.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_36_34.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_37_34.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_37_57.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_38_19.png" alt="" /></p>
 <h2 id="sql-server-task">SQL Server Task</h2>
 <p>Open Services, find the SQL Server instance you're running, and set the startup to Manual.</p>
-<p><img src="images/2018-01-04%2015_40_56.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_40_56.png" alt="" /></p>
 <p>The biggest challenge I faced in creating the scheduled tasks was permissions. The task <em>should</em> have been able to run with my account and elevated privileges. It would, when I was logged in. But it failed on reboot. The solution was to use the local Administrator's group. I don't know why. Here are the settings. Triggers, Conditions and Settings are the same as above.</p>
-<p><img src="images/2018-01-04%2015_42_44.png" alt="" /></p>
-<p><img src="images/2018-01-04%2015_43_53.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_42_44.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_43_53.png" alt="" /></p>
 <h1 id="death-by-998-cuts">Death by 998 Cuts</h1>
 <p>I've now removed two irritations in my daily work flow. It took a while, but is time well spent. I also learned some things. Hopefully this helps you, too.</p>
 <h1 id="bonus">Bonus</h1>

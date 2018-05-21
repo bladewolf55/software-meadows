@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc'>Using Git Locally With Remote TFVC</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-05-01 06:36</span></p>
-                <div class='post-content'><p><img src="images/git-plus-tfvc.png" alt="" /></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc/images/git-plus-tfvc.png" alt="" /></p>
 <p>I have a client who uses Microsoft Team Foundation Server on site, and has been using TFVC version control for about fifteen years. They have a very large codebase with lots of discrete and interconnected Visual Studio solutions.</p>
 <p>I've recommended moving to Git, and they're cautiously interested. It would be a large, challenging and time-consuming transition, so for the time being, &quot;interested&quot; means &quot;no.&quot;</p>
 <p>I couldn't imagine giving up Git. I wondered how hard it would be to use Git locally, but still check in needed commits to their TFS server.</p>
@@ -89,13 +89,13 @@
 <li>Open Visual Studio, but not the solution.</li>
 <li>Open Team Explorer</li>
 <li>Connect to your TFS team project<br />
-<img src="images/2018-05-01%2014_12_57.png" alt="" /></li>
+<img src="https://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc/images/2018-05-01%2014_12_57.png" alt="" /></li>
 <li>I like to right-click on the solution and choose Open in Source Code Explorer. I <em>think</em> this isolates the solution's changes from any other changes in the team project.<br />
-<img src="images/2018-05-01%2014_15_16.png" alt="" /></li>
+<img src="https://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc/images/2018-05-01%2014_15_16.png" alt="" /></li>
 <li>Open Pending Changes<br />
-<img src="images/2018-05-01%2014_17_05.png" alt="" /></li>
+<img src="https://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc/images/2018-05-01%2014_17_05.png" alt="" /></li>
 <li>Be sure to scroll to the bottom and open Exclude Changes.<br />
-<img src="images/2018-05-01%2014_18_38.png" alt="" /></li>
+<img src="https://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc/images/2018-05-01%2014_18_38.png" alt="" /></li>
 <li>Promote the changes as needed. If your .tfignore file is right, these will only be new and project deleted files.</li>
 <li>Comment and check in. I use the same comment that I used for the squashed Git commits.</li>
 </ol>
@@ -103,7 +103,7 @@
 <p>You'll usually get the prompt below no matter how you open the solution, and therefore have to open the solution twice. I like opening it right after check in.</p>
 <ol>
 <li>Open the solution, either from the Start Page, or File &gt; Open &gt; Recent Projects and Solutions. You'll get this message because your Source Control Plugin was changed to Visual Studio Team Services, and VS recognizes that Git source control is available in your solution.<br />
-<img src="images/2018-05-01%2014_25_58.png" alt="" /></li>
+<img src="https://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc/images/2018-05-01%2014_25_58.png" alt="" /></li>
 <li>Answer Yes. The solution will close. Reopen the solution and it should open without error.</li>
 </ol>
 <h1 id="final-thoughts">Final Thoughts</h1>

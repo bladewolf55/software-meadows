@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results'>LINQPad - Refresh Entity after SubmitChanges to Avoid Cached Results</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-04-19 10:15</span></p>
-                <div class='post-content'><p><img src="images/header.png" alt="" /></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results/images/header.png" alt="" /></p>
 <p>Today I was using <a href="http://www.linqpad.net/">LINQPad</a> to see how SQL record values were being affected by table triggers. The results were puzzling, so I did the same test using SQL Management Studio and got different results. Clearly, there was caching going on!</p>
 <p>Here's roughly what my LINQPad C# Statements script looked like (table names changed to protect the innocent). I was going directly against the database, not using an Entity Framework DbContext, so LINQPad is using LinqToSql for the connection.</p>
 <pre><code class="language-csharp">var reportId = &quot;1234&quot;;
@@ -74,7 +74,7 @@ var d = new {HeaderStatus =    header.Status,    ReportStatus =    report.Status
 d.Dump();
 </code></pre>
 <p>And my result:</p>
-<p><img src="images/2018-04-19%2010_25_26.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results/images/2018-04-19%2010_25_26.png" alt="" /></p>
 <p>But in the database, both statuses were (correctly) set back to P.</p>
 <pre><code class="language-txt">HEADER
 STATUS Completed
@@ -105,7 +105,7 @@ var d = new {HeaderStatus =    header.Status,    ReportStatus =    report.Status
 d.Dump();
 </code></pre>
 <p>Now, running the script returns the correct results.</p>
-<p><img src="images/2018-04-19%2010_33_23.png" alt="" /></p>
+<p><img src="https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results/images/2018-04-19%2010_33_23.png" alt="" /></p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://stackoverflow.com/a/3562232">Non-Cached Results in LINQPad</a></li>

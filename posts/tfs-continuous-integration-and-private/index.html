@@ -118,9 +118,9 @@
 !packages\My.Private.Utility.*
 </code></pre>
 <p>In Visual Studio Team Explorer, choose Pending Changes, find Excluded Changes, click Detected: x adds(s).</p>
-<p><a href="images/17-03-03_101910.png"><img src="images/17-03-03_101910.png" alt="2017-03-03_101910" title="2017-03-03_101910" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-and-private/images/17-03-03_101910.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-and-private/images/17-03-03_101910.png" alt="2017-03-03_101910" title="2017-03-03_101910" /></a></p>
 <p>Deselect all files (they're selected by default, a <em>bad</em> choice), then check the ones you want and Promote them (which is the same as &quot;add&quot; in git or Mercurial).</p>
-<p><a href="images/17-03-03_103218.png"><img src="images/17-03-03_103218.png" alt="2017-03-03_103218" title="2017-03-03_103218" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-and-private/images/17-03-03_103218.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-and-private/images/17-03-03_103218.png" alt="2017-03-03_103218" title="2017-03-03_103218" /></a></p>
 <h1 id="using-a-private-repo-for-testing">Using a Private Repo for Testing</h1>
 <p>If you're testing CI on a separate machine, you can use or modify a nuget.config file to include that source. I tried this at the project level, but it didn't work, so I created the nuget.config file at the solution level. (But that ability is supposedly removed in later NuGet versions. So confusing!)</p>
 <p>Here's an example file:</p>

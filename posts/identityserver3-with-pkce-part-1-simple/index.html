@@ -88,7 +88,7 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>We'll create a simple OAuth2 server using IdentityServer3. We won't even create a Web API, so we can see just the server in operation. In other words, we'll be able to get tokens, but have nothing to use them with.</p>
 <p>Create a new Empty web application project named AuthAndApi</p>
-<p><a href="images/17-05-03_135031_1.png"><img src="images/17-05-03_135031_1.png" alt="2017-05-03_135031" title="2017-05-03_135031" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-03_135031_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-03_135031_1.png" alt="2017-05-03_135031" title="2017-05-03_135031" /></a></p>
 <p>Install packages for the authentication server. This assumes using IIS for the web host.</p>
 <pre><code class="language-csharp">Install-Package IdentityServer3 -Project AuthAndApi
 Install-Package Microsoft.Owin.Host.Systemweb -Version 3.1.0 -Project AuthAndApi
@@ -241,7 +241,7 @@ namespace AuthAndApi
 }
 </code></pre>
 <p>The basic IdentityServer is configured for OAuth. For now, we don't need a web page to open, since this is a server, so turn off displaying the page in project Properties.</p>
-<p><a href="images/17-05-06_074519.png"><img src="images/17-05-06_074519.png" alt="2017-05-06_074519" title="2017-05-06_074519" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_074519.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_074519.png" alt="2017-05-06_074519" title="2017-05-06_074519" /></a></p>
 <blockquote>
 <p><strong>Note about Reference vs JWT tokens</strong><br />
 There are two general types of access tokens IdentityServer can return: Reference, or JSON Web Token (JWT). JWTs are self-contained; they can be validated without contacting the server. But they're slightly more complicated to configure. One advantage of using Reference tokens is that they can be quickly revoked, since the resource must call the authorizing server on each use. The disadvantage is this increases network traffic.</p>
@@ -262,7 +262,7 @@ There are two general types of access tokens IdentityServer can return: Referenc
 <li>Server validates, then responds with the access token.</li>
 </ol>
 <p>Add a standard console application to the solution, named PretendMobile.</p>
-<p><a href="images/17-05-06_083908_1.png"><img src="images/17-05-06_083908_1.png" alt="2017-05-06_083908" title="2017-05-06_083908" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_083908_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_083908_1.png" alt="2017-05-06_083908" title="2017-05-06_083908" /></a></p>
 <p>Add packages. These aren't required (and wouldn't be available for a mobile application). They just include helper classes and methods for the HTTP communication. Anything they do could be done with HttpClient or some other appropriate network library.</p>
 <blockquote>
 <p><strong>Note</strong><br />
@@ -369,7 +369,7 @@ namespace PretendMobile
 }
 </code></pre>
 <p>Let's configure the solution to run both projects. Right-click Solution and choose Properties. Change the Startup Project to &quot;Multiple startup projects,&quot; the Actions to &quot;Start,&quot; and be sure the identity server project starts first.</p>
-<p><a href="images/17-05-06_091226_1.png"><img src="images/17-05-06_091226_1.png" alt="2017-05-06_091226" title="2017-05-06_091226" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_091226_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_091226_1.png" alt="2017-05-06_091226" title="2017-05-06_091226" /></a></p>
 <p>Run the solution.</p>
 <ol>
 <li>The server will start.</li>
@@ -380,7 +380,7 @@ namespace PretendMobile
 <li>The app sends a direct request to the /token endpoint, requesting an access token.</li>
 <li>The server returns the token.</li>
 </ol>
-<p><a href="images/17-05-06_104414.png"><img src="images/17-05-06_104414.png" alt="2017-05-06_104414" title="2017-05-06_104414" /></a><a href="images/17-05-06_104502.png"><img src="images/17-05-06_104502.png" alt="2017-05-06_104502" title="2017-05-06_104502" /></a><a href="images/17-05-06_104651_1.png"><img src="images/17-05-06_104651_1.png" alt="2017-05-06_104651" title="2017-05-06_104651" /></a><a href="images/17-05-06_104726.png"><img src="images/17-05-06_104726.png" alt="2017-05-06_104726" title="2017-05-06_104726" /></a></p>
+<p><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104414.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104414.png" alt="2017-05-06_104414" title="2017-05-06_104414" /></a><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104502.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104502.png" alt="2017-05-06_104502" title="2017-05-06_104502" /></a><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104651_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104651_1.png" alt="2017-05-06_104651" title="2017-05-06_104651" /></a><a href="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104726.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104726.png" alt="2017-05-06_104726" title="2017-05-06_104726" /></a></p>
 <h1 id="wrap-up">Wrap Up</h1>
 <p>We've built a basic OAuth2 server that uses the Authorization Code Grant plus PKCE for dynamically generated client secrets, and can get an access token. In the next part, we'll build a protected resource that requires a token.</p>
 </div>
