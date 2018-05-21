@@ -78,23 +78,23 @@
 <li>cd to location of script file</li>
 <li>&gt; powershell.exe -ExecutionPolicy ByPass -File win-update.ps1</li>
 </ol>
-<p>&nbsp;</p>
+<p> </p>
 <pre><code class="language-csharp">param($global:RestartRequired=0,
         $global:MoreUpdates=0,
         $global:MaxCycles=10)
 
 function Check-ContinueRestartOrEnd() {
-    $RegistryKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
-    $RegistryEntry = "InstallWindowsUpdates"
+    $RegistryKey = &quot;HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run&quot;
+    $RegistryEntry = &quot;InstallWindowsUpdates&quot;
     switch ($global:RestartRequired) {
         0 {         
             $prop = (Get-ItemProperty $RegistryKey).$RegistryEntry
             if ($prop) {
-                Write-Host "Restart Registry Entry Exists - Removing It"
+                Write-Host &quot;Restart Registry Entry Exists - Removing It&quot;
                 Remove-ItemProperty -Path $RegistryKey -Name $RegistryEntry -ErrorAction SilentlyContinue
             }
             
-            Write-Host "No Restart Required"
+            Write-Host &quot;No Restart Required&quot;
             Check-WindowsUpdates
             
             if (($global:MoreUpdates -eq 1) -and ($script:Cycles -le $global:MaxCycles)) {
@@ -102,26 +102,26 @@ function Check-ContinueRestartOrEnd() {
                 Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped 
                 Install-WindowsUpdates
             } elseif ($script:Cycles -gt $global:MaxCycles) {
-                Write-Host "Exceeded Cycle Count - Stopping"
+                Write-Host &quot;Exceeded Cycle Count - Stopping&quot;
             } else {
-                Write-Host "Done Installing Windows Updates"
+                Write-Host &quot;Done Installing Windows Updates&quot;
                 Set-Service -Name $script:ServiceName -StartupType Automatic -Status Running         
             }
         }
         1 {
             $prop = (Get-ItemProperty $RegistryKey).$RegistryEntry
             if (-not $prop) {
-                Write-Host "Restart Registry Entry Does Not Exist - Creating It"
-                Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File $($script:ScriptPath)"
+                Write-Host &quot;Restart Registry Entry Does Not Exist - Creating It&quot;
+                Set-ItemProperty -Path $RegistryKey -Name $RegistryEntry -Value &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File $($script:ScriptPath)&quot;
             } else {
-                Write-Host "Restart Registry Entry Exists Already"
+                Write-Host &quot;Restart Registry Entry Exists Already&quot;
             }
             
-            Write-Host "Restart Required - Restarting..."
+            Write-Host &quot;Restart Required - Restarting...&quot;
             Restart-Computer
         }
         default { 
-            Write-Host "Unsure If A Restart Is Required" 
+            Write-Host &quot;Unsure If A Restart Is Required&quot; 
             break
         }
     }
@@ -135,10 +135,10 @@ function Install-WindowsUpdates() {
         if (($Update -ne $null) -and (!$Update.IsDownloaded)) {
             [bool]$addThisUpdate = $false
             if ($Update.InstallationBehavior.CanRequestUserInput) {
-                Write-Host "SKIPPING: $($Update.Title) because it requires user input"
+                Write-Host &quot;SKIPPING: $($Update.Title) because it requires user input&quot;
             } else {
                 if (!($Update.EulaAccepted)) {
-                    Write-Host "&gt; Note: $($Update.Title) has a license agreement that must be accepted. Accepting the license."
+                    Write-Host &quot;&gt; Note: $($Update.Title) has a license agreement that must be accepted. Accepting the license.&quot;
                     $Update.AcceptEula()
                     [bool]$addThisUpdate = $true
                 } else {
@@ -147,14 +147,14 @@ function Install-WindowsUpdates() {
             }
         
             if ([bool]$addThisUpdate) {
-                Write-Host "Adding: $($Update.Title)"
+                Write-Host &quot;Adding: $($Update.Title)&quot;
                 $UpdatesToDownload.Add($Update) |Out-Null
             }
         }
     }
     
     if ($UpdatesToDownload.Count -eq 0) {
-        Write-Host "No Updates To Download..."
+        Write-Host &quot;No Updates To Download...&quot;
     } else {
         Write-Host 'Downloading Updates...'
         $Downloader = $UpdateSession.CreateUpdateDownloader()
@@ -167,7 +167,7 @@ function Install-WindowsUpdates() {
     Write-Host 'The following updates are downloaded and ready to be installed:'
     foreach ($Update in $SearchResult.Updates) {
         if ($Update.IsDownloaded) {
-            Write-Host "&gt; $($Update.Title)"
+            Write-Host &quot;&gt; $($Update.Title)&quot;
             $UpdatesToInstall.Add($Update) |Out-Null
               
             if ($Update.InstallationBehavior.RebootBehavior -gt 0){
@@ -181,7 +181,7 @@ function Install-WindowsUpdates() {
         $global:MoreUpdates=0
         $global:RestartRequired=0
         #wait for user input, so message is seen
-        $wait = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+        $wait = $host.UI.RawUI.ReadKey(&quot;NoEcho,IncludeKeyDown&quot;)
         break
     }
 
@@ -196,8 +196,8 @@ function Install-WindowsUpdates() {
     $Installer.Updates = $UpdatesToInstall
     $InstallationResult = $Installer.Install()
   
-    Write-Host "Installation Result: $($InstallationResult.ResultCode)"
-    Write-Host "Reboot Required: $($InstallationResult.RebootRequired)"
+    Write-Host &quot;Installation Result: $($InstallationResult.ResultCode)&quot;
+    Write-Host &quot;Reboot Required: $($InstallationResult.RebootRequired)&quot;
     Write-Host 'Listing of updates installed and individual installation results:'
     if ($InstallationResult.RebootRequired) {
         $global:RestartRequired=1
@@ -216,18 +216,18 @@ function Install-WindowsUpdates() {
 }
 
 function Check-WindowsUpdates() {
-    Write-Host "Checking For Windows Updates"
-    $Username = $env:USERDOMAIN + "\" + $env:USERNAME
+    Write-Host &quot;Checking For Windows Updates&quot;
+    $Username = $env:USERDOMAIN + &quot;\&quot; + $env:USERNAME
  
     New-EventLog -Source $ScriptName -LogName 'Windows Powershell' -ErrorAction SilentlyContinue
  
-    $Message = "Script: " + $ScriptPath + "`nScript User: " + $Username + "`nStarted: " + (Get-Date).toString()
+    $Message = &quot;Script: &quot; + $ScriptPath + &quot;`nScript User: &quot; + $Username + &quot;`nStarted: &quot; + (Get-Date).toString()
 
-    Write-EventLog -LogName 'Windows Powershell' -Source $ScriptName -EventID "104" -EntryType "Information" -Message $Message
+    Write-EventLog -LogName 'Windows Powershell' -Source $ScriptName -EventID &quot;104&quot; -EntryType &quot;Information&quot; -Message $Message
     Write-Host $Message
 
     $script:UpdateSearcher = $script:UpdateSession.CreateUpdateSearcher()
-    $script:SearchResult = $script:UpdateSearcher.Search("IsInstalled=0 and Type='Software' and IsHidden=0")      
+    $script:SearchResult = $script:UpdateSearcher.Search(&quot;IsInstalled=0 and Type='Software' and IsHidden=0&quot;)      
     if ($SearchResult.Updates.Count -ne 0) {
         $script:SearchResult.Updates |Select-Object -Property Title, Description, SupportUrl, UninstallationNotes, RebootRequired, EulaAccepted |Format-List
         $global:MoreUpdates=1
@@ -239,8 +239,8 @@ function Check-WindowsUpdates() {
     
     #clf hide undesired updates
     foreach ($Update in $SearchResult.Updates) {
-        if ($Update.Title.Contains("KB3035583")) {
-            Write-Host "Hiding $($Update.Title) because it's the Windows 10 Notification."
+        if ($Update.Title.Contains(&quot;KB3035583&quot;)) {
+            Write-Host &quot;Hiding $($Update.Title) because it's the Windows 10 Notification.&quot;
             $Update.IsHidden = $TRUE
         }
     }
@@ -254,7 +254,7 @@ $script:UpdateSearcher = $script:UpdateSession.CreateUpdateSearcher()
 $script:SearchResult = New-Object -ComObject 'Microsoft.Update.UpdateColl'
 $script:Cycles = 0
 
-# $script:ServiceName = "OpenSSHd"
+# $script:ServiceName = &quot;OpenSSHd&quot;
 
 # Stop-Service $script:ServiceName -Force
 # Set-Service -Name $script:ServiceName -StartupType Disabled -Status Stopped 
@@ -266,7 +266,7 @@ if ($global:MoreUpdates -eq 1) {
     Check-ContinueRestartOrEnd
 }
 </code></pre>
-<p>&nbsp;</p>
+<p> </p>
 <h2 id="references">References</h2>
 <p>An alternative method, clever but not as flexible.</p>
 <p><a href="http://serverfault.com/questions/320750/best-way-to-fully-update-a-new-installed-windows" title="http://serverfault.com/questions/320750/best-way-to-fully-update-a-new-installed-windows">http://serverfault.com/questions/320750/best-way-to-fully-update-a-new-installed-windows</a></p>

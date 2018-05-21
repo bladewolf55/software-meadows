@@ -62,9 +62,9 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/my_why_and_how_of_posh_git_contenxt_menu_transcripts_and_tf_exe'>My Why and How of posh-git: Context Menu, Transcripts, and TF.exe</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-05-14 13:28</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/my_why_and_how_of_posh_git_contenxt_menu_transcripts_and_tf_exe/images/posh-git-logo.png" alt=""></p>
+                <div class='post-content'><p><img src="images/posh-git-logo.png" alt="" /></p>
 <p>I'd been pretty happy using Cmd to run my Git command line. I didn't have requirements that forced me to use something else. But I hadn't really compared the three main command-line shells for Git on Windows (Command, Powershell, Git-Bash), or thought about features I wanted or maybe didn't know I wanted.</p>
-<p>I didn't do an extensive review, just an exploration to see whether I wanted to change my default. The answer turned out to be "yes"!</p>
+<p>I didn't do an extensive review, just an exploration to see whether I wanted to change my default. The answer turned out to be &quot;yes&quot;!</p>
 <p><strong>Contents</strong></p>
 <ul>
 <li><a href="#skip-to-the-end">Skip to the End!</a>
@@ -97,15 +97,15 @@
 <h2 id="step-2-install-posh-git">Step 2 - Install posh-git</h2>
 <p>These steps assume git.exe is on your path. Steps mostly copied from Dave Hein.</p>
 <ol>
-<li>Open Powershell. Check the execution policy with Get-ExecutionPolicy. It should be RemoteSigned or Unrestricted.[^1]</li>
+<li>Open Powershell. Check the execution policy with Get-ExecutionPolicy. It should be RemoteSigned or Unrestricted[^1].</li>
 <li>cd ~\Documents and create directory GitHub.</li>
 <li>cd GitHub</li>
-<li>git clone <a href="https://github.com/dahlbyk/posh-git.git">https://github.com/dahlbyk/posh-git.git</a></li>
+<li>git clone <a href="https://github.com/dahlbyk/posh-git.git">https://github.com/dahlbyk/posh-git.git</a>.</li>
 </ol>
-<p>[^1]: Run PowerShell as administrator and call Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm</p>
+<p>[^1]:  Run PowerShell as administrator and call Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm</p>
 <h2 id="step-3-create-a-powershell-profile">Step 3 - Create a Powershell profile</h2>
 <blockquote>
-<p><strong>Warning</strong><br>
+<p><strong>Warning</strong><br />
 Many sites that show examples of Powershell profiles for posh-git are for older versions, especially when it comes to changing the prompt.</p>
 </blockquote>
 <ol>
@@ -117,8 +117,8 @@ Many sites that show examples of Powershell profiles for posh-git are for older 
     $Host.UI.RawUI.ForegroundColor = 'Gray'
     Clear-Host
     
-    $Env:Path = "$Env:ProgramFiles\Git\bin" + ";" + $Env:Path
-    Push-Location (Resolve-Path "$Env:USERPROFILE\Documents\GitHub\posh-git")
+    $Env:Path = &quot;$Env:ProgramFiles\Git\bin&quot; + &quot;;&quot; + $Env:Path
+    Push-Location (Resolve-Path &quot;$Env:USERPROFILE\Documents\GitHub\posh-git&quot;)
     
     # Import the posh-git module, first via installed posh-git module.
     # If the module isn't installed, then attempt to load it from the cloned posh-git Git repo.
@@ -130,68 +130,68 @@ Many sites that show examples of Powershell profiles for posh-git are for older 
         Import-Module $modulePath
     }
     else {
-        throw "Failed to import posh-git."
+        throw &quot;Failed to import posh-git.&quot;
     }
     
     Pop-Location
     
     # Settings for the prompt are in GitPrompt.ps1, so add any desired settings changes here.
     # Example:
-    #     $Global:GitPromptSettings.BranchBehindAndAheadDisplay = "Compact"
+    #     $Global:GitPromptSettings.BranchBehindAndAheadDisplay = &quot;Compact&quot;
     
-    $Global:GitPromptSettings.DefaultPromptBeforeSuffix.Text = "`r`n"
+    $Global:GitPromptSettings.DefaultPromptBeforeSuffix.Text = &quot;`r`n&quot;
     $Global:GitPromptSettings.DefaultPromptPath.ForegroundColor = 'Orange'
     
     Start-SshAgent -Quiet
     
     # Start a transcript
     #
-    if (!(Test-Path "$Env:USERPROFILE\Documents\WindowsPowerShell\Transcripts"))
+    if (!(Test-Path &quot;$Env:USERPROFILE\Documents\WindowsPowerShell\Transcripts&quot;))
     {
-        if (!(Test-Path "$Env:USERPROFILE\Documents\WindowsPowerShell"))
+        if (!(Test-Path &quot;$Env:USERPROFILE\Documents\WindowsPowerShell&quot;))
         {
-            $rc = New-Item -Path "$Env:USERPROFILE\Documents\WindowsPowerShell" -ItemType directory
+            $rc = New-Item -Path &quot;$Env:USERPROFILE\Documents\WindowsPowerShell&quot; -ItemType directory
         }
-        $rc = New-Item -Path "$Env:USERPROFILE\Documents\WindowsPowerShell\Transcripts" -ItemType directory
+        $rc = New-Item -Path &quot;$Env:USERPROFILE\Documents\WindowsPowerShell\Transcripts&quot; -ItemType directory
     }
-    $curdate = $(get-date -Format "yyyyMMddhhmmss")
-    Start-Transcript -Path "$Env:USERPROFILE\Documents\WindowsPowerShell\Transcripts\PowerShell_transcript.$curdate.txt"
+    $curdate = $(get-date -Format &quot;yyyyMMddhhmmss&quot;)
+    Start-Transcript -Path &quot;$Env:USERPROFILE\Documents\WindowsPowerShell\Transcripts\PowerShell_transcript.$curdate.txt&quot;
     
     # Alias TFS command line
-    Set-Alias tf "${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\tf.exe"
+    Set-Alias tf &quot;${Env:ProgramFiles(x86)}\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\tf.exe&quot;
 </code></pre>
 <h2 id="step-4-add-context-menu-entry">Step 4 - Add Context Menu Entry</h2>
 <p>I frequently want to open a Git console by right-clicking in the folder. Git for Windows adds that for Git-Bash (unless you say not to). Here's the registry file to add context menu entries for our new posh-git setup.</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 You need to replace the user profile path below with your own.</p>
 </blockquote>
 <pre><code>Windows Registry Editor Version 5.00
 
 # Right-click on Explorer folder's empty space in right pane
 [HKEY_CLASSES_ROOT\Directory\Background\shell\011PowershellPoshGit]
-@="Open with Powershell posh-git"
-"Icon"="powershell.exe"
+@=&quot;Open with Powershell posh-git&quot;
+&quot;Icon&quot;=&quot;powershell.exe&quot;
 
 [HKEY_CLASSES_ROOT\Directory\Background\shell\011PowershellPoshGit\command]
-@="powershell.exe -NoExit -ExecutionPolicy RemoteSigned -File C:\\users\\charl\\Documents\\WindowsPowerShell\\posh-git.profile.ps1"
+@=&quot;powershell.exe -NoExit -ExecutionPolicy RemoteSigned -File C:\\users\\charl\\Documents\\WindowsPowerShell\\posh-git.profile.ps1&quot;
 </code></pre>
 <h2 id="step-5-add-custom-posh-git-entry-to-visual-studio-open-command-line-extension">Step 5 - Add Custom posh-git entry to Visual Studio Open Command Line Extension</h2>
 <p>I like Mads Kristensen's <a href="http://vsixgallery.com/extension/f4ab1e64-5d35-4f06-bad9-bf414f4b3bbb/">Open Command Line</a> extension to Alt-Space open a command window. If you don't use it, skip this part.</p>
 <ol>
 <li>Open Visual Studio &gt; Tools &gt; Options &gt; Environment &gt; Command Line</li>
-<li>In "Select preset", choose Custom.</li>
-<li>Change "Friendly name" to something like "My posh-git"</li>
+<li>In &quot;Select preset&quot;, choose Custom.</li>
+<li>Change &quot;Friendly name&quot; to something like &quot;My posh-git&quot;</li>
 <li>Command = <code>powershell.exe</code></li>
 <li>Command arguments = <code>-NoExit -ExecutionPolicy RemoteSigned -File C:\users\charl\Documents\WindowsPowerShell\posh-git.profile.ps1</code></li>
 <li>Save and exit</li>
 </ol>
-<p><img src="https://www.softwaremeadows.com/posts/my_why_and_how_of_posh_git_contenxt_menu_transcripts_and_tf_exe/images/2018-05-14%2012_08_44.png" alt=""></p>
+<p><img src="images/2018-05-14%2012_08_44.png" alt="" /></p>
 <h2 id="results">Results</h2>
 <p>You can now right-click inside a folder and open posh-git from a menu item.</p>
-<p><img src="https://www.softwaremeadows.com/posts/my_why_and_how_of_posh_git_contenxt_menu_transcripts_and_tf_exe/images/2018-05-14%2012_14_05.png" alt=""></p>
+<p><img src="images/2018-05-14%2012_14_05.png" alt="" /></p>
 <p>Which, in my case, gives this console. I can run both Git commands and TFS commands.</p>
-<p><img src="https://www.softwaremeadows.com/posts/my_why_and_how_of_posh_git_contenxt_menu_transcripts_and_tf_exe/images/2018-05-14%2012_16_13.png" alt=""></p>
+<p><img src="images/2018-05-14%2012_16_13.png" alt="" /></p>
 <p>I'll get the same console if I have a solution open in Visual Studio and press ALT-Space.</p>
 <p><strong>To Do</strong></p>
 <ul>
@@ -204,14 +204,14 @@ You need to replace the user profile path below with your own.</p>
 <ol>
 <li>Open the console by right-clicking an Explorer folder and choosing from the menu.</li>
 <li>Open the console by using Mads Kristensen's <a href="http://vsixgallery.com/extension/f4ab1e64-5d35-4f06-bad9-bf414f4b3bbb/">Open Command Line</a> extension.</li>
-<li>Be able to run TFS commands (<code>tf.exe</code>).[^2]</li>
+<li>Be able to run TFS commands (<code>tf.exe</code>)[^2].</li>
 <li>Copy/paste to/from the console easily, i.e. CTRL-C, CTRL-V.</li>
-<li>Open an explorer window into my current folder using <code>explorer .</code> (note the dot after the command, which means "open here".)</li>
+<li>Open an explorer window into my current folder using <code>explorer .</code> (note the dot after the command, which means &quot;open here&quot;.)</li>
 <li>Dynamically resize the console contents.</li>
 <li>Scroll back through commands.</li>
 <li>Powerful command line if needed.</li>
 </ol>
-<p>[^2]:  I have a kind of crazy work flow where I use Git locally, but check in code to TFS remotely.</p>
+<p>[^2]: I have a kind of crazy work flow where I use Git locally, but check in code to TFS remotely.</p>
 <h1 id="references">References</h1>
 <h2 id="posh-git">posh-git</h2>
 <ul>
@@ -250,7 +250,7 @@ You need to replace the user profile path below with your own.</p>
 <h2 id="miscellaneous">Miscellaneous</h2>
 <ul>
 <li><a href="https://allthingsgit.com/">All Things Git Podcast</a></li>
-<li>If you want your Powershell windows to <em>always</em> be the "noble" colors, you can do this. I tried it, but then realized it got in my way.<br>
+<li>If you want your Powershell windows to <em>always</em> be the &quot;noble&quot; colors, you can do this. I tried it, but then realized it got in my way.<br />
 <a href="http://www.leeholmes.com/blog/2008/06/01/powershells-noble-blue/">Powershell's Noble Blue</a></li>
 <li><a href="http://davidovitz.blogspot.com/2010/07/fail-to-extract-programfilesx86.html">Fail to extract PROGRAMFILES(X86) environment variable using powershell</a></li>
 </ul>
@@ -261,13 +261,13 @@ You need to replace the user profile path below with your own.</p>
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/how_to_secure-erase_regular_and_ssd_hard_drives_without_superstition'>How to Secure-Erase Regular and SSD Hard Drives Without Superstition</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-05-09 23:00</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/how_to_secure-erase_regular_and_ssd_hard_drives_without_superstition/images/computer-hard-drive.jpg" alt=""></p>
-<p>"Securely erasing a hard drive requires at least three passes"</p>
-<p>"Securely erasing a hard drive requires randomly mixing ones and zeros"</p>
-<p>"Securely erasing a hard drive requires 35 passes if you want to really be safe"</p>
+                <div class='post-content'><p><img src="images/computer-hard-drive.jpg" alt="" /></p>
+<p>&quot;Securely erasing a hard drive requires at least three passes&quot;</p>
+<p>&quot;Securely erasing a hard drive requires randomly mixing ones and zeros&quot;</p>
+<p>&quot;Securely erasing a hard drive requires 35 passes if you want to really be safe&quot;</p>
 <p>From my research, none of these is true. The simple facts are:</p>
 <ol>
-<li>To securely erase a mechanical (i.e. "magnetic" or "platter") hard drive, write one pass of zeroes (or ones) to the entire drive.</li>
+<li>To securely erase a mechanical (i.e. &quot;magnetic&quot; or &quot;platter&quot;) hard drive, write one pass of zeroes (or ones) to the entire drive.</li>
 <li>To securely erase an SSD, just delete all the data. Not format. Delete.</li>
 </ol>
 <h1 id="references">References</h1>
@@ -280,7 +280,7 @@ You need to replace the user profile path below with your own.</p>
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/sql_permissions_for_data_folders'>SQL Permissions for Data Folders</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-05-09 22:35</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/sql_permissions_for_data_folders/images/sql-server-permissions.png" alt=""></p>
+                <div class='post-content'><p><img src="images/sql-server-permissions.png" alt="" /></p>
 <p>I always have trouble finding how to do this. When an .mdf file is located in a folder other than the SQL's Data folder (set up during installation), it can't be seen when trying to Attach.</p>
 <p>To make it visible, add the SQL Instance NT Service user to the folder. For example:</p>
 <ul>
@@ -295,7 +295,7 @@ You need to replace the user profile path below with your own.</p>
 <li>Grant Full Access</li>
 <li>Save and exit</li>
 </ol>
-<p>If you want to be able to use SQL's Browse button, do the same as above on the "F:" drive, but only giving Read access.</p>
+<p>If you want to be able to use SQL's Browse button, do the same as above on the &quot;F:&quot; drive, but only giving Read access.</p>
 </div>
               </div>
                <div class='paging'><a href='/'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index2.html'>Older</a></div>

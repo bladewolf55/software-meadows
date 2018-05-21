@@ -89,15 +89,15 @@ namespace RegistryPrototyping
             {
                 Console.WriteLine(ex.GetBaseException().Message);
             }
-            Console.WriteLine("Finished. Press any key to close.");
+            Console.WriteLine(&quot;Finished. Press any key to close.&quot;);
             Console.ReadLine();
         }
 
         static void WriteRegistry()
         {
-            string keyName = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer";
-            string valueName = "DisallowRun";
-            string value = "1";
+            string keyName = @&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer&quot;;
+            string valueName = &quot;DisallowRun&quot;;
+            string value = &quot;1&quot;;
             RegistryValueKind dataType = RegistryValueKind.DWord;
             Registry.SetValue(keyName, valueName, value, dataType);
         }
@@ -113,9 +113,9 @@ namespace RegistryPrototyping
 <p>For some developers, this problem will be hidden because they turn off UAC or <em>always</em> run Visual Studio as administrator. I don’t do either of these exactly because I’ll catch some permissions issue early.</p>
 </blockquote>
 <p>The obvious next step is to close our app, open Visual Studio using Run as Administrator, then reopen/run the app.</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <p>No error, and the key is written to the expected registry key (i.e. the currently logged in user).</p>
-<p><a href="images/image_3.png"><img src="https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when/images/image_3.png" alt="image" title="image"></a></p>
+<p><a href="images/image_3.png"><img src="images/image_3.png" alt="image" title="image" /></a></p>
 <p>Great! Next task, testing as Local System.</p>
 <p><em><strong>But first, delete the DisallowRun key!</strong></em></p>
 <h1 id="testing-as-local-system">Testing as Local System</h1>
@@ -126,7 +126,7 @@ namespace RegistryPrototyping
 <li>Launch the desired application with the –i and –s switches. These run the application locally in interactive mode under the System account.</li>
 </ol>
 <p>I right-clicked on my Visual Studio icon &gt; Properties to get the path, and ended up with this command.</p>
-<p>psexec –i –s “C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe"</p>
+<p>psexec –i –s “C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe&quot;</p>
 <blockquote>
 <p>When you launch this way, you’re running as if logged in under a different profile, so VS will go through its initial startup prompts.</p>
 </blockquote>
@@ -134,7 +134,7 @@ namespace RegistryPrototyping
 <li>Open your Console solution; you’ll need to navigate to its location via C:\Users\[username].</li>
 <li>Run it. Check your registry key. Where the heck is the new value? Because we’re running as System, the registry value will be written to the .Default user key.</li>
 </ol>
-<p><a href="images/image_6.png"><img src="https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when/images/image_6.png" alt="image" title="image"></a></p>
+<p><a href="images/image_6.png"><img src="images/image_6.png" alt="image" title="image" /></a></p>
 <p>Well, heck! This obviously isn’t what we want. We need to write to the currently logged on user’s profile. But this result gives us a clue how we’ll solve our problem later.</p>
 <h1 id="impersonation-false-start">Impersonation – False Start</h1>
 <p>At first, <a href="https://msdn.microsoft.com/en-us/library/w070t6ka(v=vs.110).aspx">impersonation</a> seems like the way to go. If I can just find out who’s currently logged on and working, I should be able to impersonate that user and write to the registry on that user’s behalf.</p>
@@ -149,15 +149,15 @@ namespace RegistryPrototyping
 <p>But we can still do what we want. After all, as System we can write to most parts of the physical registry.</p>
 <h1 id="writing-to-the-users-key">Writing to the User’s Key</h1>
 <p>When we wrote to the System user’s logical hive CURRENT_USER, we ended up in the physical hive USERS. That’s where all the user registry settings are. CURRENT_USER is a symbolic link, a redirection for the active user. Here’s my computer’s USERS hive:</p>
-<p><a href="images/image_1.png"><img src="https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when/images/image_1.png" alt="image" title="image"></a></p>
+<p><a href="images/image_1.png"><img src="images/image_1.png" alt="image" title="image" /></a></p>
 <p>Those long SIDs are the users. If I can get those, I can write to the user’s Group Policy setting.</p>
 <p>Step one, revise the WriteRegistry method.</p>
 <pre><code class="language-csharp">static void WriteRegistry(string sid)
     {
-        string keyName = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer";
-        string valueName = "DisallowRun";
-        string value = "1";
-        keyName = keyName.Replace("HKEY_CURRENT_USER", @"HKEY_USERS\" + sid);
+        string keyName = @&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer&quot;;
+        string valueName = &quot;DisallowRun&quot;;
+        string value = &quot;1&quot;;
+        keyName = keyName.Replace(&quot;HKEY_CURRENT_USER&quot;, @&quot;HKEY_USERS\&quot; + sid);
         RegistryValueKind dataType = RegistryValueKind.DWord;
         Registry.SetValue(keyName, valueName, value, dataType);
     }
@@ -175,7 +175,7 @@ using System.Collections.Generic;
 <pre><code class="language-csharp">class WindowsIdentityHelper
 {
 
-    [DllImport("advapi32", SetLastError = true),
+    [DllImport(&quot;advapi32&quot;, SetLastError = true),
     SuppressUnmanagedCodeSecurityAttribute]
     static extern int OpenProcessToken(
     System.IntPtr ProcessHandle, // handle to process
@@ -183,10 +183,10 @@ using System.Collections.Generic;
     ref IntPtr TokenHandle // handle to open access token
     );
 
-    [DllImport("kernel32", SetLastError = true),
+    [DllImport(&quot;kernel32&quot;, SetLastError = true),
     SuppressUnmanagedCodeSecurityAttribute]
     static extern bool CloseHandle(IntPtr handle);
-    [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    [DllImport(&quot;advapi32.dll&quot;, CharSet = CharSet.Auto, SetLastError = true)]
     public extern static bool DuplicateToken(IntPtr ExistingTokenHandle,
     int SECURITY_IMPERSONATION_LEVEL, ref IntPtr DuplicateTokenHandle);
 
@@ -206,10 +206,10 @@ using System.Collections.Generic;
     public static List GetLoggedOnUsers()
     {
         List users = new List();
-        string errs = "";
+        string errs = &quot;&quot;;
         IntPtr hToken = IntPtr.Zero;
         //Get a process that will always be available.
-        foreach (Process proc in Process.GetProcessesByName("explorer"))
+        foreach (Process proc in Process.GetProcessesByName(&quot;explorer&quot;))
         {
             try
             {
@@ -223,13 +223,13 @@ using System.Collections.Generic;
                 }
                 else
                 {
-                    errs += String.Format("OpenProcess Failed {0}, privilege not held\r\n", Marshal.GetLastWin32Error());
+                    errs += String.Format(&quot;OpenProcess Failed {0}, privilege not held\r\n&quot;, Marshal.GetLastWin32Error());
                 }
 
             }
             catch (Exception ex)
             {
-                errs += String.Format("OpenProcess Failed {0}\r\n", ex.Message);
+                errs += String.Format(&quot;OpenProcess Failed {0}\r\n&quot;, ex.Message);
             }
         }
         if (errs.Length &gt; 0) { throw new Exception(errs); }
@@ -244,7 +244,7 @@ using System.Collections.Generic;
         try
         {
             WriteRegistry(user.Owner.Value);
-            Console.WriteLine("Updated user " + user.Name + "  SID " + user.Owner.Value);
+            Console.WriteLine(&quot;Updated user &quot; + user.Name + &quot;  SID &quot; + user.Owner.Value);
         }
         catch (Exception ex)
         {
@@ -253,7 +253,7 @@ using System.Collections.Generic;
     }
 }
 </code></pre>
-<p>&nbsp;</p>
+<p> </p>
 <blockquote>
 <p>Notice we’re using WindowsIdentity.Owner.Value to return the SID. The property .Owner.AccountDomainSid doesn’t return the full, correct SID.</p>
 </blockquote>
@@ -268,18 +268,18 @@ using System.Collections.Generic;
     {
         Console.WriteLine(ex.GetBaseException().Message);
     }
-    Console.WriteLine("Finished. Press any key to close.");
+    Console.WriteLine(&quot;Finished. Press any key to close.&quot;);
     Console.ReadLine();
 }
 </code></pre>
 <p>One last thing before running the app. If you <em>really</em> want to test it, create a local user (named Test would be good), log that user on, leave it running and switch back to your regular user.</p>
 <p>Now, run the application.</p>
-<p><a href="images/image_14.png"><img src="https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when/images/image_14.png" alt="image" title="image"></a></p>
+<p><a href="images/image_14.png"><img src="images/image_14.png" alt="image" title="image" /></a></p>
 <p>Check those User SIDs!</p>
-<p><a href="images/image_9.png"><img src="https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when/images/image_9.png" alt="image" title="image"></a></p>
-<p><a href="images/image_11.png"><img src="https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when/images/image_11.png" alt="image" title="image"></a></p>
+<p><a href="images/image_9.png"><img src="images/image_9.png" alt="image" title="image" /></a></p>
+<p><a href="images/image_11.png"><img src="images/image_11.png" alt="image" title="image" /></a></p>
 <p>And finally, to prove the redirection, we’ll look at our CURRENT_USER hive.</p>
-<p><a href="images/image_13.png"><img src="https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when/images/image_13.png" alt="image" title="image"></a></p>
+<p><a href="images/image_13.png"><img src="images/image_13.png" alt="image" title="image" /></a></p>
 <p>(Remember, now, to delete those keys. You might also log off and delete the test user.)</p>
 <h1 id="wrap-up">Wrap Up</h1>
 <p>Our goal was to write to the logged on users’ Group Policy keys, with the future intention of preventing them from running certain applications. We need to do this running as System, and found that impersonation wouldn’t work because we had use an elevated process. Instead, we wrote to the running users’ physical registry keys.</p>
@@ -291,7 +291,7 @@ using System.Collections.Generic;
 <p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384253(v=vs.85).aspx">Registry Keys Affected by WOW64</a></p>
 <p><a href="https://technet.microsoft.com/en-us/library/cc960900.aspx">Group Policy Object – Disallow Run</a></p>
 <p><a href="https://msdn.microsoft.com/en-us/library/w070t6ka(v=vs.110).aspx">WindowsIdentity.Impersonate</a></p>
-<p><a href="https://bytes.com/topic/c-sharp/answers/463942-using-openprocesstoken">Using OpenProcessToken</a>&nbsp; &lt;=this is where the Win32 code came from. Very useful.</p>
+<p><a href="https://bytes.com/topic/c-sharp/answers/463942-using-openprocesstoken">Using OpenProcessToken</a>  &lt;=this is where the Win32 code came from. Very useful.</p>
 <p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa379295(v=vs.85).aspx">OpenProcessToken function</a></p>
 <p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa374905(v=vs.85).aspx">OpenProcessToken Access Rights</a></p>
 <p><a href="http://www.pinvoke.net/default.aspx/advapi32.openprocesstoken">Constants for Token Access Rights</a></p>
@@ -320,25 +320,25 @@ namespace RegistryPrototyping
             {
                 Console.WriteLine(ex.GetBaseException().Message);
             }
-            Console.WriteLine("Finished. Press any key to close.");
+            Console.WriteLine(&quot;Finished. Press any key to close.&quot;);
             Console.ReadLine();
         }
 
         static void WriteRegistry(string sid)
         {
-            string keyName = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer";
-            string valueName = "DisallowRun";
-            string value = "1";
-            keyName = keyName.Replace("HKEY_CURRENT_USER", @"HKEY_USERS\" + sid);
+            string keyName = @&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer&quot;;
+            string valueName = &quot;DisallowRun&quot;;
+            string value = &quot;1&quot;;
+            keyName = keyName.Replace(&quot;HKEY_CURRENT_USER&quot;, @&quot;HKEY_USERS\&quot; + sid);
             RegistryValueKind dataType = RegistryValueKind.DWord;
             Registry.SetValue(keyName, valueName, value, dataType);
         }
 
         static void WriteRegistry()
         {
-            string keyName = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer";
-            string valueName = "DisallowRun";
-            string value = "1";
+            string keyName = @&quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer&quot;;
+            string valueName = &quot;DisallowRun&quot;;
+            string value = &quot;1&quot;;
             RegistryValueKind dataType = RegistryValueKind.DWord;
             Registry.SetValue(keyName, valueName, value, dataType);
         }
@@ -350,7 +350,7 @@ namespace RegistryPrototyping
                 try
                 {
                     WriteRegistry(user.Owner.Value);
-                    Console.WriteLine("Updated user " + user.Name + "  SID " + user.Owner.Value);
+                    Console.WriteLine(&quot;Updated user &quot; + user.Name + &quot;  SID &quot; + user.Owner.Value);
                 }
                 catch (Exception ex)
                 {
@@ -365,7 +365,7 @@ namespace RegistryPrototyping
 class WindowsIdentityHelper
 {
 
-    [DllImport("advapi32", SetLastError = true),
+    [DllImport(&quot;advapi32&quot;, SetLastError = true),
     SuppressUnmanagedCodeSecurityAttribute]
     static extern int OpenProcessToken(
     System.IntPtr ProcessHandle, // handle to process
@@ -373,10 +373,10 @@ class WindowsIdentityHelper
     ref IntPtr TokenHandle // handle to open access token
     );
 
-    [DllImport("kernel32", SetLastError = true),
+    [DllImport(&quot;kernel32&quot;, SetLastError = true),
     SuppressUnmanagedCodeSecurityAttribute]
     static extern bool CloseHandle(IntPtr handle);
-    [DllImport("advapi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    [DllImport(&quot;advapi32.dll&quot;, CharSet = CharSet.Auto, SetLastError = true)]
     public extern static bool DuplicateToken(IntPtr ExistingTokenHandle,
     int SECURITY_IMPERSONATION_LEVEL, ref IntPtr DuplicateTokenHandle);
 
@@ -396,10 +396,10 @@ class WindowsIdentityHelper
     public static List GetLoggedOnUsers()
     {
         List users = new List();
-        string errs = "";
+        string errs = &quot;&quot;;
         IntPtr hToken = IntPtr.Zero;
         //Get a process that will always be available.
-        foreach (Process proc in Process.GetProcessesByName("explorer"))
+        foreach (Process proc in Process.GetProcessesByName(&quot;explorer&quot;))
         {
             try
             {
@@ -413,13 +413,13 @@ class WindowsIdentityHelper
                 }
                 else
                 {
-                    errs += String.Format("OpenProcess Failed {0}, privilege not held\r\n", Marshal.GetLastWin32Error());
+                    errs += String.Format(&quot;OpenProcess Failed {0}, privilege not held\r\n&quot;, Marshal.GetLastWin32Error());
                 }
 
             }
             catch (Exception ex)
             {
-                errs += String.Format("OpenProcess Failed {0}\r\n", ex.Message);
+                errs += String.Format(&quot;OpenProcess Failed {0}\r\n&quot;, ex.Message);
             }
         }
         if (errs.Length &gt; 0) { throw new Exception(errs); }

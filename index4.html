@@ -62,7 +62,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development'>The 50-10 Time Box - Revising Pomodoro for Software Development</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-04-21 07:50</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development/images/time-box.png" alt=""></p>
+                <div class='post-content'><p><img src="images/time-box.png" alt="" /></p>
 <p>I've been resolving three aspects of programming:</p>
 <ul>
 <li>The cost of interruptions</li>
@@ -86,14 +86,14 @@
 </ul>
 <p>The problem is, Pomodoro, to my knowledge, hasn't been studied scientifically. When I used it for non-programming tasks, I could see the benefit. The more I tried using it for programming, the less effective I found it.</p>
 <h1 id="the-task-recovery-lag">The Task Recovery Lag</h1>
-<p>Numerous studies show there's a recovery lag when resuming an interrupted task. For software developers, it takes about fifteen minutes to recover the previous context--to "get back to where I was." The worst time to be interrupted is then there's the highest mental workload. (Like when I'm in the middle of debugging a method having spent twenty minutes understanding how it relates to five other modules.)</p>
+<p>Numerous studies show there's a recovery lag when resuming an interrupted task. For software developers, it takes about fifteen minutes to recover the previous context--to &quot;get back to where I was.&quot; The worst time to be interrupted is then there's the highest mental workload. (Like when I'm in the middle of debugging a method having spent twenty minutes understanding how it relates to five other modules.)</p>
 <p>I think it's a mistake, though, to think only in terms of interruptions. A programmer <em>always</em> ramps up when starting (or restarting) a coding session. In other words, we should plan on the first fifteen minutes being devoted to recovering context.</p>
 <h1 id="breaks">Breaks</h1>
 <p>I've worked for hours straight, and thought I was being productive. Maybe sometimes I was. But the research shows that regular breaks improve productivity, because the brain needs that time to recover from fatigue.</p>
 <h1 id="the-friction">The Friction</h1>
 <p>So, where does that leave us regarding Pomodoro?</p>
 <ul>
-<li>It takes a programmer at least fifteen minutes to "ramp up"</li>
+<li>It takes a programmer at least fifteen minutes to &quot;ramp up&quot;</li>
 <li>A Pomodoro work period is twenty-five minutes</li>
 <li>That leaves <em>ten minutes or less of effective work time</em></li>
 </ul>
@@ -102,9 +102,9 @@
 <p>There are benefits to Pomodoro. The task planning and completion help a lot with emotionally attaching to success, and with chunking down larger items.</p>
 <h1 id="proposal-the-50-10-time-box">Proposal - The 50-10 Time Box</h1>
 <p>I've been trying this for about a month now, and it's working well for me. So, maybe it will work for you, too. Basically, use Pomodoro Technique but with a 50 minute work cycle followed by a ten minute break. This allows for the fifteen minute ramp up, then thirty-five minutes of solid, focused work. I've found that I'm usually ready for a break at the fifty minute mark.</p>
-<p><em>Even if I wasn't "ready" for a break, when I took it I found I needed it.</em></p>
+<p><em>Even if I wasn't &quot;ready&quot; for a break, when I took it I found I needed it.</em></p>
 <p>I use an online tool named <a href="http://www.marinaratimer.com/">Marinara Timer</a> to manage my time boxes. It has a Custom timer where I configured my cycles.</p>
-<p><img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development/images/2018-04-21%2009_04_45.png" alt=""></p>
+<p><img src="images/2018-04-21%2009_04_45.png" alt="" /></p>
 <p>What do I like about this approach?</p>
 <ol>
 <li>It aligns on the hour, making it easy to understand.</li>
@@ -133,7 +133,7 @@
 - [ ] Begin coding workhorse feature
 </code></pre>
 <p><strong>2. Start my timer.</strong></p>
-<p><img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development/images/2018-04-21%2009_17_06.png" alt=""></p>
+<p><img src="images/2018-04-21%2009_17_06.png" alt="" /></p>
 <p><strong>3. Work deliberately, with intense focus. Record distractions.</strong></p>
 <p>It's important to not noodle around during the work time. Manage distractions! This is a hallmark of <a href="https://hbr.org/2007/07/the-making-of-an-expert">deliberate practice</a>, and an aspect of <a href="http://whatmeditationreallyis.com/index.php/home-blog/item/470-how-to-meditate-distraction-in-meditation-doesnt-matter.html">meditation</a> and mindfulness.</p>
 <pre><code class="language-txt"># Distractions
@@ -211,10 +211,10 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results'>LINQPad - Refresh Entity after SubmitChanges to Avoid Cached Results</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-04-19 10:15</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results/images/header.png" alt=""></p>
+                <div class='post-content'><p><img src="images/header.png" alt="" /></p>
 <p>Today I was using <a href="http://www.linqpad.net/">LINQPad</a> to see how SQL record values were being affected by table triggers. The results were puzzling, so I did the same test using SQL Management Studio and got different results. Clearly, there was caching going on!</p>
 <p>Here's roughly what my LINQPad C# Statements script looked like (table names changed to protect the innocent). I was going directly against the database, not using an Entity Framework DbContext, so LINQPad is using LinqToSql for the connection.</p>
-<pre><code class="language-csharp">var reportId = "1234";
+<pre><code class="language-csharp">var reportId = &quot;1234&quot;;
 var header = ReportHeaders.Single(a =&gt; a.ReportID == reportId);
 //Change Status from P to C. Trigger should reset to P because Completed is false.
 header.Status ='C';
@@ -228,7 +228,7 @@ var d = new {HeaderStatus =    header.Status,    ReportStatus =    report.Status
 d.Dump();
 </code></pre>
 <p>And my result:</p>
-<p><img src="https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results/images/2018-04-19%2010_25_26.png" alt=""></p>
+<p><img src="images/2018-04-19%2010_25_26.png" alt="" /></p>
 <p>But in the database, both statuses were (correctly) set back to P.</p>
 <pre><code class="language-txt">HEADER
 STATUS Completed
@@ -242,7 +242,7 @@ P      0
 </code></pre>
 <p>This was happening because Linq2Sql caches query results during a single Context session. Caching can be turned off by not tracking objects (<code>ObjectTrackingEnabled = false;</code>), but that will prevent SubmitChanges from running.</p>
 <p>The solution is to use Context.Refresh to requery the database for the entity.</p>
-<pre><code class="language-csharp">var reportId = "1234";
+<pre><code class="language-csharp">var reportId = &quot;1234&quot;;
 var header = ReportHeaders.Single(a =&gt; a.ReportID == reportId);
 //Change Status from P to C. Trigger should reset to P because Completed is false.
 header.Status ='C';
@@ -259,7 +259,7 @@ var d = new {HeaderStatus =    header.Status,    ReportStatus =    report.Status
 d.Dump();
 </code></pre>
 <p>Now, running the script returns the correct results.</p>
-<p><img src="https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results/images/2018-04-19%2010_33_23.png" alt=""></p>
+<p><img src="images/2018-04-19%2010_33_23.png" alt="" /></p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://stackoverflow.com/a/3562232">Non-Cached Results in LINQPad</a></li>
@@ -272,17 +272,17 @@ d.Dump();
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin'>Create Blog Post Using Markdown Monster's Command Addin</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-04-15 12:29</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin/images/header.png" alt=""></p>
+                <div class='post-content'><p><img src="images/header.png" alt="" /></p>
 <p>This is a quick entry, mostly for me. I've been using the very good Markdown editor, <a href="https://markdownmonster.west-wind.com/">Markdown Monster</a>, and wanted to automate creating blog posts. I have a manual process that I thought I could somewhat automate.</p>
 <p>MM has an addin that lets me write C# scripting and control a lot of the editor.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin/images/2018-04-15%2012_33_00.png" alt=""></p>
+<p><img src="images/2018-04-15%2012_33_00.png" alt="" /></p>
 <p>Through both the documentation plus trial-and-error, I was able to do the following:</p>
 <ol>
 <li>Prompt for a post title.</li>
 <li>Create the post file in a known folder.</li>
 <li>Add metadata (frontmatter).</li>
 <li>Open in a tab for editing.</li>
-<li>Open the post folder's "images" folder.</li>
+<li>Open the post folder's &quot;images&quot; folder.</li>
 <li>Commit and publish</li>
 </ol>
 <p>Here's the code for creating the post, some of which is seen in the above screenshot.</p>
@@ -294,37 +294,37 @@ d.Dump();
 using Westwind.Utilities;
 using System.IO;
 
-string defaultPath = @"c:\path\to\posts";
+string defaultPath = @&quot;c:\path\to\posts&quot;;
 
-string title = Microsoft.VisualBasic.Interaction.InputBox("File Name", "Enter file name", "", 600, 300);
+string title = Microsoft.VisualBasic.Interaction.InputBox(&quot;File Name&quot;, &quot;Enter file name&quot;, &quot;&quot;, 600, 300);
 
 if (String.IsNullOrWhiteSpace(title))
 {
     return null;
 }
 
-string datetime = DateTime.Now.ToString("yyyyMMdd-HHmm");
-string folder = Path.Combine(defaultPath, datetime + " " + title);
-string file = Path.Combine(folder, title + ".md");
-string images = Path.Combine(folder, "images");
-string publishedOn = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+string datetime = DateTime.Now.ToString(&quot;yyyyMMdd-HHmm&quot;);
+string folder = Path.Combine(defaultPath, datetime + &quot; &quot; + title);
+string file = Path.Combine(folder, title + &quot;.md&quot;);
+string images = Path.Combine(folder, &quot;images&quot;);
+string publishedOn = DateTime.Now.ToString(&quot;yyyy-MM-dd HH:mm&quot;);
 string slug = title.ToLower();
-slug = slug.Replace(" ", "_");
-slug = slug.Replace("?", "_");
-slug = slug.Replace("&amp;", "_");
-slug = slug.Replace(".", "_");
-string meta = String.Format(@"---
+slug = slug.Replace(&quot; &quot;, &quot;_&quot;);
+slug = slug.Replace(&quot;?&quot;, &quot;_&quot;);
+slug = slug.Replace(&quot;&amp;&quot;, &quot;_&quot;);
+slug = slug.Replace(&quot;.&quot;, &quot;_&quot;);
+string meta = String.Format(@&quot;---
 Title          : {0}
 PublishedOn    : {1}
 Slug           : {2}
 Tags           : 
 Status         : Draft
 ---
-",title, publishedOn, slug);
+&quot;,title, publishedOn, slug);
 
 Directory.CreateDirectory(images);
 File.WriteAllText(file,meta);
-//Model.ExecuteProcess("explorer.exe", images);
+//Model.ExecuteProcess(&quot;explorer.exe&quot;, images);
 //System.Threading.Thread.Sleep(2000);
 Model.Window.OpenTab(file);
 //I can't figure out how to set the cursor position
@@ -357,12 +357,12 @@ using System.Windows;
 string folder = Model.ActiveDocument.Filename;
 folder = Directory.GetParent(folder).FullName;
 
-string images = Path.Combine(folder, "images");
+string images = Path.Combine(folder, &quot;images&quot;);
 if (Directory.Exists(images)) {
-    Model.ExecuteProcess("explorer.exe", images);
+    Model.ExecuteProcess(&quot;explorer.exe&quot;, images);
 }
 else {
-    MessageBox.Show("No folder " + images);
+    MessageBox.Show(&quot;No folder &quot; + images);
 }
 </code></pre>
 <p>And, to publish, I do this. I have a batch file in my blog folder that takes care of the actual commit/push to Git.</p>
@@ -374,15 +374,15 @@ using System.Windows;
 using System.Diagnostics;
 
 string folder = Model.ActiveDocument.Filename;
-folder = Directory.GetParent(Path.Combine(folder,@"..\..\..\")).FullName;
+folder = Directory.GetParent(Path.Combine(folder,@&quot;..\..\..\&quot;)).FullName;
 
-string cmd = Path.Combine(folder, "publish.cmd");
-cmd = @"""" + cmd + @"""";
+string cmd = Path.Combine(folder, &quot;publish.cmd&quot;);
+cmd = @&quot;&quot;&quot;&quot; + cmd + @&quot;&quot;&quot;&quot;;
 Console.WriteLine(cmd);
-//Model.ExecuteProcess("cmd.exe", "/C " + cmd);
+//Model.ExecuteProcess(&quot;cmd.exe&quot;, &quot;/C &quot; + cmd);
 var si = new ProcessStartInfo();
-si.FileName = "cmd.exe";
-si.Arguments = "/C " +  cmd;
+si.FileName = &quot;cmd.exe&quot;;
+si.Arguments = &quot;/C &quot; +  cmd;
 si.WorkingDirectory = folder;
 
 Process.Start(si);

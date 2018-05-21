@@ -63,17 +63,17 @@
 <p>Ayende's original code is this:</p>
 <pre><code class="language-cs">var doc = new Dictionary&lt;string,object&gt;
 {
-    ["@metadata"] = new Dictionary&lt;string, object&gt;
+    [&quot;@metadata&quot;] = new Dictionary&lt;string, object&gt;
     {
-        ["@id"] = "users/1"
+        [&quot;@id&quot;] = &quot;users/1&quot;
     }
-    ["Name"] = "Oren"
+    [&quot;Name&quot;] = &quot;Oren&quot;
 };
 
 
-Console.WriteLine(doc["Name"]);
+Console.WriteLine(doc[&quot;Name&quot;]);
 </code></pre>
-<p>The final statement fails, because doc is actually equal to a string value of "Oren", not the dictionary object. Why? And--for me--I couldn't understand why it was compiling at all.</p>
+<p>The final statement fails, because doc is actually equal to a string value of &quot;Oren&quot;, not the dictionary object. Why? And--for me--I couldn't understand why it was compiling at all.</p>
 <p>It took me a while to see the syntax parsing, and remember that C# can be very forgiving of spaces. I'm not a beginner, but it's sort of a beginner mistake. For other readers like me who aren't as bright (if you have any!), here's another look.</p>
 <p>While it appeared to me an element was being set completely outside of the declaration, the element is being set <em>on</em> the declared dictionary.</p>
 <p>The final syntax is:</p>
@@ -84,15 +84,15 @@ Console.WriteLine(doc["Name"]);
 </code></pre>
 <p>Code samples</p>
 <pre><code class="language-cs">//spaces before the element don't matter
-var item = new Dictionary&lt;string, object&gt; {}    ["a"] = 1;
+var item = new Dictionary&lt;string, object&gt; {}    [&quot;a&quot;] = 1;
 //is the same as
-var item = new Dictionary&lt;string, object&gt; { }["a"] = 1;
+var item = new Dictionary&lt;string, object&gt; { }[&quot;a&quot;] = 1;
 
 //For clarity, we replace the declaration with its assignment.
 var dic = new Dictionary&lt;string, object&gt; {};
-var item = dic     ["a"] = 1;
+var item = dic     [&quot;a&quot;] = 1;
 //is the same as
-var item = dic["a"] = 1;
+var item = dic[&quot;a&quot;] = 1;
 </code></pre>
 <p>I looked for other examples of where this can be done. The simplest array case doesn't compile:</p>
 <pre><code class="language-cs">//This is OK.

@@ -57,30 +57,30 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-06 08:05</span></p>
-                <div class='post-content'><p><a href="images/ci-logo.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/ci-logo.png" alt="ci-logo" title="ci-logo"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
 <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_6.html">TFS Continuous Integration Walk Through Part 4a - Problems With Traits</a></p>
-<p>&nbsp;</p>
-<p><strong>References</strong><br>
-<a href="https://www.visualstudio.com/en-us/docs/build/steps/test/visual-studio-test">Test: Visual Studio Test</a><br>
-<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2012/11/20/part-2using-traits-with-different-test-frameworks-in-the-unit-test-explorer/">Part 2: Using Traits with different test frameworks</a><br>
-<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2013/06/11/part-3-unit-testing-with-traits-and-code-coverage-in-visual-studio-2012-using-the-tfs-build-and-the-new-nuget-adapter-approach/">Part 3: Unit testing with Traits and filtering...</a> &lt;-Note that the documentation on mapping "Category" is wrong, see below!<br>
-<a href="https://blogs.msdn.microsoft.com/vikramagrawal/2012/07/23/running-selective-unit-tests-in-vs-2012-rc-using-testcasefilter/">Running selective unit tests in VS 2012 RC using TestCaseFilter</a><br>
-<a href="http://www.dotnetcatch.com/2016/03/11/vststfs-visual-studio-test-task-filter-criteria/">VSTS/TFS Visual Studio Test Task - Filter Criteria</a><br>
-<a href="https://msdn.microsoft.com/en-us/library/hh270865.aspx#BKMK_Group_and_filter_the_test_list">Running unit tests with Test Explorer: Group and Filter</a><br>
-<a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">How to: Group and Run Automated Tests Using Test Categories</a><br>
+<p> </p>
+<p><strong>References</strong><br />
+<a href="https://www.visualstudio.com/en-us/docs/build/steps/test/visual-studio-test">Test: Visual Studio Test</a><br />
+<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2012/11/20/part-2using-traits-with-different-test-frameworks-in-the-unit-test-explorer/">Part 2: Using Traits with different test frameworks</a><br />
+<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2013/06/11/part-3-unit-testing-with-traits-and-code-coverage-in-visual-studio-2012-using-the-tfs-build-and-the-new-nuget-adapter-approach/">Part 3: Unit testing with Traits and filtering...</a> &lt;-Note that the documentation on mapping &quot;Category&quot; is wrong, see below!<br />
+<a href="https://blogs.msdn.microsoft.com/vikramagrawal/2012/07/23/running-selective-unit-tests-in-vs-2012-rc-using-testcasefilter/">Running selective unit tests in VS 2012 RC using TestCaseFilter</a><br />
+<a href="http://www.dotnetcatch.com/2016/03/11/vststfs-visual-studio-test-task-filter-criteria/">VSTS/TFS Visual Studio Test Task - Filter Criteria</a><br />
+<a href="https://msdn.microsoft.com/en-us/library/hh270865.aspx#BKMK_Group_and_filter_the_test_list">Running unit tests with Test Explorer: Group and Filter</a><br />
+<a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">How to: Group and Run Automated Tests Using Test Categories</a><br />
 <a href="https://github.com/Microsoft/vsts-tasks/blob/releases/m109/Tasks/VsTest/README.md">Run Tests using Visual Studio task</a></p>
-<p>I initially couldn't get the category filtering to work. The documentation noted in the References said that an xUnit trait of "Category" would be automatically matched to the test explorer's "TestCategory".</p>
-<p><a href="images/17-02-02_112605.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_112605.png" alt="2017-02-02_112605" title="2017-02-02_112605"></a></p>
+<p>I initially couldn't get the category filtering to work. The documentation noted in the References said that an xUnit trait of &quot;Category&quot; would be automatically matched to the test explorer's &quot;TestCategory&quot;.</p>
+<p><a href="images/17-02-02_112605.png"><img src="images/17-02-02_112605.png" alt="2017-02-02_112605" title="2017-02-02_112605" /></a></p>
 <p>But, that's not true. xUnit (and presumably Nunit and others) passes its traits directly. See this exchange on the subject (Brad Wilson developed xUnit).</p>
 <p><a href="https://github.com/xunit/xunit/issues/1052">https://github.com/xunit/xunit/issues/1052</a></p>
 <p>If you use this attribute in xUnit:</p>
-<pre><code class="language-csharp">[Trait("Category", "manual")]
+<pre><code class="language-csharp">[Trait(&quot;Category&quot;, &quot;manual&quot;)]
 </code></pre>
 <p>and this filter:</p>
 <p><code>TestCategory!=manual</code></p>
 <p>the tests will fail. The MS test console will report an error, not run the test as expected. To find the error, you need to look in the build's logs.</p>
-<p><a href="images/17-02-02_1_035.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1_035.png" alt="2017-02-02_120035" title="2017-02-02_120035"></a></p>
+<p><a href="images/17-02-02_1_035.png"><img src="images/17-02-02_1_035.png" alt="2017-02-02_120035" title="2017-02-02_120035" /></a></p>
 <p>Here's the error message. It's the same message you'd get if you used the command line to run the tests (which is how I first discovered the error).</p>
 <pre><code class="language-csharp">2017-02-02T18:55:03.9288278Z ##[error]Error: [xUnit.net 00:00:00.3802419]
 CIConsoleSample.xUnitTests: Exception discovering tests: No tests matched the filter 
@@ -88,7 +88,7 @@ because it contains one or more properties that are not valid (TestCategory). Sp
 filter expression containing valid properties (Category, DisplayName, FullyQualifiedName)
 and try again.
 </code></pre>
-<p>"Well, OK," I thought, "I'll just add 'Category' into the filter."</p>
+<p>&quot;Well, OK,&quot; I thought, &quot;I'll just add 'Category' into the filter.&quot;</p>
 <p><code>TestCategory!=manual | Category!=manual</code></p>
 <p>Now I get two errors:</p>
 <pre><code class="language-csharp">Error: No tests matched the filter because it contains one or more properties that 
@@ -105,35 +105,35 @@ are not valid (TestCategory). Specify filter expression containing valid propert
 <p>Maybe I need to use a Boolean AND in the filter.</p>
 <p><code>TestCategory!=manual &amp; Category!=manual</code></p>
 <p>Nope, I get the exact same error message. After further testing and research, I learned that if there's a filter, at least one test in the assembly <em>must</em> satisfy the filter. In other words, if you filter on TestCategory, at least one test must include that trait, regardless of whether it's needed.</p>
-<p>In my case, I'm using a single Visual Studio Test build step to run tests using two frameworks. When I was using [TestCategory("manual")] for MSTest, and [Trait("Category","manual")] for xUnit, and a filter of <code>TestCategory!=manual | Category!=manual</code>, here's what happened.</p>
+<p>In my case, I'm using a single Visual Studio Test build step to run tests using two frameworks. When I was using [TestCategory(&quot;manual&quot;)] for MSTest, and [Trait(&quot;Category&quot;,&quot;manual&quot;)] for xUnit, and a filter of <code>TestCategory!=manual | Category!=manual</code>, here's what happened.</p>
 <ol>
-<li>The MSTest framework was called. The filter was evaluated and no tests with a trait of "Category" were found. So an error was reported.</li>
-<li>The xUnit framework was called. The filter was evaluated and no tests with a trait of "TestCategory" were found. So an error was reported.</li>
+<li>The MSTest framework was called. The filter was evaluated and no tests with a trait of &quot;Category&quot; were found. So an error was reported.</li>
+<li>The xUnit framework was called. The filter was evaluated and no tests with a trait of &quot;TestCategory&quot; were found. So an error was reported.</li>
 </ol>
 <p>The <em>first</em> time I ran the tests, I only had a filter <code>TestCategory!=manual</code>. The MSTests succeeded because there was, indeed, a trait with that name.</p>
-<p>I did try some other filtering, hoping that filters might evaluate conditions in a "short-circuit" way, but always got the same errors. For example, I tried this:</p>
+<p>I did try some other filtering, hoping that filters might evaluate conditions in a &quot;short-circuit&quot; way, but always got the same errors. For example, I tried this:</p>
 <p><code>(FullyQualifiedName~MSTest &amp;&amp; TestCategory!=manual) || (FullyQuallifiedName~xUnit &amp;&amp; Category!=manual)</code></p>
 <p>This as a problem for reusing build definitions. It would be better if invalid traits were simply ignored, and the tests get run. This is a known problem, as Brad Wilson notes at the end of this thread.</p>
 <p><a href="https://github.com/xunit/xunit/issues/610">https://github.com/xunit/xunit/issues/610</a></p>
 <blockquote>
-<p>bradwilson commented on Oct 18, 2016 Unfortunately, this exception is generated by Visual Studio, not by us. We provide the list of traits to them, and they do the filtering; they're the ones generating this message. When you Google for the phrase "No tests matched the filter because it contains one or more properties that are not valid" you'll see hits for all testing frameworks, not just xUnit.net.&gt;</p>
+<p>bradwilson commented on Oct 18, 2016 Unfortunately, this exception is generated by Visual Studio, not by us. We provide the list of traits to them, and they do the filtering; they're the ones generating this message. When you Google for the phrase &quot;No tests matched the filter because it contains one or more properties that are not valid&quot; you'll see hits for all testing frameworks, not just xUnit.net.&gt;</p>
 </blockquote>
 <p>The only workaround is to always include the trait on at least one test in the assembly. Note the trait doesn't need a used value.</p>
 <pre><code class="language-csharp">    [Fact]
-    [Trait("Category","blamo")]
+    [Trait(&quot;Category&quot;,&quot;blamo&quot;)]
     public void SaveGreetingToCloud()
 </code></pre>
 <p>So, that's not ideal, but it's up to Microsoft to take care of the problem.</p>
 <p>Can we mitigate the issue at all? Sort of. We can at least have better management of our trait filters for different test frameworks.</p>
 <p>First, let's grant that this is an unusual situation, using multiple test frameworks. The better way to manage this would probably be to have two test runs, one for MSTest and the other for xUnit. Add another build step to our definition, and then to change the Test Assembly fields to search for specifically. In other words, we'd have one build step for MSTest, and one for xUnit, and then we could name the traits as desired. This would rely on developers sticking to some naming conventions.</p>
 <blockquote>
-<p><strong>Warning</strong><br>
-Be sure to evaluate your test results when you change settings and look for sane expectations. For example, when I first tried my xUnit build step, I added an extra "l" to .dll. The build didn't fail, it just didn't find any xUnit tests! I needed to look at the log and check that it had found the tests I expected.</p>
+<p><strong>Warning</strong><br />
+Be sure to evaluate your test results when you change settings and look for sane expectations. For example, when I first tried my xUnit build step, I added an extra &quot;l&quot; to .dll. The build didn't fail, it just didn't find any xUnit tests! I needed to look at the log and check that it had found the tests I expected.</p>
 </blockquote>
-<p><strong>MSTest step</strong><br>
-<a href="images/17-02-02_1322.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1322.png" alt="2017-02-02_125322" title="2017-02-02_125322"></a></p>
-<p><strong>xUnit step</strong><br>
-<a href="images/17-02-02_1431.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24/images/17-02-02_1431.png" alt="2017-02-02_125431" title="2017-02-02_125431"></a></p>
+<p><strong>MSTest step</strong><br />
+<a href="images/17-02-02_1322.png"><img src="images/17-02-02_1322.png" alt="2017-02-02_125322" title="2017-02-02_125322" /></a></p>
+<p><strong>xUnit step</strong><br />
+<a href="images/17-02-02_1431.png"><img src="images/17-02-02_1431.png" alt="2017-02-02_125431" title="2017-02-02_125431" /></a></p>
 <p>Now, when running the automated build, there are two test runs, each with its own filter.</p>
 <p>Next Part: <a href="#">TFS Continuous Integration Walk Through Part 5 - Multiple Solutions in Team Project</a></p>
 </div>

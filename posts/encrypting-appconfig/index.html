@@ -59,11 +59,11 @@
                 <p class='post-info'><span class='posted-on'>2015-07-25 07:23</span></p>
                 <div class='post-content'><p>Developers often use the app.config (or web.config) file to hold database connection strings and application settings. For example:</p>
 <pre><code class="language-csharp">&lt;connectionStrings&gt;
-  &lt;add name="WonderDb" connectionString="Server=BigServe1;Database=Wonder;Integrated Security=True" providerName="System.Data.SqlClient" /&gt;
+  &lt;add name=&quot;WonderDb&quot; connectionString=&quot;Server=BigServe1;Database=Wonder;Integrated Security=True&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
 &lt;/connectionStrings&gt;
 &lt;appSettings&gt;
-  &lt;add key="FtpUser" value="ariadne" /&gt;
-  &lt;add key="FtpPassword" value="maze1$" /&gt;
+  &lt;add key=&quot;FtpUser&quot; value=&quot;ariadne&quot; /&gt;
+  &lt;add key=&quot;FtpPassword&quot; value=&quot;maze1$&quot; /&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <p>You can find several pages on how to encrypt these settings, but they don’t usually show a typical solution, which, for me, includes:</p>
@@ -95,8 +95,8 @@ namespace EncryptConfig
 
         private static void SetDefaultConfigEncryption(bool encrypt)
         {
-            SetConfigSectionEncryption(encrypt,"appSettings");
-            SetConfigSectionEncryption(encrypt, "connectionStrings");
+            SetConfigSectionEncryption(encrypt,&quot;appSettings&quot;);
+            SetConfigSectionEncryption(encrypt, &quot;connectionStrings&quot;);
         }
 
         private static void SetConfigSectionEncryption(bool encrypt, string sectionKey)
@@ -107,7 +107,7 @@ namespace EncryptConfig
             {
                 if (encrypt &amp;&amp; !section.SectionInformation.IsProtected)
                 {
-                        section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
+                        section.SectionInformation.ProtectSection(&quot;DataProtectionConfigurationProvider&quot;);
                 }
                 if (!encrypt &amp;&amp; section.SectionInformation.IsProtected)
                 {
@@ -122,14 +122,14 @@ namespace EncryptConfig
 </code></pre>
 <p>Assuming an executable named EncryptConfig.exe, when running the above in Debug mode, the file that’s encrypted is <span style="font-family: consolas;">bin\Debug\EncryptConfig.vshost.exe.Config</span></p>
 <p>That’s nice and makes sense, because that’s the executable that’s actually in use, even though the regular exe has been built, too.The vshost config file is immediately reverted back when debugging ends. Here’s the encrypted version. Whew!</p>
-<pre><code class="language-csharp">&lt;connectionStrings configProtectionProvider="DataProtectionConfigurationProvider"&gt;
+<pre><code class="language-csharp">&lt;connectionStrings configProtectionProvider=&quot;DataProtectionConfigurationProvider&quot;&gt;
     &lt;EncryptedData&gt;
       &lt;CipherData&gt;
         &lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAkgsqGn6mo3noCKO2peA8w799u8ajWVLado9goQ8esSAAAAAAOgAAAAAIAACAAAADqB7GDKmDFY9buAJlgMDyUoos81ALB/3/UKAtk3wT53TADAAAHixr6r15/5eNFgPHnXPJD950sY5F9oAjYRF4Cpfu9sfd532WpEOxFnST1W4LgX+u+d8so2rf5FqN3ikxsJY4Y1p3xpQeJEA1xa4i9L4n5arPabK4mmNn7fKTKjxri1Xktqkhkb1FLV/opfFFRnOlRy64nFOzWr4Ucwwsr8VR7d3TTt6MD2Bg3pJDZiUgjcQ+tXdD8cHkEhfKfxbMdeLfO65uG6VbyAm+ldjp7p9D6c2Z9DyBbq+rEShrMvMTL+lZ52j9H63sD+V93ESJ9FMgjOMX48TG2ZvboQE6EbiLmM0uH50BqziGUat3ft3Frc+0mQHfoqhnVs2M7mCt5mkjE3Tb0pcvjN3XvWVqo9wy5jxB0K/9yRuPTtSdVBV1q4chHGUZ4XsvBjTnt67LP2XdAYcu/Xju6Swv/dkgXMuXPzuAMgizX86CYuLebR0hMNH3Spiz9ODX98wUFCJMzJ4kQupxpdRNafNKISQWZI7119Anjehz4x3yeWJjUNoatTMWxoQ2xeYr+SlyiRoTOI3BrvfPGgpkDG9nQH2S+8dWMJyWRPHBs2GbrPqjjtLA1yR+2rqt9Uocv29oBJ6DwvnT+FA0p9P/Qp91jzEpRmcTEz+EYoIJfwSsBOIZuRXllcNJkaO1Ni/ThvGpTg0aqotXrhY0MoQlI4m/iPly2qkKVKr3O1qMwY9GrYERTrbj5pKb+hXFPgsOAEDgRBiAHsH6FuoZjG0MIXVTGg4zmJ+7rhsa8EPh61ROI6DwW1rRTA9DSKs9LS1sxeHTR/8QWaLxZuRWSwjuZJaVybPyllU1rvOFzDY9Nv96wk1n9u6s21fSf233l4nuu+7np8VfUdYUxNGfn0TwH69bh8cg1wqaJVCEoSioMHFidrKArtSCciJHW27jn3/SsRz4HWNudebTY8WZTf9YsLTuP0jC7dxuX9CIpuhcJBXitpvyVGxwC5NfmKDAsl/Dws4Rt+/YXVJ/4j5JvT35ZxYbTm/cZgvhL/z6j5odkCkIxey3ulqt1o57VNWJ18Ks0lTStRN0esejDVL6ThnqSVtlP2BCB5bThoRGXvyxhuz6Y/ON4SgeK8vBAAAAAX9I6BKGWYUcUHSscMRV2a6VGisOj9FzqTTWn0YAbeQ2hK0ZuYgK2x7hgp6iZcFJnvvuvXWTHzdvDtEliixpHQQ==&lt;/CipherValue&gt;
       &lt;/CipherData&gt;
     &lt;/EncryptedData&gt;
   &lt;/connectionStrings&gt;
-  &lt;appSettings configProtectionProvider="DataProtectionConfigurationProvider"&gt;
+  &lt;appSettings configProtectionProvider=&quot;DataProtectionConfigurationProvider&quot;&gt;
     &lt;EncryptedData&gt;
       &lt;CipherData&gt;
         &lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAcT/dxC/l5+9h0pizxo4Thn6rgtJlRVLwGediRA8DpywAAAAAOgAAAAAIAACAAAADHdhTfi7lUXxm6CwB3S252W+lo63eEXsNwxrnPOdfQUCABAACM0LuV5c69abxGbAY6Btx9i/lUhfqjGd8B5MvNCmkwN9hQW90sPzgwBYc7o7EJPM9M2PrgbMXmCo1fUn45ZZdoL68b9andNZe78AJAKz+HNRPBaW3UD2ruwZMKr8F/FVlFxrVnrgytRxDbNNZGfwOR8WrfLsISJdOJHjZcOhLU+hsSVeA2WeSPoH/QR7L+zGqZ15/9VmULHK/0J2KacFKyqn8d4SNIOehAR+t7tlec/qdSsFYtsIWq+c4k4mgWWOVwhCXqzc+3dXRforeEYuBHfsG5KyYsxsaZZdg2dm3wooCJCCv8tK86FuDCBym8L5R1oreRWT8WAq73UM4GJn5in5ZDeAK00lnhjB8DddOy7GjrflIIM63Rc1ClXUrfm3lAAAAA+KiFbW8vRL7rF6Kl9uKDpVp8uzCMs5JcPM9lqHz5XNNQ3m7zEk8TaVoOLC56AKu5rJ+ecX76XYWfQqvpQxDj/g==&lt;/CipherValue&gt;
@@ -140,8 +140,8 @@ namespace EncryptConfig
 <p>There’s nothing new here, I just wanted to document what I think of as a common implementation instead of the generic one. If I’ve made a security error let me know.</p>
 <h2 id="references">References</h2>
 <p>Many pages reference David Hayden’s seminal post on the subject, but I was unable to locate the original.</p>
-<p><a href="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx" title="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx">https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx</a><br>
-<a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">Jon Galloway’s Post</a><br>
+<p><a href="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx" title="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx">https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx</a><br />
+<a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">Jon Galloway’s Post</a><br />
 <a href="http://www.4guysfromrolla.com/articles/021506-1.aspx">4 Guys from Rolla</a></p>
 </div>
               </div>

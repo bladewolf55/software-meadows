@@ -58,18 +58,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:50</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -110,14 +110,14 @@ public enum UmbrellaColors
 {
     Person = edward,
     Umbrella = umbrella,
-    Color = "Red"
+    Color = &quot;Red&quot;
 };
 edward.PersonUmbrellas.Add(personUmbrella);
-Console.WriteLine("Jane uses it, too.");
+Console.WriteLine(&quot;Jane uses it, too.&quot;);
 jane.PersonUmbrellas.Add(new PersonUmbrella()
 {
     Umbrella = umbrella,
-    Color = "Green"
+    Color = &quot;Green&quot;
 });
 </code></pre>
 <p>And that is all! We run the program, which produces exactly the same results.</p>
@@ -156,7 +156,7 @@ Successful save.
 Pencil: Blackwing, Person: Edward Farley
 Attempt adding Bicycle without a Person
 Saving changes.
-  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_dbo.Bicycles_dbo.Persons_PersonId". The conflict occurred in database "EFDb", table "dbo.Persons", column 'PersonId'.
+  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint &quot;FK_dbo.Bicycles_dbo.Persons_PersonId&quot;. The conflict occurred in database &quot;EFDb&quot;, table &quot;dbo.Persons&quot;, column 'PersonId'.
 The statement has been terminated.
 Set the Person, save, retrieve and show
 Saving changes.
@@ -192,11 +192,11 @@ Finished
 )
 </code></pre>
 <p>Wonderful!</p>
-<hr>
+<hr />
 <p>*In reality, Mrs. Gamp’s umbrellas could be one of three hundred colors, and counting....</p>
-<p><a href="http://www.c-sharpcorner.com/UploadFile/abhikumarvatsa/enum-support-code-first-in-entity-framework-5/">Enum Support (Code First) in Entity Framework 5</a><br>
+<p><a href="http://www.c-sharpcorner.com/UploadFile/abhikumarvatsa/enum-support-code-first-in-entity-framework-5/">Enum Support (Code First) in Entity Framework 5</a><br />
 <a href="http://blogs.msdn.com/b/efdesign/archive/2011/06/29/enumeration-support-in-entity-framework.aspx">Enumeration Support in Entity Framework</a></p>
-<hr>
+<hr />
 </div>
               </div>
               

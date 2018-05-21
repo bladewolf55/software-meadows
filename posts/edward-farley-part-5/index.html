@@ -58,18 +58,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:38</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -188,7 +188,7 @@ public class Magnifier
     if (entityEntry.Entity is Magnifier) { var entity = (Magnifier)entityEntry.Entity; 
         if (!IsUniqueMagnifierSerialNbr(entity)) 
         { 
-            items.Add(new KeyValuePair(Guid.NewGuid(), new ValidationResult("Magnifier with this serial nbr already exists.", new List&lt;string&gt;() { "SerialNbr" }))); 
+            items.Add(new KeyValuePair(Guid.NewGuid(), new ValidationResult(&quot;Magnifier with this serial nbr already exists.&quot;, new List&lt;string&gt;() { &quot;SerialNbr&quot; }))); 
         } 
     } 
     return base.ValidateEntity(entityEntry, items);
@@ -196,22 +196,22 @@ public class Magnifier
 </code></pre>
 <p>Do you see? The Framework validates for uniqueness when the entity, itself, is being validated, and tells the entity if there were errors. Unfortunately, the Framework is unable (some would say unwilling) to create the table with unique columns**. Let’s add to our program a rather lengthy test.</p>
 <p><strong>Program.cs</strong></p>
-<pre><code class="language-csharp">Console.WriteLine("Create and save Magnifier with required serial number");
-Magnifier magnifier = new Magnifier() { SerialNbr = "Bar123" };
+<pre><code class="language-csharp">Console.WriteLine(&quot;Create and save Magnifier with required serial number&quot;);
+Magnifier magnifier = new Magnifier() { SerialNbr = &quot;Bar123&quot; };
 _db.Magnifiers.Add(magnifier);
 SaveChanges();
-Console.WriteLine("Retrieve Magnifier, show it doesn't belong to someone.");
+Console.WriteLine(&quot;Retrieve Magnifier, show it doesn't belong to someone.&quot;);
 magnifier = _db.Magnifiers.First();
-Console.WriteLine("Magnifier: " + magnifier.SerialNbr + ", Person: "
-    + (magnifier.Person != null ? magnifier.Person.Name : "available"));
-Console.WriteLine("Edward gets the Magnifier. Save and retrieve.");
+Console.WriteLine(&quot;Magnifier: &quot; + magnifier.SerialNbr + &quot;, Person: &quot;
+    + (magnifier.Person != null ? magnifier.Person.Name : &quot;available&quot;));
+Console.WriteLine(&quot;Edward gets the Magnifier. Save and retrieve.&quot;);
 magnifier.Person = edward;
 SaveChanges();
 magnifier = _db.Magnifiers.First();
-Console.WriteLine("Magnifier: " + magnifier.SerialNbr + ", Person: "
-    + (magnifier.Person != null ? magnifier.Person.Name : "available"));
-Console.WriteLine("Try to add duplicate magnifier");
-magnifier = new Magnifier() { SerialNbr = "Bar123" };
+Console.WriteLine(&quot;Magnifier: &quot; + magnifier.SerialNbr + &quot;, Person: &quot;
+    + (magnifier.Person != null ? magnifier.Person.Name : &quot;available&quot;));
+Console.WriteLine(&quot;Try to add duplicate magnifier&quot;);
+magnifier = new Magnifier() { SerialNbr = &quot;Bar123&quot; };
 _db.Magnifiers.Add(magnifier);
 SaveChanges();
 //Clean up. Remove the magnifier;
@@ -241,14 +241,14 @@ Saving changes.
 Finished
 </code></pre>
 <p>That should give you enough to think about, young man. If, in fact, you do any thinking at all.</p>
-<hr>
+<hr />
 <p>*The Professor later wrote to Edward, saying there are practical exceptions to this. For instance, a Logins table might use GUIDs as primary keys to reduce security risks. A States table should use the state abbreviation as the key, and likewise a zip code table. These relationships are already established by the US Postal Service. **We could, however, add the unique constraint when the database is created by EF. Here’s the code that might run in a DbContext DatabaseInitializer.</p>
 <pre><code class="language-csharp">************* Unique Constraints ***************
-db.Database.ExecuteSqlCommand("ALTER TABLE AppMachines ADD CONSTRAINT u_AppIdMachineId UNIQUE(AppId,MachineId)");
+db.Database.ExecuteSqlCommand(&quot;ALTER TABLE AppMachines ADD CONSTRAINT u_AppIdMachineId UNIQUE(AppId,MachineId)&quot;);
 ************************************************
 </code></pre>
 <p><a href="http://en.wikipedia.org/wiki/The_dogs_of_war_(phrase)">“Cry ‘Havoc!’ and let slip the dogs of war.”</a></p>
-<hr>
+<hr />
 </div>
               </div>
               

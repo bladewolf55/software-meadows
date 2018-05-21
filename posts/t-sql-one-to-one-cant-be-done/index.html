@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-03-23 13:48</span></p>
-                <div class='post-content'><p>I'm preparing a series on Entity Framework, and discovered something yesterday I never knew. In MS SQL Server, you can't successfully model a true one-to-one relationship, where both sides are required. I say "successfully," because you can configure the tables, but they won't work. This is because SQL won't allow deferred constraint resolution, which is fine by me.</p>
+                <div class='post-content'><p>I'm preparing a series on Entity Framework, and discovered something yesterday I never knew. In MS SQL Server, you can't successfully model a true one-to-one relationship, where both sides are required. I say &quot;successfully,&quot; because you can configure the tables, but they won't work. This is because SQL won't allow deferred constraint resolution, which is fine by me.</p>
 <p>The insert statements, below, will fail. Note you have to remove one of the foreign key constraints before you can drop the tables!</p>
 <pre><code class="language-csharp">create table One (
  OneId int not null identity primary key,

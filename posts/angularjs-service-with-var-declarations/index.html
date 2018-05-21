@@ -61,7 +61,7 @@
 <pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
 
     var getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
+        return $http.get(&quot;/api/BoardWebApi&quot;).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error.data.Message);
@@ -76,7 +76,7 @@
 <pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
 
     this.getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
+        return $http.get(&quot;/api/BoardWebApi&quot;).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error.data.Message);
@@ -89,7 +89,7 @@
 <pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
 
     var getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
+        return $http.get(&quot;/api/BoardWebApi&quot;).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error.data.Message);

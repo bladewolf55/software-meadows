@@ -57,26 +57,26 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-11-06 18:58</span></p>
-                <div class='post-content'><h1 id="the-magician"><a href="images/the-magician.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-claims-based-identity-part-1_6/images/the-magician.png" alt="the-magician" title="the-magician"></a></h1>
+                <div class='post-content'><h1 id="the-magician"><a href="images/the-magician.png"><img src="images/the-magician.png" alt="the-magician" title="the-magician" /></a></h1>
 <p>I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
 <p>Claims-based identity isn't hard to understand, but it's been challenging to learn and implement in a legacy environment. In part one, we'll look at the concepts. In future posts, I'll have code samples using current (at the moment) frameworks.</p>
 <p>Like <a href="https://www.youtube.com/watch?v=lDnxuMh0JG4">Tony Blake producing a flock of doves</a>, we'll learn some security sleight-of-hand.</p>
-<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-3.html">TDD Part 3</a><br>
+<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-3.html">TDD Part 3</a><br />
 Next Episode: Claims-Based Identity Part 2</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
+<p> </p>
 <h1 id="claims-based-identity-basics">Claims-Based Identity Basics</h1>
 <h2 id="what-were-used-to-passwords">What We're Used To - Passwords</h2>
 <p>The convention in authentication for decades--for millennia, in a sense--has been this exchange:</p>
-<p>"Let me in."<br>
-"What's the password?"<br>
-"Swordfish."</p>
+<p>&quot;Let me in.&quot;<br />
+&quot;What's the password?&quot;<br />
+&quot;Swordfish.&quot;</p>
 <p>You're allowed in because you know something only a few people should: the password. Once you're in, the exchange continues.</p>
-<p>"I want to see the boss."<br>
-"Oh yeah? Who's asking?"<br>
-"I carry packages for Don Crosetti."<br>
-"A courier? Delivery boys don't see the boss, chum."</p>
+<p>&quot;I want to see the boss.&quot;<br />
+&quot;Oh yeah? Who's asking?&quot;<br />
+&quot;I carry packages for Don Crosetti.&quot;<br />
+&quot;A courier? Delivery boys don't see the boss, chum.&quot;</p>
 <p>What you get to do is defined by your role. A lieutenant can see the boss. A courier can't.</p>
 <p>This is very much how people understand software security to work. You enter a username and password on a web site, let's say a Content Management System. Once in the site, if you're a Viewer, you can look at all the pages but not edit anything. An Blogger can create posts for her own blogs, but not anyone else's. A Site Editor can modify anyone's posts.</p>
 <p>This system works well enough for many situations (in both software and life). But there's another common approach: claims.</p>
@@ -122,7 +122,7 @@ Next Episode: Claims-Based Identity Part 2</p>
 <li>Country</li>
 </ul>
 <h2 id="whats-federated-identity">What's Federated Identity?</h2>
-<p>The word "federation" means "union by agreement."</p>
+<p>The word &quot;federation&quot; means &quot;union by agreement.&quot;</p>
 <blockquote>
 <p>A body formed by a number of nations, states, societies, unions, etc., each retaining control of its own internal affairs. [<a href="http://www.dictionary.com/browse/federation">Dictionary.com</a>]</p>
 </blockquote>
@@ -187,7 +187,7 @@ Next Episode: Claims-Based Identity Part 2</p>
         //Set up network connection, such as to a remote Azure AD server
         var connection = GetConnected();
         //The provider knows which applications are allowed.
-        if (!connection.IsValidApp(applicationId)) { throw new Exception("Invalid app");}
+        if (!connection.IsValidApp(applicationId)) { throw new Exception(&quot;Invalid app&quot;);}
         //The user might need to sign in via a remote page NOT on our site.     
         var response = connection.Authenticate(email, SignOnUri);
         if (response.Authenticated)
@@ -205,7 +205,7 @@ Next Episode: Claims-Based Identity Part 2</p>
         }
         else
         {
-            throw new Exception("Not a valid user.");
+            throw new Exception(&quot;Not a valid user.&quot;);
         }
     }
 }
@@ -216,7 +216,7 @@ Next Episode: Claims-Based Identity Part 2</p>
 <pre><code class="language-sourceCode">void Main()
 {
     //The user who wants access.
-    User user = new User() { Email = "jane.doe@example.com" };
+    User user = new User() { Email = &quot;jane.doe@example.com&quot; };
     //We have a class that checks if the user's authenticated.
     if (!AuthenticationManager.IsAuthenticated(user))
     {
@@ -224,16 +224,16 @@ Next Episode: Claims-Based Identity Part 2</p>
         //with the STS. Behind the scenes, it could use WS-Federation, OpenId, SAML, etc.
         var sts = new Provider()
         {
-            SignOnUri = "https://login.otherplace.com",
-            ProviderId = "ef26632f-9af6-4ea0-8fcc-a8cee466cb6d",
-            ApplicationId = "mysite.mydomain.com/isunique"
+            SignOnUri = &quot;https://login.otherplace.com&quot;,
+            ProviderId = &quot;ef26632f-9af6-4ea0-8fcc-a8cee466cb6d&quot;,
+            ApplicationId = &quot;mysite.mydomain.com/isunique&quot;
         };
         //Get the claims collection in our format. If we get this without error,
         //the user was authenticated. We don't care how! This is where the user
         //might be redirected to a login page.
         var claims = sts.GetToken(user.Email).Claims;
         //Check if the user can do something
-        if (claims.First(c =&gt; c.Name == "Company").Value == "XyloTech")
+        if (claims.First(c =&gt; c.Name == &quot;Company&quot;).Value == &quot;XyloTech&quot;)
         {
             //Show their reports
         }
@@ -251,8 +251,8 @@ Next Episode: Claims-Based Identity Part 2</p>
 </ol>
 <p>In the next post, we'll look at some of the various namespaces Microsoft uses for claims-based identity.</p>
 <p>--------------------</p>
-<p>Tony Blake's Corvette, license plate: "SPIRIT"</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-claims-based-identity-part-1_6/images/image.png" alt="image" title="image"></a></p>
+<p>Tony Blake's Corvette, license plate: &quot;SPIRIT&quot;</p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 </div>
               </div>
               

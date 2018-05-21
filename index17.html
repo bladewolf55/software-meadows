@@ -62,11 +62,11 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-08-31 11:07</span></p>
-                <div class='post-content'><p><img src="http://www.tvparty.com/bgifs17/aliasdvd.jpg" alt="">I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
+                <div class='post-content'><p><img src="http://www.tvparty.com/bgifs17/aliasdvd.jpg" alt="" />I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
 <p>It turns out that unit testing exercises a lot of coding methods for more maintainable code. Some methods involve deception, so who better to inspire us than our “Butch Cassidy/Sundance Kid” knockoffs from 70s show <a href="https://en.wikipedia.org/wiki/Alias_Smith_and_Jones">Alias Smith and Jones</a>? The difference is, I’m not trying to “<a href="https://www.youtube.com/watch?v=4nmxLeNd0ck">get out of this business</a>.”</p>
-<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">TDD Part 2</a><br>
+<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">TDD Part 2</a><br />
 Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-coding-claims-based-identity-part-1_6.html">Claims-Based Identity Part 1</a></p>
-<p>&nbsp;</p>
+<p> </p>
 <h1 id="teaser">Teaser</h1>
 <p>Unit testing benefits from mocking and Inversion of Control. I’d argue that it’s hard to effectively unit test <em>without</em> these techniques. Parts <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-1.html">one</a> and <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">two</a> of this TDD series used hand-crafted mocking and IoC. Today, we’ll redo some tests using 3rd party tools/frameworks.</p>
 <h1 id="act-1-choosing-the-tools">Act 1 – Choosing the Tools</h1>
@@ -119,11 +119,11 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
             //this may become cumbersome, but for now specify some return values
             switch (keyName)
             {
-                case @"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent":
-                    if (valueName == "Version") return defaultValue;
+                case @&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;:
+                    if (valueName == &quot;Version&quot;) return defaultValue;
                     break;
             }
-            throw new Exception("Invalid keyName");
+            throw new Exception(&quot;Invalid keyName&quot;);
         }
 
         public void SetValue(string keyName, string valueName, object value, RegistryValueKind valueKind)
@@ -142,7 +142,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
         public void ReturnNullConstantTextIfValueIsMissing()
         {
             var service = new RegistryService(_registry, _registryKey);
-            var result = service.GetRegistryKeyValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent", "Version");
+            var result = service.GetRegistryKeyValue(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;, &quot;Version&quot;);
             Assert.Equal(result, service.NoValue);
         }
     }
@@ -161,7 +161,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
             }
             catch (Exception ex)
             {
-                return "Error attempting keyName '" + keyName + "' and valueName '" + valueName + "'\r\n" + ex.GetBaseException().Message;
+                return &quot;Error attempting keyName '&quot; + keyName + &quot;' and valueName '&quot; + valueName + &quot;'\r\n&quot; + ex.GetBaseException().Message;
             }
         }
 </code></pre>
@@ -174,16 +174,16 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
             var registry = Substitute.For&lt;IRegistryWrapper&gt;();
             var registryKey = Substitute.For&lt;IRegistryKeyWrapper&gt;();
             //Registry.GetValue will return null if the valueName doesn't exist.
-            registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent", "Version", null).Returns(null);
+            registry.GetValue(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;, &quot;Version&quot;, null).Returns(null);
             var service = new RegistryService(registry, registryKey);
-            var result = service.GetRegistryKeyValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent", "Version");
+            var result = service.GetRegistryKeyValue(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;, &quot;Version&quot;);
             Assert.Equal(result, service.NoValue);
 </code></pre>
-<p>The problem is (or <em>seems to be</em>), if I change the substitute's argument "Version" to "Blamo", the test still passes. This is happening because given an unknown argument the method will still return null. I need to tell the substitute that it should only return null if it gets the right arguments.</p>
+<p>The problem is (or <em>seems to be</em>), if I change the substitute's argument &quot;Version&quot; to &quot;Blamo&quot;, the test still passes. This is happening because given an unknown argument the method will still return null. I need to tell the substitute that it should only return null if it gets the right arguments.</p>
 <p><em>Or do I?</em></p>
 <p>No, I don’t. I’m attempting to give my mock too much behavior. I <em>only</em> want the mocked Registry to pretend that the value was missing and return null. Elsewhere I’ll test the behavior if the value exists. My hand-crafted mock was eventually going to give me trouble because it was doing too much <em>and</em> it wasn’t really behaving like the Registry class.</p>
 <h2 id="the-heart-of-mocking">The Heart of Mocking</h2>
-<p>The method I’m testing happens to be&nbsp; a good one for getting at the essence of mocking. RegistryService.GetValue is <em>almost</em> a pass-through to Registry.GetValue. But, it has its own behavior and is supposed to call Registry.GetValue.</p>
+<p>The method I’m testing happens to be  a good one for getting at the essence of mocking. RegistryService.GetValue is <em>almost</em> a pass-through to Registry.GetValue. But, it has its own behavior and is supposed to call Registry.GetValue.</p>
 <p>As the developer and tester, I know three things:</p>
 <ol>
 <li>How external dependencies behave (Microsoft.Win32.Registry).</li>
@@ -203,13 +203,13 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
             var registry = Substitute.For&lt;IRegistryWrapper&gt;();
             var registryKey = Substitute.For&lt;IRegistryKeyWrapper&gt;();
             //Registry.GetValue will return null if the valueName doesn't exist.
-            registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent", "Version", null).Returns(null);
+            registry.GetValue(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;, &quot;Version&quot;, null).Returns(null);
             var service = new RegistryService(registry, registryKey);
             //Act
-            var result = service.GetRegistryKeyValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent", "Version");
+            var result = service.GetRegistryKeyValue(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;, &quot;Version&quot;);
             //Assert
             //First, make sure the mocked Registry was called at least once. Otherwise, we might have a false positive.
-            registry.Received().GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent", "Version", null);
+            registry.Received().GetValue(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;, &quot;Version&quot;, null);
             //Now make sure we got back the expected value from our method.
             Assert.Equal(result, service.NoValue);
 </code></pre>
@@ -227,11 +227,11 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/11/catching-up-on-cod
 <li>IoC containers are used in production code to manage injected dependencies.</li>
 </ol>
 <p>For the first two, see <em>Act 2</em>, above.</p>
-<p>I don’t <em>have</em>&nbsp; to use an IoC container. I can write code like this:</p>
+<p>I don’t <em>have</em>  to use an IoC container. I can write code like this:</p>
 <pre><code class="language-csharp">//pass the live registry wrappers
 RegistryService service = new RegistryService(new RegistryWrapper(), new RegistryKeyWrapper());
 </code></pre>
-<p>I could also let my class have default dependencies. This might be OK, as long as the caller knows what to expect. It would be considered "convention over configuration."</p>
+<p>I could also let my class have default dependencies. This might be OK, as long as the caller knows what to expect. It would be considered &quot;convention over configuration.&quot;</p>
 <pre><code class="language-csharp">    public class RegistryService
     {
         private IRegistryWrapper _registry;
@@ -326,7 +326,7 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
 <p>Lesson: Sometimes these tools add complications. But other times, they reveal problems in your code.</p>
 </blockquote>
 <p>On the subject of complications, one of the stars of <em>Alias Smith and Jones</em> killed himself during the first season. He suffered from depression and alcoholism. To this day, that makes me sad. <a href="http://www.imdb.com/name/nm0240233/?ref_=fn_al_nm_1">Pete Duel</a>, I miss what you could have done.</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-3/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 </div>
               </div>
               
@@ -334,13 +334,13 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-08-24 17:13</span></p>
-                <div class='post-content'><p><img src="https://johnkennethmuir.files.wordpress.com/2012/01/journey1.jpg" alt=""></p>
+                <div class='post-content'><p><img src="https://johnkennethmuir.files.wordpress.com/2012/01/journey1.jpg" alt="" /></p>
 <p>I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
 <p>Taking a cue from the 70s and its badass fonts, my <a href="https://en.wikipedia.org/wiki/The_Fantastic_Journey">Fantastic Journey</a> is traveling from skill to skill, trying to escape every software engineer’s Bermuda Triangle: obsolescence. I don’t have Jared Martin’s Sonic Energizer to focus my thoughts and manipulate matter. All I can do is listen to the <a href="https://www.youtube.com/watch?v=fqKEENAGSBo">groovy theme music</a>.</p>
-<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-1.html">TDD Part 1</a><br>
+<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-1.html">TDD Part 1</a><br />
 Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-3.html">TDD Part 3</a></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
 <h1 id="teaser">Teaser</h1>
 <p>It’s one thing to practice TDD from the start. It’s another to take legacy code <em>that you wrote</em> and create unit tests for it. My EduAgent project includes a client service that processes requests to update the registry.</p>
 <p>Looking at my code, I right away see my first stumbling block: the purpose of the code is changing the registry. For testing, this means:</p>
@@ -384,7 +384,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 </code></pre>
 <p>Contrast that to this method.</p>
 <pre><code class="language-csharp">    public string[] GetEmployeeNames()
-    {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return _db.Employees.Select(a =&gt; a.Name).ToArray();
+    {      return _db.Employees.Select(a =&gt; a.Name).ToArray();
     }
 </code></pre>
 <p>Is there any reason to create a unit test for this method? I don’t think so. The test would look something like this.</p>
@@ -395,7 +395,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
         //...add a bunch of mock Employees with names, then pass to service
         var service = new EmployeeInfoService(db);
         var list = service.GetEmployeeNames();
-        Assert.True(list.Contains("Varian"));
+        Assert.True(list.Contains(&quot;Varian&quot;));
     }
 </code></pre>
 <p>This gets us nothing. All we did was test that our mocking framework works. So…</p>
@@ -418,11 +418,11 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <p>Of all these, just one doesn’t require using registry data: ParseRegistryHive. The method’s purpose is to return the hive enum given a string.</p>
 <pre><code class="language-csharp">        public static RegistryHive ParseRegistryHive(string hiveName)
         {
-            if (hiveName.ToUpper() == "HKEY_CLASSES_ROOT") { return RegistryHive.ClassesRoot; }
-            else if (hiveName.ToUpper() == "HKEY_CURRENT_USER") { return RegistryHive.CurrentUser; }
-            else if (hiveName.ToUpper() == "HKEY_LOCAL_MACHINE") { return RegistryHive.LocalMachine; }
-            else if (hiveName.ToUpper() == "HKEY_USERS") { return RegistryHive.Users; }
-            else if (hiveName.ToUpper() == "HKEY_CURRENT_CONFIG") { return RegistryHive.CurrentConfig; }
+            if (hiveName.ToUpper() == &quot;HKEY_CLASSES_ROOT&quot;) { return RegistryHive.ClassesRoot; }
+            else if (hiveName.ToUpper() == &quot;HKEY_CURRENT_USER&quot;) { return RegistryHive.CurrentUser; }
+            else if (hiveName.ToUpper() == &quot;HKEY_LOCAL_MACHINE&quot;) { return RegistryHive.LocalMachine; }
+            else if (hiveName.ToUpper() == &quot;HKEY_USERS&quot;) { return RegistryHive.Users; }
+            else if (hiveName.ToUpper() == &quot;HKEY_CURRENT_CONFIG&quot;) { return RegistryHive.CurrentConfig; }
             //last chance, will throw error if invalid
             else return (RegistryHive)Enum.Parse(typeof(RegistryHive), hiveName);
         }
@@ -434,23 +434,23 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <pre><code class="language-csharp">    public class RegistryService_ParseRegistryHive_Should
     {
         [Theory]
-        [InlineData("HKEY_CLASSES_ROOT")]
-        [InlineData("HKEY_CURRENT_USER")]
-        [InlineData("HKEY_LOCAL_MACHINE")]
-        [InlineData("HKEY_USERS")]
-        [InlineData("HKEY_CURRENT_CONFIG")]
-        [InlineData("hkey_current_config")]
+        [InlineData(&quot;HKEY_CLASSES_ROOT&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_USER&quot;)]
+        [InlineData(&quot;HKEY_LOCAL_MACHINE&quot;)]
+        [InlineData(&quot;HKEY_USERS&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_CONFIG&quot;)]
+        [InlineData(&quot;hkey_current_config&quot;)]
         public void NotThrowErrorWithValidHive(string name)
         {
             var hive = RegistryService.ParseRegistryHive(name);
         }
 
         [Theory]
-        [InlineData("HKEY_CLASSES_ROOT")]
-        [InlineData("HKEY_CURRENT_USER")]
-        [InlineData("HKEY_LOCAL_MACHINE")]
-        [InlineData("HKEY_USERS")]
-        [InlineData("HKEY_CURRENT_CONFIG")]
+        [InlineData(&quot;HKEY_CLASSES_ROOT&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_USER&quot;)]
+        [InlineData(&quot;HKEY_LOCAL_MACHINE&quot;)]
+        [InlineData(&quot;HKEY_USERS&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_CONFIG&quot;)]
         public void ReturnCorrectEnumWithValidHive(string name)
         {
             //This basically reproduces the method code. Need to NOT copy/paste from method, but
@@ -459,30 +459,30 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             var hive = RegistryService.ParseRegistryHive(name);
             switch (name)
             {
-                case "HKEY_CLASSES_ROOT":
+                case &quot;HKEY_CLASSES_ROOT&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.ClassesRoot);
                     break;
-                case "HKEY_CURRENT_USER":
+                case &quot;HKEY_CURRENT_USER&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.CurrentUser);
                     break;
-                case "HKEY_LOCAL_MACHINE":
+                case &quot;HKEY_LOCAL_MACHINE&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.LocalMachine);
                     break;
-                case "HKEY_USERS":
+                case &quot;HKEY_USERS&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.Users);
                     break;
-                case "HKEY_CURRENT_CONFIG":
+                case &quot;HKEY_CURRENT_CONFIG&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.CurrentConfig);
                     break;
                 default:
-                    Assert.True(false,name + " didn't return a valid hive. Hive enum returned was " + hive);
+                    Assert.True(false,name + &quot; didn't return a valid hive. Hive enum returned was &quot; + hive);
                     break;
             }
         }
 
         [Theory]
-        [InlineData("fail")]
-        [InlineData("")]
+        [InlineData(&quot;fail&quot;)]
+        [InlineData(&quot;&quot;)]
         public void ThrowErrorWithInvalidHive(string name)
         {
             Assert.Throws(() =&gt;  RegistryService.ParseRegistryHive(name));
@@ -500,7 +500,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             }
             catch (Exception ex)
             {
-                throw new Exception("Error setting registry value keyName '" + keyName + "', valueName '" + valueName + ", value '" + value + "'\r\n" + ex.GetBaseException().Message);
+                throw new Exception(&quot;Error setting registry value keyName '&quot; + keyName + &quot;', valueName '&quot; + valueName + &quot;, value '&quot; + value + &quot;'\r\n&quot; + ex.GetBaseException().Message);
             }
         }
 </code></pre>
@@ -522,12 +522,12 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 </ol>
 <p>I looked at the Prig example. Whew! That’s a lot of setup! And I’m not prepared to pay for TypeMock or JustMock, though I expect they’re excellent.</p>
 <p>This means wrapping the Registry class. Before I try out SystemWrapper, I’m going to create my own wrapper. I want to understand what’s involved. (This is self-education, after all!) The methods I’m using are:</p>
-<p>Registry.GetValue<br>
-Registry.SetValue<br>
-RegistryKey.GetValueKind<br>
-RegistryKey.DeleteSubKey<br>
-RegistryKey.DeleteValue<br>
-RegistryKey.OpenBaseKey<br>
+<p>Registry.GetValue<br />
+Registry.SetValue<br />
+RegistryKey.GetValueKind<br />
+RegistryKey.DeleteSubKey<br />
+RegistryKey.DeleteValue<br />
+RegistryKey.OpenBaseKey<br />
 RegistryKey.OpenBaseKey.OpenSubKey</p>
 <p>All right, boys! Wrap…That…Code!!!</p>
 <p>I had to rethink my whole approach to my RegistryService class, which consumes the Microsoft.Win32.Registry. Originally I wrote it as a static class, since it didn’t need to be instantiated. But this class now could depend on different “registry providers.” I want to protect the class from being misused. A static SetRegistryProvider method won’t work, because of the danger that in production one caller sets it one way and another sets it differently. It’s the same as if a class could use more than one database back end; you wouldn’t make it static. The solution was to remove static, and make the class entirely instance-able.</p>
@@ -563,9 +563,9 @@ RegistryKey.OpenBaseKey.OpenSubKey</p>
 {
     //_registryKey was injected via the constructor
     RegistryKey basekey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
-    using (RegistryKey key = basekey.OpenSubKey(@"SOFTWARE\EduAgent\RegistryPlugin", false))
+    using (RegistryKey key = basekey.OpenSubKey(@&quot;SOFTWARE\EduAgent\RegistryPlugin&quot;, false))
     {
-        key.DeleteValue("Value");
+        key.DeleteValue(&quot;Value&quot;);
         key.Close();
     }
 }
@@ -575,9 +575,9 @@ RegistryKey.OpenBaseKey.OpenSubKey</p>
 {
     //_registryKey was injected via the constructor
     IRegistryKeyWrapper basekey = _registryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
-    using (IRegistryKeyWrapper key = basekey.OpenSubKey(@"SOFTWARE\EduAgent\RegistryPlugin",false))
+    using (IRegistryKeyWrapper key = basekey.OpenSubKey(@&quot;SOFTWARE\EduAgent\RegistryPlugin&quot;,false))
     {
-        key.DeleteValue("Value");
+        key.DeleteValue(&quot;Value&quot;);
         key.Close();
     }
 }
@@ -634,7 +634,7 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
 </code></pre>
 <p>In the RegistryService example, above, if the user were to use _registryKey immediately, without setting it using OpeBaseKey, it would fail because the private variable _baseKey has not been set.</p>
 <p>I wouldn’t call this ideal, but it does allow us to test the class.</p>
-<p><strong>EDIT 8/31/16<br>
+<p><strong>EDIT 8/31/16<br />
 -------------------------------------------------------------</strong></p>
 <p><strong>Not only is it not ideal, but it’s not even good. What I’m trying to do is wrap RegistryKey in a pass-through manner. But that’s a mistake, because it implements IDisposable and in my wrapper I <em>should not</em> implement IDisposable.</strong></p>
 <p><strong>In a later post, I’ll explain how I rewrote my RegistryKey wrapper in a better way. It doesn’t affect the validity of the info in this post.</strong></p>
@@ -658,12 +658,12 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
         IRegistryKeyWrapper _registryKey = new RegistryKeyMock();
                 
         [Theory]
-        [InlineData("HKEY_CLASSES_ROOT")]
-        [InlineData("HKEY_CURRENT_USER")]
-        [InlineData("HKEY_LOCAL_MACHINE")]
-        [InlineData("HKEY_USERS")]
-        [InlineData("HKEY_CURRENT_CONFIG")]
-        [InlineData("hkey_current_config")]
+        [InlineData(&quot;HKEY_CLASSES_ROOT&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_USER&quot;)]
+        [InlineData(&quot;HKEY_LOCAL_MACHINE&quot;)]
+        [InlineData(&quot;HKEY_USERS&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_CONFIG&quot;)]
+        [InlineData(&quot;hkey_current_config&quot;)]
         public void NotThrowErrorWithValidHive(string name)
         {
             var service = new RegistryService(_registry, _registryKey);
@@ -680,7 +680,7 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
         public void ReturnNullConstantTextIfValueIsMissing()
         {
             var service = new RegistryService(_registry, _registryKey);
-            var result = service.GetRegistryKeyValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent", "Version");
+            var result = service.GetRegistryKeyValue(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;, &quot;Version&quot;);
             Assert.Equal(result, service.NoValue);
         }
     }
@@ -693,11 +693,11 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
             //this may become cumbersome, but for now specify some return values
             switch (keyName)
             {
-                case @"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent":
-                    if (valueName == "Version") return defaultValue;
+                case @&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;:
+                    if (valueName == &quot;Version&quot;) return defaultValue;
                     break;
             }
-            throw new Exception("Invalid keyName");
+            throw new Exception(&quot;Invalid keyName&quot;);
         }
 </code></pre>
 <p>Running the test, it passes.</p>
@@ -711,8 +711,8 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
         public void ThrowExceptionWhenUsingInvalidKey()
         {
             var service = new RegistryService(_registry, _registryKey);
-            var ex = Assert.Throws(() =&gt; service.OpenSubKey64(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgentMissing"));
-            Assert.Equal("Error opening subkey 'HKEY_LOCAL_MACHINE\\SOFTWARE\\EduAgentMissing'. Operation returned null.", ex.Message);
+            var ex = Assert.Throws(() =&gt; service.OpenSubKey64(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgentMissing&quot;));
+            Assert.Equal(&quot;Error opening subkey 'HKEY_LOCAL_MACHINE\\SOFTWARE\\EduAgentMissing'. Operation returned null.&quot;, ex.Message);
         }
     }
 </code></pre>
@@ -740,20 +740,20 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
 
         public IRegistryKeyWrapper OpenSubKey(string name, bool writable)
         {
-            if (name == @"SOFTWARE\EduAgentMissing")
+            if (name == @&quot;SOFTWARE\EduAgentMissing&quot;)
                 return null;
-            return new RegistryKeyMock(Name + "\\" + name, SubKeyCount, ValueCount, View);
+            return new RegistryKeyMock(Name + &quot;\\&quot; + name, SubKeyCount, ValueCount, View);
         }
 
         private string HiveToString(RegistryHive hive)
         {
-            string key = "HKEY_";
-            if (hive == RegistryHive.ClassesRoot) return key + "CLASSES_ROOT";
-            if (hive == RegistryHive.CurrentConfig) return key + "CURRENT_CONFIG";
-            if (hive == RegistryHive.CurrentUser) return key + "CURRENT_USER";
-            if (hive == RegistryHive.LocalMachine) return key + "LOCAL_MACHINE";
-            if (hive == RegistryHive.Users) return key + "USERS";
-            return "";
+            string key = &quot;HKEY_&quot;;
+            if (hive == RegistryHive.ClassesRoot) return key + &quot;CLASSES_ROOT&quot;;
+            if (hive == RegistryHive.CurrentConfig) return key + &quot;CURRENT_CONFIG&quot;;
+            if (hive == RegistryHive.CurrentUser) return key + &quot;CURRENT_USER&quot;;
+            if (hive == RegistryHive.LocalMachine) return key + &quot;LOCAL_MACHINE&quot;;
+            if (hive == RegistryHive.Users) return key + &quot;USERS&quot;;
+            return &quot;&quot;;
         }
     }
 </code></pre>
@@ -765,7 +765,7 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
 <li>Use an Inversion of Control container such as <a href="http://www.ninject.org/">Ninject</a> or <a href="https://github.com/unitycontainer/unity">Unity</a>.</li>
 </ul>
 <p>But I’m leaving those for a future post. Otherwise, like our intrepid explorers, I’ll be canceled and never get back to my own time and place.</p>
-<p><img src="http://epguides.com/FantasticJourney/cast.jpg" alt=""></p>
+<p><img src="http://epguides.com/FantasticJourney/cast.jpg" alt="" /></p>
 </div>
               </div>
               
@@ -773,11 +773,11 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-08-18 16:56</span></p>
-                <div class='post-content'><p><img src="https://i.ytimg.com/vi/tfeeeaEmDtM/hqdefault.jpg" alt="">I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
+                <div class='post-content'><p><img src="https://i.ytimg.com/vi/tfeeeaEmDtM/hqdefault.jpg" alt="" />I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
 <p>There are some pretty high-tech tools out there, but nothing that matches the inspiration provided in the 70s TV show “<a href="https://en.wikipedia.org/wiki/Search_(TV_series)">Search</a>” (originally “Probe”). I don’t have Burgess Meredith, a Probe Scanner or a <a href="https://www.youtube.com/watch?v=Axb1EiJdbCg">catchy theme song</a> to help me out, so, like Hugh O’Brian, I’ll have to rely on my wits and <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a>.</p>
-<p>Previously, on CUOC: <a href="http://www.softwaremeadows.com/2016/07/catching-up-on-coding-syllabus.html">The Syllabus</a>.<br>
+<p>Previously, on CUOC: <a href="http://www.softwaremeadows.com/2016/07/catching-up-on-coding-syllabus.html">The Syllabus</a>.<br />
 Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">TDD Part 2</a></p>
-<p>&nbsp;</p>
+<p> </p>
 <h1 id="teaser">Teaser</h1>
 <p>I’m not truly new to TDD. I <em>wrote</em> a (not very good) unit testing framework for Visual Basic 6 back in 2000. I’ve used TDD in professional projects. But now it’s time to make it a habit. To do that, I need a crash coarse, then retrofit my EduAgent code (applying “Test Eventually Development”) before writing new code.</p>
 <h1 id="act-1-the-elemental-education">Act 1 – The Elemental Education</h1>
@@ -798,17 +798,17 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <h1 id="act-2-some-code-a-test">Act 2 – Some Code, a Test</h1>
 <p>Here’s a simple example of TDD, creating code that needs to be tested, and problems with it. I’m using xUnit.Net because I’ve always liked it. I won’t go into how to set up your environment; you can learn that at <a href="https://xunit.github.io/docs/getting-started-desktop.html">Getting Started with xUnit.net</a>. However, I do have three tips for using the VS Test Runner (which you open via Test &gt; Windows &gt; Test Explorer).</p>
 <ul>
-<li><p>Tear off the Test Explorer into its own window, so that you can easily resize and see all the tests.<br>
-<a href="images/image_3.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image_3.png" alt="image" title="image"></a></p>
+<li><p>Tear off the Test Explorer into its own window, so that you can easily resize and see all the tests.<br />
+<a href="images/image_3.png"><img src="images/image_3.png" alt="image" title="image" /></a></p>
 </li>
-<li><p>Group the test results by class<br>
-<a href="images/image_5.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image_5.png" alt="image" title="image"></a></p>
+<li><p>Group the test results by class<br />
+<a href="images/image_5.png"><img src="images/image_5.png" alt="image" title="image" /></a></p>
 </li>
 <li><p>In your unit test project, add an app.config file with the following setting. This causes the result to display only the method name instead of the fully qualified name.</p>
-<pre><code class="language-csharp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+<pre><code class="language-csharp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
 &lt;configuration&gt;
   &lt;appSettings&gt;
-    &lt;add key="xunit.methodDisplay" value="method"/&gt;
+    &lt;add key=&quot;xunit.methodDisplay&quot; value=&quot;method&quot;/&gt;
   &lt;/appSettings&gt;
 &lt;/configuration&gt;
 </code></pre>
@@ -842,7 +842,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
     }
 </code></pre>
 <p>Run it and it fails.</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <p>Write enough code for the test to pass.</p>
 <pre><code class="language-csharp">        public decimal GetPercent(decimal actual, decimal maximum)
         {
@@ -851,7 +851,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
         }
 </code></pre>
 <p>Run the test and it passes.</p>
-<p><a href="images/image-001.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-001.png" alt="image" title="image"></a></p>
+<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
 <p>Our next test will check if the result is rounded. This does <em>not</em> depend on the first test; they could be run in reverse order.</p>
 <pre><code class="language-csharp">    public class BasicTdd
     {
@@ -869,7 +869,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
     }
 </code></pre>
 <p>Run it, and it fails.</p>
-<p><a href="images/image-002.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-002.png" alt="image" title="image"></a></p>
+<p><a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></p>
 <p>Update the code to make it pass.</p>
 <pre><code class="language-csharp">        public decimal GetPercent(decimal actual, decimal maximum)
         {
@@ -877,7 +877,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             return result;
         }
 </code></pre>
-<p><a href="images/image-003.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-003.png" alt="image" title="image"></a></p>
+<p><a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></p>
 <p>That’s enough to demonstrate a basic test. Now, on to something that will require mocking.</p>
 <h1 id="act-3-mocu-mental-grades">Act 3 – Mocu-mental Grades</h1>
 <p>Let’s create a class that represents our fictional third-party service, GradeMark. Remember, it returns a grade when supplied a percent, but we can’t depend on what that grade will be. For our dummy service, we won’t even use the percent parameter.</p>
@@ -899,7 +899,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             {
                 var cw = new CourseWork();
                 string msg = cw.GetGradeMessage(4, 15); //these values don't matter
-                string expected = "The grade is B";
+                string expected = &quot;The grade is B&quot;;
                 Assert.Equal(expected, msg);
             }
         }
@@ -908,15 +908,15 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <pre><code class="language-csharp">        public string GetGradeMessage(decimal actual, decimal maximum)
         {
             var service = new GradeMarkService();
-            return "The grade is " + service.GetGrade(GetPercent(actual, maximum));
+            return &quot;The grade is &quot; + service.GetGrade(GetPercent(actual, maximum));
         }
 </code></pre>
 <p>We got lucky; it failed. But, remember, we can’t guarantee what letter grade will be returned. It could have passed. Run the tests enough times and it <em>will</em> pass.</p>
-<p><a href="images/image-004.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-004.png" alt="image" title="image"></a></p>
+<p><a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></p>
 <p>Our GetGradeMessage function has a dependency on the GradeMark service, and is tightly coupled to it. We need to loosely couple that dependency by injecting it. We could do that at the method level, like this:</p>
 <pre><code class="language-csharp">        public string GetGradeMessage(decimal actual, decimal maximum, GradeMarkService gradeService)
         {
-            return "The grade is " + gradeService.GetGrade(GetPercent(actual, maximum));
+            return &quot;The grade is &quot; + gradeService.GetGrade(GetPercent(actual, maximum));
         }
 </code></pre>
 <p>But, typically, a service like this is consumed by the class. So, we’ll inject it in the class’s constructor.</p>
@@ -931,7 +931,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 
         public string GetGradeMessage(decimal actual, decimal maximum)
         {
-            return "The grade is " + _gradeService.GetGrade(GetPercent(actual, maximum));
+            return &quot;The grade is &quot; + _gradeService.GetGrade(GetPercent(actual, maximum));
         }
 </code></pre>
 <p>Great, but that doesn’t really help us, does it? We still need a GradeMarkService to pass in during our test, <em>and</em> control the letter grade it returns. Using some mocking frameworks, it’s possible to mock a legacy object. But in this case, we’re hoping for one of two things from our vendor to make our lives easier.</p>
@@ -966,7 +966,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
     {
         public string GetGrade(decimal percent)
         {
-            return "B";
+            return &quot;B&quot;;
         }
     }
 </code></pre>
@@ -995,14 +995,14 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             {
                 var cw = new CourseWork(new GradeMarkServiceMock());
                 string msg = cw.GetGradeMessage(4, 15); //these values don't matter
-                string expected = "The grade is B";
+                string expected = &quot;The grade is B&quot;;
                 Assert.Equal(expected, msg);
             }
         }
 </code></pre>
 <p>When we run our tests a few times, the GetGradeMessage test passes consistently.</p>
 <p><strong>An overridable class</strong></p>
-<p>Our vendor could also have made the GetGrade method overridable. In that case, we’d create a mock object, override GetGrade, and always return “B”. But with a significant object, there could be many problems doing that. It’s best if we can program against interfaces, because that way*&nbsp; we don’t have to use the original classes at all*.</p>
+<p>Our vendor could also have made the GetGrade method overridable. In that case, we’d create a mock object, override GetGrade, and always return “B”. But with a significant object, there could be many problems doing that. It’s best if we can program against interfaces, because that way*  we don’t have to use the original classes at all*.</p>
 <p>What’s a real-world example? What about a shipping service that our application uses to calculate shipping rates? Several problems could exist in consuming that service instead of mocking it:</p>
 <ul>
 <li>It could be very slow to use that service in our tests.</li>
@@ -1041,7 +1041,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             public void ReturnTheCorrectlyFormattedMessage()
             {
                 string msg = _cw.GetGradeMessage(4, 15); //these values don't matter
-                string expected = "The grade is B";
+                string expected = &quot;The grade is B&quot;;
                 Assert.Equal(expected, msg);
             }
         }
@@ -1050,7 +1050,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <p>Of course, rerun the tests and make sure they pass!</p>
 <h1 id="tag">Tag</h1>
 <p>Test-driven development isn’t natural at first. But it’s got a rat-hits-food-lever pleasure I can’t deny. Kind of like having Probe Control’s Angel Tompkins whispering in my ear.</p>
-<p><img src="http://www.tvparty.com/bgifs/05Angel.jpg" alt=""></p>
+<p><img src="http://www.tvparty.com/bgifs/05Angel.jpg" alt="" /></p>
 <h1 id="references">References</h1>
 <p><a href="http://www.telerik.com/blogs/30-days-tdd-day-one-what-is-tdd">30 Days of TDD</a></p>
 <p><a href="https://xunit.github.io/docs/getting-started-desktop.html">Getting Started with xUnit.net</a></p>

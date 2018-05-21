@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/announcing_deepshadow'>Announcing DeepShadow</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-03-23 18:26</span></p>
-                <div class='post-content'><h2 id="an-assembly-to-help-generate-unit-test-data-from-entity-framework"><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/logo-128x128.png" alt=""> an assembly to help generate unit test data from Entity Framework</h2>
+                <div class='post-content'><h2 id="an-assembly-to-help-generate-unit-test-data-from-entity-framework"><img src="images/logo-128x128.png" alt="" /> an assembly to help generate unit test data from Entity Framework</h2>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#the-problem">The Problem</a></li>
@@ -76,27 +76,27 @@
 <pre><code class="language-csharp">db.Customers.Take(2).GenerateEntitiesFromList(toConsole: true);
 </code></pre>
 <p>or this?</p>
-<pre><code class="language-csharp">File.WriteAllText("MockData.txt", db.Customers.Take(2).GenerateEntitiesFromList());
+<pre><code class="language-csharp">File.WriteAllText(&quot;MockData.txt&quot;, db.Customers.Take(2).GenerateEntitiesFromList());
 </code></pre>
 <p>And get something like this?</p>
 <pre><code class="language-csharp">List&lt;DeepShadowDbContext.Customer&gt; list = new List&lt;DeepShadowDbContext.Customer&gt;();
 
 DeepShadowDbContext.Customer a1 = new DeepShadowDbContext.Customer();
 a1.CustomerId = 1;
-a1.Name = @"Nicolo Paganini";
+a1.Name = @&quot;Nicolo Paganini&quot;;
 a1.Codes = new List&lt;String&gt;();
-a1.Codes.Add("A1");
-a1.Codes.Add("A2");
-a1.Codes.Add("A3");
+a1.Codes.Add(&quot;A1&quot;);
+a1.Codes.Add(&quot;A2&quot;);
+a1.Codes.Add(&quot;A3&quot;);
 a1.Orders = new List&lt;DeepShadowDbContext.Order&gt;();
 list.Add(a1);
 DeepShadowDbContext.Customer a2 = new DeepShadowDbContext.Customer();
 a2.CustomerId = 2;
-a2.Name = @"Hilary Hahn";
+a2.Name = @&quot;Hilary Hahn&quot;;
 a2.Codes = new List&lt;String&gt;();
-a2.Codes.Add("A1");
-a2.Codes.Add("A2");
-a2.Codes.Add("A3");
+a2.Codes.Add(&quot;A1&quot;);
+a2.Codes.Add(&quot;A2&quot;);
+a2.Codes.Add(&quot;A3&quot;);
 a2.Orders = new List&lt;DeepShadowDbContext.Order&gt;();
 list.Add(a2);
 
@@ -147,7 +147,7 @@ return list;
                 {
                     //transform to the view model
                     AllCapsName = customer.Name.ToUpper();
-                    CodeList = String.Join(" ", customer.Codes);
+                    CodeList = String.Join(&quot; &quot;, customer.Codes);
                     Orders = customer.Orders.Select(a =&gt; new OrderViewModel() 
                     {
                       //likewise transform orders to the view model  
@@ -189,15 +189,15 @@ return list;
 <pre><code class="language-csharp">    Customer customer = new Customer()
     {
         CustomerId = 1,
-        Name = "blamo",
-        Codes = new List&lt;string&gt; {"a","b"},
+        Name = &quot;blamo&quot;,
+        Codes = new List&lt;string&gt; {&quot;a&quot;,&quot;b&quot;},
         Orders = new List&lt;Order&gt;()
         {
             new Order()
             {
                 OrderId = 11,
                 CustomerId = 1,
-                OrderedOn = DateTime.Parse("1/1/2001"),
+                OrderedOn = DateTime.Parse(&quot;1/1/2001&quot;),
                 Discount = 10.00m,
                 Customer = this
             }
@@ -230,20 +230,20 @@ db.Customers.First().GenerateEntitiesFromObject(toConsole: true);
 
 DeepShadowDbContext.Customer a1 = new DeepShadowDbContext.Customer();
 a1.CustomerId = 1;
-a1.Name = @"Nicolo Paganini";
+a1.Name = @&quot;Nicolo Paganini&quot;;
 a1.Codes = new List&lt;String&gt;();
-a1.Codes.Add("A1");
-a1.Codes.Add("A2");
-a1.Codes.Add("A3");
+a1.Codes.Add(&quot;A1&quot;);
+a1.Codes.Add(&quot;A2&quot;);
+a1.Codes.Add(&quot;A3&quot;);
 a1.Orders = new List&lt;DeepShadowDbContext.Order&gt;();
 list.Add(a1);
 DeepShadowDbContext.Customer a2 = new DeepShadowDbContext.Customer();
 a2.CustomerId = 2;
-a2.Name = @"Hilary Hahn";
+a2.Name = @&quot;Hilary Hahn&quot;;
 a2.Codes = new List&lt;String&gt;();
-a2.Codes.Add("A1");
-a2.Codes.Add("A2");
-a2.Codes.Add("A3");
+a2.Codes.Add(&quot;A1&quot;);
+a2.Codes.Add(&quot;A2&quot;);
+a2.Codes.Add(&quot;A3&quot;);
 a2.Orders = new List&lt;DeepShadowDbContext.Order&gt;();
 list.Add(a2);
 
@@ -275,8 +275,8 @@ var employees = db.Employees.Where(a =&gt; a.Inactive == true).ToList();
 //mask data
 foreach (var employee in employees )
 {
-    employee.SSN = "111-22-3456";
-    employee.DateOfBirth = DateTime.Parse("1/1/2001");
+    employee.SSN = &quot;111-22-3456&quot;;
+    employee.DateOfBirth = DateTime.Parse(&quot;1/1/2001&quot;);
 }
 
 //Generate a list of models
@@ -286,7 +286,7 @@ employees.GenerateEntitiesFromList(toConsole: true);
 <h2 id="complete-example">Complete Example</h2>
 <p>I use (and recommend) the registered version of <a href="http://www.linqpad.net/">LINQPad</a> for generating the data, though you could also create a console app to do it. The code's almost exactly the same. In this example, I've created a SQL database named DeepShadowSample, and a console application with an Entity Framework DbContext named DeepShadowDb.</p>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 If you're using LINQPad, you must have a registered version in order to easily install the NuGet package.</p>
 </blockquote>
 <h4 id="table-schema-and-data">Table Schema and Data</h4>
@@ -406,35 +406,35 @@ namespace DeepShadowDbContext
 }
 </code></pre>
 <h4 id="app.config">App.Config</h4>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;configuration&gt;
   &lt;configSections&gt;
   &lt;/configSections&gt;
   &lt;startup&gt;
-    &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1" /&gt;
+    &lt;supportedRuntime version=&quot;v4.0&quot; sku=&quot;.NETFramework,Version=v4.6.1&quot; /&gt;
   &lt;/startup&gt;
   &lt;connectionStrings&gt;
-    &lt;add name="DeepShadowDb" 
-         connectionString="Server=.\SQLEXPRESS2016;Database=DeepShadowSample;Trusted_Connection=True;"
-         providerName="System.Data.SqlClient"/&gt;
+    &lt;add name=&quot;DeepShadowDb&quot; 
+         connectionString=&quot;Server=.\SQLEXPRESS2016;Database=DeepShadowSample;Trusted_Connection=True;&quot;
+         providerName=&quot;System.Data.SqlClient&quot;/&gt;
   &lt;/connectionStrings&gt;
 &lt;/configuration&gt;
 </code></pre>
 <h4 id="open-linqpad-to-a-new-c-statements-query">1. Open LINQPad to a new C# Statements query</h4>
 <h4 id="add-entity-framework-connection">2. Add Entity Framework connection</h4>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_19_33.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_22_32.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_23_55.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_27_14.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_30_01.png" alt=""></p>
+<p><img src="images/2018-03-23%2015_19_33.png" alt="" /></p>
+<p><img src="images/2018-03-23%2015_22_32.png" alt="" /></p>
+<p><img src="images/2018-03-23%2015_23_55.png" alt="" /></p>
+<p><img src="images/2018-03-23%2015_27_14.png" alt="" /></p>
+<p><img src="images/2018-03-23%2015_30_01.png" alt="" /></p>
 <h4 id="set-the-query-connection">3. Set the query connection</h4>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_31_44.png" alt=""></p>
+<p><img src="images/2018-03-23%2015_31_44.png" alt="" /></p>
 <h4 id="press-f4-to-open-the-query-settings-and-click-add-nuget">4. Press F4 to open the query settings, and click Add NuGet</h4>
 <h4 id="search-online-for-deepshadow-and-add-to-query">5. Search online for DeepShadow, and add to query</h4>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_36_34.png" alt=""></p>
+<p><img src="images/2018-03-23%2015_36_34.png" alt="" /></p>
 <h4 id="in-the-query-properties-window-additional-namespace-imports-tab-click-pick-from-assemblies-and-add-the-deepshadow-namespace">6. In the Query Properties window, Additional Namespace Imports tab, click Pick from assemblies and add the <code>DeepShadow</code>  namespace.</h4>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_42_34.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deepshadow/images/2018-03-23%2015_41_19.png" alt=""></p>
+<p><img src="images/2018-03-23%2015_42_34.png" alt="" /></p>
+<p><img src="images/2018-03-23%2015_41_19.png" alt="" /></p>
 <h4 id="in-the-query-window-add-this-code.notice-how-its-essentially-copypaste-from-customerservice.getallcustomers">7. In the query window, add this code. Notice how it's essentially copy/paste from <code>CustomerService.GetAllCustomers</code>.</h4>
 <pre><code class="language-csharp">DeepShadowDb _db = this;
 
@@ -461,38 +461,38 @@ customers.GenerateEntitiesFromList(toConsole: true);
 
 DeepShadowDbContext.Customer a1 = new DeepShadowDbContext.Customer();
 a1.CustomerId = 1;
-a1.Name = @"Nicolo Paganini";
+a1.Name = @&quot;Nicolo Paganini&quot;;
 a1.Codes = new List&lt;String&gt;();
-a1.Codes.Add("A1");
-a1.Codes.Add("A2");
-a1.Codes.Add("A3");
+a1.Codes.Add(&quot;A1&quot;);
+a1.Codes.Add(&quot;A2&quot;);
+a1.Codes.Add(&quot;A3&quot;);
 a1.Orders = new List&lt;DeepShadowDbContext.Order&gt;();
 list.Add(a1);
 DeepShadowDbContext.Customer a2 = new DeepShadowDbContext.Customer();
 a2.CustomerId = 2;
-a2.Name = @"Jasha Heifetz";
+a2.Name = @&quot;Jasha Heifetz&quot;;
 a2.Codes = new List&lt;String&gt;();
-a2.Codes.Add("A1");
-a2.Codes.Add("A2");
-a2.Codes.Add("A3");
+a2.Codes.Add(&quot;A1&quot;);
+a2.Codes.Add(&quot;A2&quot;);
+a2.Codes.Add(&quot;A3&quot;);
 a2.Orders = new List&lt;DeepShadowDbContext.Order&gt;();
 list.Add(a2);
 DeepShadowDbContext.Customer a3 = new DeepShadowDbContext.Customer();
 a3.CustomerId = 3;
-a3.Name = @"Erica Morini";
+a3.Name = @&quot;Erica Morini&quot;;
 a3.Codes = new List&lt;String&gt;();
-a3.Codes.Add("A1");
-a3.Codes.Add("A2");
-a3.Codes.Add("A3");
+a3.Codes.Add(&quot;A1&quot;);
+a3.Codes.Add(&quot;A2&quot;);
+a3.Codes.Add(&quot;A3&quot;);
 a3.Orders = new List&lt;DeepShadowDbContext.Order&gt;();
 list.Add(a3);
 DeepShadowDbContext.Customer a4 = new DeepShadowDbContext.Customer();
 a4.CustomerId = 4;
-a4.Name = @"Hilary Hahn";
+a4.Name = @&quot;Hilary Hahn&quot;;
 a4.Codes = new List&lt;String&gt;();
-a4.Codes.Add("A1");
-a4.Codes.Add("A2");
-a4.Codes.Add("A3");
+a4.Codes.Add(&quot;A1&quot;);
+a4.Codes.Add(&quot;A2&quot;);
+a4.Codes.Add(&quot;A3&quot;);
 a4.Orders = new List&lt;DeepShadowDbContext.Order&gt;();
 list.Add(a4);
 

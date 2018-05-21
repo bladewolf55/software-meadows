@@ -62,13 +62,13 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/raw_code_-_picture_renaming_and_sorting'>Raw Code - Picture Renaming and Sorting</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-04-30 10:26</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/raw_code_-_picture_renaming_and_sorting/images/raw-code.png" alt=""></p>
+                <div class='post-content'><p><img src="images/raw-code.png" alt="" /></p>
 <p>A while back I needed to rename a bunch of pictures, prefixing them with numbers, so that they'd sort the way I wanted.</p>
 <p>Here's the code I used. I ran this in <a href="http://www.linqpad.net/">LINQPad</a>, but you could use it in a console app with minor modifications. One nice thing I learned to do: get image datetime <em>without</em> loading the whole image.</p>
 <p>Hope this is useful to you in some way!</p>
 <pre><code class="language-csharp">void Main()
 {
-	string path = @"C:\Users\charles\Pictures\Inbox\20160630";
+	string path = @&quot;C:\Users\charles\Pictures\Inbox\20160630&quot;;
 	List&lt;FileChange&gt; list = new List&lt;UserQuery.FileChange&gt;();
 
     foreach (string fileName in Directory.GetFiles(path))
@@ -90,7 +90,7 @@
 				if (File.GetCreationTime(fileName) &lt; taken) { taken = File.GetCreationTime(fileName); }
 			}
 		}
-		FileChange item = new FileChange(fileName, "", taken);
+		FileChange item = new FileChange(fileName, &quot;&quot;, taken);
 		//set new taken on to old.
 		item.NewTakenOn = item.OldTakenOn;
 		list.Add(item);
@@ -121,7 +121,7 @@ public static void DumpList(List&lt;FileChange&gt; list)
 //http://stackoverflow.com/questions/180030/how-can-i-find-out-when-a-picture-was-actually-taken-in-c-sharp-running-on-vista
 //we init this once so that if the function is repeatedly called
 //it isn't stressing the garbage man
-private static Regex r = new Regex(":");
+private static Regex r = new Regex(&quot;:&quot;);
 
 //retrieves the datetime WITHOUT loading the whole image
 public static DateTime GetDateTakenFromImage(string path)
@@ -129,9 +129,9 @@ public static DateTime GetDateTakenFromImage(string path)
 	using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
 	using (Image myImage = Image.FromStream(fs, false, false))
 	{
-		//if (!myImage.PropertyIdList.Any(a =&gt; a == 36867)){ return DateTime.Parse("1/1/1900");}
+		//if (!myImage.PropertyIdList.Any(a =&gt; a == 36867)){ return DateTime.Parse(&quot;1/1/1900&quot;);}
 		PropertyItem propItem = myImage.GetPropertyItem(36867);
-		string dateTaken = r.Replace(Encoding.UTF8.GetString(propItem.Value), "-", 2);
+		string dateTaken = r.Replace(Encoding.UTF8.GetString(propItem.Value), &quot;-&quot;, 2);
 		//string t = Encoding.UTF8.GetString(propItem.Value);
 		return DateTime.Parse(dateTaken);
 	}
@@ -142,9 +142,9 @@ public static DateTime GetDateTakenFromFilename(string path)
 	var takenPartSplit = path.Substring(3, 15).Split('_');
 	string datePart = takenPartSplit[0];
 	string timePart = takenPartSplit[1];
-	datePart = datePart.Substring(0, 4) + "-" + datePart.Substring(4, 2) + "-" + datePart.Substring(6, 2);
-	timePart = timePart.Substring(0, 2) + ":" + timePart.Substring(2, 2) + ":" + timePart.Substring(4, 2);
-	string datetime = datePart + " " + timePart;
+	datePart = datePart.Substring(0, 4) + &quot;-&quot; + datePart.Substring(4, 2) + &quot;-&quot; + datePart.Substring(6, 2);
+	timePart = timePart.Substring(0, 2) + &quot;:&quot; + timePart.Substring(2, 2) + &quot;:&quot; + timePart.Substring(4, 2);
+	string datetime = datePart + &quot; &quot; + timePart;
 	return DateTime.Parse(datetime);
 }
 
@@ -152,7 +152,7 @@ public static string GetNewFileName(string path, int newNumber)
 {
 	string oldName = Path.GetFileName(path);
 	string newName = oldName;
-	newName = newNumber.ToString().PadLeft(3, '0') + " " + newName;
+	newName = newNumber.ToString().PadLeft(3, '0') + &quot; &quot; + newName;
 	return path.Replace(oldName, newName);
 }
 
@@ -178,7 +178,7 @@ public class FileChange
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/becoming_a_professional_blogger_part_1'>Becoming a Professional Blogger Part 1</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-04-28 10:12</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/becoming_a_professional_blogger_part_1/images/pro-blogger.png" alt=""></p>
+                <div class='post-content'><p><img src="images/pro-blogger.png" alt="" /></p>
 <p>After watching this <a href="https://www.youtube.com/watch?v=5MgBikgcWnY">TED Talk by Josh Kaufman</a>, I decided to take on a 20-hour challenge: to (start to) become a professional blogger.</p>
 <p>This is part 1 of two entries. I'll follow up after July 1 to see whether I met my general goals.</p>
 <p>The big reason I'm writing this post is...</p>
@@ -242,18 +242,18 @@ public class FileChange
 <li>Page views by date</li>
 <li>Page views by post</li>
 </ul>
-<p><strong>Finish [Site-Generator-To-Be-Announced] enough to run as separate .exe</strong><br>
+<p><strong>Finish [Site-Generator-To-Be-Announced] enough to run as separate .exe</strong><br />
 This is the first step to make the posting experience simpler. What I eventually really want is a UI that lets me:</p>
 <ol>
 <li>Quickly start a post for either Software Meadows or FlattLand</li>
 <li>Quickly continue a post</li>
 <li>Easily publish a post</li>
 </ol>
-<p><strong>Make [Site-Generator-To-Be-Announced] template(s) mobile-ready</strong><br>
+<p><strong>Make [Site-Generator-To-Be-Announced] template(s) mobile-ready</strong><br />
 Most people read on their phones. This is a must.</p>
-<p><strong>Gather blog post ideas and keep them on desktop</strong><br>
+<p><strong>Gather blog post ideas and keep them on desktop</strong><br />
 So that they're readily available, and easy to add to. Also use Keep for ideas, and consolidate weekly.</p>
-<p><strong>Write shorter posts</strong><br>
+<p><strong>Write shorter posts</strong><br />
 It's OK to write posts that are a few paragraphs. In fact, more people will read them.</p>
 <h2 id="journal">Journal</h2>
 <p>2018-03-22 11:41:19</p>
@@ -265,7 +265,7 @@ It's OK to write posts that are a few paragraphs. In fact, more people will read
 <p>2018-03-27 16:30:38</p>
 <p>Finished blog post about image resizing to target dimensions.</p>
 <p>2018-04-04 16:00:00
-Publish FlattLand post "Clean Keep using labels+archives"</p>
+Publish FlattLand post &quot;Clean Keep using labels+archives&quot;</p>
 <p>2018-04-14 14:44:26</p>
 <p>I needed [Site-Generator-To-Be-Announced] to be a single Exe. FodyWeavers (strange name) was the solution. I'm not even sure what this does, but there's a extension called Costura that packages up all the assemblies into a single .exe. Nice and easy!</p>
 <p><a href="https://github.com/Fody/Fody/">https://github.com/Fody/Fody/</a></p>
@@ -300,7 +300,7 @@ Begin time boxing post</p>
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/entity_framework_6_child_deletion_and_foreign_keys_string_int_guid'>Entity Framework 6 Child Deletion and Foreign Keys - String Int GUID</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-04-27 14:52</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/entity_framework_6_child_deletion_and_foreign_keys_string_int_guid/images/ef-delete-child.png" alt=""></p>
+                <div class='post-content'><p><img src="images/ef-delete-child.png" alt="" /></p>
 <ul>
 <li><a href="#the-problem">The Problem</a></li>
 <li><a href="#the-solution-short-version-for-the-impatient">The Solution - Short Version for the Impatient</a></li>
@@ -313,7 +313,7 @@ Begin time boxing post</p>
 <li><a href="#manually-generated-int-keys">Manually-generated Int keys</a></li>
 <li><a href="#identity-int-keys">Identity Int keys</a></li>
 <li><a href="#manually-generated-guid-keys">Manually-generated GUID keys</a></li>
-<li><a href="#identity-guid-default-sequential-guid-keys">"Identity" GUID (Default Sequential GUID keys)</a></li>
+<li><a href="#identity-guid-default-sequential-guid-keys">&quot;Identity&quot; GUID (Default Sequential GUID keys)</a></li>
 </ul>
 </li>
 <li><a href="#lessons-learned">Lessons Learned</a></li>
@@ -347,7 +347,7 @@ Begin time boxing post</p>
 <li>Manually-generated Int</li>
 <li>Identity Int</li>
 <li>Manually-generated GUID</li>
-<li>"Identity" GUID</li>
+<li>&quot;Identity&quot; GUID</li>
 </ul>
 <p>It's nigh-on impossible to find any EF examples of foreign key relationships that don't use a integer identity column for the primary key. Also, I haven't seen any author demonstrate the approach I'm taking, even though it's perfectly legitimate from an Entity Framework perspective. Simply put:</p>
 <blockquote>
@@ -448,7 +448,7 @@ create table Employees (
 	StoreId uniqueidentifier not null foreign key references Stores(StoreId),
 )
 
---"Identity" Default Sequential GUID keys
+--&quot;Identity&quot; Default Sequential GUID keys
 create table Gardens (
 	GardenId uniqueidentifier default newsequentialid() not null primary key,
 )
@@ -565,7 +565,7 @@ public class Flower
 }
 </code></pre>
 <h2 id="string-key-manually-generated">String Key (Manually Generated)</h2>
-<p>It's still pretty common to have primary keys that are "intelligent" strings such as "blue-washer-20050225" that are generated by the application.</p>
+<p>It's still pretty common to have primary keys that are &quot;intelligent&quot; strings such as &quot;blue-washer-20050225&quot; that are generated by the application.</p>
 <p>Here's the EF configuration.</p>
 <blockquote>
 <p>I'm relying on EF conventions for key column naming, otherwise I'd need more configurations for .HasKey, .HasColumnName, etc.</p>
@@ -612,11 +612,11 @@ modelBuilder.Entity&lt;Address&gt;()
             //add complex entity
             var customer = new Customer()
             {
-                CustomerId = "a",
+                CustomerId = &quot;a&quot;,
                 Addresses = new HashSet&lt;Address&gt;()
                 {
-                    new Address() { AddressId = "aa" },
-                    new Address() { AddressId = "bb" }
+                    new Address() { AddressId = &quot;aa&quot; },
+                    new Address() { AddressId = &quot;bb&quot; }
                 }
             };
 
@@ -760,7 +760,7 @@ modelBuilder.Entity&lt;Employee&gt;()
     db.SaveChanges();
 }
 </code></pre>
-<h2 id="identity-guid-default-sequential-guid-keys">"Identity" GUID (Default Sequential GUID keys)</h2>
+<h2 id="identity-guid-default-sequential-guid-keys">&quot;Identity&quot; GUID (Default Sequential GUID keys)</h2>
 <pre><code class="language-csharp">modelBuilder.Entity&lt;Garden&gt;()
 .Property(p =&gt; p.GardenId)
     .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);

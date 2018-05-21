@@ -62,8 +62,8 @@
 <p>Using these conventions makes it easier to translate the tables into classes. While this isn't always desirable (or correct), it often is.</p>
 <h1 id="sample">Sample</h1>
 <p>This sample schema exemplifies the conventions, and shows most relationships you'll encounter. It's semi-realistic. PropertyRecords is contrived to show a pseudo one-to-one relationship. (Note: MS SQL doesn't allow a <em>true</em> one-to-one structure, as different tables' rows can't be simultaneously created.)</p>
-<p>&nbsp;</p>
-<p><a href="images/sample-schema.png"><img src="https://www.softwaremeadows.com/posts/sane-database-schema-conventions/images/sample-schema.png" alt="sample-schema" title="sample-schema"></a></p>
+<p> </p>
+<p><a href="images/sample-schema.png"><img src="images/sample-schema.png" alt="sample-schema" title="sample-schema" /></a></p>
 <ul>
 <li>A Customer has an Initial contact Employee, Support Employee and a Salesperson. An Employee can service multiple Customers.</li>
 <li>An Employee can be a Salesperson.</li>
@@ -92,7 +92,7 @@ Salespeople    |Salesperson
 </code></pre>
 <p>Don't pluralize many-to-many join tables. By convention, keep the table name parts alphabetical.</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 Using Code First, Entity Framework might pluralize this to OrderVendors. Personally, I'd use the FluentAPI to force the table name to the OrderVendor.</p>
 </blockquote>
 <pre><code class="language-csharp">Yes            |No               
@@ -115,9 +115,9 @@ OrderNbr       |order-number
 CustomerId     |Customer_ID
 </code></pre>
 <h1 id="keys">Keys</h1>
-<p>My personal preference is to end key names with "Id", rather than "ID". It reads just as well, and is consistent with PascalCasing and .Net naming conventions.</p>
+<p>My personal preference is to end key names with &quot;Id&quot;, rather than &quot;ID&quot;. It reads just as well, and is consistent with PascalCasing and .Net naming conventions.</p>
 <h2 id="primary-key">Primary Key</h2>
-<p>Some people prefer a primary key of just "Id", but if you need to run SQL queries (and you will), it's easier to have the table name in the primary key for creating joins and reading the results.</p>
+<p>Some people prefer a primary key of just &quot;Id&quot;, but if you need to run SQL queries (and you will), it's easier to have the table name in the primary key for creating joins and reading the results.</p>
 <pre><code class="language-sql">SELECT  c.CustomerId, c.Name, a.AddressId, a.Address1
 FROM    Customers c
         JOIN Addresses a on c.CustomerId = a.CustomerId
@@ -129,13 +129,13 @@ CustomerId  Name  AddressId Address1
         23  Ron         402 12 Main St
         47  Eve          11 3 Polo Ave        
 </code></pre>
-<p><strong>Simple Tables</strong><br>
-TableName + "Id"</p>
+<p><strong>Simple Tables</strong><br />
+TableName + &quot;Id&quot;</p>
 <pre><code class="language-csharp">Yes            |No               
 ---------------|-----------------
 CustomerId     |CustomerID, Customer_id, Customer_ID
 </code></pre>
-<p><strong>Many-to-Many Tables</strong><br>
+<p><strong>Many-to-Many Tables</strong><br />
 A <strong>regular</strong> join table doesn't need its own primary key. Just use the other tables' primary keys to form a composite key.</p>
 <pre><code class="language-csharp">OrderVendor
 ===========
@@ -194,7 +194,7 @@ AddressId  (PK)           AddressId (PK)
 CustomerId (FK)           CustID    (FK)
 </code></pre>
 <h1 id="date-columns">Date Columns</h1>
-<p>Use a verb, and end the date or datetime column names with "On".</p>
+<p>Use a verb, and end the date or datetime column names with &quot;On&quot;.</p>
 <p>Following this convention often leads to clearer column meanings, and consistency. For example, DateToPlace or PlaceDateTime becomes PlaceOrderOn.</p>
 <pre><code class="language-csharp">Yes            |No               
 ---------------|-----------------
@@ -203,7 +203,7 @@ ShouldShipOn   |DateShipExpect, ExpectedShip_DT, AnticipatedDate
 </code></pre>
 <h1 id="dont-abbreviate">Don't Abbreviate</h1>
 <p>Abbreviations are, by their nature, ambiguous and culture-centric. Avoid them unless they are very common, consistent, and/or well-known in the organization or industry.</p>
-<p>A good example of ambiguity is how to abbreviate "number". Even my schema example, "InvoiceNbr", is potentially ambiguous. But InvNo is worse. Is there another column "InvYes"?</p>
+<p>A good example of ambiguity is how to abbreviate &quot;number&quot;. Even my schema example, &quot;InvoiceNbr&quot;, is potentially ambiguous. But InvNo is worse. Is there another column &quot;InvYes&quot;?</p>
 <pre><code class="language-csharp">Yes            |No               
 ---------------|-----------------
 Customers      |Custs
@@ -214,7 +214,7 @@ InvoiceNbr     |InvNo
 <h1 id="use-consistent-names-and-abbreviations-if-you-must">Use Consistent Names (and Abbreviations if You Must)</h1>
 <ul>
 <li>If you must abbreviate, be consistent.</li>
-<li>If it's spelled "InvoiceNbr" in one table, it's that way in <em>all</em> tables.</li>
+<li>If it's spelled &quot;InvoiceNbr&quot; in one table, it's that way in <em>all</em> tables.</li>
 <li>If everyone knows what DestinationBOL means, that might be OK. But maybe it's better to expand it to DestinationBillOfLading.</li>
 </ul>
 <p>When in doubt, refer to <strong>Flatt's Law #6: Clarity is more important than brevity.</strong></p>
@@ -224,7 +224,7 @@ InvoiceNbr     |InvoiceNum, InvNumber, Inv_Nmbr
 </code></pre>
 <h1 id="auditing">Auditing</h1>
 <p>To be honest, I've often found audit columns to be more trouble than they're worth. I think if auditing is needed, it's better to have a separate audit history table where you can record many kinds of changes, including deletions.</p>
-<p>But, if I am using them, and am tracking who took an action, I don't link to another table (such as Users or Employees), but instead record the physical name. This significantly reduces linking, and makes it easy to indicate that a process (rather than a person) performed an action. In other words, UpdatedBy is a string column and contains a value like "cflatt" or "Nightly Batch Process".</p>
+<p>But, if I am using them, and am tracking who took an action, I don't link to another table (such as Users or Employees), but instead record the physical name. This significantly reduces linking, and makes it easy to indicate that a process (rather than a person) performed an action. In other words, UpdatedBy is a string column and contains a value like &quot;cflatt&quot; or &quot;Nightly Batch Process&quot;.</p>
 <ul>
 <li>CreatedOn</li>
 <li>CreatedBy</li>

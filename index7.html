@@ -64,7 +64,7 @@
                 <p class='post-info'><span class='posted-on'>2018-01-01 19:40</span></p>
                 <div class='post-content'><p>This is just a short post, primarily to test that my new blogging engine is working. I've written a static site generator that I'll announce in the coming month, as well as post on GitHub (or equivalent).</p>
 <p>Happy New Year!</p>
-<p><img src="https://www.softwaremeadows.com/posts/new-blog-engine/images/very-exciting-time.png" alt=""></p>
+<p><img src="images/very-exciting-time.png" alt="" /></p>
 </div>
               </div>
               
@@ -72,18 +72,18 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-08-10 16:41</span></p>
-                <div class='post-content'><p>I lost a couple of hours over this. When creating a directive or attribute name in AngularJS that will be "kebab-cased," do <em>not</em> prefix it with <code>data</code>, such <code>dataFn</code> or <code>dataFromApi</code>. It becomes <code>data-fn</code> or <code>data-from-api</code> and won't work because <code>data-</code> is reserved by javascript for values.</p>
+                <div class='post-content'><p>I lost a couple of hours over this. When creating a directive or attribute name in AngularJS that will be &quot;kebab-cased,&quot; do <em>not</em> prefix it with <code>data</code>, such <code>dataFn</code> or <code>dataFromApi</code>. It becomes <code>data-fn</code> or <code>data-from-api</code> and won't work because <code>data-</code> is reserved by javascript for values.</p>
 <p>Note: I'm taking a hard line, here. Such a name <em>might</em> work in some cases--but definitely doesn't when trying to invoke an expression passed to an isolate-scope directive.</p>
 <p>This will work.</p>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-  &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
-&lt;body ng-app="app"&gt;
-  &lt;div ng-controller="MyController as vm"&gt;
-    &lt;button ng-click="vm.alert()"&gt;From Body&lt;/button&gt;
-    &lt;my-directive fn="vm.alert()"&gt;&lt;/my-directive&gt;
+&lt;body ng-app=&quot;app&quot;&gt;
+  &lt;div ng-controller=&quot;MyController as vm&quot;&gt;
+    &lt;button ng-click=&quot;vm.alert()&quot;&gt;From Body&lt;/button&gt;
+    &lt;my-directive fn=&quot;vm.alert()&quot;&gt;&lt;/my-directive&gt;
   &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -105,7 +105,7 @@
       scope: {
         fn: '&amp;'
       },
-      template: "&lt;button ng-click='fn()'&gt;From Directive&lt;/button&gt;"
+      template: &quot;&lt;button ng-click='fn()'&gt;From Directive&lt;/button&gt;&quot;
     }
     return directive;
   }
@@ -115,13 +115,13 @@
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-  &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
-&lt;body ng-app="app"&gt;
-  &lt;div ng-controller="MyController as vm"&gt;
-    &lt;button ng-click="vm.alert()"&gt;From Body&lt;/button&gt;
+&lt;body ng-app=&quot;app&quot;&gt;
+  &lt;div ng-controller=&quot;MyController as vm&quot;&gt;
+    &lt;button ng-click=&quot;vm.alert()&quot;&gt;From Body&lt;/button&gt;
     &lt;!-- data-fn WILL NOT WORK --&gt;
-    &lt;my-directive data-fn="vm.alert()"&gt;&lt;/my-directive&gt;
+    &lt;my-directive data-fn=&quot;vm.alert()&quot;&gt;&lt;/my-directive&gt;
   &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -143,7 +143,7 @@
       scope: {
         dataFn: '&amp;'
       },
-      template: "&lt;button ng-click='dataFn()'&gt;From Directive&lt;/button&gt;"
+      template: &quot;&lt;button ng-click='dataFn()'&gt;From Directive&lt;/button&gt;&quot;
     }
     return directive;
   }
@@ -153,13 +153,13 @@
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-  &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
-&lt;body ng-app="app"&gt;
-  &lt;div ng-controller="MyController as vm"&gt;
-    &lt;button ng-click="vm.alert()"&gt;From Body&lt;/button&gt;
+&lt;body ng-app=&quot;app&quot;&gt;
+  &lt;div ng-controller=&quot;MyController as vm&quot;&gt;
+    &lt;button ng-click=&quot;vm.alert()&quot;&gt;From Body&lt;/button&gt;
     &lt;!-- my-fn WORKS --&gt;
-    &lt;my-directive my-fn="vm.alert()"&gt;&lt;/my-directive&gt;
+    &lt;my-directive my-fn=&quot;vm.alert()&quot;&gt;&lt;/my-directive&gt;
   &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
@@ -181,7 +181,7 @@
       scope: {
         myFn: '&amp;'
       },
-      template: "&lt;button ng-click='myFn()'&gt;From Directive&lt;/button&gt;"
+      template: &quot;&lt;button ng-click='myFn()'&gt;From Directive&lt;/button&gt;&quot;
     }
     return directive;
   }
@@ -198,7 +198,7 @@
 <pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
 
     var getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
+        return $http.get(&quot;/api/BoardWebApi&quot;).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error.data.Message);
@@ -213,7 +213,7 @@
 <pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
 
     this.getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
+        return $http.get(&quot;/api/BoardWebApi&quot;).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error.data.Message);
@@ -226,7 +226,7 @@
 <pre><code class="language-javascript">sulhome.kanbanBoardApp.service('boardService', function ($http, $q, $rootScope) {
 
     var getColumns = function () {
-        return $http.get("/api/BoardWebApi").then(function (response) {
+        return $http.get(&quot;/api/BoardWebApi&quot;).then(function (response) {
             return response.data;
         }, function (error) {
             return $q.reject(error.data.Message);

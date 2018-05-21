@@ -58,18 +58,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:46</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -97,7 +97,7 @@ create table PersonBooks (
 </code></pre>
 <p>In this case, a diagram may help.</p>
 <div class="separator" style="clear: both; text-align: center;">
-<p><a href="images/image00.png"><img src="https://www.softwaremeadows.com/posts/edward-farley-part-9/images/image00.png" alt=""></a></p>
+<p><a href="images/image00.png"><img src="images/image00.png" alt="" /></a></p>
 </div>
 <p>A many-to-many relationship is two one-to-many relationships that meet in the middle, so to speak.</p>
 <p>While we could (and tomorrow will) explicitly create a joining class, for this simple case we don’t need to. The Framework manages the join behind the scenes.</p>
@@ -151,9 +151,9 @@ public class Book
         .HasMany(e =&gt; e.Books)
         .WithMany(e =&gt; e.Persons)
         .Map(t =&gt; t
-            .MapLeftKey("PersonId")
-            .MapRightKey("BookId")
-            .ToTable("PersonBooks")
+            .MapLeftKey(&quot;PersonId&quot;)
+            .MapRightKey(&quot;BookId&quot;)
+            .ToTable(&quot;PersonBooks&quot;)
             );
 }
 </code></pre>
@@ -161,30 +161,30 @@ public class Book
 <p>[They had reached an information desk, and an elderly lady smiled at the Professor.]</p>
 <p>Mrs. Jane Eager, I am illustrating for young Edward Farley, here, the many-to-many relationship. Would you work your magic on that temperamental machine and find books you and Edward have both read? [She typed and showed him the screen.] Really? Edward, I must say, you have been well raised. These titles come from a writer who is a master of us all. Now, attend, Edward. There is quite a bit of code.</p>
 <p><strong>Program.cs</strong></p>
-<pre><code class="language-csharp">Console.WriteLine("Add two books and save");
-Book book1 = new Book() { Title = "The House of Arden" };
-Book book2 = new Book() { Title = "Harding's Luck" };
+<pre><code class="language-csharp">Console.WriteLine(&quot;Add two books and save&quot;);
+Book book1 = new Book() { Title = &quot;The House of Arden&quot; };
+Book book2 = new Book() { Title = &quot;Harding's Luck&quot; };
 _db.Books.Add(book1);
 _db.Books.Add(book2);
 SaveChanges();
 
-Console.WriteLine("Add another person and save");
-Person person2 = new Person() { Name = "Jane Eager" };
+Console.WriteLine(&quot;Add another person and save&quot;);
+Person person2 = new Person() { Name = &quot;Jane Eager&quot; };
 person2.LibraryCards.Add(person.LibraryCards.First());
-person2.ReadingRoom = new ReadingRoom() { Location = "NorthEast Wing" };
+person2.ReadingRoom = new ReadingRoom() { Location = &quot;NorthEast Wing&quot; };
 _db.Persons.Add(person2);
 SaveChanges();
 
-Console.WriteLine("Each person has read both books");
+Console.WriteLine(&quot;Each person has read both books&quot;);
 person.Books.Add(book1);
 person.Books.Add(book2);
 person2.Books.Add(book1);
 person2.Books.Add(book2);
 SaveChanges();
-Console.WriteLine(person.Name + "'s books: " 
-    + String.Join(", ", person.Books.Select(a =&gt; a.Title)));
-Console.WriteLine(person2.Name + "'s books: " 
-    + String.Join(", ", person.Books.Select(a =&gt; a.Title)));
+Console.WriteLine(person.Name + &quot;'s books: &quot; 
+    + String.Join(&quot;, &quot;, person.Books.Select(a =&gt; a.Title)));
+Console.WriteLine(person2.Name + &quot;'s books: &quot; 
+    + String.Join(&quot;, &quot;, person.Books.Select(a =&gt; a.Title)));
 </code></pre>
 <p>Let’s run the program.</p>
 <pre><code class="language-console">Create Person without a name.
@@ -222,7 +222,7 @@ Successful save.
 Pencil: Blackwing, Person: Edward Farley
 Attempt adding Bicycle without a Person
 Saving changes.
-  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_dbo.Bicycles_dbo.Persons_PersonId". The conflict occurred in database "EFDb", table "dbo.Persons", column 'PersonId'.
+  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint &quot;FK_dbo.Bicycles_dbo.Persons_PersonId&quot;. The conflict occurred in database &quot;EFDb&quot;, table &quot;dbo.Persons&quot;, column 'PersonId'.
 The statement has been terminated.
 Set the Person, save, retrieve and show
 Saving changes.
@@ -242,13 +242,13 @@ Jane Eager's books: The House of Arden, Harding's Luck
 Finished
 </code></pre>
 <p>“And there you have the many-to-many relationship! Thank you, Jane,” said the Professor. When they reached Edward’s reading room, the Professor paused and said quietly, “Edward, you may not know this, but Jane’s husband is a fine author himself. If you enjoyed the the masterful E. Nesbit’s writing, you would surely like his as well. Come, let me show you....”</p>
-<hr>
+<hr />
 <p>*This isn’t quite fair on the Professor’s part. Entity Framework is consistent in its naming.</p>
-<p><a href="http://dictionary.reference.com/browse/library?&amp;path=/">Library</a><br>
-<a href="http://en.wikipedia.org/wiki/Pinakes">Pinakes</a><br>
-<a href="http://en.wikipedia.org/wiki/E._Nesbit">E. Nesbit, author of <em>The House of Arden</em> and <em>Harding’s Luck</em>, and others</a><br>
+<p><a href="http://dictionary.reference.com/browse/library?&amp;path=/">Library</a><br />
+<a href="http://en.wikipedia.org/wiki/Pinakes">Pinakes</a><br />
+<a href="http://en.wikipedia.org/wiki/E._Nesbit">E. Nesbit, author of <em>The House of Arden</em> and <em>Harding’s Luck</em>, and others</a><br />
 <a href="http://en.wikipedia.org/wiki/Edward_Eager">Edward Eager, author of <em>Half Magic</em> and others</a></p>
-<hr>
+<hr />
 </div>
               </div>
               

@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/announcing_deftconfig'>Announcing DeftConfig</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-03-19 12:03</span></p>
-                <div class='post-content'><h1 id="deftconfig"><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/juggler-100x100.png" alt=""> DeftConfig</h1>
+                <div class='post-content'><h1 id="deftconfig"><img src="images/juggler-100x100.png" alt="" /> DeftConfig</h1>
 <blockquote>
 <p>Web.config and app.config shouldn't be stored. They should be generated. DeftConfig helps with that.</p>
 </blockquote>
@@ -71,14 +71,14 @@
 <li>They don't work well with multiple environments, even using XML Transformations as intended.</li>
 <li>They don't lend themselves to managing sensitive settings such as passwords, especially in a Continuous Integration environment.</li>
 </ol>
-<p>DeftConfig makes it easier to use the "base config" approach to managing configuration files using XML Transformations. It follows a convention for how it finds the transformation file.</p>
+<p>DeftConfig makes it easier to use the &quot;base config&quot; approach to managing configuration files using XML Transformations. It follows a convention for how it finds the transformation file.</p>
 <ol>
 <li>Look for a file in the format <code>web(or app).base.[Configuration].config</code>. Example: web.base.Release.config</li>
 <li>Check the user profile's <code>%APPDATA%\DeftConfig\{Project GUID}</code> folder</li>
 <li>Check the project folder</li>
 <li>If not found, use web/app.base.Sample.config</li>
 </ol>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/deft-config-flow.png" alt=""></p>
+<p><img src="images/deft-config-flow.png" alt="" /></p>
 <p>This approach allows for storing a production config, with sensitive settings, in a Windows Continuous Integration server's appropriate user profile rather than version control. The server folder can be restricted via permissions.</p>
 <p>It also allows multiple developers to have their own, local Debug config; it also doesn't get stored in source control.</p>
 <p>Finally, DeftConfig recommends maintaining a sample config that will help new developers understand what configurations need to be changed, and can provide a safe, default working experience.</p>
@@ -88,7 +88,7 @@
 <li>A utility to help configure the project, including adding an <code>.ignore</code> file for either Git or TFVC.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 I don't guarantee DeftConfig will work in your environment. You need to take the right steps to protect your source code, including backups, version control, and testing.</p>
 </blockquote>
 <h2 id="goals">Goals</h2>
@@ -119,60 +119,60 @@ I don't guarantee DeftConfig will work in your environment. You need to take the
 <li>Delete DeftConfigInitializer, if desired.</li>
 </ol>
 <p>Typical project files before DeftConfig</p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/2018-03-15%2019_49_52.png" alt=""></p>
+<p><img src="images/2018-03-15%2019_49_52.png" alt="" /></p>
 <p>and after running DeftConfigInitializer</p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/2018-03-15%2019_53_20.png" alt=""></p>
-<p>The Debug and Release configs are still in the project folder, except they've been converted to "base" files.</p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/2018-03-15%2019_55_47.png" alt=""></p>
+<p><img src="images/2018-03-15%2019_53_20.png" alt="" /></p>
+<p>The Debug and Release configs are still in the project folder, except they've been converted to &quot;base&quot; files.</p>
+<p><img src="images/2018-03-15%2019_55_47.png" alt="" /></p>
 <h2 id="files">Files</h2>
 <p>Any settings that were previously in web.config are now in web.base.config.</p>
 <p>Here are the recommended way of using the files, with an example. The original web.config had these appSettings. Notice that the production and dev credentials are being stored. Developers have been commenting/uncommenting.</p>
 <pre><code class="language-xml">&lt;/appSettings&gt;
-    &lt;add key="CustomizationVersion" value="HGC1234" /&gt;
+    &lt;add key=&quot;CustomizationVersion&quot; value=&quot;HGC1234&quot; /&gt;
     &lt;!--
-    &lt;add key="WebServiceUser" value="dev-user"/&gt;
-    &lt;add key="WebServicePassword" value="DevPass"/&gt;
+    &lt;add key=&quot;WebServiceUser&quot; value=&quot;dev-user&quot;/&gt;
+    &lt;add key=&quot;WebServicePassword&quot; value=&quot;DevPass&quot;/&gt;
     --&gt;
-    &lt;add key="WebServiceUser" value="production-admin"/&gt;
-    &lt;add key="WebServicePassword" value="Pr0ductionPassw0rd!"/&gt;
+    &lt;add key=&quot;WebServiceUser&quot; value=&quot;production-admin&quot;/&gt;
+    &lt;add key=&quot;WebServicePassword&quot; value=&quot;Pr0ductionPassw0rd!&quot;/&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <h3 id="web.base.config">web.base.config</h3>
 <p>The base config should retain values that are <em>not</em> transformed, and shouldn't have values for settings that will be tranformed. This is also a good place to document the settings. Copy those credential appSettings elsewhere, we'll need them later.</p>
 <pre><code class="language-xml">&lt;/appSettings&gt;
     &lt;!-- Don't change: It's specific to this client --&gt;
-    &lt;add key="CustomizationVersion" value="HGC1234" /&gt;
+    &lt;add key=&quot;CustomizationVersion&quot; value=&quot;HGC1234&quot; /&gt;
     &lt;!-- Credentials for the 3rd party web service --&gt;
-    &lt;add key="WebServiceUser" value=""/&gt;
-    &lt;add key="WebServicePassword" value="" /&gt;
+    &lt;add key=&quot;WebServiceUser&quot; value=&quot;&quot;/&gt;
+    &lt;add key=&quot;WebServicePassword&quot; value=&quot;&quot; /&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <h3 id="web.base.sample.config">web.base.Sample.config</h3>
 <p>The Sample config file <em>is</em> stored in source control. It acts as a default configuration. If a Configuration (Debug/Release) config file can't be found, the Sample will be used. These could be default values for a developer, or dummy values.</p>
 <pre><code class="language-xml">&lt;/appSettings&gt;
-    &lt;add key="WebServiceUser" value="user" xdt:Locater="Match(key)" xdt:Transform="Replace"/&gt;
-    &lt;add key="WebServicePassword" value="pass" xdt:Locater="Match(key)" xdt:Transform="Replace"/&gt;
+    &lt;add key=&quot;WebServiceUser&quot; value=&quot;user&quot; xdt:Locater=&quot;Match(key)&quot; xdt:Transform=&quot;Replace&quot;/&gt;
+    &lt;add key=&quot;WebServicePassword&quot; value=&quot;pass&quot; xdt:Locater=&quot;Match(key)&quot; xdt:Transform=&quot;Replace&quot;/&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <h3 id="web.base.debug.config">web.base.Debug.config</h3>
 <p>The Debug file is for developer settings. Since it's not stored in source control, each developer can have her own settings.</p>
 <pre><code class="language-xml">&lt;/appSettings&gt;
-    &lt;add key="WebServiceUser" value="dev-user" xdt:Locater="Match(key)" xdt:Transform="Replace"/&gt;
-    &lt;add key="WebServicePassword" value="DevPass" xdt:Locater="Match(key)" xdt:Transform="Replace"/&gt;
+    &lt;add key=&quot;WebServiceUser&quot; value=&quot;dev-user&quot; xdt:Locater=&quot;Match(key)&quot; xdt:Transform=&quot;Replace&quot;/&gt;
+    &lt;add key=&quot;WebServicePassword&quot; value=&quot;DevPass&quot; xdt:Locater=&quot;Match(key)&quot; xdt:Transform=&quot;Replace&quot;/&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <h3 id="web.base.release.config">web.base.Release.config</h3>
 <p>Like the Debug file, the Release file is also not stored in source control. As shown below, if using a Windows-based continuous build system, it will be stored in the user profile of the automated build agent. This keeps sensitive credentials out of source control.</p>
 <pre><code class="language-xml">&lt;/appSettings&gt;
-    &lt;add key="WebServiceUser" value="production-admin" xdt:Locater="Match(key)" xdt:Transform="Replace"/&gt;
-    &lt;add key="WebServicePassword" value="Pr0ductionPassw0rd!" xdt:Locater="Match(key)" xdt:Transform="Replace"/&gt;
+    &lt;add key=&quot;WebServiceUser&quot; value=&quot;production-admin&quot; xdt:Locater=&quot;Match(key)&quot; xdt:Transform=&quot;Replace&quot;/&gt;
+    &lt;add key=&quot;WebServicePassword&quot; value=&quot;Pr0ductionPassw0rd!&quot; xdt:Locater=&quot;Match(key)&quot; xdt:Transform=&quot;Replace&quot;/&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <h2 id="building-a-configuration">Building a Configuration</h2>
 <p>As noted above, the safest way to build is to right-click the Solution and choose Rebuild. But in most cases you'll be able to just F6 or F5.</p>
 <p>Which configuration is used is determined by the selected Configuration.</p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/2018-03-15%2020_33_46.png" alt=""></p>
-<p>Many development shops have a separate testing or staging environment. To configure that with DeftConfig, you'd simply add the configuration such as "Stage" using Configuration Manager, then manually create the web.base.Stage.config transform file (probably using copy/paste).</p>
+<p><img src="images/2018-03-15%2020_33_46.png" alt="" /></p>
+<p>Many development shops have a separate testing or staging environment. To configure that with DeftConfig, you'd simply add the configuration such as &quot;Stage&quot; using Configuration Manager, then manually create the web.base.Stage.config transform file (probably using copy/paste).</p>
 <h2 id="where-and-how-transform-files-are-searched">Where and How Transform Files are Searched</h2>
 <p>The initializer utility will optionally create a folder in the user's profile. The folder is named using the project's GUID, since the project name could change. The path is:</p>
 <p><code>C:\Users\[user]\AppData\Roaming\DeftConfig\{PROJECT GUID}</code></p>
@@ -180,20 +180,20 @@ I don't guarantee DeftConfig will work in your environment. You need to take the
 <p>Strictly speaking, the path is <code>%AppData%\DeftConfig\{PROJECT GUID}</code></p>
 </blockquote>
 <p>The DeftConfig build target checks for a matching config file in the following order. The diagram assumes the Release configuration is being built for MyAppProject.</p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/deft-config-file-order.png" alt=""></p>
+<p><img src="images/deft-config-file-order.png" alt="" /></p>
 <h2 id="why-isnt-web.config-removed-from-the-project">Why Isn't Web.config Removed From the Project?</h2>
 <p>Only files that are part of the project (that is, they're in the .csproj or .vsproj file) will be copied when using the project's Publish feature.</p>
 <pre><code class="language-xml">  &lt;ItemGroup&gt;
-    &lt;Content Include="DeftConfigInitializer.exe" /&gt;
-    &lt;Content Include="Web.config" /&gt;
-    &lt;None Include="Web.base.config" /&gt;
-    &lt;None Include="Web.base.Sample.config" /&gt;
+    &lt;Content Include=&quot;DeftConfigInitializer.exe&quot; /&gt;
+    &lt;Content Include=&quot;Web.config&quot; /&gt;
+    &lt;None Include=&quot;Web.base.config&quot; /&gt;
+    &lt;None Include=&quot;Web.base.Sample.config&quot; /&gt;
   &lt;/ItemGroup&gt;
 </code></pre>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/2018-03-15%2021_12_47.png" alt=""></p>
+<p><img src="images/2018-03-15%2021_12_47.png" alt="" /></p>
 <p>However, just because there's an entry in the project file for web.config doesn't mean it <em>has</em> to be in the folder when you get the code from source control. It just has to be there when Publish is run.</p>
 <p>This is why I recommend adding web.config to a Git or TFS ignore file in the project folder. Web.config will always be created as part of the build process, so it doesn't need to be stored in source control.</p>
-<p><img src="https://www.softwaremeadows.com/posts/announcing_deftconfig/images/2018-03-15%2021_19_52.png" alt=""></p>
+<p><img src="images/2018-03-15%2021_19_52.png" alt="" /></p>
 <p>DeftConfigInitializer will do this automatically if you choose.</p>
 <p><strong>Using Git</strong></p>
 <pre><code># Visual Studio 2015 Note: a pattern in the first line is ignored by Changes. Visual Studio Bug.

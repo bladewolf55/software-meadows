@@ -65,14 +65,14 @@
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
 <h2 id="overview-why-pkce">Overview - Why PKCE?</h2>
-<p><strong>References</strong><br>
+<p><strong>References</strong><br />
 <a href="https://alexbilbie.com/guide-to-oauth-2-grants/">A Guide to OAuth 2.0 Grants</a> <a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange</a></p>
-<p>Mobile (i.e. "native") applications are difficult when it comes to authorizing users. The reasons are: they are long-lived, and can't keep a secret.</p>
-<p>In the descriptions below, "two-step" means calling the authorization endpoint then the token endpoint, "one-step" means calling just the token endpoint, "trusted" means the client can keep a secret key, "short-lived" means only an access token, and "long-lived" means an access+refresh token.</p>
+<p>Mobile (i.e. &quot;native&quot;) applications are difficult when it comes to authorizing users. The reasons are: they are long-lived, and can't keep a secret.</p>
+<p>In the descriptions below, &quot;two-step&quot; means calling the authorization endpoint then the token endpoint, &quot;one-step&quot; means calling just the token endpoint, &quot;trusted&quot; means the client can keep a secret key, &quot;short-lived&quot; means only an access token, and &quot;long-lived&quot; means an access+refresh token.</p>
 <p>The standard OAuth 2 grants are:</p>
 <ul>
 <li>Authorization code grant (two-step, trusted, long-lived)</li>
@@ -83,19 +83,19 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 </ul>
 <p>None of these fits well for a mobile app, which is untrusted but long-lived. The solution is Proof Key for Code Exchange (PKCE). PKCE generates a temporary secret string and a way to verify that string. It sends the secret to the authorization endpoint, which stores it, then sends the validator to the token endpoint, which verifies the stored secret. This mitigates the threat of another application capturing the authorization code; without the secret/validator, the auth code is useless.</p>
 <h2 id="authorization-server-simplistic">Authorization Server - Simplistic</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
+<p><strong>References</strong><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br />
 <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>We'll create a simple OAuth2 server using IdentityServer3. We won't even create a Web API, so we can see just the server in operation. In other words, we'll be able to get tokens, but have nothing to use them with.</p>
 <p>Create a new Empty web application project named AuthAndApi</p>
-<p><a href="images/17-05-03_135031_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-03_135031_1.png" alt="2017-05-03_135031" title="2017-05-03_135031"></a></p>
+<p><a href="images/17-05-03_135031_1.png"><img src="images/17-05-03_135031_1.png" alt="2017-05-03_135031" title="2017-05-03_135031" /></a></p>
 <p>Install packages for the authentication server. This assumes using IIS for the web host.</p>
 <pre><code class="language-csharp">Install-Package IdentityServer3 -Project AuthAndApi
 Install-Package Microsoft.Owin.Host.Systemweb -Version 3.1.0 -Project AuthAndApi
 </code></pre>
 <p>All the IdentityServer documents say RAMFAR should be enabled in web.config.</p>
 <pre><code class="language-xml">  &lt;system.webServer&gt;
-    &lt;modules runAllManagedModulesForAllRequests="true" /&gt;
+    &lt;modules runAllManagedModulesForAllRequests=&quot;true&quot; /&gt;
   &lt;/system.webServer&gt;
 </code></pre>
 <p>Add Folders for IdOptions and IdUsers. These represent the database storage we'll configure later.</p>
@@ -117,7 +117,7 @@ namespace AuthAndApi.IdOptions
             return new List&lt;Scope&gt;
             {
                 //Create the email scope for OAuth. Later, when using OpenID Connect, return StandardScopes.Email instead
-                new Scope() { Name = "email", DisplayName = "Email", Claims = new List&lt;ScopeClaim&gt;() { new ScopeClaim("email", true) } }
+                new Scope() { Name = &quot;email&quot;, DisplayName = &quot;Email&quot;, Claims = new List&lt;ScopeClaim&gt;() { new ScopeClaim(&quot;email&quot;, true) } }
             };
         }
     }
@@ -143,8 +143,8 @@ namespace AuthAndApi.IdOptions
                 //The resource, such as Web API, is configured to accept these tokens.
                 new Client()
                 {
-                    ClientName = "Pretend Android Mobile App",
-                    ClientId = "a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef",
+                    ClientName = &quot;Pretend Android Mobile App&quot;,
+                    ClientId = &quot;a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef&quot;,
                     Enabled = true,
                     //About Reference vs JWT tokens
                     //https://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/
@@ -152,17 +152,17 @@ namespace AuthAndApi.IdOptions
                     Flow = Flows.AuthorizationCodeWithProofKey,
                     AllowedScopes = new List&lt;string&gt;
                     {
-                        "email"
+                        &quot;email&quot;
                     },
                     //URIs the authorization code is allowed to be redirected to
                     RedirectUris = new List&lt;string&gt;()
                     {
-                        "http://localhost:19191/"
+                        &quot;http://localhost:19191/&quot;
                     },
                     //Shouldn't be required for this flow, but is
                     ClientSecrets = new List&lt;Secret&gt;()
                     {
-                        new Secret("e9711973-edd7-496f-b415-b10ad0667305".Sha256())
+                        new Secret(&quot;e9711973-edd7-496f-b415-b10ad0667305&quot;.Sha256())
                     }
                 }
             };
@@ -191,12 +191,12 @@ namespace AuthAndApi.IdUsers
                 {
                     //Subject is identifier? Could be external identity,
                     //so it's not our own database primary key
-                    Subject = "1",
-                    Username = "alice",
-                    Password = "secret",
+                    Subject = &quot;1&quot;,
+                    Username = &quot;alice&quot;,
+                    Password = &quot;secret&quot;,
                     Claims = new List&lt;Claim&gt;()
                     {
-                        new Claim("email", "alice@example.com")
+                        new Claim(&quot;email&quot;, &quot;alice@example.com&quot;)
                     }
                 }
             };
@@ -241,14 +241,14 @@ namespace AuthAndApi
 }
 </code></pre>
 <p>The basic IdentityServer is configured for OAuth. For now, we don't need a web page to open, since this is a server, so turn off displaying the page in project Properties.</p>
-<p><a href="images/17-05-06_074519.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_074519.png" alt="2017-05-06_074519" title="2017-05-06_074519"></a></p>
+<p><a href="images/17-05-06_074519.png"><img src="images/17-05-06_074519.png" alt="2017-05-06_074519" title="2017-05-06_074519" /></a></p>
 <blockquote>
-<p><strong>Note about Reference vs JWT tokens</strong><br>
+<p><strong>Note about Reference vs JWT tokens</strong><br />
 There are two general types of access tokens IdentityServer can return: Reference, or JSON Web Token (JWT). JWTs are self-contained; they can be validated without contacting the server. But they're slightly more complicated to configure. One advantage of using Reference tokens is that they can be quickly revoked, since the resource must call the authorizing server on each use. The disadvantage is this increases network traffic.</p>
 </blockquote>
 <h2 id="pretend-mobile-app-get-token">Pretend Mobile App - Get Token</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
+<p><strong>References</strong><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br />
 <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>Now we're going to get an authorization code and token from the server, using a native application that simulates a mobile app. In the Authorization Code Grant, the authorization code is retrieved by using an agent--normally a web browser. Mobile apps can open browsers on behalf of applications, providing a seamless experience. They can also register special URIs to receive requests. The basic flow is:</p>
 <p><strong>Front Channel</strong></p>
@@ -262,10 +262,10 @@ There are two general types of access tokens IdentityServer can return: Referenc
 <li>Server validates, then responds with the access token.</li>
 </ol>
 <p>Add a standard console application to the solution, named PretendMobile.</p>
-<p><a href="images/17-05-06_083908_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_083908_1.png" alt="2017-05-06_083908" title="2017-05-06_083908"></a></p>
+<p><a href="images/17-05-06_083908_1.png"><img src="images/17-05-06_083908_1.png" alt="2017-05-06_083908" title="2017-05-06_083908" /></a></p>
 <p>Add packages. These aren't required (and wouldn't be available for a mobile application). They just include helper classes and methods for the HTTP communication. Anything they do could be done with HttpClient or some other appropriate network library.</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 Version number is important! Later versions are for .Net Core.</p>
 </blockquote>
 <pre><code class="language-csharp">Install-Package IdentityModel -Version 1.9.2 -Project PretendMobile
@@ -291,20 +291,20 @@ namespace PretendMobile
         static void Main(string[] args)
         {
             var response = GetAccessToken();
-            Console.WriteLine("Access Token: " + response.AccessToken);
+            Console.WriteLine(&quot;Access Token: &quot; + response.AccessToken);
             Console.ReadLine();
         }
 
         static TokenResponse GetAccessToken()
         {
-            string clientId = "a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef";
-            string clientSecret = "e9711973-edd7-496f-b415-b10ad0667305";
-            string scope = "email";
-            string redirectUri = "http://localhost:19191/";
+            string clientId = &quot;a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef&quot;;
+            string clientSecret = &quot;e9711973-edd7-496f-b415-b10ad0667305&quot;;
+            string scope = &quot;email&quot;;
+            string redirectUri = &quot;http://localhost:19191/&quot;;
             string verifier = CryptoRandom.CreateUniqueId(64);
             string codeChallenge = verifier.ToCodeChallenge();
-            string authorizationEndpoint = "http://localhost:27230/connect/authorize";
-            string tokenEndpoint = "http://localhost:27230/connect/token";
+            string authorizationEndpoint = &quot;http://localhost:27230/connect/authorize&quot;;
+            string tokenEndpoint = &quot;http://localhost:27230/connect/token&quot;;
 
             //Front channel to get the authorization code
             //This simulates the mobile app starting a browser session on the authorization server,
@@ -312,7 +312,7 @@ namespace PretendMobile
             //while the app waits for the redirect from the auth server that contains the code.
             OpenBrowserToAuthenticate(authorizationEndpoint, clientId, scope, redirectUri, codeChallenge);
             string code = ReceiveAuthCodeFromServer(redirectUri);
-            Console.WriteLine("Authorization Code: " + code);
+            Console.WriteLine(&quot;Authorization Code: &quot; + code);
 
             //Back channel to get the access token
             //The client secret is still required by IdentityServer, even though it's not
@@ -332,7 +332,7 @@ namespace PretendMobile
             AuthorizeRequest request = new AuthorizeRequest(authorizationEndpoint);
             string url = request.CreateAuthorizeUrl(
                 clientId: clientId,
-                responseType: "code",
+                responseType: &quot;code&quot;,
                 scope: scope,
                 redirectUri: redirectUri,
                 nonce: nonce,
@@ -348,14 +348,14 @@ namespace PretendMobile
         {
             var web = new HttpListener();
             web.Prefixes.Add(redirectUri);
-            Console.WriteLine("Listening for request from auth server...");
+            Console.WriteLine(&quot;Listening for request from auth server...&quot;);
             web.Start();
             var req = web.GetContext().Request;
             Stream body = req.InputStream;
             var encoding = req.ContentEncoding;
             var reader = new StreamReader(body, encoding);
-            string code = reader.ReadToEnd().Replace("code=", "");
-            Console.WriteLine("Got it, closing.");
+            string code = reader.ReadToEnd().Replace(&quot;code=&quot;, &quot;&quot;);
+            Console.WriteLine(&quot;Got it, closing.&quot;);
 
             //Not sure how, but the mobile app should end the browser session, maybe when the app
             //gets the response.
@@ -368,19 +368,19 @@ namespace PretendMobile
     }
 }
 </code></pre>
-<p>Let's configure the solution to run both projects. Right-click Solution and choose Properties. Change the Startup Project to "Multiple startup projects," the Actions to "Start," and be sure the identity server project starts first.</p>
-<p><a href="images/17-05-06_091226_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_091226_1.png" alt="2017-05-06_091226" title="2017-05-06_091226"></a></p>
+<p>Let's configure the solution to run both projects. Right-click Solution and choose Properties. Change the Startup Project to &quot;Multiple startup projects,&quot; the Actions to &quot;Start,&quot; and be sure the identity server project starts first.</p>
+<p><a href="images/17-05-06_091226_1.png"><img src="images/17-05-06_091226_1.png" alt="2017-05-06_091226" title="2017-05-06_091226" /></a></p>
 <p>Run the solution.</p>
 <ol>
 <li>The server will start.</li>
 <li>The console application will open a browser to the /authorize endpoint, requesting an authorization code.</li>
-<li>Authenticate using credentials "alice" and "secret".</li>
+<li>Authenticate using credentials &quot;alice&quot; and &quot;secret&quot;.</li>
 <li>Authorize the requested scope(s).</li>
 <li>The authorization code is sent back to the listening application.</li>
 <li>The app sends a direct request to the /token endpoint, requesting an access token.</li>
 <li>The server returns the token.</li>
 </ol>
-<p><a href="images/17-05-06_104414.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104414.png" alt="2017-05-06_104414" title="2017-05-06_104414"></a><a href="images/17-05-06_104502.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104502.png" alt="2017-05-06_104502" title="2017-05-06_104502"></a><a href="images/17-05-06_104651_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104651_1.png" alt="2017-05-06_104651" title="2017-05-06_104651"></a><a href="images/17-05-06_104726.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104726.png" alt="2017-05-06_104726" title="2017-05-06_104726"></a></p>
+<p><a href="images/17-05-06_104414.png"><img src="images/17-05-06_104414.png" alt="2017-05-06_104414" title="2017-05-06_104414" /></a><a href="images/17-05-06_104502.png"><img src="images/17-05-06_104502.png" alt="2017-05-06_104502" title="2017-05-06_104502" /></a><a href="images/17-05-06_104651_1.png"><img src="images/17-05-06_104651_1.png" alt="2017-05-06_104651" title="2017-05-06_104651" /></a><a href="images/17-05-06_104726.png"><img src="images/17-05-06_104726.png" alt="2017-05-06_104726" title="2017-05-06_104726" /></a></p>
 <h1 id="wrap-up">Wrap Up</h1>
 <p>We've built a basic OAuth2 server that uses the Authorization Code Grant plus PKCE for dynamically generated client secrets, and can get an access token. In the next part, we'll build a protected resource that requires a token.</p>
 </div>

@@ -57,90 +57,90 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-01-26 11:40</span></p>
-                <div class='post-content'><p>Sometimes, in my "regular" (i.e. non-IT) life, I apply my job skills. Today, for example, I came across a Facebook post about how to contact and influence Congress members. The post suggested cutting and pasting to share with others. Unfortunately, it wasn't possible to select the text. Some sites do this to prevent copying their content. News sites, especially, for copyright reasons.</p>
+                <div class='post-content'><p>Sometimes, in my &quot;regular&quot; (i.e. non-IT) life, I apply my job skills. Today, for example, I came across a Facebook post about how to contact and influence Congress members. The post suggested cutting and pasting to share with others. Unfortunately, it wasn't possible to select the text. Some sites do this to prevent copying their content. News sites, especially, for copyright reasons.</p>
 <p>What follows is not a tutorial for regular (i.e. non-technical-programming-nerdy) people. It's an <em>example</em> of the kind of process I do in my job every day, and how I think about a problem. It requires tools, knowledge and experience.</p>
-<h2 id="getting-to-the-source-of-the-matter">Getting to the "Source" of the Matter</h2>
-<p>Now, the first problem is that I viewed the original FB post on my phone, and it turns out that's why I couldn't copy/paste the text. If I'd bothered to find it on my desktop, my problem would have been solved. Instead, I emailed myself a link to the page. That link still went to the mobile version. That's what the "m." in the URL is telling me.</p>
-<p><a href="images/17-01-26_09_35_13.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_35_13.png" alt="2017-01-26 09_35_13" title="2017-01-26 09_35_13"></a></p>
+<h2 id="getting-to-the-source-of-the-matter">Getting to the &quot;Source&quot; of the Matter</h2>
+<p>Now, the first problem is that I viewed the original FB post on my phone, and it turns out that's why I couldn't copy/paste the text. If I'd bothered to find it on my desktop, my problem would have been solved. Instead, I emailed myself a link to the page. That link still went to the mobile version. That's what the &quot;m.&quot; in the URL is telling me.</p>
+<p><a href="images/17-01-26_09_35_13.png"><img src="images/17-01-26_09_35_13.png" alt="2017-01-26 09_35_13" title="2017-01-26 09_35_13" /></a></p>
 <p>Here's some of the text:</p>
-<p><a href="images/17-01-26_09_38_16.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_38_16.png" alt="2017-01-26 09_38_16" title="2017-01-26 09_38_16"></a></p>
-<p>I can't copy the text, it's sort of like it's an image, but I'm pretty sure it's <em>not</em> an image. My next step is to view the page source HTML. I right-click in Chrome and choose "View page source".</p>
-<p><a href="images/17-01-26_09_40_46.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_40_46.png" alt="2017-01-26 09_40_46" title="2017-01-26 09_40_46"></a></p>
+<p><a href="images/17-01-26_09_38_16.png"><img src="images/17-01-26_09_38_16.png" alt="2017-01-26 09_38_16" title="2017-01-26 09_38_16" /></a></p>
+<p>I can't copy the text, it's sort of like it's an image, but I'm pretty sure it's <em>not</em> an image. My next step is to view the page source HTML. I right-click in Chrome and choose &quot;View page source&quot;.</p>
+<p><a href="images/17-01-26_09_40_46.png"><img src="images/17-01-26_09_40_46.png" alt="2017-01-26 09_40_46" title="2017-01-26 09_40_46" /></a></p>
 <p>Which yields a huge mess of coded text, as befitting a complex web site. There are about three thousand more lines like this.</p>
-<p><a href="images/17-01-26_09_42_55.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_42_55.png" alt="2017-01-26 09_42_55" title="2017-01-26 09_42_55"></a></p>
+<p><a href="images/17-01-26_09_42_55.png"><img src="images/17-01-26_09_42_55.png" alt="2017-01-26 09_42_55" title="2017-01-26 09_42_55" /></a></p>
 <p>I'm pretty sure buried in there is the text I want. And I'm also pretty sure I'll need to manipulate it. So, I open <a href="https://notepad-plus-plus.org/">Notepad++</a>, a sophisticated, free, open source text editor. Then I copy/paste the source from the browser into it.</p>
-<p><a href="images/17-01-26_09_46_56.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_46_56.png" alt="2017-01-26 09_46_56" title="2017-01-26 09_46_56"></a></p>
+<p><a href="images/17-01-26_09_46_56.png"><img src="images/17-01-26_09_46_56.png" alt="2017-01-26 09_46_56" title="2017-01-26 09_46_56" /></a></p>
 <p>Now I'm ready to use my text editor.</p>
 <h2 id="text-editing-is-not-the-same-as-word-processing">Text Editing is Not the Same as Word Processing</h2>
-<p>In word processing, like you do with Microsoft Word, the concern is text formatting: making things bold, italic, different fonts, etc. The result of all that work is marked up text (or binary, but we'll stick with text) that tells the application how to display all of your words on the screen. Here's an example from a Word file that was saved in its standard .docx format. The document literally has one word: "hello". But Word needs all of this information to display that those five characters.</p>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+<p>In word processing, like you do with Microsoft Word, the concern is text formatting: making things bold, italic, different fonts, etc. The result of all that work is marked up text (or binary, but we'll stick with text) that tells the application how to display all of your words on the screen. Here's an example from a Word file that was saved in its standard .docx format. The document literally has one word: &quot;hello&quot;. But Word needs all of this information to display that those five characters.</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
 &lt;w:document 
-xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" 
-xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex" 
-xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex" 
-xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex" 
-xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex" 
-xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex" 
-xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex" 
-xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-xmlns:o="urn:schemas-microsoft-com:office:office" 
-xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" 
-xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" 
-xmlns:v="urn:schemas-microsoft-com:vml" 
-xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" 
-xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" 
-xmlns:w10="urn:schemas-microsoft-com:office:word" 
-xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" 
-xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" 
-xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" 
-xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex" 
-xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" 
-xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" 
-xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" 
-xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 w16se wp14"&gt;
+xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; 
+xmlns:cx=&quot;http://schemas.microsoft.com/office/drawing/2014/chartex&quot; 
+xmlns:cx1=&quot;http://schemas.microsoft.com/office/drawing/2015/9/8/chartex&quot; 
+xmlns:cx2=&quot;http://schemas.microsoft.com/office/drawing/2015/10/21/chartex&quot; 
+xmlns:cx3=&quot;http://schemas.microsoft.com/office/drawing/2016/5/9/chartex&quot; 
+xmlns:cx4=&quot;http://schemas.microsoft.com/office/drawing/2016/5/10/chartex&quot; 
+xmlns:cx5=&quot;http://schemas.microsoft.com/office/drawing/2016/5/11/chartex&quot; 
+xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; 
+xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; 
+xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; 
+xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; 
+xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; 
+xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing&quot; 
+xmlns:wp=&quot;http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing&quot; 
+xmlns:w10=&quot;urn:schemas-microsoft-com:office:word&quot; 
+xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; 
+xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; 
+xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; 
+xmlns:w16se=&quot;http://schemas.microsoft.com/office/word/2015/wordml/symex&quot; 
+xmlns:wpg=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingGroup&quot; 
+xmlns:wpi=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingInk&quot; 
+xmlns:wne=&quot;http://schemas.microsoft.com/office/word/2006/wordml&quot; 
+xmlns:wps=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingShape&quot; mc:Ignorable=&quot;w14 w15 w16se wp14&quot;&gt;
   &lt;w:body&gt;
-    &lt;w:p w:rsidR="000E45DD" w:rsidRDefault="00FA6736"&gt;
+    &lt;w:p w:rsidR=&quot;000E45DD&quot; w:rsidRDefault=&quot;00FA6736&quot;&gt;
       &lt;w:r&gt;
         &lt;w:t&gt;hello&lt;/w:t&gt;
       &lt;/w:r&gt;
-      &lt;w:bookmarkStart w:id="0" w:name="_GoBack"/&gt;
-      &lt;w:bookmarkEnd w:id="0"/&gt;
+      &lt;w:bookmarkStart w:id=&quot;0&quot; w:name=&quot;_GoBack&quot;/&gt;
+      &lt;w:bookmarkEnd w:id=&quot;0&quot;/&gt;
     &lt;/w:p&gt;
-    &lt;w:sectPr w:rsidR="000E45DD"&gt;
-      &lt;w:pgSz w:w="12240" w:h="15840"/&gt;
-      &lt;w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/&gt;
-      &lt;w:cols w:space="720"/&gt;
-      &lt;w:docGrid w:linePitch="360"/&gt;
+    &lt;w:sectPr w:rsidR=&quot;000E45DD&quot;&gt;
+      &lt;w:pgSz w:w=&quot;12240&quot; w:h=&quot;15840&quot;/&gt;
+      &lt;w:pgMar w:top=&quot;1440&quot; w:right=&quot;1440&quot; w:bottom=&quot;1440&quot; w:left=&quot;1440&quot; w:header=&quot;720&quot; w:footer=&quot;720&quot; w:gutter=&quot;0&quot;/&gt;
+      &lt;w:cols w:space=&quot;720&quot;/&gt;
+      &lt;w:docGrid w:linePitch=&quot;360&quot;/&gt;
     &lt;/w:sectPr&gt;
   &lt;/w:body&gt;
 &lt;/w:document&gt;
 </code></pre>
 <p>The concern of text editing is working with raw content like that above. A good text editor lets you perform complex Find &amp; Replace, or do block editing (where you can select text not just in rows, but also in a columns).</p>
-<p>Back to our FB post source. I know that somewhere in the text is the bit that I want. So, I search for some text that's very likely unique to the content I'm looking for. "Senator" is a good choice.</p>
-<p><a href="images/17-01-26_10_00_34.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_00_34.png" alt="2017-01-26 10_00_34" title="2017-01-26 10_00_34"></a></p>
+<p>Back to our FB post source. I know that somewhere in the text is the bit that I want. So, I search for some text that's very likely unique to the content I'm looking for. &quot;Senator&quot; is a good choice.</p>
+<p><a href="images/17-01-26_10_00_34.png"><img src="images/17-01-26_10_00_34.png" alt="2017-01-26 10_00_34" title="2017-01-26 10_00_34" /></a></p>
 <blockquote>
 <p><strong>TECH DIGRESSION!</strong></p>
 <p>I found, at this point, why I couldn't copy/paste the text in the first place. All of the content was inside a &lt;script&gt; tag. It was probably being processed by javascript, and displayed in some messed-up way.</p>
 </blockquote>
 <p>There's other markup in there, but I'll take care of that in a little bit. First, I copy what looks like the text want into a new Notepad++ tab.</p>
-<p><a href="images/17-01-26_10_06_45.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_06_45.png" alt="2017-01-26 10_06_45" title="2017-01-26 10_06_45"></a></p>
+<p><a href="images/17-01-26_10_06_45.png"><img src="images/17-01-26_10_06_45.png" alt="2017-01-26 10_06_45" title="2017-01-26 10_06_45" /></a></p>
 <h2 id="i-need-a-replacement">I Need a Replacement</h2>
 <p>Now, I look at what's there, while thinking about what I want. Ideally, my end result is nicely formatted text, meaning it's got all the original line breaks. I could do that manually, but I'd prefer not to.</p>
-<p>The first thing I notice is the markup after "Senator."</p>
+<p>The first thing I notice is the markup after &quot;Senator.&quot;</p>
 <pre><code class="language-csharp">From a high-level staffer for a Senator:\u003C\/p&gt;\u003Cp&gt; There are two things 
 </code></pre>
 <p>That sequence, <code>\u003C\/p&gt;\u003Cp&gt;</code> appears throughout the text exactly where line breaks are in the original.</p>
-<p><a href="images/17-01-26_10_13_55.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_13_55.png" alt="2017-01-26 10_13_55" title="2017-01-26 10_13_55"></a></p>
+<p><a href="images/17-01-26_10_13_55.png"><img src="images/17-01-26_10_13_55.png" alt="2017-01-26 10_13_55" title="2017-01-26 10_13_55" /></a></p>
 <p>So let's see what happens if I just replace all of those instances with a new line and carriage return.</p>
 <blockquote>
 <p><strong>TECH DIGRESSION!</strong></p>
 <p>Huh? How (you wonder) do I do that? How do I insert something that can't be seen? Well, even though you can't see them, line breaks (where you go down one line) and carriage returns (where you go back to the beginning of the line) are stored in text just like any other character. They just aren't <em>displayed</em> in the editor. But there are ways to represent them, and one long-standing way is with C programming-style expressions. I can use text to represent other, hidden text.</p>
-<p>&nbsp;</p>
-<p><code>\n</code> = newline<br>
-<code>\r</code> = carriage return<br>
+<p> </p>
+<p><code>\n</code> = newline<br />
+<code>\r</code> = carriage return<br />
 <code>\t</code> = tab stop</p>
-<p>&nbsp;</p>
-<p>The back slash is an "escape" character. It tells the application "don't treat this sequence \n literally. Instead, look in the raw text for the hexadecimal byte sequence 0D." As an example, here are two lines of text:</p>
+<p> </p>
+<p>The back slash is an &quot;escape&quot; character. It tells the application &quot;don't treat this sequence \n literally. Instead, look in the raw text for the hexadecimal byte sequence 0D.&quot; As an example, here are two lines of text:</p>
 <pre><code class="language-csharp">life's
 good
 </code></pre>
@@ -150,15 +150,15 @@ good
 </code></pre>
 </blockquote>
 <p>So, I select <code>\u003C\/p&gt;\u003Cp&gt;</code> and try to replace it with <code>\r\n\r\n</code> (two carriage return + new line). And it fails.</p>
-<p><a href="images/17-01-26_10_32_08.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_32_08.png" alt="2017-01-26 10_32_08" title="2017-01-26 10_32_08"></a></p>
-<p>Why? For the same reason the newline can be found: the escape character <code>\</code>. Notepad++ is looking at my "Find what" string and saying, "Oh, you've got a back slash in front of that u. That must mean something special to me, so I won't treat it as '<code>\u</code>'. I can't find your text, sorry."</p>
+<p><a href="images/17-01-26_10_32_08.png"><img src="images/17-01-26_10_32_08.png" alt="2017-01-26 10_32_08" title="2017-01-26 10_32_08" /></a></p>
+<p>Why? For the same reason the newline can be found: the escape character <code>\</code>. Notepad++ is looking at my &quot;Find what&quot; string and saying, &quot;Oh, you've got a back slash in front of that u. That must mean something special to me, so I won't treat it as '<code>\u</code>'. I can't find your text, sorry.&quot;</p>
 <p>What do we do if we want the back slash to be treated literally? Heh, heh. You <em>escape</em> it by putting another back slash in front of it. To find a literal occurrence of <code>\r</code> in text using C-style expressions, you search for <code>\\r</code>. Crazy logical, right?</p>
 <p>My search express becomes this: <code>\\u003C\\/p&gt;\\u003Cp&gt;</code></p>
 <p>I try my Find &amp; Replace again, and this time it works.</p>
-<p><a href="images/17-01-26_10_39_04.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_39_04.png" alt="2017-01-26 10_39_04" title="2017-01-26 10_39_04"></a></p>
+<p><a href="images/17-01-26_10_39_04.png"><img src="images/17-01-26_10_39_04.png" alt="2017-01-26 10_39_04" title="2017-01-26 10_39_04" /></a></p>
 <p>I could live with this result if I weren't a perfectionist. But there's still lots of HTML markup in there (highlighted in yellow). So, I do my Find &amp; Replace magic a bunch more times. By looking at the original text, I can figure out what characters the markup stood for (or I could look it up). There's also some non-standard markup.</p>
 <pre><code class="language-csharp">&amp;#039;  =   '
-&amp;quot;  =   "
+&amp;quot;  =   &quot;
 &amp;amp;   =   &amp;
 &amp;gt;    =   &gt;
 \u2013  =   --
@@ -175,7 +175,7 @@ good
 
  1. The best thing you can do to be heard and get your congressperson to pay attention is to have 
 face-to-face time - if they have townhalls, go to them. Go to their local offices. If you're in DC, try
- to find a way to go to an event of theirs. Go to the "mobile offices" that their staff hold periodically
+ to find a way to go to an event of theirs. Go to the &quot;mobile offices&quot; that their staff hold periodically
  (all these times are located on each congressperson's website). 
 
  When you go, ask questions. A lot of them. And push for answers. The louder and more vocal and present

@@ -66,33 +66,33 @@
 <p>Assuming you have the SQL 2012 LocalDB installed, running the above will create a file in your user profile named aspnet.mdf, for example <code>C:\Users\charles\aspnetdb.mdf</code>.</p>
 <p>Here’s the rub. If you delete the file, then run the command <em>again</em>, you’ll get this error.</p>
 <blockquote>
-<p>An error occurred during the execution of the SQL file 'InstallCommon.sql'. The SQL error number is 5120 and the SqlException message is: Unable to open the physical file "C:\Users\charles\aspnetdb.mdf".</p>
+<p>An error occurred during the execution of the SQL file 'InstallCommon.sql'. The SQL error number is 5120 and the SqlException message is: Unable to open the physical file &quot;C:\Users\charles\aspnetdb.mdf&quot;.</p>
 </blockquote>
 <p>This happens because LocalDB is still storing an entry in sys.databases (in the master database) for the database you just created. In my opinion, it shouldn’t, but what do I know?</p>
 <h1 id="cleaning-up-from-the-wrong-way">Cleaning Up from the Wrong Way</h1>
 <p>To remove this entry, you need to delete the entry by connecting to LocalDB like a server. These instructions show using Visual Studio’s database tools, but the steps are similar for SQL Management Studio.</p>
 <ol>
 <li>Open Visual Studio</li>
-<li>You don’t need to create a project. Just Tools &gt; Connect to Database.<br>
-<a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image.png" alt="image" title="image"></a></li>
+<li>You don’t need to create a project. Just Tools &gt; Connect to Database.<br />
+<a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></li>
 <li>Choose Data source = Microsoft SQL Server</li>
 <li>Enter Server name = (LocalDB)\v11.0</li>
-<li>Drop down the list of databases. You should at least see master, etc.<br>
-<a href="images/image-001.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-001.png" alt="image" title="image"></a></li>
+<li>Drop down the list of databases. You should at least see master, etc.<br />
+<a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></li>
 <li>You will <em>not</em> see aspnetdb. Choose the master database.</li>
-<li>Open the Server Explorer, right-click the connection and choose New Query.<br>
-<a href="images/image-002.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-002.png" alt="image" title="image"></a></li>
-<li>In the query window, enter and run:<br>
+<li>Open the Server Explorer, right-click the connection and choose New Query.<br />
+<a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></li>
+<li>In the query window, enter and run:<br />
 select * from sysdatabases</li>
-<li>You’ll see aspnetdb listed.<br>
-<a href="images/image-003.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-003.png" alt="image" title="image"></a></li>
-<li>Run this command:<br>
+<li>You’ll see aspnetdb listed.<br />
+<a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></li>
+<li>Run this command:<br />
 drop database aspnetdb</li>
-<li>You’ll get an error message:<br>
-Unable to open the physical file "C:\Users\charles\aspnetdb.mdf". Operating system error 2: "2(The system cannot find the file specified.)".<br>
-File activation failure. The physical file name "C:\Users\charles\aspnetdb_log.ldf" may be incorrect.</li>
-<li>But that’s OK. If&nbsp; you select from sysdatabases again, you’ll see the aspnetdb has been removed.<br>
-<a href="images/image-004.png"><img src="https://www.softwaremeadows.com/posts/creating-forms-authentication/images/image-004.png" alt="image" title="image"></a></li>
+<li>You’ll get an error message:<br />
+Unable to open the physical file &quot;C:\Users\charles\aspnetdb.mdf&quot;. Operating system error 2: &quot;2(The system cannot find the file specified.)&quot;.<br />
+File activation failure. The physical file name &quot;C:\Users\charles\aspnetdb_log.ldf&quot; may be incorrect.</li>
+<li>But that’s OK. If  you select from sysdatabases again, you’ll see the aspnetdb has been removed.<br />
+<a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></li>
 </ol>
 <h1 id="creating-the-database-the-right-easy-way">Creating the Database the Right (Easy) Way</h1>
 <p>I didn’t find documentation saying I could do this, and tried it on a whim. Basically, if you configure your project to use a LocalDB as your membership provider, the first time the app tries to use it the database will be created with the correct tables. At least, this is true in Visual Studio 2015.</p>
@@ -101,26 +101,26 @@ File activation failure. The physical file name "C:\Users\charles\aspnetdb_log.l
 <p>Open web.config. Under &lt;configuration&gt;, add this connection string.</p>
 <pre><code class="language-csharp">  &lt;connectionStrings&gt;
     &lt;!-- ASP.NET MembershipProvider--&gt;
-    &lt;add name="ASPNETDB" connectionString="Data Source=(LocalDB)\v11.0; Integrated Security=true;AttachDbFileName=|DataDirectory|ASPNETDB.mdf" providerName="System.Data.SqlClient" /&gt;
+    &lt;add name=&quot;ASPNETDB&quot; connectionString=&quot;Data Source=(LocalDB)\v11.0; Integrated Security=true;AttachDbFileName=|DataDirectory|ASPNETDB.mdf&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
   &lt;/connectionStrings&gt;
 </code></pre>
 <p>In &lt;system.web&gt;, add this.</p>
 <pre><code class="language-csharp">     &lt;!--ASP.NET MembershipProvider, must be None for other providers such as OWIN--&gt;
-    &lt;authentication mode="Forms"&gt;
-      &lt;forms loginUrl="~/" timeout="2880" /&gt;
+    &lt;authentication mode=&quot;Forms&quot;&gt;
+      &lt;forms loginUrl=&quot;~/&quot; timeout=&quot;2880&quot; /&gt;
     &lt;/authentication&gt;
-    &lt;membership defaultProvider="AspNetSqlMembershipProvider"&gt;
+    &lt;membership defaultProvider=&quot;AspNetSqlMembershipProvider&quot;&gt;
       &lt;providers&gt;
         &lt;clear /&gt;
-        &lt;add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="ASPNETDB" enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" requiresUniqueEmail="false" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" applicationName="/" /&gt;
+        &lt;add name=&quot;AspNetSqlMembershipProvider&quot; type=&quot;System.Web.Security.SqlMembershipProvider&quot; connectionStringName=&quot;ASPNETDB&quot; enablePasswordRetrieval=&quot;false&quot; enablePasswordReset=&quot;true&quot; requiresQuestionAndAnswer=&quot;false&quot; requiresUniqueEmail=&quot;false&quot; maxInvalidPasswordAttempts=&quot;5&quot; minRequiredPasswordLength=&quot;6&quot; minRequiredNonalphanumericCharacters=&quot;0&quot; passwordAttemptWindow=&quot;10&quot; applicationName=&quot;/&quot; /&gt;
       &lt;/providers&gt;
     &lt;/membership&gt;
     &lt;!--Set enabled to false for OWIN--&gt;
-    &lt;roleManager enabled="true" defaultProvider="AspNetWindowsTokenRoleProvider"&gt;
+    &lt;roleManager enabled=&quot;true&quot; defaultProvider=&quot;AspNetWindowsTokenRoleProvider&quot;&gt;
       &lt;providers&gt;
         &lt;clear /&gt;
-        &lt;add name="AspNetSqlRoleProvider" type="System.Web.Security.SqlRoleProvider" connectionStringName="ASPNETDB" applicationName="/" /&gt;
-        &lt;add name="AspNetWindowsTokenRoleProvider" type="System.Web.Security.WindowsTokenRoleProvider" applicationName="/" /&gt;
+        &lt;add name=&quot;AspNetSqlRoleProvider&quot; type=&quot;System.Web.Security.SqlRoleProvider&quot; connectionStringName=&quot;ASPNETDB&quot; applicationName=&quot;/&quot; /&gt;
+        &lt;add name=&quot;AspNetWindowsTokenRoleProvider&quot; type=&quot;System.Web.Security.WindowsTokenRoleProvider&quot; applicationName=&quot;/&quot; /&gt;
       &lt;/providers&gt;
     &lt;/roleManager&gt;
 </code></pre>
@@ -132,10 +132,10 @@ using System.Security.Principal;
 using System.Web.Security;
 </code></pre>
 <p>In some part of your app’s startup, add this code, which we'll run <em>once</em> to create the database, add a user, and add a role. For example, this could go in a Web Form’s Page_Load, in a Controller action, or in a console app’s Main. You could, of course, not create a role, or delete the user afterward, etc.</p>
-<pre><code class="language-csharp">            string email = "charles@aspnetmembership.com";
-            string role = "Dev";
+<pre><code class="language-csharp">            string email = &quot;charles@aspnetmembership.com&quot;;
+            string role = &quot;Dev&quot;;
 
-            Membership.CreateUser(email, "BadPassword!", email);
+            Membership.CreateUser(email, &quot;BadPassword!&quot;, email);
             if (!Roles.RoleExists(role))
             {
                 Roles.CreateRole(role);

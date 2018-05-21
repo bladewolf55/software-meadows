@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/batch_image_resize_checking_min_max_in_both_dimensions'>Batch Image Resize Checking Min Max in Both Dimensions</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-03-27 15:17</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/batch_image_resize_checking_min_max_in_both_dimensions/images/image-resize.png" alt=""></p>
+                <div class='post-content'><p><img src="images/image-resize.png" alt="" /></p>
 <p>Here's some code that you can feel free to use, if it helps you. I had a large folder of photos that I use for Windows wallpaper. The sizes were all over the place, and I really wanted to better match my monitor's resolution. I looked around and didn't find a utility that exactly met my needs, which were:</p>
 <ol>
 <li>Batch resize photos using <em>not to exceed</em> values for width and height.</li>
@@ -94,7 +94,7 @@
 </ol>
 <p>Here's the code. Happy resizing!</p>
 <blockquote>
-<p><strong>Warning</strong><br>
+<p><strong>Warning</strong><br />
 I'm not responsible if this doesn't work. Backup your photos, and I recommend using an empty target folder.</p>
 </blockquote>
 <p><strong>Dependency:</strong>  NuGet package <a href="https://www.nuget.org/packages/ImageLibrary/">ImageLibrary</a></p>
@@ -102,8 +102,8 @@ I'm not responsible if this doesn't work. Backup your photos, and I recommend us
 {
 	bool OkToSave = true;
     
-    //Comment this to run in "test" mode
-	if (!OkToSave) { Console.WriteLine("Not OK to Save"); return;}
+    //Comment this to run in &quot;test&quot; mode
+	if (!OkToSave) { Console.WriteLine(&quot;Not OK to Save&quot;); return;}
 
     // Set the min/max values of a LANDSCAPE photo.
     // The code automatically handles if the photo is in portrait mode.
@@ -114,13 +114,13 @@ I'm not responsible if this doesn't work. Backup your photos, and I recommend us
     int minHeight = 600;
 
     // Set the source and target folders
-    string sourceFolder = 	@"C:\Users\charl\Google Drive\Documents\Clients\_SM\SktBlogImages";
-	string targetFolder = @"C:\Users\charl\Google Drive\Documents\Clients\_SM\Apps\HCMA Web Site Slider\SktBlogImages";
+    string sourceFolder = 	@&quot;C:\Users\charl\Google Drive\Documents\Clients\_SM\SktBlogImages&quot;;
+	string targetFolder = @&quot;C:\Users\charl\Google Drive\Documents\Clients\_SM\Apps\HCMA Web Site Slider\SktBlogImages&quot;;
 	Directory.CreateDirectory(targetFolder);
 	
-	string[] formats = { ".bmp", ".jpg", ".jpeg", ".png"};
+	string[] formats = { &quot;.bmp&quot;, &quot;.jpg&quot;, &quot;.jpeg&quot;, &quot;.png&quot;};
 
-    //Exclude these files, if any. E.g. {"Bad Hair Day", "Music Date"}
+    //Exclude these files, if any. E.g. {&quot;Bad Hair Day&quot;, &quot;Music Date&quot;}
     //Note that if the filename includes the string, it will be exluded.
     string[] files = { };
     
@@ -155,12 +155,12 @@ I'm not responsible if this doesn't work. Backup your photos, and I recommend us
 			}
 			//save with original resolution
 			ImageFormat format;
-			if (new string[] { ".jpg", ".jpeg" }.Contains(ext)) { format = ImageFormat.Jpeg; }
-			else if (ext == ".gif") { format = ImageFormat.Gif; }
-			else if (ext == ".bmp") { format = ImageFormat.Bmp; }
+			if (new string[] { &quot;.jpg&quot;, &quot;.jpeg&quot; }.Contains(ext)) { format = ImageFormat.Jpeg; }
+			else if (ext == &quot;.gif&quot;) { format = ImageFormat.Gif; }
+			else if (ext == &quot;.bmp&quot;) { format = ImageFormat.Bmp; }
 			else { format = ImageFormat.Png; }
 
-			Console.WriteLine(fileName + "   " + scaledImage.Width + " x " + scaledImage.Height);
+			Console.WriteLine(fileName + &quot;   &quot; + scaledImage.Width + &quot; x &quot; + scaledImage.Height);
 			if (OkToSave) { scaledImage.SaveImage(Path.Combine(targetFolder, fileName), format, true);}
 		}
 	}

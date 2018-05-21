@@ -58,18 +58,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:48</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -105,7 +105,7 @@ create table PersonUmbrellas (
 )
 </code></pre>
 <div class="separator" style="clear: both; text-align: center;">
-<p><a href="images/image03.png"><img src="https://www.softwaremeadows.com/posts/edward-farley-part-10/images/image03.png" alt=""></a></p>
+<p><a href="images/image03.png"><img src="images/image03.png" alt="" /></a></p>
 </div>
 <p>This relationship is called Many to Many with Payload. The payload is the Color property. For our Umbrella class, we indicate whether it opens automatically or manually. I prefer manual. You, I see, are more modern.</p>
 <p>Unlike the Simple version, with Payload we must create a class for the join table. There are two ways to do this, of which I will instruct you in one.*</p>
@@ -179,27 +179,27 @@ public class PersonUmbrella
 public DbSet&lt;Umbrella&gt; Umbrellas { get; set; }</p>
 <p>And our program. Again, we will make use of our wonderful librarian, Jane Eager, for the example.</p>
 <p><strong>Program.cs</strong></p>
-<pre><code class="language-csharp">Console.WriteLine("Create an umbrella for Edward");
+<pre><code class="language-csharp">Console.WriteLine(&quot;Create an umbrella for Edward&quot;);
 Umbrella umbrella = new Umbrella() { IsAutomatic = true };
 PersonUmbrella personUmbrella = new PersonUmbrella()
 {
     Person = edward,
     Umbrella = umbrella,
-    Color = "Red"
+    Color = &quot;Red&quot;
 };
 edward.PersonUmbrellas.Add(personUmbrella);
-Console.WriteLine("Jane uses it, too.");
+Console.WriteLine(&quot;Jane uses it, too.&quot;);
 jane.PersonUmbrellas.Add(new PersonUmbrella()
 {
     Umbrella = umbrella,
-    Color = "Green"
+    Color = &quot;Green&quot;
 });
 SaveChanges();
-Console.WriteLine("PersonUmbrellas: "
+Console.WriteLine(&quot;PersonUmbrellas: &quot;
     + _db.PersonUmbrellas.Count());
-Console.WriteLine("Edward's Umbrella: "
+Console.WriteLine(&quot;Edward's Umbrella: &quot;
     + edward.PersonUmbrellas.First().Color);
-Console.WriteLine("Jane's Umbrella: "
+Console.WriteLine(&quot;Jane's Umbrella: &quot;
     + jane.PersonUmbrellas.First().Color);
 </code></pre>
 <p>We run our now somewhat long program:</p>
@@ -238,7 +238,7 @@ Successful save.
 Pencil: Blackwing, Person: Edward Farley
 Attempt adding Bicycle without a Person
 Saving changes.
-  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_dbo.Bicycles_dbo.Persons_PersonId". The conflict occurred in database "EFDb", table "dbo.Persons", column 'PersonId'.
+  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint &quot;FK_dbo.Bicycles_dbo.Persons_PersonId&quot;. The conflict occurred in database &quot;EFDb&quot;, table &quot;dbo.Persons&quot;, column 'PersonId'.
 The statement has been terminated.
 Set the Person, save, retrieve and show
 Saving changes.
@@ -266,13 +266,13 @@ Finished
 </code></pre>
 <p>I leave it to you, Edward, to pay particular attention to the program code. We must now work with the join table explicitly, and be careful in doing so.</p>
 <p>Let us walk back to the library. Ah! I see the sun has come out. Oh well, I have thought enough for this morning, and lunch beckons with her frail arms!</p>
-<hr>
+<hr />
 <p>*The Professor chooses the easier and more common method, where the PersonUmbrellas table’s primary key is a composite of the Person and Umbrella primary keys. This works well if the join table, itself, does not have a relationship to another table. But what if an umbrella had zero or more umbrella cases? While we could carry the PersonId+UmbrellaId key forward as a foreign key in the UmbrellaCase table, many prefer to add a new primary key to the PersonUmbrellas table, and make PersonId+UmbrellaId a unique key (aka candidate key). I show how this is done in the <a href="http://www.softwaremeadows.com/2013/09/edward-farley-epilogue.html">Epilogue</a>.</p>
-<p><a href="http://dictionary.reference.com/browse/synchronicity?s=t">Synchronicity</a><br>
-<a href="http://dictionary.reference.com/browse/convalesce?&amp;path=/">Convalesce</a><br>
-<a href="http://en.wikipedia.org/wiki/Sarah_Gamp">Sarah Gamp</a><br>
+<p><a href="http://dictionary.reference.com/browse/synchronicity?s=t">Synchronicity</a><br />
+<a href="http://dictionary.reference.com/browse/convalesce?&amp;path=/">Convalesce</a><br />
+<a href="http://en.wikipedia.org/wiki/Sarah_Gamp">Sarah Gamp</a><br />
 <a href="http://stackoverflow.com/questions/7050404/create-code-first-many-to-many-with-additional-fields-in-association-table">Create code first, many to many, with additional fields in association table</a></p>
-<hr>
+<hr />
 </div>
               </div>
               

@@ -59,7 +59,7 @@
                 <p class='post-info'><span class='posted-on'>2015-08-23 07:18</span></p>
                 <div class='post-content'><p>This post’s for me, since I’ve occasionally had to look this up.</p>
 <p>Here are the two command lines of code needed to create a long-lasting, untrusted ClickOnce certificate. You run this using the Visual Studio command prompt. I recommend putting the certificate info in a separate folder, documenting the procedure and passwords, and storing in version control. The purpose isn’t deep security, it’s letting the apps install and run with minimal fuss.</p>
-<pre><code class="language-console">C:\MakeCertDemo&gt; makecert -sv MyClickOnce.pvk -n "CN=MY ClickOnce" MyClickOnce.cer -b 08/01/2015 -e 12/31/2100 -r
+<pre><code class="language-console">C:\MakeCertDemo&gt; makecert -sv MyClickOnce.pvk -n &quot;CN=MY ClickOnce&quot; MyClickOnce.cer -b 08/01/2015 -e 12/31/2100 -r
 C:\MakeCertDemo&gt; pvk2pfx -pvk MyClickOnce.pvk -spc MyClickOnce.cer -pfx MyClickOnce.pfx -po X0PASS!
 </code></pre>
 <p>The –r switch is required to ensure the certificate’s length is greater that 1024 bits, otherwise Windows will refuse the ClickOnce installation. Older articles about using MakeCert omit that.</p>

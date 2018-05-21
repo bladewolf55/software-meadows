@@ -57,56 +57,56 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-22 14:05</span></p>
-                <div class='post-content'><p><a href="images/ci-logo.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/ci-logo.png" alt="ci-logo" title="ci-logo"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.</p>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.</p>
 <p><a href="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_20.html">TFS Continuous Integration Walk Through Part 5a - Multiple Solutions - Overview</a></p>
 <h1 id="a-new-beginning">A New Beginning</h1>
 <p>One of my goals for the Multiple Solutions walkthroughs is to put the TFS repository in a, let's say, less than stellar organizational state, and then clean up. To do that, I'll start with a new, clean TFS collection.</p>
 <p>Open TFS Administration Console, select Team Project Collections, and click Create Collection.</p>
-<p><a href="images/17-02-__145443.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__145443.png" alt="2017-02-20_145443" title="2017-02-20_145443"></a></p>
-<p>Choose a silly name like "CICollection2". Next.</p>
-<p><a href="images/17-02-__145927.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__145927.png" alt="2017-02-20_145927" title="2017-02-20_145927"></a></p>
+<p><a href="images/17-02-__145443.png"><img src="images/17-02-__145443.png" alt="2017-02-20_145443" title="2017-02-20_145443" /></a></p>
+<p>Choose a silly name like &quot;CICollection2&quot;. Next.</p>
+<p><a href="images/17-02-__145927.png"><img src="images/17-02-__145927.png" alt="2017-02-20_145927" title="2017-02-20_145927" /></a></p>
 <p>Verify the SQL server instance and create a new database. Next, Verify, Create.</p>
-<p><a href="images/17-02-__150035.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__150035.png" alt="2017-02-20_150035" title="2017-02-20_150035"></a></p>
+<p><a href="images/17-02-__150035.png"><img src="images/17-02-__150035.png" alt="2017-02-20_150035" title="2017-02-20_150035" /></a></p>
 <p>It'll take a few minute to create the collection. Click Complete, then Close. You can close the Admin Console, too.</p>
-<p><a href="images/17-02-__150517.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__150517.png" alt="2017-02-20_150517" title="2017-02-20_150517"></a></p>
+<p><a href="images/17-02-__150517.png"><img src="images/17-02-__150517.png" alt="2017-02-20_150517" title="2017-02-20_150517" /></a></p>
 <h1 id="connect-visual-studio-to-the-new-collection">Connect Visual Studio to the New Collection</h1>
 <blockquote>
-<p><strong>Complaint</strong><br>
+<p><strong>Complaint</strong><br />
 This was stupidly difficult to figure out. Google searches yielded nothing.</p>
 </blockquote>
 <p>Open Visual Studio and the Team Explorer, then open Manage Connections.</p>
-<p><a href="images/17-02-__161007.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161007.png" alt="2017-02-20_161007" title="2017-02-20_161007"></a></p>
-<p>Drop down "Manage Connections" and choose Connect to Team Project.</p>
-<p><a href="images/17-02-__161132.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161132.png" alt="2017-02-20_161132" title="2017-02-20_161132"></a></p>
+<p><a href="images/17-02-__161007.png"><img src="images/17-02-__161007.png" alt="2017-02-20_161007" title="2017-02-20_161007" /></a></p>
+<p>Drop down &quot;Manage Connections&quot; and choose Connect to Team Project.</p>
+<p><a href="images/17-02-__161132.png"><img src="images/17-02-__161132.png" alt="2017-02-20_161132" title="2017-02-20_161132" /></a></p>
 <p>Select CICollection2, then click Connect.</p>
-<p><a href="images/17-02-__161318.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161318.png" alt="2017-02-20_161318" title="2017-02-20_161318"></a></p>
+<p><a href="images/17-02-__161318.png"><img src="images/17-02-__161318.png" alt="2017-02-20_161318" title="2017-02-20_161318" /></a></p>
 <p>This is the first time I'm using this collection, so I need to map my TFS Workspaces.</p>
 <blockquote>
-<p><strong>Complaint</strong><br>
+<p><strong>Complaint</strong><br />
 I <em>hate</em> TFS workspaces.</p>
 </blockquote>
-<p><a href="images/17-02-__161528.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161528.png" alt="2017-02-20_161528" title="2017-02-20_161528"></a></p>
-<p>Pick one of the "map workspaces" links, take the defaults, click Map &amp; Get.</p>
-<p><a href="images/17-02-__161942.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__161942.png" alt="2017-02-20_161942" title="2017-02-20_161942"></a></p>
+<p><a href="images/17-02-__161528.png"><img src="images/17-02-__161528.png" alt="2017-02-20_161528" title="2017-02-20_161528" /></a></p>
+<p>Pick one of the &quot;map workspaces&quot; links, take the defaults, click Map &amp; Get.</p>
+<p><a href="images/17-02-__161942.png"><img src="images/17-02-__161942.png" alt="2017-02-20_161942" title="2017-02-20_161942" /></a></p>
 <p>Now I'm connected to the new collection.</p>
-<p><a href="images/17-02-__16_46.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__16_46.png" alt="2017-02-20_162046" title="2017-02-20_162046"></a></p>
+<p><a href="images/17-02-__16_46.png"><img src="images/17-02-__16_46.png" alt="2017-02-20_162046" title="2017-02-20_162046" /></a></p>
 <h1 id="create-a-new-team-project">Create a new Team Project</h1>
 <p>In Visual Studio Team Manager, create a new Team Project by choosing Home &gt; Projects &amp; My Teams &gt; Create Team Project.</p>
-<p><a href="images/17-02-__162400.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162400.png" alt="2017-02-20_162400" title="2017-02-20_162400"></a></p>
-<p>Remember, one of my intentions is a messy collection. So, I'll name my team project Main. (I'm tempted to name it "Turing" and make life even worse, but this will do.) Click Next.</p>
-<p><a href="images/17-02-__162607.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162607.png" alt="2017-02-20_162607" title="2017-02-20_162607"></a></p>
+<p><a href="images/17-02-__162400.png"><img src="images/17-02-__162400.png" alt="2017-02-20_162400" title="2017-02-20_162400" /></a></p>
+<p>Remember, one of my intentions is a messy collection. So, I'll name my team project Main. (I'm tempted to name it &quot;Turing&quot; and make life even worse, but this will do.) Click Next.</p>
+<p><a href="images/17-02-__162607.png"><img src="images/17-02-__162607.png" alt="2017-02-20_162607" title="2017-02-20_162607" /></a></p>
 <p>The default Agile process is fine. Next.</p>
-<p><a href="images/17-02-__162652.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162652.png" alt="2017-02-20_162652" title="2017-02-20_162652"></a></p>
+<p><a href="images/17-02-__162652.png"><img src="images/17-02-__162652.png" alt="2017-02-20_162652" title="2017-02-20_162652" /></a></p>
 <p>We're sticking with Team Foundation Version Control. Click Finish.</p>
-<p><a href="images/17-02-__162805.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162805.png" alt="2017-02-20_162805" title="2017-02-20_162805"></a></p>
+<p><a href="images/17-02-__162805.png"><img src="images/17-02-__162805.png" alt="2017-02-20_162805" title="2017-02-20_162805" /></a></p>
 <p>After a few seconds our team project is created.</p>
-<p><a href="images/17-02-__162930.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__162930.png" alt="2017-02-20_162930" title="2017-02-20_162930"></a></p>
+<p><a href="images/17-02-__162930.png"><img src="images/17-02-__162930.png" alt="2017-02-20_162930" title="2017-02-20_162930" /></a></p>
 <h1 id="add-the-turingdesktop-solution">Add the TuringDesktop Solution</h1>
 <p>In Visual Studio, create a new Console project. In the dialog, check the Add to Source Control box.</p>
-<p><a href="images/17-02-__163059.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__163059.png" alt="2017-02-20_163059" title="2017-02-20_163059"></a></p>
+<p><a href="images/17-02-__163059.png"><img src="images/17-02-__163059.png" alt="2017-02-20_163059" title="2017-02-20_163059" /></a></p>
 <p>In the source control dialog, accept the defaults. We're adding our solution folder to the root.</p>
-<p><a href="images/17-02-__163216.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__163216.png" alt="2017-02-20_163216" title="2017-02-20_163216"></a></p>
+<p><a href="images/17-02-__163216.png"><img src="images/17-02-__163216.png" alt="2017-02-20_163216" title="2017-02-20_163216" /></a></p>
 <p>So, right now our TFS collection structure is:</p>
 <pre><code class="language-csharp">CICollection2
 |_$/Main
@@ -114,21 +114,21 @@ I <em>hate</em> TFS workspaces.</p>
 </code></pre>
 <p>If you remember from the previous part, our desktop app is going to have two dependencies: the Magic8Engine, and TextColor. Right now, I don't know Magic8 is going to be a shared NuGet package, so I just add it as a new Class Library project. The same with TextColor.</p>
 <p>I'm also going to need a unit test project, so I'll add an MSTest project now as well. I'm going to name it TuringDesktop.Tests, even though it's going to contain tests for all my projects.</p>
-<p><a href="images/17-02-__164651.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__164651.png" alt="2017-02-20_164651" title="2017-02-20_164651"></a></p>
+<p><a href="images/17-02-__164651.png"><img src="images/17-02-__164651.png" alt="2017-02-20_164651" title="2017-02-20_164651" /></a></p>
 <p>In the end, this is my solution's folder structure.</p>
-<p><a href="images/17-02-__164939.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-__164939.png" alt="2017-02-20_164939" title="2017-02-20_164939"></a></p>
+<p><a href="images/17-02-__164939.png"><img src="images/17-02-__164939.png" alt="2017-02-20_164939" title="2017-02-20_164939" /></a></p>
 <h1 id="our-first-suite">Our First Suite</h1>
 <p><strong>References</strong></p>
-<p><a href="http://stackoverflow.com/a/9663588/1628707">Assign TextWriter to MemoryWriter</a><br>
-<a href="http://stackoverflow.com/a/5852991/1628707">Mocking System Console Behaviour</a><br>
+<p><a href="http://stackoverflow.com/a/9663588/1628707">Assign TextWriter to MemoryWriter</a><br />
+<a href="http://stackoverflow.com/a/5852991/1628707">Mocking System Console Behaviour</a><br />
 <a href="https://en.wikipedia.org/wiki/Magic_8-Ball">Magic 8-Ball</a></p>
 <p>Below is all the code and tests for the solution. This is my super-pre-release versions, and has some (mostly intentional) problems.</p>
 <h2 id="the-solution-projects">The Solution Projects</h2>
 <p>Right now I've got everything in one solution. I'll explain each project in turn.</p>
 <h3 id="turingdesktop">TuringDesktop</h3>
 <p>This is a Console application. It references the Magic8Engine and TextColor projects.</p>
-<p><a href="images/17-02-22_102302.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_102302.png" alt="2017-02-22_102302" title="2017-02-22_102302"></a></p>
-<p>I'm simulating a database with a class that returns a list of answers, and is initialized with a connection string. For this simple sample, the connection string is just a name like "production". If the connection string is named something other than "production", then the name is prepended to each answer. For example, if the connection string were "stage", an answer might be "STAGE: It is certain."</p>
+<p><a href="images/17-02-22_102302.png"><img src="images/17-02-22_102302.png" alt="2017-02-22_102302" title="2017-02-22_102302" /></a></p>
+<p>I'm simulating a database with a class that returns a list of answers, and is initialized with a connection string. For this simple sample, the connection string is just a name like &quot;production&quot;. If the connection string is named something other than &quot;production&quot;, then the name is prepended to each answer. For example, if the connection string were &quot;stage&quot;, an answer might be &quot;STAGE: It is certain.&quot;</p>
 <pre><code class="language-csharp">using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -138,23 +138,23 @@ namespace TuringDesktop
     public static class AnswerDatabase
     {
         /// &lt;summary&gt;
-        /// Any dbName other than "prod" prepends answers with dbName.
-        /// Ex. dbName = "stage", then answer is "STAGE: It could be so."
+        /// Any dbName other than &quot;prod&quot; prepends answers with dbName.
+        /// Ex. dbName = &quot;stage&quot;, then answer is &quot;STAGE: It could be so.&quot;
         /// &lt;/summary&gt;
-        /// &lt;param name="connectionString"&gt;&lt;/param&gt;
+        /// &lt;param name=&quot;connectionString&quot;&gt;&lt;/param&gt;
         public static IEnumerable&lt;string&gt; GetAnswers(string connectionString)
         {
             if (String.IsNullOrWhiteSpace(connectionString))
             {
-                throw new ArgumentException("dbName cannot be null or empty");
+                throw new ArgumentException(&quot;dbName cannot be null or empty&quot;);
             }
-            if (connectionString == "production")
+            if (connectionString == &quot;production&quot;)
             {
                 return DefaultAnswers;
             }
             else
             {
-                return DefaultAnswers.Select(a =&gt; connectionString.ToUpper() + ": " + a);
+                return DefaultAnswers.Select(a =&gt; connectionString.ToUpper() + &quot;: &quot; + a);
             }
         }
 
@@ -162,26 +162,26 @@ namespace TuringDesktop
         {
             get
             {
-                yield return "It is certain";
-                yield return "It is decidedly so";
-                yield return "Without a doubt";
-                yield return "Yes, definitely";
-                yield return "You may rely on it";
-                yield return "As I see it, yes";
-                yield return "Most likely";
-                yield return "Outlook good";
-                yield return "Yes";
-                yield return "Signs point to yes";
-                yield return "Reply hazy try again";
-                yield return "Ask again later";
-                yield return "Better not tell you now";
-                yield return "Cannot predict now";
-                yield return "Concentrate and ask again";
-                yield return "Don't count on it";
-                yield return "My reply is no";
-                yield return "My sources say no";
-                yield return "Outlook not so good";
-                yield return "Very doubtful";
+                yield return &quot;It is certain&quot;;
+                yield return &quot;It is decidedly so&quot;;
+                yield return &quot;Without a doubt&quot;;
+                yield return &quot;Yes, definitely&quot;;
+                yield return &quot;You may rely on it&quot;;
+                yield return &quot;As I see it, yes&quot;;
+                yield return &quot;Most likely&quot;;
+                yield return &quot;Outlook good&quot;;
+                yield return &quot;Yes&quot;;
+                yield return &quot;Signs point to yes&quot;;
+                yield return &quot;Reply hazy try again&quot;;
+                yield return &quot;Ask again later&quot;;
+                yield return &quot;Better not tell you now&quot;;
+                yield return &quot;Cannot predict now&quot;;
+                yield return &quot;Concentrate and ask again&quot;;
+                yield return &quot;Don't count on it&quot;;
+                yield return &quot;My reply is no&quot;;
+                yield return &quot;My sources say no&quot;;
+                yield return &quot;Outlook not so good&quot;;
+                yield return &quot;Very doubtful&quot;;
             }
         }
     }
@@ -203,7 +203,7 @@ namespace TuringDesktop
 {
     public class Program
     {
-        static string _connectionString = "production";
+        static string _connectionString = &quot;production&quot;;
         static IConsoleColorizer _colorizer = new ConsoleColorizer();
         static IOracle _oracle = new Oracle(AnswerDatabase.GetAnswers(_connectionString));
 
@@ -216,32 +216,32 @@ namespace TuringDesktop
 
         public static void Main()
         {
-            string name = "";
-            string answer = "";
-            string question = "";
-            string questionColor = "Red";
-            string answerColor = "green";
+            string name = &quot;&quot;;
+            string answer = &quot;&quot;;
+            string question = &quot;&quot;;
+            string questionColor = &quot;Red&quot;;
+            string answerColor = &quot;green&quot;;
 
-            Console.Write("Welcome! I'm AT. Please tell me your name. &gt;&gt; ");
+            Console.Write(&quot;Welcome! I'm AT. Please tell me your name. &gt;&gt; &quot;);
             name = Console.ReadLine();
-            Console.WriteLine("Good to meet you, " + name + ". "
-                + "Ask me a yes-or-no question and I'll give you an answer. "
-                + "When you're finished, say 'bye'.");
+            Console.WriteLine(&quot;Good to meet you, &quot; + name + &quot;. &quot;
+                + &quot;Ask me a yes-or-no question and I'll give you an answer. &quot;
+                + &quot;When you're finished, say 'bye'.&quot;);
             do
             {
                 try
                 {
-                    _colorizer.ColorizeWriteLine("Question?", questionColor);
+                    _colorizer.ColorizeWriteLine(&quot;Question?&quot;, questionColor);
                     question = Console.ReadLine();
-                    if (question.ToLower() == "bye") { break; }
+                    if (question.ToLower() == &quot;bye&quot;) { break; }
                     answer = _oracle.GetAnswer();
                     _colorizer.ColorizeWriteLine(answer, answerColor);
                     Console.WriteLine();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error: " + ex.GetBaseException().Message);
-                    Console.Write("Press any key to quit.");
+                    Console.WriteLine(&quot;Error: &quot; + ex.GetBaseException().Message);
+                    Console.Write(&quot;Press any key to quit.&quot;);
                     Console.Read();
                     return;
                 }
@@ -252,7 +252,7 @@ namespace TuringDesktop
 }
 </code></pre>
 <p>The program's output is simple enough. It greets the user, asks for a name, then starts answering questions. Text coloring is used to make things clear.</p>
-<p><a href="images/17-02-22_105715.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_105715.png" alt="2017-02-22_105715" title="2017-02-22_105715"></a></p>
+<p><a href="images/17-02-22_105715.png"><img src="images/17-02-22_105715.png" alt="2017-02-22_105715" title="2017-02-22_105715" /></a></p>
 <h3 id="magic8engine">Magic8Engine</h3>
 <p>I have an IOracle inteface, so that it's easier to use in unit tests.</p>
 <pre><code class="language-csharp">namespace Magic8Engine
@@ -263,7 +263,7 @@ namespace TuringDesktop
     }
 }
 </code></pre>
-<p>The concrete class is initialized with a list of answers (the "database") from which it randomly selects.</p>
+<p>The concrete class is initialized with a list of answers (the &quot;database&quot;) from which it randomly selects.</p>
 <pre><code class="language-csharp">using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -284,7 +284,7 @@ namespace Magic8Engine
         {
             if (_answers.Count() == 0)
             {
-                return "";
+                return &quot;&quot;;
             }
             int index = _random.Next(_answers.Count());
             return _answers.ToArray()[index];
@@ -330,7 +330,7 @@ namespace TextColor
             }
             else
             {
-                throw new ArgumentException("Invalid ConsoleColor: " + colorName);
+                throw new ArgumentException(&quot;Invalid ConsoleColor: &quot; + colorName);
             }
         }
 
@@ -350,10 +350,10 @@ namespace TextColor
 <p>Good question though. Glad you're thinking.</p>
 <h3 id="tests">Tests</h3>
 <p>Finally, our test project has a class for each project we're testing.</p>
-<p><a href="images/17-02-22_112309.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_112309.png" alt="2017-02-22_112309" title="2017-02-22_112309"></a></p>
+<p><a href="images/17-02-22_112309.png"><img src="images/17-02-22_112309.png" alt="2017-02-22_112309" title="2017-02-22_112309" /></a></p>
 <p>Here are the unit tests for each project. I'm using nested classes to keep the tests readable.</p>
 <h4 id="magic8-tests">Magic8 Tests</h4>
-<p>Note how these test make use of passing in a custom "answer database".</p>
+<p>Note how these test make use of passing in a custom &quot;answer database&quot;.</p>
 <pre><code class="language-csharp">using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -380,7 +380,7 @@ namespace TuringDesktop.Tests
             public void ReturnARandomAnswerEachTimeItIsCalled()
             {
                 //arrange
-                _answers.AddRange(new string[] { "a", "b", "c" });
+                _answers.AddRange(new string[] { &quot;a&quot;, &quot;b&quot;, &quot;c&quot; });
                 var oracle = new Oracle(_answers);
                 //act
                 List&lt;string&gt; answers = new List&lt;string&gt;();
@@ -401,7 +401,7 @@ namespace TuringDesktop.Tests
                 //act
                 string actual = oracle.GetAnswer();
                 //assert
-                Assert.AreEqual("", actual, "Answer list count: " + _answers.Count());
+                Assert.AreEqual(&quot;&quot;, actual, &quot;Answer list count: &quot; + _answers.Count());
             }
         }
     }
@@ -427,9 +427,9 @@ namespace TuringDesktop.Tests
             {
                 //arrange
                 var tc = new ConsoleColorizer();
-                string colorName = "gReEn";
+                string colorName = &quot;gReEn&quot;;
                 Exception actualEx = null;
-                string errorMsg = "";
+                string errorMsg = &quot;&quot;;
                 //Will change to Green below.
                 ConsoleColor color = ConsoleColor.Black;
                 //act
@@ -437,7 +437,7 @@ namespace TuringDesktop.Tests
                 {
                     color = tc.GetConsoleColor(colorName);
                 }
-                catch (Exception ex) { actualEx = ex; errorMsg = "Threw error " + ex.GetBaseException().Message; }
+                catch (Exception ex) { actualEx = ex; errorMsg = &quot;Threw error &quot; + ex.GetBaseException().Message; }
                 Assert.IsNull(actualEx, errorMsg);
                 Assert.AreEqual(ConsoleColor.Green, color);
             }
@@ -451,9 +451,9 @@ namespace TuringDesktop.Tests
                 Console.SetOut(sw);
                 var tc = new ConsoleColorizer();
                 //act
-                tc.ColorizeWriteLine("blamo", "Red");
+                tc.ColorizeWriteLine(&quot;blamo&quot;, &quot;Red&quot;);
                 //assert
-                Assert.AreEqual("blamo\r\n", sw.ToString());
+                Assert.AreEqual(&quot;blamo\r\n&quot;, sw.ToString());
             }
         }
     }
@@ -467,14 +467,14 @@ namespace TuringDesktop.Tests
     {
         public string GetAnswer()
         {
-            return "This is a fake answer";
+            return &quot;This is a fake answer&quot;;
         }
     }
 </code></pre>
 <p><strong>MockColorizer</strong></p>
 <p>In this mock, I store the simulated user's input in a list, and I always return a black console color. I don't set or reset console colors.</p>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 Remember, I'm not testing if the colorizer works. There are already unit tests for that. I'm testing if the Main method works. I just need my mock objects to return consistent results quickly.</p>
 </blockquote>
 <pre><code class="language-csharp">    public class MockColorizer : TextColor.IConsoleColorizer
@@ -510,7 +510,7 @@ Remember, I'm not testing if the colorizer works. There are already unit tests f
         public class Main_Should
         {
             StringWriter _consoleOut = new StringWriter();
-            string UserInputs = "";
+            string UserInputs = &quot;&quot;;
 
             [TestInitialize]
             public void TestInitialize()
@@ -523,13 +523,13 @@ Remember, I'm not testing if the colorizer works. There are already unit tests f
             public void DisplayInitialGreetingMessage()
             {
                 //arrange
-                AddUserInput("Charles");
-                AddUserInput("bye");
+                AddUserInput(&quot;Charles&quot;);
+                AddUserInput(&quot;bye&quot;);
                 SendUserInputs();
                 var mockColorizer = new MockColorizer();
                 var mockOracle = new MockOracle();
                 var program = new Program(mockColorizer, mockOracle);
-                string expected = "Welcome! I'm AT. Please tell me your name.";
+                string expected = &quot;Welcome! I'm AT. Please tell me your name.&quot;;
                 //act
                 Program.Main();
                 //assert
@@ -541,22 +541,22 @@ Remember, I'm not testing if the colorizer works. There are already unit tests f
             public void DisplayWelcomeWithName()
             {
                 //arrange
-                AddUserInput("Charles");
-                AddUserInput("bye");
+                AddUserInput(&quot;Charles&quot;);
+                AddUserInput(&quot;bye&quot;);
                 SendUserInputs();
                 var mockColorizer = new MockColorizer();
                 var mockOracle = new MockOracle();
                 var program = new Program(mockColorizer, mockOracle);
-                string expected = "Good to meet you, Charles.";
+                string expected = &quot;Good to meet you, Charles.&quot;;
                 //act
                 Program.Main();
                 //
                 //assert
                 string output = _consoleOut.ToString();
-                Assert.IsTrue(output.IndexOf(expected) &gt;= 0, "Output was: " + output);
+                Assert.IsTrue(output.IndexOf(expected) &gt;= 0, &quot;Output was: &quot; + output);
             }
 
-            #region "Test Helpers"
+            #region &quot;Test Helpers&quot;
             private void AddUserInput(string value)
             {
                 UserInputs += value + Environment.NewLine;
@@ -573,18 +573,18 @@ Remember, I'm not testing if the colorizer works. There are already unit tests f
     }
 </code></pre>
 <p>Running my tests, I get nice, readable output.</p>
-<p><a href="images/17-02-22_115_7.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_115_7.png" alt="2017-02-22_115207" title="2017-02-22_115207"></a></p>
+<p><a href="images/17-02-22_115_7.png"><img src="images/17-02-22_115_7.png" alt="2017-02-22_115207" title="2017-02-22_115207" /></a></p>
 <h1 id="initial-continuous-integration-build-definition">Initial Continuous Integration Build Definition</h1>
 <p>In Visual Studio Team Explorer, click Builds.</p>
-<p><a href="images/17-02-22_115629.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_115629.png" alt="2017-02-22_115629" title="2017-02-22_115629"></a></p>
+<p><a href="images/17-02-22_115629.png"><img src="images/17-02-22_115629.png" alt="2017-02-22_115629" title="2017-02-22_115629" /></a></p>
 <p>Click New Build Definition.</p>
-<p><a href="images/17-02-22_115709.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_115709.png" alt="2017-02-22_115709" title="2017-02-22_115709"></a></p>
+<p><a href="images/17-02-22_115709.png"><img src="images/17-02-22_115709.png" alt="2017-02-22_115709" title="2017-02-22_115709" /></a></p>
 <p>This will open the web page and prompt for a definition. This is nice because we're taken directly to our team project builds.</p>
-<p><a href="images/17-02-22_115934.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_115934.png" alt="2017-02-22_115934" title="2017-02-22_115934"></a></p>
+<p><a href="images/17-02-22_115934.png"><img src="images/17-02-22_115934.png" alt="2017-02-22_115934" title="2017-02-22_115934" /></a></p>
 <p>Choose the Visual Studio template, check the box that says Continuous Integration and accept the defaults. Save the definition, naming it TuringDesktop Suite Build.</p>
 <p>If you've been following along, you'll realize that we've never committed <em>any</em> of our source code! Do so now and the build should happen automatically and successfully. Be sure to verify that all the tests ran!</p>
-<p><a href="images/17-02-22_122709.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_122709.png" alt="2017-02-22_122709" title="2017-02-22_122709"></a></p>
-<p><a href="images/17-02-22_1229.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22/images/17-02-22_1229.png" alt="2017-02-22_122936" title="2017-02-22_122936"></a></p>
+<p><a href="images/17-02-22_122709.png"><img src="images/17-02-22_122709.png" alt="2017-02-22_122709" title="2017-02-22_122709" /></a></p>
+<p><a href="images/17-02-22_1229.png"><img src="images/17-02-22_1229.png" alt="2017-02-22_122936" title="2017-02-22_122936" /></a></p>
 <h1 id="next-up">Next Up</h1>
 <p>We have a working application that's automatically built in our CI server. But we've also got some problems:</p>
 <ul>

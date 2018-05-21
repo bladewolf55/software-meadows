@@ -57,13 +57,13 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-08-24 17:13</span></p>
-                <div class='post-content'><p><img src="https://johnkennethmuir.files.wordpress.com/2012/01/journey1.jpg" alt=""></p>
+                <div class='post-content'><p><img src="https://johnkennethmuir.files.wordpress.com/2012/01/journey1.jpg" alt="" /></p>
 <p>I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
 <p>Taking a cue from the 70s and its badass fonts, my <a href="https://en.wikipedia.org/wiki/The_Fantastic_Journey">Fantastic Journey</a> is traveling from skill to skill, trying to escape every software engineer’s Bermuda Triangle: obsolescence. I don’t have Jared Martin’s Sonic Energizer to focus my thoughts and manipulate matter. All I can do is listen to the <a href="https://www.youtube.com/watch?v=fqKEENAGSBo">groovy theme music</a>.</p>
-<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-1.html">TDD Part 1</a><br>
+<p>Previously on CUOC: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-1.html">TDD Part 1</a><br />
 Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-3.html">TDD Part 3</a></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
 <h1 id="teaser">Teaser</h1>
 <p>It’s one thing to practice TDD from the start. It’s another to take legacy code <em>that you wrote</em> and create unit tests for it. My EduAgent project includes a client service that processes requests to update the registry.</p>
 <p>Looking at my code, I right away see my first stumbling block: the purpose of the code is changing the registry. For testing, this means:</p>
@@ -107,7 +107,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 </code></pre>
 <p>Contrast that to this method.</p>
 <pre><code class="language-csharp">    public string[] GetEmployeeNames()
-    {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return _db.Employees.Select(a =&gt; a.Name).ToArray();
+    {      return _db.Employees.Select(a =&gt; a.Name).ToArray();
     }
 </code></pre>
 <p>Is there any reason to create a unit test for this method? I don’t think so. The test would look something like this.</p>
@@ -118,7 +118,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
         //...add a bunch of mock Employees with names, then pass to service
         var service = new EmployeeInfoService(db);
         var list = service.GetEmployeeNames();
-        Assert.True(list.Contains("Varian"));
+        Assert.True(list.Contains(&quot;Varian&quot;));
     }
 </code></pre>
 <p>This gets us nothing. All we did was test that our mocking framework works. So…</p>
@@ -141,11 +141,11 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <p>Of all these, just one doesn’t require using registry data: ParseRegistryHive. The method’s purpose is to return the hive enum given a string.</p>
 <pre><code class="language-csharp">        public static RegistryHive ParseRegistryHive(string hiveName)
         {
-            if (hiveName.ToUpper() == "HKEY_CLASSES_ROOT") { return RegistryHive.ClassesRoot; }
-            else if (hiveName.ToUpper() == "HKEY_CURRENT_USER") { return RegistryHive.CurrentUser; }
-            else if (hiveName.ToUpper() == "HKEY_LOCAL_MACHINE") { return RegistryHive.LocalMachine; }
-            else if (hiveName.ToUpper() == "HKEY_USERS") { return RegistryHive.Users; }
-            else if (hiveName.ToUpper() == "HKEY_CURRENT_CONFIG") { return RegistryHive.CurrentConfig; }
+            if (hiveName.ToUpper() == &quot;HKEY_CLASSES_ROOT&quot;) { return RegistryHive.ClassesRoot; }
+            else if (hiveName.ToUpper() == &quot;HKEY_CURRENT_USER&quot;) { return RegistryHive.CurrentUser; }
+            else if (hiveName.ToUpper() == &quot;HKEY_LOCAL_MACHINE&quot;) { return RegistryHive.LocalMachine; }
+            else if (hiveName.ToUpper() == &quot;HKEY_USERS&quot;) { return RegistryHive.Users; }
+            else if (hiveName.ToUpper() == &quot;HKEY_CURRENT_CONFIG&quot;) { return RegistryHive.CurrentConfig; }
             //last chance, will throw error if invalid
             else return (RegistryHive)Enum.Parse(typeof(RegistryHive), hiveName);
         }
@@ -157,23 +157,23 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <pre><code class="language-csharp">    public class RegistryService_ParseRegistryHive_Should
     {
         [Theory]
-        [InlineData("HKEY_CLASSES_ROOT")]
-        [InlineData("HKEY_CURRENT_USER")]
-        [InlineData("HKEY_LOCAL_MACHINE")]
-        [InlineData("HKEY_USERS")]
-        [InlineData("HKEY_CURRENT_CONFIG")]
-        [InlineData("hkey_current_config")]
+        [InlineData(&quot;HKEY_CLASSES_ROOT&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_USER&quot;)]
+        [InlineData(&quot;HKEY_LOCAL_MACHINE&quot;)]
+        [InlineData(&quot;HKEY_USERS&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_CONFIG&quot;)]
+        [InlineData(&quot;hkey_current_config&quot;)]
         public void NotThrowErrorWithValidHive(string name)
         {
             var hive = RegistryService.ParseRegistryHive(name);
         }
 
         [Theory]
-        [InlineData("HKEY_CLASSES_ROOT")]
-        [InlineData("HKEY_CURRENT_USER")]
-        [InlineData("HKEY_LOCAL_MACHINE")]
-        [InlineData("HKEY_USERS")]
-        [InlineData("HKEY_CURRENT_CONFIG")]
+        [InlineData(&quot;HKEY_CLASSES_ROOT&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_USER&quot;)]
+        [InlineData(&quot;HKEY_LOCAL_MACHINE&quot;)]
+        [InlineData(&quot;HKEY_USERS&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_CONFIG&quot;)]
         public void ReturnCorrectEnumWithValidHive(string name)
         {
             //This basically reproduces the method code. Need to NOT copy/paste from method, but
@@ -182,30 +182,30 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             var hive = RegistryService.ParseRegistryHive(name);
             switch (name)
             {
-                case "HKEY_CLASSES_ROOT":
+                case &quot;HKEY_CLASSES_ROOT&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.ClassesRoot);
                     break;
-                case "HKEY_CURRENT_USER":
+                case &quot;HKEY_CURRENT_USER&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.CurrentUser);
                     break;
-                case "HKEY_LOCAL_MACHINE":
+                case &quot;HKEY_LOCAL_MACHINE&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.LocalMachine);
                     break;
-                case "HKEY_USERS":
+                case &quot;HKEY_USERS&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.Users);
                     break;
-                case "HKEY_CURRENT_CONFIG":
+                case &quot;HKEY_CURRENT_CONFIG&quot;:
                     Assert.True(hive == Microsoft.Win32.RegistryHive.CurrentConfig);
                     break;
                 default:
-                    Assert.True(false,name + " didn't return a valid hive. Hive enum returned was " + hive);
+                    Assert.True(false,name + &quot; didn't return a valid hive. Hive enum returned was &quot; + hive);
                     break;
             }
         }
 
         [Theory]
-        [InlineData("fail")]
-        [InlineData("")]
+        [InlineData(&quot;fail&quot;)]
+        [InlineData(&quot;&quot;)]
         public void ThrowErrorWithInvalidHive(string name)
         {
             Assert.Throws(() =&gt;  RegistryService.ParseRegistryHive(name));
@@ -223,7 +223,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             }
             catch (Exception ex)
             {
-                throw new Exception("Error setting registry value keyName '" + keyName + "', valueName '" + valueName + ", value '" + value + "'\r\n" + ex.GetBaseException().Message);
+                throw new Exception(&quot;Error setting registry value keyName '&quot; + keyName + &quot;', valueName '&quot; + valueName + &quot;, value '&quot; + value + &quot;'\r\n&quot; + ex.GetBaseException().Message);
             }
         }
 </code></pre>
@@ -245,12 +245,12 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 </ol>
 <p>I looked at the Prig example. Whew! That’s a lot of setup! And I’m not prepared to pay for TypeMock or JustMock, though I expect they’re excellent.</p>
 <p>This means wrapping the Registry class. Before I try out SystemWrapper, I’m going to create my own wrapper. I want to understand what’s involved. (This is self-education, after all!) The methods I’m using are:</p>
-<p>Registry.GetValue<br>
-Registry.SetValue<br>
-RegistryKey.GetValueKind<br>
-RegistryKey.DeleteSubKey<br>
-RegistryKey.DeleteValue<br>
-RegistryKey.OpenBaseKey<br>
+<p>Registry.GetValue<br />
+Registry.SetValue<br />
+RegistryKey.GetValueKind<br />
+RegistryKey.DeleteSubKey<br />
+RegistryKey.DeleteValue<br />
+RegistryKey.OpenBaseKey<br />
 RegistryKey.OpenBaseKey.OpenSubKey</p>
 <p>All right, boys! Wrap…That…Code!!!</p>
 <p>I had to rethink my whole approach to my RegistryService class, which consumes the Microsoft.Win32.Registry. Originally I wrote it as a static class, since it didn’t need to be instantiated. But this class now could depend on different “registry providers.” I want to protect the class from being misused. A static SetRegistryProvider method won’t work, because of the danger that in production one caller sets it one way and another sets it differently. It’s the same as if a class could use more than one database back end; you wouldn’t make it static. The solution was to remove static, and make the class entirely instance-able.</p>
@@ -286,9 +286,9 @@ RegistryKey.OpenBaseKey.OpenSubKey</p>
 {
     //_registryKey was injected via the constructor
     RegistryKey basekey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
-    using (RegistryKey key = basekey.OpenSubKey(@"SOFTWARE\EduAgent\RegistryPlugin", false))
+    using (RegistryKey key = basekey.OpenSubKey(@&quot;SOFTWARE\EduAgent\RegistryPlugin&quot;, false))
     {
-        key.DeleteValue("Value");
+        key.DeleteValue(&quot;Value&quot;);
         key.Close();
     }
 }
@@ -298,9 +298,9 @@ RegistryKey.OpenBaseKey.OpenSubKey</p>
 {
     //_registryKey was injected via the constructor
     IRegistryKeyWrapper basekey = _registryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
-    using (IRegistryKeyWrapper key = basekey.OpenSubKey(@"SOFTWARE\EduAgent\RegistryPlugin",false))
+    using (IRegistryKeyWrapper key = basekey.OpenSubKey(@&quot;SOFTWARE\EduAgent\RegistryPlugin&quot;,false))
     {
-        key.DeleteValue("Value");
+        key.DeleteValue(&quot;Value&quot;);
         key.Close();
     }
 }
@@ -357,7 +357,7 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
 </code></pre>
 <p>In the RegistryService example, above, if the user were to use _registryKey immediately, without setting it using OpeBaseKey, it would fail because the private variable _baseKey has not been set.</p>
 <p>I wouldn’t call this ideal, but it does allow us to test the class.</p>
-<p><strong>EDIT 8/31/16<br>
+<p><strong>EDIT 8/31/16<br />
 -------------------------------------------------------------</strong></p>
 <p><strong>Not only is it not ideal, but it’s not even good. What I’m trying to do is wrap RegistryKey in a pass-through manner. But that’s a mistake, because it implements IDisposable and in my wrapper I <em>should not</em> implement IDisposable.</strong></p>
 <p><strong>In a later post, I’ll explain how I rewrote my RegistryKey wrapper in a better way. It doesn’t affect the validity of the info in this post.</strong></p>
@@ -381,12 +381,12 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
         IRegistryKeyWrapper _registryKey = new RegistryKeyMock();
                 
         [Theory]
-        [InlineData("HKEY_CLASSES_ROOT")]
-        [InlineData("HKEY_CURRENT_USER")]
-        [InlineData("HKEY_LOCAL_MACHINE")]
-        [InlineData("HKEY_USERS")]
-        [InlineData("HKEY_CURRENT_CONFIG")]
-        [InlineData("hkey_current_config")]
+        [InlineData(&quot;HKEY_CLASSES_ROOT&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_USER&quot;)]
+        [InlineData(&quot;HKEY_LOCAL_MACHINE&quot;)]
+        [InlineData(&quot;HKEY_USERS&quot;)]
+        [InlineData(&quot;HKEY_CURRENT_CONFIG&quot;)]
+        [InlineData(&quot;hkey_current_config&quot;)]
         public void NotThrowErrorWithValidHive(string name)
         {
             var service = new RegistryService(_registry, _registryKey);
@@ -403,7 +403,7 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
         public void ReturnNullConstantTextIfValueIsMissing()
         {
             var service = new RegistryService(_registry, _registryKey);
-            var result = service.GetRegistryKeyValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent", "Version");
+            var result = service.GetRegistryKeyValue(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;, &quot;Version&quot;);
             Assert.Equal(result, service.NoValue);
         }
     }
@@ -416,11 +416,11 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
             //this may become cumbersome, but for now specify some return values
             switch (keyName)
             {
-                case @"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent":
-                    if (valueName == "Version") return defaultValue;
+                case @&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgent&quot;:
+                    if (valueName == &quot;Version&quot;) return defaultValue;
                     break;
             }
-            throw new Exception("Invalid keyName");
+            throw new Exception(&quot;Invalid keyName&quot;);
         }
 </code></pre>
 <p>Running the test, it passes.</p>
@@ -434,8 +434,8 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
         public void ThrowExceptionWhenUsingInvalidKey()
         {
             var service = new RegistryService(_registry, _registryKey);
-            var ex = Assert.Throws(() =&gt; service.OpenSubKey64(@"HKEY_LOCAL_MACHINE\SOFTWARE\EduAgentMissing"));
-            Assert.Equal("Error opening subkey 'HKEY_LOCAL_MACHINE\\SOFTWARE\\EduAgentMissing'. Operation returned null.", ex.Message);
+            var ex = Assert.Throws(() =&gt; service.OpenSubKey64(@&quot;HKEY_LOCAL_MACHINE\SOFTWARE\EduAgentMissing&quot;));
+            Assert.Equal(&quot;Error opening subkey 'HKEY_LOCAL_MACHINE\\SOFTWARE\\EduAgentMissing'. Operation returned null.&quot;, ex.Message);
         }
     }
 </code></pre>
@@ -463,20 +463,20 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
 
         public IRegistryKeyWrapper OpenSubKey(string name, bool writable)
         {
-            if (name == @"SOFTWARE\EduAgentMissing")
+            if (name == @&quot;SOFTWARE\EduAgentMissing&quot;)
                 return null;
-            return new RegistryKeyMock(Name + "\\" + name, SubKeyCount, ValueCount, View);
+            return new RegistryKeyMock(Name + &quot;\\&quot; + name, SubKeyCount, ValueCount, View);
         }
 
         private string HiveToString(RegistryHive hive)
         {
-            string key = "HKEY_";
-            if (hive == RegistryHive.ClassesRoot) return key + "CLASSES_ROOT";
-            if (hive == RegistryHive.CurrentConfig) return key + "CURRENT_CONFIG";
-            if (hive == RegistryHive.CurrentUser) return key + "CURRENT_USER";
-            if (hive == RegistryHive.LocalMachine) return key + "LOCAL_MACHINE";
-            if (hive == RegistryHive.Users) return key + "USERS";
-            return "";
+            string key = &quot;HKEY_&quot;;
+            if (hive == RegistryHive.ClassesRoot) return key + &quot;CLASSES_ROOT&quot;;
+            if (hive == RegistryHive.CurrentConfig) return key + &quot;CURRENT_CONFIG&quot;;
+            if (hive == RegistryHive.CurrentUser) return key + &quot;CURRENT_USER&quot;;
+            if (hive == RegistryHive.LocalMachine) return key + &quot;LOCAL_MACHINE&quot;;
+            if (hive == RegistryHive.Users) return key + &quot;USERS&quot;;
+            return &quot;&quot;;
         }
     }
 </code></pre>
@@ -488,7 +488,7 @@ RegistryService service = new RegistryService(new RegistryWrapper(), new Registr
 <li>Use an Inversion of Control container such as <a href="http://www.ninject.org/">Ninject</a> or <a href="https://github.com/unitycontainer/unity">Unity</a>.</li>
 </ul>
 <p>But I’m leaving those for a future post. Otherwise, like our intrepid explorers, I’ll be canceled and never get back to my own time and place.</p>
-<p><img src="http://epguides.com/FantasticJourney/cast.jpg" alt=""></p>
+<p><img src="http://epguides.com/FantasticJourney/cast.jpg" alt="" /></p>
 </div>
               </div>
               

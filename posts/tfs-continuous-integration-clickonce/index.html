@@ -69,7 +69,7 @@
 <li>A temporary certificate</li>
 </ul>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 This post will <em>not</em> deal with publishing a ClickOnce application via CI.</p>
 </blockquote>
 <h1 id="the-problems">The Problems</h1>
@@ -80,15 +80,15 @@ This post will <em>not</em> deal with publishing a ClickOnce application via CI.
 <h2 id="install-signtool.exe-on-the-server">Install SignTool.exe on the Server</h2>
 <p>When a developer creates a ClickOnce app, she must have the ClickOnce tools installed. In Visual Studio 2015, this is a feature checkbox during installation. If your forgot, you can open Programs and Features, right-click Visual Studio, and choose Change to rerun the installation.</p>
 <p><a href="https://social.msdn.microsoft.com/Forums/en-US/2d9414f5-1e78-4d33-b651-d09be74db80d/clickonce-publish-in-visual-studio-2015?forum=winformssetup">https://social.msdn.microsoft.com/Forums/en-US/2d9414f5-1e78-4d33-b651-d09be74db80d/clickonce-publish-in-visual-studio-2015?forum=winformssetup</a></p>
-<p><img src="https://social.msdn.microsoft.com/Forums/getfile/714414" alt=""></p>
+<p><img src="https://social.msdn.microsoft.com/Forums/getfile/714414" alt="" /></p>
 <p>But we're not going to install Visual Studio on the server.</p>
 <h3 id="just-the-files">Just the Files?</h3>
 <p>Can we create the appropriate folder path on the server and just copy the needed files, instead of installing 1GB of utilities? Maybe. It looks like the required files are:</p>
-<p>signtool.exe<br>
-mssign32.dll<br>
+<p>signtool.exe<br />
+mssign32.dll<br />
 wintrust.dll</p>
 <p>And the paths are:</p>
-<p>C:\Program Files (x86)\Windows Kits\8.1\bin\x86<br>
+<p>C:\Program Files (x86)\Windows Kits\8.1\bin\x86<br />
 C:\Program Files (x86)\Windows Kits\10\bin\x86</p>
 <p>I used the first path on Windows 10 and it worked fine. This is definitely worth testing before installing the SDK.</p>
 <h3 id="via-the-windows-sdk">Via the Windows SDK</h3>
@@ -98,10 +98,10 @@ C:\Program Files (x86)\Windows Kits\10\bin\x86</p>
 <p>If you're on Windows 7/8/2008R2, install the Windows 8 SDK.</p>
 <p><a href="https://developer.microsoft.com/en-us/windows/downloads/windows-8-1-sdk">https://developer.microsoft.com/en-us/windows/downloads/windows-8-1-sdk</a></p>
 <p>During installation, choose the Windows Software Development Kit. Funny, in Windows 10 they moved the SDK to the bottom!</p>
-<p><a href="images/17-03-03_151212.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-clickonce/images/17-03-03_151212.png" alt="2017-03-03_151212" title="2017-03-03_151212"></a></p>
-<p><a href="images/17-03-03_151303.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-clickonce/images/17-03-03_151303.png" alt="2017-03-03_151303" title="2017-03-03_151303"></a></p>
+<p><a href="images/17-03-03_151212.png"><img src="images/17-03-03_151212.png" alt="2017-03-03_151212" title="2017-03-03_151212" /></a></p>
+<p><a href="images/17-03-03_151303.png"><img src="images/17-03-03_151303.png" alt="2017-03-03_151303" title="2017-03-03_151303" /></a></p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 On my Windows 10 machine, running Visual Studio 2015, when I installed the ClickOnce tools, signtool.exe was installed to the Windows 8.1 SDK folder instead of Windows 10. It works...but go figure.</p>
 </blockquote>
 <h1 id="the-wrap-up">The Wrap Up</h1>

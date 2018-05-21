@@ -63,18 +63,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 09:30</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -86,12 +86,12 @@
 <p>What follows is an opinionated (in the positive sense) set of examples for creating EF 5 Code First Relationships. It’s for me, the way I like to do them, and if it helps you, wonderful.</p>
 <p>There are some oblique database references, and more than a few links to people and things that interest me. I’ve tried hard to be error-free, but that is a path of folly.</p>
 <p>Finally, many thanks to my wife, Stephanie, for proof-reading these posts.</p>
-<hr>
+<hr />
 <p>*<a href="http://sherlockholmesquotes.com/">Sherlock Holmes</a>: 'It is a capital mistake to theorize before one has data. Insensibly one begins to twist facts to suit theories, instead of theories to suit facts.'</p>
-<p><a href="http://movies.netflix.com/movie/House-of-Cards/70178217">Netflix House of Cards</a><br>
-<a href="http://dictionary.reference.com/browse/folly?&amp;path=/">Folly</a><br>
+<p><a href="http://movies.netflix.com/movie/House-of-Cards/70178217">Netflix House of Cards</a><br />
+<a href="http://dictionary.reference.com/browse/folly?&amp;path=/">Folly</a><br />
 <a href="http://stephkayeturner.com/">Stephanie Kaye Turner</a></p>
-<hr>
+<hr />
 </div>
               </div>
               
@@ -137,7 +137,7 @@ DEALLOCATE userlogin_cursor
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-03-23 13:48</span></p>
-                <div class='post-content'><p>I'm preparing a series on Entity Framework, and discovered something yesterday I never knew. In MS SQL Server, you can't successfully model a true one-to-one relationship, where both sides are required. I say "successfully," because you can configure the tables, but they won't work. This is because SQL won't allow deferred constraint resolution, which is fine by me.</p>
+                <div class='post-content'><p>I'm preparing a series on Entity Framework, and discovered something yesterday I never knew. In MS SQL Server, you can't successfully model a true one-to-one relationship, where both sides are required. I say &quot;successfully,&quot; because you can configure the tables, but they won't work. This is because SQL won't allow deferred constraint resolution, which is fine by me.</p>
 <p>The insert statements, below, will fail. Note you have to remove one of the foreign key constraints before you can drop the tables!</p>
 <pre><code class="language-csharp">create table One (
  OneId int not null identity primary key,

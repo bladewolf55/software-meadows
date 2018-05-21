@@ -70,7 +70,7 @@
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
 <h1 id="where-were-at">Where We're At</h1>
@@ -82,8 +82,8 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 </ol>
 <p>We'll use the same project as the authorization server, but it's important to know that the Web API could be in a completely separate project.</p>
 <h2 id="web-api">Web API</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
+<p><strong>References</strong><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br />
 <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>Install the packages for Web API, and being able to accept the IdentityServer tokens. Note IdentityModel version, which is latest for .Net 4.6 (2.x is for .Net Core).</p>
 <pre><code class="language-csharp">Install-Package Microsoft.AspNet.WebApi.Client -Version 5.2.3 -Project AuthAndApi
@@ -129,9 +129,9 @@ namespace AuthAndApi
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {
                 //In this case, the authorization server is also the Web API server
-                Authority = "http://localhost:27230",
+                Authority = &quot;http://localhost:27230&quot;,
                 ValidationMode = ValidationMode.ValidationEndpoint,
-                RequiredScopes = new[] { "email" }
+                RequiredScopes = new[] { &quot;email&quot; }
             });
 
             //Configure Web API
@@ -143,10 +143,10 @@ namespace AuthAndApi
 }
 </code></pre>
 <p>Add a Controllers folder, and a controller named Test.</p>
-<p><a href="images/17-05-06_114024.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114024.png" alt="2017-05-06_114024" title="2017-05-06_114024"></a><a href="images/17-05-06_114144_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114144_1.png" alt="2017-05-06_114144" title="2017-05-06_114144"></a><a href="images/17-05-06_114210.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114210.png" alt="2017-05-06_114210" title="2017-05-06_114210"></a></p>
+<p><a href="images/17-05-06_114024.png"><img src="images/17-05-06_114024.png" alt="2017-05-06_114024" title="2017-05-06_114024" /></a><a href="images/17-05-06_114144_1.png"><img src="images/17-05-06_114144_1.png" alt="2017-05-06_114144" title="2017-05-06_114144" /></a><a href="images/17-05-06_114210.png"><img src="images/17-05-06_114210.png" alt="2017-05-06_114210" title="2017-05-06_114210" /></a></p>
 <p>Create an API method that requires authorization. The method checks for evidence a user authorized (and not just the application).</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 Code shamelessly stolen from the IdentityServer samples</p>
 </blockquote>
 <p><strong>TestController.cs</strong></p>
@@ -161,7 +161,7 @@ using System.Security.Claims;
 
 namespace AuthAndApi.Controllers
 {
-    [Route("test")]
+    [Route(&quot;test&quot;)]
     [Authorize]
     public class TestController : ApiController
     {
@@ -169,23 +169,23 @@ namespace AuthAndApi.Controllers
         {
             var user = User as ClaimsPrincipal;
 
-            var subjectClaim = user.FindFirst("sub");
+            var subjectClaim = user.FindFirst(&quot;sub&quot;);
             if (subjectClaim != null)
             {
                 return Json(new
                 {
-                    message = "OK user",
-                    client = user.FindFirst("client_id").Value,
+                    message = &quot;OK user&quot;,
+                    client = user.FindFirst(&quot;client_id&quot;).Value,
                     subject = subjectClaim.Value,
-                    email = user.FindFirst("email").Value
+                    email = user.FindFirst(&quot;email&quot;).Value
                 });
             }
             else
             {
                 return Json(new
                 {
-                    message = "User claim not found for this client_id",
-                    client = user.FindFirst("client_id").Value
+                    message = &quot;User claim not found for this client_id&quot;,
+                    client = user.FindFirst(&quot;client_id&quot;).Value
                 });
             }
         }
@@ -205,7 +205,7 @@ namespace AuthAndApi.Controllers
         {
             //get token
             var response = GetAccessToken();
-            Console.WriteLine("Access Token: " + response.AccessToken);
+            Console.WriteLine(&quot;Access Token: &quot; + response.AccessToken);
             //use token
             CallProtectedApiResource(response.AccessToken);
             Console.ReadLine();
@@ -215,11 +215,11 @@ namespace AuthAndApi.Controllers
         {
             var client = new HttpClient();
             client.SetBearerToken(access_token);
-            Console.WriteLine(client.GetStringAsync("http://localhost:27230/test").Result);
+            Console.WriteLine(client.GetStringAsync(&quot;http://localhost:27230/test&quot;).Result);
         }
 </code></pre>
 <p>Run the solution. After authorizing, the application successfully gets the protected resource's data.</p>
-<p><a href="images/17-05-06_121035_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_121035_1.png" alt="2017-05-06_121035" title="2017-05-06_121035"></a></p>
+<p><a href="images/17-05-06_121035_1.png"><img src="images/17-05-06_121035_1.png" alt="2017-05-06_121035" title="2017-05-06_121035" /></a></p>
 <h1 id="wrap-up">Wrap Up</h1>
 <p>We now have a fully functioning mobile application! Next up, persisting the IdentityServer configuration.</p>
 </div>
@@ -237,14 +237,14 @@ namespace AuthAndApi.Controllers
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
 <h2 id="overview-why-pkce">Overview - Why PKCE?</h2>
-<p><strong>References</strong><br>
+<p><strong>References</strong><br />
 <a href="https://alexbilbie.com/guide-to-oauth-2-grants/">A Guide to OAuth 2.0 Grants</a> <a href="https://tools.ietf.org/html/rfc7636">Proof Key for Code Exchange</a></p>
-<p>Mobile (i.e. "native") applications are difficult when it comes to authorizing users. The reasons are: they are long-lived, and can't keep a secret.</p>
-<p>In the descriptions below, "two-step" means calling the authorization endpoint then the token endpoint, "one-step" means calling just the token endpoint, "trusted" means the client can keep a secret key, "short-lived" means only an access token, and "long-lived" means an access+refresh token.</p>
+<p>Mobile (i.e. &quot;native&quot;) applications are difficult when it comes to authorizing users. The reasons are: they are long-lived, and can't keep a secret.</p>
+<p>In the descriptions below, &quot;two-step&quot; means calling the authorization endpoint then the token endpoint, &quot;one-step&quot; means calling just the token endpoint, &quot;trusted&quot; means the client can keep a secret key, &quot;short-lived&quot; means only an access token, and &quot;long-lived&quot; means an access+refresh token.</p>
 <p>The standard OAuth 2 grants are:</p>
 <ul>
 <li>Authorization code grant (two-step, trusted, long-lived)</li>
@@ -255,19 +255,19 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 </ul>
 <p>None of these fits well for a mobile app, which is untrusted but long-lived. The solution is Proof Key for Code Exchange (PKCE). PKCE generates a temporary secret string and a way to verify that string. It sends the secret to the authorization endpoint, which stores it, then sends the validator to the token endpoint, which verifies the stored secret. This mitigates the threat of another application capturing the authorization code; without the secret/validator, the auth code is useless.</p>
 <h2 id="authorization-server-simplistic">Authorization Server - Simplistic</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
+<p><strong>References</strong><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br />
 <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>We'll create a simple OAuth2 server using IdentityServer3. We won't even create a Web API, so we can see just the server in operation. In other words, we'll be able to get tokens, but have nothing to use them with.</p>
 <p>Create a new Empty web application project named AuthAndApi</p>
-<p><a href="images/17-05-03_135031_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-03_135031_1.png" alt="2017-05-03_135031" title="2017-05-03_135031"></a></p>
+<p><a href="images/17-05-03_135031_1.png"><img src="images/17-05-03_135031_1.png" alt="2017-05-03_135031" title="2017-05-03_135031" /></a></p>
 <p>Install packages for the authentication server. This assumes using IIS for the web host.</p>
 <pre><code class="language-csharp">Install-Package IdentityServer3 -Project AuthAndApi
 Install-Package Microsoft.Owin.Host.Systemweb -Version 3.1.0 -Project AuthAndApi
 </code></pre>
 <p>All the IdentityServer documents say RAMFAR should be enabled in web.config.</p>
 <pre><code class="language-xml">  &lt;system.webServer&gt;
-    &lt;modules runAllManagedModulesForAllRequests="true" /&gt;
+    &lt;modules runAllManagedModulesForAllRequests=&quot;true&quot; /&gt;
   &lt;/system.webServer&gt;
 </code></pre>
 <p>Add Folders for IdOptions and IdUsers. These represent the database storage we'll configure later.</p>
@@ -289,7 +289,7 @@ namespace AuthAndApi.IdOptions
             return new List&lt;Scope&gt;
             {
                 //Create the email scope for OAuth. Later, when using OpenID Connect, return StandardScopes.Email instead
-                new Scope() { Name = "email", DisplayName = "Email", Claims = new List&lt;ScopeClaim&gt;() { new ScopeClaim("email", true) } }
+                new Scope() { Name = &quot;email&quot;, DisplayName = &quot;Email&quot;, Claims = new List&lt;ScopeClaim&gt;() { new ScopeClaim(&quot;email&quot;, true) } }
             };
         }
     }
@@ -315,8 +315,8 @@ namespace AuthAndApi.IdOptions
                 //The resource, such as Web API, is configured to accept these tokens.
                 new Client()
                 {
-                    ClientName = "Pretend Android Mobile App",
-                    ClientId = "a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef",
+                    ClientName = &quot;Pretend Android Mobile App&quot;,
+                    ClientId = &quot;a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef&quot;,
                     Enabled = true,
                     //About Reference vs JWT tokens
                     //https://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/
@@ -324,17 +324,17 @@ namespace AuthAndApi.IdOptions
                     Flow = Flows.AuthorizationCodeWithProofKey,
                     AllowedScopes = new List&lt;string&gt;
                     {
-                        "email"
+                        &quot;email&quot;
                     },
                     //URIs the authorization code is allowed to be redirected to
                     RedirectUris = new List&lt;string&gt;()
                     {
-                        "http://localhost:19191/"
+                        &quot;http://localhost:19191/&quot;
                     },
                     //Shouldn't be required for this flow, but is
                     ClientSecrets = new List&lt;Secret&gt;()
                     {
-                        new Secret("e9711973-edd7-496f-b415-b10ad0667305".Sha256())
+                        new Secret(&quot;e9711973-edd7-496f-b415-b10ad0667305&quot;.Sha256())
                     }
                 }
             };
@@ -363,12 +363,12 @@ namespace AuthAndApi.IdUsers
                 {
                     //Subject is identifier? Could be external identity,
                     //so it's not our own database primary key
-                    Subject = "1",
-                    Username = "alice",
-                    Password = "secret",
+                    Subject = &quot;1&quot;,
+                    Username = &quot;alice&quot;,
+                    Password = &quot;secret&quot;,
                     Claims = new List&lt;Claim&gt;()
                     {
-                        new Claim("email", "alice@example.com")
+                        new Claim(&quot;email&quot;, &quot;alice@example.com&quot;)
                     }
                 }
             };
@@ -413,14 +413,14 @@ namespace AuthAndApi
 }
 </code></pre>
 <p>The basic IdentityServer is configured for OAuth. For now, we don't need a web page to open, since this is a server, so turn off displaying the page in project Properties.</p>
-<p><a href="images/17-05-06_074519.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_074519.png" alt="2017-05-06_074519" title="2017-05-06_074519"></a></p>
+<p><a href="images/17-05-06_074519.png"><img src="images/17-05-06_074519.png" alt="2017-05-06_074519" title="2017-05-06_074519" /></a></p>
 <blockquote>
-<p><strong>Note about Reference vs JWT tokens</strong><br>
+<p><strong>Note about Reference vs JWT tokens</strong><br />
 There are two general types of access tokens IdentityServer can return: Reference, or JSON Web Token (JWT). JWTs are self-contained; they can be validated without contacting the server. But they're slightly more complicated to configure. One advantage of using Reference tokens is that they can be quickly revoked, since the resource must call the authorizing server on each use. The disadvantage is this increases network traffic.</p>
 </blockquote>
 <h2 id="pretend-mobile-app-get-token">Pretend Mobile App - Get Token</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
+<p><strong>References</strong><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br />
 <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>Now we're going to get an authorization code and token from the server, using a native application that simulates a mobile app. In the Authorization Code Grant, the authorization code is retrieved by using an agent--normally a web browser. Mobile apps can open browsers on behalf of applications, providing a seamless experience. They can also register special URIs to receive requests. The basic flow is:</p>
 <p><strong>Front Channel</strong></p>
@@ -434,10 +434,10 @@ There are two general types of access tokens IdentityServer can return: Referenc
 <li>Server validates, then responds with the access token.</li>
 </ol>
 <p>Add a standard console application to the solution, named PretendMobile.</p>
-<p><a href="images/17-05-06_083908_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_083908_1.png" alt="2017-05-06_083908" title="2017-05-06_083908"></a></p>
+<p><a href="images/17-05-06_083908_1.png"><img src="images/17-05-06_083908_1.png" alt="2017-05-06_083908" title="2017-05-06_083908" /></a></p>
 <p>Add packages. These aren't required (and wouldn't be available for a mobile application). They just include helper classes and methods for the HTTP communication. Anything they do could be done with HttpClient or some other appropriate network library.</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 Version number is important! Later versions are for .Net Core.</p>
 </blockquote>
 <pre><code class="language-csharp">Install-Package IdentityModel -Version 1.9.2 -Project PretendMobile
@@ -463,20 +463,20 @@ namespace PretendMobile
         static void Main(string[] args)
         {
             var response = GetAccessToken();
-            Console.WriteLine("Access Token: " + response.AccessToken);
+            Console.WriteLine(&quot;Access Token: &quot; + response.AccessToken);
             Console.ReadLine();
         }
 
         static TokenResponse GetAccessToken()
         {
-            string clientId = "a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef";
-            string clientSecret = "e9711973-edd7-496f-b415-b10ad0667305";
-            string scope = "email";
-            string redirectUri = "http://localhost:19191/";
+            string clientId = &quot;a065ae9f-0d02-45fa-85b6-4dc93e2ad5ef&quot;;
+            string clientSecret = &quot;e9711973-edd7-496f-b415-b10ad0667305&quot;;
+            string scope = &quot;email&quot;;
+            string redirectUri = &quot;http://localhost:19191/&quot;;
             string verifier = CryptoRandom.CreateUniqueId(64);
             string codeChallenge = verifier.ToCodeChallenge();
-            string authorizationEndpoint = "http://localhost:27230/connect/authorize";
-            string tokenEndpoint = "http://localhost:27230/connect/token";
+            string authorizationEndpoint = &quot;http://localhost:27230/connect/authorize&quot;;
+            string tokenEndpoint = &quot;http://localhost:27230/connect/token&quot;;
 
             //Front channel to get the authorization code
             //This simulates the mobile app starting a browser session on the authorization server,
@@ -484,7 +484,7 @@ namespace PretendMobile
             //while the app waits for the redirect from the auth server that contains the code.
             OpenBrowserToAuthenticate(authorizationEndpoint, clientId, scope, redirectUri, codeChallenge);
             string code = ReceiveAuthCodeFromServer(redirectUri);
-            Console.WriteLine("Authorization Code: " + code);
+            Console.WriteLine(&quot;Authorization Code: &quot; + code);
 
             //Back channel to get the access token
             //The client secret is still required by IdentityServer, even though it's not
@@ -504,7 +504,7 @@ namespace PretendMobile
             AuthorizeRequest request = new AuthorizeRequest(authorizationEndpoint);
             string url = request.CreateAuthorizeUrl(
                 clientId: clientId,
-                responseType: "code",
+                responseType: &quot;code&quot;,
                 scope: scope,
                 redirectUri: redirectUri,
                 nonce: nonce,
@@ -520,14 +520,14 @@ namespace PretendMobile
         {
             var web = new HttpListener();
             web.Prefixes.Add(redirectUri);
-            Console.WriteLine("Listening for request from auth server...");
+            Console.WriteLine(&quot;Listening for request from auth server...&quot;);
             web.Start();
             var req = web.GetContext().Request;
             Stream body = req.InputStream;
             var encoding = req.ContentEncoding;
             var reader = new StreamReader(body, encoding);
-            string code = reader.ReadToEnd().Replace("code=", "");
-            Console.WriteLine("Got it, closing.");
+            string code = reader.ReadToEnd().Replace(&quot;code=&quot;, &quot;&quot;);
+            Console.WriteLine(&quot;Got it, closing.&quot;);
 
             //Not sure how, but the mobile app should end the browser session, maybe when the app
             //gets the response.
@@ -540,19 +540,19 @@ namespace PretendMobile
     }
 }
 </code></pre>
-<p>Let's configure the solution to run both projects. Right-click Solution and choose Properties. Change the Startup Project to "Multiple startup projects," the Actions to "Start," and be sure the identity server project starts first.</p>
-<p><a href="images/17-05-06_091226_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_091226_1.png" alt="2017-05-06_091226" title="2017-05-06_091226"></a></p>
+<p>Let's configure the solution to run both projects. Right-click Solution and choose Properties. Change the Startup Project to &quot;Multiple startup projects,&quot; the Actions to &quot;Start,&quot; and be sure the identity server project starts first.</p>
+<p><a href="images/17-05-06_091226_1.png"><img src="images/17-05-06_091226_1.png" alt="2017-05-06_091226" title="2017-05-06_091226" /></a></p>
 <p>Run the solution.</p>
 <ol>
 <li>The server will start.</li>
 <li>The console application will open a browser to the /authorize endpoint, requesting an authorization code.</li>
-<li>Authenticate using credentials "alice" and "secret".</li>
+<li>Authenticate using credentials &quot;alice&quot; and &quot;secret&quot;.</li>
 <li>Authorize the requested scope(s).</li>
 <li>The authorization code is sent back to the listening application.</li>
 <li>The app sends a direct request to the /token endpoint, requesting an access token.</li>
 <li>The server returns the token.</li>
 </ol>
-<p><a href="images/17-05-06_104414.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104414.png" alt="2017-05-06_104414" title="2017-05-06_104414"></a><a href="images/17-05-06_104502.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104502.png" alt="2017-05-06_104502" title="2017-05-06_104502"></a><a href="images/17-05-06_104651_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104651_1.png" alt="2017-05-06_104651" title="2017-05-06_104651"></a><a href="images/17-05-06_104726.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple/images/17-05-06_104726.png" alt="2017-05-06_104726" title="2017-05-06_104726"></a></p>
+<p><a href="images/17-05-06_104414.png"><img src="images/17-05-06_104414.png" alt="2017-05-06_104414" title="2017-05-06_104414" /></a><a href="images/17-05-06_104502.png"><img src="images/17-05-06_104502.png" alt="2017-05-06_104502" title="2017-05-06_104502" /></a><a href="images/17-05-06_104651_1.png"><img src="images/17-05-06_104651_1.png" alt="2017-05-06_104651" title="2017-05-06_104651" /></a><a href="images/17-05-06_104726.png"><img src="images/17-05-06_104726.png" alt="2017-05-06_104726" title="2017-05-06_104726" /></a></p>
 <h1 id="wrap-up">Wrap Up</h1>
 <p>We've built a basic OAuth2 server that uses the Authorization Code Grant plus PKCE for dynamically generated client secrets, and can get an access token. In the next part, we'll build a protected resource that requires a token.</p>
 </div>
@@ -562,7 +562,7 @@ namespace PretendMobile
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-03-28 09:31</span></p>
-                <div class='post-content'><p><a href="images/ci-logo.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/ci-logo.png" alt="ci-logo" title="ci-logo"></a> This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.</p>
+                <div class='post-content'><p><a href="images/ci-logo.png"><img src="images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a> This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.</p>
 <p><a href="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples/src/default/CI%20Walk%20Through/TFS%20Continuous%20Integration%20Walk%20Through%20Part%205a%20-%20Multiple%20Solutions%20-%20Simple%20Project%20References.md">TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></p>
 <h1 id="what-im-talking-about">What I'm Talking About</h1>
@@ -617,10 +617,10 @@ ReverseNames
 <li>Doesn't scale. What if you had fifty solutions using this approach?</li>
 </ul>
 <h1 id="creating-ci-builds-as-is">Creating CI Builds As Is</h1>
-<p>My manager says, "We need to get these projects into TFS Build."</p>
-<p>I ask, "Can I restructure TFS?"</p>
-<p>He says, "Not yet."</p>
-<p>I say, "OK."</p>
+<p>My manager says, &quot;We need to get these projects into TFS Build.&quot;</p>
+<p>I ask, &quot;Can I restructure TFS?&quot;</p>
+<p>He says, &quot;Not yet.&quot;</p>
+<p>I say, &quot;OK.&quot;</p>
 <p>Since I'm pretty sure there are dependency problems, the first thing I decide to do is spin up a clean machine, install Visual Studio with no changes, Get Latest on $Main, and try to build all the solutions.</p>
 <p>What's this!? Multiple failures? Oh, no! What went wrong?</p>
 <ol>
@@ -628,58 +628,58 @@ ReverseNames
 <li>RevEngine failed because Barry's the only developer who has ever worked on RevEngine, and only his machine has jamma.dll. It was never checked into source control.</li>
 </ol>
 <p>Quite a bit more could go wrong, but you get the idea. Let's fix these with an eye toward our eventual build server.</p>
-<hr>
+<hr />
 <p><strong>BONUS CODE!</strong></p>
 <p>If I had lots of solutions, I could build all of of them using two files in the root of the folder than has all the solution folders.</p>
 <p><strong>BuildAllSolutions.targets</strong></p>
-<pre><code class="language-xml">&lt;Project ToolsVersion="14.0"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-         DefaultTargets="Default"&gt;
+<pre><code class="language-xml">&lt;Project ToolsVersion=&quot;14.0&quot;
+         xmlns=&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;
+         DefaultTargets=&quot;Default&quot;&gt;
   &lt;!-- http://stackoverflow.com/a/9609086/1628707 --&gt;
   &lt;ItemGroup&gt;
-    &lt;AllFiles Include=".\**\*.sln"/&gt;
+    &lt;AllFiles Include=&quot;.\**\*.sln&quot;/&gt;
   &lt;/ItemGroup&gt;
-  &lt;Target Name="Default"&gt;
+  &lt;Target Name=&quot;Default&quot;&gt;
     &lt;PropertyGroup&gt;
     &lt;BuildCmd&gt;@(AllFiles-&gt;'&amp;quot;$(MSBuildToolsPath)\msbuild.exe&amp;quot; &amp;quot;%(Identity)&amp;quot; /v:q /fl /flp:errorsonly;logfile=build-logs\%(filename)-log.txt','%0D%0A')&lt;/BuildCmd&gt;
     &lt;/PropertyGroup&gt;
-    &lt;Exec Command="mkdir build-logs" Condition="!Exists('build-logs')" /&gt;
-    &lt;Exec Command="$(BuildCmd)" /&gt;
+    &lt;Exec Command=&quot;mkdir build-logs&quot; Condition=&quot;!Exists('build-logs')&quot; /&gt;
+    &lt;Exec Command=&quot;$(BuildCmd)&quot; /&gt;
   &lt;/Target&gt;
 &lt;/Project&gt;
 </code></pre>
 <p><strong>BuildAllSolutions.cmd</strong></p>
 <pre><code class="language-csharp">--rem path to your latest VS build version
-"C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe" BuildAllSolutions.targets
+&quot;C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe&quot; BuildAllSolutions.targets
 pause
 </code></pre>
-<p>Running the cmd file creates a folder named "build-logs", recursively builds each solution, and outputs each solution's errors. If a solution's log file is not empty, there was a build problem.</p>
+<p>Running the cmd file creates a folder named &quot;build-logs&quot;, recursively builds each solution, and outputs each solution's errors. If a solution's log file is not empty, there was a build problem.</p>
 <p><strong>END BONUS CODE</strong></p>
-<hr>
+<hr />
 <h2 id="dealing-with-a-local-nuget-package-source">Dealing With a Local NuGet Package Source</h2>
 <p>There are four (technically five or six!) places to store NuGet config files containing package source information, and two ways to configure package source in TFS Build.</p>
 <h3 id="nuget-config-file-locations">NuGet Config File Locations</h3>
 <p>Let's assume our in-house NuGet source is located at <a href="http://ngserver/nuget">http://ngserver/nuget</a>.</p>
 <ol>
-<li><strong>User Profile</strong> - Enter it into Visual Studio's settings. This is fine for regular development, but not good for a build server because the build agent service will run as either Local System or a specific user account such as "tfsagent".</li>
+<li><strong>User Profile</strong> - Enter it into Visual Studio's settings. This is fine for regular development, but not good for a build server because the build agent service will run as either Local System or a specific user account such as &quot;tfsagent&quot;.</li>
 </ol>
-<p><a href="images/17-03-17_155817.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-17_155817.png" alt="2017-03-17_155817" title="2017-03-17_155817"></a></p>
+<p><a href="images/17-03-17_155817.png"><img src="images/17-03-17_155817.png" alt="2017-03-17_155817" title="2017-03-17_155817" /></a></p>
 <p>You can also manually edit the user profile's nuget.config, which is what the Visual Studio setting dialog is doing. The file is located at %APPDATA%\NuGet\NuGet.config. You add the source under packageSources.</p>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;configuration&gt;
   &lt;activePackageSource&gt;
-    &lt;add key="nuget.org" value="https://www.nuget.org/api/v2/" /&gt;
+    &lt;add key=&quot;nuget.org&quot; value=&quot;https://www.nuget.org/api/v2/&quot; /&gt;
   &lt;/activePackageSource&gt;
   &lt;packageSources&gt;
-    &lt;add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" /&gt;
-    &lt;add key="NuGet Local Source" value="http://ngserver/nuget" /&gt;
+    &lt;add key=&quot;nuget.org&quot; value=&quot;https://api.nuget.org/v3/index.json&quot; protocolVersion=&quot;3&quot; /&gt;
+    &lt;add key=&quot;NuGet Local Source&quot; value=&quot;http://ngserver/nuget&quot; /&gt;
   &lt;/packageSources&gt;
   &lt;packageRestore&gt;
-    &lt;add key="enabled" value="True" /&gt;
-    &lt;add key="automatic" value="True" /&gt;
+    &lt;add key=&quot;enabled&quot; value=&quot;True&quot; /&gt;
+    &lt;add key=&quot;automatic&quot; value=&quot;True&quot; /&gt;
   &lt;/packageRestore&gt;
   &lt;bindingRedirects&gt;
-    &lt;add key="skip" value="False" /&gt;
+    &lt;add key=&quot;skip&quot; value=&quot;False&quot; /&gt;
   &lt;/bindingRedirects&gt;
 &lt;/configuration&gt;
 </code></pre>
@@ -687,17 +687,17 @@ pause
 <li><strong>Solution</strong> - Create a solution-level nuget.config file.</li>
 </ol>
 <p>You can create a file named nuget.config, put it in your solution's root and add it to source control. This will determine which NuGet sources the solution uses.</p>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;configuration&gt;
   &lt;packageRestore&gt;
-    &lt;add key="enabled" value="True" /&gt;
-    &lt;add key="automatic" value="True" /&gt;
+    &lt;add key=&quot;enabled&quot; value=&quot;True&quot; /&gt;
+    &lt;add key=&quot;automatic&quot; value=&quot;True&quot; /&gt;
   &lt;/packageRestore&gt;
   &lt;packageSources&gt;
     &lt;!-- uncomment clear if you want to ONLY use these sources --&gt;
     &lt;!-- otherwise, these sources are added to your list --&gt;
     &lt;!-- clear /&gt; --&gt;
-  &lt;add key="NuGet Local Source" value="http://ngserver/nuget" /&gt;
+  &lt;add key=&quot;NuGet Local Source&quot; value=&quot;http://ngserver/nuget&quot; /&gt;
   &lt;/packageSources&gt;
 &lt;/configuration&gt;
 </code></pre>
@@ -712,10 +712,10 @@ pause
 </ul>
 <p>It can be named anything that ends with .config, including <code>NuGet.config</code>. However, a custom name seems recommended.</p>
 <p>For example, I could name the file <code>SoftwareMeadows.Online.config</code>. It would contain the package source like this:</p>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;configuration&gt;
   &lt;packageSources&gt;
-    &lt;add key="NuGet Local Source" value="http://ngserver/nuget" /&gt;
+    &lt;add key=&quot;NuGet Local Source&quot; value=&quot;http://ngserver/nuget&quot; /&gt;
   &lt;/packageSources&gt;
 &lt;/configuration&gt;
 </code></pre>
@@ -736,13 +736,13 @@ pause
 <li>It appears a source listed in NuGetDefaults.config cannot be removed using the <code>&lt;clear /&gt;</code> tag. It can only be disabled.</li>
 </ul>
 <h3 id="specifying-the-config-in-tfs-build">Specifying the Config in TFS Build</h3>
-<p>Whichever method you use below, ensure the agent service has permissions to the config file. The service name will be something like "VSO Agent ([AgentName])". Microsoft recommends creating a user named "tfsagent". The default is Local Service.</p>
-<p><a href="images/17-03-17_162121.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-17_162121.png" alt="2017-03-17_162121" title="2017-03-17_162121"></a></p>
+<p>Whichever method you use below, ensure the agent service has permissions to the config file. The service name will be something like &quot;VSO Agent ([AgentName])&quot;. Microsoft recommends creating a user named &quot;tfsagent&quot;. The default is Local Service.</p>
+<p><a href="images/17-03-17_162121.png"><img src="images/17-03-17_162121.png" alt="2017-03-17_162121" title="2017-03-17_162121" /></a></p>
 <ol>
 <li>TFS Machine-Wide Path - RECOMMENDED</li>
 </ol>
 <p>Personally, for internal development, I'd add the package source to the build server's machine-wide config file and be done with it. So, my path--assuming VS 2015 installed--would be something like: <code>%ProgramData%\NuGet\Config\SoftwareMeadows.Online.config</code></p>
-<p><a href="images/17-03-17_162400.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-17_162400.png" alt="2017-03-17_162400" title="2017-03-17_162400"></a></p>
+<p><a href="images/17-03-17_162400.png"><img src="images/17-03-17_162400.png" alt="2017-03-17_162400" title="2017-03-17_162400" /></a></p>
 <p>Remember from above this will change if you install Visual Studio 2017 on the build server (or use NuGet 4.x).</p>
 <ol start="2">
 <li>Add nuget.config to the build agent's profile.</li>
@@ -752,28 +752,28 @@ pause
 <li>TFS NuGet Installer Path Field</li>
 </ol>
 <p>If you check in a nuget.config file with the solution, enter the path in your build definition's NuGet Installer step. This path is relative to the Path to Solution. I would use this solution if my team didn't all work in the same network, and so needed to use an authenticated NuGet server such as <a href="http://myget.org/">MyGet</a>.</p>
-<p><a href="images/17-03-17_162452.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-17_162452.png" alt="2017-03-17_162452" title="2017-03-17_162452"></a></p>
+<p><a href="images/17-03-17_162452.png"><img src="images/17-03-17_162452.png" alt="2017-03-17_162452" title="2017-03-17_162452" /></a></p>
 <ol start="4">
 <li>Use the -configFile switch</li>
 </ol>
 <p>You could also put a nuget.config file somewhere on the build server (or network?), and use the -configFile switch. Remember the build agent service needs permission to read the file.</p>
-<p><a href="images/17-03-17_162410.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-17_162410.png" alt="2017-03-17_162410" title="2017-03-17_162410"></a></p>
+<p><a href="images/17-03-17_162410.png"><img src="images/17-03-17_162410.png" alt="2017-03-17_162410" title="2017-03-17_162410" /></a></p>
 <h2 id="dealing-with-barry">Dealing with Barry</h2>
 <p>Barry's been with us for five years. Barry drinks his coffee black, and lots of it. Barry knows where every file on his machine is, and would prefer you didn't look over his shoulder. Barry has his code, please leave it alone.</p>
-<p>Unfortunately, Barry assumes he'll always be here, and hasn't ever tested what would happen if his machine imploded in a fiery death. I go to Barry and say, "Your code doesn't build on a clean checkout." Barry storms over to my computer and starts typing. I observe, take notes, and when I see him copying jamma.dll, ask, "What's that?"</p>
-<p>"Oh," he mumbles, "license dll. Forgot about that. Kinda important. RevEngine won't run without it."</p>
+<p>Unfortunately, Barry assumes he'll always be here, and hasn't ever tested what would happen if his machine imploded in a fiery death. I go to Barry and say, &quot;Your code doesn't build on a clean checkout.&quot; Barry storms over to my computer and starts typing. I observe, take notes, and when I see him copying jamma.dll, ask, &quot;What's that?&quot;</p>
+<p>&quot;Oh,&quot; he mumbles, &quot;license dll. Forgot about that. Kinda important. RevEngine won't run without it.&quot;</p>
 <p>I don't say anything, but make a note that, once I have all the software building and deployable, Barry might not be long for our company. In the meantime, there are two ways I can handle this old dependency.</p>
 <ol>
 <li>Ensure it's in a folder under the solution or project, reference it there, and add it to source control.</li>
 </ol>
-<p><a href="images/17-03-17_164300.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-17_164300.png" alt="2017-03-17_164300" title="2017-03-17_164300"></a></p>
+<p><a href="images/17-03-17_164300.png"><img src="images/17-03-17_164300.png" alt="2017-03-17_164300" title="2017-03-17_164300" /></a></p>
 <ol start="2">
 <li>Create the dll as a NuGet package, and add it to my NuGet server.</li>
 </ol>
 <p><a href="https://dist.nuget.org/index.html">Download nuget.exe</a> and put in same folder as the dll (or put in its own folder and add to the system path variables).</p>
 <p>Open a command prompt, change directories to where the dll is, and run <code>nuget spec jamma.dll</code>.</p>
 <p>Edit the resulting damma.dll.nuspec file, change or remove elements as desired.</p>
-<pre><code class="language-xml">&lt;?xml version="1.0"?&gt;
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;package &gt;
   &lt;metadata&gt;
     &lt;id&gt;jamma.dll&lt;/id&gt;
@@ -786,7 +786,7 @@ pause
   &lt;/metadata&gt;
 &lt;/package&gt;
 </code></pre>
-<p><strong>Important: Now move the dll into a subfolder named "lib"</strong></p>
+<p><strong>Important: Now move the dll into a subfolder named &quot;lib&quot;</strong></p>
 <p>Package the dll using <code>nuget pack</code>.</p>
 <p>Add the package (jamma.dll and jamma.dll.nuspect) to your NuGet server however is appropriate, might just be copy/paste, or using nuget push commands. See the NuGet documentation.</p>
 <p>Remove the reference from the project, and re-add from NuGet. Build and test. If everything's OK, delete the old jamma.dll file and folder.</p>
@@ -798,43 +798,43 @@ pause
 <p><strong>But first, the NuGet Package Source</strong></p>
 <p>If I haven't done it already, I'll add a machine-wide nuget configuration file that has my custom package source.</p>
 <p>Create the file <code>%ProgramData%\NuGet\Config\MySource.config</code> with the source definition. In my case, I'm testing with a local NuGet server.</p>
-<pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;configuration&gt;
   &lt;packageSources&gt;
-    &lt;add key="NuGet Test Server" value="http://localhost:7275/" /&gt;
+    &lt;add key=&quot;NuGet Test Server&quot; value=&quot;http://localhost:7275/&quot; /&gt;
   &lt;/packageSources&gt;
 &lt;/configuration&gt;
 </code></pre>
 <p><strong>NameDb</strong></p>
 <p>Let's start at the top with the simple one, NameDb. In TFS, navigate to the correct collection and the Main team project. Then open the Build tab, start a new build and choose the Visual Studio template.</p>
-<p><a href="images/17-03-_143134.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_143134.png" alt="2017-03-25_143134" title="2017-03-25_143134"></a></p>
+<p><a href="images/17-03-_143134.png"><img src="images/17-03-_143134.png" alt="2017-03-25_143134" title="2017-03-25_143134" /></a></p>
 <p>Create using the repository source Main Team Project.</p>
-<p><a href="images/17-03-_143854.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_143854.png" alt="2017-03-25_143854" title="2017-03-25_143854"></a></p>
+<p><a href="images/17-03-_143854.png"><img src="images/17-03-_143854.png" alt="2017-03-25_143854" title="2017-03-25_143854" /></a></p>
 <p>Delete the Index, Copy and Publish steps. I can add those back if we want them. I don't need the NuGet installer step, either, but I'll configure it as an example since the other projects need it.</p>
-<p><a href="images/17-03-_144248.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_144248.png" alt="2017-03-25_144248" title="2017-03-25_144248"></a></p>
+<p><a href="images/17-03-_144248.png"><img src="images/17-03-_144248.png" alt="2017-03-25_144248" title="2017-03-25_144248" /></a></p>
 <p>Set the NuGet Installer path to the NameDb solution file.</p>
-<p><a href="images/17-03-_145021.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_145021.png" alt="2017-03-25_145021" title="2017-03-25_145021"></a></p>
+<p><a href="images/17-03-_145021.png"><img src="images/17-03-_145021.png" alt="2017-03-25_145021" title="2017-03-25_145021" /></a></p>
 <p>Set the Visual Studio Build path to the NameDb solution file.</p>
-<p><a href="images/17-03-_145758.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_145758.png" alt="2017-03-25_145758" title="2017-03-25_145758"></a></p>
-<p>Set the Visual Studio Test "Test Assembly" to the solution folder path. This is the physical folder where the agent will have pulled the files from TFS, the same as the LocalPath path we'll choose in Repository. The path definition means "Run any dll with "test" in its name under the build definition name, but not in the obj folders." Since our build definition will be Release, it'll run Release/NameDb.Tests.dll.</p>
-<p><a href="images/17-03-_150526.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_150526.png" alt="2017-03-25_150526" title="2017-03-25_150526"></a></p>
+<p><a href="images/17-03-_145758.png"><img src="images/17-03-_145758.png" alt="2017-03-25_145758" title="2017-03-25_145758" /></a></p>
+<p>Set the Visual Studio Test &quot;Test Assembly&quot; to the solution folder path. This is the physical folder where the agent will have pulled the files from TFS, the same as the LocalPath path we'll choose in Repository. The path definition means &quot;Run any dll with &quot;test&quot; in its name under the build definition name, but not in the obj folders.&quot; Since our build definition will be Release, it'll run Release/NameDb.Tests.dll.</p>
+<p><a href="images/17-03-_150526.png"><img src="images/17-03-_150526.png" alt="2017-03-25_150526" title="2017-03-25_150526" /></a></p>
 <p>Do NOT Save!</p>
 <p>Change to the Repository tab. This controls what source code gets checked out by the build. Change the mapped paths. We'll keep the cloaked Drops folder, even though we aren't publishing anything yet.</p>
 <p>Notice the LocalPath is set. This is so the contents of the NameDb solution folder are placed under a _Shared\NameDb folder, just like in the repository. It's not strictly needed for this build, but remember how this works if you're building multiple solutions with project dependencies in relative folders.</p>
-<p><a href="images/17-03-_151640.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_151640.png" alt="2017-03-25_151640" title="2017-03-25_151640"></a></p>
-<p>Change to the Variables tab and ensure the BuildConfiguration is "release".</p>
-<p><a href="images/17-03-_1528.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_1528.png" alt="2017-03-25_152836" title="2017-03-25_152836"></a></p>
+<p><a href="images/17-03-_151640.png"><img src="images/17-03-_151640.png" alt="2017-03-25_151640" title="2017-03-25_151640" /></a></p>
+<p>Change to the Variables tab and ensure the BuildConfiguration is &quot;release&quot;.</p>
+<p><a href="images/17-03-_1528.png"><img src="images/17-03-_1528.png" alt="2017-03-25_152836" title="2017-03-25_152836" /></a></p>
 <p>Change to the Triggers tab. This controls what starts a build. Check Continuous Integration and set the path to the NameDb folder. We only want to build if a file in NameDb changes.</p>
-<p><a href="images/17-03-_153129.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_153129.png" alt="2017-03-25_153129" title="2017-03-25_153129"></a></p>
-<p>Now Save the definition and give it a good name like "DbName".</p>
-<p><a href="images/17-03-_1533.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_1533.png" alt="2017-03-25_153325" title="2017-03-25_153325"></a></p>
+<p><a href="images/17-03-_153129.png"><img src="images/17-03-_153129.png" alt="2017-03-25_153129" title="2017-03-25_153129" /></a></p>
+<p>Now Save the definition and give it a good name like &quot;DbName&quot;.</p>
+<p><a href="images/17-03-_1533.png"><img src="images/17-03-_1533.png" alt="2017-03-25_153325" title="2017-03-25_153325" /></a></p>
 <p>Finally, queue the build and see if it succeeds!</p>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 Check each step's output for what you expect. Especially, check that tests ran! The test step will success even if it doesn't find tests!</p>
 </blockquote>
-<p><a href="images/17-03-_153438.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_153438.png" alt="2017-03-25_153438" title="2017-03-25_153438"></a></p>
-<p><a href="images/17-03-_155144.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-_155144.png" alt="2017-03-25_155144" title="2017-03-25_155144"></a></p>
+<p><a href="images/17-03-_153438.png"><img src="images/17-03-_153438.png" alt="2017-03-25_153438" title="2017-03-25_153438" /></a></p>
+<p><a href="images/17-03-_155144.png"><img src="images/17-03-_155144.png" alt="2017-03-25_155144" title="2017-03-25_155144" /></a></p>
 <p>For the next solutions, I'll just list the settings for the build definitions. All of them use the Visual Studio template, and only keep the NuGet, Build and Test steps.</p>
 <p><strong>ReverseIt</strong></p>
 <p>BUILD TAB</p>
@@ -884,7 +884,7 @@ Check each step's output for what you expect. Especially, check that tests ran! 
 </ul>
 </li>
 </ul>
-<p>REPOSITORY TAB<br>
+<p>REPOSITORY TAB<br />
 This is critical. I'm telling the build <em>exactly</em> which project folders to pull from ReverseIt, i.e. RevEngine and RevEngine.Tests. This way I don't pull and build ReverseIt.csproj.</p>
 <p>If I add a test project later, I'll need to add its mapped path here. Note that I removed the Drops cloaked path since I don't need it.</p>
 <ul>
@@ -896,15 +896,15 @@ This is critical. I'm telling the build <em>exactly</em> which project folders t
 <ul>
 <li>BuildConfiguration: release</li>
 </ul>
-<p>TRIGGERS TAB<br>
+<p>TRIGGERS TAB<br />
 I'm triggering the build if ReverseNames changes.</p>
 <ul>
 <li>Include <code>$/Main/ReverseNames</code></li>
 </ul>
 <p>Here are some screenshots of the ReverseNames definition.</p>
-<p><a href="images/17-03-26_190426.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-26_190426.png" alt="2017-03-26_190426" title="2017-03-26_190426"></a></p>
-<p><a href="images/17-03-26_190546.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-26_190546.png" alt="2017-03-26_190546" title="2017-03-26_190546"></a></p>
-<p><a href="images/17-03-26_1906_.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-26_1906_.png" alt="2017-03-26_190620" title="2017-03-26_190620"></a></p>
+<p><a href="images/17-03-26_190426.png"><img src="images/17-03-26_190426.png" alt="2017-03-26_190426" title="2017-03-26_190426" /></a></p>
+<p><a href="images/17-03-26_190546.png"><img src="images/17-03-26_190546.png" alt="2017-03-26_190546" title="2017-03-26_190546" /></a></p>
+<p><a href="images/17-03-26_1906_.png"><img src="images/17-03-26_1906_.png" alt="2017-03-26_190620" title="2017-03-26_190620" /></a></p>
 <h1 id="improving-the-solutions-dependencies-and-team-projects">Improving the Solutions, Dependencies and Team Projects</h1>
 <p>What I've done so far works. Sort of. But it's not exactly ideal, especially if there were fifty solutions, not just three. One big thing I lose is the ability to maintain separate project boards and work items per project. To do that, I'd really like a separate Team Project per solution (or in some cases it could be multiple solutions).</p>
 <p>The team projects might look like this.</p>
@@ -913,9 +913,9 @@ $\RevEngine
 $\ReverseIt
 $\ReverseNames
 </code></pre>
-<p>And then there's the project reference. The project reference is bound to cause headaches in the future. One developer will change RevEngine and silently break the ReverseNames build. I say "silently," because it could be something like adding a new unit test project that doesn't get run by ReverseNames because it doesn't get pulled from source control.</p>
+<p>And then there's the project reference. The project reference is bound to cause headaches in the future. One developer will change RevEngine and silently break the ReverseNames build. I say &quot;silently,&quot; because it could be something like adding a new unit test project that doesn't get run by ReverseNames because it doesn't get pulled from source control.</p>
 <p>Because it's a shared dependency, RevEngine needs to be in its own solution under _Shared and published as a NuGet package.</p>
-<p>Right about now, someone's saying, "But but but! I need to be able to step through that code! And make changes that I can test against ReverseIt!!"</p>
+<p>Right about now, someone's saying, &quot;But but but! I need to be able to step through that code! And make changes that I can test against ReverseIt!!&quot;</p>
 <p>This might point to too much coupling between the projects, but so what? That's what you need. For debugging,</p>
 <ul>
 <li>Publish the NuGet <a href="https://docs.microsoft.com/en-us/nuget/create-packages/symbol-packages">package with debug symbols</a>. This solves the debugging problem.</li>
@@ -950,52 +950,52 @@ $\ReverseNames
 <li>Update projects to use the packages</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 Before getting started in a production environment, I'd disable all of the affected TFS Build definitions. I don't want anything running if I don't need to.</p>
 <p>I would also make a backup copy of all the affected source code, just in case something gets lost.</p>
 </blockquote>
 <h1 id="reorganizing-into-team-projects">Reorganizing into Team Projects</h1>
 <p>First, I'll create my new team projects. Then I'll move my code.</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 You can also add team projects using the Visual Studio Team Explorer.</p>
 </blockquote>
 <ol>
 <li><p>Open TFS in the browser, e.g. <a href="http://nesbit:8080/tfs">http://nesbit:8080/tfs</a>. Or, if you know your collection's name, you can open it directly and skip to step 4. (e.g. <a href="http://nesbit:8080/tfs/CICollection3/_admin">http://nesbit:8080/tfs/CICollection3/_admin</a>)</p>
 </li>
-<li><p>Click the upper right hand corner settings "gear" icon to open the Manage Server page.</p>
-<p><a href="images/17-03-27_085328.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_085328.png" alt="2017-03-27_085328" title="2017-03-27_085328"></a></p>
+<li><p>Click the upper right hand corner settings &quot;gear&quot; icon to open the Manage Server page.</p>
+<p><a href="images/17-03-27_085328.png"><img src="images/17-03-27_085328.png" alt="2017-03-27_085328" title="2017-03-27_085328" /></a></p>
 </li>
-<li><p>Select the Collection holding your team projects, and click "View the collection administration page".</p>
-<p><a href="images/17-03-27_085913.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_085913.png" alt="2017-03-27_085913" title="2017-03-27_085913"></a></p>
+<li><p>Select the Collection holding your team projects, and click &quot;View the collection administration page&quot;.</p>
+<p><a href="images/17-03-27_085913.png"><img src="images/17-03-27_085913.png" alt="2017-03-27_085913" title="2017-03-27_085913" /></a></p>
 </li>
 <li><p>Click New Team Project, enter the information and Create.</p>
-<p><a href="images/17-03-27_090645.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_090645.png" alt="2017-03-27_090645" title="2017-03-27_090645"></a></p>
+<p><a href="images/17-03-27_090645.png"><img src="images/17-03-27_090645.png" alt="2017-03-27_090645" title="2017-03-27_090645" /></a></p>
 </li>
 </ol>
 <p>Repeat to create the four team projects.</p>
-<p><a href="images/17-03-27_0911.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_0911.png" alt="2017-03-27_091136" title="2017-03-27_091136"></a></p>
+<p><a href="images/17-03-27_0911.png"><img src="images/17-03-27_0911.png" alt="2017-03-27_091136" title="2017-03-27_091136" /></a></p>
 <p>We can't move the code using the TFS web application, so</p>
 <ol>
 <li><p>Open Visual Studio</p>
 </li>
 <li><p>Open Team Explorer and click the plug icon to Manage Connections</p>
-<p><a href="images/17-03-27_091617.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_091617.png" alt="2017-03-27_091617" title="2017-03-27_091617"></a></p>
+<p><a href="images/17-03-27_091617.png"><img src="images/17-03-27_091617.png" alt="2017-03-27_091617" title="2017-03-27_091617" /></a></p>
 </li>
 <li><p>Double click the collection you're using to connect to it.</p>
-<p><a href="images/17-03-27_091812.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_091812.png" alt="2017-03-27_091812" title="2017-03-27_091812"></a></p>
+<p><a href="images/17-03-27_091812.png"><img src="images/17-03-27_091812.png" alt="2017-03-27_091812" title="2017-03-27_091812" /></a></p>
 </li>
 <li><p>Open Source Control Explorer.</p>
-<p><a href="images/17-03-27_091911.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_091911.png" alt="2017-03-27_091911" title="2017-03-27_091911"></a></p>
+<p><a href="images/17-03-27_091911.png"><img src="images/17-03-27_091911.png" alt="2017-03-27_091911" title="2017-03-27_091911" /></a></p>
 </li>
 <li><p>The new team project folders need to be mapped to local folders. This is kind of a pain, but with TFS Version Control there's no getting around it. It's easier with git. I would create a new folder named something like TempTeams to hold the new team projects, finish the moves, then delete all my source code mappings and start over. Like I said, a pain. <strong>Be <em>very</em> careful when doing all this that you don't accidentally delete source code from TFS you didn't want to.</strong></p>
 </li>
 <li><p>To map a team project folder, select it and click the Not Mapped link. Enter the destination folder, and when prompted Get the latest code (there won't be any, that's OK). Map all the team project folders.</p>
-<p><a href="images/17-03-27_093743.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_093743.png" alt="2017-03-27_093743" title="2017-03-27_093743"></a></p>
+<p><a href="images/17-03-27_093743.png"><img src="images/17-03-27_093743.png" alt="2017-03-27_093743" title="2017-03-27_093743" /></a></p>
 </li>
 <li><p>Open the NameDb solution. TFS still doesn't natively allow moving multiple files/folders at once, so we need to move the project contents one a time. First, I'll move the solution file. Right-click, select Move, and enter the NameDb team project. The file will be moved to the NameDb team project.</p>
-<p><a href="images/17-03-27_092818.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_092818.png" alt="2017-03-27_092818" title="2017-03-27_092818"></a></p>
-<p><a href="images/17-03-27_094508.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_094508.png" alt="2017-03-27_094508" title="2017-03-27_094508"></a></p>
+<p><a href="images/17-03-27_092818.png"><img src="images/17-03-27_092818.png" alt="2017-03-27_092818" title="2017-03-27_092818" /></a></p>
+<p><a href="images/17-03-27_094508.png"><img src="images/17-03-27_094508.png" alt="2017-03-27_094508" title="2017-03-27_094508" /></a></p>
 </li>
 <li><p>Move the NameDb and NameDb.Tests project folders the same way. You <em>can</em> right-click and move an entire folder, just not multiple folders.</p>
 </li>
@@ -1006,20 +1006,20 @@ You can also add team projects using the Visual Studio Team Explorer.</p>
 </ol>
 <p>Now I'm going to move just the RevEngine project folders to the new RevEngine team project. Later, I'll create their solution file.</p>
 <p>Open the ReverseIt folder. Move the RevEngine and RevEngine.Test folders.</p>
-<p><a href="images/17-03-27_095844.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_095844.png" alt="2017-03-27_095844" title="2017-03-27_095844"></a></p>
-<p><a href="images/17-03-27_100012.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_100012.png" alt="2017-03-27_100012" title="2017-03-27_100012"></a></p>
+<p><a href="images/17-03-27_095844.png"><img src="images/17-03-27_095844.png" alt="2017-03-27_095844" title="2017-03-27_095844" /></a></p>
+<p><a href="images/17-03-27_100012.png"><img src="images/17-03-27_100012.png" alt="2017-03-27_100012" title="2017-03-27_100012" /></a></p>
 <p>At this point, I move the remaining ReverseIt files/folders to their new team project. Likewise the ReverseNames solution.</p>
 <p>Commit the changes. Delete the folders from $/Main, and commit that change, too.</p>
 <p><strong>Do NOT delete the $/Main team project! The TFS Build definitions would be deleted, too.!</strong></p>
 <p>Finally, go to the RevEngine project in your local working folder, i.e. <code>..TempTeams\RevEngine\RevEngine</code>, open RevEngine.csproj. This will open the project in a solution, we just haven't saved the solution file yet.</p>
 <p>Add the RevEngine.Tests project to the solution.</p>
-<p><a href="images/17-03-27_101947.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_101947.png" alt="2017-03-27_101947" title="2017-03-27_101947"></a></p>
+<p><a href="images/17-03-27_101947.png"><img src="images/17-03-27_101947.png" alt="2017-03-27_101947" title="2017-03-27_101947" /></a></p>
 <p>Now I have to be careful. I select the solution in Solution Explorer. Then, File &gt; Save RevEngine.sln As.</p>
-<p><a href="images/17-03-27_102153.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_102153.png" alt="2017-03-27_102153" title="2017-03-27_102153"></a></p>
+<p><a href="images/17-03-27_102153.png"><img src="images/17-03-27_102153.png" alt="2017-03-27_102153" title="2017-03-27_102153" /></a></p>
 <p>In the Save As dialog, I navigate <em>up</em> one folder, so my solution file is at the root of RevEngine.</p>
-<p><a href="images/17-03-27_1056.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_1056.png" alt="2017-03-27_102556" title="2017-03-27_102556"></a></p>
+<p><a href="images/17-03-27_1056.png"><img src="images/17-03-27_1056.png" alt="2017-03-27_102556" title="2017-03-27_102556" /></a></p>
 <p>Now, I drag and drop the solution file into the Source Control Explorer's RevEngine team project.</p>
-<p><a href="images/17-03-27_102848.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_102848.png" alt="2017-03-27_102848" title="2017-03-27_102848"></a></p>
+<p><a href="images/17-03-27_102848.png"><img src="images/17-03-27_102848.png" alt="2017-03-27_102848" title="2017-03-27_102848" /></a></p>
 <p>Commit the change.</p>
 <p>My projects are reorganized, and a couple will build (NameDb and RevEngine). Time to turn handle the RevEngine dependency.</p>
 <h1 id="publish-shared-project-references-as-nuget-packages">Publish shared project references as NuGet packages</h1>
@@ -1029,7 +1029,7 @@ You can also add team projects using the Visual Studio Team Explorer.</p>
 <li><p>Open the solution, and edit the RevEngine Project Properties &gt; Application &gt; Assembly Information.</p>
 </li>
 <li><p>Ensure Title, Description, Company and Product are filled in.</p>
-<p><a href="images/17-03-27_113329.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_113329.png" alt="2017-03-27_113329" title="2017-03-27_113329"></a></p>
+<p><a href="images/17-03-27_113329.png"><img src="images/17-03-27_113329.png" alt="2017-03-27_113329" title="2017-03-27_113329" /></a></p>
 </li>
 <li><p>Save <em>and build</em> the solution. You must build, because nuget packs the built dll. It does not build the solution for you.</p>
 </li>
@@ -1042,7 +1042,7 @@ You can also add team projects using the Visual Studio Team Explorer.</p>
 <li><p>Run <code>nuget spec</code> to create a RevEngine.nuspec file</p>
 </li>
 <li><p>Edit RevEngine.nuspec and make these changes:</p>
-<pre><code class="language-xml">&lt;?xml version="1.0"?&gt;
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;package &gt;
   &lt;metadata&gt;
     &lt;id&gt;$id$&lt;/id&gt;
@@ -1072,7 +1072,7 @@ You can also add team projects using the Visual Studio Team Explorer.</p>
 <p>However, there's a TFS extension for this, which really saves the day. You can download it here.</p>
 <p><a href="https://marketplace.visualstudio.com/items?itemName=onlyutkarsh.ExportImportBuildDefinition">Export/Import Build Definitions</a></p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/ExportImportBuildDefinition/releases/tag/v0.0.2">v0.0.2</a>. Later versions only work with TFS 2017.</p>
 </blockquote>
 <p>Follow the instructions to install the extension.</p>
@@ -1085,9 +1085,9 @@ If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/
 <p>To move NameDb:</p>
 <ol>
 <li><p>In the Main team project Build tab, right-click the build definition and choose Export. Save the json file to a folder such as TfsBuildExports.</p>
-<p><a href="images/17-03-27_144558.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_144558.png" alt="2017-03-27_144558" title="2017-03-27_144558"></a></p>
+<p><a href="images/17-03-27_144558.png"><img src="images/17-03-27_144558.png" alt="2017-03-27_144558" title="2017-03-27_144558" /></a></p>
 </li>
-<li><p>Change to the NameDb team project Build tab. EIBD has a known limitation: the Export/Import menu items can only be seen on a build definition name, not the "All build definitions" item. So, if necessary, create an empty definition and save it with a non-conflicting name.</p>
+<li><p>Change to the NameDb team project Build tab. EIBD has a known limitation: the Export/Import menu items can only be seen on a build definition name, not the &quot;All build definitions&quot; item. So, if necessary, create an empty definition and save it with a non-conflicting name.</p>
 </li>
 <li><p>Right-click a definition and choose Import, selecting the .json file.</p>
 </li>
@@ -1105,7 +1105,7 @@ If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/
 <p>REPOSITORY</p>
 <ul>
 <li><p>Map $/NameDb, leave Local Path empty</p>
-<p><a href="images/17-03-27_145831.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_145831.png" alt="2017-03-27_145831" title="2017-03-27_145831"></a></p>
+<p><a href="images/17-03-27_145831.png"><img src="images/17-03-27_145831.png" alt="2017-03-27_145831" title="2017-03-27_145831" /></a></p>
 </li>
 </ul>
 <p>TRIGGERS</p>
@@ -1131,15 +1131,15 @@ If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/
 <p>Admittedly, the sample was a pretty simple case. I could have a team project that legitimately encompasses multiple solutions. But if I still apply the key principles from above, I can have clean maintenance and simpler builds. As a bonus, it should be much easier to switch to git if I want, since I'm now treating my code as discrete instead of monolithic.</p>
 <h1 id="clean-up">Clean Up</h1>
 <p>I can now delete the $/Main team project. But, despite there being a right-click menu item, I can't do it from Source Control Explorer. So, (sigh), back to the web interface and my collection administration page. Select Delete from the dropdown to the left of the team project.</p>
-<p><a href="images/17-03-27_101321.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_101321.png" alt="2017-03-27_101321" title="2017-03-27_101321"></a></p>
+<p><a href="images/17-03-27_101321.png"><img src="images/17-03-27_101321.png" alt="2017-03-27_101321" title="2017-03-27_101321" /></a></p>
 <p>Am I <em>sure</em> the team project is empty? If so, enter its name and delete it.</p>
-<p><a href="images/17-03-27_101437.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through/images/17-03-27_101437.png" alt="2017-03-27_101437" title="2017-03-27_101437"></a></p>
+<p><a href="images/17-03-27_101437.png"><img src="images/17-03-27_101437.png" alt="2017-03-27_101437" title="2017-03-27_101437" /></a></p>
 <h1 id="references">References</h1>
-<p><a href="https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package">Creating a Package</a><br>
-<a href="https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior">Configuring NuGet Behavior</a><br>
-<a href="http://softwareengineering.stackexchange.com/a/336984">Using Private NuGet Repository</a><br>
-<a href="http://stackoverflow.com/a/32624016/1628707">How to Get TFS2015 Build to Restore from Custom NuGet Source 1</a><br>
-<a href="http://stackoverflow.com/a/31384347/1628707">How to Get TFS2015 Build to Restore from Custom NuGet Source 2</a><br>
+<p><a href="https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package">Creating a Package</a><br />
+<a href="https://docs.microsoft.com/en-us/nuget/consume-packages/configuring-nuget-behavior">Configuring NuGet Behavior</a><br />
+<a href="http://softwareengineering.stackexchange.com/a/336984">Using Private NuGet Repository</a><br />
+<a href="http://stackoverflow.com/a/32624016/1628707">How to Get TFS2015 Build to Restore from Custom NuGet Source 1</a><br />
+<a href="http://stackoverflow.com/a/31384347/1628707">How to Get TFS2015 Build to Restore from Custom NuGet Source 2</a><br />
 <a href="http://stackoverflow.com/a/28593688/1628707">NuGet Package Source Config Locations</a> <a href="http://blog.nuget.org/20161121/introducing-nuget4.0.html">Introducing NuGet 4</a> <a href="http://stackoverflow.com/a/27569020/1628707">Specifying NuGet Config path for TFS Build</a></p>
 <p>Next Part: <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples/src/default/CI%20Walk%20Through/TFS%20Continuous%20Integration%20Walk%20Through%20Part%205a%20-%20Multiple%20Solutions%20-%20Build%20Settings.md">TFS Continuous Integration Walk Through Part 5d - Multiple Solutions: Build Settings</a></p>
 </div>

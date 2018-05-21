@@ -58,18 +58,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:40</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -118,7 +118,7 @@ public class Pencil
 
     public Pencil()
     {
-        Nickname = "";
+        Nickname = &quot;&quot;;
     }
 }
 </code></pre>
@@ -135,21 +135,21 @@ public class Pencil
 <p>I’m so glad you asked. Many fields should not allow nulls. Names are a good example. Let’s say we stored first, middle and last names in nullable table columns. To concatenate them and display the full name, we would have to convert nulls to empty strings, otherwise the full name would become null. I’m sure there’s something philosophical to say about how objects added to a void becoming the void, but that isn’t my field.</p>
 <p>Let’s add to our program and try to set a pencil’s nickname to null.</p>
 <p><strong>Program.cs</strong></p>
-<pre><code class="language-csharp">Console.WriteLine("Add/save Pencil setting Nickname to null.");
+<pre><code class="language-csharp">Console.WriteLine(&quot;Add/save Pencil setting Nickname to null.&quot;);
 Pencil pencil = new Pencil() { Nickname = null, Person = edward };
 _db.Pencils.Add(pencil);
 SaveChanges();
-Console.WriteLine("Set Nickname to empty string and save");
-pencil.Nickname = "";
+Console.WriteLine(&quot;Set Nickname to empty string and save&quot;);
+pencil.Nickname = &quot;&quot;;
 SaveChanges();
 
-Console.WriteLine("Retrieve pencil, change Nickname, save");
+Console.WriteLine(&quot;Retrieve pencil, change Nickname, save&quot;);
 pencil = _db.Pencils.First();
-Console.WriteLine("Pencil: " + pencil.Nickname + ", Person: " + pencil.Person.Name);
-pencil.Nickname = "Blue";
+Console.WriteLine(&quot;Pencil: &quot; + pencil.Nickname + &quot;, Person: &quot; + pencil.Person.Name);
+pencil.Nickname = &quot;Blue&quot;;
 SaveChanges();
 pencil = _db.Pencils.First();
-Console.WriteLine("Pencil: " + pencil.Nickname + ", Person: " + pencil.Person.Name);
+Console.WriteLine(&quot;Pencil: &quot; + pencil.Nickname + &quot;, Person: &quot; + pencil.Person.Name);
 </code></pre>
 <p>Running the program now produces a Pencils table like so:</p>
 <p><strong>T-SQL</strong></p>
@@ -194,11 +194,11 @@ Pencil: Blackwing, Person: Edward Farley
 Finished
 </code></pre>
 <p>Tomorrow, Edward, we’ll meet here. Do not keep me waiting! That’s simply bad manners. Now, what are you grinning at?</p>
-<hr>
-<p><a href="http://en.wikipedia.org/wiki/Shunyata">Sunyata (Void-ness)</a><br>
-<a href="http://en.wikipedia.org/wiki/VoiD">Vocabulary of Interlinked Datasets</a><br>
+<hr />
+<p><a href="http://en.wikipedia.org/wiki/Shunyata">Sunyata (Void-ness)</a><br />
+<a href="http://en.wikipedia.org/wiki/VoiD">Vocabulary of Interlinked Datasets</a><br />
 <a href="http://www.pencils.com/all-brands/blackwing">Blackwing Pencil</a></p>
-<hr>
+<hr />
 </div>
               </div>
               

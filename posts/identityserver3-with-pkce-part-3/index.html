@@ -65,16 +65,16 @@
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
 <h1 id="where-were-at">Where We're At</h1>
 <p>Until now, we've been using in-memory configuration data (clients and scopes). But we'd like a way to persist the configuration to a database.</p>
 <h2 id="identityserver-and-entity-framework">IdentityServer and Entity Framework</h2>
 <p><strong>References</strong></p>
-<p><a href="https://identityserver.github.io/Documentation/docsv2/ef/overview.html">Entity Framework support for Clients, Scopes, and Operational Data</a><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/ef/operational.html">Operational Data</a><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/ef/clients_scopes.html">Clients and Scopes</a><br>
+<p><a href="https://identityserver.github.io/Documentation/docsv2/ef/overview.html">Entity Framework support for Clients, Scopes, and Operational Data</a><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/ef/operational.html">Operational Data</a><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/ef/clients_scopes.html">Clients and Scopes</a><br />
 <a href="https://identityserver.github.io/Documentation/docsv2/advanced/caching.html">Caching results for client, scope, and user stores</a></p>
 <p>Add these packages.</p>
 <pre><code class="language-csharp">Install-Package IdentityServer3.EntityFramework -Project AuthAndApi
@@ -82,14 +82,14 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 <p>Add the App_Data folder. This is required if you want to use the connection string below.</p>
 <p>Add a connection string for the configuration database. The sample uses SQL localDb 2016.</p>
 <pre><code class="language-xml">&lt;connectionStrings&gt;
-    &lt;add name="IdConfigDb" 
-         connectionString="Server=(localDb)\MSSQLLocalDb;AttachDbFilename=|DataDirectory|IdConfig.mdb;Database=IdConfig;Integrated Security=true;" 
-         providerName="System.Data.SqlClient" /&gt;
+    &lt;add name=&quot;IdConfigDb&quot; 
+         connectionString=&quot;Server=(localDb)\MSSQLLocalDb;AttachDbFilename=|DataDirectory|IdConfig.mdb;Database=IdConfig;Integrated Security=true;&quot; 
+         providerName=&quot;System.Data.SqlClient&quot; /&gt;
   &lt;/connectionStrings&gt;
 </code></pre>
 <p>Add an IdentityServerConfiguration folder, and a Factory.cs class. The factory class takes care of setting the configuration database source, and also initially populating the database using our in-memory client and scope collections.</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 This sample doesn't provide a way to edit configuration data. There is a NuGet package that adds web-based configuration administration to a project. I haven't tried it, but here's the link. <a href="https://github.com/IdentityServer/IdentityServer3.Admin">IdentityServer3.Admin</a></p>
 </blockquote>
 <p><strong>Factory.cs</strong></p>
@@ -171,7 +171,7 @@ namespace AuthAndApi.IdentityServerConfiguration
 <pre><code class="language-csharp">            //Configure IdentityServer for issuing authentication tokens
             var options = new IdentityServerOptions
             {
-                Factory = Factory.Configure("IdConfigDb"),
+                Factory = Factory.Configure(&quot;IdConfigDb&quot;),
                 //SSL MUST be used in production
 #if DEBUG
                 RequireSsl = false
@@ -182,23 +182,23 @@ namespace AuthAndApi.IdentityServerConfiguration
 <blockquote>
 <p><strong>ASIDE!</strong></p>
 <p>Running the app at this point, I got an error in Startup.cs that I was missing a dependency.</p>
-<p>&nbsp;</p>
-<p><a href="images/17-05-06_134432_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-3/images/17-05-06_134432_1.png" alt="2017-05-06_134432" title="2017-05-06_134432"></a></p>
+<p> </p>
+<p><a href="images/17-05-06_134432_1.png"><img src="images/17-05-06_134432_1.png" alt="2017-05-06_134432" title="2017-05-06_134432" /></a></p>
 <p>When I installed the package <code>IdentityServer3.EntityFramework</code>, Newtonsoft.Json version 8 was uninstalled, because the package requires version 9 or greater. The package installer output confirms this.</p>
 <pre><code class="language-csharp">Successfully uninstalled 'Newtonsoft.Json.8.0.3' from AuthAndApi
 Successfully installed 'Newtonsoft.Json 9.0.1' to AuthAndApi
 </code></pre>
 <p>No package requires version 8 or lower, so what gives? For some reason, the solution's web.config assembly binding section wasn't updated properly. It still had this:</p>
 <pre><code class="language-xml">     &lt;dependentAssembly&gt;
-       &lt;assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" /&gt;
-       &lt;bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" /&gt;
+       &lt;assemblyIdentity name=&quot;Newtonsoft.Json&quot; publicKeyToken=&quot;30ad4fe6b2a6aeed&quot; culture=&quot;neutral&quot; /&gt;
+       &lt;bindingRedirect oldVersion=&quot;0.0.0.0-8.0.0.0&quot; newVersion=&quot;8.0.0.0&quot; /&gt;
      &lt;/dependentAssembly&gt;
 </code></pre>
 <p>You could manually change the max version number to 9.0.0.0, reinstall the Newtonsoft package which will do it for you.</p>
 <p><code>Update-Package -Reinstall Newtonsoft.Json -Project AuthAndApi</code></p>
 </blockquote>
 <p>When I run the application, it behaves exactly as before. Checking in the App_Data folder, I see my database was created.</p>
-<p><a href="images/17-05-06_140602.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-3/images/17-05-06_140602.png" alt="2017-05-06_140602" title="2017-05-06_140602"></a></p>
+<p><a href="images/17-05-06_140602.png"><img src="images/17-05-06_140602.png" alt="2017-05-06_140602" title="2017-05-06_140602" /></a></p>
 <p>One difference, though. After the first time running the app, I no longer was prompted to authorize the scope. This might be related to these factory settings:</p>
 <pre><code class="language-csharp">factory.ConfigureClientStoreCache();
 factory.ConfigureScopeStoreCache();

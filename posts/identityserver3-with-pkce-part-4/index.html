@@ -65,7 +65,7 @@
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
 <h1 id="where-were-at">Where We're At</h1>
@@ -74,16 +74,16 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 <p><strong>Important</strong> IdentityServer is <em>not</em> intended or used to add, edit or delete users. They make that clear. The server's job is only to verify identity. In this sample, there's a klunky method for populating the user database, and there are <em>no</em> API methods for registering a user. The API could be added using controller code similar to what's in the default ASP.NET Web API templates.</p>
 </blockquote>
 <h2 id="aspnetidentity">AspNetIdentity</h2>
-<p><strong>References</strong><br>
-<a href="https://github.com/IdentityServer/IdentityServer3.AspNetIdentity">IdentityServer3.AspNetIdentity Sample</a><br>
-<a href="https://www.scottbrady91.com/Identity-Server/Identity-Server-3-using-ASPNET-Identity">Identity Server 3 using ASP.NET Identity</a><br>
+<p><strong>References</strong><br />
+<a href="https://github.com/IdentityServer/IdentityServer3.AspNetIdentity">IdentityServer3.AspNetIdentity Sample</a><br />
+<a href="https://www.scottbrady91.com/Identity-Server/Identity-Server-3-using-ASPNET-Identity">Identity Server 3 using ASP.NET Identity</a><br />
 <a href="https://mindfulsoftware.com.au/guidance/oauth2-walkthrough-using-identity-server-and-aspnet/creating-an-identity-server-using-aspnet-identity-and-entity-framework-storage">OAuth2 Walkthrough using Identity Server and ASP.NET</a></p>
 <p>Install these packages.</p>
 <pre><code class="language-csharp">Install-Package IdentityServer3.AspNetIdentity -Project AuthAndApi
 Install-Package Microsoft.AspNet.Identity.EntityFramework -Version 2.2.1 -Project AuthAndApi
 </code></pre>
 <p>Add a new connection string to web.config, for the AspNet Identity database.</p>
-<pre><code class="language-xml">    &lt;add name="IdUsersDb" connectionString="Server=(localDb)\MSSQLLocalDb;AttachDbFilename=|DataDirectory|IdUsers.mdb;Database=IdUsers-ncacpkce;Integrated Security=true;" providerName="System.Data.SqlClient" /&gt;
+<pre><code class="language-xml">    &lt;add name=&quot;IdUsersDb&quot; connectionString=&quot;Server=(localDb)\MSSQLLocalDb;AttachDbFilename=|DataDirectory|IdUsers.mdb;Database=IdUsers-ncacpkce;Integrated Security=true;&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
 </code></pre>
 <p>Update Factory.cs</p>
 <pre><code class="language-csharp">//Add these usings
@@ -141,7 +141,7 @@ using IdentityServer3.Core.Services.InMemory;
                 test = userManager.FindByName(user.Username);
                 foreach (var claim in user.Claims)
                 {
-                    if (claim.Type.ToLower() == "email") { test.Email = claim.Value; }
+                    if (claim.Type.ToLower() == &quot;email&quot;) { test.Email = claim.Value; }
                     userManager.AddClaim(test.Id, claim);
                 }
                 userManager.Update(test);
@@ -161,7 +161,7 @@ using IdentityServer3.Core.Services.InMemory;
     }
 </code></pre>
 <p>That's it! The Startup class doesn't change. Running the solution creates the new database, and the authentication works as before.</p>
-<p><a href="images/17-05-06_165055.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-4/images/17-05-06_165055.png" alt="2017-05-06_165055" title="2017-05-06_165055"></a></p>
+<p><a href="images/17-05-06_165055.png"><img src="images/17-05-06_165055.png" alt="2017-05-06_165055" title="2017-05-06_165055" /></a></p>
 <h1 id="wrap-up">Wrap Up</h1>
 <p>In this series, I demonstrated authorizing a mobile application in a secure way. This was necessarily a simple sample. Some natural next steps and questions to answer would be:</p>
 <ol>

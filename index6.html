@@ -62,8 +62,8 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy'>TFS 2015: Publish ASP.NET Using Robocopy</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-01-07 14:49</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/tfs-logo.png" alt=""> <img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/robocopy-command.gif" alt=""></p>
-<br>
+                <div class='post-content'><p><img src="images/tfs-logo.png" alt="" /> <img src="images/robocopy-command.gif" alt="" /></p>
+<br />
 <p>Team Foundation Server 2015 Update 2 includes Release Management. However, I found myself in a position where a client hadn't upgraded yet, and during development I still wanted to publish ASP.NET MVC and WebApi projects to a test server. I did this through a combination of Build tasks running the msbuild publish command line, and Robocopy.</p>
 <p>Also, while TFS Build includes steps for staging artifacts, an ASP.NET project doesn't simply move all files to a bin folder. Many files are taken directly from the project source folders, requiring me to use the MSBuild Publish command line switches.</p>
 <h1 id="the-tfs-build-definition">The TFS Build Definition</h1>
@@ -76,7 +76,7 @@
 <li>Use Robocopy to copy the files to another computer running IIS</li>
 </ol>
 <p>The first three steps are pretty standard, so I won't cover them. If you don't know how to set up a build, you'll need to read up on that. The last two are the fun ones.</p>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/2018-01-07%2015_56_14.png" alt=""></p>
+<p><img src="images/2018-01-07%2015_56_14.png" alt="" /></p>
 <h1 id="publishing-asp.net-from-command-line">Publishing ASP.NET from command line</h1>
 <p>In Visual Studio, it's easy (and nice) to publish an ASP.NET project to the file system. But what if you want to publish in an ad-hoc manner? It can be done, but the info is hard-won.</p>
 <pre><code>msbuild ProjectFile.csproj /p:Configuration=Release ^
@@ -97,21 +97,21 @@ msbuild Solution.sln /p:Configuration=Release ^
 </code></pre>
 <p>In my Build definition, I add a Visual Studio Build step. (I could probably also use an MS Build step, but I haven't tested that.)</p>
 <p>In the Solution field, enter the path to the web <em>project</em> you're going to build. The MSBuild Arguments are shown below. Note the variables used for both the build configuration and the destination folder. I'm publishing locally first.</p>
-<p><code>/p:Configuration=$(BuildConfiguration) /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl="$(build.artifactstagingdirectory)\deploy\web"</code></p>
+<p><code>/p:Configuration=$(BuildConfiguration) /p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=&quot;$(build.artifactstagingdirectory)\deploy\web&quot;</code></p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 If I was also publishing a WebApi project in the same definition, I'd have a separate build step, and the publishUrl might be <code>$(build.artifactstagingdirectory)\deploy\api</code></p>
 </blockquote>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/2018-01-07%2015_45_51.png" alt=""></p>
+<p><img src="images/2018-01-07%2015_45_51.png" alt="" /></p>
 <h1 id="copy-the-site-to-its-destination-using-robocopy">Copy the site to its destination using Robocopy</h1>
 <p>Why am I not using the publishUrl, above, to publish to the destination server? In many cases, I could, and that's fine. But what if I expect a destination file to be in use, and isn't normally updated? For example, I had a site using the NHunspell.dll. That file would often be in use, and wasn't changing. If I used publishUrl, the publish would always fail.</p>
-<p>Microsoft's <a href="https://technet.microsoft.com/en-us/library/cc733145(v=ws.11).aspx">Robocopy</a> ("Robust Copy"), included in all Windows editions, will skip and retry files it can't copy. This will still show as an error, but I'll set the step to "continue on error". It's not a perfect solution, but fine for many environments.</p>
+<p>Microsoft's <a href="https://technet.microsoft.com/en-us/library/cc733145(v=ws.11).aspx">Robocopy</a> (&quot;Robust Copy&quot;), included in all Windows editions, will skip and retry files it can't copy. This will still show as an error, but I'll set the step to &quot;continue on error&quot;. It's not a perfect solution, but fine for many environments.</p>
 <p>Add a Command Line step to the definition.</p>
 <ul>
 <li>Tool = robocopy.exe</li>
-<li>Arguments = <code>"$(build.artifactstagingdirectory)\deploy\web" "\\iis-server\wwwroot$\my-web-site" /e /r:2 /w:5</code></li>
+<li>Arguments = <code>&quot;$(build.artifactstagingdirectory)\deploy\web&quot; &quot;\\iis-server\wwwroot$\my-web-site&quot; /e /r:2 /w:5</code></li>
 </ul>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy/images/2018-01-07%2015_55_48.png" alt=""></p>
+<p><img src="images/2018-01-07%2015_55_48.png" alt="" /></p>
 <p>The Robocopy arguments say:</p>
 <ol>
 <li>Copy from the local deploy\web folder to the remote server folder</li>
@@ -133,39 +133,39 @@ If I was also publishing a WebApi project in the same definition, I'd have a sep
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2'>Combining VeraCrypt, Google Backup & Sync, and Sql Server Part 2</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-01-04 18:30</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/simple-key.png" alt=""></p>
+                <div class='post-content'><p><img src="images/simple-key.png" alt="" /></p>
 <p>This is a two-part post. Read <a href="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1">Part 1 here</a></p>
 <p>It's important to protect business data. Employee access and use of data should be managed by the IT department. But a contractor is often entrusted with data on their own computers. We certainly don't want our laptop to be stolen and have to tell the client that source code or databases with sensitive data just got lost, and, no, it wasn't encrypted.</p>
 <p>In Part 1, I discussed how I used VeraCrypt for my encryption. Below is how I solved problems relating to Google Backup and Sync, and Microsoft SQL Server.</p>
 <h1 id="the-trouble-with-google-backup-and-sync-the-application-formerly-known-as-google-drive">The Trouble with Google Backup and Sync (the application formerly known as Google Drive)</h1>
 <p>I use Google Drive's desktop application to synchronize client files as well as personal. I think that's reasonable, since I can and should expect Google to be secure. Now that I have my test.vc file mounted as F, it's outside of the local Google folder. How do I get it into Drive?</p>
 <p>If you're still using the Drive application, one way is to use a symbolic link, which I won't go into here. I've done this for other folders, but didn't want or need to in this case. The reason is that Google has replaced the Drive app with <a href="https://support.google.com/drive/answer/2374987">Backup and Sync</a>. Backup and Sync allows backing up any folder on my computer, including other drive letters.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2013_53_44.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_53_44.png" alt="" /></p>
 <p>The computer is then available on the web version of Drive (but not the Android app, yet, why not???).</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2013_57_12.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_57_12.png" alt="" /></p>
 <p>Great! So, what's the problem? Well, Backup and Sync is by default configured to run on login, which makes sense. I like to configure VeraCrypt to run on login, too. The problem is, by the time I get my password entered and the file mounted, Backup and Sync is already reporting that the F drive is unavailable, do I want to stop syncing the F drive? (no)...and the only thing I can do is restart Backup and Sync.</p>
 <p>There's a simple solution to this that I wish had worked out for me. It will for most people. A VeraCrypt drive can be configured to act as a Removable drive. And Backup and Sync will be notified if a removable drive comes back online.</p>
 <p>Let's show that. In Backup and Sync, stop backing up the F drive. In VeraCrypt, select the F drive and Dismount.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_09_48.png" alt=""></p>
+<p><img src="images/2018-01-04%2014_09_48.png" alt="" /></p>
 <p>Now, select test.fc and click Mount again, but before submitting the password click Mount Options.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_12_32.png" alt=""></p>
-<p>In the options, check "Mount volume as removable medium" and finish mounting the volume.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_13_34.png" alt=""></p>
+<p><img src="images/2018-01-04%2014_12_32.png" alt="" /></p>
+<p>In the options, check &quot;Mount volume as removable medium&quot; and finish mounting the volume.</p>
+<p><img src="images/2018-01-04%2014_13_34.png" alt="" /></p>
 <p>The F drive will now show as a Removable drive, just as if you'd plugged in a USB external or flash drive.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_23_10.png" alt=""></p>
+<p><img src="images/2018-01-04%2014_23_10.png" alt="" /></p>
 <p>You might also be prompted to start backing up the USB device. Choose Not Now.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_22_41.png" alt=""></p>
+<p><img src="images/2018-01-04%2014_22_41.png" alt="" /></p>
 <p>Let's prove we can unmount and remount without restarting Backup and Sync.</p>
 <p>In Backup and Sync Preferences, choose to backup the F drive. Let the drive finish syncing (this might take a while, the app likes to reprocess everything). Then, in VeraCrypt, dismount it. You'll get a warning message. Don't take any action.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2018_07_18.png" alt=""></p>
+<p><img src="images/2018-01-04%2018_07_18.png" alt="" /></p>
 <p>Now remount the F drive, making sure you set it as removable in the options. Backup and Sync will see the drive is reconnected, and start syncing it.</p>
 <p>This is great, and I thought I was finished. If you don't run SQL Server, you probably <em>are</em>, but....</p>
 <h1 id="the-strangeness-of-sql-server-or-a-veracrypt-bug">The Strangeness of SQL Server (or a VeraCrypt Bug?)</h1>
 <p>I develop using SQL Server Express. The SQL service runs automatically at start up and attempts to start any configured databases. See where this is leading?</p>
-<p>If I put database files in my F drive, they won't be available to SQL Server on startup and the database will be marked as "Pending", meaning it can't be started. I'd have to restart the SQL service.</p>
-<p>There's a solution, but first, what happens if I try to create a SQL database on my removable F drive? Create a "Data" folder first.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2014_59_56.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_00_36.png" alt=""></p>
+<p>If I put database files in my F drive, they won't be available to SQL Server on startup and the database will be marked as &quot;Pending&quot;, meaning it can't be started. I'd have to restart the SQL service.</p>
+<p>There's a solution, but first, what happens if I try to create a SQL database on my removable F drive? Create a &quot;Data&quot; folder first.</p>
+<p><img src="images/2018-01-04%2014_59_56.png" alt="" /></p>
+<p><img src="images/2018-01-04%2015_00_36.png" alt="" /></p>
 <p>Research this error and everyone says it's a permissions problem. I labored for hours under that belief, trying various correct-but-not-successful permissions settings.</p>
 <p>Close the error. Pause Backup and Sync. Dismount the F drive, remount it <em>without</em> making it removable. Try creating the Test database again.</p>
 <p>Yep, it works fine. What gives? Maybe SQL Server doesn't like installing databases on removable media? That's not the case. It's supported, and I was able to create a database just fine on a USB drive I plugged in.</p>
@@ -180,19 +180,19 @@ If I was also publishing a WebApi project in the same definition, I'd have a sep
 <li>Use Windows Task Scheduler to delay-start them when I log in, giving me time to mount the encrypted container.</li>
 </ul>
 <h2 id="backup-and-sync-task">Backup and Sync Task</h2>
-<p>In Backup and Sync's Preferences &gt; Settings, turn off "Open Backup and Sync on system startup".</p>
-<p>Next, open Task Scheduler. Select the Task Scheduler Library, and choose Create Task. Here are the settings. Notice the "log on" trigger, and the one minute delayed start.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_35_20.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_36_34.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_37_34.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_37_57.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_38_19.png" alt=""></p>
+<p>In Backup and Sync's Preferences &gt; Settings, turn off &quot;Open Backup and Sync on system startup&quot;.</p>
+<p>Next, open Task Scheduler. Select the Task Scheduler Library, and choose Create Task. Here are the settings. Notice the &quot;log on&quot; trigger, and the one minute delayed start.</p>
+<p><img src="images/2018-01-04%2015_35_20.png" alt="" /></p>
+<p><img src="images/2018-01-04%2015_36_34.png" alt="" /></p>
+<p><img src="images/2018-01-04%2015_37_34.png" alt="" /></p>
+<p><img src="images/2018-01-04%2015_37_57.png" alt="" /></p>
+<p><img src="images/2018-01-04%2015_38_19.png" alt="" /></p>
 <h2 id="sql-server-task">SQL Server Task</h2>
 <p>Open Services, find the SQL Server instance you're running, and set the startup to Manual.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_40_56.png" alt=""></p>
+<p><img src="images/2018-01-04%2015_40_56.png" alt="" /></p>
 <p>The biggest challenge I faced in creating the scheduled tasks was permissions. The task <em>should</em> have been able to run with my account and elevated privileges. It would, when I was logged in. But it failed on reboot. The solution was to use the local Administrator's group. I don't know why. Here are the settings. Triggers, Conditions and Settings are the same as above.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_42_44.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2/images/2018-01-04%2015_43_53.png" alt=""></p>
+<p><img src="images/2018-01-04%2015_42_44.png" alt="" /></p>
+<p><img src="images/2018-01-04%2015_43_53.png" alt="" /></p>
 <h1 id="death-by-998-cuts">Death by 998 Cuts</h1>
 <p>I've now removed two irritations in my daily work flow. It took a while, but is time well spent. I also learned some things. Hopefully this helps you, too.</p>
 <h1 id="bonus">Bonus</h1>
@@ -204,12 +204,12 @@ If I was also publishing a WebApi project in the same definition, I'd have a sep
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1'>Combining VeraCrypt, Google Backup & Sync, and Sql Server Part 1</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-01-04 18:00</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/simple-key.png" alt=""></p>
+                <div class='post-content'><p><img src="images/simple-key.png" alt="" /></p>
 <p>This is a two-part post. Read <a href="http://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2">Part 2 here</a>.</p>
 <p>It's important to protect business data. Employee access and use of data should be managed by the IT department. But a contractor is often entrusted with data on their own computers. We certainly don't want our laptop to be stolen and have to tell the client that source code or databases with sensitive data just got lost, and, no, it wasn't encrypted.</p>
 <p>Below, I discuss how I used VeraCrypt for my encryption. In Part 2, I show how I solved problems relating to Google Backup and Sync, and Microsoft SQL Server.</p>
 <p>For Windows users, there are a few encryption solutions.</p>
-<p><strong>BitLocker</strong><br>
+<p><strong>BitLocker</strong><br />
 BitLocker is available on these editions:</p>
 <ul>
 <li>Ultimate and Enterprise editions of Windows Vista and Windows 7</li>
@@ -221,17 +221,17 @@ BitLocker is available on these editions:</p>
 <p>To use BitLocker, your computer hardware must have a compatible <a href="https://docs.microsoft.com/en-us/windows/device-security/tpm/trusted-platform-module-overview">Trusted Platform Module</a>.</p>
 <p>I won't go into how to configure BitLocker. Suffice to say, if you have this option available, I think you should use it unless you have a reasonable security objection. And if that's the case, you're already looking into alternatives.</p>
 <p>I do <em>not</em> use BitLocker because my hardware doesn't support it.</p>
-<p><strong>Windows Encrypting File System (EFS)</strong><br>
+<p><strong>Windows Encrypting File System (EFS)</strong><br />
 EFS is available on all Windows editions from 2000 onward, Professional and above. When configured, decryption happens transparently. It's important to export and separately store the encryption password. There are <a href="https://en.wikipedia.org/wiki/Encrypting_File_System#Security">security issues</a> with EFS, but for my purposes I thought it would be an acceptable solution.</p>
 <p>I tried setting a client folder to use EFS, but ran into a significant problem: a showstopper, in fact. If found that I couldn't create a new Visual Studio ASP.NET project from a template.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2012_39_36.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2012_42_46.png" alt=""></p>
+<p><img src="images/2018-01-04%2012_39_36.png" alt="" /></p>
+<p><img src="images/2018-01-04%2012_42_46.png" alt="" /></p>
 <p>Since I'm primarily a web developer, this simply wouldn't work.</p>
 <blockquote>
-<p><strong>More Information</strong><br>
+<p><strong>More Information</strong><br />
 If you want to read more about BitLocker and EFS, try <a href="https://www.howtogeek.com/236719/whats-the-difference-between-bitlocker-and-efs-encrypting-file-system-on-windows/">this article</a>.</p>
 </blockquote>
-<p><strong>VeraCrypt</strong><br>
+<p><strong>VeraCrypt</strong><br />
 <a href="https://www.veracrypt.fr/en/Home.html">VeraCrypt</a> is the successor to TrueCrypt, which I used many years ago before the author abruptly <a href="https://en.wikipedia.org/wiki/TrueCrypt">shut down the project</a>. VeraCrypt has been security-audited, and I'm glad to be using it (again). It can be installed on any edition of Windows, as well as Linux and Mac OS X.</p>
 <p>VeraCrypt has two main configuration scenarios:</p>
 <ul>
@@ -243,39 +243,39 @@ If you want to read more about BitLocker and EFS, try <a href="https://www.howto
 <p>Here's a simple walkthrough to install and configure VeraCrypt the way I did.</p>
 <p><a href="https://www.veracrypt.fr/en/Downloads.html">Download</a> and install the latest Windows version.</p>
 <p>Open the application and click Create Volume</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_04_43.png" alt=""></p>
-<p>Choose "Create an encrypted file container" and Next.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_06_33.png" alt=""></p>
-<p>Choose "Standard VeraCrypt volume" and Next.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_07_33.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_04_43.png" alt="" /></p>
+<p>Choose &quot;Create an encrypted file container&quot; and Next.</p>
+<p><img src="images/2018-01-04%2013_06_33.png" alt="" /></p>
+<p>Choose &quot;Standard VeraCrypt volume&quot; and Next.</p>
+<p><img src="images/2018-01-04%2013_07_33.png" alt="" /></p>
 <p>Enter a new filename and path, which you can also set via the dialog. It doesn't matter what the filename or extention are. It doesn't even need an extension.</p>
 <blockquote>
-<p><strong>Warning</strong><br>
+<p><strong>Warning</strong><br />
 If you choose an existing file, it will be <em>overwritten</em>. Don't do that. Create a new filename.</p>
 </blockquote>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_10_37.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_12_19.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_10_37.png" alt="" /></p>
+<p><img src="images/2018-01-04%2013_12_19.png" alt="" /></p>
 <p>Choose your encryption options. The defaults are fine.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_14_17.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_14_17.png" alt="" /></p>
 <p>Choose the maximum size of the drive. Remember, any size you choose here subtracts from your available physical drive space. If you ever need a larger encrypted drive, you'll need to create one and move all the files. For this exercise, choose 50MB.</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 I know the screenshot shows 5MB, but it needs to be higher to create the database later.</p>
 </blockquote>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_17_01.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_17_01.png" alt="" /></p>
 <p>Enter your password or passphrase. I like passphrases, because they can be long but easy to remember. Here's one:</p>
 <pre><code>MyBoatDripsFeathers
 </code></pre>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_19_58.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_19_58.png" alt="" /></p>
 <p>Choose the NTFS filesystem, then start moving your mouse around until the bar turns green. Click Format. I'll take awhile, depending on the size of the drive, and you'll be prompted by Windows to allow it.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_23_51.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_23_51.png" alt="" /></p>
 <p>Exit the wizard.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_21_44.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_21_44.png" alt="" /></p>
 <p>You've configured the container file that will hold your encrypted data. Now you'll mount the file. In the main window, choose the file you just created, select a drive letter, and click Mount. The file will be mounted and you'll have a new Windows drive letter.</p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_27_12.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_28_00.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_29_01.png" alt=""></p>
-<p><img src="https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1/images/2018-01-04%2013_29_29.png" alt=""></p>
+<p><img src="images/2018-01-04%2013_27_12.png" alt="" /></p>
+<p><img src="images/2018-01-04%2013_28_00.png" alt="" /></p>
+<p><img src="images/2018-01-04%2013_29_01.png" alt="" /></p>
+<p><img src="images/2018-01-04%2013_29_29.png" alt="" /></p>
 <p>Now, any files you add to the F drive are encrypted. If someone were to steal your machine, they'd have to know your Windows password <em>and</em> your test.vc password. If they pulled out the the hard drive and installed it on another computer, all they'd see is a file named test.vc amongst all the other files, and they couldn't open it without VeraCrypt <em>and</em> knowing the password.</p>
 <p>The F drive is only available when you're logged in, and when you log in fresh you must start VeraCrypt and mount test.vc.</p>
 </div>

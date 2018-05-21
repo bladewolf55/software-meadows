@@ -57,11 +57,11 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-08-18 16:56</span></p>
-                <div class='post-content'><p><img src="https://i.ytimg.com/vi/tfeeeaEmDtM/hqdefault.jpg" alt="">I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
+                <div class='post-content'><p><img src="https://i.ytimg.com/vi/tfeeeaEmDtM/hqdefault.jpg" alt="" />I’ve been a software developer for twenty years, but am behind in some skills. This series chronicles my self-improvement.</p>
 <p>There are some pretty high-tech tools out there, but nothing that matches the inspiration provided in the 70s TV show “<a href="https://en.wikipedia.org/wiki/Search_(TV_series)">Search</a>” (originally “Probe”). I don’t have Burgess Meredith, a Probe Scanner or a <a href="https://www.youtube.com/watch?v=Axb1EiJdbCg">catchy theme song</a> to help me out, so, like Hugh O’Brian, I’ll have to rely on my wits and <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a>.</p>
-<p>Previously, on CUOC: <a href="http://www.softwaremeadows.com/2016/07/catching-up-on-coding-syllabus.html">The Syllabus</a>.<br>
+<p>Previously, on CUOC: <a href="http://www.softwaremeadows.com/2016/07/catching-up-on-coding-syllabus.html">The Syllabus</a>.<br />
 Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-coding-tdd-part-2.html">TDD Part 2</a></p>
-<p>&nbsp;</p>
+<p> </p>
 <h1 id="teaser">Teaser</h1>
 <p>I’m not truly new to TDD. I <em>wrote</em> a (not very good) unit testing framework for Visual Basic 6 back in 2000. I’ve used TDD in professional projects. But now it’s time to make it a habit. To do that, I need a crash coarse, then retrofit my EduAgent code (applying “Test Eventually Development”) before writing new code.</p>
 <h1 id="act-1-the-elemental-education">Act 1 – The Elemental Education</h1>
@@ -82,17 +82,17 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <h1 id="act-2-some-code-a-test">Act 2 – Some Code, a Test</h1>
 <p>Here’s a simple example of TDD, creating code that needs to be tested, and problems with it. I’m using xUnit.Net because I’ve always liked it. I won’t go into how to set up your environment; you can learn that at <a href="https://xunit.github.io/docs/getting-started-desktop.html">Getting Started with xUnit.net</a>. However, I do have three tips for using the VS Test Runner (which you open via Test &gt; Windows &gt; Test Explorer).</p>
 <ul>
-<li><p>Tear off the Test Explorer into its own window, so that you can easily resize and see all the tests.<br>
-<a href="images/image_3.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image_3.png" alt="image" title="image"></a></p>
+<li><p>Tear off the Test Explorer into its own window, so that you can easily resize and see all the tests.<br />
+<a href="images/image_3.png"><img src="images/image_3.png" alt="image" title="image" /></a></p>
 </li>
-<li><p>Group the test results by class<br>
-<a href="images/image_5.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image_5.png" alt="image" title="image"></a></p>
+<li><p>Group the test results by class<br />
+<a href="images/image_5.png"><img src="images/image_5.png" alt="image" title="image" /></a></p>
 </li>
 <li><p>In your unit test project, add an app.config file with the following setting. This causes the result to display only the method name instead of the fully qualified name.</p>
-<pre><code class="language-csharp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+<pre><code class="language-csharp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
 &lt;configuration&gt;
   &lt;appSettings&gt;
-    &lt;add key="xunit.methodDisplay" value="method"/&gt;
+    &lt;add key=&quot;xunit.methodDisplay&quot; value=&quot;method&quot;/&gt;
   &lt;/appSettings&gt;
 &lt;/configuration&gt;
 </code></pre>
@@ -126,7 +126,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
     }
 </code></pre>
 <p>Run it and it fails.</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <p>Write enough code for the test to pass.</p>
 <pre><code class="language-csharp">        public decimal GetPercent(decimal actual, decimal maximum)
         {
@@ -135,7 +135,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
         }
 </code></pre>
 <p>Run the test and it passes.</p>
-<p><a href="images/image-001.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-001.png" alt="image" title="image"></a></p>
+<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
 <p>Our next test will check if the result is rounded. This does <em>not</em> depend on the first test; they could be run in reverse order.</p>
 <pre><code class="language-csharp">    public class BasicTdd
     {
@@ -153,7 +153,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
     }
 </code></pre>
 <p>Run it, and it fails.</p>
-<p><a href="images/image-002.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-002.png" alt="image" title="image"></a></p>
+<p><a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></p>
 <p>Update the code to make it pass.</p>
 <pre><code class="language-csharp">        public decimal GetPercent(decimal actual, decimal maximum)
         {
@@ -161,7 +161,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             return result;
         }
 </code></pre>
-<p><a href="images/image-003.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-003.png" alt="image" title="image"></a></p>
+<p><a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></p>
 <p>That’s enough to demonstrate a basic test. Now, on to something that will require mocking.</p>
 <h1 id="act-3-mocu-mental-grades">Act 3 – Mocu-mental Grades</h1>
 <p>Let’s create a class that represents our fictional third-party service, GradeMark. Remember, it returns a grade when supplied a percent, but we can’t depend on what that grade will be. For our dummy service, we won’t even use the percent parameter.</p>
@@ -183,7 +183,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             {
                 var cw = new CourseWork();
                 string msg = cw.GetGradeMessage(4, 15); //these values don't matter
-                string expected = "The grade is B";
+                string expected = &quot;The grade is B&quot;;
                 Assert.Equal(expected, msg);
             }
         }
@@ -192,15 +192,15 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <pre><code class="language-csharp">        public string GetGradeMessage(decimal actual, decimal maximum)
         {
             var service = new GradeMarkService();
-            return "The grade is " + service.GetGrade(GetPercent(actual, maximum));
+            return &quot;The grade is &quot; + service.GetGrade(GetPercent(actual, maximum));
         }
 </code></pre>
 <p>We got lucky; it failed. But, remember, we can’t guarantee what letter grade will be returned. It could have passed. Run the tests enough times and it <em>will</em> pass.</p>
-<p><a href="images/image-004.png"><img src="https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1/images/image-004.png" alt="image" title="image"></a></p>
+<p><a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></p>
 <p>Our GetGradeMessage function has a dependency on the GradeMark service, and is tightly coupled to it. We need to loosely couple that dependency by injecting it. We could do that at the method level, like this:</p>
 <pre><code class="language-csharp">        public string GetGradeMessage(decimal actual, decimal maximum, GradeMarkService gradeService)
         {
-            return "The grade is " + gradeService.GetGrade(GetPercent(actual, maximum));
+            return &quot;The grade is &quot; + gradeService.GetGrade(GetPercent(actual, maximum));
         }
 </code></pre>
 <p>But, typically, a service like this is consumed by the class. So, we’ll inject it in the class’s constructor.</p>
@@ -215,7 +215,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 
         public string GetGradeMessage(decimal actual, decimal maximum)
         {
-            return "The grade is " + _gradeService.GetGrade(GetPercent(actual, maximum));
+            return &quot;The grade is &quot; + _gradeService.GetGrade(GetPercent(actual, maximum));
         }
 </code></pre>
 <p>Great, but that doesn’t really help us, does it? We still need a GradeMarkService to pass in during our test, <em>and</em> control the letter grade it returns. Using some mocking frameworks, it’s possible to mock a legacy object. But in this case, we’re hoping for one of two things from our vendor to make our lives easier.</p>
@@ -250,7 +250,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
     {
         public string GetGrade(decimal percent)
         {
-            return "B";
+            return &quot;B&quot;;
         }
     }
 </code></pre>
@@ -279,14 +279,14 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             {
                 var cw = new CourseWork(new GradeMarkServiceMock());
                 string msg = cw.GetGradeMessage(4, 15); //these values don't matter
-                string expected = "The grade is B";
+                string expected = &quot;The grade is B&quot;;
                 Assert.Equal(expected, msg);
             }
         }
 </code></pre>
 <p>When we run our tests a few times, the GetGradeMessage test passes consistently.</p>
 <p><strong>An overridable class</strong></p>
-<p>Our vendor could also have made the GetGrade method overridable. In that case, we’d create a mock object, override GetGrade, and always return “B”. But with a significant object, there could be many problems doing that. It’s best if we can program against interfaces, because that way*&nbsp; we don’t have to use the original classes at all*.</p>
+<p>Our vendor could also have made the GetGrade method overridable. In that case, we’d create a mock object, override GetGrade, and always return “B”. But with a significant object, there could be many problems doing that. It’s best if we can program against interfaces, because that way*  we don’t have to use the original classes at all*.</p>
 <p>What’s a real-world example? What about a shipping service that our application uses to calculate shipping rates? Several problems could exist in consuming that service instead of mocking it:</p>
 <ul>
 <li>It could be very slow to use that service in our tests.</li>
@@ -325,7 +325,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
             public void ReturnTheCorrectlyFormattedMessage()
             {
                 string msg = _cw.GetGradeMessage(4, 15); //these values don't matter
-                string expected = "The grade is B";
+                string expected = &quot;The grade is B&quot;;
                 Assert.Equal(expected, msg);
             }
         }
@@ -334,7 +334,7 @@ Next Episode: <a href="http://www.softwaremeadows.com/2016/08/catching-up-on-cod
 <p>Of course, rerun the tests and make sure they pass!</p>
 <h1 id="tag">Tag</h1>
 <p>Test-driven development isn’t natural at first. But it’s got a rat-hits-food-lever pleasure I can’t deny. Kind of like having Probe Control’s Angel Tompkins whispering in my ear.</p>
-<p><img src="http://www.tvparty.com/bgifs/05Angel.jpg" alt=""></p>
+<p><img src="http://www.tvparty.com/bgifs/05Angel.jpg" alt="" /></p>
 <h1 id="references">References</h1>
 <p><a href="http://www.telerik.com/blogs/30-days-tdd-day-one-what-is-tdd">30 Days of TDD</a></p>
 <p><a href="https://xunit.github.io/docs/getting-started-desktop.html">Getting Started with xUnit.net</a></p>

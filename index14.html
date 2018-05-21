@@ -68,17 +68,17 @@
 <p>Ayende's original code is this:</p>
 <pre><code class="language-cs">var doc = new Dictionary&lt;string,object&gt;
 {
-    ["@metadata"] = new Dictionary&lt;string, object&gt;
+    [&quot;@metadata&quot;] = new Dictionary&lt;string, object&gt;
     {
-        ["@id"] = "users/1"
+        [&quot;@id&quot;] = &quot;users/1&quot;
     }
-    ["Name"] = "Oren"
+    [&quot;Name&quot;] = &quot;Oren&quot;
 };
 
 
-Console.WriteLine(doc["Name"]);
+Console.WriteLine(doc[&quot;Name&quot;]);
 </code></pre>
-<p>The final statement fails, because doc is actually equal to a string value of "Oren", not the dictionary object. Why? And--for me--I couldn't understand why it was compiling at all.</p>
+<p>The final statement fails, because doc is actually equal to a string value of &quot;Oren&quot;, not the dictionary object. Why? And--for me--I couldn't understand why it was compiling at all.</p>
 <p>It took me a while to see the syntax parsing, and remember that C# can be very forgiving of spaces. I'm not a beginner, but it's sort of a beginner mistake. For other readers like me who aren't as bright (if you have any!), here's another look.</p>
 <p>While it appeared to me an element was being set completely outside of the declaration, the element is being set <em>on</em> the declared dictionary.</p>
 <p>The final syntax is:</p>
@@ -89,15 +89,15 @@ Console.WriteLine(doc["Name"]);
 </code></pre>
 <p>Code samples</p>
 <pre><code class="language-cs">//spaces before the element don't matter
-var item = new Dictionary&lt;string, object&gt; {}    ["a"] = 1;
+var item = new Dictionary&lt;string, object&gt; {}    [&quot;a&quot;] = 1;
 //is the same as
-var item = new Dictionary&lt;string, object&gt; { }["a"] = 1;
+var item = new Dictionary&lt;string, object&gt; { }[&quot;a&quot;] = 1;
 
 //For clarity, we replace the declaration with its assignment.
 var dic = new Dictionary&lt;string, object&gt; {};
-var item = dic     ["a"] = 1;
+var item = dic     [&quot;a&quot;] = 1;
 //is the same as
-var item = dic["a"] = 1;
+var item = dic[&quot;a&quot;] = 1;
 </code></pre>
 <p>I looked for other examples of where this can be done. The simplest array case doesn't compile:</p>
 <pre><code class="language-cs">//This is OK.
@@ -123,7 +123,7 @@ var h = new Hashtable() [0] = 1;
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></h2>
                 <p class='post-info'><span class='posted-on'>2016-12-27 16:52</span></p>
-                <div class='post-content'><p>When my wife and I moved to Denver, I started having problems with my Nexus 5's GPS not maintaining a lock. It would go show a "Searching for GPS" message about every twenty seconds. Now, for those who don't know, Denver's a pretty stressful place to drive under the best of conditions. An unreliable navigation experience was not leading to peace and joy in our town travels. (Fortunately, my wife's Nexus 5x has worked flawlessly.)</p>
+                <div class='post-content'><p>When my wife and I moved to Denver, I started having problems with my Nexus 5's GPS not maintaining a lock. It would go show a &quot;Searching for GPS&quot; message about every twenty seconds. Now, for those who don't know, Denver's a pretty stressful place to drive under the best of conditions. An unreliable navigation experience was not leading to peace and joy in our town travels. (Fortunately, my wife's Nexus 5x has worked flawlessly.)</p>
 <p>Below are <del>two</del> three! general solutions to the problem. I did all of these, but not in this order. The antenna fix seemed like a likely answer, but so far <del>(today) the GPS State solution</del> changing the Location accuracy is the winner. I wish I'd tried it before opening my phone!</p>
 <p>I'll update this post in a few days and report how it's going.</p>
 <p>--------------------- Edits -----------------------</p>
@@ -152,10 +152,10 @@ var h = new Hashtable() [0] = 1;
 <li>Taken apart my phone and checked for a solid antenna connection.</li>
 <li>Factory reset my phone--twice.</li>
 <li>Tried various GPS-related apps. (I don't like <a href="https://play.google.com/store/apps/details?id=com.here.app.maps&amp;hl=en">HereWeGo</a> maps, by the way. Too little screen devoted to the actual map!).</li>
-<li>Changed the Location settings from "High Accuracy" to "Device Only"</li>
+<li>Changed the Location settings from &quot;High Accuracy&quot; to &quot;Device Only&quot;</li>
 </ol>
 <p>The antenna connection seems fine. If there's a hardware problem, I have to assume it's a failing GPS radio module, and that can only be fixed by replacing the phone (yuck).</p>
-<p>There were times when powering my phone off/on worked for a while. At other times, it seemed the problem only existed when running Google Maps. But more frequently, the problem existed in any app. The "Searching for GPS" message also occurred in Safe Mode.</p>
+<p>There were times when powering my phone off/on worked for a while. At other times, it seemed the problem only existed when running Google Maps. But more frequently, the problem existed in any app. The &quot;Searching for GPS&quot; message also occurred in Safe Mode.</p>
 <p>This is why I finally changed my Location settings.</p>
 <blockquote>
 <p>Settings &gt; Location &gt; Mode = Device only</p>
@@ -169,7 +169,7 @@ var h = new Hashtable() [0] = 1;
 <p>You'd think that using the most accurate location setting would be the right thing to do. But, at least in my case, it isn't. I don't know why the locking problem only started up in Denver. I've never experienced it anywhere else. But here's the solution that has worked for me.</p>
 <ol>
 <li>Open Settings &gt; Location</li>
-<li>Change Mode to "Device Only"</li>
+<li>Change Mode to &quot;Device Only&quot;</li>
 <li>Restart. (May make no difference, just a habit.)</li>
 </ol>
 <h1 id="gps-state">GPS State</h1>
@@ -200,31 +200,31 @@ var h = new Hashtable() [0] = 1;
                 <div class='post-content'><p>Starting with Office 2013, there are two changes that some people will like and use, but that I hate and don't.</p>
 <h1 id="startup-screen">Startup Screen</h1>
 <p>I rarely need to open a template other than the blank one. However, the default Office behavior is to show a Van Gogh <em>Starry Night</em> of choices.</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/how-to-bypass-new-microsoft-office/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <p>Do this to disable the new startup screen and go immediately to a blank document, as it has been for two decades. Instructions are for Word 2016.</p>
 <ol>
 <li>Open Word</li>
 <li>Open a blank (or existing) document</li>
 <li>Choose File &gt; Options</li>
-<li>In the General &gt; Start up options, uncheck "Show the Start screen when this application starts"</li>
+<li>In the General &gt; Start up options, uncheck &quot;Show the Start screen when this application starts&quot;</li>
 <li>Click OK. Word now opens to a blank document.</li>
 </ol>
-<p><a href="images/image-001.png"><img src="https://www.softwaremeadows.com/posts/how-to-bypass-new-microsoft-office/images/image-001.png" alt="image" title="image"></a></p>
+<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
 <h1 id="backstage-view-save-screen">Backstage View (Save Screen)</h1>
 <p>Microsoft OneDrive is intended to be deeply integrated into MS Office. Microsoft wants you saving there by default. The Save screen reflects that when you save a new document (or Save As an existing one).</p>
-<p><a href="images/image-002.png"><img src="https://www.softwaremeadows.com/posts/how-to-bypass-new-microsoft-office/images/image-002.png" alt="image" title="image"></a></p>
+<p><a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></p>
 <p>However, many people prefer to save locally, even if that means saving to the local OneDrive folder for later synchronization.</p>
 <p>Do this to show the file Save As dialog that you've seen since raptors tried to eat your computer.</p>
 <ol>
 <li>Open Word</li>
 <li>Open a blank (or existing) document</li>
 <li>Choose File &gt; Options</li>
-<li>In Save &gt; Save documents, check "Don't show the Backstage when opening or saving files"</li>
+<li>In Save &gt; Save documents, check &quot;Don't show the Backstage when opening or saving files&quot;</li>
 <li>Click OK. Save/Save As shows the good, old dialog.</li>
 </ol>
-<p><a href="images/image-003.png"><img src="https://www.softwaremeadows.com/posts/how-to-bypass-new-microsoft-office/images/image-003.png" alt="image" title="image"></a></p>
+<p><a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></p>
 <p>Hello, old friend.</p>
-<p><a href="images/image-004.png"><img src="https://www.softwaremeadows.com/posts/how-to-bypass-new-microsoft-office/images/image-004.png" alt="image" title="image"></a></p>
+<p><a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></p>
 <h1 id="references">References</h1>
 <p><a href="http://www.howtogeek.com/tips/how-to-bypass-the-backstage-view-when-saving-new-files-in-office-2013/" title="http://www.howtogeek.com/tips/how-to-bypass-the-backstage-view-when-saving-new-files-in-office-2013/">http://www.howtogeek.com/tips/how-to-bypass-the-backstage-view-when-saving-new-files-in-office-2013/</a></p>
 </div>

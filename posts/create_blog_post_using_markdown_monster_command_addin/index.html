@@ -57,17 +57,17 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin'>Create Blog Post Using Markdown Monster's Command Addin</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-04-15 12:29</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin/images/header.png" alt=""></p>
+                <div class='post-content'><p><img src="images/header.png" alt="" /></p>
 <p>This is a quick entry, mostly for me. I've been using the very good Markdown editor, <a href="https://markdownmonster.west-wind.com/">Markdown Monster</a>, and wanted to automate creating blog posts. I have a manual process that I thought I could somewhat automate.</p>
 <p>MM has an addin that lets me write C# scripting and control a lot of the editor.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin/images/2018-04-15%2012_33_00.png" alt=""></p>
+<p><img src="images/2018-04-15%2012_33_00.png" alt="" /></p>
 <p>Through both the documentation plus trial-and-error, I was able to do the following:</p>
 <ol>
 <li>Prompt for a post title.</li>
 <li>Create the post file in a known folder.</li>
 <li>Add metadata (frontmatter).</li>
 <li>Open in a tab for editing.</li>
-<li>Open the post folder's "images" folder.</li>
+<li>Open the post folder's &quot;images&quot; folder.</li>
 <li>Commit and publish</li>
 </ol>
 <p>Here's the code for creating the post, some of which is seen in the above screenshot.</p>
@@ -79,37 +79,37 @@
 using Westwind.Utilities;
 using System.IO;
 
-string defaultPath = @"c:\path\to\posts";
+string defaultPath = @&quot;c:\path\to\posts&quot;;
 
-string title = Microsoft.VisualBasic.Interaction.InputBox("File Name", "Enter file name", "", 600, 300);
+string title = Microsoft.VisualBasic.Interaction.InputBox(&quot;File Name&quot;, &quot;Enter file name&quot;, &quot;&quot;, 600, 300);
 
 if (String.IsNullOrWhiteSpace(title))
 {
     return null;
 }
 
-string datetime = DateTime.Now.ToString("yyyyMMdd-HHmm");
-string folder = Path.Combine(defaultPath, datetime + " " + title);
-string file = Path.Combine(folder, title + ".md");
-string images = Path.Combine(folder, "images");
-string publishedOn = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+string datetime = DateTime.Now.ToString(&quot;yyyyMMdd-HHmm&quot;);
+string folder = Path.Combine(defaultPath, datetime + &quot; &quot; + title);
+string file = Path.Combine(folder, title + &quot;.md&quot;);
+string images = Path.Combine(folder, &quot;images&quot;);
+string publishedOn = DateTime.Now.ToString(&quot;yyyy-MM-dd HH:mm&quot;);
 string slug = title.ToLower();
-slug = slug.Replace(" ", "_");
-slug = slug.Replace("?", "_");
-slug = slug.Replace("&amp;", "_");
-slug = slug.Replace(".", "_");
-string meta = String.Format(@"---
+slug = slug.Replace(&quot; &quot;, &quot;_&quot;);
+slug = slug.Replace(&quot;?&quot;, &quot;_&quot;);
+slug = slug.Replace(&quot;&amp;&quot;, &quot;_&quot;);
+slug = slug.Replace(&quot;.&quot;, &quot;_&quot;);
+string meta = String.Format(@&quot;---
 Title          : {0}
 PublishedOn    : {1}
 Slug           : {2}
 Tags           : 
 Status         : Draft
 ---
-",title, publishedOn, slug);
+&quot;,title, publishedOn, slug);
 
 Directory.CreateDirectory(images);
 File.WriteAllText(file,meta);
-//Model.ExecuteProcess("explorer.exe", images);
+//Model.ExecuteProcess(&quot;explorer.exe&quot;, images);
 //System.Threading.Thread.Sleep(2000);
 Model.Window.OpenTab(file);
 //I can't figure out how to set the cursor position
@@ -142,12 +142,12 @@ using System.Windows;
 string folder = Model.ActiveDocument.Filename;
 folder = Directory.GetParent(folder).FullName;
 
-string images = Path.Combine(folder, "images");
+string images = Path.Combine(folder, &quot;images&quot;);
 if (Directory.Exists(images)) {
-    Model.ExecuteProcess("explorer.exe", images);
+    Model.ExecuteProcess(&quot;explorer.exe&quot;, images);
 }
 else {
-    MessageBox.Show("No folder " + images);
+    MessageBox.Show(&quot;No folder &quot; + images);
 }
 </code></pre>
 <p>And, to publish, I do this. I have a batch file in my blog folder that takes care of the actual commit/push to Git.</p>
@@ -159,15 +159,15 @@ using System.Windows;
 using System.Diagnostics;
 
 string folder = Model.ActiveDocument.Filename;
-folder = Directory.GetParent(Path.Combine(folder,@"..\..\..\")).FullName;
+folder = Directory.GetParent(Path.Combine(folder,@&quot;..\..\..\&quot;)).FullName;
 
-string cmd = Path.Combine(folder, "publish.cmd");
-cmd = @"""" + cmd + @"""";
+string cmd = Path.Combine(folder, &quot;publish.cmd&quot;);
+cmd = @&quot;&quot;&quot;&quot; + cmd + @&quot;&quot;&quot;&quot;;
 Console.WriteLine(cmd);
-//Model.ExecuteProcess("cmd.exe", "/C " + cmd);
+//Model.ExecuteProcess(&quot;cmd.exe&quot;, &quot;/C &quot; + cmd);
 var si = new ProcessStartInfo();
-si.FileName = "cmd.exe";
-si.Arguments = "/C " +  cmd;
+si.FileName = &quot;cmd.exe&quot;;
+si.Arguments = &quot;/C &quot; +  cmd;
 si.WorkingDirectory = folder;
 
 Process.Start(si);

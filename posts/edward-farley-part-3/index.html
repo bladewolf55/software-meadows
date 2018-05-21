@@ -59,17 +59,17 @@
                 <p class='post-info'><span class='posted-on'>2013-05-19 09:34</span></p>
                 <div class='post-content'><div class="series">
 <p>Chapters</p>
-<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p><a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -131,20 +131,20 @@ namespace LearningEF
 </code></pre>
 <p>Let’s run our program and see what’s created.</p>
 <div class="separator" style="text-align: center; clear: both">
-<p><a href="images/image02.png"><img src="https://www.softwaremeadows.com/posts/edward-farley-part-3/images/image02.png" alt=""></a></p>
+<p><a href="images/image02.png"><img src="images/image02.png" alt="" /></a></p>
 </div>
 <p>Ah. So. We get a database with the rather excessive name LearningEF.LearningEFDb, with a table named People. Apparently the Framework thinks it knows more about grammar than I**. This is a byproduct of convention over configuration. We, um, borrowed this idea from the DHH Library, and heaven knows where they got it from. Regardless, the Framework doesn’t care how I named my DbSet. I could have named it Kumquats and the database table would be named People. But I don’t like People. So, I’ll inform the Framework of my preference. I’ll also enforce my own database name, which means a trip to the app.config file. Enough talk. Here, look:</p>
 <p><strong>app.config</strong></p>
-<pre><code class="language-csharp">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+<pre><code class="language-csharp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;configuration&gt;
   &lt;configSections&gt;
     &lt;!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 --&gt;
-    &lt;section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" /&gt;
+    &lt;section name=&quot;entityFramework&quot; type=&quot;System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot; requirePermission=&quot;false&quot; /&gt;
   &lt;/configSections&gt;
   &lt;connectionStrings&gt;
-    &lt;add name="LearningEFDb" 
-         connectionString="Server=.\SQLEXPRESS;Database=EFDb;Trusted_Connection=True"
-         providerName="System.Data.SqlClient"/&gt;
+    &lt;add name=&quot;LearningEFDb&quot; 
+         connectionString=&quot;Server=.\SQLEXPRESS;Database=EFDb;Trusted_Connection=True&quot;
+         providerName=&quot;System.Data.SqlClient&quot;/&gt;
   &lt;/connectionStrings&gt;
 </code></pre>
 <p><strong>LearningEFDb.cs</strong></p>
@@ -152,7 +152,7 @@ namespace LearningEF
 {
     public DbSet&lt;Person&gt; Persons { get; set; }
 
-    public LearningEFDb(): base("LearningEFDb")
+    public LearningEFDb(): base(&quot;LearningEFDb&quot;)
     {
 
     }
@@ -163,7 +163,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LearningEF
 {
-    [Table("Persons")]
+    [Table(&quot;Persons&quot;)]
     public class Person
     {
         public int PersonId { get; set; }
@@ -173,7 +173,7 @@ namespace LearningEF
 </code></pre>
 <p>Now, we drop the database and rerun the program.</p>
 <div class="separator" style="text-align: center; clear: both">
-<p><a href="images/image01.png"><img src="https://www.softwaremeadows.com/posts/edward-farley-part-3/images/image01.png" alt=""></a></p>
+<p><a href="images/image01.png"><img src="images/image01.png" alt="" /></a></p>
 </div>
 <p>That’s better, isn’t it? The database has a rational name, and the table has a name whose rationality cannot be denied. We’ll do one more thing. Well, no, we’ll do many more things, of course. What I mean to say is, I don’t want to manually drop the database each time, and I already know I’ll need help saving and displaying information, so, in the interests of time....</p>
 <p>[The Professor’s hands fluttered over the keyboard, and in a minute the following code appeared.]</p>
@@ -182,7 +182,7 @@ namespace LearningEF
 {
     public DbSet&lt;Person&gt; Persons { get; set; }
 
-    public LearningEFDb(): base("LearningEFDb")
+    public LearningEFDb(): base(&quot;LearningEFDb&quot;)
     {
         KillConnections();
         Database.SetInitializer(new DatabaseInitializer());
@@ -192,18 +192,18 @@ namespace LearningEF
 
     public void KillConnections()
     {
-        string kill = @"declare @kill varchar(8000) = '';
+        string kill = @&quot;declare @kill varchar(8000) = '';
         select @kill=@kill+'kill '+convert(varchar(5),spid)+';'
         from master..sysprocesses 
-        where dbid=db_id('" + Database.Connection.Database + @"');
-        exec (@kill);";
+        where dbid=db_id('&quot; + Database.Connection.Database + @&quot;');
+        exec (@kill);&quot;;
         string connectionString = Database.Connection.ConnectionString;
         using (var cn = Database
             .DefaultConnectionFactory
             .CreateConnection(connectionString))
         {
             cn.Open();
-            cn.ChangeDatabase("master");
+            cn.ChangeDatabase(&quot;master&quot;);
             var cmd = cn.CreateCommand();
             cmd.CommandText = kill;
             cmd.ExecuteNonQuery();
@@ -217,7 +217,7 @@ namespace LearningEF
     }
 </code></pre>
 <p><strong>LearningEFSchema.cs</strong></p>
-<pre><code class="language-csharp">[Table("Persons")]
+<pre><code class="language-csharp">[Table(&quot;Persons&quot;)]
 public class Person
 {
     //Primary Key
@@ -231,31 +231,31 @@ public class Person
 
 static void Main(string[] args)
 {
-    Console.WriteLine("Create Person without a name.");
+    Console.WriteLine(&quot;Create Person without a name.&quot;);
     Person edward = new Person();
     _db.Persons.Add(edward);
     SaveChanges();
-    Console.WriteLine("Add the required name and save.");
-    edward.Name = "Edward Farley";
+    Console.WriteLine(&quot;Add the required name and save.&quot;);
+    edward.Name = &quot;Edward Farley&quot;;
     SaveChanges();
     Console.WriteLine(“Get the record we just saved, and display.”);
     edward = _db.Persons.First();
-    Console.WriteLine("Person: " + edward.Name);
+    Console.WriteLine(&quot;Person: &quot; + edward.Name);
     
-    Console.WriteLine("Finished");
+    Console.WriteLine(&quot;Finished&quot;);
     Console.ReadLine();
 }
 
 static void SaveChanges()
 {
-    Console.WriteLine("Saving changes.");
-    try { _db.SaveChanges(); Console.WriteLine("Successful save."); }
+    Console.WriteLine(&quot;Saving changes.&quot;);
+    try { _db.SaveChanges(); Console.WriteLine(&quot;Successful save.&quot;); }
     catch (Exception ex)
     {
         string exceptionError = ex.GetBaseException().Message;
-        if (exceptionError.ToLower().Contains("Validation failed for one or more entities.".ToLower()))
+        if (exceptionError.ToLower().Contains(&quot;Validation failed for one or more entities.&quot;.ToLower()))
         {
-            exceptionError = "";
+            exceptionError = &quot;&quot;;
         }
         WriteValidationErrors(exceptionError);
     }
@@ -265,14 +265,14 @@ static void WriteValidationErrors(string exceptionError)
 {
     if (!String.IsNullOrWhiteSpace(exceptionError))
     {
-        Console.WriteLine("  ERROR: " + exceptionError);
+        Console.WriteLine(&quot;  ERROR: &quot; + exceptionError);
     }
     var errors = _db.GetValidationErrors();
     foreach (var entry in errors)
     {
         foreach (var error in entry.ValidationErrors)
         {
-            Console.WriteLine("  ERROR: " + error.ErrorMessage);
+            Console.WriteLine(&quot;  ERROR: &quot; + error.ErrorMessage);
         }
     }
 }
@@ -296,14 +296,14 @@ Person: Edward Farley
 Finished
 </code></pre>
 <p>Well, I think that’s quite enough for one day, don’t you? Come back tomorrow. Oh, and one last thing! Ask your dear mother if she’d make me one of her famous peanut butter and banana sandwiches. Off you go!</p>
-<hr>
-<p>*<a href="http://quoteinvestigator.com/2011/05/13/einstein-simple/">Quote attributed to Albert Einstein</a>: ”Everything should be made as simple as possible, but not simpler.”<br>
-**The Professor seems to be joking, or he likes old usages of words. Or, it’s possible--but unlikely--he expects to know the number of people in the Persons table. Regardless, EF’s pluralization to “People” is standard. <a href="http://www.dailywritingtips.com/people-versus-persons/">People vs. Persons</a><br>
-<a href="http://en.wikipedia.org/wiki/Convention_over_configuration">Convention over configuration</a><br>
-<a href="http://dictionary.reference.com/browse/kumquat?&amp;path=/">Kumquat</a><br>
-<a href="http://www.imdb.com/title/tt0061715/?ref_=fn_al_tt_1">The Gnome-Mobile</a><br>
+<hr />
+<p>*<a href="http://quoteinvestigator.com/2011/05/13/einstein-simple/">Quote attributed to Albert Einstein</a>: ”Everything should be made as simple as possible, but not simpler.”<br />
+**The Professor seems to be joking, or he likes old usages of words. Or, it’s possible--but unlikely--he expects to know the number of people in the Persons table. Regardless, EF’s pluralization to “People” is standard. <a href="http://www.dailywritingtips.com/people-versus-persons/">People vs. Persons</a><br />
+<a href="http://en.wikipedia.org/wiki/Convention_over_configuration">Convention over configuration</a><br />
+<a href="http://dictionary.reference.com/browse/kumquat?&amp;path=/">Kumquat</a><br />
+<a href="http://www.imdb.com/title/tt0061715/?ref_=fn_al_tt_1">The Gnome-Mobile</a><br />
 <a href="http://en.wikipedia.org/wiki/David_Heinemeier_Hansson">DHH</a></p>
-<hr>
+<hr />
 </div>
               </div>
               

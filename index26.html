@@ -77,7 +77,7 @@
 <li>Press Window key + S.</li>
 <li>Start typing.</li>
 </ol>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/windows-81-window-key-s-search-from/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <p>Likewise, Window key + Q, W or F. They all open the search sidebar. Note that “F” opens a file search, while the others open “search everything.”</p>
 <p>I haven’t found a keyboard shortcut to open the Modern application list. Yet.</p>
 </div>
@@ -109,25 +109,25 @@
 <li>Edit your wifi adapter &gt; Properties &gt; Configure</li>
 <li>Choose Power Management tab and uncheck everything.</li>
 </ol>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/lenovo-u530-touch-wifi-problem-continued/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <h2 id="disable-msi-support">Disable MSI Support</h2>
-<p>I don’t know what MSI Support is, but there’s some evidence that Win8 doesn’t communicate with WiFi adapters in the same way regarding it. See Mark Hanna’s answer in this thread. <a href="https://communities.intel.com/thread/32169" title="https://communities.intel.com/thread/32169">https://communities.intel.com/thread/32169</a><br>
-[Here’s his answer copy/pasted]<br>
-Some Intel engineers did investigate this issue and this is what they found. When the system is in battery mode to save power, Windows 8 is doing something different compared to Windows 7 and earlier versions of Windows. For some reason the driver is not getting called by the OS in battery mode resulting in transmit hangs.<br>
-I do not anticipate any driver update for this issue, but you should be able to make a registry change to the interrupt type from MSI to legacy to work around the issue. After disabling MSI on a test machine here, the hang was no longer happening.<br>
-MSI can be disabled from registry. You can use Windows Device Manager to find the hardware device ID information that will be part of the path to the registry setting shown <em><strong>in brackets and highlighted</strong></em>below. Hardware IDs can be found in the device's "Details" tab.<br>
-Here is an example for my network connection. The numbers are different because I have a different network connection, but this does show where to find the hardware IDs.<br>
-<a href="https://communities.intel.com/servlet/JiveServlet/showImage/2-185710-231663/HardwareIDs.jpg"><img src="https://communities.intel.com/servlet/JiveServlet/downloadImage/2-185710-231663/407-285/HardwareIDs.jpg" alt="HardwareIDs.jpg"></a><br>
-The above information is what you will need from your network connection in order to locate the right place in the Windows registry.<br>
-<strong>Caution</strong>: Make sure you back up your registry before proceeding. Changing or deleting registry keys can have unintended consequences.<br>
-Registry Setting Path:<br>
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\[<em><strong>VEN_8086&amp;DEV_XXXX&amp;...]</strong></em>\3&amp;33fd14ca&amp;0&amp;C8\Device Parameters\InterruptManagement\MessageSignaledInterruptProperties<br>
-Change "MSISupported" value to '0'. The value is '1' by default. You can always go back and change to '1' again if you run into any new issues.<br>
-Here is a screen shot of my registry setting that I navigated to using the hardware IDs I found in Windows device manager:<br>
-<a href="https://communities.intel.com/servlet/JiveServlet/showImage/2-185710-231664/MSI.jpg"><img src="https://communities.intel.com/servlet/JiveServlet/downloadImage/2-185710-231664/450-403/MSI.jpg" alt="MSI.jpg"></a></p>
-<h2 id="section">&nbsp;</h2>
+<p>I don’t know what MSI Support is, but there’s some evidence that Win8 doesn’t communicate with WiFi adapters in the same way regarding it. See Mark Hanna’s answer in this thread. <a href="https://communities.intel.com/thread/32169" title="https://communities.intel.com/thread/32169">https://communities.intel.com/thread/32169</a><br />
+[Here’s his answer copy/pasted]<br />
+Some Intel engineers did investigate this issue and this is what they found. When the system is in battery mode to save power, Windows 8 is doing something different compared to Windows 7 and earlier versions of Windows. For some reason the driver is not getting called by the OS in battery mode resulting in transmit hangs.<br />
+I do not anticipate any driver update for this issue, but you should be able to make a registry change to the interrupt type from MSI to legacy to work around the issue. After disabling MSI on a test machine here, the hang was no longer happening.<br />
+MSI can be disabled from registry. You can use Windows Device Manager to find the hardware device ID information that will be part of the path to the registry setting shown <em><strong>in brackets and highlighted</strong></em>below. Hardware IDs can be found in the device's &quot;Details&quot; tab.<br />
+Here is an example for my network connection. The numbers are different because I have a different network connection, but this does show where to find the hardware IDs.<br />
+<a href="https://communities.intel.com/servlet/JiveServlet/showImage/2-185710-231663/HardwareIDs.jpg"><img src="https://communities.intel.com/servlet/JiveServlet/downloadImage/2-185710-231663/407-285/HardwareIDs.jpg" alt="HardwareIDs.jpg" /></a><br />
+The above information is what you will need from your network connection in order to locate the right place in the Windows registry.<br />
+<strong>Caution</strong>: Make sure you back up your registry before proceeding. Changing or deleting registry keys can have unintended consequences.<br />
+Registry Setting Path:<br />
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\[<em><strong>VEN_8086&amp;DEV_XXXX&amp;...]</strong></em>\3&amp;33fd14ca&amp;0&amp;C8\Device Parameters\InterruptManagement\MessageSignaledInterruptProperties<br />
+Change &quot;MSISupported&quot; value to '0'. The value is '1' by default. You can always go back and change to '1' again if you run into any new issues.<br />
+Here is a screen shot of my registry setting that I navigated to using the hardware IDs I found in Windows device manager:<br />
+<a href="https://communities.intel.com/servlet/JiveServlet/showImage/2-185710-231664/MSI.jpg"><img src="https://communities.intel.com/servlet/JiveServlet/downloadImage/2-185710-231664/450-403/MSI.jpg" alt="MSI.jpg" /></a></p>
+<h2 id="section"> </h2>
 <h2 id="update-2014-02-02">Update 2014-02-02</h2>
-<p>Neither of the above solved my problem. However, I finally found a forum from Intel discussing the issue, and discovered I’m not running the latest Intel drivers (I <em>am</em> running the latest driver on Lenovo’s site). There were several steps to deal with, but I’m install both the Bluetooth and WiFi drivers soon. I’ll check that the other changes I made aren’t in place—running default settings—and report back.<br>
+<p>Neither of the above solved my problem. However, I finally found a forum from Intel discussing the issue, and discovered I’m not running the latest Intel drivers (I <em>am</em> running the latest driver on Lenovo’s site). There were several steps to deal with, but I’m install both the Bluetooth and WiFi drivers soon. I’ll check that the other changes I made aren’t in place—running default settings—and report back.<br />
 <a href="http://www.intel.com/p/en_US/support/detect" title="http://www.intel.com/p/en_US/support/detect">http://www.intel.com/p/en_US/support/detect</a></p>
 <h2 id="update-2014-02-03">Update 2014-02-03</h2>
 <p>I don’t know yet if the latest drivers prevent the adapter from dropping down to 11mbps, but I do know the adapter got turned off while in sleep mode, and came on shortly after coming out of sleep. The power profile definitely isn’t set to do that, so I’m turning off the adapter’s Properties &gt; Power Management &gt; Allow the computer to turn off this device to save power.</p>
@@ -136,7 +136,7 @@ Here is a screen shot of my registry setting that I navigated to using the hardw
 <p>Here’s another nugget: running System File Checker, e.g. sfc /scannow, found corrupt files it couldn’t repair. “Cannot repair member file”. I found this link that suggested running, as administrator,</p>
 <p>dism /online /cleanup-image /restorehealth.</p>
 <p>This indeed repaired the image, and running sfc again found no errors.</p>
-<p><a href="http://answers.microsoft.com/en-us/windows/forum/windows_8-performance/hash-mismatch/08ef49a6-84e8-47ad-bd69-48b829d495c9">Cannot repair member file [l:36{18}]"Amd64\CNBJ2530.DPB"</a></p>
+<p><a href="http://answers.microsoft.com/en-us/windows/forum/windows_8-performance/hash-mismatch/08ef49a6-84e8-47ad-bd69-48b829d495c9">Cannot repair member file [l:36{18}]&quot;Amd64\CNBJ2530.DPB&quot;</a></p>
 <p><a href="http://social.technet.microsoft.com/Forums/windows/en-US/26f35def-6f55-4c07-9ba8-73e2d402e6cc/sfc-scannow-cannot-repair-member-file?forum=w8itprogeneral">sfc /scannow – Cannot repair member file</a></p>
 <h2 id="update-2014-02-17">Update 2014-02-17</h2>
 <p>I tried letting Windows manage my WiFi, and began having troubles again (suddenly slower speed, dropping connection). So, for some reason, letting PROSet manage the wireless makes a big difference.</p>

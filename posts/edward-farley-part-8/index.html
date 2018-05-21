@@ -58,18 +58,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:44</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -129,7 +129,7 @@ drop table One
 public class ReadingRoom
 {
     //Primary Key same as Person
-    [Key, ForeignKey("Person")]
+    [Key, ForeignKey(&quot;Person&quot;)]
     public int PersonId { get; set; }
     [Required]
     public string Location { get; set; }
@@ -144,22 +144,22 @@ public class ReadingRoom
 </code></pre>
 <p>Now, we must update our code. Unlike before, we can’t simply append a reading room. It is now intrinsically linked to a person. We must modify our very first instantiation of a person.</p>
 <p><strong>Program.cs</strong></p>
-<pre><code class="language-csharp">Console.WriteLine("Create Person without a name.");
+<pre><code class="language-csharp">Console.WriteLine(&quot;Create Person without a name.&quot;);
 Person edward = new Person();
 _db.Persons.Add(edward);
 SaveChanges();
-Console.WriteLine("Add the required name and Library Card.");
-edward.Name = "Edward Farley";
+Console.WriteLine(&quot;Add the required name and Library Card.&quot;);
+edward.Name = &quot;Edward Farley&quot;;
 edward.LibraryCards.Add(new LibraryCard() { Number = 123 });
-Console.WriteLine("Add the Reading Room and save.");
-edward.ReadingRoom = new ReadingRoom() { Location = "Lewis Wing Floor -3" };
+Console.WriteLine(&quot;Add the Reading Room and save.&quot;);
+edward.ReadingRoom = new ReadingRoom() { Location = &quot;Lewis Wing Floor -3&quot; };
 //Must Save Changes after library card AND reading room have been added.
 SaveChanges();
-Console.WriteLine("Get the record we just saved, and display.");
+Console.WriteLine(&quot;Get the record we just saved, and display.&quot;);
 edward = _db.Persons.First();
-Console.WriteLine("Person: " + edward.Name 
-    + " has card: " + edward.LibraryCards.First().Number
-    + " and Reading Room: " + edward.ReadingRoom.Location);
+Console.WriteLine(&quot;Person: &quot; + edward.Name 
+    + &quot; has card: &quot; + edward.LibraryCards.First().Number
+    + &quot; and Reading Room: &quot; + edward.ReadingRoom.Location);
 </code></pre>
 <p>Our program runs as expected, with just the first part changing.</p>
 <pre><code class="language-console">Create Person without a name.
@@ -181,10 +181,10 @@ create table ReadingRooms (
 )
 </code></pre>
 <p>That’s quite enough for today. Tomorrow we leave the realm of “one to something” cardinality, and venture into new relationships. Ah, Edward, do I spy Cricket and Cream Sherbet? Outstanding!</p>
-<hr>
-<p><a href="http://parallelx.blogspot.com/2012/06/t-sql-create-relationships.html">T-SQL create relationships</a><br>
+<hr />
+<p><a href="http://parallelx.blogspot.com/2012/06/t-sql-create-relationships.html">T-SQL create relationships</a><br />
 <a href="http://www.loc.gov/rr/main/">Library of Congress Main Reading Room</a></p>
-<hr>
+<hr />
 </div>
               </div>
               

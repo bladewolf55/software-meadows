@@ -65,7 +65,7 @@
 <li><a href="http://www.softwaremeadows.com/2017/05/identityserver3-with-pkce-part-4.html">Persist user data to database using Microsoft.Identity and SQL Server</a>.</li>
 </ol>
 <blockquote>
-<p><strong>Important</strong><br>
+<p><strong>Important</strong><br />
 This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAuth-only, since the PKCE specification doesn't require OIDC.</p>
 </blockquote>
 <h1 id="where-were-at">Where We're At</h1>
@@ -77,8 +77,8 @@ This series does <em>not</em> create an OpenID Connect (OIDC) server. It is OAut
 </ol>
 <p>We'll use the same project as the authorization server, but it's important to know that the Web API could be in a completely separate project.</p>
 <h2 id="web-api">Web API</h2>
-<p><strong>References</strong><br>
-<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br>
+<p><strong>References</strong><br />
+<a href="https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html">Simplest OAuth Server</a><br />
 <a href="https://github.com/IdentityServer/IdentityServer3.Samples/tree/master/source/Simplest%20OAuth2%20Walkthrough">Simplest OAuth2 Walkthrough Code</a></p>
 <p>Install the packages for Web API, and being able to accept the IdentityServer tokens. Note IdentityModel version, which is latest for .Net 4.6 (2.x is for .Net Core).</p>
 <pre><code class="language-csharp">Install-Package Microsoft.AspNet.WebApi.Client -Version 5.2.3 -Project AuthAndApi
@@ -124,9 +124,9 @@ namespace AuthAndApi
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {
                 //In this case, the authorization server is also the Web API server
-                Authority = "http://localhost:27230",
+                Authority = &quot;http://localhost:27230&quot;,
                 ValidationMode = ValidationMode.ValidationEndpoint,
-                RequiredScopes = new[] { "email" }
+                RequiredScopes = new[] { &quot;email&quot; }
             });
 
             //Configure Web API
@@ -138,10 +138,10 @@ namespace AuthAndApi
 }
 </code></pre>
 <p>Add a Controllers folder, and a controller named Test.</p>
-<p><a href="images/17-05-06_114024.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114024.png" alt="2017-05-06_114024" title="2017-05-06_114024"></a><a href="images/17-05-06_114144_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114144_1.png" alt="2017-05-06_114144" title="2017-05-06_114144"></a><a href="images/17-05-06_114210.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_114210.png" alt="2017-05-06_114210" title="2017-05-06_114210"></a></p>
+<p><a href="images/17-05-06_114024.png"><img src="images/17-05-06_114024.png" alt="2017-05-06_114024" title="2017-05-06_114024" /></a><a href="images/17-05-06_114144_1.png"><img src="images/17-05-06_114144_1.png" alt="2017-05-06_114144" title="2017-05-06_114144" /></a><a href="images/17-05-06_114210.png"><img src="images/17-05-06_114210.png" alt="2017-05-06_114210" title="2017-05-06_114210" /></a></p>
 <p>Create an API method that requires authorization. The method checks for evidence a user authorized (and not just the application).</p>
 <blockquote>
-<p><strong>Note</strong><br>
+<p><strong>Note</strong><br />
 Code shamelessly stolen from the IdentityServer samples</p>
 </blockquote>
 <p><strong>TestController.cs</strong></p>
@@ -156,7 +156,7 @@ using System.Security.Claims;
 
 namespace AuthAndApi.Controllers
 {
-    [Route("test")]
+    [Route(&quot;test&quot;)]
     [Authorize]
     public class TestController : ApiController
     {
@@ -164,23 +164,23 @@ namespace AuthAndApi.Controllers
         {
             var user = User as ClaimsPrincipal;
 
-            var subjectClaim = user.FindFirst("sub");
+            var subjectClaim = user.FindFirst(&quot;sub&quot;);
             if (subjectClaim != null)
             {
                 return Json(new
                 {
-                    message = "OK user",
-                    client = user.FindFirst("client_id").Value,
+                    message = &quot;OK user&quot;,
+                    client = user.FindFirst(&quot;client_id&quot;).Value,
                     subject = subjectClaim.Value,
-                    email = user.FindFirst("email").Value
+                    email = user.FindFirst(&quot;email&quot;).Value
                 });
             }
             else
             {
                 return Json(new
                 {
-                    message = "User claim not found for this client_id",
-                    client = user.FindFirst("client_id").Value
+                    message = &quot;User claim not found for this client_id&quot;,
+                    client = user.FindFirst(&quot;client_id&quot;).Value
                 });
             }
         }
@@ -200,7 +200,7 @@ namespace AuthAndApi.Controllers
         {
             //get token
             var response = GetAccessToken();
-            Console.WriteLine("Access Token: " + response.AccessToken);
+            Console.WriteLine(&quot;Access Token: &quot; + response.AccessToken);
             //use token
             CallProtectedApiResource(response.AccessToken);
             Console.ReadLine();
@@ -210,11 +210,11 @@ namespace AuthAndApi.Controllers
         {
             var client = new HttpClient();
             client.SetBearerToken(access_token);
-            Console.WriteLine(client.GetStringAsync("http://localhost:27230/test").Result);
+            Console.WriteLine(client.GetStringAsync(&quot;http://localhost:27230/test&quot;).Result);
         }
 </code></pre>
 <p>Run the solution. After authorizing, the application successfully gets the protected resource's data.</p>
-<p><a href="images/17-05-06_121035_1.png"><img src="https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2/images/17-05-06_121035_1.png" alt="2017-05-06_121035" title="2017-05-06_121035"></a></p>
+<p><a href="images/17-05-06_121035_1.png"><img src="images/17-05-06_121035_1.png" alt="2017-05-06_121035" title="2017-05-06_121035" /></a></p>
 <h1 id="wrap-up">Wrap Up</h1>
 <p>We now have a fully functioning mobile application! Next up, persisting the IdentityServer configuration.</p>
 </div>

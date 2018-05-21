@@ -57,7 +57,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/solving_nancyfx_tokenizer_keychain_bin_invalid_read_type_request_115'>Solving NancyFx Tokenizer keyChain.bin Invalid Read Type Request '115'</a></h2>
                 <p class='post-info'><span class='posted-on'>2018-05-15 11:06</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/solving_nancyfx_tokenizer_keychain_bin_invalid_read_type_request_115/images/nancylogo-transparent.png" alt=""> <img src="https://www.softwaremeadows.com/posts/solving_nancyfx_tokenizer_keychain_bin_invalid_read_type_request_115/images/user_security_token.png" alt=""></p>
+                <div class='post-content'><p><img src="images/nancylogo-transparent.png" alt="" /> <img src="images/user_security_token.png" alt="" /></p>
 <h1 id="the-error">The Error</h1>
 <p>I was getting this error when running an ASP.NET solution using <a href="http://nancyfx.org/">NancyFx</a>:</p>
 <blockquote>
@@ -68,7 +68,7 @@
 </code></pre>
 <p>There is only one mention of this error when searching Google, and it refers to using a sync service of some kind. So, not apparently related.</p>
 <p>After quite a bit of sleuthing, I wondered about Nancy's keyChain.bin file, which I knew had been modified during a recent <code>git rebase</code> operation.</p>
-<p>Sure enough, I checked out the file from a working branch and the bug went away. Interestingly, I had renamed and saved the "bad" file. When I renamed it back, the bug didn't recur. So, I don't really understand what went wrong, but it got fixed.</p>
+<p>Sure enough, I checked out the file from a working branch and the bug went away. Interestingly, I had renamed and saved the &quot;bad&quot; file. When I renamed it back, the bug didn't recur. So, I don't really understand what went wrong, but it got fixed.</p>
 <p>A simpler way to fix this would have been to rename or delete the keyChain.bin file, then let Nancy regenerate it.</p>
 <h1 id="make-it-better">Make it Better</h1>
 <p>I also was doing the wrong thing for the right reason. The (deprected) <a href="https://github.com/NancyFx/Nancy/wiki/Token-Authentication">Nancy Token-Authentication</a> requires a writable keyStore folder. By default, it gets created in the project root. I was marking the keyChain.bin file Build Type as Content and Copy Always, so it would be created in a first-deployment. But that meant storing the file in Git and it was always changing.</p>

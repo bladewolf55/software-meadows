@@ -67,15 +67,15 @@
 <p>Here are the steps, mostly copied.</p>
 <p><a href="http://www.tomshardware.com/answers/id-1851375/finger-tap-click-windows.html" title="http://www.tomshardware.com/answers/id-1851375/finger-tap-click-windows.html">http://www.tomshardware.com/answers/id-1851375/finger-tap-click-windows.html</a></p>
 <p><a href="https://forums.lenovo.com/t5/Idea-Windows-based-Tablets-and/2-Finger-Tap-right-click-not-working-Win-8-0/td-p/1324087" title="https://forums.lenovo.com/t5/Idea-Windows-based-Tablets-and/2-Finger-Tap-right-click-not-working-Win-8-0/td-p/1324087">https://forums.lenovo.com/t5/Idea-Windows-based-Tablets-and/2-Finger-Tap-right-click-not-working-Win-8-0/td-p/1324087</a></p>
-<p>1. To re-enable two finger tap, press <strong>Windows key + R</strong>, enter "<strong>regedit</strong>" then press enter, and on the left pane browse to the following locations:<br>
+<p>1. To re-enable two finger tap, press <strong>Windows key + R</strong>, enter &quot;<strong>regedit</strong>&quot; then press enter, and on the left pane browse to the following locations:<br />
 <strong>HKEY_CURRENT_USER\Software\Synaptics\SynTP\TouchPadPS2</strong></p>
-<p>AND&nbsp;</p>
-<p><strong>HKEY_CURRENT_USER\Software\Synaptics\SynTP\<span class="underline">TouchPadSMB2c</span></strong><br>
+<p>AND </p>
+<p><strong>HKEY_CURRENT_USER\Software\Synaptics\SynTP\<span class="underline">TouchPadSMB2c</span></strong><br />
 (the first location didn't work for me, but the second location did)</p>
-<p>2. In the right pane, <strong>double click on 2FingerTapAction</strong> and change the value to a "<strong>2</strong>" (Hexadecimal) for <strong>right click</strong>, or a "<strong>4</strong>" (Hexadecimal) for <strong>middle click</strong>.&nbsp;</p>
+<p>2. In the right pane, <strong>double click on 2FingerTapAction</strong> and change the value to a &quot;<strong>2</strong>&quot; (Hexadecimal) for <strong>right click</strong>, or a &quot;<strong>4</strong>&quot; (Hexadecimal) for <strong>middle click</strong>. </p>
 <p>3. <strong>Double click</strong> on <strong>2FingerTapPluginID</strong> and <strong>clear any value</strong> it may have.</p>
 <p>4. In the right pane, find the <strong>MultiFingerTapFlags key</strong> and <strong>change it from a 2 to a 3</strong>.</p>
-<p>4b. Additionally, if you want to enable three finger tap for middle click, double click on 3FingerTapAction and change the value to a "4", also clear any value for 3FingerTapPluginID and set 3FingerTapPluginActionID to "0".</p>
+<p>4b. Additionally, if you want to enable three finger tap for middle click, double click on 3FingerTapAction and change the value to a &quot;4&quot;, also clear any value for 3FingerTapPluginID and set 3FingerTapPluginActionID to &quot;0&quot;.</p>
 <p>5. Restart your PC and you can see the changes well enough.</p>
 <p>Note that if you change any setting using the Synaptic dialog, the above will get unset and you’ll have to manually do it again.</p>
 </div>
@@ -105,16 +105,16 @@
 <p><a href="https://bitbucket.org/mpi4py/mpi4py/downloads" title="https://bitbucket.org/mpi4py/mpi4py/downloads">https://bitbucket.org/mpi4py/mpi4py/downloads</a></p>
 <h1 id="installation">Installation</h1>
 <p>1. Run the Canopy installer. It does not require administrative privileges. I stuck with the defaults.</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image.png" alt="image" title="image"></a></p>
-<p><a href="images/image-001.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-001.png" alt="image" title="image"></a></p>
-<p><a href="images/image-002.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-002.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
+<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
+<p><a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></p>
 <p>Clicking “Start using Canopy” will configured the environment. When configured, a window will open, which you can then close. Your desktop will have two icons, one for Canopy, the other for PyLab.</p>
 <p>2. Run the DPMix Windows installer. It will find the Python installation and use it.</p>
-<p><a href="images/image-003.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-003.png" alt="image" title="image"></a></p>
-<p><a href="images/image-004.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-004.png" alt="image" title="image"></a></p>
-<p><a href="images/image-005.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-005.png" alt="image" title="image"></a></p>
+<p><a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></p>
+<p><a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></p>
+<p><a href="images/image-005.png"><img src="images/image-005.png" alt="image" title="image" /></a></p>
 <p>3. Run the py-fcm Windows installer. It likewise will find and use the Python installation.</p>
-<p><a href="images/image-006.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-006.png" alt="image" title="image"></a></p>
+<p><a href="images/image-006.png"><img src="images/image-006.png" alt="image" title="image" /></a></p>
 <p>4. Modify gate.py script. This is critical, as the matplotlib library no longer uses nxutils.</p>
 <ol type="a">
 <li><p>Open this file in a text editor (using your own Username for the directory): C:\Users\Charles\AppData\Local\Enthought\Canopy\User\Lib\site-packages\fcm\core\gate.py</p>
@@ -137,13 +137,13 @@ idxs = points_in_poly(self.vert, fcm.view()[:, chan])
 <h1 id="test">Test</h1>
 <ol>
 <li>Unzip the py-fcm source. In the sample_data folder is a file named 3FITC_4PE_004.fcs.</li>
-<li>Open a text editor, and copy the complete path to the file, e.g.<br>
+<li>Open a text editor, and copy the complete path to the file, e.g.<br />
 C:\Users\Charles\Documents\FCM Flow Cytometry\Py-FCM\py-fcm-91701cc7a98e\sample_data\3FITC_4PE_004.fcs</li>
-<li>Now, replace all back slashes with forward slashes.<br>
+<li>Now, replace all back slashes with forward slashes.<br />
 C:/Users/Charles/Documents/FCM Flow Cytometry/Py-FCM/3FITC_4PE_004.fcs</li>
 <li>Open PyLab from the icon on the desktop, and run the samples found <a href="https://pythonhosted.org/fcm/basic.html">here</a> (reproduced below).</li>
 </ol>
-<p><a href="images/image-007.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-007.png" alt="image" title="image"></a></p>
+<p><a href="images/image-007.png"><img src="images/image-007.png" alt="image" title="image" /></a></p>
 <p>fcm provides the <a href="https://pythonhosted.org/fcm/documentation.html#fcm.loadFCS"><code>loadFCS()</code></a> function to load fcs files:</p>
 <pre><code>&gt;&gt;&gt; from fcm import loadFCS
 &gt;&gt;&gt; data = loadFCS('../sample_data/3FITC_4PE_004.fcs')
@@ -166,18 +166,18 @@ array([ 538.76464803,  421.57733507,  340.03599488,  341.17367213])
 &gt;&gt;&gt; pylab.ylabel(data.channels[1])
 &gt;&gt;&gt; pylab.show()
 </code></pre>
-<p><img src="https://pythonhosted.org/fcm/_images/basic-1.png" alt="_images/basic-1.png"></p>
-<p>&nbsp;</p>
+<p><img src="https://pythonhosted.org/fcm/_images/basic-1.png" alt="_images/basic-1.png" /></p>
+<p> </p>
 <h1 id="references">References</h1>
 <p>Info about the nxutiles error. <a href="https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY" title="https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY">https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY</a></p>
-<p><a href="https://pythonhosted.org/fcm/install.html" title="https://pythonhosted.org/fcm/install.html">https://pythonhosted.org/fcm/install.html</a><br>
-<a href="https://code.google.com/p/py-fcm/" title="https://code.google.com/p/py-fcm/">https://code.google.com/p/py-fcm/</a><br>
-<a href="https://www.enthought.com/" title="https://www.enthought.com/">https://www.enthought.com/</a><br>
-<a href="http://www.scipy.org/index.html" title="http://www.scipy.org/index.html">http://www.scipy.org/index.html</a><br>
-<a href="http://matplotlib.org/" title="http://matplotlib.org/">http://matplotlib.org/</a><br>
-<a href="https://github.com/andrewcron/dpmix" title="https://github.com/andrewcron/dpmix">https://github.com/andrewcron/dpmix</a><br>
-<a href="http://docs.cython.org/src/quickstart/install.html" title="http://docs.cython.org/src/quickstart/install.html">http://docs.cython.org/src/quickstart/install.html</a><br>
-<a href="https://bitbucket.org/mpi4py/mpi4py/downloads" title="https://bitbucket.org/mpi4py/mpi4py/downloads">https://bitbucket.org/mpi4py/mpi4py/downloads</a><br>
+<p><a href="https://pythonhosted.org/fcm/install.html" title="https://pythonhosted.org/fcm/install.html">https://pythonhosted.org/fcm/install.html</a><br />
+<a href="https://code.google.com/p/py-fcm/" title="https://code.google.com/p/py-fcm/">https://code.google.com/p/py-fcm/</a><br />
+<a href="https://www.enthought.com/" title="https://www.enthought.com/">https://www.enthought.com/</a><br />
+<a href="http://www.scipy.org/index.html" title="http://www.scipy.org/index.html">http://www.scipy.org/index.html</a><br />
+<a href="http://matplotlib.org/" title="http://matplotlib.org/">http://matplotlib.org/</a><br />
+<a href="https://github.com/andrewcron/dpmix" title="https://github.com/andrewcron/dpmix">https://github.com/andrewcron/dpmix</a><br />
+<a href="http://docs.cython.org/src/quickstart/install.html" title="http://docs.cython.org/src/quickstart/install.html">http://docs.cython.org/src/quickstart/install.html</a><br />
+<a href="https://bitbucket.org/mpi4py/mpi4py/downloads" title="https://bitbucket.org/mpi4py/mpi4py/downloads">https://bitbucket.org/mpi4py/mpi4py/downloads</a><br />
 <a href="http://mpi4py.scipy.org/docs/usrman/install.html#requirements" title="http://mpi4py.scipy.org/docs/usrman/install.html#requirements">http://mpi4py.scipy.org/docs/usrman/install.html#requirements</a></p>
 </div>
               </div>
@@ -187,9 +187,9 @@ array([ 538.76464803,  421.57733507,  340.03599488,  341.17367213])
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></h2>
                 <p class='post-info'><span class='posted-on'>2014-04-09 14:36</span></p>
                 <div class='post-content'><p>After updating to Windows 8.1 Update 1, my wife installed a USB flash drive that previously gave her no problems, and now wouldn’t show as a drive in Explorer. I got the same error on my (also updated) computer.</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <p>A notification was in the system tray to view devices, which showed the flash drive icon. Right-clicking that and choosing Troubleshoot suggested removing the device and reinserting. Some web searching said the same thing—which was <em>almost</em> right. However, the driver wasn’t being fully removed, so kept getting used again, resulting in the same error.</p>
-<p><a href="images/1.png"><img src="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/1.png" alt="1" title="1"></a></p>
+<p><a href="images/1.png"><img src="images/1.png" alt="1" title="1" /></a></p>
 <p>Instead, the driver needs to be completely removed. To do this:</p>
 <ol>
 <li>Plug in the flash drive.</li>
@@ -200,8 +200,8 @@ array([ 538.76464803,  421.57733507,  340.03599488,  341.17367213])
 <li>Unplug the drive, then plug it back in.</li>
 <li>The drive should now be available.</li>
 </ol>
-<p><a href="images/image-001.png"><img src="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/image-001.png" alt="image" title="image"></a></p>
-<p><a href="images/4.png"><img src="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/4.png" alt="4" title="4"></a></p>
+<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
+<p><a href="images/4.png"><img src="images/4.png" alt="4" title="4" /></a></p>
 </div>
               </div>
                <div class='paging'><a href='index24.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index26.html'>Older</a></div>

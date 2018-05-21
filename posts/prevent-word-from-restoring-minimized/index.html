@@ -63,11 +63,11 @@
 <p><a href="http://answers.microsoft.com/en-us/office/forum/office_2007-word/how-do-i-prevent-word-from-redisplaying-multiple/3b7594f1-0c1e-4108-9d5f-ced532781812?page=12" title="http://answers.microsoft.com/en-us/office/forum/office_2007-word/how-do-i-prevent-word-from-redisplaying-multiple/3b7594f1-0c1e-4108-9d5f-ced532781812?page=12">http://answers.microsoft.com/en-us/office/forum/office_2007-word/how-do-i-prevent-word-from-redisplaying-multiple/3b7594f1-0c1e-4108-9d5f-ced532781812?page=12</a></p>
 <p>(The encoded command value may differ depending on your installation.)</p>
 <p>My registry had these settings under HKEY_CLASSES_ROOT\Word.Document.12\shell\Open\command:</p>
-<p><strong>Default: "C:\Program Files (x86)\Microsoft Office\Office15\WINWORD.EXE" /n "%1" /o "%u"</strong></p>
-<p><strong>Command: yh1BV5!!!!!!!!!MKKSkWORDFiles&gt;!2-1&amp;m&amp;8y@Nmo2r)^f-C /n "%1" /o "%u"</strong></p>
-<p>I changed them to this (removing the, "/o "%u"" and adding "/q" before "/n" to remove the splash screen :</p>
-<p><strong>Default: "C:\Program Files (x86)\Microsoft Office\Office15\WINWORD.EXE" /q /n "%1"</strong></p>
-<p><strong>Command: yh1BV5!!!!!!!!!MKKSkWORDFiles&gt;!2-1&amp;m&amp;8y@Nmo2r)^f-C /q /n "%1"</strong></p>
+<p><strong>Default: &quot;C:\Program Files (x86)\Microsoft Office\Office15\WINWORD.EXE&quot; /n &quot;%1&quot; /o &quot;%u&quot;</strong></p>
+<p><strong>Command: yh1BV5!!!!!!!!!MKKSkWORDFiles&gt;!2-1&amp;m&amp;8y@Nmo2r)^f-C /n &quot;%1&quot; /o &quot;%u&quot;</strong></p>
+<p>I changed them to this (removing the, &quot;/o &quot;%u&quot;&quot; and adding &quot;/q&quot; before &quot;/n&quot; to remove the splash screen :</p>
+<p><strong>Default: &quot;C:\Program Files (x86)\Microsoft Office\Office15\WINWORD.EXE&quot; /q /n &quot;%1&quot;</strong></p>
+<p><strong>Command: yh1BV5!!!!!!!!!MKKSkWORDFiles&gt;!2-1&amp;m&amp;8y@Nmo2r)^f-C /q /n &quot;%1&quot;</strong></p>
 <p>I did the same for HKEY_CLASSES_ROOT\Word.Document.8\shell\Open\command, and am now able to open other files without restoring or maxmizing other minimized Word .doc or .docx files.</p>
 <p><strong>Word 2007 and earlier</strong></p>
 <p><a href="http://superuser.com/a/118967" title="http://superuser.com/a/118967">http://superuser.com/a/118967</a></p>
@@ -79,9 +79,9 @@
 <p>In the <code>HKEY_CLASSES_ROOT\Word.Document.12\shell\Open\command</code> key:</p>
 <ul>
 <li>Delete or rename the <code>command</code> <strong>value</strong> (not to be confused with the command key.)</li>
-<li>Edit the (Default) value and add <code>"%1"</code> (including quotes) at the end</li>
+<li>Edit the (Default) value and add <code>&quot;%1&quot;</code> (including quotes) at the end</li>
 </ul>
-<p>[clf note: some authors recommend changing <strong>/n /dde</strong> to <strong>/q /n “%1”</strong>&nbsp; I think the /q might make a difference in Win7+.<strong>]</strong></p>
+<p>[clf note: some authors recommend changing <strong>/n /dde</strong> to <strong>/q /n “%1”</strong>  I think the /q might make a difference in Win7+.<strong>]</strong></p>
 <p>This solves the problem for <code>.docx</code> files. If you also want to solve it for <code>.doc</code> files, do the same thing for <code>Word.Document.8</code></p>
 <p>Thanks to: <a href="http://www.withinwindows.com/2008/08/31/taming-microsoft-word-2007s-file-associations-and-document-windows-part-one/">Rafael's Within Windows</a> which has detailed instructions.</p>
 </div>

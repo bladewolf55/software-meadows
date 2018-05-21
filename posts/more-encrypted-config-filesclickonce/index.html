@@ -65,41 +65,41 @@
 <li>When published as ClickOnce, the application threw an error and wouldn’t open.</li>
 </ul>
 <h1 id="act-i">Act I</h1>
-<p>Let’s create a simple app. First, a Windows Form app with three labels. All the code will be in the same page as the Form1 class, to keep things simple.<br>
-<a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image.png" alt="image" title="image"></a></p>
+<p>Let’s create a simple app. First, a Windows Form app with three labels. All the code will be in the same page as the Form1 class, to keep things simple.<br />
+<a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <p>Add connectionString, appSettings and smtp sections to the app.config.</p>
-<pre><code class="language-csharp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+<pre><code class="language-csharp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
 &lt;configuration&gt;
   &lt;startup&gt;
-    &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" /&gt;
+    &lt;supportedRuntime version=&quot;v4.0&quot; sku=&quot;.NETFramework,Version=v4.5&quot; /&gt;
   &lt;/startup&gt;
   &lt;connectionStrings&gt;
-    &lt;add name="MashDb" 
-         connectionString="Server=.\SQLExpress2012;Database=MASH;Trusted Connection=True;" 
-         providerName="System.Data.SqlClient"/&gt;
+    &lt;add name=&quot;MashDb&quot; 
+         connectionString=&quot;Server=.\SQLExpress2012;Database=MASH;Trusted Connection=True;&quot; 
+         providerName=&quot;System.Data.SqlClient&quot;/&gt;
   &lt;/connectionStrings&gt;
   &lt;appSettings&gt;
-    &lt;add key="Password" value="4077"/&gt;
+    &lt;add key=&quot;Password&quot; value=&quot;4077&quot;/&gt;
   &lt;/appSettings&gt;
   &lt;system.net&gt;
     &lt;mailSettings&gt;
-      &lt;smtp deliveryMethod="Network" from="pierce@mash.net"&gt;
+      &lt;smtp deliveryMethod=&quot;Network&quot; from=&quot;pierce@mash.net&quot;&gt;
         &lt;network
-          host="ohmyseoul.kr"
-          port="25"
-          defaultCredentials="true"/&gt;
+          host=&quot;ohmyseoul.kr&quot;
+          port=&quot;25&quot;
+          defaultCredentials=&quot;true&quot;/&gt;
       &lt;/smtp&gt;
     &lt;/mailSettings&gt;
   &lt;/system.net&gt;
 &lt;/configuration&gt;
 </code></pre>
 <p>Add reference to System.Configuration to the project.</p>
-<p><a href="images/image4.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image4.png" alt="image" title="image"></a></p>
+<p><a href="images/image4.png"><img src="images/image4.png" alt="image" title="image" /></a></p>
 <p>The static Settings class, to get the app.config data. This is personal preference; I know you can also use the Settings designer for this, but it’s kind of hidden and finicky.</p>
 <pre><code class="language-csharp">public static class Settings
     {
-        public static string MashDb { get { return ConfigurationManager.ConnectionStrings["MashDb"].Name; } }
-        public static string Password { get { return ConfigurationManager.AppSettings["Password"]; } }
+        public static string MashDb { get { return ConfigurationManager.ConnectionStrings[&quot;MashDb&quot;].Name; } }
+        public static string Password { get { return ConfigurationManager.AppSettings[&quot;Password&quot;]; } }
     }
 </code></pre>
 <p>The static ConfigSettings classes. (Or whatever you’d name your general security utilities.) This is different than what I showed previously. Specifically, they don’t optionally take an executable name. Instead, they take the full path to a config file, essential to solving the ClickOnce problem.</p>
@@ -109,32 +109,32 @@
         /// &lt;summary&gt;
         /// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.
         /// &lt;/summary&gt;
-        /// &lt;param name="encryption"&gt;&lt;/param&gt;
-        /// &lt;param name="configPath"&gt;Full path to config file&lt;/param&gt;
+        /// &lt;param name=&quot;encryption&quot;&gt;&lt;/param&gt;
+        /// &lt;param name=&quot;configPath&quot;&gt;Full path to config file&lt;/param&gt;
         /// &lt;remarks&gt;https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx&lt;/remarks&gt;
         public static void SetDefaultConfigEncryption(bool encryption, string configPath = null)
         {
-            SetConfigSectionEncryption(encryption, "appSettings", configPath);
-            SetConfigSectionEncryption(encryption, "connectionStrings", configPath);
-            SetConfigSectionEncryption(encryption, "system.net/mailSettings/smtp", configPath);
+            SetConfigSectionEncryption(encryption, &quot;appSettings&quot;, configPath);
+            SetConfigSectionEncryption(encryption, &quot;connectionStrings&quot;, configPath);
+            SetConfigSectionEncryption(encryption, &quot;system.net/mailSettings/smtp&quot;, configPath);
         }
 
         /// &lt;summary&gt;
         /// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.
         /// &lt;/summary&gt;
-        /// &lt;param name="encryption"&gt;&lt;/param&gt;
-        /// &lt;param name="sectionName"&gt;&lt;/param&gt;
-        /// &lt;param name="configPath"&gt;Full path to config file&lt;/param&gt;
+        /// &lt;param name=&quot;encryption&quot;&gt;&lt;/param&gt;
+        /// &lt;param name=&quot;sectionName&quot;&gt;&lt;/param&gt;
+        /// &lt;param name=&quot;configPath&quot;&gt;Full path to config file&lt;/param&gt;
         /// &lt;remarks&gt;&lt;/remarks&gt;
         public static void SetConfigSectionEncryption(bool encryption, string sectionName, string configPath = null)
         {
             //if no configPath supplied, get the currently executing exe's config.
             if (string.IsNullOrWhiteSpace(configPath))
             {
-                configPath = Assembly.GetEntryAssembly().Location + ".config";
+                configPath = Assembly.GetEntryAssembly().Location + &quot;.config&quot;;
 #if (DEBUG)
                 AppDomain domain = System.AppDomain.CurrentDomain;
-                configPath = Path.Combine(domain.SetupInformation.ApplicationBase, domain.FriendlyName + ".config");
+                configPath = Path.Combine(domain.SetupInformation.ApplicationBase, domain.FriendlyName + &quot;.config&quot;);
 #endif
             }
 
@@ -155,7 +155,7 @@
                     if (!section.SectionInformation.IsProtected)
                     {
                         section.SectionInformation.ForceSave = true;
-                        section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
+                        section.SectionInformation.ProtectSection(&quot;DataProtectionConfigurationProvider&quot;);
                     }
                 }
                 // Remove encryption.
@@ -171,7 +171,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Unable to encrypt. " + ex.GetBaseException().Message);
+                throw new Exception(&quot;Unable to encrypt. &quot; + ex.GetBaseException().Message);
             }
         }
     }
@@ -194,7 +194,7 @@
 
         private void EncryptClickOnceConfig()
         {
-            //Encrypt config. This didn't work properly in Load. Would lead to error "Unrecognized attribute ‘configProtectionProvider’
+            //Encrypt config. This didn't work properly in Load. Would lead to error &quot;Unrecognized attribute ‘configProtectionProvider’
             //after encrypting app.config when reading smtp
             //Weird stuff for ClickOnce Deployment. 
             //https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup
@@ -206,9 +206,9 @@
                     string exeFile = Assembly.GetEntryAssembly().Location;
                     //get directory above the executable's.
                     string parentPath = Path.GetDirectoryName(Path.GetDirectoryName(exeFile));
-                    string configName = Path.GetFileName(exeFile) + ".config";
+                    string configName = Path.GetFileName(exeFile) + &quot;.config&quot;;
                     //get the matching files
-                    foreach (string configFile in Directory.GetDirectories(parentPath, "*" + configName, SearchOption.AllDirectories))
+                    foreach (string configFile in Directory.GetDirectories(parentPath, &quot;*&quot; + configName, SearchOption.AllDirectories))
                     {
                         ConfigSettings.SetDefaultConfigEncryption(true, configFile);
                     }
@@ -225,26 +225,26 @@
 <h1 id="act-ii">Act II</h1>
 <p>Publish the application. This will automatically create a self-signed certificate. (In a follow up post, I’ll document (for my easy reference) how to create a certificate that lasts more than a year.) There are two important things to do here:</p>
 <ul>
-<li>Set the project to Release.&nbsp; This is critical. It should be obvious, but it’s easy to forget and leads to one of the errors.</li>
+<li>Set the project to Release.  This is critical. It should be obvious, but it’s easy to forget and leads to one of the errors.</li>
 <li>It’s important to install it from a network location, which you can fake by sharing your publish folder and using the UNC path to it. I published to the solution folder. Give the share full permissions (for testing only).</li>
 </ul>
-<p><a href="images/image-001.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-001.png" alt="image" title="image"></a></p>
+<p><a href="images/image-001.png"><img src="images/image-001.png" alt="image" title="image" /></a></p>
 <p>You should also enable automatic updating.</p>
-<p><a href="images/image-002.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-002.png" alt="image" title="image"></a></p>
+<p><a href="images/image-002.png"><img src="images/image-002.png" alt="image" title="image" /></a></p>
 <p>Install from the UNC path. The app should open.</p>
-<p><a href="images/image-003.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-003.png" alt="image" title="image"></a></p>
+<p><a href="images/image-003.png"><img src="images/image-003.png" alt="image" title="image" /></a></p>
 <p>With the app open, open Task Manager, right-click the app, and choose “open file location.”</p>
-<p><a href="images/image-004.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-004.png" alt="image" title="image"></a></p>
+<p><a href="images/image-004.png"><img src="images/image-004.png" alt="image" title="image" /></a></p>
 <p>The folder will contain a EncryptedConfigClickOnceSample.exe.config file, which should be encrypted. But you’ll also find <em>another</em> folder, a sibling above or below the one you’re in, also with a EncryptedConfigClickOnceSample.exe.config, which should also be encrypted.</p>
 <p>So, fine, it works. How were the problems fixed?</p>
 <h1 id="act-iii">Act III</h1>
 <h2 id="encrypt-the-smtp-info">Encrypt the SMTP Info</h2>
-<p>This one’s pretty easy. Pass the SetConfigSectionEncryption() method the string “system.net/mailSettings/smtp”. What I found interesting is that you can’t submit just “system.net”, or “system.net/mailSettings” Apparently, in some&nbsp; Orwellian programming community, some sections are more equal than others.</p>
+<p>This one’s pretty easy. Pass the SetConfigSectionEncryption() method the string “system.net/mailSettings/smtp”. What I found interesting is that you can’t submit just “system.net”, or “system.net/mailSettings” Apparently, in some  Orwellian programming community, some sections are more equal than others.</p>
 <h2 id="error-accessing-the-smtp-info">Error Accessing the SMTP Info</h2>
 <p>Set the program to Debug mode and republish. Run the app, letting it self-update. You should receive an error</p>
 <pre><code class="language-csharp">Unrecognized attribute 'configProtectionProvider'
 </code></pre>
-<p><a href="images/image-005.png"><img src="https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce/images/image-005.png" alt="image" title="image"></a></p>
+<p><a href="images/image-005.png"><img src="images/image-005.png" alt="image" title="image" /></a></p>
 <p>Some sites say to call <span style="font-family: Consolas;">ConfigurationManager.RefreshSection</span><span style="font-family: Calibri;">, but the problem really seems to be the behavior when in Debug mode. </span>The error seems to be caused by how configuration info is accessed after the application starts. It’s not clear to me, and no web page mentioned debug mode. But it worked.</p>
 <h2 id="clickonce-error">ClickOnce Error</h2>
 <p>In one application, when I tried to install it simply wouldn’t open. I believe this was also due to publishing in Debug mode. However, I also moved my call to configure the config file from Form_Load to the constructor. In my testing app, that’s not making any difference.</p>
@@ -289,7 +289,7 @@ namespace EncryptedConfigClickOnceSample
 
         private void EncryptClickOnceConfig()
         {
-            //Encrypt config. This didn't work properly in Load. Would lead to error "Unrecognized attribute ‘configProtectionProvider’
+            //Encrypt config. This didn't work properly in Load. Would lead to error &quot;Unrecognized attribute ‘configProtectionProvider’
             //after encrypting app.config when reading smtp
             //Weird stuff for ClickOnce Deployment. 
             //https://social.msdn.microsoft.com/Forums/windows/en-US/3d7ba97f-684c-46a2-9f7b-5d17e989baa8/encrypting-connection-string-with-clickonce-deployment?forum=winformssetup
@@ -301,9 +301,9 @@ namespace EncryptedConfigClickOnceSample
                     string exeFile = Assembly.GetEntryAssembly().Location;
                     //get directory above the executable's.
                     string parentPath = Path.GetDirectoryName(Path.GetDirectoryName(exeFile));
-                    string configName = Path.GetFileName(exeFile) + ".config";
+                    string configName = Path.GetFileName(exeFile) + &quot;.config&quot;;
                     //get the matching files
-                    foreach (string configFile in Directory.GetFiles(parentPath, "*" + configName, SearchOption.AllDirectories))
+                    foreach (string configFile in Directory.GetFiles(parentPath, &quot;*&quot; + configName, SearchOption.AllDirectories))
                     {
                         ConfigSettings.SetDefaultConfigEncryption(true, configFile);
                     }
@@ -322,8 +322,8 @@ namespace EncryptedConfigClickOnceSample
 
     public static class Settings
     {
-        public static string MashDb { get { return ConfigurationManager.ConnectionStrings["MashDb"].Name; } }
-        public static string Password { get { return ConfigurationManager.AppSettings["Password"]; } }
+        public static string MashDb { get { return ConfigurationManager.ConnectionStrings[&quot;MashDb&quot;].Name; } }
+        public static string Password { get { return ConfigurationManager.AppSettings[&quot;Password&quot;]; } }
     }
 
 
@@ -333,32 +333,32 @@ namespace EncryptedConfigClickOnceSample
         /// &lt;summary&gt;
         /// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.
         /// &lt;/summary&gt;
-        /// &lt;param name="encryption"&gt;&lt;/param&gt;
-        /// &lt;param name="configPath"&gt;Full path to config file&lt;/param&gt;
+        /// &lt;param name=&quot;encryption&quot;&gt;&lt;/param&gt;
+        /// &lt;param name=&quot;configPath&quot;&gt;Full path to config file&lt;/param&gt;
         /// &lt;remarks&gt;https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx&lt;/remarks&gt;
         public static void SetDefaultConfigEncryption(bool encryption, string configPath = null)
         {
-            SetConfigSectionEncryption(encryption, "appSettings", configPath);
-            SetConfigSectionEncryption(encryption, "connectionStrings", configPath);
-            SetConfigSectionEncryption(encryption, "system.net/mailSettings/smtp", configPath);
+            SetConfigSectionEncryption(encryption, &quot;appSettings&quot;, configPath);
+            SetConfigSectionEncryption(encryption, &quot;connectionStrings&quot;, configPath);
+            SetConfigSectionEncryption(encryption, &quot;system.net/mailSettings/smtp&quot;, configPath);
         }
 
         /// &lt;summary&gt;
         /// Encrypts/decrypts the connectionStrings, appSettings and smtp sections.
         /// &lt;/summary&gt;
-        /// &lt;param name="encryption"&gt;&lt;/param&gt;
-        /// &lt;param name="sectionName"&gt;&lt;/param&gt;
-        /// &lt;param name="configPath"&gt;Full path to config file&lt;/param&gt;
+        /// &lt;param name=&quot;encryption&quot;&gt;&lt;/param&gt;
+        /// &lt;param name=&quot;sectionName&quot;&gt;&lt;/param&gt;
+        /// &lt;param name=&quot;configPath&quot;&gt;Full path to config file&lt;/param&gt;
         /// &lt;remarks&gt;&lt;/remarks&gt;
         public static void SetConfigSectionEncryption(bool encryption, string sectionName, string configPath = null)
         {
             //if no configPath supplied, get the currently executing exe's config.
             if (string.IsNullOrWhiteSpace(configPath))
             {
-                configPath = Assembly.GetEntryAssembly().Location + ".config";
+                configPath = Assembly.GetEntryAssembly().Location + &quot;.config&quot;;
 #if (DEBUG)
                 AppDomain domain = System.AppDomain.CurrentDomain;
-                configPath = Path.Combine(domain.SetupInformation.ApplicationBase, domain.FriendlyName + ".config");
+                configPath = Path.Combine(domain.SetupInformation.ApplicationBase, domain.FriendlyName + &quot;.config&quot;);
 #endif
             }
 
@@ -379,7 +379,7 @@ namespace EncryptedConfigClickOnceSample
                     if (!section.SectionInformation.IsProtected)
                     {
                         section.SectionInformation.ForceSave = true;
-                        section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
+                        section.SectionInformation.ProtectSection(&quot;DataProtectionConfigurationProvider&quot;);
                     }
                 }
                 // Remove encryption.
@@ -395,7 +395,7 @@ namespace EncryptedConfigClickOnceSample
             }
             catch (Exception ex)
             {
-                throw new Exception("Unable to encrypt. " + ex.GetBaseException().Message);
+                throw new Exception(&quot;Unable to encrypt. &quot; + ex.GetBaseException().Message);
             }
         }
     }

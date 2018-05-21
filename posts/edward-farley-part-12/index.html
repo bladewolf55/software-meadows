@@ -58,18 +58,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:52</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -154,26 +154,26 @@ create table Furnitures (
 <p>Notice that we do not have navigation properties for types Chair and Sofa, nor--especially--are there DbSets for them. It is unintuitive, but you must add types of Furniture. Adding DbSets for Chair and Sofa results in undesired columns. Try it yourself, Edward, and you’ll see.</p>
 <p>Here is the program update.</p>
 <p><strong>Program.cs</strong></p>
-<pre><code class="language-csharp">Console.WriteLine("Build a chair and a sofa");
-Chair chair = new Chair() { Manufacturer = "Vincent's Chairs", IsRecliner = false };
-Sofa sofa = new Sofa() { Manufacturer="Gaugin's Chairs", Cushions = 3 };
-Console.WriteLine("Edward puts them in his reading room.");
+<pre><code class="language-csharp">Console.WriteLine(&quot;Build a chair and a sofa&quot;);
+Chair chair = new Chair() { Manufacturer = &quot;Vincent's Chairs&quot;, IsRecliner = false };
+Sofa sofa = new Sofa() { Manufacturer=&quot;Gaugin's Chairs&quot;, Cushions = 3 };
+Console.WriteLine(&quot;Edward puts them in his reading room.&quot;);
 edward.Furnitures.Add(chair);
 edward.Furnitures.Add(sofa);
 SaveChanges();
-edward = _db.Persons.Single(a =&gt; a.Name.StartsWith("Edward"));
+edward = _db.Persons.Single(a =&gt; a.Name.StartsWith(&quot;Edward&quot;));
 
 foreach (var piece in edward.Furnitures)
 {
     if (piece is Chair)
     {
         var thisChair = (Chair)piece;
-Console.WriteLine(edward.Name + " has a chair made by " + thisChair.Manufacturer + ". " + "It " + (thisChair.IsRecliner ? "is" : "is not") + " a recliner.");
+Console.WriteLine(edward.Name + &quot; has a chair made by &quot; + thisChair.Manufacturer + &quot;. &quot; + &quot;It &quot; + (thisChair.IsRecliner ? &quot;is&quot; : &quot;is not&quot;) + &quot; a recliner.&quot;);
     }
     if (piece is Sofa)
     {
         var thisSofa = (Sofa)piece;
-        Console.WriteLine(edward.Name + " has a sofa made by " + thisSofa.Manufacturer + ". It has " + thisSofa.Cushions + " cushions.");
+        Console.WriteLine(edward.Name + &quot; has a sofa made by &quot; + thisSofa.Manufacturer + &quot;. It has &quot; + thisSofa.Cushions + &quot; cushions.&quot;);
     }
 }
 </code></pre>
@@ -193,7 +193,7 @@ Console.WriteLine(edward.Name + " has a chair made by " + thisChair.Manufacturer
 <h4 id="table-per-type">Table Per Type</h4>
 <p>The schema is the same as above, except in derived classes we explicitly set the table names. This tells the Framework to use a table per type.</p>
 <p><strong>LearningEFSchema.cs</strong></p>
-<pre><code class="language-csharp">[Table("Chairs")]
+<pre><code class="language-csharp">[Table(&quot;Chairs&quot;)]
 public class Chair : Furniture
 {
     public bool IsRecliner { get; set; }
@@ -204,7 +204,7 @@ public class Chair : Furniture
     }
 }
 
-[Table("Sofas")]
+[Table(&quot;Sofas&quot;)]
 public class Sofa : Furniture
 {
     public int Cushions { get; set; }
@@ -270,7 +270,7 @@ Successful save.
 Pencil: Blackwing, Person: Edward Farley
 Attempt adding Bicycle without a Person
 Saving changes.
-  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_dbo.Bicycles_dbo.Persons_PersonId". The conflict occurred in database "EFDb", table "dbo.Persons", column 'PersonId'.
+  ERROR: The INSERT statement conflicted with the FOREIGN KEY constraint &quot;FK_dbo.Bicycles_dbo.Persons_PersonId&quot;. The conflict occurred in database &quot;EFDb&quot;, table &quot;dbo.Persons&quot;, column 'PersonId'.
 The statement has been terminated.
 Set the Person, save, retrieve and show
 Saving changes.
@@ -314,10 +314,10 @@ Finished
 <p>“I’m sure she’s exaggerating. Well, then, that was simply a fact I wanted to confirm. Goodbye, my boy, goodbye.”</p>
 <p>The Professor re-entered his room, closed his door, then walked to his desk, sat and picked up a very old phone.</p>
 <p>“Mrs. Eager? Would you be so kind as to send up a box and wrapping? Hmm? Oh, about the size of a tablet computer should do.”</p>
-<hr>
-<p><a href="http://englishnycandbejaia.blogspot.com/2013/04/music-peter-wolf-with-david-bowie.html">“Are you sitting comfortably?” --Prokofiev’s Peter and the Wolf</a><br>
+<hr />
+<p><a href="http://englishnycandbejaia.blogspot.com/2013/04/music-peter-wolf-with-david-bowie.html">“Are you sitting comfortably?” --Prokofiev’s Peter and the Wolf</a><br />
 <a href="http://www.vggallery.com/painting/p_0498_0499.htm">Chairs by Van Gogh and Gaugin</a></p>
-<hr>
+<hr />
 </div>
               </div>
               

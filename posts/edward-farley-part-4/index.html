@@ -58,18 +58,18 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></h2>
                 <p class='post-info'><span class='posted-on'>2013-05-19 12:36</span></p>
                 <div class='post-content'><div class="series">
-<p>Parts<br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br>
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br>
+<p>Parts<br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
+<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
 <a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
 </div>
 <p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
@@ -80,9 +80,9 @@
 <p>“Professor, here’s the sandwich you asked for. My mom says she sprinkled cinnamon on it, and she’s betting you like it. And my dad wants to know if you’re going to tell me about--” Edward screwed up his eyes in thought, “being fluent and happy.”</p>
 <p>The Professor smiled and said, “I suspect you mean the Fluent API. Yes, yes, your father always loved using that, and he’s not alone. Since you clearly want to get started right away, I’ll have to nibble on this delectable sandwich while explaining.”</p>
 <p>We can describe, [he continued], our relationships to the library two ways. One is declaratively, using attributes on the class and its procedures. The other is overriding the OnModelCreating method in our data context and using the Fluent API. You’ll hear a lot of noise over this, but I assure you one way is not better than the other. They are different, that’s all. I myself have used both, but I confess to preferring attributes.</p>
-<p>Many like the fluent style because they can keep their classes pristine. POCO is the humorous acronym people use--plain old CLR objects. With this approach, the classes aren’t explicitly database oriented.<br>
+<p>Many like the fluent style because they can keep their classes pristine. POCO is the humorous acronym people use--plain old CLR objects. With this approach, the classes aren’t explicitly database oriented.<br />
 I, however, like decorating my classes as much as practical. I already know they’ll be used to interact with the database, and even if they aren’t it’s valuable to understand things such as which fields are required. Even decorating with attributes doesn’t tie you to the Framework. In short, a class doesn’t have to know it’s part of the Framework, regardless of using the Fluent API or attributes.</p>
-<p>Now, let me see your library card. Hmm. Yes. Nice, but I don’t care for the new typeface. Now, did you know that each person is assigned a library card at birth? It’s one of the secrets to our little success here.&nbsp; Get people started right, Socrates always said. Or was that Mr. Schultz?</p>
+<p>Now, let me see your library card. Hmm. Yes. Nice, but I don’t care for the new typeface. Now, did you know that each person is assigned a library card at birth? It’s one of the secrets to our little success here.  Get people started right, Socrates always said. Or was that Mr. Schultz?</p>
 <p>Well, you can have as many library cards as you want. You might travel to Salmon Island and visit their lovely undersea facility. But you must have at least one card. This is a One to One or Many relationship. A person must have at least one card, and a card can belong to just one person.</p>
 <p>We start modeling that relationship like so:</p>
 <p><strong>LearningEFSchema.cs</strong></p>
@@ -123,7 +123,7 @@ public class LibraryCard
 </code></pre>
 <p>Notice in Person we’ve added a navigation property to the person’s cards. We use ICollection because it’s the simplest collection that allows insertion via the Add method. IEnumerable, as you should recall from your schooling, does not. We’re using interfaces to help those who enjoy writing unit tests.</p>
 <p>In the Person constructor, I initialize the collection using HashSet. Why don’t I initialize using a Collection? Simple convenience. The Collection class is in the System.Collections.ObjectModel namespace, which we aren’t referencing, while HashSet is already available in System.Collections.Generic. A HashSet is the simplest collection that, again, allows adding. You could certainly use a List, and many people do, but there is some extra memory overhead.</p>
-<p>We declare our navigation properties as virtual so that the Framework can implement lazy loading. I’m not lazy by nature, perhaps you are. Yet I think we can all agree there are some times it’s good to be lazy.<br>
+<p>We declare our navigation properties as virtual so that the Framework can implement lazy loading. I’m not lazy by nature, perhaps you are. Yet I think we can all agree there are some times it’s good to be lazy.<br />
 In the LibraryCard class, I include a navigation property back to the Person.</p>
 <p>Now, there are some who say I’m too particular about my database tables, and that may be. But I’m old and allowed to be set in my ways. The Framework, left to its own, would name the Person foreign key Person_PersonId, which I find distasteful and difficult to type. “But, Professor, why do you care?” they ask. “You won’t be using the database directly, anyway.” I assure you, each person who says this comes to me a year later saying, “We’re constantly querying our database directly. If only we had done as you do, we would save typing.”</p>
 <p>By explicitly defining a PersonId property, the Framework will use it as the foreign key column name. It does this because of our naming convention. If we had named the virtual person property Learners and wanted a foreign key named StudentId, then we would use an attribute to tell the Framework about the relationship, like this:</p>
@@ -131,7 +131,7 @@ In the LibraryCard class, I include a navigation property back to the Person.</p
 public int StudentId { get; set; }
 
 //Navigation
-[ForeignKey("StudentId")]
+[ForeignKey(&quot;StudentId&quot;)]
 public virtual Person Learners { get; set; }
 </code></pre>
 <p>If your mother were here, she would--rather stridently, I’m afraid, in her youth--say, “Professor, this is not a One to One or Many. This is a One to Zero or Many.” And she would be right. We are not, at this point, requiring a person to have a library card.</p>
@@ -155,7 +155,7 @@ public virtual Person Learners { get; set; }
         {
             if (LibraryCards.Count() &lt; 1)
             {
-                yield return new ValidationResult("A Person must have at least one Library Card");
+                yield return new ValidationResult(&quot;A Person must have at least one Library Card&quot;);
             }
         }
 </code></pre>
@@ -169,13 +169,13 @@ Saving changes.
   ERROR: A Person must have at least one Library Card
 </code></pre>
 <p>Let’s add to our program.</p>
-<pre><code class="language-csharp">edward.Name = "Edward Farley";
+<pre><code class="language-csharp">edward.Name = &quot;Edward Farley&quot;;
 edward.LibraryCards.Add(new LibraryCard() { Number = 123 });
 SaveChanges();
-Console.WriteLine("Get the record we just saved, and display.");
+Console.WriteLine(&quot;Get the record we just saved, and display.&quot;);
 edward = _db.Persons.First();
-Console.WriteLine("Person: " + edward.Name 
-    + " has card: " + edward.LibraryCards.First().Number);
+Console.WriteLine(&quot;Person: &quot; + edward.Name 
+    + &quot; has card: &quot; + edward.LibraryCards.First().Number);
 </code></pre>
 <p>And run it.</p>
 <pre><code class="language-console">Create Person without a name.
@@ -197,11 +197,11 @@ Finished
 )
 </code></pre>
 <p>And that is quite enough. Look, I’ve barely taken a bite. But please, tell your mother it was delicious, which I’m sure it will be!</p>
-<hr>
-<p><a href="http://www.google.com/url?q=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F7655845%2Ficollectiont-vs-listt-in-entity-framework&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGWrlexGgiZSC_U26VEFe3iY36gPQ">ICollection vs List</a><br>
-<a href="http://en.wikipedia.org/wiki/Plain_Old_CLR_Object">POCO</a><br>
+<hr />
+<p><a href="http://www.google.com/url?q=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F7655845%2Ficollectiont-vs-listt-in-entity-framework&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGWrlexGgiZSC_U26VEFe3iY36gPQ">ICollection vs List</a><br />
+<a href="http://en.wikipedia.org/wiki/Plain_Old_CLR_Object">POCO</a><br />
 <a href="http://en.wikipedia.org/wiki/Charles_M._Schulz">Charles M Schultz</a> (To my knowledge neither Mr. Schultz nor Socrates is quoted saying“get people started right.”)</p>
-<hr>
+<hr />
 </div>
               </div>
               

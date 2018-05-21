@@ -67,10 +67,10 @@
 pre.prettyprint {background-color: aliceblue;}
 pre.console {background-color: black; color: white;}
 </code></pre>
-<p>&nbsp;</p>
+<p> </p>
 <p>===== DON’T USE THIS CSS, BUT LEAVING HERE FOR HISTORICAL (HYSTERICAL) REASONS======</p>
 <p>I guess I didn’t look hard enough. For well over a year, I accepted that my blog’s source code sections would always wrap. I put the code in a &lt;pre class=”prettyprint”&gt; tag, and I had added the following to my template.</p>
-<p><a href="images/image.png"><img src="https://www.softwaremeadows.com/posts/scroll-bars-in-blogger-tags/images/image.png" alt="image" title="image"></a></p>
+<p><a href="images/image.png"><img src="images/image.png" alt="image" title="image" /></a></p>
 <p>overflow: auto is pretty standard stuff I’ve used before, and no one pointed me elsewhere. Finally, today, I found the answer on this Stack Overflow page.</p>
 <p><a href="http://stackoverflow.com/a/15639868" title="http://stackoverflow.com/a/15639868">http://stackoverflow.com/a/15639868</a></p>
 <p>I needed to include overflow-wrap: normal.</p>
@@ -82,7 +82,7 @@ pre.console {background-color: black; color: white; padding: 5px; overflow:auto;
   {
     public void PrintLongCode()
     {
-      Console.Write("This is some pretty long code that shouldn't wrap so that the reader isn't confused by unexpected line breaks.");
+      Console.Write(&quot;This is some pretty long code that shouldn't wrap so that the reader isn't confused by unexpected line breaks.&quot;);
     }
   }
 </code></pre>

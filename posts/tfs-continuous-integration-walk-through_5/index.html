@@ -57,53 +57,53 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></h2>
                 <p class='post-info'><span class='posted-on'>2017-02-05 14:10</span></p>
-                <div class='post-content'><p><a href="images/ci-logo.png"><br>
-<img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/ci-logo.png" alt="ci-logo" title="ci-logo"></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br>
+                <div class='post-content'><p><a href="images/ci-logo.png"><br />
+<img src="images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
 <a href="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
 <p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through.html">TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></p>
 <h2 id="add-the-solution-to-a-new-build-definition">Add the Solution to a New Build Definition</h2>
-<p><strong>References</strong><br>
+<p><strong>References</strong><br />
 <a href="https://www.visualstudio.com/en-us/docs/build/get-started/dot-net">Build your .NET app for Windows</a></p>
-<p>You can get to the web-based "create new build" wizard a couple of ways.</p>
+<p>You can get to the web-based &quot;create new build&quot; wizard a couple of ways.</p>
 <ol>
-<li>In the Visual Studio solution, switch to Team Explorer, click the Home icon, then drop down Home and choose Builds.<br>
-&nbsp;<a href="images/17-01-31_101042.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_101042.png" alt="2017-01-31_101042" title="2017-01-31_101042"></a></li>
-<li>On the TFS web site (<a href="http://%5Btfs-site%5D:8080/tfs">http://\[tfs-site\]:8080/t</a>), select your team project if visible, or click Browse and navigate to it that way. On the project page, open the Build menu and click the plus sign.<br>
-&nbsp;<a href="images/17-01-31_102849.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_102849.png" alt="2017-01-31_102849" title="2017-01-31_102849"></a></li>
+<li>In the Visual Studio solution, switch to Team Explorer, click the Home icon, then drop down Home and choose Builds.<br />
+ <a href="images/17-01-31_101042.png"><img src="images/17-01-31_101042.png" alt="2017-01-31_101042" title="2017-01-31_101042" /></a></li>
+<li>On the TFS web site (<a href="http://%5Btfs-site%5D:8080/tfs">http://\[tfs-site\]:8080/t</a>), select your team project if visible, or click Browse and navigate to it that way. On the project page, open the Build menu and click the plus sign.<br />
+ <a href="images/17-01-31_102849.png"><img src="images/17-01-31_102849.png" alt="2017-01-31_102849" title="2017-01-31_102849" /></a></li>
 </ol>
-<p>Either way gets to the "Create new build definition" wizard. Choose "Visual Studio" and click Next.</p>
-<p><a href="images/17-01-31_102926.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_102926.png" alt="2017-01-31_102926" title="2017-01-31_102926"></a></p>
+<p>Either way gets to the &quot;Create new build definition&quot; wizard. Choose &quot;Visual Studio&quot; and click Next.</p>
+<p><a href="images/17-01-31_102926.png"><img src="images/17-01-31_102926.png" alt="2017-01-31_102926" title="2017-01-31_102926" /></a></p>
 <p>Choose the Repository source, in this case the CI Console Sample. We only have one agent queue, the default. Click Create.</p>
-<p><a href="images/17-01-31_103317.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_103317.png" alt="2017-01-31_103317" title="2017-01-31_103317"></a></p>
-<p>This adds a set of build steps to the definition. Click Save and name the definition. Definitions can be used by multiple solutions, so something generic like "Default Visual Studio Build" will work.</p>
+<p><a href="images/17-01-31_103317.png"><img src="images/17-01-31_103317.png" alt="2017-01-31_103317" title="2017-01-31_103317" /></a></p>
+<p>This adds a set of build steps to the definition. Click Save and name the definition. Definitions can be used by multiple solutions, so something generic like &quot;Default Visual Studio Build&quot; will work.</p>
 <blockquote>
 <p><strong>Note</strong> The Visual Studio Test step will auto-discover many third-party test adapters, including xUnit. It's <em>not</em> necessary to set the path in the step's Advanced &gt; Path to Custom Test Adapters field for this example.</p>
 </blockquote>
-<p><a href="images/17-01-31_103740.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_103740.png" alt="2017-01-31_103740" title="2017-01-31_103740"></a></p>
-<p>Let's test the build with the default steps. Click "Queue build", the OK.</p>
-<p><a href="images/17-01-31_104047.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104047.png" alt="2017-01-31_104047" title="2017-01-31_104047"></a></p>
+<p><a href="images/17-01-31_103740.png"><img src="images/17-01-31_103740.png" alt="2017-01-31_103740" title="2017-01-31_103740" /></a></p>
+<p>Let's test the build with the default steps. Click &quot;Queue build&quot;, the OK.</p>
+<p><a href="images/17-01-31_104047.png"><img src="images/17-01-31_104047.png" alt="2017-01-31_104047" title="2017-01-31_104047" /></a></p>
 <p>The build will run in a pretty cool web-based console window. As expected, the unit tests fail.</p>
-<p><a href="images/17-01-31_104540.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104540.png" alt="2017-01-31_104540" title="2017-01-31_104540"></a></p>
+<p><a href="images/17-01-31_104540.png"><img src="images/17-01-31_104540.png" alt="2017-01-31_104540" title="2017-01-31_104540" /></a></p>
 <p>There's also a summary error message at the end.</p>
-<p><a href="images/17-01-31_104648.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104648.png" alt="2017-01-31_104648" title="2017-01-31_104648"></a></p>
+<p><a href="images/17-01-31_104648.png"><img src="images/17-01-31_104648.png" alt="2017-01-31_104648" title="2017-01-31_104648" /></a></p>
 <h2 id="buildconfiguration-default-release">BuildConfiguration Default = Release</h2>
-<p><strong>References</strong><br>
+<p><strong>References</strong><br />
 <a href="http://stackoverflow.com/questions/3416665/unit-testing-on-a-build-server-release-or-debug-code">Unit testing on a build server : Release or Debug code?</a></p>
 <p>Notice, above, when we queued the build that we got a dialog letting us set some variables. These variables are part of the build definition, in the Variables tab.</p>
-<p><a href="images/17-01-31_104700.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_104700.png" alt="2017-01-31_104700" title="2017-01-31_104700"></a></p>
+<p><a href="images/17-01-31_104700.png"><img src="images/17-01-31_104700.png" alt="2017-01-31_104700" title="2017-01-31_104700" /></a></p>
 <p>At first, I thought this was a poor choice for a default. And, I do have a concern. But after reading the article referenced above, I realized...</p>
 <blockquote>
-<p><strong>CI Principle</strong><br>
+<p><strong>CI Principle</strong><br />
 Auto-build your application to the code your customers will be using.</p>
 </blockquote>
 <p>When would building in Release mode be a problem? The first thing I thought of was web.config transforms. What if you have this appSetting in your default web.config...</p>
 <pre><code class="language-xml">&lt;appSettings&gt;
-  &lt;add key="SysopEmail" value="developers@example.com" /&gt;
+  &lt;add key=&quot;SysopEmail&quot; value=&quot;developers@example.com&quot; /&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <p>and this one in Web.Release.config...</p>
 <pre><code class="language-xml">&lt;appSettings&gt;
-  &lt;add key="SysopEmail" value="live-support@example.com" xdt:Transform="Replace" xdt:Locator="Match(key)" /&gt;
+  &lt;add key=&quot;SysopEmail&quot; value=&quot;live-support@example.com&quot; xdt:Transform=&quot;Replace&quot; xdt:Locator=&quot;Match(key)&quot; /&gt;
 &lt;/appSettings&gt;
 </code></pre>
 <p>And, further, you have a method that's being tested that looks like this:</p>
@@ -116,19 +116,19 @@ Auto-build your application to the code your customers will be using.</p>
   }
   catch (Exception ex)
   {
-    MailService.SendError(ConfigurationManager.AppSettings["SysopEmail"], ex);
+    MailService.SendError(ConfigurationManager.AppSettings[&quot;SysopEmail&quot;], ex);
   }
 }
 </code></pre>
-<p>Now, CustomerService should be mocked, and that <em>should</em> lead to no errors being generated, but "should" has nothing to do with reality. Do we want our CI tests to email our production support on error? No, because they'll think there's a problem in the production system.</p>
+<p>Now, CustomerService should be mocked, and that <em>should</em> lead to no errors being generated, but &quot;should&quot; has nothing to do with reality. Do we want our CI tests to email our production support on error? No, because they'll think there's a problem in the production system.</p>
 <p>There's anything wrong with the method <em>per se</em>. You can argue that settings like this should be in a database. Fine. But until then, what to do?</p>
 <p>I don't know. I'm just pointing out that in some cases, the CI build configuration might need to be something other that Release.</p>
 <h2 id="enable-and-test-continuous-integration">Enable and Test Continuous Integration</h2>
 <p>Let's test that a build will run the next time we commit source code changes. And, let's be a sloppy developer, too.</p>
 <p>First, we need to configure the build definition to trigger when we check in. On the TFS site, in the team project, choose the Build menu, select the Default Visual Studio Build, and click Edit.</p>
-<p><a href="images/17-01-31_110712.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110712.png" alt="2017-01-31_110712" title="2017-01-31_110712"></a></p>
+<p><a href="images/17-01-31_110712.png"><img src="images/17-01-31_110712.png" alt="2017-01-31_110712" title="2017-01-31_110712" /></a></p>
 <p>Open Triggers, check Continuous Integration, leave the defaults, and Save.</p>
-<p><a href="images/17-01-31_110924.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110924.png" alt="2017-01-31_110924" title="2017-01-31_110924"></a></p>
+<p><a href="images/17-01-31_110924.png"><img src="images/17-01-31_110924.png" alt="2017-01-31_110924" title="2017-01-31_110924" /></a></p>
 <p>Back in our solution, change the TextMan.Greeter method as follows. Note that this will <em>not</em> pass.</p>
 <pre><code class="language-csharp">    public class TextMan
     {
@@ -139,17 +139,17 @@ Auto-build your application to the code your customers will be using.</p>
     }
 </code></pre>
 <p>You can run the tests if you want to prove they fail.</p>
-<p><a href="images/17-01-31_105424.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_105424.png" alt="2017-01-31_105424" title="2017-01-31_105424"></a></p>
+<p><a href="images/17-01-31_105424.png"><img src="images/17-01-31_105424.png" alt="2017-01-31_105424" title="2017-01-31_105424" /></a></p>
 <p>Now for the fun. On the TFS web site, go to the team project's Build tab, select the Default Visual Studio Build, and open the Queued view. Keep this page visible if you can. We want to see the build automatically start.</p>
-<p><a href="images/17-01-31_1059.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_1059.png" alt="2017-01-31_105936" title="2017-01-31_105936"></a></p>
+<p><a href="images/17-01-31_1059.png"><img src="images/17-01-31_1059.png" alt="2017-01-31_105936" title="2017-01-31_105936" /></a></p>
 <p>In Team Explorer, click Pending Changes</p>
-<p><a href="images/17-01-31_105614.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_105614.png" alt="2017-01-31_105614" title="2017-01-31_105614"></a></p>
+<p><a href="images/17-01-31_105614.png"><img src="images/17-01-31_105614.png" alt="2017-01-31_105614" title="2017-01-31_105614" /></a></p>
 <p>Enter a comment and click Check In.</p>
-<p><a href="images/17-01-31_110109.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_110109.png" alt="2017-01-31_110109" title="2017-01-31_110109"></a></p>
+<p><a href="images/17-01-31_110109.png"><img src="images/17-01-31_110109.png" alt="2017-01-31_110109" title="2017-01-31_110109" /></a></p>
 <p>Back on the TFS site page, click Refresh and the build should appear.</p>
-<p><a href="images/17-01-31_111112.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_111112.png" alt="2017-01-31_111112" title="2017-01-31_111112"></a></p>
-<p>You can open the build and wait for it to finish (i.e. "fail"). The summary page nicely tells you who authored the last changes.</p>
-<p><a href="images/17-01-31_111405.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5/images/17-01-31_111405.png" alt="2017-01-31_111405" title="2017-01-31_111405"></a></p>
+<p><a href="images/17-01-31_111112.png"><img src="images/17-01-31_111112.png" alt="2017-01-31_111112" title="2017-01-31_111112" /></a></p>
+<p>You can open the build and wait for it to finish (i.e. &quot;fail&quot;). The summary page nicely tells you who authored the last changes.</p>
+<p><a href="images/17-01-31_111405.png"><img src="images/17-01-31_111405.png" alt="2017-01-31_111405" title="2017-01-31_111405" /></a></p>
 <p>Our build server is successfully automatically building on check in!</p>
 <p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_63.html">TFS Continuous Integration Walk Through Part 3 - Notifications</a></p>
 </div>
