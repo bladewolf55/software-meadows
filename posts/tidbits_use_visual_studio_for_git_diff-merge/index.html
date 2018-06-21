@@ -19,7 +19,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Installing Fcm Flow Cytrometry Library On Windows 8.1 | Software Meadows</title>
+  <title>Tid Bits: Use Visual Studio For Git Diff/Merge | Software Meadows</title>
 </head>
 
 <body>
@@ -55,102 +55,35 @@
         <section id="content">
           
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></h2>
-                <p class='post-info'><span class='posted-on'>2014-05-14 16:28</span></p>
-                <div class='post-content'><p>My friend Andrew is working with flow cytrometry, which is a fancy way of saying “a field I don’t understand.” He wanted to use a python library for analyzing data, but was having trouble getting it installed. After some effort, I found this worked. The core problem is that py-fcm hasn’t been updated to work with later versions of its dependencies. It also doesn’t list the versions of its dependent libraries, making installation difficult.</p>
-<p>Fortunately, I happened across a site that maintains Windows binaries for lots of packages, plus a science-ready Python distribution. I don’t know if this will install properly on Windows 7, but believe it will.</p>
-<h1 id="downloads">Downloads</h1>
-<p><strong>Enthought Canopy Express</strong></p>
-<p>This is a free Python distribution. I installed the x64 version, specifically 1.4.0-win-64, which used Python 2.7. It includes the following packages that py-fcm depends on: numpy, scipy, matplotlib, cython.</p>
-<p><a href="https://www.enthought.com/downloads/" title="https://www.enthought.com/downloads/">https://www.enthought.com/downloads/</a></p>
-<p><strong>DPMix</strong></p>
-<p>The Windows installer version of DPMix. I used version dpmix-01.win-amd64-py2.7.exe.</p>
-<p><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/#dpmix" title="http://www.lfd.uci.edu/~gohlke/pythonlibs/#dpmix">http://www.lfd.uci.edu/~gohlke/pythonlibs/#dpmix</a></p>
-<p><strong>Py-FCM</strong></p>
-<p>Download the Windows installer fcm‑0.9.1.win‑amd64‑py2.7.exe from</p>
-<p><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/#py-fcm" title="http://www.lfd.uci.edu/~gohlke/pythonlibs/#py-fcm">http://www.lfd.uci.edu/~gohlke/pythonlibs/#py-fcm</a></p>
-<p>Also, download the latest source. This just makes it easier to get the sample file.</p>
-<p><a href="https://code.google.com/p/py-fcm/source/browse/" title="https://code.google.com/p/py-fcm/source/browse/">https://code.google.com/p/py-fcm/source/browse/</a></p>
-<p><strong>NOTE</strong></p>
-<p>I did not install mpi4py, as it is an optional dependency, but here are the links. I also didn’t install the fcm GPU support.</p>
-<p><a href="http://www.lfd.uci.edu/%7Egohlke/pythonlibs/#mpi4py" title="http://www.lfd.uci.edu/~gohlke/pythonlibs/#mpi4py">http://www.lfd.uci.edu/~gohlke/pythonlibs/#mpi4py</a></p>
-<p><a href="https://bitbucket.org/mpi4py/mpi4py/downloads" title="https://bitbucket.org/mpi4py/mpi4py/downloads">https://bitbucket.org/mpi4py/mpi4py/downloads</a></p>
-<h1 id="installation">Installation</h1>
-<p>1. Run the Canopy installer. It does not require administrative privileges. I stuck with the defaults.</p>
-<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image.png" alt="image" title="image" /></a></p>
-<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-001.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-001.png" alt="image" title="image" /></a></p>
-<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-002.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-002.png" alt="image" title="image" /></a></p>
-<p>Clicking “Start using Canopy” will configured the environment. When configured, a window will open, which you can then close. Your desktop will have two icons, one for Canopy, the other for PyLab.</p>
-<p>2. Run the DPMix Windows installer. It will find the Python installation and use it.</p>
-<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-003.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-003.png" alt="image" title="image" /></a></p>
-<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-004.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-004.png" alt="image" title="image" /></a></p>
-<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-005.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-005.png" alt="image" title="image" /></a></p>
-<p>3. Run the py-fcm Windows installer. It likewise will find and use the Python installation.</p>
-<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-006.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-006.png" alt="image" title="image" /></a></p>
-<p>4. Modify gate.py script. This is critical, as the matplotlib library no longer uses nxutils.</p>
-<ol type="a">
-<li><p>Open this file in a text editor (using your own Username for the directory): C:\Users\Charles\AppData\Local\Enthought\Canopy\User\Lib\site-packages\fcm\core\gate.py</p>
-</li>
-<li><p>Comment out line 56, and uncomment line 52.</p>
-</li>
-</ol>
-<pre><code class="language-csharp">if name is None:
-    name = self.name
-idxs = points_in_poly(self.vert, fcm.view()[:, chan])
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tidbits_use_visual_studio_for_git_diff-merge'>Tid Bits: Use Visual Studio for Git Diff/Merge</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-06-18 21:15</span></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/tidbits_use_visual_studio_for_git_diff-merge/images/tidbits-image.png" alt="" />
+<img src="https://www.softwaremeadows.com/posts/tidbits_use_visual_studio_for_git_diff-merge/images/git.png" alt="" /></p>
+<p>The instructions below are for Visual Studio 2017 Community Edition. Substitute Professional or Enterprise as needed.</p>
+<pre><code class="language-txt">[difftool &quot;vstudio&quot;]
+  cmd = 'C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/vsDiffMerge.exe' $LOCAL $REMOTE Source Target //t
+[mergetool &quot;vstudio&quot;]
+  cmd = 'C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/Common7/IDE/CommonExtensions/Microsoft/TeamFoundation/Team Explorer/vsDiffMerge.exe' $LOCAL $REMOTE $BASE $MERGED //m
+  trustedExitCode = true
 
-# matplotlib has points in poly routine in C
-# no faster than our numpy version
-#idxs = points_inside_poly(fcm.view()[:, chan], self.vert)
+
+# To use as default
+[diff]
+	tool = vstudio
+[merge]
+	tool = vstudio
+	conflictstyle = diff3
+[mergetool]
+	keepBackup = false
 </code></pre>
-<p>Also comment out the nxutils import on line 2</p>
-<pre><code class="language-csharp">import numpy
-#from matplotlib.nxutils import points_inside_poly
+<p>Command line use:</p>
+<pre><code class="language-command">git mergetool
+git difftool
+
+git mergetool --tool=vstudio
+git difftool --tool-vstudio
 </code></pre>
-<h1 id="test">Test</h1>
-<ol>
-<li>Unzip the py-fcm source. In the sample_data folder is a file named 3FITC_4PE_004.fcs.</li>
-<li>Open a text editor, and copy the complete path to the file, e.g.<br />
-C:\Users\Charles\Documents\FCM Flow Cytometry\Py-FCM\py-fcm-91701cc7a98e\sample_data\3FITC_4PE_004.fcs</li>
-<li>Now, replace all back slashes with forward slashes.<br />
-C:/Users/Charles/Documents/FCM Flow Cytometry/Py-FCM/3FITC_4PE_004.fcs</li>
-<li>Open PyLab from the icon on the desktop, and run the samples found <a href="https://pythonhosted.org/fcm/basic.html">here</a> (reproduced below).</li>
-</ol>
-<p><a href="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-007.png"><img src="https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library/images/image-007.png" alt="image" title="image" /></a></p>
-<p>fcm provides the <a href="https://pythonhosted.org/fcm/documentation.html#fcm.loadFCS"><code>loadFCS()</code></a> function to load fcs files:</p>
-<pre><code>&gt;&gt;&gt; from fcm import loadFCS
-&gt;&gt;&gt; data = loadFCS('../sample_data/3FITC_4PE_004.fcs')
-&gt;&gt;&gt; data
-3FITC_4PE_004
-&gt;&gt;&gt; data.channels
-['FSC-H', 'SSC-H', 'FL1-H', 'FL2-H']
-&gt;&gt;&gt; data.shape
-(94569, 4)
-</code></pre>
-<p>Since the <a href="https://pythonhosted.org/fcm/documentation.html#fcm.FCMdata"><code>FCMdata</code></a> object returned by <a href="https://pythonhosted.org/fcm/documentation.html#fcm.loadFCS"><code>loadFCS()</code></a> delegates to underlying numpy array, you can pass the <a href="https://pythonhosted.org/fcm/documentation.html#fcm.FCMdata"><code>FCMdata</code></a> object to most numpy functions</p>
-<pre><code>&gt;&gt;&gt; import numpy as np
-&gt;&gt;&gt; np.mean(data)
-410.38791252947584
-&gt;&gt;&gt; np.mean(data,0)
-array([ 538.76464803,  421.57733507,  340.03599488,  341.17367213])
-&gt;&gt;&gt; import pylab
-&gt;&gt;&gt; pylab.scatter(data[:,0],data[:,1], s=1, edgecolors='none')
-&gt;&gt;&gt; pylab.xlabel(data.channels[0])
-&gt;&gt;&gt; pylab.ylabel(data.channels[1])
-&gt;&gt;&gt; pylab.show()
-</code></pre>
-<p><img src="https://pythonhosted.org/fcm/_images/basic-1.png" alt="_images/basic-1.png" /></p>
-<p> </p>
-<h1 id="references">References</h1>
-<p>Info about the nxutiles error. <a href="https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY" title="https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY">https://groups.google.com/forum/#!topic/py-fcm-dev/HibEajOCTEY</a></p>
-<p><a href="https://pythonhosted.org/fcm/install.html" title="https://pythonhosted.org/fcm/install.html">https://pythonhosted.org/fcm/install.html</a><br />
-<a href="https://code.google.com/p/py-fcm/" title="https://code.google.com/p/py-fcm/">https://code.google.com/p/py-fcm/</a><br />
-<a href="https://www.enthought.com/" title="https://www.enthought.com/">https://www.enthought.com/</a><br />
-<a href="http://www.scipy.org/index.html" title="http://www.scipy.org/index.html">http://www.scipy.org/index.html</a><br />
-<a href="http://matplotlib.org/" title="http://matplotlib.org/">http://matplotlib.org/</a><br />
-<a href="https://github.com/andrewcron/dpmix" title="https://github.com/andrewcron/dpmix">https://github.com/andrewcron/dpmix</a><br />
-<a href="http://docs.cython.org/src/quickstart/install.html" title="http://docs.cython.org/src/quickstart/install.html">http://docs.cython.org/src/quickstart/install.html</a><br />
-<a href="https://bitbucket.org/mpi4py/mpi4py/downloads" title="https://bitbucket.org/mpi4py/mpi4py/downloads">https://bitbucket.org/mpi4py/mpi4py/downloads</a><br />
-<a href="http://mpi4py.scipy.org/docs/usrman/install.html#requirements" title="http://mpi4py.scipy.org/docs/usrman/install.html#requirements">http://mpi4py.scipy.org/docs/usrman/install.html#requirements</a></p>
+<p>Variables, prefixed with $, are specifying file paths. Note they are enclosed in quote marks, so that spaces in file paths won’t break the command. Source and Target are just labels Visual Studio will use for the files . The <code>/t</code> flag will open the diff in a temporary tab instead of a persisted tab. The <code>/m</code>flag denotes it is a merge in contrast to diff.</p>
 </div>
               </div>
               
