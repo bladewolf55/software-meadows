@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117916694-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-117916694-1');
+  </script> <script src='https://www.softwaremeadows.com/header-scripts/prism.js'></script>
+ <link rel='stylesheet' href='https://www.softwaremeadows.com/css/default.css' />
+<link rel='stylesheet' href='https://www.softwaremeadows.com/css/prism.css' />
+<link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
+
+
+  <title>What Else Programmers Do: A Text Manipulation Example | Software Meadows</title>
+</head>
+
+<body>
+    <div class="row">
+      <div class="col-left">
+        <nav id="nav" class="nav">
+          <div id="menu">
+            <ol>
+<li><a href="https://www.softwaremeadows.com/">Home</a></li>
+<li><a href="https://www.softwaremeadows.com/about">About</a></li>
+</ol>
+
+          </div>
+          <div id="recent">
+            <h2>Recent</h2>
+            <a href='https://www.softwaremeadows.com/posts/tidbits_vs_code-_orange_icon_resurrection'>Tid Bits: VS Code: Orange Icon Resurrection</a><a href='https://www.softwaremeadows.com/posts/tidbits_use_visual_studio_for_git_diff-merge'>Tid Bits: Use Visual Studio for Git Diff/Merge</a><a href='https://www.softwaremeadows.com/posts/3_chrome_extensions_for_performance__research__and_blogging'>3 Chrome Extensions for Performance, Research, and Blogging</a><a href='https://www.softwaremeadows.com/posts/chrome_browser_pinned_startup_tabs'>Chrome Browser Pinned Startup Tabs</a><a href='https://www.softwaremeadows.com/posts/solving_nancyfx_tokenizer_keychain_bin_invalid_read_type_request_115'>Solving NancyFx Tokenizer keyChain.bin Invalid Read Type Request '115'</a>
+          </div>
+          <div id="history">
+            <h2>History</h2>
+            <ol class='tree'><li class='history-year'><label for='2018'>2018</label><input type='checkbox'  id='2018' /><ol><li class='history-month'><label for='2018-6'>June</label><input type='checkbox'  id='2018-6' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tidbits_vs_code-_orange_icon_resurrection'>Tid Bits: VS Code: Orange Icon Resurrection</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tidbits_use_visual_studio_for_git_diff-merge'>Tid Bits: Use Visual Studio for Git Diff/Merge</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/3_chrome_extensions_for_performance__research__and_blogging'>3 Chrome Extensions for Performance, Research, and Blogging</a></li></ol></li><li class='history-month'><label for='2018-5'>May</label><input type='checkbox'  id='2018-5' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/chrome_browser_pinned_startup_tabs'>Chrome Browser Pinned Startup Tabs</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/solving_nancyfx_tokenizer_keychain_bin_invalid_read_type_request_115'>Solving NancyFx Tokenizer keyChain.bin Invalid Read Type Request '115'</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/my_ideal_markdown_editor_-_thoughts_and_reviews_part_1'>My Ideal Markdown Editor - Thoughts and Reviews Part 1</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/my_why_and_how_of_posh_git_contenxt_menu_transcripts_and_tf_exe'>My Why and How of posh-git: Context Menu, Transcripts, and TF.exe</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/how_to_secure-erase_regular_and_ssd_hard_drives_without_superstition'>How to Secure-Erase Regular and SSD Hard Drives Without Superstition</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/sql_permissions_for_data_folders'>SQL Permissions for Data Folders</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/grammar_for_developers_-_3_simple_rules_3_common_mistakes'>Grammar for Developers - 3 Simple Rules, 3 Common Mistakes</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/notes_on_improving_developer_team_practices_1'>Notes on Improving Developer Team Practices</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/using_git_locally_with_remote_tfvc'>Using Git Locally With Remote TFVC</a></li></ol></li><li class='history-month'><label for='2018-4'>April</label><input type='checkbox'  id='2018-4' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/raw_code_-_picture_renaming_and_sorting'>Raw Code - Picture Renaming and Sorting</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/becoming_a_professional_blogger_part_1'>Becoming a Professional Blogger Part 1</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/entity_framework_6_child_deletion_and_foreign_keys_string_int_guid'>Entity Framework 6 Child Deletion and Foreign Keys - String Int GUID</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development'>The 50-10 Time Box - Revising Pomodoro for Software Development</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/linqpad_-_refresh_entity_after_submitchanges_to_avoid_cached_results'>LINQPad - Refresh Entity after SubmitChanges to Avoid Cached Results</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/create_blog_post_using_markdown_monster_command_addin'>Create Blog Post Using Markdown Monster's Command Addin</a></li></ol></li><li class='history-month'><label for='2018-3'>March</label><input type='checkbox'  id='2018-3' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/batch_image_resize_checking_min_max_in_both_dimensions'>Batch Image Resize Checking Min Max in Both Dimensions</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/announcing_deepshadow'>Announcing DeepShadow</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/announcing_deftconfig'>Announcing DeftConfig</a></li></ol></li><li class='history-month'><label for='2018-1'>January</label><input type='checkbox'  id='2018-1' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs_2015_publish_asp_net_using_robocopy'>TFS 2015: Publish ASP.NET Using Robocopy</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_2'>Combining VeraCrypt, Google Backup & Sync, and Sql Server Part 2</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/combining_veracrypt_google_backup_sync_sql_server_part_1'>Combining VeraCrypt, Google Backup & Sync, and Sql Server Part 1</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/new-blog-engine'>New Blog Engine</a></li></ol></li></ol></li><li class='history-year'><label for='2017'>2017</label><input type='checkbox'  id='2017' /><ol><li class='history-month'><label for='2017-8'>August</label><input type='checkbox'  id='2017-8' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/dont-use-data-prefix-in-angularjs'>Don't use "data" prefix in AngularJS</a></li></ol></li><li class='history-month'><label for='2017-7'>July</label><input type='checkbox'  id='2017-7' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/angularjs-service-with-var-declarations'>AngularJS service with var declarations instead of this. assignments</a></li></ol></li><li class='history-month'><label for='2017-6'>June</label><input type='checkbox'  id='2017-6' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/factory-resetting-android-without'>Factory Resetting Android Without Losing Your Life (Metaphorically)</a></li></ol></li><li class='history-month'><label for='2017-5'>May</label><input type='checkbox'  id='2017-5' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-4'>IdentityServer3 with PKCE Part 4 - Persisting User Data</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-3'>IdentityServer3 with PKCE Part 3 - Persist IdentityServer Configuration</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-2'>IdentityServer3 with PKCE Part 2 - Protected Resource Server</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/identityserver3-with-pkce-part-1-simple'>IdentityServer3 with PKCE Part 1 - Simple OAuth2 Server</a></li></ol></li><li class='history-month'><label for='2017-3'>March</label><input type='checkbox'  id='2017-3' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 5c - Multiple Solutions: Dependencies</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/sane-database-schema-conventions'>Sane Database Schema Conventions</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-agent'>TFS Continuous Integration - Agent Installation and Visual Studio Licensing</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-clickonce'>TFS Continuous Integration - ClickOnce Apps</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-and-private'>TFS Continuous Integration and Private NuGet Package Sources</a></li></ol></li><li class='history-month'><label for='2017-2'>February</label><input type='checkbox'  id='2017-2' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_22'>TFS Continuous Integration Walk Through Part 5b - Multiple Solutions: Simple Project References</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_20'>TFS Continuous Integration Walk Through Part 5a - Multiple Solutions: Overview</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_24'>TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_63'>TFS Continuous Integration Walk Through Part 3 - Notifications</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_5'>TFS Continuous Integration Walk Through Part 2 - Create an Automated Build</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through'>TFS Continuous Integration Walk Through Part 1 - Installing TFS and Checking In a Test Project</a></li></ol></li><li class='history-month'><label for='2017-1'>January</label><input type='checkbox'  id='2017-1' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/what-does-this-code-do-extended'>What does this code do? Extended explanation</a></li></ol></li></ol></li><li class='history-year'><label for='2016'>2016</label><input type='checkbox'  id='2016' /><ol><li class='history-month'><label for='2016-12'>December</label><input type='checkbox'  id='2016-12' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/nexus-5-gps-lock-problem-and-two'>Nexus 5 GPS Lock Problem and Three--or More!--Solutions</a></li></ol></li><li class='history-month'><label for='2016-11'>November</label><input type='checkbox'  id='2016-11' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/how-to-bypass-new-microsoft-office'>How to Bypass the New Microsoft Office Startup and Save Screens</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/google-tasks-vs-reminders-in-desktop'>Google Tasks vs Reminders in Desktop and Phone</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/catching-up-on-coding-claims-based-identity-part-1_6'>Catching Up on Coding - Claims-Based Identity Part 1</a></li></ol></li><li class='history-month'><label for='2016-10'>October</label><input type='checkbox'  id='2016-10' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/creating-forms-authentication'>Creating Forms Authentication Membership Tables in LocalDB–Right and Wrong Ways</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/windows-10-complaint-1-auto-update'>Windows 10 Complaint #1: Auto Update State Loss</a></li></ol></li><li class='history-month'><label for='2016-9'>September</label><input type='checkbox'  id='2016-9' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/disable-windows-10-photo-automatic'>Disable Windows 10 Photo Automatic Albums</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/a-laymans-explanation-of-mocking-and'>A Layman’s Explanation of Mocking and Dependency Injection</a></li></ol></li><li class='history-month'><label for='2016-8'>August</label><input type='checkbox'  id='2016-8' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-3'>Catching Up on Coding - TDD Part 3</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-2'>Catching Up on Coding - TDD Part 2</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/catching-up-on-coding-tdd-part-1'>Catching Up on Coding - TDD Part 1</a></li></ol></li><li class='history-month'><label for='2016-7'>July</label><input type='checkbox'  id='2016-7' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/writing-to-current-users-registry-when'>Writing to the Current User(s) Registry When Running as System</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/catching-up-on-coding-syllabus'>Catching Up on Coding - The Syllabus</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/quickly-enable-mercurial-keyring-for'>Quickly Enable Mercurial Keyring for BitBucket</a></li></ol></li><li class='history-month'><label for='2016-6'>June</label><input type='checkbox'  id='2016-6' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/create-easily-debuggable-windows-service'>Create an Easily Debuggable Windows Service</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/underrated-work-skills'>(Underrated) Work Skills</a></li></ol></li><li class='history-month'><label for='2016-5'>May</label><input type='checkbox'  id='2016-5' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/vbnet-windows-project-to-c-conversion'>VB.Net Windows Project to C# Conversion Tools Quick Review</a></li></ol></li><li class='history-month'><label for='2016-2'>February</label><input type='checkbox'  id='2016-2' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/scroll-bars-in-blogger-tags'>Scroll bars in Blogger &lt;pre&gt; Tags</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/google-keep-changes-taking-to-forums'>Google Keep Changes: Taking to the Forums</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/backward-step-for-google-keep'>Backward Step for Google Keep</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/recover-virtualbox-snapshots'>Recover VirtualBox Snapshots</a></li></ol></li><li class='history-month'><label for='2016-1'>January</label><input type='checkbox'  id='2016-1' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/auto-updating-new-windows-7-installation'>Auto Updating a New Windows 7 Installation</a></li></ol></li></ol></li><li class='history-year'><label for='2015'>2015</label><input type='checkbox'  id='2015' /><ol><li class='history-month'><label for='2015-8'>August</label><input type='checkbox'  id='2015-8' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/shoretel-brilliantly-simple'>ShoreTel - Brilliantly Simple?</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/the-google-photos-management-problems'>The Google Photos Management Problem(s)</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/creating-long-lasting-clickonce'>Creating a Long-Lasting ClickOnce Certificate</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/more-encrypted-config-filesclickonce'>More Encrypted Config Files–ClickOnce Complications</a></li></ol></li><li class='history-month'><label for='2015-7'>July</label><input type='checkbox'  id='2015-7' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/encrypting-appconfig'>Encrypting app.config</a></li></ol></li><li class='history-month'><label for='2015-3'>March</label><input type='checkbox'  id='2015-3' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></li></ol></li></ol></li><li class='history-year'><label for='2014'>2014</label><input type='checkbox'  id='2014' /><ol><li class='history-month'><label for='2014-11'>November</label><input type='checkbox'  id='2014-11' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/how-to-remove-savernet-and-similar'>How to remove Savernet (and similar) Chrome extension</a></li></ol></li><li class='history-month'><label for='2014-9'>September</label><input type='checkbox'  id='2014-9' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/prevent-word-from-restoring-minimized'>Prevent Word from Restoring Minimized Documents</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/clever-phish'>Clever Phish</a></li></ol></li><li class='history-month'><label for='2014-8'>August</label><input type='checkbox'  id='2014-8' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/enable-synaptics-touchpad-2-finger-tap'>Enable Synaptics touchpad 2-finger tap context menu</a></li></ol></li><li class='history-month'><label for='2014-5'>May</label><input type='checkbox'  id='2014-5' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/installing-fcm-flow-cytrometry-library'>Installing fcm flow cytrometry library on Windows 8.1</a></li></ol></li><li class='history-month'><label for='2014-4'>April</label><input type='checkbox'  id='2014-4' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/windows-81-window-key-s-search-from'>Windows 8.1: Window Key + S = Search from Desktop</a></li></ol></li><li class='history-month'><label for='2014-3'>March</label><input type='checkbox'  id='2014-3' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></li></ol></li><li class='history-month'><label for='2014-2'>February</label><input type='checkbox'  id='2014-2' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/lenovo-u530-touch-wifi-problem-continued'>Lenovo U530 Touch WiFi Problem Continued</a></li></ol></li><li class='history-month'><label for='2014-1'>January</label><input type='checkbox'  id='2014-1' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/lenovo-u530-touch-wifi-problem'>Lenovo U530 Touch WiFi Problem</a></li></ol></li></ol></li><li class='history-year'><label for='2013'>2013</label><input type='checkbox'  id='2013' /><ol><li class='history-month'><label for='2013-12'>December</label><input type='checkbox'  id='2013-12' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/whs-connector-restart-error-in-windows'>WHS Connector Restart Error in Windows 8.0/8.1</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/how-to-remove-apps-from-google-play-my'>How to Remove Apps from Google Play My Apps Site</a></li></ol></li><li class='history-month'><label for='2013-11'>November</label><input type='checkbox'  id='2013-11' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/windows-81-hidden-opt-ins-opt-outs'>Windows 8.1 Hidden Opt Ins/ Opt Outs</a></li></ol></li><li class='history-month'><label for='2013-9'>September</label><input type='checkbox'  id='2013-9' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-epilogue'>Edward Farley and the Fantastic Library Epilogue</a></li></ol></li><li class='history-month'><label for='2013-7'>July</label><input type='checkbox'  id='2013-7' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/a-week-or-more-of-jolicloud-day-2-end'>A Week (or More!) of JoliCloud - Day 2: THE END</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/a-week-or-more-of-jolicloud-day-1'>A Week (or More!) of JoliCloud - Day 1</a></li></ol></li><li class='history-month'><label for='2013-5'>May</label><input type='checkbox'  id='2013-5' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-12'>Edward Farley and the Fantastic Library Part 12</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-1019'>Edward Farley and the Fantastic Library Part 11</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-10'>Edward Farley and the Fantastic Library Part 10</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-9'>Edward Farley and the Fantastic Library Part 9</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-8'>Edward Farley and the Fantastic Library Part 8</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-7'>Edward Farley and the Fantastic Library Part 7</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-6'>Edward Farley and the Fantastic Library Part 6</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-5'>Edward Farley and the Fantastic Library Part 5</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-4'>Edward Farley and the Fantastic Library Part 4</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-3'>Edward Farley and the Fantastic Library Part 3</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-2'>Edward Farley and the Fantastic Library Part 2</a></li><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></li></ol></li><li class='history-month'><label for='2013-4'>April</label><input type='checkbox'  id='2013-4' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></li></ol></li><li class='history-month'><label for='2013-3'>March</label><input type='checkbox'  id='2013-3' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></li></ol></li><li class='history-month'><label for='2013-1'>January</label><input type='checkbox'  id='2013-1' /><ol><li class='history-post'><a class='history-post' href='https://www.softwaremeadows.com/posts/test-post-with-code'>Migrating Google Drive</a></li></ol></li></ol></li></ol>
+          </div>
+          <a href="javascript:void(0);" class="icon" onclick="toggleNav()">&#9776;</a>
+        </nav>
+      </div>
+      <div class="col-right">
+        <header>
+          <div id="site-image">
+            <img src="https://www.softwaremeadows.com/images/header.png" alt="" />
+          </div>
+          <h1 id="site-name"></h1>
+          <div id="site-subtitle">A pleasant walk through computing</div>
+        </header>
+        <section id="content">
+          
+              <div class='post'>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/what-else-programmers-do-text'>What Else Programmers Do: A Text Manipulation Example</a></h2>
+                <p class='post-info'><span class='posted-on'>2017-01-26 11:40</span></p>
+                <div class='post-content'><p>Sometimes, in my &quot;regular&quot; (i.e. non-IT) life, I apply my job skills. Today, for example, I came across a Facebook post about how to contact and influence Congress members. The post suggested cutting and pasting to share with others. Unfortunately, it wasn't possible to select the text. Some sites do this to prevent copying their content. News sites, especially, for copyright reasons.</p>
+<p>What follows is not a tutorial for regular (i.e. non-technical-programming-nerdy) people. It's an <em>example</em> of the kind of process I do in my job every day, and how I think about a problem. It requires tools, knowledge and experience.</p>
+<h2 id="getting-to-the-source-of-the-matter">Getting to the &quot;Source&quot; of the Matter</h2>
+<p>Now, the first problem is that I viewed the original FB post on my phone, and it turns out that's why I couldn't copy/paste the text. If I'd bothered to find it on my desktop, my problem would have been solved. Instead, I emailed myself a link to the page. That link still went to the mobile version. That's what the &quot;m.&quot; in the URL is telling me.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_35_13.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_35_13.png" alt="2017-01-26 09_35_13" title="2017-01-26 09_35_13" /></a></p>
+<p>Here's some of the text:</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_38_16.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_38_16.png" alt="2017-01-26 09_38_16" title="2017-01-26 09_38_16" /></a></p>
+<p>I can't copy the text, it's sort of like it's an image, but I'm pretty sure it's <em>not</em> an image. My next step is to view the page source HTML. I right-click in Chrome and choose &quot;View page source&quot;.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_40_46.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_40_46.png" alt="2017-01-26 09_40_46" title="2017-01-26 09_40_46" /></a></p>
+<p>Which yields a huge mess of coded text, as befitting a complex web site. There are about three thousand more lines like this.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_42_55.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_42_55.png" alt="2017-01-26 09_42_55" title="2017-01-26 09_42_55" /></a></p>
+<p>I'm pretty sure buried in there is the text I want. And I'm also pretty sure I'll need to manipulate it. So, I open <a href="https://notepad-plus-plus.org/">Notepad++</a>, a sophisticated, free, open source text editor. Then I copy/paste the source from the browser into it.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_46_56.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_09_46_56.png" alt="2017-01-26 09_46_56" title="2017-01-26 09_46_56" /></a></p>
+<p>Now I'm ready to use my text editor.</p>
+<h2 id="text-editing-is-not-the-same-as-word-processing">Text Editing is Not the Same as Word Processing</h2>
+<p>In word processing, like you do with Microsoft Word, the concern is text formatting: making things bold, italic, different fonts, etc. The result of all that work is marked up text (or binary, but we'll stick with text) that tells the application how to display all of your words on the screen. Here's an example from a Word file that was saved in its standard .docx format. The document literally has one word: &quot;hello&quot;. But Word needs all of this information to display that those five characters.</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;w:document 
+xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; 
+xmlns:cx=&quot;http://schemas.microsoft.com/office/drawing/2014/chartex&quot; 
+xmlns:cx1=&quot;http://schemas.microsoft.com/office/drawing/2015/9/8/chartex&quot; 
+xmlns:cx2=&quot;http://schemas.microsoft.com/office/drawing/2015/10/21/chartex&quot; 
+xmlns:cx3=&quot;http://schemas.microsoft.com/office/drawing/2016/5/9/chartex&quot; 
+xmlns:cx4=&quot;http://schemas.microsoft.com/office/drawing/2016/5/10/chartex&quot; 
+xmlns:cx5=&quot;http://schemas.microsoft.com/office/drawing/2016/5/11/chartex&quot; 
+xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; 
+xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; 
+xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; 
+xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; 
+xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; 
+xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing&quot; 
+xmlns:wp=&quot;http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing&quot; 
+xmlns:w10=&quot;urn:schemas-microsoft-com:office:word&quot; 
+xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; 
+xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; 
+xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; 
+xmlns:w16se=&quot;http://schemas.microsoft.com/office/word/2015/wordml/symex&quot; 
+xmlns:wpg=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingGroup&quot; 
+xmlns:wpi=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingInk&quot; 
+xmlns:wne=&quot;http://schemas.microsoft.com/office/word/2006/wordml&quot; 
+xmlns:wps=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingShape&quot; mc:Ignorable=&quot;w14 w15 w16se wp14&quot;&gt;
+  &lt;w:body&gt;
+    &lt;w:p w:rsidR=&quot;000E45DD&quot; w:rsidRDefault=&quot;00FA6736&quot;&gt;
+      &lt;w:r&gt;
+        &lt;w:t&gt;hello&lt;/w:t&gt;
+      &lt;/w:r&gt;
+      &lt;w:bookmarkStart w:id=&quot;0&quot; w:name=&quot;_GoBack&quot;/&gt;
+      &lt;w:bookmarkEnd w:id=&quot;0&quot;/&gt;
+    &lt;/w:p&gt;
+    &lt;w:sectPr w:rsidR=&quot;000E45DD&quot;&gt;
+      &lt;w:pgSz w:w=&quot;12240&quot; w:h=&quot;15840&quot;/&gt;
+      &lt;w:pgMar w:top=&quot;1440&quot; w:right=&quot;1440&quot; w:bottom=&quot;1440&quot; w:left=&quot;1440&quot; w:header=&quot;720&quot; w:footer=&quot;720&quot; w:gutter=&quot;0&quot;/&gt;
+      &lt;w:cols w:space=&quot;720&quot;/&gt;
+      &lt;w:docGrid w:linePitch=&quot;360&quot;/&gt;
+    &lt;/w:sectPr&gt;
+  &lt;/w:body&gt;
+&lt;/w:document&gt;
+</code></pre>
+<p>The concern of text editing is working with raw content like that above. A good text editor lets you perform complex Find &amp; Replace, or do block editing (where you can select text not just in rows, but also in a columns).</p>
+<p>Back to our FB post source. I know that somewhere in the text is the bit that I want. So, I search for some text that's very likely unique to the content I'm looking for. &quot;Senator&quot; is a good choice.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_00_34.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_00_34.png" alt="2017-01-26 10_00_34" title="2017-01-26 10_00_34" /></a></p>
+<blockquote>
+<p><strong>TECH DIGRESSION!</strong></p>
+<p>I found, at this point, why I couldn't copy/paste the text in the first place. All of the content was inside a &lt;script&gt; tag. It was probably being processed by javascript, and displayed in some messed-up way.</p>
+</blockquote>
+<p>There's other markup in there, but I'll take care of that in a little bit. First, I copy what looks like the text want into a new Notepad++ tab.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_06_45.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_06_45.png" alt="2017-01-26 10_06_45" title="2017-01-26 10_06_45" /></a></p>
+<h2 id="i-need-a-replacement">I Need a Replacement</h2>
+<p>Now, I look at what's there, while thinking about what I want. Ideally, my end result is nicely formatted text, meaning it's got all the original line breaks. I could do that manually, but I'd prefer not to.</p>
+<p>The first thing I notice is the markup after &quot;Senator.&quot;</p>
+<pre><code class="language-csharp">From a high-level staffer for a Senator:\u003C\/p&gt;\u003Cp&gt; There are two things 
+</code></pre>
+<p>That sequence, <code>\u003C\/p&gt;\u003Cp&gt;</code> appears throughout the text exactly where line breaks are in the original.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_13_55.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_13_55.png" alt="2017-01-26 10_13_55" title="2017-01-26 10_13_55" /></a></p>
+<p>So let's see what happens if I just replace all of those instances with a new line and carriage return.</p>
+<blockquote>
+<p><strong>TECH DIGRESSION!</strong></p>
+<p>Huh? How (you wonder) do I do that? How do I insert something that can't be seen? Well, even though you can't see them, line breaks (where you go down one line) and carriage returns (where you go back to the beginning of the line) are stored in text just like any other character. They just aren't <em>displayed</em> in the editor. But there are ways to represent them, and one long-standing way is with C programming-style expressions. I can use text to represent other, hidden text.</p>
+<p> </p>
+<p><code>\n</code> = newline<br />
+<code>\r</code> = carriage return<br />
+<code>\t</code> = tab stop</p>
+<p> </p>
+<p>The back slash is an &quot;escape&quot; character. It tells the application &quot;don't treat this sequence \n literally. Instead, look in the raw text for the hexadecimal byte sequence 0D.&quot; As an example, here are two lines of text:</p>
+<pre><code class="language-csharp">life's
+good
+</code></pre>
+<p>and its hex representation. I put the represented letters and linefeed/carriage return above the hex for clarity.</p>
+<pre><code class="language-csharp">l  i  f  e  '  s  \n \r g  o  o  d
+6c 69 66 65 27 73 0d 0a 67 6f 6f 64  
+</code></pre>
+</blockquote>
+<p>So, I select <code>\u003C\/p&gt;\u003Cp&gt;</code> and try to replace it with <code>\r\n\r\n</code> (two carriage return + new line). And it fails.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_32_08.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_32_08.png" alt="2017-01-26 10_32_08" title="2017-01-26 10_32_08" /></a></p>
+<p>Why? For the same reason the newline can be found: the escape character <code>\</code>. Notepad++ is looking at my &quot;Find what&quot; string and saying, &quot;Oh, you've got a back slash in front of that u. That must mean something special to me, so I won't treat it as '<code>\u</code>'. I can't find your text, sorry.&quot;</p>
+<p>What do we do if we want the back slash to be treated literally? Heh, heh. You <em>escape</em> it by putting another back slash in front of it. To find a literal occurrence of <code>\r</code> in text using C-style expressions, you search for <code>\\r</code>. Crazy logical, right?</p>
+<p>My search express becomes this: <code>\\u003C\\/p&gt;\\u003Cp&gt;</code></p>
+<p>I try my Find &amp; Replace again, and this time it works.</p>
+<p><a href="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_39_04.png"><img src="https://www.softwaremeadows.com/posts/what-else-programmers-do-text/images/17-01-26_10_39_04.png" alt="2017-01-26 10_39_04" title="2017-01-26 10_39_04" /></a></p>
+<p>I could live with this result if I weren't a perfectionist. But there's still lots of HTML markup in there (highlighted in yellow). So, I do my Find &amp; Replace magic a bunch more times. By looking at the original text, I can figure out what characters the markup stood for (or I could look it up). There's also some non-standard markup.</p>
+<pre><code class="language-csharp">&amp;#039;  =   '
+&amp;quot;  =   &quot;
+&amp;amp;   =   &amp;
+&amp;gt;    =   &gt;
+\u2013  =   --
+\/      =   /
+</code></pre>
+<p>The result is the text as I originally saw it on the post. Here's a partial example.</p>
+<pre><code class="language-csharp">From a high-level staffer for a Senator:
+
+ There are two things that all Democrats should be doing all the time right now, and they're by far the 
+ most important things. [***If you want to share this, please copy and paste so it goes beyond our mutual
+ friends***]
+
+ --&gt; You should NOT be bothering with online petitions or emailing.
+
+ 1. The best thing you can do to be heard and get your congressperson to pay attention is to have 
+face-to-face time - if they have townhalls, go to them. Go to their local offices. If you're in DC, try
+ to find a way to go to an event of theirs. Go to the &quot;mobile offices&quot; that their staff hold periodically
+ (all these times are located on each congressperson's website). 
+
+ When you go, ask questions. A lot of them. And push for answers. The louder and more vocal and present
+ you can be at those the better.
+
+ 2. But, those in-person events don't happen every day. So, the absolute most important thing that people
+ should be doing every day is calling. 
+
+ You should make 6 calls a day: 2 each (DC office and your local office) to your 2 Senators &amp; your 1 
+Representative.
+</code></pre>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>It took a lot to extract the text from that mobile web page.</p>
+<ol>
+<li>Use the browser's View Source feature</li>
+<li>Use a specialized text editor</li>
+<li>Find the content I was looking for</li>
+<li>Recreate the line endings via Find &amp; Replace using C programming language expressions</li>
+<li>Replace the remaining HTML markup</li>
+</ol>
+<p>If you're wondering what kind of things that special programmer in your life is doing <em>every day</em>, this is it. It's not glamorous. In fact, it's pretty tedious. But, it's a living!</p>
+</div>
+              </div>
+              
+        </section>
+        <!-- posts only appear in home index -->
+        <section id="posts">
+           
+        </section>
+        <footer><p>Copyright (c) 2018 Charles L Flatt</p>
+</footer>
+      </div>
+    </div>
+    
+    <script>
+    function toggleNav() {
+      var x = document.getElementById("nav");
+      if (x.className === "nav") {
+          x.className += " responsive";
+      } else {
+          x.className = "nav";
+      }
+  }</script>
+  </body>
+
+</html>
