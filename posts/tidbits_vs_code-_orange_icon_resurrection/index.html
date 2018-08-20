@@ -74,31 +74,69 @@
 <p>It won't change the icon in the VS Code editor, or in context menu <code>Right-click pinned shortcut &gt; New Window</code></p>
 <p>Here's a 7z file with the orange icons and Powershell script.</p>
 <p><a href="https://www.softwaremeadows.com/posts/tidbits_vs_code-_orange_icon_resurrection/files/vs-code-orange.7z">vs-code-orange.7z</a></p>
+<h2 id="find-your-vs-code-image-path">Find your VS Code Image Path</h2>
+<p>As of August 2018, VS Code recommends a user setup, which writes the app to the user's profile. Before that, the app was written to Program Files. The Powershell script determines the correct location.</p>
+<p><strong>User Profile Path</strong><br />
+%LOCALAPPDATA%\Programs\Microsoft VS Code\resources\app\resources\win32\</p>
+<p><strong>Program Files Path</strong><br />
+%ProgramFiles%\Microsoft VS Code\resources\app\resources\win32\</p>
 <h2 id="replace-the-vs-code-icons">Replace the VS Code icons</h2>
-<p>There are three icons in <code>C:\Program Files\Microsoft VS Code\resources\app\resources\win32</code>. Backup and replace all three with the same sizes and names. For the .png files, Paint.Net will work. For the .ico file, I like <a href="http://greenfishsoftware.org/gfie.php">Greenfish Icon Editor Pro</a>.</p>
+<p>There are three icons in the Image Path. Backup and replace all three with the same sizes and names. For changing the .png files, Paint.Net will work. For the .ico file, I like <a href="http://greenfishsoftware.org/gfie.php">Greenfish Icon Editor Pro</a>.</p>
 <h2 id="update-the-registry">Update the Registry</h2>
-<p>There are four registry keys that point to Code.exe for the icon. Change these to <code>C:\Program Files\Microsoft VS Code\resources\app\resources\win32\code_file.ico</code>.</p>
-<p>Here's a Powershell script.</p>
-<pre><code class="language-powershell">$path = &quot;C:\Program Files\Microsoft VS Code\resources\app\resources\win32\code_file.ico&quot;
-
-New-PSDrive -PSProvider registry -Root HKEY_CLASSES_ROOT -Name HKCR
-Write-Output &quot;Setting...&quot;
-Set-ItemProperty -LiteralPath &quot;HKCR:\*\shell\VSCode&quot; -Name Icon -Value $path
-Set-ItemProperty -Path HKCR:\Directory\Background\shell\VSCode -Name Icon -Value $path
-Set-ItemProperty -Path HKCR:\Drive\shell\VSCode -Name Icon -Value $path
-Set-ItemProperty -Path HKCU:\Software\Classes\Directory\shell\VSCode -Name Icon -Value $path
-Write-Output &quot;Finished.&quot;
-Pause
-</code></pre>
+<p>There are four registry keys that point to Code.exe for the icon. Change these to <code>[ImagePath]]\code_file.ico</code>.</p>
+<p>HKEY_CLASSES_ROOT*\shell\VSCode\Icon&quot;
+HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode\Icon
+HKEY_CLASSES_ROOT\Drive\shell\VSCode\Icon
+HKEY_CLASSES_ROOT\Software\Classes\Directory\shell\VSCode\Icone</p>
 <h2 id="use-a-shortcut-to-open-vs-code">Use a Shortcut to Open VS Code</h2>
 <ol>
 <li>Right-click in a folder, choose New &gt; Shortcut</li>
-<li>Item location: <code>&quot;C:\Program Files\Microsoft VS Code\Code.exe&quot;</code></li>
+<li>Item location: <code>&quot;%LOCALAPPDATA%\Programs\Microsoft VS Code\code.exe&quot;</code> or <code>&quot;%ProgramFiles%\Microsoft VS Code\Code.exe&quot;</code></li>
 <li>Name: &quot;VS Code&quot;</li>
 <li>Right-click the shortcut, click Change Icon.</li>
-<li>Select <code>C:\Program Files\Microsoft VS Code\resources\app\resources\win32\code_file.ico</code></li>
+<li>Select <code>[ImagePath]\code_file.ico</code></li>
 </ol>
 <p>You can now drag this icon into the task bar to pin it.</p>
+<h2 id="powershell-script">Powershell Script</h2>
+<p>Here's a Powershell script that does everything. Be sure the image files are in the script folder.</p>
+<pre><code class="language-powershell">$current = $PSScriptRoot
+
+# This is the new &quot;standard&quot; path
+$basePath = &quot;$env:LOCALAPPDATA\Programs\Microsoft VS Code\resources\app\resources\win32\&quot;
+
+If (-Not (Test-Path $basePath))
+{
+    # This is the old path
+    $basePath = &quot;$env:ProgramFiles\Microsoft VS Code\resources\app\resources\win32\&quot;
+}
+
+Write-Output &quot;VS Code Path: $basePath&quot;
+
+Write-Output &quot;Copying orange icons&quot;
+$iconFile = Join-Path $basePath  &quot;code_file.ico&quot;
+
+Copy-Item -Path @(Join-Path $current *) -Include *.png,*.ico -Destination $basePath
+
+Write-Output &quot;Setting Registry...&quot;
+New-PSDrive -PSProvider registry -Root HKEY_CLASSES_ROOT -Name HKCR
+Set-ItemProperty -LiteralPath &quot;HKCR:\*\shell\VSCode&quot; -Name Icon -Value $iconFile
+Set-ItemProperty -Path HKCR:\Directory\Background\shell\VSCode -Name Icon -Value $iconFile
+Set-ItemProperty -Path HKCR:\Drive\shell\VSCode -Name Icon -Value $iconFile
+Set-ItemProperty -Path HKCU:\Software\Classes\Directory\shell\VSCode -Name Icon -Value $iconFile
+Remove-PSDrive -Name HKCR 
+
+Write-Output &quot;Creating shortcut in Desktop&quot;
+$TargetFile = $basePath + &quot;..\..\..\..\code.exe&quot;
+$ShortcutFile = &quot;$env:UserProfile\Desktop\VS Code.lnk&quot;
+$WScriptShell = New-Object -ComObject WScript.Shell
+$Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
+$Shortcut.TargetPath = $TargetFile
+$Shortcut.IconLocation = $iconFile
+$Shortcut.Save()
+
+Write-Output &quot;Finished.&quot;
+Pause
+</code></pre>
 </div>
               </div>
               
