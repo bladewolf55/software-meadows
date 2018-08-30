@@ -19,7 +19,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>TFS Continuous Integration Walk Through Part 4A - Filtering Tests | Software Meadows</title>
+  <title>A Simple, Effective Meeting Agenda System | Software Meadows</title>
 </head>
 
 <body>
@@ -55,88 +55,61 @@
         <section id="content">
           
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6'>TFS Continuous Integration Walk Through Part 4a - Filtering Tests</a></h2>
-                <p class='post-info'><span class='posted-on'>2017-02-06 07:56</span></p>
-                <div class='post-content'><p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/ci-logo.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/ci-logo.png" alt="ci-logo" title="ci-logo" /></a>This is part of a series of walk throughs exploring CI in TFS, starting from the ground up. The entire series and source code are maintained at this BitBucket repository.<br />
-<a href="https://bitbucket.org/bladewolf55/tfs-ci-samples">https://bitbucket.org/bladewolf55/tfs-ci-samples</a></p>
-<p>Previous Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_63.html">TFS Continuous Integration Walk Through Part 3 - Notifications</a></p>
-<p><strong>References</strong><br />
-<a href="https://www.visualstudio.com/en-us/docs/build/steps/test/visual-studio-test">Test: Visual Studio Test</a><br />
-<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2012/11/20/part-2using-traits-with-different-test-frameworks-in-the-unit-test-explorer/">Part 2: Using Traits with different test frameworks</a><br />
-<a href="https://blogs.msdn.microsoft.com/visualstudioalm/2013/06/11/part-3-unit-testing-with-traits-and-code-coverage-in-visual-studio-2012-using-the-tfs-build-and-the-new-nuget-adapter-approach/">Part 3: Unit testing with Traits and filtering...</a> &lt;-Note that the documentation on mapping &quot;Category&quot; is wrong, see below!<br />
-<a href="https://blogs.msdn.microsoft.com/vikramagrawal/2012/07/23/running-selective-unit-tests-in-vs-2012-rc-using-testcasefilter/">Running selective unit tests in VS 2012 RC using TestCaseFilter</a><br />
-<a href="http://www.dotnetcatch.com/2016/03/11/vststfs-visual-studio-test-task-filter-criteria/">VSTS/TFS Visual Studio Test Task - Filter Criteria</a><br />
-<a href="https://msdn.microsoft.com/en-us/library/hh270865.aspx#BKMK_Group_and_filter_the_test_list">Running unit tests with Test Explorer: Group and Filter</a><br />
-<a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">How to: Group and Run Automated Tests Using Test Categories</a><br />
-<a href="https://github.com/Microsoft/vsts-tasks/blob/releases/m109/Tasks/VsTest/README.md">Run Tests using Visual Studio task</a></p>
-<p>In some environments, not all unit tests should be run on the CI server. For example, there might be tests with external dependencies that are expensive to run, such as a fee for verifying data was saved to an external cloud-based site. Or legacy tests that require manual setup or interaction. Or, the most likely, a test that takes a very long time to run. While these should probably be refactored or replaced, the fact is sometimes we don't want all our tests running automatically.</p>
-<p>One way to restrict tests running is to use the &quot;Test filter criteria&quot; setting. A simple example is using test categories to isolate the manual tests. &quot;TestCategory&quot;, &quot;Priority&quot;, &quot;Name&quot;, etc are all generically referred to as <em>traits</em>.</p>
-<p>Before showing the example, there are two rules for using traits with the Microsoft test console, which is the executable that runs tests regardless of framework.</p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/a_simple__effective_meeting_agenda_system'>A Simple, Effective Meeting Agenda System</a></h2>
+                <p class='post-info'><span class='posted-on'>2018-08-29 21:17</span></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/a_simple__effective_meeting_agenda_system/images/diversemeeting.png" alt="" /></p>
+<p>I encountered this meeting agenda approach in a Microsoft certification study book. I've used it ever since, and it works great.</p>
+<h2 id="template">Template</h2>
+<pre><code class="language-txt">1.  Agenda Building
+2.  Item 1
+3.  Item 2, etc.
+4.  Q&amp;A
+5.  Path Forward
+</code></pre>
+<h2 id="the-simple-system">The Simple System</h2>
+<ol>
+<li>Send out the agenda a day in advance. Keep it brief and clear, so that attendees will understand what to expect.</li>
+<li>There are three items on every agenda. See below.</li>
+<li>Set a deadline and meet it. Defer items (except the last two!) if you have to, but don't run over time.</li>
+<li>Update the agenda document during the meeting. Immediately after the meeting, send the document with its notes and Path Forward to all participants.</li>
+<li>If you have Path Forward assignments, transfer them immediately to your task list.</li>
+</ol>
+<h2 id="agenda-building">Agenda Building</h2>
+<p>The first item is always Agenda Building. This is the chance for everyone to modify the agenda, either adding or removing items. You may be running the meeting, but it's not &quot;yours.&quot; This helps everyone know they have a voice.</p>
+<h2 id="qa">Q&amp;A</h2>
+<p>This is the last chance for people to make sure they understand what was discussed. If they don't ask, it's assumed they get it. The time to ask questions is <em>in</em> the meeting, not <em>after</em> the meeting. You'll be surprised how frequently someone will ask at this time, and be grateful the question got cleared up.</p>
+<h2 id="path-forward">Path Forward</h2>
+<p>This is the most important item on the agenda. I hate meeting where, after it's over and everyone's walking back to their desks, people are asking, &quot;So...what are we doing?&quot;</p>
+<p>The meeting's not done until you've captured who is doing what when.</p>
+<h2 id="sample-finished-agenda-document">Sample Finished Agenda Document</h2>
+<pre><code class="language-txt">1.  Agenda Building
+2.  Review plans for October Gala
+	1.  Venue, food
+3.  Results from Baker Makers promotion
+	1.  Sophie stats
+	2.  Candace P&amp;L
+4.  Are absences up? Concerns from staff.
+5.  Q&amp;A
+6.  Path Forward
+    -  Michael calling three venues for quotes by 7/31
+    -  Misty finalizing catering by 8/12. Will email Naomi
+    -  Andal reviewing BM promo stats, should be finished in three days
+	
+Notes
+-----
+There's a general feeling that more people have been absent. Bad year for flu? Morale problems? Not sure how to approach this.
+
+</code></pre>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>When the meeting is virtual or using a computer/projector, I like keeping the agenda on on the screen so people see notes being added.</li>
+<li>I'll stress again: <em>send out the agenda in advance</em>. Ask if people have read it. If not, make them read it before you start the meeting. This will encourage them to read it in advance next time.
 <blockquote>
-<p><strong>Test Filter Criteria Rule</strong><br />
-If you set test filter criteria, at least one of your unit tests in every assembly <em>must</em> match that criteria. Otherwise, an error will occur.</p>
+<p>Why is this important? Because it shows that you're prepared, and people like that in meetings. Don't let people come in asking &quot;what are we talking about?&quot;</p>
 </blockquote>
-<p>In practice, this means that if your filter is looking for <code>TestCategory=weekly</code>, any project that uses the build definition, and has tests, must have at least one test with a trait named &quot;TestCategory&quot;. (For more detail, see <em>Part 4b - Problems With Traits</em>.)</p>
-<p>This will make more sense as you go through the code below.</p>
-<p>Add the following class to Program.cs. This is <em>simulating</em> a cloud-based retrieval of a greeting. For some fictitious reason, it's very expensive to do this.</p>
-<pre><code class="language-csharp">    public class CloudMan
-    {
-        //This takes ten minutes to run!
-        public string GetLastGreeting()
-        {
-            //Set up connection, pass credentials, etc.
-            return &quot;&quot;;
-        }
-    }
-</code></pre>
-<p>Add the following test methods:</p>
-<p><strong>MSTest</strong></p>
-<pre><code class="language-csharp">            [TestMethod]
-            [TestCategory(&quot;manual&quot;)]
-            public void SaveGreetingToCloud()
-            {
-                //arrange
-                string value = &quot;Cloud Atlas&quot;;
-                string expectedResult = &quot;Hello, Charles&quot;;
-                TextMan textMan = new TextMan();
-                CloudMan cloudMan = new CloudMan();
-                //act
-                string actualResult = textMan.Greeter(value);
-                //assert
-                Assert.AreEqual(expectedResult, cloudMan.GetLastGreeting());
-            }
-</code></pre>
-<p><strong>xUnit</strong></p>
-<pre><code class="language-csharp">            [Fact]
-            [Trait(&quot;TestCategory&quot;, &quot;manual&quot;)]
-            public void SaveGreetingToCloud()
-            {
-                //arrange
-                string value = &quot;Cloud Atlas&quot;;
-                string expectedResult = &quot;Hello, Charles&quot;;
-                TextMan textMan = new TextMan();
-                CloudMan cloudMan = new CloudMan();
-                //act
-                string actualResult = textMan.Greeter(value);
-                //assert
-                Assert.Equal(expectedResult, cloudMan.GetLastGreeting());
-            }
-</code></pre>
-<p>MSTest uses a TestCategory attribute for categories. xUnit uses its Trait attribute to set a &quot;TestCategory&quot; trait (traits are also the way to set &quot;Priority&quot;).</p>
-<blockquote>
-<p><strong>Note</strong> You <em>must</em> set the xUnit trait name to TestCategory in this example, or the test won't be discovered. See <em>Part 4b - Problems With Traits</em> for more information.</p>
-</blockquote>
-<p>If you run the tests locally right now, the new tests will still fail because the category is ignored. Likewise, if you check in the code, the tests will fail on the CI server because there's no filter, yet.</p>
-<h2 id="applying-the-filters">Applying the Filters</h2>
-<p>It's possible to filter tests locally. One way is from the command line.</p>
-<p><a href="https://msdn.microsoft.com/en-us/library/dd286683.aspx">https://msdn.microsoft.com/en-us/library/dd286683.aspx</a></p>
-<p>But you can also group by traits in the Text Explorer, and selectively run the tests. (This doesn't work so well if you're using multiple test frameworks).</p>
-<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_1030.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_1030.png" alt="2017-02-02_102530" title="2017-02-02_102530" /></a></p>
-<p>We want our CI server to only run the non-manual tests. Let's apply the filter in TFS Build. Edit the build definition as shown above, and select the Visual Studio Test step. Add the &quot;Test Filter criteria&quot; <code>TestCategory!=manual</code> and Save.</p>
-<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_103011.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_103011.png" alt="2017-02-02_103011" title="2017-02-02_103011" /></a></p>
-<p>Click &quot;Queue build&quot; to rerun the build. If you haven't checked in the code with the test categories, do that instead. The result should be just two tests run, and both pass. Here are the Test Results detailed report. Be sure to change the Outcome to show all the tests.</p>
-<p><a href="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_11_51.png"><img src="https://www.softwaremeadows.com/posts/tfs-continuous-integration-walk-through_6/images/17-02-02_11_51.png" alt="2017-02-02_112051" title="2017-02-02_112051" /></a></p>
-<p>Next Part: <a href="http://www.softwaremeadows.com/2017/02/tfs-continuous-integration-walk-through_24.html">TFS Continuous Integration Walk Through Part 4b - Problems With Traits</a></p>
+</li>
+</ul>
+<p>Have great meetings!</p>
 </div>
               </div>
               
