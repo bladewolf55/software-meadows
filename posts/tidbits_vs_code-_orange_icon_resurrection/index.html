@@ -61,6 +61,9 @@
 <blockquote>
 <p><strong>Update 2018-08-19:</strong> I improved the script to manage the entire icon replacement, and am handling the recent change to VS Code using a user-profile-based install.</p>
 </blockquote>
+<blockquote>
+<p><strong>Update 2018-09-08:</strong> The script now prompts for whether to create the desktop icon. In most cases, after the first run, you won't need to. It also refreshes the icon cache, so you should see the change immediately.</p>
+</blockquote>
 <p>I never understood why so many developers--people who generally have no visual design sense--decided that the orange Visual Studio Code icon was where they would take their stand.</p>
 <p>I <em>liked</em> the orange, for a few reasons:</p>
 <ol>
@@ -102,9 +105,7 @@ HKEY_CLASSES_ROOT\Software\Classes\Directory\shell\VSCode\Icone</p>
 <p>You can now drag this icon into the task bar to pin it.</p>
 <h2 id="powershell-script">Powershell Script</h2>
 <p>Here's a Powershell script that does everything. Be sure the image files are in the script folder.</p>
-<pre><code class="language-powershell">$current = $PSScriptRoot
-
-# This is the new &quot;standard&quot; path
+<pre><code class="language-powershell"># This is the new &quot;standard&quot; path
 $basePath = &quot;$env:LOCALAPPDATA\Programs\Microsoft VS Code\resources\app\resources\win32\&quot;
 
 If (-Not (Test-Path $basePath))
@@ -115,10 +116,11 @@ If (-Not (Test-Path $basePath))
 
 Write-Output &quot;VS Code Path: $basePath&quot;
 
+
 Write-Output &quot;Copying orange icons&quot;
 $iconFile = Join-Path $basePath  &quot;code_file.ico&quot;
 
-Copy-Item -Path @(Join-Path $current *) -Include *.png,*.ico -Destination $basePath
+Copy-Item -Path @(Join-Path $PSScriptRoot *) -Include *.png,*.ico -Destination $basePath
 
 Write-Output &quot;Setting Registry...&quot;
 New-PSDrive -PSProvider registry -Root HKEY_CLASSES_ROOT -Name HKCR
@@ -128,17 +130,61 @@ Set-ItemProperty -Path HKCR:\Drive\shell\VSCode -Name Icon -Value $iconFile
 Set-ItemProperty -Path HKCU:\Software\Classes\Directory\shell\VSCode -Name Icon -Value $iconFile
 Remove-PSDrive -Name HKCR 
 
-Write-Output &quot;Creating shortcut in Desktop&quot;
-$TargetFile = $basePath + &quot;..\..\..\..\code.exe&quot;
-$ShortcutFile = &quot;$env:UserProfile\Desktop\VS Code.lnk&quot;
-$WScriptShell = New-Object -ComObject WScript.Shell
-$Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
-$Shortcut.TargetPath = $TargetFile
-$Shortcut.IconLocation = $iconFile
-$Shortcut.Save()
+$shortcut = Read-Host &quot;Create a shortcut?&quot;
+if ($shortcut -eq 'y')
+{
+    Write-Output &quot;Creating shortcut in Desktop&quot;
+    $TargetFile = $basePath + &quot;..\..\..\..\code.exe&quot;
+    $ShortcutFile = &quot;$env:UserProfile\Desktop\VS Code.lnk&quot;
+    $WScriptShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WScriptShell.CreateShortcut($ShortcutFile)
+    $Shortcut.TargetPath = $TargetFile
+    $Shortcut.IconLocation = $iconFile
+    $Shortcut.Save()
+}
+
+# refresh icon cache
+Update-ExplorerIcon
 
 Write-Output &quot;Finished.&quot;
 Pause
+
+
+
+
+# http://community.idera.com/powershell/powertips/b/tips/posts/refreshing-icon-cache
+function Update-ExplorerIcon {
+  [CmdletBinding()]
+  param()
+
+  $code = @'
+private static readonly IntPtr HWND_BROADCAST = new IntPtr(0xffff); 
+private const int WM_SETTINGCHANGE = 0x1a; 
+private const int SMTO_ABORTIFHUNG = 0x0002; 
+ 
+
+[System.Runtime.InteropServices.DllImport(&quot;user32.dll&quot;, SetLastError=true, CharSet=CharSet.Auto)]
+ static extern bool SendNotifyMessage(IntPtr hWnd, uint Msg, UIntPtr wParam,
+   IntPtr lParam);
+
+[System.Runtime.InteropServices.DllImport(&quot;user32.dll&quot;, SetLastError = true)] 
+  private static extern IntPtr SendMessageTimeout ( IntPtr hWnd, int Msg, IntPtr wParam, string lParam, uint fuFlags, uint uTimeout, IntPtr lpdwResult ); 
+ 
+ 
+[System.Runtime.InteropServices.DllImport(&quot;Shell32.dll&quot;)] 
+private static extern int SHChangeNotify(int eventId, int flags, IntPtr item1, IntPtr item2);
+
+
+public static void Refresh()  {
+    SHChangeNotify(0x8000000, 0x1000, IntPtr.Zero, IntPtr.Zero);
+    SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, IntPtr.Zero, null, SMTO_ABORTIFHUNG, 100, IntPtr.Zero); 
+}
+'@
+
+  Add-Type -MemberDefinition $code -Namespace MyWinAPI -Name Explorer 
+  [MyWinAPI.Explorer]::Refresh()
+
+}
 </code></pre>
 </div>
               </div>
