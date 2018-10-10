@@ -1,31 +1,8 @@
 /* Stolen from MarkdownEdit editor */
-body { font-family: 'Droid Serif';margin:0; padding:0; ;line-height: 1.4; font-size: 14pt;}
-code { white-space: pre }
-h1, h2, h3, h4, h5, h6 { font-family: "Open Sans"; font-weight: normal;}
-h1 {font-size: 150%;}
-h2 {text-decoration: underline; font-size: 115%;}
-h3 {font-weight: bold; font-size: 105%;}
-h1.title {font-size: 30pt; border-bottom: solid thin gray; margin-bottom: 1.4em;}
-blockquote { padding: 0 12pt; margin-left:12pt; color: #777; border-left: 3pt solid #ddd;  }
-table { display: block; width: 100%; overflow: auto; word-break: normal; word-break: keep-all; border-collapse: collapse;  }
-table th{ font-weight: bold; background-color: #f8f8f8; }
-table th, #content table td{ padding: 6px 13px; border: 1px solid #ddd; }
-table tr{ background-color: #fff; border-top: 1px solid #ccc; page-break-inside: avoid; }
 
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-/* Custom for Goat */
-a, 
-a:link, 
-a:visited {color: slategray; text-decoration: none; text-decoration-color: lightgray;}
-
-a:hover {color: black;}
 
 /* nav */
-nav {font-family: "Open Sans"; font-size: 12pt; padding: 0 20px 0 10px;}
+nav {font-size: 12pt; padding: 0 20px 0 10px;}
 nav h2 {text-decoration: none;}
 /* menu */
 #menu ol, #menu ul {list-style-type:none; margin: 0; padding: 0}
@@ -134,7 +111,7 @@ ol.tree {
 /* section#posts {margin: 0 50px 20px 250px;} */
 .post { border-top: solid 1px lightgray;}
 .post-title { margin: 20px 15px 0 0; font-size: 150%; text-decoration: none;}
-.post-info {font-family: "Open Sans"; font-size: 80%; padding-top:0; margin-top: 0; color:darkslategray;}
+.post-info {font-size: 80%; padding-top:0; margin-top: 0; color:darkslategray;}
 .post-content {margin-top: 20px;}
 
 /* footer */
