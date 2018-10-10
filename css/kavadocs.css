@@ -109,7 +109,7 @@ h1, h2, h3, h4 {
         font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
         font-weight: 300;
         font-size: 2.4em;
-        margin-top: 40px;
+        /* margin-top: 40px; */
         margin-bottom: 30px;
     }
 
