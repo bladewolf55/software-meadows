@@ -12,7 +12,7 @@
 /* section#posts {margin: 0 50px 20px 250px;} */
 .post { border-top: solid 1px lightgray;}
 .post-title { margin: 20px 15px 0 0; text-decoration: none;}
-.post-title a {font-color: forestgreen;}
+.post-title a {color: forestgreen;}
 .post-info {font-size: 80%; padding-top:0; margin-top: 0; color:darkslategray;}
 .post-content {margin-top: 20px;}
 
