@@ -1,6 +1,22 @@
-
 /* header */
-#site-image {margin-top:0;}
+/* header {margin: 0 50px 0 250px; height:150px} */
+#site-image {float:left;margin-right:20px; margin-top: 0}
+#site-name {font-size: 250%;padding-top: 20px; height:45px;}
+#site-subtitle{font-size: 120%; font-style: italic; color: darkslategray;clear:left;}
+
+/* content section */
+/* section#content {margin: 0 4% 20px 4%;} */
+#content h1 {}
+
+/* posts section */
+/* section#posts {margin: 0 50px 20px 250px;} */
+.post { border-top: solid 1px lightgray;}
+.post-title { margin: 20px 15px 0 0; text-decoration: none;}
+.post-title a {font-color: forestgreen;}
+.post-info {font-size: 80%; padding-top:0; margin-top: 0; color:darkslategray;}
+.post-content {margin-top: 20px;}
+
+
 
 /* nav */
 nav {font-size: 12pt; padding: 0 20px 0 10px;}
@@ -99,23 +115,6 @@ ol.tree {
     /* 1px */
   }
 
-
-/* header */
-/* header {margin: 0 50px 0 250px; height:150px} */
-#site-image {float:left;margin-right:20px; margin-top: -20px}
-#site-name {font-size: 250%;padding-top: 20px; height:45px;}
-#site-subtitle{font-size: 120%; font-style: italic; color: darkslategray;clear:left;}
-
-/* content section */
-/* section#content {margin: 0 4% 20px 4%;} */
-#content h1 {}
-
-/* posts section */
-/* section#posts {margin: 0 50px 20px 250px;} */
-.post { border-top: solid 1px lightgray;}
-.post-title { margin: 20px 15px 0 0; text-decoration: none;}
-.post-info {font-size: 80%; padding-top:0; margin-top: 0; color:darkslategray;}
-.post-content {margin-top: 20px;}
 
 /* footer */
 footer {/*margin: 0 50px 20px 250px;*/ border-top: solid 1px lightgray; padding-top: 20px;}
