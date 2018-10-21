@@ -149,6 +149,7 @@ Obviously ASP.NET support is important, and projects may depend on packages that
 <h2 id="is-there-a-converter">Is There a Converter?</h2>
 <p>Yes, there is! It's currently available in the <a href="https://visualstudio.microsoft.com/vs/preview/">Visual Studio Preview</a> edition. It has some known issues, but seems to work well. See the References for a link to instructions.</p>
 <h2 id="manually-converting-to-packagereference">Manually Converting to PackageReference.</h2>
+<p>This works with ASP.NET, too, but is more likely to have problems because of content files (stylesheets, scripts, etc). Need to look into this further.</p>
 <ol>
 <li>Backup solution</li>
 <li>Open solution</li>
@@ -174,6 +175,9 @@ Obviously ASP.NET support is important, and projects may depend on packages that
 <li>Build</li>
 <li>Run</li>
 </ol>
+<blockquote>
+<p>I reocmmend doing a file/folder diff from the previous version (easy if using version control). This will reveal problems that a build/run may not catch.</p>
+</blockquote>
 <h2 id="can-i-convert-with-a-script">Can I Convert With a Script?</h2>
 <p>I haven't tried a script, yet, but I don't see why not.</p>
 <h2 id="references">References</h2>
