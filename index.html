@@ -73,17 +73,16 @@
                 <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio/images/nuget-vs-logos.png" alt="" /></p>
 <p>The information is accurate as of this writing, as far as I know.</p>
 <h2 id="contents">Contents</h2>
-<hr />
 <ul>
-<li><a href="#what-are-the-changes">What Are the Changes?</a></li>
+<li><a href="#whats-the-change">What's the Change?</a></li>
 <li><a href="#what-are-the-advantages">What Are the Advantages?</a></li>
 <li><a href="#which-visual-studio-editions-and-project-types-does-it-work-with">Which Visual Studio Editions and Project Types Does It Work With?</a></li>
 <li><a href="#is-there-a-converter">Is There a Converter?</a></li>
-<li><a href="#can-i-convert-manually-or-with-a-script">Can I Convert Manually or With a Script?</a></li>
+<li><a href="#manually-converting-to-packagereference">Manually Converting to PackageReference.</a></li>
+<li><a href="#can-i-convert-with-a-script">Can I Convert With a Script?</a></li>
 <li><a href="#references">References</a></li>
 </ul>
-<hr />
-<h2 id="what-are-the-changes">What Are the Changes?</h2>
+<h2 id="whats-the-change">What's the Change?</h2>
 <p>Today, a project's NuGet package information is stored in a project-level packages.config folder. The assemblies are stored in a separate packages folder, usually at the solution level. The project's .csproj file contains Reference elements that point to the assemblies.</p>
 <p><strong>Packages.config format folder layout and text samples</strong></p>
 <pre><code class="language-txt">Argonautics
@@ -149,8 +148,34 @@ Obviously ASP.NET support is important, and projects may depend on packages that
 </blockquote>
 <h2 id="is-there-a-converter">Is There a Converter?</h2>
 <p>Yes, there is! It's currently available in the <a href="https://visualstudio.microsoft.com/vs/preview/">Visual Studio Preview</a> edition. It has some known issues, but seems to work well. See the References for a link to instructions.</p>
-<h2 id="can-i-convert-manually-or-with-a-script">Can I Convert Manually or With a Script?</h2>
-<p>I haven't tried, yet, but I don't see why not.</p>
+<h2 id="manually-converting-to-packagereference">Manually Converting to PackageReference.</h2>
+<ol>
+<li>Backup solution</li>
+<li>Open solution</li>
+<li>Open a project's packages.config</li>
+<li>Open the project's .csproj file</li>
+<li>In another text editor, create the PackageReference elements.
+<pre><code class="language-xml">&lt;package id=&quot;Newtonsoft.Json&quot; version=&quot;10.0.3&quot; targetFramework=&quot;net461&quot; /&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+	&lt;PackageReference Include=&quot;[PackageId]&quot; Version=&quot;[PackageVersion]&quot; /&gt;
+	&lt;PackageReference Include=&quot;Newtonsoft.Json&quot; Version=&quot;10.0.3&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+</li>
+<li>Right-click References &gt; Manage Nuget Packages</li>
+<li>Choose the Installed tab.</li>
+<li>Uninstall the packages <em>for the project only</em>.<br />
+<em>There could be more cleanup in .csproj, such as deleting extraneous .target references</em>*</li>
+<li>Copy the ItemGroup into the project file and save.</li>
+<li>Delete packages.config</li>
+<li>Open Package Manager Console, select the project, and run (for example)<br />
+<code>Update-Package -ProjectName Sms.Web.Verifications -Reinstall</code></li>
+<li>Build</li>
+<li>Run</li>
+</ol>
+<h2 id="can-i-convert-with-a-script">Can I Convert With a Script?</h2>
+<p>I haven't tried a script, yet, but I don't see why not.</p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files">NuGet PackageReference format (package references in project files) | Microsoft Docs</a></li>
