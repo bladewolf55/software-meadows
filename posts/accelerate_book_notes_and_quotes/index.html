@@ -67,8 +67,23 @@
 <p><strong>History</strong></p>
 <ul>
 <li>2018-10-14 Chapters 1-5 released</li>
+<li>2018-11-05 Chapters 6-7 added</li>
+<li>2018-11-06 Chapter 8 added</li>
 </ul>
-<p>This is a chapter-by-chapter collection of quotes and notes on the book <a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations-ebook/dp/B07B9F83WM/ref=sr_1_1?ie=UTF8&amp;qid=1539112179&amp;sr=8-1&amp;keywords=accelerate">Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations, Nicole Forsgren PhD, Jez Humble, Gene Kim</a>.</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#quick-reference-capabilities-to-drive-improvement">Quick Reference: Capabilities to Drive Improvement</a></li>
+<li><a href="#preface">Preface</a></li>
+<li><a href="#chapter-1-accelerate">Chapter 1 - Accelerate</a></li>
+<li><a href="#chapter-2-measuring-performance">Chapter 2 - Measuring Performance</a></li>
+<li><a href="#chapter-3-measuring-and-changing-culture">Chapter 3 - Measuring and Changing Culture</a></li>
+<li><a href="#chapter-4-technical-practices">Chapter 4 - Technical Practices</a></li>
+<li><a href="#chapter-5-architecture">Chapter 5 - Architecture</a></li>
+<li><a href="#chapter-6-integrating-infosec-into-the-delivery-lifecyle">Chapter 6 - Integrating InfoSec Into the Delivery Lifecyle</a></li>
+<li><a href="#chapter-7-management-practices-for-software">Chapter 7 - Management Practices for Software</a></li>
+<li><a href="#chapter-8-product-development">Chapter 8 - Product Development</a></li>
+</ul>
+<p>This is a chapter-by-chapter collection of notes and quotes for the book <a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations-ebook/dp/B07B9F83WM/ref=sr_1_1?ie=UTF8&amp;qid=1539112179&amp;sr=8-1&amp;keywords=accelerate">Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations, Nicole Forsgren PhD, Jez Humble, Gene Kim</a>.</p>
 <p>Any quotes from the book in this article are copyrighted. My intent is to provide an overview of what struck me in the material, and to encourage any visitor to purchase and read this important work.</p>
 <h2 id="quick-reference-capabilities-to-drive-improvement">Quick Reference: Capabilities to Drive Improvement</h2>
 <p><strong>Quotes</strong></p>
@@ -331,6 +346,79 @@ Automated unit and acceptance tests should be run against every commit to versio
 </blockquote>
 <blockquote>
 <p>Architects should focus on engineers and outcomes, not tools or technologies.... What tools or technologies you use is irrelevant if the people who must use them hate using them, or if they don’t achieve the outcomes and enable the behaviors we care about. What is important is enabling teams to make changes to their products or services without depending on other teams or systems.</p>
+</blockquote>
+<h2 id="chapter-6-integrating-infosec-into-the-delivery-lifecyle">Chapter 6 - Integrating InfoSec Into the Delivery Lifecyle</h2>
+<p><strong>Notes</strong></p>
+<p>InfoSec is everyone's responsiblity.</p>
+<p>Don't leave security reviews until the end of development. Security is equal to Development and Operations.</p>
+<p><strong>Quotes</strong></p>
+<blockquote>
+<p>many developers are ignorant of common security risks, such as the OWASP Top 10</p>
+</blockquote>
+<blockquote>
+<p>We found that when teams “shift left” on information security — that is, when they build it into the software delivery process instead of making it a separate phase that happens downstream of the development process — this positively impacts their ability to practice continuous delivery.</p>
+<ul>
+<li>First, security reviews are conducted for all major features, and this review process is performed in such a way that it doesn’t slow down the development process.</li>
+<li>the second aspect of this capability: information security should be integrated into the entire software delivery lifecycle from development through operations.</li>
+<li>Finally, we want to make it easy for developers to do the right thing when it comes to infosec.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>We found that high performers were spending 50% less time remediating security issues than low performers.</p>
+</blockquote>
+<blockquote>
+<p>Rugged DevOps is the combination of DevOps with the <a href="https://ruggedsoftware.org/">Rugged Manifesto</a>.</p>
+</blockquote>
+<h2 id="chapter-7-management-practices-for-software">Chapter 7 - Management Practices for Software</h2>
+<p><strong>Notes</strong></p>
+<p>Lean management, as applied to software, currently yields better results.</p>
+<p>Four components of Lean management applied to software:</p>
+<ol>
+<li>Limit Work in Progress (WIP)</li>
+<li>Visual Management</li>
+<li>Feedback from Production</li>
+<li>Lightweight Change Approvals</li>
+</ol>
+<p><strong>Quotes</strong></p>
+<blockquote>
+<ol>
+<li>Limiting work in progress (WIP), and using these limits to drive process improvement and increase throughput</li>
+<li>Creating and maintaining visual displays showing key quality and productivity metrics and the current status of work (including defects), making these visual displays available to both engineers and leaders, and aligning these metrics with operational goals</li>
+<li>Using data from application performance and infrastructure monitoring tools to make business decisions on a daily basis</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>WIP limits on their own do not strongly predict delivery performance. It’s only when they’re combined with the use of visual displays and have a feedback loop from production monitoring tools back to delivery teams or the business that we see a strong effect.</p>
+</blockquote>
+<blockquote>
+<p>We found that approval only for high-risk changes was not correlated with software delivery performance. Teams that reported no approval process or used peer review achieved higher software delivery performance. Finally, teams that required approval by an external body achieved lower performance.</p>
+</blockquote>
+<blockquote>
+<p>We found that external approvals were negatively correlated with lead time, deployment frequency, and restore time, and had no correlation with change fail rate. In short, approval by an external body (such as a manager or CAB) <em>simply doesn’t work</em> to increase the stability</p>
+</blockquote>
+<h2 id="chapter-8-product-development">Chapter 8 - Product Development</h2>
+<p><strong>Notes</strong></p>
+<p>Lean Product Development</p>
+<ul>
+<li>Work in Small Batches</li>
+<li>Make Flow of Work Visible</li>
+<li>Gather and Implement Customer Feedback</li>
+<li>Team Experimentation</li>
+</ul>
+<p><strong>Quotes</strong></p>
+<blockquote>
+<p>We wanted to test whether these [Lean] practices have a direct impact on organizational performance, measured in terms of productivity, market share, and profitability.</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>The extent to which teams slice up products and features into small batches that can be completed in less than a week and released frequently, including the use of MVPs (minimum viable products).</li>
+<li>Whether teams have a good understanding of the flow of work from the business all the way through to customers, and whether they have visibility into this flow, including the status of products and features.</li>
+<li>Whether organizations actively and regularly seek customer feedback and incorporate this feedback into the design of their products.</li>
+<li>Whether development teams have the authority to create and change specifications as part of the development process without requiring approval.</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>It’s worth noting that an experimental approach to product development is highly correlated with the technical practices that contribute to continuous delivery.</p>
 </blockquote>
 </div>
               </div>
