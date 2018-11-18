@@ -69,6 +69,7 @@
 <li>2018-10-14 Chapters 1-5 released</li>
 <li>2018-11-05 Chapters 6-7 added</li>
 <li>2018-11-06 Chapter 8 added</li>
+<li>2018=11-17 Chapters 9-10 added</li>
 </ul>
 <h2 id="contents">Contents</h2>
 <ul>
@@ -82,6 +83,8 @@
 <li><a href="#chapter-6-integrating-infosec-into-the-delivery-lifecyle">Chapter 6 - Integrating InfoSec Into the Delivery Lifecyle</a></li>
 <li><a href="#chapter-7-management-practices-for-software">Chapter 7 - Management Practices for Software</a></li>
 <li><a href="#chapter-8-product-development">Chapter 8 - Product Development</a></li>
+<li><a href="#chapter-9-making-work-sustainable">Chapter 9 - Making Work Sustainable</a></li>
+<li><a href="#chapter-10-employee-satisfaction-identity-and-engagement">Chapter 10 - Employee Satisfaction, Identity, and Engagement</a></li>
 </ul>
 <p>This is a chapter-by-chapter collection of notes and quotes for the book <a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations-ebook/dp/B07B9F83WM/ref=sr_1_1?ie=UTF8&amp;qid=1539112179&amp;sr=8-1&amp;keywords=accelerate">Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations, Nicole Forsgren PhD, Jez Humble, Gene Kim</a>.</p>
 <p>Any quotes from the book in this article are copyrighted. My intent is to provide an overview of what struck me in the material, and to encourage any visitor to purchase and read this important work.</p>
@@ -419,6 +422,88 @@ Automated unit and acceptance tests should be run against every commit to versio
 </blockquote>
 <blockquote>
 <p>It’s worth noting that an experimental approach to product development is highly correlated with the technical practices that contribute to continuous delivery.</p>
+</blockquote>
+<h2 id="chapter-9-making-work-sustainable">Chapter 9 - Making Work Sustainable</h2>
+<p><strong>Notes</strong></p>
+<p><strong>Quotes</strong></p>
+<blockquote>
+<p>We call this deployment pain, and it is important to measure because it highlights the friction and disconnect that exist between the activities used to develop and test software and the work done to maintain and keep software operational. This is where development meets IT operations, and it is where there is the greatest potential for differences: in environment, in process and methodology, in mindset, and even in the words teams use to describe the work they do.</p>
+</blockquote>
+<blockquote>
+<p>where code deployments are most painful, you’ll find the poorest software delivery performance, organizational performance, and culture.</p>
+</blockquote>
+<blockquote>
+<p>Before implementing the technical practices and discipline of continuous delivery on the Bing team, engineers reported work/life balance satisfaction scores of just 38%. After implementing these technical practices, the scores jumped to 75%.</p>
+</blockquote>
+<blockquote>
+<p>if deployments have to be performed outside of normal business hours, that’s a sign of architectural problems that should be addressed. It’s entirely possible — given sufficient investment — to build complex, large-scale distributed systems which allow for fully automated deployments with zero downtime.</p>
+</blockquote>
+<blockquote>
+<p>Fundamentally, most deployment problems are caused by a complex, brittle deployment process. This is typically the result of three factors.</p>
+<ul>
+<li>First, software is often not written with deployability in mind.</li>
+<li>Second, the probability of a failed deployment rises substantially when manual changes must be made to production environments as part of the deployment process.</li>
+<li>Finally, complex deployments often require multiple handoffs between teams, particularly in siloed organizations where database administrators, network administrators, systems administrators, infosec, testing/QA, and developers all work in separate teams.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>In order to reduce deployment pain, we should: Build systems that are designed to be deployed easily into multiple environments, can detect and tolerate failures in their environments, and can have various components of the system updated independently Ensure that the state of production systems can be reproduced (with the exception of production data) in an automated fashion from information in version control Build intelligence into the application and the platform so that the deployment process can be as simple as possible</p>
+</blockquote>
+<blockquote>
+<p>Burnout is physical, mental, or emotional exhaustion caused by overwork or stress — but it is more than just being overworked or stressed. Burnout can make the things we once loved about our work and life seem insignificant and dull. It often manifests itself as a feeling of helplessness, and is correlated with pathological cultures and unproductive, wasteful work.</p>
+</blockquote>
+<blockquote>
+<p>Job stress also affects employers, costing the US economy $ 300 billion per year in sick time, long-term disability, and excessive job turnover (Maslach 2014). Thus, employers have both a duty of care toward employees and a fiduciary obligation to ensure staff do not become burned out.</p>
+</blockquote>
+<blockquote>
+<p>Technology managers, like so many other well-meaning managers, often try to fix the person while ignoring the work environment,</p>
+</blockquote>
+<blockquote>
+<p>six organizational risk factors that predict burnout (Leiter and Maslach 2008):</p>
+<ol>
+<li>Work overload: job demands exceed human limits.</li>
+<li>Lack of control: inability to influence decisions that affect your job.</li>
+<li>Insufficient rewards: insufficient financial, institutional, or social rewards.</li>
+<li>Breakdown of community: unsupportive workplace environment.</li>
+<li>Absence of fairness: lack of fairness in decision-making processes.</li>
+<li>Value conflicts: mismatch in organizational values and the individual’s values.</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>Our own research tells us which organizational factors are most strongly correlated with high levels of burnout, and suggests where to look for solutions. The five most highly correlated factors are:</p>
+</blockquote>
+<blockquote>
+<p>It is important to note that the organizational values we mention here are the real, actual, lived organizational values felt by employees. If the organizational values felt by employees differ from the official values of the organization — the mission statements printed on pieces of paper or even on placards — it will be the everyday, lived values that count. If there is a values mismatch — either between an employee and their organization, or between the organization’s stated values and their actual values — burnout will be a concern. When there is alignment, employees will thrive.</p>
+</blockquote>
+<h2 id="chapter-10-employee-satisfaction-identity-and-engagement">Chapter 10 - Employee Satisfaction, Identity, and Engagement</h2>
+<p><strong>Notes</strong></p>
+<p><strong>Quotes</strong></p>
+<blockquote>
+<p>We found that employees in high-performing teams were 2.2 times more likely to recommend their organization to a friend as a great place to work, and 1.8 times more likely to recommend their team to a friend. This is a significant finding, as research has shown that “companies with highly engaged workers grew revenues two and a half times as much as those with low engagement levels.</p>
+</blockquote>
+<blockquote>
+<p>To measure this, we asked people the extent to which they agreed with the following statements (adapted from Kankanhalli et al. 2005): I am glad I chose to work for this organization rather than another company. I talk of this organization to my friends as a great company to work for. I am willing to put in a great deal of effort beyond what is normally expected to help my organization be successful. I find that my values and my organization’s values are very similar. In general, the people employed by my organization are working toward the same goal. I feel that my organization cares about me.</p>
+</blockquote>
+<blockquote>
+<p>Our analysis is clear: in today’s fast-moving and competitive world, the best thing you can do for your products, your company, and your people is institute a culture of experimentation and learning, and invest in the technical and management capabilities that enable it.</p>
+</blockquote>
+<blockquote>
+<p>In fact, our measure of job satisfaction looks at a few key things: if you are satisfied in your work, if you are given the tools and resources to do your work, and if your job makes good use of your skills and abilities. It’s important to call these out, because taken together, this is what makes job satisfaction so impactful.</p>
+</blockquote>
+<blockquote>
+<p>Automation matters because it gives over to computers the things computers are good at — rote tasks that require no thinking and that in fact are done better when you don’t think too much about them. Since humans are so bad at these kinds of tasks, turning them over to computers allows people to focus on the things they’re good at: weighing the evidence, thinking through problems, and making decisions. Being able to apply one’s judgment and experience to challenging problems is a big part of what makes people satisfied with their work.</p>
+</blockquote>
+<blockquote>
+<p>Diversity matters. Research shows that teams with more diversity with regard to gender or underrepresented minorities are smarter (Rock and Grant 2016), achieve better team performance (Deloitte 2013), and achieve better business outcomes (Hunt et al. 2015).</p>
+</blockquote>
+<blockquote>
+<p>It is also important to note that diversity is not enough. Teams and organizations must also be inclusive. An inclusive organization is one where “all organizational members feel welcome and valued for who they are and what they ’ bring to the table. ’ All stakeholders share a high sense of belonging and fulfilled mutual purpose” (Smith and Lindsay 2014, p. 1). Inclusion must be present in order for diversity to take hold.</p>
+</blockquote>
+<blockquote>
+<p>a study conducted by Anita Woolley and Thomas W. Malone measured group intelligence and found that teams with more women tended to fall above average on the collective intelligence scale (Woolley and Malone 2011). Despite all of these clear advantages, organizations are failing to recruit and retain women in technical fields.</p>
+</blockquote>
+<blockquote>
+<p>Women and underrepresented minorities report harassment, microaggressions, and unequal pay (e.g., Mundy 2017). These are all things we can actively watch for and improve as leaders and peers.</p>
 </blockquote>
 </div>
               </div>
