@@ -143,6 +143,10 @@ h1, h2, h3, h4 {
         margin-top: 20px;
     }
 
+    
+dt {font-weight: normal; margin-top: 8px; color: #1e88e5;}
+dd {font-style: italic;}
+
 
 
 /* Special markdown features */
