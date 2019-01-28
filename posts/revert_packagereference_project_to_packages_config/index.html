@@ -22,7 +22,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Create A Simple Photo Album Site With Wix | Software Meadows</title>
+  <title>Revert Packagereference Project To Packages.Config | Software Meadows</title>
 </head>
 
 <body>
@@ -63,112 +63,69 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix'>Create a Simple Photo Album Site With Wix</a></h2>
-                <p class='post-info'><span class='posted-on'>2019-01-03 14:49</span></p>
-                <div class='post-content'><p>My dad asked for some help creating a photo gallery web page. I suggested a free site on <a href="https://www.wix.com/">Wix</a>. Now, Wix is a user-friendly site, but it's really useful to have experience with how content management systems work. My dad's a really good photographer and a terrific musician. He's used computers for a long time. But he's not software guy in the sense that I am. So, he asked for my help.</p>
-<p>Below is a &quot;here's what to do&quot; guide to creating a simple photography site. It doesn't get into adding new widgets or even pages. Instead, it focuses on <em>doing</em> several things. Lots of people prefer working this way, because after a few clicks and edits they start to get how the application is intended to work.</p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config'>Revert PackageReference Project to Packages.config</a></h2>
+                <p class='post-info'><span class='posted-on'>2019-01-28 14:34</span></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config/images/reset.jpg" alt="" /></p>
+<p>The instructions below aren't tested in all scenarios, and assume familiarity with Visual Studio, NuGet Package Manager, etc. They should be enough to help.</p>
 <blockquote>
-<p>I'll update this page with a link to his actual site once he's created it.</p>
+<p>Backup, branch, or otherwise protect your source first!</p>
 </blockquote>
-<blockquote>
-<p><strong>Confession</strong><br />
-All the original (non-template) photographs in this post are mine. They're OK.</p>
-</blockquote>
-<p><em><strong>Be prepared to spend at least a couple of hours creating a simple site the first time around.</strong></em></p>
-<p>This tutorial assumes you've created a Wix account and have ended up on the first of the &quot;getting started&quot; pages.</p>
-<p>So...after this page, you get asked some questions.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1450.png" alt="" /></p>
-<p>Here's the way I answered.</p>
-<ul>
-<li>I want to create a site for <code>myself</code></li>
-<li>It should be a <code>photography site</code>, and</li>
-<li>I've <code>never done this before.</code></li>
-</ul>
-<p>Pick a template. I liked this one.</p>
-<blockquote>
-<p>Note: It's not possible to change the template afterward. So, either choose one you really like, OR expect that your first site will be a &quot;play around&quot; one.</p>
-</blockquote>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1616.png" alt="" /></p>
-<p>Watch the video, because it'll be useful later, (the <em>second</em> time you watch it), then &quot;Start now&quot;</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1646.png" alt="" /></p>
-<p>This is the editing page.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1647.png" alt="" /></p>
-<p>Click &quot;AMANDA WILLMAN&quot; to select the text box. Then, either double-click, or click Edit Text, to change the name. Then, hover over the top border and click/drag the name toward the top of the page.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1659.png" alt="" /></p>
-<p>Likewise, change and move the smaller text box. In my example, I also selected the text boxes and decreased the box sizes by dragging the handles that appear on the borders.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1704.png" alt="" /></p>
-<p>Click Save.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1707.png" alt="" /></p>
-<p>You'll get this prompt. Enter something appropriate like <code>terry-flatt-photography</code>. Save and Continue.</p>
-<blockquote>
-<p>Do not publish, yet. You can change the domain name later, but remember you may decide to completely scrap this site.</p>
-</blockquote>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1705.png" alt="" /></p>
-<p>Click Preview.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1710.png" alt="" /></p>
-<p>We can see the &quot;A-W&quot; needs to be removed, and also the Store at least needs to be hidden if not removed completely. We also want to change (or remove) the changing photo gallery, and the portfolios.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1731.png" alt="" /></p>
-<p>Click &quot;Back to Editor. To hide all the controls, click the arrow-tab at the top of the page.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1735.png" alt="" /></p>
-<p>Now select the A-W text box and press Delete.</p>
-<p>Next, click the main photograph. A menu will pop up. Click Change Images.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1738.png" alt="" /></p>
-<p>In the &quot;Organize Your Gallery Images&quot; tool, you can add, delete and move images, as well as add some descriptions. Let's start really simple. Delete all the existing images. Hover over each image and click the trash can.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1740.png" alt="" /></p>
-<p>Now click Add Images and choose a file from your file system. You can click Upload Media, or drag and drop files from a folder.</p>
-<blockquote>
-<p>Note: Drag and drop didn't work for me, so I clicked Upload Media.</p>
-</blockquote>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1745.png" alt="" /></p>
-<p>After it's uploaded, an Add Images tool appears. Select the image and click Add to Gallery.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1748.png" alt="" /></p>
-<p>Then, click Done.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1749.png" alt="" /></p>
-<p>That takes care of the first image a visitor will see.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1750.png" alt="" /></p>
-<p>Now let's hide the Store. Click on the Horizontal Menu.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1755.png" alt="" /></p>
-<p>Then Manage Menu.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1756.png" alt="" /></p>
-<p>Select Store, click the &quot;triple dot&quot; settings menu, and choose Hide (or Delete). Then close the menu manager by clicking the upper right X.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1758.png" alt="" /></p>
-<p>Next, select the Cart and delete it by pressing your &lt;Delete&gt; key.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1801.png" alt="" /></p>
-<p>Now, select the Horizontal Menu and Navigate</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1803.png" alt="" /></p>
-<p>Chose &quot;The Desert,&quot; which will open that page. From here, you can change the title and paragraph text as we have before.</p>
-<blockquote>
-<p>Tip: If the Text Settings tool window gets in the way, click its header and drag it somewhere else on the page.</p>
-</blockquote>
-<p>Now click a picture. This will select the Gallery. Click Manage Media.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1808.png" alt="" /></p>
-<p>This opens a tool very much like the one on the home page. You can add, remove and arrange photos. You can also add videos and text.</p>
-<p>I deleted all the photos, then chose Add Media &gt; Image.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1811.png" alt="" /></p>
-<p>In the media tool, you can choose previously uploaded photos, or upload by clicking Upload Media. You can upload multiple images at once.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1812.png" alt="" /></p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1813.png" alt="" /></p>
-<p>Then, you can select multiple files to Add to Page by using CTRL/CMD + Click.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1816.png" alt="" /></p>
-<p>Back in the gallery, you can add titles and descriptions. Click Done when finished.</p>
-<p>Select the Horizontal Menu &gt; Manage Menu again. Select The Desert's settings, choose Rename, and change the name to Santa Fe.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1823.png" alt="" /></p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1824.png" alt="" /></p>
-<p>You can use the same tool to add, remove and reorder pages.</p>
-<p>This leaves the home page gallery links, and footer, to take care of. Use Horizontal Menu &gt; Navigate to open the Home page again. Then, scroll down to the Desert photo. Select it, Change Image to one in the Santa Fe gallery, then change the text to &quot;Santa Fe.&quot;</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1829.png" alt="" /></p>
-<p>Scroll down further to the footer. Change the copyright text.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1831.png" alt="" /></p>
-<p>Show the Controls. Save the site, view it and then, if desired, publish it.</p>
-<p>There is lot more that can be done with Wix. You might consider creating a &quot;play&quot; site that you don't publish, just to see what you can do with the tools. There's also lots of documentation. Like many photo editing tools, it's &quot;easy once you know how.&quot;</p>
-<p>For example, I changed the toolbar Design so it was more visible, and moved the name to the header so it appears on every page.</p>
-<p><img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1842.png" alt="" /></p>
-<p>Happy site creating!</p>
+<p>To revert from PackageReference to packages.config:</p>
+<ol>
+<li><p>Close the solution.</p>
+</li>
+<li><p>Delete the project's <code>obj</code> and <code>bin</code> folders (which is where the Reference references are stored)</p>
+</li>
+<li><p>Edit the .csproj file. Remove <code>&lt;RestoreProjectStyle&gt;PackageReference&lt;/RestoreProjectStyle&gt;</code></p>
+</li>
+<li><p>Cut/Paste all PackageReference elements into a separate text editor, e.g.</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;MSTest.TestAdapter&quot;&gt;
+      &lt;Version&gt;1.4.0&lt;/Version&gt;
+    &lt;/PackageReference&gt;
+    &lt;PackageReference Include=&quot;MSTest.TestFramework&quot;&gt;
+      &lt;Version&gt;1.4.0&lt;/Version&gt;
+    &lt;/PackageReference&gt;
+    &lt;PackageReference Include=&quot;Selenium.WebDriver&quot;&gt;
+      &lt;Version&gt;3.141.0&lt;/Version&gt;
+    &lt;/PackageReference&gt;
+    &lt;PackageReference Include=&quot;Selenium.WebDriver.ChromeDriver&quot;&gt;
+      &lt;Version&gt;2.44.0&lt;/Version&gt;
+    &lt;/PackageReference&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+</li>
+<li><p>Save and close the .csproj file.</p>
+</li>
+<li><p>Open Visual Studio (but not the solution).</p>
+</li>
+<li><p>Change the VS default package management format to <code>Packages.config</code><br />
+OR<br />
+Check Allow format selection on first package<br />
+OR<br />
+Add a packages.config file to the project folder with this text:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;packages&gt;
+    &lt;package id=&quot;MSTest.TestFramework&quot; version=&quot;1.4.0&quot; /&gt;
+&lt;/packages&gt;
+</code></pre>
+<p><em>Note: If you don't enable using packages.config, you must manually add at least one of the packages to the xml.</em>
+*Note: It's optional, but recommended, to add the targetFramework element with the correct moniker for the project's framework.</p>
+</li>
+<li><p>Open the solution.</p>
+</li>
+<li><p>If you manually created a packages.config file, restore missing NuGet packages.</p>
+</li>
+<li><p>If needed, install remaining NuGet packages using package manager.</p>
+</li>
+<li><p>Build and test.</p>
+</li>
+</ol>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Create A Simple Photo Album Site With Wix | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Revert Packagereference Project To Packages.Config | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
