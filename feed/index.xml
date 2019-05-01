@@ -4,7 +4,7 @@
     <title>Software Meadows</title>
     <description>A pleasant walk through computing</description>
     <link>https://www.softwaremeadows.com/feed</link>
-    <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
+    <link href="https://www.softwaremeadows.com/feed/index.xml" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
       <title>My Mixed Relationship with TDD</title>
       <description>&lt;p&gt;&lt;img src="images/tdd-created-by-nasa.jpg" alt="" /&gt;&lt;/p&gt;
