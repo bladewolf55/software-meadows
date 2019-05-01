@@ -7,7 +7,7 @@
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
       <title>My Mixed Relationship with TDD</title>
-      <description>&lt;p&gt;&lt;img src="images/tdd-created-by-nasa.jpg" alt="" /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd/images/tdd-created-by-nasa.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;sup&gt;OK, not completely &amp;quot;created by,&amp;quot; but &lt;a href="https://arialdomartini.wordpress.com/2012/07/20/you-wont-believe-how-old-tdd-is/"&gt;You won't believe how old TDD is&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
 &lt;p&gt;I have a mixed relationship with Test-Driven Development (TDD). It's a valuable method that I've enjoyed--when I've used it. What matters more to me than test-first is creating automated tests early rather than late.&lt;/p&gt;
@@ -76,7 +76,7 @@
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-      <pubDate>Tue, 30 Apr 2019 09:24:00 -0700</pubDate>
+      <pubDate>Tue, 30 Apr 2019 09:24:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd</link>
       <guid isPermaLink="false">https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd</guid>
     </item>
@@ -199,13 +199,13 @@ Matthew got in trouble for being lazy for not typing enough. This was a manageme
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-      <pubDate>Thu, 18 Apr 2019 09:01:00 -0700</pubDate>
+      <pubDate>Thu, 18 Apr 2019 09:01:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/dont_be_a_lazy_programmer_like_matthew_jones_isnt</link>
       <guid isPermaLink="false">https://www.softwaremeadows.com/posts/dont_be_a_lazy_programmer_like_matthew_jones_isnt</guid>
     </item>
     <item>
       <title>Personal Reflections on Removing Distractions for Improved Productivity</title>
-      <description>&lt;p&gt;&lt;img src="images/reflection.jpg" alt="" /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/personal_reflections_on_removing_distractions_for_improved_productivity/images/reflection.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;I've done a couple of experiments with reducing distractions
 (&lt;a href="https://www.flattland.com/posts/month_of_mu_week_1/"&gt;here&lt;/a&gt; and &lt;a href="https://www.softwaremeadows.com/posts/a_week_of_web_blocking_for_productivity_and_well-being/"&gt;here&lt;/a&gt;). Since then, I've taken the weed-whacker to Facebook, only check the news a couple of times a day, and (try to) restrict my Netflix.&lt;/p&gt;
 &lt;p&gt;What does this mean for me professionally and personally?&lt;/p&gt;
@@ -252,13 +252,13 @@ There are great books on how to break and make habits, based on science. For tho
 &lt;p&gt;I've had to overcome some challenges in the past couple of years. Thankfully, I have a wife who loves me, and my clients have been happy with my work. I enjoy reading about science and well-being, and enjoy even more &lt;em&gt;applying&lt;/em&gt; what I learn.&lt;/p&gt;
 &lt;p&gt;All in all, my experiments have been a success.&lt;/p&gt;
 </description>
-      <pubDate>Tue, 9 Apr 2019 09:24:00 -0700</pubDate>
+      <pubDate>Tue, 9 Apr 2019 09:24:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/personal_reflections_on_removing_distractions_for_improved_productivity</link>
       <guid isPermaLink="false">https://www.softwaremeadows.com/posts/personal_reflections_on_removing_distractions_for_improved_productivity</guid>
     </item>
     <item>
       <title>Creating a Modern, Practical Résumé</title>
-      <description>&lt;p&gt;&lt;img src="images/resume.png" alt="" /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/creating_a_modern__practical_resume/images/resume.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;I was recently asked to review a résumé, which gave me a chance to think about the purpose and use of résumés today versus decades ago.&lt;/p&gt;
 &lt;p&gt;Let me be clear from the start: I'm not an HR professional, so I'm offering only a view of a slice of hiring. Still, as an &amp;quot;old man,&amp;quot; I'm fascinated by how such a simple item has changed. Here's most of what I wrote as advice to the person who asked.&lt;/p&gt;
 &lt;p&gt;I think the purpose of a résumé has changed over the last couple of decades. It used to be &lt;em&gt;the&lt;/em&gt; introduction of a person to an organization. But this is far less true today. When applying for a job, you'll be asked to upload your résumé, or enter the information into an online form. Your employment and education will probably be verified by a third party. A résumé is still, though, a useful way to document and present your qualifications.&lt;/p&gt;
@@ -385,7 +385,7 @@ Bachelor of Arts in English Literature, 9/2018
     </item>
     <item>
       <title>Digital Minimalism: A Week of Web Blocking for Productivity and Well-Being</title>
-      <description>&lt;p&gt;&lt;img src="images/addiction_is_life_in_jail.jpg" alt="" /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/a_week_of_web_blocking_for_productivity_and_well-being/images/addiction_is_life_in_jail.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;My productivity has been poor, and a big reason is distraction. Well, that's a nice way to put it, so let's call it what it is.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I'm a social media and Netflix addict.&lt;/p&gt;
@@ -430,7 +430,7 @@ Bachelor of Arts in English Literature, 9/2018
     </item>
     <item>
       <title>Revert PackageReference Project to Packages.config</title>
-      <description>&lt;p&gt;&lt;img src="images/reset.jpg" alt="" /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config/images/reset.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;The instructions below aren't tested in all scenarios, and assume familiarity with Visual Studio, NuGet Package Manager, etc. They should be enough to help.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Backup, branch, or otherwise protect your source first!&lt;/p&gt;
@@ -505,7 +505,7 @@ All the original (non-template) photographs in this post are mine. They're OK.&l
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;Be prepared to spend at least a couple of hours creating a simple site the first time around.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;This tutorial assumes you've created a Wix account and have ended up on the first of the &amp;quot;getting started&amp;quot; pages.&lt;/p&gt;
 &lt;p&gt;So...after this page, you get asked some questions.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1450.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1450.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Here's the way I answered.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;I want to create a site for &lt;code&gt;myself&lt;/code&gt;&lt;/li&gt;
@@ -516,81 +516,81 @@ All the original (non-template) photographs in this post are mine. They're OK.&l
 &lt;blockquote&gt;
 &lt;p&gt;Note: It's not possible to change the template afterward. So, either choose one you really like, OR expect that your first site will be a &amp;quot;play around&amp;quot; one.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src="images/20190103-1616.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1616.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Watch the video, because it'll be useful later, (the &lt;em&gt;second&lt;/em&gt; time you watch it), then &amp;quot;Start now&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1646.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1646.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;This is the editing page.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1647.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1647.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Click &amp;quot;AMANDA WILLMAN&amp;quot; to select the text box. Then, either double-click, or click Edit Text, to change the name. Then, hover over the top border and click/drag the name toward the top of the page.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1659.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1659.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Likewise, change and move the smaller text box. In my example, I also selected the text boxes and decreased the box sizes by dragging the handles that appear on the borders.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1704.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1704.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Click Save.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1707.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1707.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;You'll get this prompt. Enter something appropriate like &lt;code&gt;terry-flatt-photography&lt;/code&gt;. Save and Continue.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Do not publish, yet. You can change the domain name later, but remember you may decide to completely scrap this site.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src="images/20190103-1705.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1705.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Click Preview.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1710.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1710.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;We can see the &amp;quot;A-W&amp;quot; needs to be removed, and also the Store at least needs to be hidden if not removed completely. We also want to change (or remove) the changing photo gallery, and the portfolios.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1731.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1731.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Click &amp;quot;Back to Editor. To hide all the controls, click the arrow-tab at the top of the page.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1735.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1735.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Now select the A-W text box and press Delete.&lt;/p&gt;
 &lt;p&gt;Next, click the main photograph. A menu will pop up. Click Change Images.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1738.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1738.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;In the &amp;quot;Organize Your Gallery Images&amp;quot; tool, you can add, delete and move images, as well as add some descriptions. Let's start really simple. Delete all the existing images. Hover over each image and click the trash can.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1740.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1740.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Now click Add Images and choose a file from your file system. You can click Upload Media, or drag and drop files from a folder.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note: Drag and drop didn't work for me, so I clicked Upload Media.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src="images/20190103-1745.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1745.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;After it's uploaded, an Add Images tool appears. Select the image and click Add to Gallery.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1748.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1748.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Then, click Done.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1749.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1749.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;That takes care of the first image a visitor will see.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1750.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1750.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Now let's hide the Store. Click on the Horizontal Menu.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1755.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1755.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Then Manage Menu.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1756.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1756.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Select Store, click the &amp;quot;triple dot&amp;quot; settings menu, and choose Hide (or Delete). Then close the menu manager by clicking the upper right X.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1758.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1758.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Next, select the Cart and delete it by pressing your &amp;lt;Delete&amp;gt; key.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1801.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1801.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Now, select the Horizontal Menu and Navigate&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1803.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1803.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Chose &amp;quot;The Desert,&amp;quot; which will open that page. From here, you can change the title and paragraph text as we have before.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Tip: If the Text Settings tool window gets in the way, click its header and drag it somewhere else on the page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Now click a picture. This will select the Gallery. Click Manage Media.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1808.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1808.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;This opens a tool very much like the one on the home page. You can add, remove and arrange photos. You can also add videos and text.&lt;/p&gt;
 &lt;p&gt;I deleted all the photos, then chose Add Media &amp;gt; Image.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1811.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1811.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;In the media tool, you can choose previously uploaded photos, or upload by clicking Upload Media. You can upload multiple images at once.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1812.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1813.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1812.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1813.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Then, you can select multiple files to Add to Page by using CTRL/CMD + Click.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1816.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1816.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Back in the gallery, you can add titles and descriptions. Click Done when finished.&lt;/p&gt;
 &lt;p&gt;Select the Horizontal Menu &amp;gt; Manage Menu again. Select The Desert's settings, choose Rename, and change the name to Santa Fe.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1823.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1824.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1823.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1824.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;You can use the same tool to add, remove and reorder pages.&lt;/p&gt;
 &lt;p&gt;This leaves the home page gallery links, and footer, to take care of. Use Horizontal Menu &amp;gt; Navigate to open the Home page again. Then, scroll down to the Desert photo. Select it, Change Image to one in the Santa Fe gallery, then change the text to &amp;quot;Santa Fe.&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1829.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1829.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Scroll down further to the footer. Change the copyright text.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1831.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1831.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Show the Controls. Save the site, view it and then, if desired, publish it.&lt;/p&gt;
 &lt;p&gt;There is lot more that can be done with Wix. You might consider creating a &amp;quot;play&amp;quot; site that you don't publish, just to see what you can do with the tools. There's also lots of documentation. Like many photo editing tools, it's &amp;quot;easy once you know how.&amp;quot;&lt;/p&gt;
 &lt;p&gt;For example, I changed the toolbar Design so it was more visible, and moved the name to the header so it appears on every page.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/20190103-1842.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix/images/20190103-1842.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Happy site creating!&lt;/p&gt;
 </description>
       <pubDate>Thu, 3 Jan 2019 14:49:00 -0700</pubDate>
@@ -599,7 +599,7 @@ All the original (non-template) photographs in this post are mine. They're OK.&l
     </item>
     <item>
       <title>Three Rules for Successfully Starting a Habit</title>
-      <description>&lt;p&gt;&lt;img src="images/512px-Babisnauer_pappel_morgen.png" alt="" /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit/images/512px-Babisnauer_pappel_morgen.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Image: &lt;a href="https://commons.wikimedia.org/wiki/User:Wimox" title="User:Wimox"&gt;Henry Mühlpfordt&lt;/a&gt; / &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA-3.&lt;/a&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;This post is a summary of the November 6 episode of the Developer Tea podcast, &lt;a href="https://spec.fm/podcasts/developer-tea/223915"&gt;3 Rules for Designing Lasting Habits&lt;/a&gt;. I encourage you to listen to the entire episode, and to subscribe to Jonathon's excellent podcast.&lt;/p&gt;
@@ -655,7 +655,7 @@ All the original (non-template) photographs in this post are mine. They're OK.&l
     </item>
     <item>
       <title>Going Full Screen: When and Why</title>
-      <description>&lt;p&gt;&lt;img src="images/2018-11-07_21-25-35.png" alt="" /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/2018-11-07_21-25-35.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;The Screen Dilemma&lt;/strong&gt;&lt;br /&gt;
 One screen&lt;br /&gt;
 Two screen&lt;br /&gt;
@@ -700,7 +700,7 @@ I don't have science to back up all of these opinions. If you do (or evidence ag
 &lt;p&gt;What I commonly hear is, &amp;quot;Wow, now I can have one document open on one screen while I'm working on another!&amp;quot; This is a perfect use case. For example, if I'm researching for a blog post, I'll take notes on one screen while zooming around the web browser in the other. When I'm programming, I have to look up lots of stuff. Keeping the editor in front of me, and a browser full of tabs on a separate screen, triples my productivity.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;What about three screens?&lt;/em&gt;, you ask.&lt;/p&gt;
 &lt;p&gt;I use three screens, and find it effective. I'll bet many people do the same thing as I do. One screen is dedicated to just a few apps that are always open and visible. For me it's email, journal and time-boxing timer. I have that monitor oriented in portrait mode.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/ScreenCap_2018-11-07_21-40-28.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/ScreenCap_2018-11-07_21-40-28.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;So, yeah, if you can afford it, do it. But don't increase your distractions! Apply the same rules to three monitors as you do to one!&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Tip: Minimize, Don't Close&lt;/strong&gt;&lt;br /&gt;
@@ -710,7 +710,7 @@ Avoid closing windows when you're temporarily done with them. Learn and anticipa
 &lt;p&gt;&lt;strong&gt;Tip: Use Effective Layering&lt;/strong&gt;&lt;br /&gt;
 Even with multiple large screens, layering windows on top of one another is inevitable. Do this effectively if you're switching between them. You should always be able to see enough of a window to identify it and open it without completely obscuring some other window.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src="images/2018-11-07_21-55-51.gif" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/2018-11-07_21-55-51.gif" alt="" /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Medical Reality&lt;/strong&gt;&lt;br /&gt;
 Of course, if you have bad eyes, you'll be going full screen more often. But you can still apply the principles.&lt;/p&gt;
@@ -749,11 +749,11 @@ In movies, it's really cool to see all these screens with stuff constantly movin
 &lt;p&gt;Regardless, I prefer wallpapers that are interesting but also truly fade into the background. My favorites are black-and-white photos that aren't very busy. Try thinking of your computer wallpaper as a canvas, not a photo album.&lt;/p&gt;
 &lt;p&gt;Do you really want to find out what difference it makes? Switch your wallpaper to plain black, dark grey, or whatever color pleases you (but I wouldn't go super bright). Try that for a week. Then switch back to your other wallpaper. Which is less stressful?&lt;/p&gt;
 &lt;p&gt;Here's a wallpaper I like. It's a photo I took of Winton Woods in Cincinnati, Ohio.&lt;/p&gt;
-&lt;p&gt;&lt;a href="images/winton-woods-charles-flatt-sm.jpg"&gt;Download&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/winton-woods-charles-flatt-sm.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/winton-woods-charles-flatt-sm.jpg"&gt;Download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/winton-woods-charles-flatt-sm.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;h2 id="distractions-thoughts-on-desktop-icons"&gt;Distractions: Thoughts on Desktop Icons&lt;/h2&gt;
 &lt;p&gt;I hate them. I especially hate when users have hundreds on their desktop &lt;em&gt;plus&lt;/em&gt; a picture of a puppies playing with ribbons.&lt;/p&gt;
-&lt;p&gt;&lt;img src="images/ScreenCap_2018-11-07_22-15-20.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/ScreenCap_2018-11-07_22-15-20.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Unfortunately, the reason so many users use the desktop for storing files and folders is because they've never been taught how to use the Windows Explorer as originally intended. And I don't blame them, because for years Microsoft and Apple have tried to make file management &amp;quot;better&amp;quot; by hiding something everyone can understand if given half a chance.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The computer file system is based on physical file cabinets, which have been around for centuries.&lt;/p&gt;
@@ -780,7 +780,7 @@ In movies, it's really cool to see all these screens with stuff constantly movin
     </item>
     <item>
       <title>NuGet PackageReference in Visual Studio</title>
-      <description>&lt;p&gt;&lt;img src="images/nuget-vs-logos.png" alt="" /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio/images/nuget-vs-logos.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;The information is accurate as of this writing, as far as I know.&lt;/p&gt;
 &lt;h2 id="contents"&gt;Contents&lt;/h2&gt;
 &lt;ul&gt;
@@ -909,7 +909,7 @@ Obviously ASP.NET support is important, and projects may depend on packages that
 &lt;li&gt;By Microsoft Corporation ([1]) [Public domain], via Wikimedia Commons&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-      <pubDate>Tue, 16 Oct 2018 13:42:00 -0700</pubDate>
+      <pubDate>Tue, 16 Oct 2018 13:42:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio</link>
       <guid isPermaLink="false">https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio</guid>
     </item>
