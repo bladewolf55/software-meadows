@@ -78,7 +78,7 @@
 </description>
       <pubDate>Tue, 30 Apr 2019 09:24:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd</guid>
     </item>
     <item>
       <title>Don't Be a Lazy Programmer Like Matthew Jones Isn't</title>
@@ -201,7 +201,7 @@ Matthew got in trouble for being lazy for not typing enough. This was a manageme
 </description>
       <pubDate>Thu, 18 Apr 2019 09:01:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/dont_be_a_lazy_programmer_like_matthew_jones_isnt</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/dont_be_a_lazy_programmer_like_matthew_jones_isnt</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/dont_be_a_lazy_programmer_like_matthew_jones_isnt</guid>
     </item>
     <item>
       <title>Personal Reflections on Removing Distractions for Improved Productivity</title>
@@ -254,7 +254,7 @@ There are great books on how to break and make habits, based on science. For tho
 </description>
       <pubDate>Tue, 9 Apr 2019 09:24:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/personal_reflections_on_removing_distractions_for_improved_productivity</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/personal_reflections_on_removing_distractions_for_improved_productivity</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/personal_reflections_on_removing_distractions_for_improved_productivity</guid>
     </item>
     <item>
       <title>Creating a Modern, Practical Résumé</title>
@@ -381,7 +381,7 @@ Bachelor of Arts in English Literature, 9/2018
 </description>
       <pubDate>Fri, 1 Mar 2019 15:40:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/creating_a_modern__practical_resume</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/creating_a_modern__practical_resume</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/creating_a_modern__practical_resume</guid>
     </item>
     <item>
       <title>Digital Minimalism: A Week of Web Blocking for Productivity and Well-Being</title>
@@ -426,7 +426,7 @@ Bachelor of Arts in English Literature, 9/2018
 </description>
       <pubDate>Thu, 21 Feb 2019 17:20:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/a_week_of_web_blocking_for_productivity_and_well-being</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/a_week_of_web_blocking_for_productivity_and_well-being</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/a_week_of_web_blocking_for_productivity_and_well-being</guid>
     </item>
     <item>
       <title>Revert PackageReference Project to Packages.config</title>
@@ -489,7 +489,7 @@ Add a packages.config file to the project folder with this text:&lt;/p&gt;
 </description>
       <pubDate>Mon, 28 Jan 2019 14:34:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config</guid>
     </item>
     <item>
       <title>Create a Simple Photo Album Site With Wix</title>
@@ -595,7 +595,7 @@ All the original (non-template) photographs in this post are mine. They're OK.&l
 </description>
       <pubDate>Thu, 3 Jan 2019 14:49:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix</guid>
     </item>
     <item>
       <title>Three Rules for Successfully Starting a Habit</title>
@@ -651,7 +651,7 @@ All the original (non-template) photographs in this post are mine. They're OK.&l
 </description>
       <pubDate>Tue, 13 Nov 2018 13:58:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit</guid>
     </item>
     <item>
       <title>Going Full Screen: When and Why</title>
@@ -776,7 +776,7 @@ In movies, it's really cool to see all these screens with stuff constantly movin
 </description>
       <pubDate>Wed, 7 Nov 2018 18:14:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why</guid>
     </item>
     <item>
       <title>NuGet PackageReference in Visual Studio</title>
@@ -911,7 +911,7 @@ Obviously ASP.NET support is important, and projects may depend on packages that
 </description>
       <pubDate>Tue, 16 Oct 2018 13:42:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio</link>
-      <guid isPermaLink="false">https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio</guid>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio</guid>
     </item>
   </channel>
 </rss>
