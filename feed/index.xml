@@ -6,6 +6,58 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Suggestion for Uncle Bob: Change "Software Craftsmanship" to "Crafted Software"</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software/images/640px-Salzburg_-_Violin_repair_shop_-_2910.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Robert &amp;quot;Uncle Bob&amp;quot; Martin has struggled with gender neutrality regarding the term &amp;quot;crafstman.&amp;quot; It's a difficult problem--English has a lack of neuters--and it's good he's struggling because it means he's listening to the very real affect of terminology on women in the workplace.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.cleancoder.com/uncle-bob/2018/05/02/Craftsman-Craftswoman-Craftsperson.html"&gt;Craftsman, Craftswoman, Craftsperson&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I suggest flipping the syntax, so, not &amp;quot;software craftsmanship,&amp;quot; but &amp;quot;crafted software.&amp;quot; Likewise, we can eschew &amp;quot;craftsman&amp;quot; by using &amp;quot;crafter.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Thus:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Crafted Software&lt;/strong&gt; not Software Craftsmanship&lt;br /&gt;
+&lt;strong&gt;Software Crafter&lt;/strong&gt; not Software Craftsman, Craftswoman, Craftsperson&lt;br /&gt;
+&lt;strong&gt;Software Crafting&lt;/strong&gt; as in, &amp;quot;The discipline of software crafting&amp;quot; not &amp;quot;The discipline of software craftsmanship&amp;quot;&lt;br /&gt;
+&lt;strong&gt;Craft&lt;/strong&gt; as in, &amp;quot;It's about craft&amp;quot; (or crafting) not &amp;quot;It's about craftsmanship&amp;quot;&lt;/p&gt;
+&lt;p&gt;Using these terms has the added benefit of them being shorter, which I like. But maybe you're not into the whole brevity thing.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software/images/the_dude.jpg" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Tue, 14 May 2019 12:29:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software</guid>
+    </item>
+    <item>
+      <title>Proposal: Combine Agile and Craftsmanship Manifestos into "Agile Crafted Software Values"</title>
+      <description>&lt;style&gt;
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+French+Canon|IM+Fell+French+Canon+SC');
+&lt;/style&gt;
+&lt;p&gt;Why not combine the &lt;a href="https://agilemanifesto.org/"&gt;Agile Manifesto&lt;/a&gt; and the &lt;a href="http://manifesto.softwarecraftsmanship.org/"&gt;Software Craftsmanship Manifeso&lt;/a&gt;?&lt;/p&gt;
+&lt;p&gt;Here's my suggestion, trying to remain faithful to the meaning, spirit, and brevity of the originals.&lt;/p&gt;
+&lt;div style="border: solid 5px lightgray; padding:10px; border-radius:8px"&gt;
+&lt;h2 style="font-family:'IM Fell French Canon SC', serif; border:none; font-size:200%;"&gt;Agile Crafted Software Values&lt;/h2&gt;
+&lt;div style="font-family:'IM Fell French Canon',serif; font-size:20px; margin-top:20px;"&gt;
+&lt;p&gt;&lt;strong&gt;An interacting community of professionals&lt;/strong&gt; over processes and tools&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Well-crafted, working software&lt;/strong&gt; over comprehensive documentation&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Productive collaboration and partnerships&lt;/strong&gt; over contract negotiation&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Responding to change by adding value&lt;/strong&gt; over following a plan&lt;/p&gt;
+&lt;p&gt;&lt;span style="font-size:85%;"&gt;That is, while there is value in the items on the right, we have found the items on the left to consistently yield greater benefits.&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="motivation"&gt;Motivation&lt;/h2&gt;
+&lt;p&gt;Arguably, the most influential document for modern software engineering is the 2001 Agile Manifesto, laying out the values and principles of what it means to develop in an effective way. It's easy to forget--or even not ever read--these principles, instead believing that they're enforced by the various methodologies. Several original signatories have rightly complained about what's happened to their vision.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Agile has been taken over by corporations to make a buck.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I think it's important to remember two things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Agile is not a method. Methods should &lt;em&gt;implement&lt;/em&gt; agile values and principles.&lt;/li&gt;
+&lt;li&gt;Agile methods aren't for project management. They're for &lt;em&gt;software development&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Thus, in 2009, Software Craftsmanship was proposed to reaffirm the central role of developers.&lt;/p&gt;
+&lt;p&gt;These shouldn't exist separately. By combining them, I think value is added.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 14 May 2019 01:50:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/proposal-_combine_agile_and_craftsmanship_manifestos_into_agile_crafted_software_values</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/proposal-_combine_agile_and_craftsmanship_manifestos_into_agile_crafted_software_values</guid>
+    </item>
+    <item>
       <title>My Mixed Relationship with TDD</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd/images/tdd-created-by-nasa.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;sup&gt;OK, not completely &amp;quot;created by,&amp;quot; but &lt;a href="https://arialdomartini.wordpress.com/2012/07/20/you-wont-believe-how-old-tdd-is/"&gt;You won't believe how old TDD is&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
@@ -652,266 +704,6 @@ All the original (non-template) photographs in this post are mine. They're OK.&l
       <pubDate>Tue, 13 Nov 2018 13:58:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit</guid>
-    </item>
-    <item>
-      <title>Going Full Screen: When and Why</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/2018-11-07_21-25-35.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;The Screen Dilemma&lt;/strong&gt;&lt;br /&gt;
-One screen&lt;br /&gt;
-Two screen&lt;br /&gt;
-Full screen&lt;br /&gt;
-Lots-o-Windows screen&lt;/em&gt;&lt;/p&gt;
-&lt;br /&gt;
-&lt;p&gt;OK, I'm no Dr Seuss.&lt;/p&gt;
-&lt;p&gt;Whether you're working on an 11&amp;quot; ultraportable, or have three 25&amp;quot; 4K monitors, minute-by-minute you are faced with a decision:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Do I run the current application windowed or full-screen?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;This may not seem to require much thought. Whatever works, right? But is our decison working for our productivity, or against it?&lt;/p&gt;
-&lt;p&gt;Lots of people blow up every application to full-screen and switch back and forth in a mad fit of mouse-clicking. Others keep all their apps on screen and fling them around like Tom Cruise in &lt;em&gt;Minority Report&lt;/em&gt;. I have some opinions on when one or the other is more effective.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Caveat Alert!&lt;/strong&gt;&lt;br /&gt;
-I don't have science to back up all of these opinions. If you do (or evidence against), send me an email!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="contents"&gt;Contents&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#principles"&gt;Principles&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#windowed-reduced-context-switching"&gt;Windowed: Reduced Context-Switching&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#full-screen-reduced-distractions"&gt;Full-Screen: Reduced Distractions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#mixed-mode-just-be-careful"&gt;Mixed Mode: Just Be Careful&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#apply-the-same-principle-to-applications"&gt;Apply the Same Principle to Applications&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#distractions-thoughts-on-wallpaper"&gt;Distractions: Thoughts on Wallpaper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#distractions-thoughts-on-desktop-icons"&gt;Distractions: Thoughts on Desktop Icons&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#distractions-final-note"&gt;Distractions: Final Note&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#summing-up"&gt;Summing up&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="principles"&gt;Principles&lt;/h2&gt;
-&lt;p&gt;The rest of this post really rests on two principles:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;1.	Reduce distractions&lt;/strong&gt;&lt;br /&gt;
-&lt;strong&gt;2.	Reduce task-switching&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;These are pretty good ideas for lots of things, not just computer use.&lt;/p&gt;
-&lt;h2 id="windowed-reduced-context-switching"&gt;Windowed: Reduced Context-Switching&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Better for:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Research&lt;/li&gt;
-&lt;li&gt;Data Entry from one source to another&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The biggest leap in productivity and joy for most people is when they move from one screen to two. Even fifteen years ago, Albert Balcells, the vice-president of CoActive Marketing Group's development department, told me, &amp;quot;The studies show that you'll make back the few hundred dollars you spend on a second screen within three weeks.&amp;quot;&lt;/p&gt;
-&lt;p&gt;What I commonly hear is, &amp;quot;Wow, now I can have one document open on one screen while I'm working on another!&amp;quot; This is a perfect use case. For example, if I'm researching for a blog post, I'll take notes on one screen while zooming around the web browser in the other. When I'm programming, I have to look up lots of stuff. Keeping the editor in front of me, and a browser full of tabs on a separate screen, triples my productivity.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;What about three screens?&lt;/em&gt;, you ask.&lt;/p&gt;
-&lt;p&gt;I use three screens, and find it effective. I'll bet many people do the same thing as I do. One screen is dedicated to just a few apps that are always open and visible. For me it's email, journal and time-boxing timer. I have that monitor oriented in portrait mode.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/ScreenCap_2018-11-07_21-40-28.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;So, yeah, if you can afford it, do it. But don't increase your distractions! Apply the same rules to three monitors as you do to one!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Tip: Minimize, Don't Close&lt;/strong&gt;&lt;br /&gt;
-Avoid closing windows when you're temporarily done with them. Learn and anticipate when you'll be going back and forth between applications. If you don't need an application on the screen, minimize it. I've seen lots of users waste lots of time opening Word, opening a document, doing one thing, closing the document, opening another window, then a minute later closing that window and opening Word again. It's exhausting.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Tip: Use Effective Layering&lt;/strong&gt;&lt;br /&gt;
-Even with multiple large screens, layering windows on top of one another is inevitable. Do this effectively if you're switching between them. You should always be able to see enough of a window to identify it and open it without completely obscuring some other window.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/2018-11-07_21-55-51.gif" alt="" /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Medical Reality&lt;/strong&gt;&lt;br /&gt;
-Of course, if you have bad eyes, you'll be going full screen more often. But you can still apply the principles.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="full-screen-reduced-distractions"&gt;Full-Screen: Reduced Distractions&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Better for:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Writing&lt;/li&gt;
-&lt;li&gt;Heads-down programming&lt;/li&gt;
-&lt;li&gt;Long-form reading&lt;/li&gt;
-&lt;li&gt;Image/Video editing&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We think we can do creative or cognitively intensive work while listening to music, reading and commenting on social media, checking email, and playing with our phones. We can't. Humans don't multi-task (really, they don't), and are poor at task-switching.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Lecture Alert&lt;/strong&gt;&lt;br /&gt;
-&lt;strong&gt;You're not an exception.&lt;/strong&gt; You think you are. I know you do. But you're not. The science on multi-tasking and task-switching is consistent. You shouldn't use the phone in the car either, not even hands-free, because every study for the last twenty-five years shows it doesn't matter, it's just as dangerous as drinking and driving. Stop it. Your life's more important, and so is mine.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;When you're writing your grant proposal, or need to get into the programming zone, or focusing on that merchandising layout, go full-screen, minimize any other window that you can, and turn off your distractions. There &lt;em&gt;is&lt;/em&gt; science to back this up, so you don't have to trust me, you can look it up. But save yourself some time and just try it.&lt;/p&gt;
-&lt;p&gt;Going full-screen not only helps focus on the job at hand, but is also valuable because of the number of tools, toolbars, menus, etc. on high-end applications. For example, if you do photo editing, programming, vector drawing, there could be a &lt;em&gt;hundred or more&lt;/em&gt; things to click in front of you. Multiple windows aren't the only distraction. You might want to reduce what the apps show, too (I touch on this later).&lt;/p&gt;
-&lt;h2 id="mixed-mode-just-be-careful"&gt;Mixed Mode: Just Be Careful&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Better for:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Multi-monitor, especially three&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Most of the time, I work in mixed mode. I have my important windows open and arranged so I can reduce task-switching, and I go full-screen when the need arises.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Tip: Don't Have Actively Moving Windows Open&lt;/strong&gt;&lt;br /&gt;
-In movies, it's really cool to see all these screens with stuff constantly moving on them. But in heads-down mode, it's just another eye-catcher. Just as you can't help watching the TV when you're on a date at a bar, anything else flickering or moving nearby only adds to your distraction. Either minimize it or, in the case of a web browser, switch to a tab that's static.&lt;/p&gt;
-&lt;p&gt;Don't tell yourself you can watch &lt;a href="https://www.imdb.com/title/tt0830361/?ref_=fn_al_tt_1"&gt;The Lost Room&lt;/a&gt; while coding a banking data integration. You won't fully enjoy the former, and will screw up the latter.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="apply-the-same-principle-to-applications"&gt;Apply the Same Principle to Applications&lt;/h2&gt;
-&lt;p&gt;There's a class of applications called &lt;a href="https://balsamiq.com/learn/inspiration/zenware/"&gt;&amp;quot;zenware.&amp;quot;&lt;/a&gt; The idea is that they focus on providing a distraction-free experience. Even if you don't stick with it, try out a few. This may really influence your experience of your everyday apps, and you might find yourself paring down what's on the screen.&lt;/p&gt;
-&lt;p&gt;Applications' default layouts are often &lt;em&gt;not&lt;/em&gt; the most efficient. They're there to show you the application's capabilities, not improve your work flow. Only keep the tools/frames open that you use frequently. Reduce clutter, but also make it easy to open what you need.&lt;/p&gt;
-&lt;h2 id="distractions-thoughts-on-wallpaper"&gt;Distractions: Thoughts on Wallpaper&lt;/h2&gt;
-&lt;p&gt;This is a sensitive subject, so definitely take it or leave it. Computer desktop wallpaper is one of the few things users can easily personalize. Except in rare situations, I think businesses should let users set whatever wallpaper they want as long as it's work-appropriate. What that means can be vague, but if there's a question there's an opportunity for better communication.&lt;/p&gt;
-&lt;p&gt;Regardless, I prefer wallpapers that are interesting but also truly fade into the background. My favorites are black-and-white photos that aren't very busy. Try thinking of your computer wallpaper as a canvas, not a photo album.&lt;/p&gt;
-&lt;p&gt;Do you really want to find out what difference it makes? Switch your wallpaper to plain black, dark grey, or whatever color pleases you (but I wouldn't go super bright). Try that for a week. Then switch back to your other wallpaper. Which is less stressful?&lt;/p&gt;
-&lt;p&gt;Here's a wallpaper I like. It's a photo I took of Winton Woods in Cincinnati, Ohio.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/winton-woods-charles-flatt-sm.jpg"&gt;Download&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/winton-woods-charles-flatt-sm.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="distractions-thoughts-on-desktop-icons"&gt;Distractions: Thoughts on Desktop Icons&lt;/h2&gt;
-&lt;p&gt;I hate them. I especially hate when users have hundreds on their desktop &lt;em&gt;plus&lt;/em&gt; a picture of a puppies playing with ribbons.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why/images/ScreenCap_2018-11-07_22-15-20.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Unfortunately, the reason so many users use the desktop for storing files and folders is because they've never been taught how to use the Windows Explorer as originally intended. And I don't blame them, because for years Microsoft and Apple have tried to make file management &amp;quot;better&amp;quot; by hiding something everyone can understand if given half a chance.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The computer file system is based on physical file cabinets, which have been around for centuries.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The big problem with icons on the desktop is that, in order to work with them, you have to minimize open applications. That's a huge time sink.&lt;/p&gt;
-&lt;p&gt;Here's my advice.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Don't open applications using desktop shortcuts. Pin them to the task bar, instead, because it's always available. Then delete those shortcuts.&lt;/li&gt;
-&lt;li&gt;On Windows 7 and 10 you can right-click a taskbar app icon to see the most recent files.&lt;/li&gt;
-&lt;li&gt;Organize your files in the Documents folder, then keep the Windows Explorer window open or minimized.&lt;/li&gt;
-&lt;li&gt;If you must keep icons on the desktop, limit yourself to only the most important you're working on &lt;em&gt;right now&lt;/em&gt;, no more than a dozen, and put them all on the left or right side. Most people seem to prefer the left. This lets you resize windows so that the icons are still in view.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="distractions-final-note"&gt;Distractions: Final Note&lt;/h2&gt;
-&lt;p&gt;Keep other distractions to an absolute minimum. Do you really need to be notified whenever an email arrives? Does your job require following messaging feeds while trying to focus on the task at hand?&lt;/p&gt;
-&lt;p&gt;In most cases, the answer is &amp;quot;no.&amp;quot; Don't let applications interrupt you when they want to. They are not the boss of you. &lt;em&gt;You&lt;/em&gt; decide when to check email.&lt;/p&gt;
-&lt;h2 id="summing-up"&gt;Summing up&lt;/h2&gt;
-&lt;p&gt;As I discovered when writing this post, the real issue isn't whether to run apps full screen or not. It's &lt;em&gt;why&lt;/em&gt;, and that boils down to distractions.&lt;/p&gt;
-&lt;p&gt;Maybe this will help in some way. I hope it'll inspire you to examine how you're working and try some experiments.&lt;/p&gt;
-&lt;p&gt;Work well!&lt;/p&gt;
-</description>
-      <pubDate>Wed, 7 Nov 2018 18:14:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/going_full_screen-_when_and_why</guid>
-    </item>
-    <item>
-      <title>NuGet PackageReference in Visual Studio</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio/images/nuget-vs-logos.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;The information is accurate as of this writing, as far as I know.&lt;/p&gt;
-&lt;h2 id="contents"&gt;Contents&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#whats-the-change"&gt;What's the Change?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#what-are-the-advantages"&gt;What Are the Advantages?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#which-visual-studio-editions-and-project-types-does-it-work-with"&gt;Which Visual Studio Editions and Project Types Does It Work With?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#is-there-a-converter"&gt;Is There a Converter?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#manually-converting-to-packagereference"&gt;Manually Converting to PackageReference.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#can-i-convert-with-a-script"&gt;Can I Convert With a Script?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#references"&gt;References&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="whats-the-change"&gt;What's the Change?&lt;/h2&gt;
-&lt;p&gt;Today, a project's NuGet package information is stored in a project-level packages.config folder. The assemblies are stored in a separate packages folder, usually at the solution level. The project's .csproj file contains Reference elements that point to the assemblies.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Packages.config format folder layout and text samples&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;Argonautics
-|_packages
-  |_ParseText.1.0.4.0
-    |_lib
-      |_net45
-        |_ParseText.dll
-        |_PersistText.dll
-|_Argonautics.sln
-|_PlainPlanning
-  |_PlainPlanning.cproj
-    &amp;lt;Reference Include=&amp;quot;ParseText.dll, Version=1.0.4.3, Culture=neutral, processorArchitecture=MSIL&amp;quot;&amp;gt;
-      &amp;lt;HintPath&amp;gt;..\packages\ParseText.1.0.4.0\lib\net45\ParseText.dll&amp;lt;/HintPath&amp;gt;
-      &amp;lt;Private&amp;gt;True&amp;lt;/Private&amp;gt;
-    &amp;lt;/Reference&amp;gt;
-    &amp;lt;Reference Include=&amp;quot;PersistText.dll, Version=2.3.4.0, Culture=neutral, processorArchitecture=MSIL&amp;quot;&amp;gt;
-      &amp;lt;HintPath&amp;gt;..\packages\ParseText.1.0.4.0\lib\net45\PersistText.dll&amp;lt;/HintPath&amp;gt;
-      &amp;lt;Private&amp;gt;True&amp;lt;/Private&amp;gt;
-    &amp;lt;/Reference&amp;gt;
-  |_packages.config
-    &amp;lt;package id=&amp;quot;ParseText&amp;quot; version=&amp;quot;1.0.4&amp;quot; targetFramework=&amp;quot;net45&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The PackageReference format moves the package information out of packages.config into the .csproj file, and removes the assembly references. The packages folder is removed, as well, in favor of a user-profile folder found at &lt;code&gt;%userprofile%\.nuget\packages&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;PackageReference format folder layout and text samples&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;Argonautics
-|_Argonautics.sln
-|_PlainPlanning
-  |_PlainPlanning.cproj
-    &amp;lt;PackageReference Include=&amp;quot;ParseText&amp;quot;&amp;gt;
-      &amp;lt;Version&amp;gt;1.0.4&amp;lt;/Version&amp;gt;
-    &amp;lt;/PackageReference&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;|_%userprofile%\.nuget\packages
-  |_ParseText.1.0.4.0
-    |_lib
-      |_net45
-        |_ParseText.dll
-        |_PersistText.dll
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When the project builds, Visual Studio finds the packages in the expected location and copies the assembly dependencies to the bin folder.&lt;/p&gt;
-&lt;h2 id="what-are-the-advantages"&gt;What Are the Advantages?&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Binaries that can be restored are very hard to accidentally include in source control.&lt;/li&gt;
-&lt;li&gt;Only the package information is shown in References, which is usually what the developer wants to see.&lt;/li&gt;
-&lt;li&gt;Package restore is faster because files aren't copied to a solution folder. Continuous Integration benefits, as well, by having just one well-known package location.&lt;/li&gt;
-&lt;li&gt;Importantly, since the paths to assemblies aren't stored in the .csproj file, version control thrash due to differences between developer environments is eliminated. No more &lt;code&gt;update-package -restore&lt;/code&gt; because DLLs can't be found.&lt;/li&gt;
-&lt;li&gt;The PackageReference elemnt allows more flexibity and direct use by MSBuild.&lt;/li&gt;
-&lt;li&gt;For NuGet Package authors, the nuspec information is stored directly in the project file, not in a .nuspect file. Also, Build and Pack tasks are included in MSBuild.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="which-visual-studio-editions-and-project-types-does-it-work-with"&gt;Which Visual Studio Editions and Project Types Does It Work With?&lt;/h2&gt;
-&lt;p&gt;PackageReference is availabe in Visual Studio 2017. As of this writing, per NuGet.org:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Although we’re working to bring the PackageReference goodness to all project types and to make all packages compatible with PackageReference, migration is not presently supported for C++, JavaScript, and ASP.NET (.NET Framework) projects.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Also, some packages capabilities &lt;a href="https://docs.microsoft.com/en-us/nuget/reference/migrate-packages-config-to-package-reference#package-compatibility-issues"&gt;are not fully compatible&lt;/a&gt; with PackageReference.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Some examples of scenarios that will not be supported include content folders (we have introduced ContentFiles), XDT transforms, PowerShell scripts i.e. install.ps1 and uninstall.ps1 (only init.ps1 is supported) .&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Author Note&lt;/strong&gt;&lt;br /&gt;
-Obviously ASP.NET support is important, and projects may depend on packages that aren't compatible. However, its lack doesn't prevent migrating compatible projects.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="is-there-a-converter"&gt;Is There a Converter?&lt;/h2&gt;
-&lt;p&gt;Yes, there is! It's currently available in the &lt;a href="https://visualstudio.microsoft.com/vs/preview/"&gt;Visual Studio Preview&lt;/a&gt; edition. It has some known issues, but seems to work well. See the References for a link to instructions.&lt;/p&gt;
-&lt;h2 id="manually-converting-to-packagereference"&gt;Manually Converting to PackageReference.&lt;/h2&gt;
-&lt;p&gt;This works with ASP.NET, too, but is more likely to have problems because of content files (stylesheets, scripts, etc). Need to look into this further.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Backup solution&lt;/li&gt;
-&lt;li&gt;Open solution&lt;/li&gt;
-&lt;li&gt;Open a project's packages.config&lt;/li&gt;
-&lt;li&gt;Open the project's .csproj file&lt;/li&gt;
-&lt;li&gt;In another text editor, create the PackageReference elements.
-&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;package id=&amp;quot;Newtonsoft.Json&amp;quot; version=&amp;quot;10.0.3&amp;quot; targetFramework=&amp;quot;net461&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;ItemGroup&amp;gt;
-	&amp;lt;PackageReference Include=&amp;quot;[PackageId]&amp;quot; Version=&amp;quot;[PackageVersion]&amp;quot; /&amp;gt;
-	&amp;lt;PackageReference Include=&amp;quot;Newtonsoft.Json&amp;quot; Version=&amp;quot;10.0.3&amp;quot; /&amp;gt;
-&amp;lt;/ItemGroup&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;Right-click References &amp;gt; Manage Nuget Packages&lt;/li&gt;
-&lt;li&gt;Choose the Installed tab.&lt;/li&gt;
-&lt;li&gt;Uninstall the packages &lt;em&gt;for the project only&lt;/em&gt;.&lt;br /&gt;
-&lt;em&gt;There could be more cleanup in .csproj, such as deleting extraneous .target references&lt;/em&gt;*&lt;/li&gt;
-&lt;li&gt;Copy the ItemGroup into the project file and save.&lt;/li&gt;
-&lt;li&gt;Delete packages.config&lt;/li&gt;
-&lt;li&gt;Open Package Manager Console, select the project, and run (for example)&lt;br /&gt;
-&lt;code&gt;Update-Package -ProjectName Sms.Web.Verifications -Reinstall&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Build&lt;/li&gt;
-&lt;li&gt;Run&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I reocmmend doing a file/folder diff from the previous version (easy if using version control). This will reveal problems that a build/run may not catch.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="can-i-convert-with-a-script"&gt;Can I Convert With a Script?&lt;/h2&gt;
-&lt;p&gt;I haven't tried a script, yet, but I don't see why not.&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files"&gt;NuGet PackageReference format (package references in project files) | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://blog.nuget.org/20180409/migrate-packages-config-to-package-reference.html"&gt;Migrate to PackageReference with 3 clicks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://blog.nuget.org/20170316/NuGet-now-fully-integrated-into-MSBuild.html"&gt;NuGet is now fully integrated into MSBuild&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-us/nuget/what-is-nuget"&gt;What is NuGet and what does it do? | Microsoft Docs&lt;/a&gt; &amp;lt;= This is the top of MS documentation&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://dotnetdevaddict.co.za/2017/06/29/evolution-of-the-nuget-packagereference/"&gt;Evolution of the NuGet PackageReference – .NET Development Addict&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.strathweb.com/2018/07/solution-wide-nuget-package-version-handling-with-msbuild-15/"&gt;Solution-wide Nuget package version handling with MsBuild 15+ | StrathWeb. A free flowing web tech monologue.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2017#directorybuildprops-and-directorybuildtargets"&gt;Customize your build - Visual Studio | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-us/nuget/release-notes/"&gt;Release Notes | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/NuGet/Home/issues/7241"&gt;Migrate to PackageReference forgets to add PackageReferences! · Issue #7241 · NuGet/Home&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/NuGet/docs.microsoft.com-nuget/issues/905"&gt;No &amp;quot;Migrate packages.config to PackageReference&amp;quot; · Issue #905 · NuGet/docs.microsoft.com-nuget&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Image Attributions&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;By NuGet project team (&lt;a href="https://github.com/NuGet/Media"&gt;https://github.com/NuGet/Media&lt;/a&gt;) [Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)], via Wikimedia Commons&lt;/li&gt;
-&lt;li&gt;By Microsoft Corporation ([1]) [Public domain], via Wikimedia Commons&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Tue, 16 Oct 2018 13:42:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/nuget_packagereference_in_visual_studio</guid>
     </item>
   </channel>
 </rss>
