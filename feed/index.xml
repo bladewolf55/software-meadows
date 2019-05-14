@@ -6,24 +6,6 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
-      <title>Suggestion for Uncle Bob: Change "Software Craftsmanship" to "Crafted Software"</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software/images/640px-Salzburg_-_Violin_repair_shop_-_2910.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Robert &amp;quot;Uncle Bob&amp;quot; Martin has struggled with gender neutrality regarding the term &amp;quot;crafstman.&amp;quot; It's a difficult problem--English has a lack of neuters--and it's good he's struggling because it means he's listening to the very real affect of terminology on women in the workplace.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://blog.cleancoder.com/uncle-bob/2018/05/02/Craftsman-Craftswoman-Craftsperson.html"&gt;Craftsman, Craftswoman, Craftsperson&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I suggest flipping the syntax, so, not &amp;quot;software craftsmanship,&amp;quot; but &amp;quot;crafted software.&amp;quot; Likewise, we can eschew &amp;quot;craftsman&amp;quot; by using &amp;quot;crafter.&amp;quot;&lt;/p&gt;
-&lt;p&gt;Thus:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Crafted Software&lt;/strong&gt; not Software Craftsmanship&lt;br /&gt;
-&lt;strong&gt;Software Crafter&lt;/strong&gt; not Software Craftsman, Craftswoman, Craftsperson&lt;br /&gt;
-&lt;strong&gt;Software Crafting&lt;/strong&gt; as in, &amp;quot;The discipline of software crafting&amp;quot; not &amp;quot;The discipline of software craftsmanship&amp;quot;&lt;br /&gt;
-&lt;strong&gt;Craft&lt;/strong&gt; as in, &amp;quot;It's about craft&amp;quot; (or crafting) not &amp;quot;It's about craftsmanship&amp;quot;&lt;/p&gt;
-&lt;p&gt;Using these terms has the added benefit of them being shorter, which I like. But maybe you're not into the whole brevity thing.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software/images/the_dude.jpg" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Tue, 14 May 2019 12:29:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software</guid>
-    </item>
-    <item>
       <title>Proposal: Combine Agile and Craftsmanship Manifestos into "Agile Crafted Software Values"</title>
       <description>&lt;style&gt;
 @import url('https://fonts.googleapis.com/css?family=IM+Fell+French+Canon|IM+Fell+French+Canon+SC');
@@ -53,9 +35,27 @@
 &lt;p&gt;Thus, in 2009, Software Craftsmanship was proposed to reaffirm the central role of developers.&lt;/p&gt;
 &lt;p&gt;These shouldn't exist separately. By combining them, I think value is added.&lt;/p&gt;
 </description>
-      <pubDate>Tue, 14 May 2019 01:50:00 -0600</pubDate>
+      <pubDate>Tue, 14 May 2019 13:50:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/proposal-_combine_agile_and_craftsmanship_manifestos_into_agile_crafted_software_values</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/proposal-_combine_agile_and_craftsmanship_manifestos_into_agile_crafted_software_values</guid>
+    </item>
+    <item>
+      <title>Suggestion for Uncle Bob: Change "Software Craftsmanship" to "Crafted Software"</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software/images/640px-Salzburg_-_Violin_repair_shop_-_2910.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Robert &amp;quot;Uncle Bob&amp;quot; Martin has struggled with gender neutrality regarding the term &amp;quot;crafstman.&amp;quot; It's a difficult problem--English has a lack of neuters--and it's good he's struggling because it means he's listening to the very real affect of terminology on women in the workplace.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://blog.cleancoder.com/uncle-bob/2018/05/02/Craftsman-Craftswoman-Craftsperson.html"&gt;Craftsman, Craftswoman, Craftsperson&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I suggest flipping the syntax, so, not &amp;quot;software craftsmanship,&amp;quot; but &amp;quot;crafted software.&amp;quot; Likewise, we can eschew &amp;quot;craftsman&amp;quot; by using &amp;quot;crafter.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Thus:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Crafted Software&lt;/strong&gt; not Software Craftsmanship&lt;br /&gt;
+&lt;strong&gt;Software Crafter&lt;/strong&gt; not Software Craftsman, Craftswoman, Craftsperson&lt;br /&gt;
+&lt;strong&gt;Software Crafting&lt;/strong&gt; as in, &amp;quot;The discipline of software crafting&amp;quot; not &amp;quot;The discipline of software craftsmanship&amp;quot;&lt;br /&gt;
+&lt;strong&gt;Craft&lt;/strong&gt; as in, &amp;quot;It's about craft&amp;quot; (or crafting) not &amp;quot;It's about craftsmanship&amp;quot;&lt;/p&gt;
+&lt;p&gt;Using these terms has the added benefit of them being shorter, which I like. But maybe you're not into the whole brevity thing.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software/images/the_dude.jpg" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Tue, 14 May 2019 12:29:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software</guid>
     </item>
     <item>
       <title>My Mixed Relationship with TDD</title>
