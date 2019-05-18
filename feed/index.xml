@@ -6,6 +6,70 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>"My" Git Aliases (with a nod to Smith and Jones)</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/my_git_aliases_with_a_nod_to_Smith_and_Jones/images/alias_smith_and_jones.jpg" alt="" /&gt;&lt;br /&gt;
+&lt;sub&gt;(Pete Duel, we miss you.)&lt;/sub&gt;&lt;/p&gt;
+&lt;p&gt;And by &amp;quot;my&amp;quot;, I mean mostly other people's. I've just renamed and/or tweaked them.&lt;/p&gt;
+&lt;p&gt;Here's my GitHub dotfiles repo.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/bladewolf55/dotfiles"&gt;https://github.com/bladewolf55/dotfiles&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Reference&lt;/strong&gt;&lt;br /&gt;
+&lt;a href="https://haacked.com/archive/2019/02/14/including-git-aliases/"&gt;Include my Git Aliases | You’ve Been Haacked&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-config"&gt;[alias]
+  # HISTORY AND STATE
+  st = status -s
+  # List all branches
+  branches = branch -a
+  # Displays last 10 commits by default, or the supplied number of commits
+  hist = &amp;quot;!f() { git log -${1-10} --pretty=format:\&amp;quot;%C(auto) %h %ad | %d %s [%an]\&amp;quot; --graph --date=short; }; f&amp;quot;
+  # All branches
+  hista = &amp;quot;!f() { git log -${1-10} --pretty=format:\&amp;quot;%C(auto) %h %ad | %d %s [%an]\&amp;quot; --graph --date=short --all; }; f&amp;quot;
+  # Generate zip of file differences between two commits. Second commit defaults to HEAD.
+  diffpatch = &amp;quot;!f() { git archive --output=diffs.zip HEAD $(git diff --diff-filter=d --name-only $1 ${2-HEAD}); }; f&amp;quot;
+  # Show renamed or added files
+  diffshow =  &amp;quot;!f() { git diff $1 ${2-HEAD} --name-only --diff-filter=AR; }; f&amp;quot;
+  
+  # CURRENT CHANGE
+  save = !git add -A &amp;amp;&amp;amp; git commit -m 'SAVEPOINT'
+  undo = reset HEAD~1 --mixed
+  # Hard reset to previous ref, but saves current state first
+  restore = &amp;quot;!f(){ git add -A &amp;amp;&amp;amp; git commit -qm 'RESTORE SAVEPOINT'; git reset $1 --hard; }; f&amp;quot;
+
+  # GROW, MARK, TWEAK
+  co = checkout 
+  cob = checkout -b 
+  # Commits using supplied message, or opens editor if message omitted
+  # cm = &amp;quot;!f() { git add -A; [ -z \&amp;quot;$1\&amp;quot; ] &amp;amp;&amp;amp; git commit || git commit -m \&amp;quot;$1\&amp;quot; ; }; f&amp;quot;
+  # This version lets you continue after entering the first line of the message, and ends when double-quote is entered
+  cm = !git add -A &amp;amp;&amp;amp; git commit -m 
+  # Commit and amend, opens editor
+  cma = !git add -A &amp;amp;&amp;amp; git commit --amend
+  # Commit and open the interactive editor
+  cmi = !git add -A &amp;amp;&amp;amp; git commit 
+  # Rebase onto branch
+  rb = rebase 
+  rbi = rebase -i 
+  rba = rebase --abort
+  # Merge branch into, preserving branch history
+  mb = merge --no-ff --log 
+  mba = merge --abort
+  # Delete branch
+  delb = branch -d 
+  # Tag branch with message = name
+  tagb = tag -a -m &amp;quot;&amp;quot;
+
+  # COLLABORATE
+  sync = !git pull --rebase &amp;amp;&amp;amp; git push
+  syncfork = !git checkout master &amp;amp;&amp;amp; git pull upstream/master &amp;amp;&amp;amp; git push origin/master
+  # Open and browse the remote repository's URL
+  browse = &amp;quot;!f(){ URL=$(git config remote.origin.url); open ${URL%.git}; }; f&amp;quot;
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+      <pubDate>Fri, 17 May 2019 19:47:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/my_git_aliases_with_a_nod_to_Smith_and_Jones</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/my_git_aliases_with_a_nod_to_Smith_and_Jones</guid>
+    </item>
+    <item>
       <title>Proposal: Combine Agile and Craftsmanship Manifestos into "Agile Crafted Software Values"</title>
       <description>&lt;style&gt;
 @import url('https://fonts.googleapis.com/css?family=IM+Fell+French+Canon|IM+Fell+French+Canon+SC');
@@ -648,62 +712,6 @@ All the original (non-template) photographs in this post are mine. They're OK.&l
       <pubDate>Thu, 3 Jan 2019 14:49:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/create_a_simple_photo_album_site_with_wix</guid>
-    </item>
-    <item>
-      <title>Three Rules for Successfully Starting a Habit</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit/images/512px-Babisnauer_pappel_morgen.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Image: &lt;a href="https://commons.wikimedia.org/wiki/User:Wimox" title="User:Wimox"&gt;Henry Mühlpfordt&lt;/a&gt; / &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA-3.&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;This post is a summary of the November 6 episode of the Developer Tea podcast, &lt;a href="https://spec.fm/podcasts/developer-tea/223915"&gt;3 Rules for Designing Lasting Habits&lt;/a&gt;. I encourage you to listen to the entire episode, and to subscribe to Jonathon's excellent podcast.&lt;/p&gt;
-&lt;p&gt;Too often we conflate the &lt;em&gt;goal&lt;/em&gt; with the &lt;em&gt;habit&lt;/em&gt;. For example, getting up at 7am each morning isn't a habit. (It seems like one at first, right?) I'll use that goal to illustrate each of the three rules.&lt;/p&gt;
-&lt;h2 id="concept-what-is-a-habit"&gt;Concept: What is a Habit?&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A habit is a repeated behavior we do in regular cirumstances.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;A habit is part of us, it's normal. &lt;em&gt;It's our default.&lt;/em&gt; For example, whenever I'm about to walk out of the house, or leave a restaurant, I pat my pockets to be sure I have everything:  &lt;em&gt;keys-phone-wallet&lt;/em&gt;. I don't even think about doing it. But if something's missing, I notice. My goal? To not lose those three critical items when I'm in transit.&lt;/p&gt;
-&lt;h2 id="rule-1-focus-on-triggers-not-outcomes"&gt;Rule 1 - Focus on Triggers, Not Outcomes&lt;/h2&gt;
-&lt;p&gt;What are the very earliest, small actions that will start the cascade toward the goal? They don't have to even directly support the goal.&lt;/p&gt;
-&lt;p&gt;Example habits:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Set an alarm for 7am. This doesn't guarantee I'll get up, but makes it harder to stay asleep.&lt;br /&gt;
-&lt;em&gt;Note: since I'd set a repeating alarm, this isn't really a habit. It's a stacking action (see below)&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;Place my phone on my bedside table each night.&lt;/li&gt;
-&lt;li&gt;Before going to bed, write down the one thing I'll do at 7am the next morning.&lt;/li&gt;
-&lt;li&gt;First thing after lying in bed and lights out, envision &lt;em&gt;with enthusiasm&lt;/em&gt; the first thing I'll do at 7am the next morning.&lt;/li&gt;
-&lt;li&gt;Schedule meetings for 8am whenever possible. This makes it unlikely I'll sleep in.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There are more, but this should give you an idea.&lt;/p&gt;
-&lt;h2 id="rule-2-slow-pitch-yourself-softballs"&gt;Rule 2 - Slow-Pitch Yourself Softballs&lt;/h2&gt;
-&lt;p&gt;Make the first, small habits things you can easily accomplish. Make it easy to hit home runs, both by slow-pitching softballs, and by making the field smaller. Ramp-up instead of going all out.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Confession&lt;/strong&gt; I've been getting this wrong most of my life. I'd barrel into not just one, but several new goals and habits all at once, succeed for a day or two, then collapse in frustration and shame.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;For the first week, have only one meeting at 8am. The next week, two, and so on.&lt;/li&gt;
-&lt;li&gt;For two weeks, pick one day to turn on your alarm for 7am, and keep it off the rest of the days. It could be &amp;quot;Fresh-Start Monday.&amp;quot; Then increase the number of days over remaining weeks.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;It might seem like &amp;quot;Oh, I got up at 7am one morning, big deal.&amp;quot; But it &lt;em&gt;is&lt;/em&gt; a big deal. If you were getting up at 7 zero days before, then getting up early one day is--technically--an infinite improvement! Seriously, reward yourself for your accomplishments, no matter how small.&lt;/p&gt;
-&lt;h2 id="rule-3-focus-on-compound-and-stacking-returns"&gt;Rule 3 - Focus on Compound and Stacking Returns&lt;/h2&gt;
-&lt;p&gt;Choose triggering habits that stack with the other habits. These can also be actions. An example from above is setting the alarm. That'sa one-time action, but it stacks on the habit of putting the phone on the beside table. The metaphor is &lt;a href="https://www.thecalculatorsite.com/articles/finance/compound-interest-formula.php"&gt;compounding interest&lt;/a&gt;. What are the early habits and actions that make future habits even more valuable?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;No computer or screen use starting an hour before bedtime. Research shows this improves sleep quality, which is a key toward waking up when I want to. This benefits every other habit, and carries other benefits for my health as well.&lt;/li&gt;
-&lt;li&gt;(Gently) stretch when I get up. Notice that this habit isn't time-dependent. But it's a natural and healthier way than coffee to start up the body's blood, oxygen, cortisol, etc.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;While all the above are true, for this particular goal it might be valuable to check whether I'm working against my own body. Am I naturally a morning person? Or an evening person? Biology isn't always changeable, and often not easily changeable.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="encouragement"&gt;Encouragement&lt;/h2&gt;
-&lt;p&gt;It's easy to say--or be told--&amp;quot;this needs to be a habit!&amp;quot; But knowing what a habit is, and &lt;em&gt;how&lt;/em&gt; to form a habit, is too often left out of the admonition. The rules above can help you be successful. You can do it!&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;p&gt;Jonathan Cutrell cites these two books in his podcast:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Power-Habit-What-Life-Business-ebook/dp/B0055PGUYU/ref=sr_1_3?ie=UTF8&amp;amp;qid=1542148880&amp;amp;sr=8-3&amp;amp;keywords=power+of+habit"&gt;&lt;em&gt;The Power of Habit&lt;/em&gt;&lt;/a&gt; by Charles Duhigg&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Atomic-Habits-Proven-Build-Break-ebook/dp/B07D23CFGR/ref=sr_1_1?ie=UTF8&amp;amp;qid=1542148979&amp;amp;sr=8-1&amp;amp;keywords=atomic+habits"&gt;&lt;em&gt;Atomic Habits&lt;/em&gt;&lt;/a&gt; by James Clear&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Tue, 13 Nov 2018 13:58:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/three_rules_for_successfully_starting_a_habit</guid>
     </item>
   </channel>
 </rss>

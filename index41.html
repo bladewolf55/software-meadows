@@ -72,107 +72,33 @@
       <section id="posts">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/edward-farley-part-1'>Edward Farley and the Fantastic Library Part 1</a></h2>
-                <p class='post-info'><span class='posted-on'>2013-05-19 09:30</span></p>
-                <div class='post-content'><div class="series">
-<p>Parts<br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1.html">1) Preface</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-2.html">2) Introduction</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-3.html">3) A Simple Table</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-4.html">4) One to One or Many</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-5.html">5) Zero or One to Zero or Many</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-6.html">6) One to Zero or Many</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-7.html">7) One to Zero or One</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-8.html">8) One to One</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-9.html">9) Many to Many, Simple</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-10.html">10) Many to Many with Payload</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-1019.html">11) Enumerables</a><br />
-<a href="http://www.softwaremeadows.com/2013/05/edward-farley-part-12.html">12) Inheritance</a></p>
-</div>
-<p><a href="https://drive.google.com/folderview?id=0B9XcO7NbiPZcc29IZDVIN2kzZDQ&amp;usp=sharing">Source Code</a></p>
-<h2 id="entity-framework-5-code-first-relationships">Entity Framework 5 Code First Relationships</h2>
-<h3 id="preface">Preface</h3>
-<p>When I started this series about Entity Framework, I needed a good metaphor for the database relationships. I decided on a library, but soon realized my examples were becoming contrived. I was “fitting facts to suit theories.”* And yet I liked the library story.</p>
-<p>Imagination floated in--as she often does--and in that kind yet firm tone said, “Why constrain yourself to reality? Why not invent?”</p>
-<p>I listened, and after assembling all the material, wrote the light story of of a boy, Edward Farley, and his desire to learn. Following Netflix’s example with House of Cards, I’m releasing all the parts at once.</p>
-<p>What follows is an opinionated (in the positive sense) set of examples for creating EF 5 Code First Relationships. It’s for me, the way I like to do them, and if it helps you, wonderful.</p>
-<p>There are some oblique database references, and more than a few links to people and things that interest me. I’ve tried hard to be error-free, but that is a path of folly.</p>
-<p>Finally, many thanks to my wife, Stephanie, for proof-reading these posts.</p>
-<hr />
-<p>*<a href="http://sherlockholmesquotes.com/">Sherlock Holmes</a>: 'It is a capital mistake to theorize before one has data. Insensibly one begins to twist facts to suit theories, instead of theories to suit facts.'</p>
-<p><a href="http://movies.netflix.com/movie/House-of-Cards/70178217">Netflix House of Cards</a><br />
-<a href="http://dictionary.reference.com/browse/folly?&amp;path=/">Folly</a><br />
-<a href="http://stephkayeturner.com/">Stephanie Kaye Turner</a></p>
-<hr />
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/test-post-with-code'>Migrating Google Drive</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-01-26 14:06</span></p>
+                <div class='post-content'><p>My <a href="http://stephkayeturner.com/">wife</a>recently got her own domain name, and signed up for Google Apps for Business. She's been migrating her email and calendar from previous accounts, including a Google account.<br />
+The problem was Drive. She had a mixture of documents in Google Docs format and MS Office. Some items were shared. All in all, it looked like a big mess, complicated by the fact that Google doesn't let you give ownership of your files to someone in another domain. I don't know why. I assume the Ph.Ds who work there didn't properly sacrifice to the Domain Name God.<br />
+Also--and this burns me up--Google won't let you download files using their super-secret-must-be-tastier-than-Coke internal format. If you have Drive synchronization set up, you'll see documents with .gdoc extensions, but they're just text files with points to the web site. What this means is that there is no hope of downloading and uploading Google Docs and preserve true fidelity.<br />
+Thanks, Google. My files aren't really my files, because you own the format.<br />
+So, here's what I did--and what I could have done.<br />
+First, I think I could have paid for a tool that would migrate the documents. But I didn't, and I didn't even really look for one. Instead, I used a utility that I like a lot,<a href="http://gs.fhtino.it/gdocbackup">GDocBackup</a>. It's not only a nice free utility, but the web site has a great picture.<br />
+<img src="http://gs.fhtino.it/_/rsrc/1211547139810/config/app/images/io_piccolo.jpg" alt="" /></p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Go through my wife's old Google Drive account--we'll call it Thing One--and remove me as a shared person.</li>
+<li>Go through my Drive and remove her as a shared person.</li>
+<li>Use GDocBackup to download all of her files. &quot;Wait!&quot; you interrupt (which is a little rude), &quot;Why didn't you use Drive's ability to download all the files?&quot; Simple. It doesn't preserve folder layout. I'm sure they'd argue that a file can have more than one label, so it's impossible. But then, why does local Drive sync work? Not impressed.</li>
+<li>Now here's where I crow about my wife. I told her that I could preserve which files were GDocs by keeping two sets of folders: one with only the Google format docs, and one with everything else. Then, I'd import the first ones with Drive set to convert the files. And she says, &quot;Oh, that's all right. You can just upload them all as Microsoft docs.&quot; So, that saves me <em>huge</em> time.</li>
+<li>So, in the interests of saving her work, I determine a few files that really must be in Google format, and upload/convert those, then delete them.</li>
+<li>I then disconnect my local Drive sync, and reconnect using her new Business account--which we'll call Thing Two.</li>
+<li>I copy all of the Thing One files from the GDocBackup folder into the Google Drive folder (Thing Two).</li>
+<li>Wait for synchronization to complete.</li>
+</ol>
+<p>There. Wasn't that easy?*<br />
+I really hope Google makes this process better. What I really don't understand is why they don't allow assigning ownership across domains. I mean, it's probably just a primary key field in a database. But what do I know?<br />
+------------------------------<br />
+*No, it wasn't.</p>
 </div>
               </div>
-              
-
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/clean-up-orphaned-sql-users'>Clean Up Orphaned SQL Users</a></h2>
-                <p class='post-info'><span class='posted-on'>2013-04-14 12:23</span></p>
-                <div class='post-content'><p>This used to be done with sp_change_users_login, but that procedure is being removed in favor of alter user.</p>
-<pre><code class="language-csharp">--http://ask.sqlservercentral.com/questions/3173/identifying-orphaned-users.html
---http://stackoverflow.com/a/2874493
---Modified by me to use correct search for orphans
-DECLARE @Username VARCHAR(100),
-        @cmd      VARCHAR(100)
-
-DECLARE userlogin_cursor CURSOR FAST_FORWARD FOR
-SELECT UserName = dp.name
---, UserSID = dp.sid
-FROM sys.database_principals dp
-WHERE dp.type = 'S'
-    AND (dp.sid is not null AND dp.sid &lt;&gt; 0x0)
-    AND (LEN(dp.sid) &lt;= 16)
-    AND SUSER_SNAME(dp.sid) is null
-ORDER BY dp.name
-FOR READ ONLY
-
-OPEN userlogin_cursor
-FETCH NEXT FROM userlogin_cursor INTO @Username
-
-WHILE @@FETCH_STATUS = 0
-  BEGIN
-      SET @cmd = 'ALTER USER [' + @username + '] WITH LOGIN = [' + @username + ']'
-      EXECUTE(@cmd)
-      FETCH NEXT FROM userlogin_cursor INTO @Username
-  END
-
-CLOSE userlogin_cursor
-DEALLOCATE userlogin_cursor 
-</code></pre>
-</div>
-              </div>
-              
-
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/t-sql-one-to-one-cant-be-done'>T-SQL One to One Can't Be Done</a></h2>
-                <p class='post-info'><span class='posted-on'>2013-03-23 13:48</span></p>
-                <div class='post-content'><p>I'm preparing a series on Entity Framework, and discovered something yesterday I never knew. In MS SQL Server, you can't successfully model a true one-to-one relationship, where both sides are required. I say &quot;successfully,&quot; because you can configure the tables, but they won't work. This is because SQL won't allow deferred constraint resolution, which is fine by me.</p>
-<p>The insert statements, below, will fail. Note you have to remove one of the foreign key constraints before you can drop the tables!</p>
-<pre><code class="language-csharp">create table One (
- OneId int not null identity primary key,
- Name varchar(10) null
-)
-
-create table Two (
- OneId int not null primary key references One(OneId),
- Name varchar(10)
-)
-
-alter table One add constraint fk1 foreign key (OneId) references Two(OneId)
-
-insert One(Name) values('asdf')
-insert Two(Name) values('qwer')
-
-alter table One drop constraint fk1
-drop table Two
-drop table One
-</code></pre>
-</div>
-              </div>
-               <div class='paging'><a href='index39.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index41.html'>Older</a></div>
+               <div class='paging'><a href='index40.html'>Newer</a>&nbsp;&nbsp;&nbsp;</div>
       </section>
       <footer><p>All original content copyright (c) Charles L Flatt</p>
 </footer>
