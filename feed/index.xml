@@ -6,6 +6,24 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Weekly Sugar: When is Music a Distraction?</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_/images/fading-notes.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Developers often listen to music while programming. But, like teenagers who rock out when trying to do math homework, are we doing ourselves a favor?&lt;/p&gt;
+&lt;p&gt;The research so far shows that listening to music during &lt;em&gt;repetitive work&lt;/em&gt; can boost productivity. Fine if we're creating lots of classes that follow a pattern.&lt;/p&gt;
+&lt;p&gt;But what about &lt;em&gt;creative or demanding cognitive work&lt;/em&gt; such as intensive debugging, having to hold a dozen dependencies in mind at once for thirty minutes? Then, music can be a serious distraction. Often, the best solution at those moments is to turn off the music, or use ambient/white noise to mask office sounds.&lt;/p&gt;
+&lt;p&gt;Developers spend lots of time in demanding mental activity. Find music that doesn't distract you, and be mindful if it is. Change your music to change your mind.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.theatlantic.com/science/archive/2016/12/the-best-music-for-productivity-silence/509948/"&gt;The Best Music for Productivity? Silence - The Atlantic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.sciencealert.com/the-best-music-to-listen-to-for-optimal-productivity-according-to-science"&gt;The Best Music to Listen to For Optimal Productivity, According to Science&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://spoonuniversity.com/healthier/6-scientifically-proven-songs-to-improve-your-focus"&gt;6 Songs That Have Been Scientifically Proven to Improve Focus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Mon, 20 May 2019 10:23:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_</guid>
+    </item>
+    <item>
       <title>"Yes or No?" -- A Classic and Effective Book For Decision-Making</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making/images/yes-or-no-logo.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;In 1991, when I was working for Waldenbooks, we received an advanced reading copy of Dr Spencer Johnson's &lt;a href="https://www.amazon.com/Yes-No-Guide-Better-Decisions/dp/0887306314/ref=sr_1_1?keywords=yes+or+no+johnson&amp;amp;qid=1558146718&amp;amp;s=gateway&amp;amp;sr=8-1"&gt;&amp;quot;Yes&amp;quot; or &amp;quot;No&amp;quot;: The Guide to Better Decisions&lt;/a&gt;.&lt;/p&gt;
@@ -596,69 +614,6 @@ Bachelor of Arts in English Literature, 9/2018
       <pubDate>Thu, 21 Feb 2019 17:20:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/a_week_of_web_blocking_for_productivity_and_well-being</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/a_week_of_web_blocking_for_productivity_and_well-being</guid>
-    </item>
-    <item>
-      <title>Revert PackageReference Project to Packages.config</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config/images/reset.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;The instructions below aren't tested in all scenarios, and assume familiarity with Visual Studio, NuGet Package Manager, etc. They should be enough to help.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Backup, branch, or otherwise protect your source first!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;To revert from PackageReference to packages.config:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Close the solution.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Delete the project's &lt;code&gt;obj&lt;/code&gt; and &lt;code&gt;bin&lt;/code&gt; folders (which is where the Reference references are stored)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Edit the .csproj file. Remove &lt;code&gt;&amp;lt;RestoreProjectStyle&amp;gt;PackageReference&amp;lt;/RestoreProjectStyle&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Cut/Paste all PackageReference elements into a separate text editor, e.g.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;ItemGroup&amp;gt;
-    &amp;lt;PackageReference Include=&amp;quot;MSTest.TestAdapter&amp;quot;&amp;gt;
-      &amp;lt;Version&amp;gt;1.4.0&amp;lt;/Version&amp;gt;
-    &amp;lt;/PackageReference&amp;gt;
-    &amp;lt;PackageReference Include=&amp;quot;MSTest.TestFramework&amp;quot;&amp;gt;
-      &amp;lt;Version&amp;gt;1.4.0&amp;lt;/Version&amp;gt;
-    &amp;lt;/PackageReference&amp;gt;
-    &amp;lt;PackageReference Include=&amp;quot;Selenium.WebDriver&amp;quot;&amp;gt;
-      &amp;lt;Version&amp;gt;3.141.0&amp;lt;/Version&amp;gt;
-    &amp;lt;/PackageReference&amp;gt;
-    &amp;lt;PackageReference Include=&amp;quot;Selenium.WebDriver.ChromeDriver&amp;quot;&amp;gt;
-      &amp;lt;Version&amp;gt;2.44.0&amp;lt;/Version&amp;gt;
-    &amp;lt;/PackageReference&amp;gt;
-&amp;lt;/ItemGroup&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Save and close the .csproj file.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Open Visual Studio (but not the solution).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Change the VS default package management format to &lt;code&gt;Packages.config&lt;/code&gt;&lt;br /&gt;
-OR&lt;br /&gt;
-Check Allow format selection on first package&lt;br /&gt;
-OR&lt;br /&gt;
-Add a packages.config file to the project folder with this text:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
-&amp;lt;packages&amp;gt;
-    &amp;lt;package id=&amp;quot;MSTest.TestFramework&amp;quot; version=&amp;quot;1.4.0&amp;quot; /&amp;gt;
-&amp;lt;/packages&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Note: If you don't enable using packages.config, you must manually add at least one of the packages to the xml.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Note: It's optional, but recommended, to add the targetFramework element with the correct moniker for the project's framework.&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Open the solution.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If you manually created a packages.config file, restore missing NuGet packages.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If needed, install remaining NuGet packages using package manager.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Build and test.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-      <pubDate>Mon, 28 Jan 2019 14:34:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/revert_packagereference_project_to_packages_config</guid>
     </item>
   </channel>
 </rss>
