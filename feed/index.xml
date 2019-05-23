@@ -6,6 +6,157 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>The 50-10 Time Box - Revising Pomodoro for Software Development</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost/images/time-box.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;This is a slightly edited repost of an article I wrote last year. I think it's valuable enough to promote the technique again, along with the supporting science.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Many of us have trouble with three aspects of programming:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The cost of interruptions&lt;/li&gt;
+&lt;li&gt;Methods for staying on task&lt;/li&gt;
+&lt;li&gt;The benefits of taking breaks&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each of these has studies behind it (see References), as well as anecdotal information. The simple question I wanted to answer is:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What's an effective work-break cycle for programming?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The three most common cycles I know of are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pomodoro - 25 minutes work, 5 minutes break&lt;/li&gt;
+&lt;li&gt;52/17 - 52 minutes work, 17 minutes break&lt;/li&gt;
+&lt;li&gt;90/? - 90 minutes work, then a break&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="pomodoro"&gt;Pomodoro&lt;/h1&gt;
+&lt;p&gt;The Pomodoro Technique is popular, and, besides the work-break cycle, has these suggestions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Plan the tasks&lt;/li&gt;
+&lt;li&gt;Check off completed tasks&lt;/li&gt;
+&lt;li&gt;Record interruptions so you can return to them outside the work interval&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The problem is, Pomodoro, to my knowledge, hasn't been studied scientifically. When I used it for non-programming tasks, I could see the benefit. The more I tried using it for programming, the less effective I found it.&lt;/p&gt;
+&lt;h1 id="the-task-recovery-lag"&gt;The Task Recovery Lag&lt;/h1&gt;
+&lt;p&gt;Numerous studies show there's a recovery lag when resuming an interrupted task. For software developers, it takes about fifteen minutes to recover the previous context--to &amp;quot;get back to where I was.&amp;quot; The worst time to be interrupted is then there's the highest mental workload. (Like when I'm in the middle of debugging a method having spent twenty minutes understanding how it relates to five other modules.)&lt;/p&gt;
+&lt;p&gt;I think it's a mistake, though, to think only in terms of interruptions. A programmer &lt;em&gt;always&lt;/em&gt; ramps up when starting (or restarting) a coding session. In other words, we should plan on the first fifteen minutes being devoted to recovering context.&lt;/p&gt;
+&lt;h1 id="breaks"&gt;Breaks&lt;/h1&gt;
+&lt;p&gt;I've worked for hours straight, and thought I was being productive. Maybe sometimes I was. But the research shows that regular breaks improve productivity, because the brain needs that time to recover from fatigue.&lt;/p&gt;
+&lt;h1 id="the-friction"&gt;The Friction&lt;/h1&gt;
+&lt;p&gt;So, where does that leave us regarding Pomodoro?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It takes a programmer at least fifteen minutes to &amp;quot;ramp up&amp;quot;&lt;/li&gt;
+&lt;li&gt;A Pomodoro work period is twenty-five minutes&lt;/li&gt;
+&lt;li&gt;That leaves &lt;em&gt;ten minutes or less of effective work time&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Well, no wonder Pomodoro wasn't working out!&lt;/p&gt;
+&lt;p&gt;I have tried the 52/17 cycle. I found the seventeen minute break too long. I read an article where office workers tried it themselves, and it was pretty challenging. I suspect that the original study wasn't looking at programmers....&lt;/p&gt;
+&lt;p&gt;There are benefits to Pomodoro. The task planning and completion help a lot with emotionally attaching to success, and with chunking down larger items.&lt;/p&gt;
+&lt;h1 id="proposal-the-50-10-time-box"&gt;Proposal - The 50-10 Time Box&lt;/h1&gt;
+&lt;p&gt;I've been trying this for over a year now, and it's working well for me. So, maybe it will work for you, too. Basically, use Pomodoro Technique but with a 50 minute work cycle followed by a ten minute break. This allows for the fifteen minute ramp up, then thirty-five minutes of solid, focused work. I've found that I'm usually ready for a break at the fifty minute mark.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Even if I wasn't &amp;quot;ready&amp;quot; for a break, when I took it I found I needed it.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I use an online tool named &lt;a href="http://www.marinaratimer.com/"&gt;Marinara Timer&lt;/a&gt; to manage my time boxes. It has a Custom timer where I configured my cycles.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost/images/2018-04-21%2009_04_45.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;What do I like about this approach?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It aligns on the hour, making it easy to understand.&lt;/li&gt;
+&lt;li&gt;I get enough context recovery time.&lt;/li&gt;
+&lt;li&gt;Four cycles gets me to lunch, the remaing four finish my day.&lt;/li&gt;
+&lt;li&gt;A ten minute break is enough to take a walk, catch up on email, even have a short conversation. It's an effective coding break.&lt;/li&gt;
+&lt;li&gt;That break has often helped me solve a thorny problem.&lt;/li&gt;
+&lt;li&gt;Improves my task estimates.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A complete work session looks like this. I use a Markdown document to track my work sessions, distractions and notes, but paper and pen (or pencil!) would work as well or better.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Plan my tasks.&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-txt"&gt;# Distractions
+
+# Round 1
+- [ ] Validation rules
+- [ ] Unit tests
+
+# Round 2
+- [ ] Review code, make sure setting values correctly
+- [ ] Improve queries based on understanding of rules
+
+# Round 3
+- [ ] Design workhorse feature
+
+# Round 4
+- [ ] Begin coding workhorse feature
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2. Start my timer.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost/images/2018-04-21%2009_17_06.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Work deliberately, with intense focus. Record distractions.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It's important to not noodle around during the work time. Manage distractions! This is a hallmark of &lt;a href="https://hbr.org/2007/07/the-making-of-an-expert"&gt;deliberate practice&lt;/a&gt;, and an aspect of &lt;a href="http://whatmeditationreallyis.com/index.php/home-blog/item/470-how-to-meditate-distraction-in-meditation-doesnt-matter.html"&gt;meditation&lt;/a&gt; and mindfulness.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-txt"&gt;# Distractions
+- [ ] Email from Luis, not urgent but should get back to him soon.
+- [ ] Birthday gift research for Joanie.
+
+# Round 1
+- [ ] Validation rules
+- [ ] Unit tests
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;4. Check off tasks&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-txt"&gt;# Distractions
+- [ ] Email from Luis, not urgent but should get back to him soon.
+- [ ] Birthday gift research for Joanie.
+
+# Round 1
+- [x] Validation rules
+- [ ] Unit tests
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;4. When the work cycle ends (I'm currently enamoured of the Whoosh sound), take a break.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;It can be hard to stop, but do it. And, I recommend walking away from the desk, and/or closing your work windows, so you don't get sucked back into the task.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5. Repeat.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id="conclusion"&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;I was spurred to write this post because of &lt;a href="https://www.7pace.com/blog/time-blocking-for-developers-how-to-achieve-flow-stop-being-busy-start-being-productive"&gt;this article&lt;/a&gt;. The author, Tyler Hakes, gives several examples from his workday of how he reduces interruptions in his day, and it's worth reading.&lt;/p&gt;
+&lt;p&gt;Below are a bunch of references I read both before and while creating this entry. They include links to the primary research papers that other articles refer to. I've called out some quotes that I found useful.&lt;/p&gt;
+&lt;h1 id="references"&gt;References&lt;/h1&gt;
+&lt;h2 id="articles"&gt;Articles&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.7pace.com/blog/time-blocking-for-developers-how-to-achieve-flow-stop-being-busy-start-being-productive"&gt;Time Blocking for Developers: How to Achieve Flow, Stop Being “Busy”, &amp;amp; Start Being Productive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Programmer Interrupted](Programmer Interrupted) &amp;lt;= A key article by a researcher whose study is often cited&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.fastcompany.com/944128/worker-interrupted-cost-task-switching"&gt;Worker, Interrupted: The Cost of Task Switching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lifehacker.com/how-long-it-takes-to-get-back-on-track-after-a-distract-1720708353"&gt;How Long It Takes to Get Back on Track After a Distraction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://daedtech.com/programmers-teach-non-geeks-the-true-cost-of-interruptions/"&gt;Programmers, Teach Non-Geeks The True Cost of Interruptions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.ironistic.com/the-cost-of-distractions-on-developers/"&gt;The Cost of Distractions on Developers!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.forbes.com/sites/noodleeducation/2016/04/26/the-pomodoro-technique-and-3-more-research-backed-study-tips/#520044465027"&gt;The Pomodoro Technique And 3 More Research-Backed Study Tips&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.themuse.com/advice/the-rule-of-52-and-17-its-random-but-it-ups-your-productivity"&gt;How the Most Productive People Schedule Their Day - The Rule of 52 and 17&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.huffingtonpost.com/tony-schwartz/work-life-balance-the-90_b_578671.html"&gt;The 90-Minute Solution: How Building in Periods of Renewal Can Change Your Work and Your Life&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.huffingtonpost.com/2013/12/19/youve-been-taking-breaks-_n_4453448.html"&gt;ou’ve Been Taking Breaks All Wrong. Here’s How To Do It Right.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.huffingtonpost.com/kate-bartolotta/5-science-backed-ways-taking-a-break-boosts-our-productivity_b_8548292.html"&gt;5 Science-Backed Ways Taking a Break Boosts Our Productivity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Pomodoro_Technique"&gt;Pomodoro Technique&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="papers"&gt;Papers&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://chrisparnin.me/pdf/parnin-icpc09.pdf"&gt;Resumption Strategies for Interrupted Programming Tasks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When resuming an incomplete programming task, the developer must remember their previous working state and recover knowledge about the software. Details of working state might include recalling plans, intentions, and goals. Details of knowledge might include plan progress, component mechanisms, and domain representations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.ics.uci.edu/%7Egmark/chi08-mark.pdf"&gt;The Cost of Interrupted Work: More Speed and Stress&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Our data suggests that people compensate for interruptions by working faster, but this comes at a price: experiencing more stress, higher frustration, time pressure and effort.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://erichorvitz.com/CHI_2007_Iqbal_Horvitz.pdf"&gt;Disruption and Recovery of Computing Tasks:  Field Study, Analysis, and Directions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.researchgate.net/publication/220093595_Interrupts_Just_a_Minute_Never_Is"&gt;Just a minute never is&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DeMarco reports that the recovery time after a phone call is at least 15 minutes.2 Even though we could not measure recovery time exactly, we believe his estimate to be valid. If more than 10 interrupts occur during a day, the time between the interrupts becomes too short to accomplish product development work.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://users.dcc.uchile.cl/%7Errobbes/p/SANER15-fragmentation.pdf"&gt;An Empirical Study of Work Fragmentation in Software Evolution Tasks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Work fragmentation as result of interruptions usually demands extra effort to recover and resume pending activities: a study of 24 information workers found that a worker needs on average 25 minutes to get back on an interrupted task [5]. Similarly, Iqbal and Horvitz [6] found that people experience disorientation and loss of context when multitasking. Czerwinsky et al. found that after experiencing work fragmentation people found it more difficult to perform interrupted tasks and took longer to complete them [7].&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://interruptions.net/literature/Iqbal-CHI05-p1489-iqbal.pdf"&gt;Investigating the Effectiveness of Mental Workload as a Predictor of Opportune Moments for Interruption&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Wed, 22 May 2019 23:08:12 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost</guid>
+    </item>
+    <item>
       <title>Flatt's Posts/Casts Review #001 - Job Search, Burnout, Blazor, .NET Core Configuration, Personal Agency, Natural Movement, KonMari in Business</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/flatts_post-cast_reviews_001_-_job_search_burnout_blazor_net_core_configuration/../images/reviews-logo.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Each week I'll try to post summaries, notes and quotes about articles I've read and podcasts I've listened to during the week. This helps me pay closer attention to the material, and may help you decide if you want to go to the source--which I hope you do!&lt;/p&gt;
@@ -800,133 +951,6 @@ There are great books on how to break and make habits, based on science. For tho
       <pubDate>Tue, 9 Apr 2019 09:24:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/personal_reflections_on_removing_distractions_for_improved_productivity</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/personal_reflections_on_removing_distractions_for_improved_productivity</guid>
-    </item>
-    <item>
-      <title>Creating a Modern, Practical Résumé</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/creating_a_modern__practical_resume/images/resume.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;I was recently asked to review a résumé, which gave me a chance to think about the purpose and use of résumés today versus decades ago.&lt;/p&gt;
-&lt;p&gt;Let me be clear from the start: I'm not an HR professional, so I'm offering only a view of a slice of hiring. Still, as an &amp;quot;old man,&amp;quot; I'm fascinated by how such a simple item has changed. Here's most of what I wrote as advice to the person who asked.&lt;/p&gt;
-&lt;p&gt;I think the purpose of a résumé has changed over the last couple of decades. It used to be &lt;em&gt;the&lt;/em&gt; introduction of a person to an organization. But this is far less true today. When applying for a job, you'll be asked to upload your résumé, or enter the information into an online form. Your employment and education will probably be verified by a third party. A résumé is still, though, a useful way to document and present your qualifications.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Your résumé is a way to learn about yourself. It's for &lt;strong&gt;discovery&lt;/strong&gt; as well as presentation.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Let's look at résumés in terms of these desired outcomes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Everything about the résumé makes it easy for employers to find what they need to know&lt;/li&gt;
-&lt;li&gt;Easy to contact&lt;/li&gt;
-&lt;li&gt;Education and employment histories are clear and verifiable&lt;/li&gt;
-&lt;li&gt;Relevant skills receive focus&lt;/li&gt;
-&lt;li&gt;Can be easily imported into a database&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="structure"&gt;Structure&lt;/h2&gt;
-&lt;p&gt;Don't get caught up in formatting at first, it'll just distract from the content. As noted elsewhere, the primary concern for formatting is &lt;em&gt;not&lt;/em&gt; how the résumé looks, but how easy it is to convert to electronic data.&lt;/p&gt;
-&lt;p&gt;Consider a throw-away draft where you really focus on information and not style. I suggest using a plain-text editor such as Microsoft Notepad with these sections.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;Contact Information
-
-Professional Mission
-
-Skills
-
-Experience
-
-Education
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Within these, just fill in all the info. Figure out how to style the document later. In fact, your résumé should be perfectly readable in plain text.&lt;/p&gt;
-&lt;h2 id="contact-information"&gt;Contact Information&lt;/h2&gt;
-&lt;p&gt;Keep all contact information together, in a simple format such as this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;Email
-Phone
-Address
-[Your web site]
-[LinkedIn profile]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If you include your (professional) web site, be sure it's what you want an employer to see. If you include LinkedIn, make sure that profile is up-to-date.&lt;/p&gt;
-&lt;h2 id="professional-mission"&gt;Professional Mission&lt;/h2&gt;
-&lt;p&gt;This is a key discovery area. What you write here probably won't make it into your résumé directly, but it will influence what you include, how you write your cover letters, where you apply, and how you present yourself at an interview.&lt;/p&gt;
-&lt;p&gt;This isn't what job you want in the near term, but what your larger desires are. What matters to you? What kind of person do you imagine being in five years? Twenty years? What kind of organization do you want to end up in? What kind of culture?&lt;/p&gt;
-&lt;p&gt;You can easily spend hours—heck, years—on this, and it'll change over time. Once you've taken a deep dive, summarize your professional mission as &amp;quot;what&amp;quot; and &amp;quot;when.&amp;quot; For example, &amp;quot;Within five years, I want to be teaching national courses on academic preparation and success.&amp;quot; The more specific, the better.&lt;/p&gt;
-&lt;p&gt;But what do you include on the résumé? Arguably, nothing. The potential employer assumes you're interested in the position you've applied for. Don't include an Objective for the sake of it. Still, including a brief statement can be valuable. If you do, make it a &lt;em&gt;summary of you&lt;/em&gt;. For example:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;Experienced college-level tutor in English and Creative Writing, dedicated to helping high school and college students succeed in their learning objectives.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="skills"&gt;Skills&lt;/h2&gt;
-&lt;p&gt;Think of your skills more specifically in terms of the job(s) you're applying for. You may be tweaking the Skills section depending on the job requirements. Be specific, brief, and use industry language. This area should honestly match up with the job description.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;Skills
-
-* Strong interpersonal techniques, including open-ended questions, 
-  active listening.
-* Apply various learning theories: VARK model, Transfer, Gestalt
-* Create subject-specific and student-specific study guides
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Contrast this to the skills you'd highlight if you were applying to an education tech writing job. They'd be different. So, &lt;em&gt;yes, you may be creating different résumés for different places&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Be sure that whatever your write here, you're telling the truth. In an interview, you &lt;em&gt;will&lt;/em&gt; be asked about them.&lt;/p&gt;
-&lt;p&gt;(By the way, the VARK learning model is baloney. Don't use it. &lt;a href="https://www.theatlantic.com/science/archive/2018/04/the-myth-of-learning-styles/557687/"&gt;The Myth of Learning Styles - Atlantic Monthly&lt;/a&gt; )&lt;/p&gt;
-&lt;h2 id="experience"&gt;Experience&lt;/h2&gt;
-&lt;p&gt;All experience should be verifiable. That means someone can be called. So, make it easy for the verifier. Include the organization or individual's phone number. Experience should &lt;em&gt;start with the most recent&lt;/em&gt;, and include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Where&lt;/li&gt;
-&lt;li&gt;From – To using month and year&lt;/li&gt;
-&lt;li&gt;Phone Number&lt;/li&gt;
-&lt;li&gt;What you did&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;Experience
-
-Colorado State University-Pueblo
-123-555-1234
-4/2017 – 7/2017
-
-*   Organized and ran weekly tutoring sessions for fellow students
-*   Created and distributed. . . .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Be careful of being wordy. Don't pad. Be concrete and specific. Think of the person reading the résumé: she just wants the facts to decide whether to interview you.&lt;/p&gt;
-&lt;h2 id="education"&gt;Education&lt;/h2&gt;
-&lt;p&gt;You don't need to include a phone number, but do use a &amp;quot;most to least&amp;quot; format. School &amp;gt; Degree &amp;gt; Graduation Date&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;Education
-
-University of Colorado Denver
-Bachelor of Arts in English Literature, 9/2018
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="formatting"&gt;Formatting&lt;/h2&gt;
-&lt;p&gt;This is where people used to really differentiate, and still try to. They get hung up on how the résumé looks, what paper they use, etc. What's important is clarity and—in my opinion—the ability to import. Manually styling makes it hard to do the latter. To make it easy for the machine, use consistent header styles. Styles also let you easily change the look of your résumé.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;If you don't know how to work with styles in your word processer, look it up! Here's an &lt;a href="https://business.tutsplus.com/tutorials/how-to-simplify-word-document-formatting-with-styles--cms-21069"&gt;article to get you started&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;At minimum:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Give each section (contact, skills, etc) a Heading 2 styles.&lt;/li&gt;
-&lt;li&gt;Put school/business names on separate lines.&lt;/li&gt;
-&lt;li&gt;Format dates consistently.&lt;/li&gt;
-&lt;li&gt;Use bullet points consistently.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Beyond the above, be judicious and consistent with how you use bold weight. Are you drawing attention to what matters? (And remember online submission probably won't allow bold, italic, etc.)&lt;/p&gt;
-&lt;p&gt;Think about this, too: when you need to copy/paste information into an online form, how easy will it be?&lt;/p&gt;
-&lt;p&gt;I'm not finding a service that lets you check if your résumé is easily parse-able, but you'll know as soon as you apply somewhere that lets you upload your résumé.&lt;/p&gt;
-&lt;h2 id="other"&gt;Other&lt;/h2&gt;
-&lt;p&gt;I worked for a background check company for several years, so my advice is based on that experience. HR departments outsource their verifications and use third party software to import all résumé information into a database. They don't keep file folders of applications and résumés.&lt;/p&gt;
-&lt;p&gt;If you check online, you'll find businesses that can produce beautiful résumés. But why bother? Employers are looking at your data. Make it easy to get them that data. (You should still have a nice-looking résumé, though.)&lt;/p&gt;
-&lt;p&gt;So, what's a person to do when looking for a job and building a career? I'm certainly no expert, but here's what I think.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Learn what your strengths are, what you love to do, and find work that lets you do that. The science of well-being shows the job won't make you happy. Using your strengths will.&lt;/li&gt;
-&lt;li&gt;Target the places you want to be. Research them. Make it clear to yourself that you don't just want a job, you want to work &lt;em&gt;here&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;Walk into an interview prepared to start working immediately. You won't be asked to do that, but it'll affect how you dress and behave.&lt;/li&gt;
-&lt;li&gt;Take two or more copies of your résumé with you. One for you, one for the interviewer if she doesn't have one.&lt;/li&gt;
-&lt;li&gt;Be prepared to ask questions. Take notes during the interview. Your goal is the same as theirs. Do you want to work here?&lt;/li&gt;
-&lt;li&gt;Finally, I think fundamentally a good organization cares about these questions
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Can&lt;/strong&gt; the person do the job&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Will&lt;/strong&gt; the person do the job&lt;/li&gt;
-&lt;li&gt;Does the person &lt;strong&gt;fit&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Best wishes!&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/R%C3%A9sum%C3%A9"&gt;Résumé - Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Fri, 1 Mar 2019 15:40:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/creating_a_modern__practical_resume</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/creating_a_modern__practical_resume</guid>
     </item>
   </channel>
 </rss>
