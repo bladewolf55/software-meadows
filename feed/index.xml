@@ -33,7 +33,7 @@
 &lt;/ul&gt;
 &lt;p&gt;The problem is, Pomodoro, to my knowledge, hasn't been studied scientifically. When I used it for non-programming tasks, I could see the benefit. The more I tried using it for programming, the less effective I found it.&lt;/p&gt;
 &lt;h1 id="the-task-recovery-lag"&gt;The Task Recovery Lag&lt;/h1&gt;
-&lt;p&gt;Numerous studies show there's a recovery lag when resuming an interrupted task. For software developers, it takes about fifteen minutes to recover the previous context--to &amp;quot;get back to where I was.&amp;quot; The worst time to be interrupted is then there's the highest mental workload. (Like when I'm in the middle of debugging a method having spent twenty minutes understanding how it relates to five other modules.)&lt;/p&gt;
+&lt;p&gt;Numerous studies show there's a recovery lag when resuming an interrupted task. For software developers, it takes about fifteen minutes to recover the previous context--to &amp;quot;get back to where I was.&amp;quot; The worst time to be interrupted is when there's the highest mental workload. (Like when I'm in the middle of debugging a method having spent twenty minutes understanding how it relates to five other modules.)&lt;/p&gt;
 &lt;p&gt;I think it's a mistake, though, to think only in terms of interruptions. A programmer &lt;em&gt;always&lt;/em&gt; ramps up when starting (or restarting) a coding session. In other words, we should plan on the first fifteen minutes being devoted to recovering context.&lt;/p&gt;
 &lt;h1 id="breaks"&gt;Breaks&lt;/h1&gt;
 &lt;p&gt;I've worked for hours straight, and thought I was being productive. Maybe sometimes I was. But the research shows that regular breaks improve productivity, because the brain needs that time to recover from fatigue.&lt;/p&gt;
