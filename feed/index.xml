@@ -6,6 +6,19 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Weekly Sugar: When (not) to Drink Coffe, a Preview</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_when_(not)_to_drink_coffe__a_preview/images/coffee-clock.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;A few years ago I researched and posted about when--and when not--to drink coffee. I'm going to repost that article to &lt;a href="https://www.softwaremeadows.com"&gt;https://www.softwaremeadows.com&lt;/a&gt; in the next several days. Until then, then gist is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Science shows drinking coffee first thing in the morning negatively affects one’s circadian rhythm by inhibiting the production of cortisol, which the body uses to naturally wake us up. Instead, we should drink coffee between 9:30 and 11:30, and maybe also between 1:30 and 5:00, when cortisol levels are falling.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;(I drink my morning coffee at least one hour after waking up, which is also supported by the research)&lt;/p&gt;
+</description>
+      <pubDate>Sun, 26 May 2019 14:40:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/weekly_sugar-_when_(not)_to_drink_coffe__a_preview</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_when_(not)_to_drink_coffe__a_preview</guid>
+    </item>
+    <item>
       <title>Flatt's Posts/Casts Review #002 - Real Problems, Strengths, Korean War, Smaller Problems, Good/Bad Shame</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/flatts_posts-casts_review_002_-_real_problems__strengths__korean_war/../images/reviews-logo.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Each week I'll try to post summaries, notes and quotes about articles I've read and podcasts I've listened to during the week. This helps me pay closer attention to the material, and may help you decide if you want to go to the source--which I hope you do!&lt;/p&gt;
@@ -1067,129 +1080,6 @@ Not ups and downs, but always going down. This triggers a negative loop.&lt;/p&g
       <pubDate>Tue, 30 Apr 2019 09:24:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/my_mixed_relationship_with_tdd</guid>
-    </item>
-    <item>
-      <title>Don't Be a Lazy Programmer Like Matthew Jones Isn't</title>
-      <description>&lt;img src="https://larrycuban.files.wordpress.com/2015/11/4505206e894208cab03f96c4703cac93.gif"  width=500 /&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#examination"&gt;Examination&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#refutation"&gt;Refutation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#is-laziness-bad"&gt;Is Laziness Bad?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#then-what-is-matthew-jones"&gt;Then What is Matthew Jones?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Matthew Jones recently wrote a blog article titled &lt;a href="https://exceptionnotfound.net/be-the-laziest-programmer-you-can-be/"&gt;Be The Laziest Programmer You Can Be&lt;/a&gt;. I like Matthew's articles, and I like this one in a way, but I'm going to make a case that Matthew's &lt;em&gt;completely wrong in his definition of lazy&lt;/em&gt;. This is one of those subjects that rankles me, kind of like computer people routinely misusing the word &amp;quot;&lt;a href="https://www.dictionary.com/browse/deprecate?s=t"&gt;deprecate&lt;/a&gt;.&amp;quot;&lt;/p&gt;
-&lt;p&gt;The traditional statemnent of Matthew's gist is:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;If you want to find the most efficient way to do a job, give it to a lazy person.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Matthew states his thesis as:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;lazy programmers want to do as little work as possible right now.  But they also want to do as little &lt;em&gt;future&lt;/em&gt; work as possible,...&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;He's absolutely right about the first part, doing as little work as possible right now. But he's absolutely wrong about the second, that lazy programmers are concerned about the future. They aren't, that's the problem. And, they're not efficient, they just get by.&lt;/p&gt;
-&lt;h2 id="examination"&gt;Examination&lt;/h2&gt;
-&lt;p&gt;Let's hit the &lt;a href="https://www.dictionary.com/browse/lazy?s=t"&gt;dictionary&lt;/a&gt; first.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;adjective&lt;/em&gt;, &lt;strong&gt;la·zi·er, la·zi·est.&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;averse or disinclined to work, activity, or exertion; indolent.&lt;/li&gt;
-&lt;li&gt;causing idleness or indolence:&lt;br /&gt;
-&lt;em&gt;a hot, lazy afternoon&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;slow-moving; sluggish:&lt;br /&gt;
-&lt;em&gt;a lazy stream&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;(of a livestock brand) placed on its side instead of upright.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;em&gt;verb (used without object)&lt;/em&gt;, &lt;strong&gt;la·zied, la·zy·ing.&lt;/strong&gt;&lt;br /&gt;
-5. to laze.&lt;/p&gt;
-&lt;p&gt;&amp;quot;Averse or disinclined to work.&amp;quot; This isn't decisive, because one could argue--as Matthew does--that a disincilation to work could extend toward future work. What does science have to say?  [Emphases mine]&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A person is being lazy if he is able to carry out some activity that he ought to carry out, but is disinclined to do so because of the effort involved. Instead, he carries out the activity perfunctorily; or engages in some other, less strenuous or less boring activity; or remains idle. In short, &lt;em&gt;he is being lazy if his motivation to spare himself effort trumps his motivation to do the right or expected thing&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.psychologytoday.com/us/blog/hide-and-seek/201410/the-psychology-laziness"&gt;The Psychology of Laziness | Psychology Today&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Other aspects of laziness that are discussed in a brief review of the psychology:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Procrastination&lt;/strong&gt; &amp;quot;Laziness and procrastination are similar in that they both involve a lack of motivation. But, &lt;em&gt;unlike a lazy person, a procrastinator aspires and intends to complete the task&lt;/em&gt; and, moreover, does eventually complete it, albeit at a higher cost to himself.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Evolution&lt;/strong&gt;  Our nomadic ancestors had to conserve energy to compete for scarce resources and to fight or flee enemies and predators. Expending effort on anything other than short-term advantage could jeopardize their very survival.... &lt;em&gt;it made little sense to think long term&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Effort and Reward&lt;/strong&gt;  &amp;quot;In most cases, it is deemed painful to expend effort on long-term goals that do not provide immediate gratification. For a person to embark on a project, he has to value the return on his labour more than his loss of comfort. &lt;em&gt;The problem is that he is disinclined to trust in a return that is both distant and uncertain&lt;/em&gt;. Because self-confident people are more apt to trust in the success and pay-off of their undertakings (and may even overestimate their likely returns), they are much more likely to overcome their natural laziness.&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;And, from &lt;a href="https://www.psychologytoday.com/us/blog/contemporary-psychoanalysis-in-action/201510/7-reasons-why-laziness-is-myth"&gt;7 Reasons Why Laziness Is a Myth | Psychology Today&lt;/a&gt;:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Fear of failure.&lt;/strong&gt; &amp;quot;Many people get in their own way by postponing the pursuit of goals,&amp;quot;&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Fear of success.&lt;/strong&gt; &amp;quot;This cousin of the fear of failure is very real: Many people are unconsciously worried that they’ll succeed in ways potentially threatening to others. So they avoid conflict by not moving forward.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Desire for nuture.&lt;/strong&gt; &amp;quot;some of us don’t know how to ask for what we want directly—so we act useless as a way of getting others to do things for us.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Fear of expectations.&lt;/strong&gt; &amp;quot;One of my patients rarely made plans and established herself as “lazy” so that other people would plan for her.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Passive-aggresive communication.&lt;/strong&gt; &amp;quot;People who avoid conflict often bury their dissatisfied feelings. They may communicate them indirectly through “laziness,” slacking in a way that will upset another person.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Need for relaxation.&lt;/strong&gt; &amp;quot;Many people erroneously assume that they should always be going full steam, and chastise themselves for being “lazy” when their body and mind shut down in protest.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Depression.&lt;/strong&gt; &amp;quot;In criticizing himself for “laziness,” a man may miss signs that he is depressed and needs treatment.&amp;quot;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This picture of laziness is much clearer. According to established social and science understandings, a lazy person:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Avoids doing hard work now, and so does the easiest thing he can get away with.&lt;/li&gt;
-&lt;li&gt;Isn't influenced by (or concerned with) future consequences.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here are some attributes of a lazy developer&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Doesn't write thorough unit tests. Tests, if written, allow him to fit the requirement, but don't catch enough problems.&lt;/li&gt;
-&lt;li&gt;Doesn't use consistent naming conventions. He uses whatever occurs to him at the moment.&lt;/li&gt;
-&lt;li&gt;Only updates Scrum/project estimates and completions if pushed to do so, and probably days after the fact.&lt;/li&gt;
-&lt;li&gt;Makes no or cursory source control comments upon commit.&lt;/li&gt;
-&lt;li&gt;Source code only works on his machine, unless he's been forced otherwise through continuous integration.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="refutation"&gt;Refutation&lt;/h2&gt;
-&lt;p&gt;Is Matthew a &amp;quot;lazy&amp;quot; programmer? No, of course, not, but now I'm in for a pound so let's go through his article point-by-point.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&amp;quot;why don't I hear you typing?&amp;quot;&lt;/strong&gt;&lt;br /&gt;
-Matthew got in trouble for being lazy for not typing enough. This was a management failure, pure and simple. And it's proven by the company having an overtime-oriented culture. I'll bet &lt;em&gt;they&lt;/em&gt; were lazy because they weren't planning ahead, as Matthew was. That guy was wrong and a jerk.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Lazy programmers are &lt;em&gt;good&lt;/em&gt; programmers.  They don't do more work than absolutely necessary.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No. The confusion here is in the word &amp;quot;necessary.&amp;quot; For Matthew, &amp;quot;necessary&amp;quot; means &amp;quot;do it right so we reduce doing it again.&amp;quot; Lazy programmers define &amp;quot;necessary&amp;quot; as &amp;quot;required by something external.&amp;quot; Let me call this one out.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Refactoring doesn't exist for the lazy programmer. It's not in his vocabulary.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Lazy programmers abhor redundancy&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Just the opposite. A lazy programmer will copy/paste code all day, because he's a) finishing more work &lt;em&gt;right now&lt;/em&gt;, and b) doesn't expect to have to fix the code later.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Lazy programmers explain their decisions.  They write thorough comments&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Nope. Lazy programmers, concerned only with the present, see explanations as a waste of time. &amp;quot;Working&amp;quot; code should be good enough, they reason.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A lazy programmer is not attached to his future self.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Lazy programmers automate everything that can possibly be automated&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;That would take foresight. I've seen this repeatedly, programmers who are too lazy to encapsulate a method, or write a utility to automate. They'll instead do it the long, hard way every time. Their justification? &amp;quot;Writing that utility will take too long!&amp;quot; (This thinking is further exacerbated by deadline-oriented management.)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Lazy programmers teach people more junior than them, partially so those junior people can do the work instead.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Half of this is right. Lazy programmers want to get other people doing their work. But the way they do it is to claim they're too busy to fix their own code, &lt;em&gt;and&lt;/em&gt; too busy to explain clearly, so &lt;em&gt;just figure it out.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Lazy programmers expect to be replaced.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Well, they &lt;em&gt;should&lt;/em&gt; expect this, but are not only surprised when it happens, but also angry, because they think they're doing what was expected.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Be lazy. It's OK.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;No, it isn't, because you're not. Programmers!, don't conflate laziness with other problems. And don't beat yourselves up, either! Get help with beliefs and root causes. Learn to value strategic thinking, to give yourself a positive boost about creating that automation utility. To see your future self grinning like mad and saying &amp;quot;This used to take the other guy four hours. I automated it and it's done in four minutes.&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;It [laziness] takes practice,&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;It should be pretty clear by now, but lazy people don't practice. I play violin. I'm prety good. But one reason I don't play violin really, really well is because I only practiced enough to get by. (I also didn't know about &lt;a href="https://jamesclear.com/deliberate-practice-theory"&gt;deliberate practice&lt;/a&gt;, but that's another story.) A lazy person, by definition, avoids effort.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Excellence requires continual effort&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="is-laziness-bad"&gt;Is Laziness Bad?&lt;/h2&gt;
-&lt;p&gt;No. Well, maybe. The behavior's not helpful, and often harmful. The thing is, lazy &lt;em&gt;people&lt;/em&gt; aren't bad. It's &lt;em&gt;not&lt;/em&gt; a disease, and it's &lt;em&gt;not&lt;/em&gt; a character or moral defect. As noted above, there are people who get huge amounts done, but if they rest they demean themselves as lazy. That's unhealthy.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Laziness is a habit. And &lt;a href="https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299/ref=sr_1_2?keywords=atomic+habits&amp;amp;qid=1555604333&amp;amp;s=gateway&amp;amp;sr=8-2"&gt;habits can be broken&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="then-what-is-matthew-jones"&gt;Then What is Matthew Jones?&lt;/h2&gt;
-&lt;p&gt;That's pretty easy. Matthew is an &lt;em&gt;&lt;strong&gt;effective developer&lt;/strong&gt;&lt;/em&gt;. All of the positive traits he ascribes to laziness are in fact hallmarks of high-performing software engineers. Matthew:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Is concerned with how his current actions impact his future self.&lt;/li&gt;
-&lt;li&gt;Is likewise concerned with making his code easier for other developers.&lt;/li&gt;
-&lt;li&gt;Plans. Then executes. Then &lt;em&gt;reviews and improves&lt;/em&gt;. He practices &lt;em&gt;kaizen&lt;/em&gt;. He refactors mercilessly.&lt;/li&gt;
-&lt;li&gt;Coaches others and, I hope, is always willing to be confronted with opposition, otherwise I probably wouldn't have taken the time to write all this down. Because, Matthew...&lt;/li&gt;
-&lt;li&gt;Is wrong about what it means to be a lazy programmer, and I hope he revises his pitch. It's great to help programmers not be lazy, but I don't think redefining a word to mean its opposite is a good idea.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Matthew, I have a feeling I'd like you if we sat down for a beer. If you're ever in Denver, let's find out. You take your craft seriously, and have a light-hearted writing voice. It's from that mindset that I'm telling you, firmly, kindly: Matthew, buddy, you are &lt;em&gt;not&lt;/em&gt; a lazy programmer!&lt;/p&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;Sorry that these are all in the masculine. Unfortunately, 90% of programmers are guys, so I'm writing to the majority audience.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-      <pubDate>Thu, 18 Apr 2019 09:01:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/dont_be_a_lazy_programmer_like_matthew_jones_isnt</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/dont_be_a_lazy_programmer_like_matthew_jones_isnt</guid>
     </item>
   </channel>
 </rss>
