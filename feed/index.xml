@@ -6,6 +6,98 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>An Open Email to Blackwing602.com About Their Poor Account Security</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security/images/blackwing602.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;I'm a Blackwing pencil fan. But I've had some problems with their web site account management. A few days ago I wanted to verify the email address on my account because I kept getting shipping notifications to an old email address. I wasn't able to log in using either email address, and the error message was that &lt;em&gt;there was no such account&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;I emailed Blackwing. Here's the reply I recieved, and my response. I've emphasized the key statement that triggered my response.&lt;/p&gt;
+&lt;h2 id="blackwing-email"&gt;Blackwing Email&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Hi Charles,&lt;/p&gt;
+&lt;p&gt;I've just sent an account activation email for your Blackwing account, and once you activate that, you should be able to log in.&lt;/p&gt;
+&lt;p&gt;With regards to Pencils.com or Blackwing602.com account changes (such as email address), &lt;strong&gt;only we can change that on our end (for security)&lt;/strong&gt;. If you need us to make adjustments, let us know.&lt;/p&gt;
+&lt;p&gt;The [-----------] email address is the one that will have the Volumes shipment.&lt;/p&gt;
+&lt;p&gt;Please let me know about your security concerns on Pencils.com and I can look into it.&lt;/p&gt;
+&lt;p&gt;We had recently switched our sites to Shopify, which is one of the most used ecommerce platforms, and it seems we're just experiencing some growing pains from the move.
+Thank you so much for your patience in this time.&lt;/p&gt;
+&lt;p&gt;Let us know if you have any questions! I'm also available via phone at [------------], from 8am-5pm Pacific.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="my-response"&gt;My Response&lt;/h2&gt;
+&lt;p&gt;Thank you for sending the link. I've reactivated my account. I need to address several points in your email.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Volumes Shipment Email&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;My email address is [------------]. &lt;em&gt;Please&lt;/em&gt; do whatever you have to to get my shipping email changed. The address you're using is old, I haven't used it for two years. I've made this request more than once.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Web Site Security&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I'm very concerned by your reply on security. I'm a veteran software engineer with twenty-plus years of experience, focused mainly on web applications, so I've had to research and implement web site security.&lt;/p&gt;
+&lt;p&gt;Below are screen shots of the Blacking602/Pencils account pages. Let's see what customers &lt;em&gt;can&lt;/em&gt; do before discussing what they &lt;em&gt;should&lt;/em&gt; be able to do.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Blackwing602&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security/images/blackwing-page-1.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;From the main page, a customer can only change addresses. Clicking the Edit link opens this page.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security/images/blackwing-page-2.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;What's going on here?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is a customer changing this information, or creating a new account?&lt;/li&gt;
+&lt;li&gt;Why aren't First and Last name populated?&lt;/li&gt;
+&lt;li&gt;If allowed to change password, why no password confirmation field?&lt;/li&gt;
+&lt;li&gt;No Back or Cancel link, making it obvious the customer can back out of the changes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I didn't even try to update anything. Based on our conversation, I didn't trust what would happen.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I want you to read that again. I &lt;strong&gt;didn't trust&lt;/strong&gt; what would happen.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Pencils&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security/images/pencils-page-1.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;From this main page, there's not even an edit link to--potentially--allow any account information changes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Security&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You say in your email, &amp;quot;With regards to Pencils.com or Blackwing602.com account changes (such as email address), only we can change that on our end (for security).&amp;quot;&lt;/p&gt;
+&lt;p&gt;I'm sorry to be blunt, but this is dead wrong. It's the &lt;em&gt;opposite&lt;/em&gt; of good security and support.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It isn't user-friendly. At all.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Let's say a customer has changed her email address. She's going through all of her sites. She gets to Blackwing/Pencils and doesn't see any way to change her email. She clicks around for a minute. She checks the FAQ. How is she supposed to know that she has to &lt;em&gt;email customer service&lt;/em&gt; to change her information? Well, you could put a message on the account page, with an email link to account_changes@blacking602.com. That would be terrible. What's to prevent a DDoS attack on that link? OK, how about a form requesting the change? So now the user is thinking, &amp;quot;If I'm entering my request for change online anyway, why don't the just automate it?&amp;quot;&lt;/p&gt;
+&lt;p&gt;Another situation. A customer has legally changed his/her name. They have to email Blackwing to make that change? What's more likely, in both the above, is the user gives up, doesn't make the change, and eventually stops buying from the company because it was so easy to change at &lt;em&gt;every other business&lt;/em&gt;. He or she had a messy divorce, and doesn't want to be reminded of it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It isn't secure for a user's worst case.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I submitted my question on May 31. I got your email June 3. That's four days. Let's say a customer finds out he's been hacked. He hasn't been careful, and used the same password at lots of places. Is Blackwing saying he has to wait &lt;em&gt;four days&lt;/em&gt; to get his password changed? The question is the same for changing the email. It's suddenly--for the customer--a security risk, an emergency, and Blackwing is &lt;em&gt;preventing&lt;/em&gt; an immediate change. Even worse, as stated above,  is that the customer has no clue how to even make the change. You just end up with an angry customer.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It implies poor security, because users are giving their changes to a person whom they don't know they can trust.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I trust you. No, wait...do I? If Blackwing is making me email you to change my account, that means I should trust &lt;em&gt;you&lt;/em&gt; to enter the information more than myself. What if you get my email wrong? It's going to happen. Now I'm locked out of my account &lt;em&gt;and&lt;/em&gt; I have to email you, &lt;em&gt;and&lt;/em&gt; it could be on a weekend when there's no response, &lt;em&gt;and&lt;/em&gt; I was going to order these items for a wedding anniversary gift, &lt;em&gt;and&lt;/em&gt; now they're going to arrive late.&lt;/p&gt;
+&lt;p&gt;Do you see the problem?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It implies customers should send you their changed passwords. And if they're not, and you're sending them to a password reset form, why not make that available online in the first place?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I think this is self-explanatory.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It isn't scalable in a breach worst case.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Pencils.com has a security breach. Tens of thousands of passwords have been stolen. What next? First, Pencils does the right thing, of course, and notifies their customers immediately. Then, those customers go to the site to change passwords and/or emails and discover...they can't.&lt;/p&gt;
+&lt;p&gt;OK, so you email everyone a reset link, like you did for me. Thirty percent of your customers don't do the reset and...back to the above. Another twenty percent perform the reset, then decide they want to change their passwords to something stronger, or check on their account info and...find they can't make any changes there.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It damages the business's reputation.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For instance, if your account maintenance is non-standard, then what else about my account isn't being handled in a standard way?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Is my password being stored securely (using a one-way hash at minimum).&lt;/li&gt;
+&lt;li&gt;Is there auditing of changes in place?&lt;/li&gt;
+&lt;li&gt;If so, &lt;em&gt;why&lt;/em&gt; does there need to be auditing in place? Why is any employee able to directly change a user's security information? That is fundamentally insecure.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;From bad to worse&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I asked above, again, to get my shipping notification email changed. That's bad. It means two things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The original request was never honored, so Blackwing's reputation with me is soured.&lt;/li&gt;
+&lt;li&gt;There's no automated system in place to update the shipping and notification information from the customer account information. And I've experienced this. I have zero confidence that, if I were to change my address online, my shipments would come to my new address. It's failed before, and the changes to account management make me trust the system less, not more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;What To Do&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;While there &lt;em&gt;can&lt;/em&gt; be a &lt;em&gt;lot&lt;/em&gt; to consider when it comes to account security (see &lt;em&gt;References&lt;/em&gt;), they are by-and-large known and solved problems. If Pencils/Blacking site developers don't know how, they &lt;em&gt;need to&lt;/em&gt; (not should) hire someone to implement the features properly and securely.&lt;/p&gt;
+&lt;p&gt;For instance, the answer to resetting a password (the Forgot Password scenario) is to send a reset URL that's unique to that reset request, and will expire. An answer to changing the email address, which is also the account id, is to likewise send a confirmation URL.&lt;/p&gt;
+&lt;p&gt;I've spent about an hour and a half on this email, which I've posted to my blog. As a customer, I'd like two things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A confirmation you've received and read, even if you don't agree.&lt;/li&gt;
+&lt;li&gt;An assurance this email will be forwarded to the IT and Sales directors. IT because it's a security issue, and Sales because it's a customer-retention issue.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On the positive side, I truly do love my Blackwings, and am grateful the brand was revived. I'm asking you to be the messenger--I don't consider you responsible for these problems, and I value your courtesy.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;These are just two discussions, from security expert Troy Hunt, of the problems of web site security. But notice that &amp;quot;don't allow changes&amp;quot; never comes up as a solution. Because it isn't.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.troyhunt.com/everything-you-ever-wanted-to-know/"&gt;Troy Hunt: Everything you ever wanted to know about building a secure password reset feature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.troyhunt.com/introducing-secure-account-management/"&gt;Troy Hunt: Introducing the “Secure Account Management Fundamentals” course on Pluralsight&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sincerely,&lt;/p&gt;
+&lt;p&gt;Charles L Flatt&lt;/p&gt;
+</description>
+      <pubDate>Tue, 4 Jun 2019 11:06:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security</guid>
+    </item>
+    <item>
       <title>Weekly Sugar: Take a Walk</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_take_a_walk/walking-man.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;You've been stuck on a thorny problem for an hour, and the forehead-shaped dents on your desk are going to upset the maintenance department--again. You're about to run out of coffee. The problem is attached to you like a &lt;a href="https://upload.wikimedia.org/wikipedia/commons/3/39/20000_squid_Nautilus_viewbay.jpg"&gt;squid on the Nautilus&lt;/a&gt;. What's the next step?&lt;/p&gt;
@@ -1063,40 +1155,6 @@ Not ups and downs, but always going down. This triggers a negative loop.&lt;/p&g
       <pubDate>Fri, 17 May 2019 19:47:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/my_git_aliases_with_a_nod_to_Smith_and_Jones</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/my_git_aliases_with_a_nod_to_Smith_and_Jones</guid>
-    </item>
-    <item>
-      <title>Proposal: Combine Agile and Craftsmanship Manifestos into "Agile Crafted Software Values"</title>
-      <description>&lt;style&gt;
-@import url('https://fonts.googleapis.com/css?family=IM+Fell+French+Canon|IM+Fell+French+Canon+SC');
-&lt;/style&gt;
-&lt;p&gt;Why not combine the &lt;a href="https://agilemanifesto.org/"&gt;Agile Manifesto&lt;/a&gt; and the &lt;a href="http://manifesto.softwarecraftsmanship.org/"&gt;Software Craftsmanship Manifeso&lt;/a&gt;?&lt;/p&gt;
-&lt;p&gt;Here's my suggestion, trying to remain faithful to the meaning, spirit, and brevity of the originals.&lt;/p&gt;
-&lt;div style="border: solid 5px lightgray; padding:10px; border-radius:8px"&gt;
-&lt;h2 style="font-family:'IM Fell French Canon SC', serif; border:none; font-size:200%;"&gt;Agile Crafted Software Values&lt;/h2&gt;
-&lt;div style="font-family:'IM Fell French Canon',serif; font-size:20px; margin-top:20px;"&gt;
-&lt;p&gt;&lt;strong&gt;An interacting community of professionals&lt;/strong&gt; over processes and tools&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Well-crafted, working software&lt;/strong&gt; over comprehensive documentation&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Productive collaboration and partnerships&lt;/strong&gt; over contract negotiation&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Responding to change by adding value&lt;/strong&gt; over following a plan&lt;/p&gt;
-&lt;p&gt;&lt;span style="font-size:85%;"&gt;That is, while there is value in the items on the right, we have found the items on the left to consistently yield greater benefits.&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h2 id="motivation"&gt;Motivation&lt;/h2&gt;
-&lt;p&gt;Arguably, the most influential document for modern software engineering is the 2001 Agile Manifesto, laying out the values and principles of what it means to develop in an effective way. It's easy to forget--or even not ever read--these principles, instead believing that they're enforced by the various methodologies. Several original signatories have rightly complained about what's happened to their vision.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Agile has been taken over by corporations to make a buck.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I think it's important to remember two things:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Agile is not a method. Methods should &lt;em&gt;implement&lt;/em&gt; agile values and principles.&lt;/li&gt;
-&lt;li&gt;Agile methods aren't for project management. They're for &lt;em&gt;software development&lt;/em&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Thus, in 2009, Software Craftsmanship was proposed to reaffirm the central role of developers.&lt;/p&gt;
-&lt;p&gt;These shouldn't exist separately. By combining them, I think value is added.&lt;/p&gt;
-</description>
-      <pubDate>Tue, 14 May 2019 13:50:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/proposal-_combine_agile_and_craftsmanship_manifestos_into_agile_crafted_software_values</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/proposal-_combine_agile_and_craftsmanship_manifestos_into_agile_crafted_software_values</guid>
     </item>
   </channel>
 </rss>
