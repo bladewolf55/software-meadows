@@ -9,7 +9,7 @@
       <title>An Open Email to Blackwing602.com About Their Poor Account Security</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security/images/blackwing602.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;I'm a Blackwing pencil fan. But I've had some problems with their web site account management. A few days ago I wanted to verify the email address on my account because I kept getting shipping notifications to an old email address. I wasn't able to log in using either email address, and the error message was that &lt;em&gt;there was no such account&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;I emailed Blackwing. Here's the reply I recieved, and my response. I've emphasized the key statement that triggered my response.&lt;/p&gt;
+&lt;p&gt;I emailed Blackwing. Here's the reply I received, and my response. I've emphasized the key statement that triggered my response.&lt;/p&gt;
 &lt;h2 id="blackwing-email"&gt;Blackwing Email&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Hi Charles,&lt;/p&gt;
@@ -78,7 +78,8 @@ Thank you so much for your patience in this time.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;What To Do&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;While there &lt;em&gt;can&lt;/em&gt; be a &lt;em&gt;lot&lt;/em&gt; to consider when it comes to account security (see &lt;em&gt;References&lt;/em&gt;), they are by-and-large known and solved problems. If Pencils/Blacking site developers don't know how, they &lt;em&gt;need to&lt;/em&gt; (not should) hire someone to implement the features properly and securely.&lt;/p&gt;
 &lt;p&gt;For instance, the answer to resetting a password (the Forgot Password scenario) is to send a reset URL that's unique to that reset request, and will expire. An answer to changing the email address, which is also the account id, is to likewise send a confirmation URL.&lt;/p&gt;
-&lt;p&gt;I've spent about an hour and a half on this email, which I've posted to my blog. As a customer, I'd like two things:&lt;/p&gt;
+&lt;p&gt;I've spent about an hour and a half on this email, which I've posted to my blog: &lt;a href="https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security/"&gt;An Open Email To Blackwing602.Com About Their Poor Account Security&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As a customer, I'd like two things:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;A confirmation you've received and read, even if you don't agree.&lt;/li&gt;
 &lt;li&gt;An assurance this email will be forwarded to the IT and Sales directors. IT because it's a security issue, and Sales because it's a customer-retention issue.&lt;/li&gt;
