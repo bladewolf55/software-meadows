@@ -2,7 +2,11 @@
 
 From This                    | To This
 -----------------------------|----------------------------
-![](access-architecture.png) |&nbsp;&nbsp; ![](onion-architecture.png)
+![](access-architecture.png) |![](onion-architecture.png)
+
+<br /><br /><br />
+
+[Slideshow Markdown File](Slideshow.md)
 
 ---
 
@@ -446,3 +450,4 @@ Challenges included:
 # Time Machine
 *   Make my EF changes early. (However, making them later proved the code's maintainability)
 *   Less time on Kanban prototype. (However, this was great for business rule discovery.)
+
