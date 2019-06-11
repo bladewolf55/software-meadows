@@ -154,29 +154,32 @@
 <li>Set the StorageController &lt;Image&gt; uuid to the last hard disk element’s uuid.</li>
 </ol>
 <p>Yuck</p>
-<p e21fa63b-d412-4e19-88c8-971ec7bc3ad7 bf1e79c5-69f0-49d6-ae11-05fd4d4e6e5d>&lt;machine laststatechange=&quot;2016-02-02T12:16:14Z&quot; snapshotfolder=&quot;Snapshots&quot; ostype=&quot;Windows7_64&quot; name=&quot;Win7ProGold&quot; uuid=&quot;&quot;&gt;<br />
-    &lt;mediaregistry&gt;<br />
-      &lt;harddisks&gt;<br />
-        &lt;harddisk uuid=&quot;{3b111bc1-9b1e-4b4c-ad00-f4f4a09d7d43}&quot; type=&quot;Normal&quot; format=&quot;VMDK&quot; location=&quot;Win7ProGold.vmdk&quot;&gt;<br />
-          &lt;harddisk uuid=&quot;&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/.vmdk&quot;&gt;<br />
-            &lt;harddisk uuid=&quot;{558ea477-39bd-40c6-953b-2c3c8b961668}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{558ea477-39bd-40c6-953b-2c3c8b961668}.vmdk&quot;&gt;<br />
-              &lt;harddisk uuid=&quot;{35dd8ad4-47d0-4033-823f-dbbc8f367d9a}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{35dd8ad4-47d0-4033-823f-dbbc8f367d9a}.vmdk&quot;&gt;<br />
-                &lt;harddisk uuid=&quot;{81ce7961-fa37-46ef-8ae0-a8461e5ebe1b}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{81ce7961-fa37-46ef-8ae0-a8461e5ebe1b}.vmdk&quot;&gt;<br />
-                  &lt;harddisk uuid=&quot;{0197c2be-2ae3-4599-938d-fcf013b77abb}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{0197c2be-2ae3-4599-938d-fcf013b77abb}.vmdk&quot;&gt;<br />
-                    &lt;harddisk uuid=&quot;{2b790ec1-be3a-4a7b-8075-89bc54948825}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{2b790ec1-be3a-4a7b-8075-89bc54948825}.vmdk&quot; /&gt;<br />
-                  &lt;/harddisk&gt;<br />
-                &lt;/harddisk&gt;<br />
-              &lt;/harddisk&gt;<br />
-            &lt;/harddisk&gt;<br />
-          &lt;/harddisk&gt;<br />
-        &lt;/harddisk&gt;<br />
-      &lt;/harddisks&gt;</p>
-<p>…</p>
-<p>&lt;StorageControllers&gt;<br />
-  &lt;StorageController name=&quot;SATA&quot; type=&quot;AHCI&quot; PortCount=&quot;2&quot; useHostIOCache=&quot;false&quot; Bootable=&quot;true&quot; IDE0MasterEmulationPort=&quot;0&quot; IDE0SlaveEmulationPort=&quot;1&quot; IDE1MasterEmulationPort=&quot;2&quot; IDE1SlaveEmulationPort=&quot;3&quot;&gt;<br />
-    &lt;AttachedDevice type=&quot;HardDisk&quot; hotpluggable=&quot;false&quot; port=&quot;0&quot; device=&quot;0&quot;&gt;<br />
-      &lt;Image uuid=&quot;{2b790ec1-be3a-4a7b-8075-89bc54948825}&quot;/&gt;<br />
-    &lt;/AttachedDevice&gt;</p>
+<pre><code class="language-xml">    \&lt;machine laststatechange=&quot;2016-02-02T12:16:14Z&quot; snapshotfolder=&quot;Snapshots&quot; ostype=&quot;Windows7\_64&quot; name=&quot;Win7ProGold&quot; uuid=&quot;{e21fa63b-d412-4e19-88c8-971ec7bc3ad7}&quot;\&gt;  
+        \&lt;mediaregistry\&gt;  
+          \&lt;harddisks\&gt;  
+            \&lt;harddisk uuid=&quot;{3b111bc1-9b1e-4b4c-ad00-f4f4a09d7d43}&quot; type=&quot;Normal&quot; format=&quot;VMDK&quot; location=&quot;Win7ProGold.vmdk&quot;\&gt;  
+              \&lt;harddisk uuid=&quot;{bf1e79c5-69f0-49d6-ae11-05fd4d4e6e5d}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{bf1e79c5-69f0-49d6-ae11-05fd4d4e6e5d}.vmdk&quot;\&gt;  
+                \&lt;harddisk uuid=&quot;{558ea477-39bd-40c6-953b-2c3c8b961668}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{558ea477-39bd-40c6-953b-2c3c8b961668}.vmdk&quot;\&gt;  
+                  \&lt;harddisk uuid=&quot;{35dd8ad4-47d0-4033-823f-dbbc8f367d9a}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{35dd8ad4-47d0-4033-823f-dbbc8f367d9a}.vmdk&quot;\&gt;  
+                    \&lt;harddisk uuid=&quot;{81ce7961-fa37-46ef-8ae0-a8461e5ebe1b}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{81ce7961-fa37-46ef-8ae0-a8461e5ebe1b}.vmdk&quot;\&gt;  
+                      \&lt;harddisk uuid=&quot;{0197c2be-2ae3-4599-938d-fcf013b77abb}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{0197c2be-2ae3-4599-938d-fcf013b77abb}.vmdk&quot;\&gt;  
+                        \&lt;harddisk uuid=&quot;{2b790ec1-be3a-4a7b-8075-89bc54948825}&quot; format=&quot;VMDK&quot; location=&quot;Snapshots/{2b790ec1-be3a-4a7b-8075-89bc54948825}.vmdk&quot; /\&gt;  
+                      \&lt;/harddisk\&gt;  
+                    \&lt;/harddisk\&gt;  
+                  \&lt;/harddisk\&gt;  
+                \&lt;/harddisk\&gt;  
+              \&lt;/harddisk\&gt;  
+            \&lt;/harddisk\&gt;  
+          \&lt;/harddisks\&gt;
+    
+    ...
+    
+    \&lt;StorageControllers\&gt;  
+      \&lt;StorageController name=&quot;SATA&quot; type=&quot;AHCI&quot; PortCount=&quot;2&quot; useHostIOCache=&quot;false&quot; Bootable=&quot;true&quot; IDE0MasterEmulationPort=&quot;0&quot; IDE0SlaveEmulationPort=&quot;1&quot; IDE1MasterEmulationPort=&quot;2&quot; IDE1SlaveEmulationPort=&quot;3&quot;\&gt;  
+        \&lt;AttachedDevice type=&quot;HardDisk&quot; hotpluggable=&quot;false&quot; port=&quot;0&quot; device=&quot;0&quot;\&gt;  
+          \&lt;Image uuid=&quot;{2b790ec1-be3a-4a7b-8075-89bc54948825}&quot;/\&gt;  
+        \&lt;/AttachedDevice\&gt;
+</code></pre>
 <p>At this point, I could start the VM successfully and clone it, flattening the disk structure.</p>
 </div>
               </div>
