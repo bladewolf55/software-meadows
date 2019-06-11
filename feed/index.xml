@@ -6,23 +6,65 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Weekly Sugar: Applying Kanban Principles to Your Personal Task List</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list/images/vertical-task-list.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Many of us use Kanban boards (or you might be calling them Scrum boards) on work projects. And, we might use &lt;a href="https://trello.com/"&gt;Trello&lt;/a&gt; for some home projects. But most people probably &lt;em&gt;aren't&lt;/em&gt; using them for their daily task lists.&lt;/p&gt;
+&lt;p&gt;There are lots of To Do apps out there, but here's a &amp;quot;first principles&amp;quot; approach using two lists. I do this in &lt;a href="http://keep.google.com"&gt;Google Keep&lt;/a&gt;, but it could as easily be done on paper, which is the inspiration.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-txt"&gt;TODAY
+- [ ] Finish base page
+- [ ] Start home controllers
+- [ ] Buy diapers at lunch
+
+WAITING ON
+- [ ] Time approval from Florence (emailed 5/12 3p)
+
+SOON (limit 5)
+- [ ] Read *Accelerate*
+- [ ] Prepare for DevOps conference
+- [ ] Call Marcus about tennis Thu
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="language-txt"&gt;PERSONAL BACKLOG
+- [ ] Plan Vinit's birthday
+- [ ] Add user stories to MyCoolProject  
+etc.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In Keep, or a text file, it's easy to move tasks around. On paper, you might write in pencil and renumber priorities.&lt;/p&gt;
+&lt;p&gt;The point is, this is the same as a Kanban flow, just rotated 90 degrees. It's easy to update and change, which is critical to capturing thoughts quickly so they don't get lost. The software (or hardware) gets out of the way.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 10 Jun 2019 21:39:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list</guid>
+    </item>
+    <item>
       <title>Joe Developer: When (not) to Drink Coffee</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/joe_developer-_when_(not)_to_drink_coffee/images/coffee-clock.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;This is an update of an article I wrote a few years ago.&lt;/p&gt;
+&lt;p&gt;2019-06-10 15:03:00 This is an update of an article I wrote a few years ago.&lt;br /&gt;
+2019-06-11 09:25:38 Significant update to call out when to drink coffee and other health benefits.&lt;/p&gt;
 &lt;h1 id="the-gist"&gt;The Gist&lt;/h1&gt;
-&lt;p&gt;Science shows drinking coffee first thing in the morning negatively affects one’s circadian rhythm by inhibiting the production of cortisol, which the body uses to naturally wake us up. Instead, we should drink coffee between 9:30 and 11:30, and &lt;em&gt;maybe&lt;/em&gt; also between 1:30 and 5:00, when cortisol levels are falling. You should also, based on other research into its health benefits, drink  four to five eight-ounce cups/day. (These times are based on the average person who gets up around 6:30am. Adjust accordingly for your own consistent wake time.)&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Unless you're pregnant. If pregnant, coffee can slightly increase the risk of miscarriage.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;We should drink coffee between 9:30 and 11:30, and &lt;em&gt;maybe&lt;/em&gt; also between 1:30 and 5:00.&lt;/li&gt;
+&lt;li&gt;Drinking 4-5 8oz cups per day has other health benefits. Quoted:
+&lt;ul&gt;
+&lt;li&gt;reduces your risk of cancer up to 20 percent;&lt;/li&gt;
+&lt;li&gt;reduces your risk of heart disease by 5 percent;&lt;/li&gt;
+&lt;li&gt;reduces your risk of Type 2 diabetes by 30 percent; and&lt;/li&gt;
+&lt;li&gt;reduces your risk of Parkinson's disease by 30 percent.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unless you're pregnant. If pregnant, coffee can slightly increase the risk of miscarriage.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Science shows drinking coffee first thing in the morning negatively affects one’s circadian rhythm by inhibiting the production of cortisol, which the body uses to naturally wake us up. Drinking coffee when cortisol levels are falling helps us stay evenly alert. The recommended times are based on the average person who gets up around 6:30am. Adjust accordingly for your own consistent wake time.&lt;/p&gt;
 &lt;p&gt;Best summary for both time-of-day and health benefits:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.inc.com/geoffrey-james/scientists-just-discovered-best-time-of-day-to-drink-your-first-cup-of-coffee.html"&gt;The Best Time of Day to Drink Coffee, According to Science | Inc.com&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Most entertaining summary:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://en.ilovecoffee.jp/posts/view/57"&gt;I Love Coffee 2014ish&lt;/a&gt; (with infographics!)&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://en.ilovecoffee.jp/posts/view/57"&gt;The best time to drink coffee according to science - I Love Coffee&lt;/a&gt; (with infographics!!)&lt;/p&gt;
 &lt;p&gt;The last entry seems to have begat many others. It’s my favorite. It makes me happy to read it.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/joe_developer-_when_(not)_to_drink_coffee/images/2019-06-11_09-38-22.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;None of these articles discusses &lt;em&gt;how&lt;/em&gt; to shift your coffee consumption, which is a shame. It's like telling a smoker, &amp;quot;just quit.&amp;quot; The thing is, cortisol production doesn't just leap back into action. I've taken &lt;a href="https://www.webmd.com/drugs/2/drug-22008/budesonide-oral/details"&gt;budesonide&lt;/a&gt;, which decreases cortisol production, and the weaning off period is 2-4 weeks. So, I recommend making the change gradually.&lt;/p&gt;
 &lt;h1 id="the-article-trail"&gt;The Article Trail&lt;/h1&gt;
 &lt;p&gt;I first read &lt;a href="http://www.fastcompany.com/3034375/coffee-week/the-new-habit-challenge-drink-your-coffee-when-science-tells-you-to"&gt;this 2014 article&lt;/a&gt; about why you shouldn’t drink coffee first thing in the morning, i.e. right after getting up. Curious, I tried to find out more on the subject. I turned out there are several similar articles. In all cases, the stories originate from an article by Steven Miller, Ph.D., &lt;a href="http://neurosciencedc.blogspot.jp/2013/10/the-best-time-for-your-coffee.html"&gt;The Best Time for Your Coffee&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Now, Dr Miller is a scientist, and he cites his sources, and he’s clear about what he’s saying and not saying. Check out the comments on his article; he defends against a few hostile readers.&lt;/p&gt;
-&lt;p&gt;But where did he get his data? That’s from a study in 2009, the sciency-named &lt;a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2684472/"&gt;Modified-Release Hydrocortisone to Provide Circadian Cortisol Profiles&lt;/a&gt;. This article, which has 80% words I don’t understand, includes this graphic showing natural cortisol levels.&lt;/p&gt;
+&lt;p&gt;But where did he get his data? That’s from a study in 2009, the sciency-named &lt;a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2684472/"&gt;Modified-Release Hydrocortisone to Provide Circadian Cortisol Profiles&lt;/a&gt;. This article, which has 80% words I don’t understand, includes this graphic showing natural peak cortisol levels.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/joe_developer-_when_(not)_to_drink_coffee/images/ScreenCap_2019-06-10_15-21-37.png" alt="" /&gt;&lt;/p&gt;
 &lt;h1 id="whats-what"&gt;What’s What?&lt;/h1&gt;
 &lt;p&gt;Dr Miller doesn’t point to a specific study proving that people should drink coffee at a particular time. He states his opinion based on the research. I liked his interesting pharmacological approach (emphases are mine).&lt;/p&gt;
@@ -38,12 +80,11 @@
 &lt;h1 id="personal-results"&gt;Personal Results&lt;/h1&gt;
 &lt;p&gt;I've had some trouble in the past getting good, consistent sleep. I can’t blame it all on how I’ve been drinking coffee, but here's my current, typical morning.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Stretch/exercise for about 20 minutes first thing in the morning. This wakes me up &lt;em&gt;way&lt;/em&gt; better than coffee.&lt;/li&gt;
-&lt;li&gt;Coffee at about 9:30, and again at about 2pm.&lt;/li&gt;
+&lt;li&gt;Stretch/exercise for about 20 minutes first thing in the morning (7am). This wakes me up &lt;em&gt;way&lt;/em&gt; better than coffee.&lt;/li&gt;
+&lt;li&gt;Three or four cups of coffee starting about 9:30 (ending before 11:30), and another cup at about 2pm.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;What has changed since adopting this routine is I don't feel I &lt;em&gt;need&lt;/em&gt; coffee first thing in the morning to wake up. And that's because, &lt;em&gt;&lt;strong&gt;I don't&lt;/strong&gt;&lt;/em&gt;! If I miss some coffee, it doesn't throw my whole sleeping pattern out of whack, either.&lt;/p&gt;
-&lt;p&gt;One last note: I don't know how long it takes cortisol production to normalize if you change when you drink coffee. It's probably a couple of weeks, at least. I'm basing that on how long the weaning-off period is for budesonide, which reduces cortisol production.&lt;/p&gt;
-&lt;h1 id="references"&gt;References&lt;/h1&gt;
+&lt;h1 id="other-references"&gt;Other References&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.forbes.com/sites/anthonykosner/2014/01/05/why-the-best-time-to-drink-coffee-is-not-first-thing-in-the-morning/#f3c6a327a717"&gt;Why The Best Time To Drink Coffee Is Not First Thing In The Morning&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://time.com/3903826/coffee-early-morning-worst-time/"&gt;Coffee: Drinking in the Morning is not the Best Time | Time&lt;/a&gt;&lt;/li&gt;
@@ -1087,59 +1128,6 @@ Not ups and downs, but always going down. This triggers a negative loop.&lt;/p&g
       <pubDate>Mon, 20 May 2019 10:23:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_</guid>
-    </item>
-    <item>
-      <title>"Yes or No?" -- A Classic and Effective Book For Decision-Making</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making/images/yes-or-no-logo.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;In 1991, when I was working for Waldenbooks, we received an advanced reading copy of Dr Spencer Johnson's &lt;a href="https://www.amazon.com/Yes-No-Guide-Better-Decisions/dp/0887306314/ref=sr_1_1?keywords=yes+or+no+johnson&amp;amp;qid=1558146718&amp;amp;s=gateway&amp;amp;sr=8-1"&gt;&amp;quot;Yes&amp;quot; or &amp;quot;No&amp;quot;: The Guide to Better Decisions&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It became a treasured item for two reasons. One, I found it a terrifically practical decision-making method. Two, the advanced version was, in my opinion, &lt;em&gt;better&lt;/em&gt; than the published version. I'll explain the difference later, but first, about the book.&lt;/p&gt;
-&lt;p&gt;Like others Dr Johnson authored or co-authored (&lt;em&gt;The One-Minute Manager&lt;/em&gt;, &lt;em&gt;Who Moved My Cheese?&lt;/em&gt;), the book is written in story/fable style. This was kind of the rage at the time, and in the wrong hands can be annoying. But in the case of &lt;em&gt;Yes or No&lt;/em&gt;, I never felt condescended to. It was clear that each page, each paragraph, was carefully thought out.&lt;/p&gt;
-&lt;p&gt;The book is about a hundred pages long, with larger type, and will take you only about an hour to read. It could be one of the most valuable hours of your life.&lt;/p&gt;
-&lt;p&gt;Here's a summary of the system, which literally fits on a credit-sized card. The questions are so clearly designed that they don't really need explanation--but read the book anyway!&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Make a tentative decision&lt;/li&gt;
-&lt;li&gt;Ask Three Practical Questions
-&lt;ol&gt;
-&lt;li&gt;Am I pursuing the real need?&lt;/li&gt;
-&lt;li&gt;Am I informed of my options?&lt;/li&gt;
-&lt;li&gt;Have I thought this through to a better result?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;Ask Three Private Questions
-&lt;ol&gt;
-&lt;li&gt;Am I really telling myself the truth?&lt;/li&gt;
-&lt;li&gt;Does this decision really feel right to me?&lt;/li&gt;
-&lt;li&gt;Do my actions show I believe I deserve better?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;If all six answers are Yes, proceed. If any answer is No, rethink the decision.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The first three questions are &amp;quot;head&amp;quot; questions. They gather and analyze information. The second three questions are &amp;quot;heart&amp;quot; questions. They make you check in with your conscience and look &lt;em&gt;backward from your future self&lt;/em&gt; as if the tentative decision had already been made.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The first several times I applied the system it took awhile. But in time I started integrating the questions. I haven't gone strictly through the system in years, but I know I'm still influenced by it.&lt;/p&gt;
-&lt;p&gt;Here are some of the lessons in the book.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;My poor decisions are based on illusions I believe. My better decisions on realities I recognize.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;I stop a poor decision to make a better decision&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;I use my head to ask probing questions, and my heart to find better answers.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;My decisions reveal my beliefs about my integrity, my intuition, and myself.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Once I see the truth, I make a better decision&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;My feelings often forecast my results.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;I get results I really believe I deserve.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;We are each our own guide to better decisions, and we can help others discover this for themselves.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;What change did Johnson make in the final version, and why don't I like it? Here's the exact statement printed in the front matter.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making/images/front-matter.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;While I understand the impetus to streamline, I really think breaking down the questions leads to better answers. It forces the person to think about &lt;em&gt;each one&lt;/em&gt;, adding time and care.&lt;/p&gt;
-&lt;p&gt;The book has a handy wallet card, which I carried for years before it fell apart. Below is the original, followed by the published version. You can decide for yourself which you like!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Oh, and a final little story. My original copy of &lt;em&gt;Yes or No&lt;/em&gt; accidentally got wet, moldy, ucky. I finally let it go several months ago. Then, a week ago, I realized I wanted to reread the book and write a summary. My wife got me a copy through &lt;a href="http://www.paperbackswap.com/index.php"&gt;Paperback Swap&lt;/a&gt;. Imagine my surprise and great delight when what arrived in the mail was the advanced reading copy! That was a good decision.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making/images/yes-or-no-wallet-orig-1-sm.jpg" alt="" /&gt; &lt;img src="https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making/images/yes-or-no-wallet-orig-2-sm.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making/images/yes-or-no-wallet-pub-1.png" alt="" /&gt; &lt;img src="https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making/images/yes-or-no-wallet-pub-2.png" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Fri, 17 May 2019 22:24:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/yes_or_no_a_classic_and_effective_book_for_decision_making</guid>
     </item>
   </channel>
 </rss>
