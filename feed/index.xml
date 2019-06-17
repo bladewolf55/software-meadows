@@ -16,12 +16,12 @@
 &lt;ul&gt;
 &lt;li&gt;These are self-defence principles, and apply to potentially dangerous situations. &lt;strong&gt;But note how they also apply to coding!&lt;/strong&gt;
 &lt;ul&gt;
-&lt;li&gt;Avoidance is the most important thing you can practice. (testing)&lt;/li&gt;
-&lt;li&gt;Deescalation is the next most important. (find bugs fast)&lt;/li&gt;
-&lt;li&gt;Where are your exits? (version control)&lt;/li&gt;
-&lt;li&gt;IF there's a fight, what are your three or four &amp;quot;go to techniques you practice all the time&amp;quot;? (logging, alerts)&lt;/li&gt;
-&lt;li&gt;Regularly simulate and practice stress situations in class. (disaster testing)&lt;/li&gt;
-&lt;li&gt;Learn from people who've experienced it. (involve users)&lt;/li&gt;
+&lt;li&gt;Avoidance is the most important thing you can practice. (&lt;strong&gt;testing&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Deescalation is the next most important. (&lt;strong&gt;find bugs fast&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Where are your exits? (&lt;strong&gt;version control&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;IF there's a fight, what are your three or four &amp;quot;go to techniques you practice all the time&amp;quot;? (&lt;strong&gt;logging, alerts&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Regularly simulate and practice stress situations in class. (&lt;strong&gt;disaster testing&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Learn from people who've experienced it. (&lt;strong&gt;involve users&lt;/strong&gt;)&lt;/li&gt;
 &lt;li&gt;What's the legal impact?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
