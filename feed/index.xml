@@ -17,9 +17,9 @@
 &lt;li&gt;These are self-defence principles, and apply to potentially dangerous situations. &lt;strong&gt;But note how they also apply to coding!&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;Avoidance is the most important thing you can practice. (&lt;strong&gt;testing&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;Deescalation is the next most important. (&lt;strong&gt;find bugs fast&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Deescalation is the next most important. (&lt;strong&gt;find/fix bugs fast&lt;/strong&gt;)&lt;/li&gt;
 &lt;li&gt;Where are your exits? (&lt;strong&gt;version control&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;IF there's a fight, what are your three or four &amp;quot;go to techniques you practice all the time&amp;quot;? (&lt;strong&gt;logging, alerts&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;IF there's a fight, what are your three or four &amp;quot;go to techniques you practice all the time&amp;quot;? (&lt;strong&gt;logging, alerts, debugging&lt;/strong&gt;)&lt;/li&gt;
 &lt;li&gt;Regularly simulate and practice stress situations in class. (&lt;strong&gt;disaster testing&lt;/strong&gt;)&lt;/li&gt;
 &lt;li&gt;Learn from people who've experienced it. (&lt;strong&gt;involve users&lt;/strong&gt;)&lt;/li&gt;
 &lt;li&gt;What's the legal impact?&lt;/li&gt;
@@ -57,13 +57,13 @@
 &lt;li&gt;Generalists are better at new situations because they can synthesize and apply previous experience.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href="https://spec.fm/podcasts/developer-tea/299506"&gt;Developer Tea - Mental Models w/Gabriel Weinberg Part 1&lt;/a&gt;&lt;br /&gt;
-&lt;a href="https://spec.fm/podcasts/developer-tea/299507"&gt;Developer Tea - Mental Models w/ Gabriel Weinberg Part 2&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://spec.fm/podcasts/developer-tea/299507"&gt;Developer Tea - Mental Models w/Gabriel Weinberg Part 2&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Book of 300 mental models, i.e. &amp;quot;fancy word for concepts&amp;quot;&lt;/li&gt;
 &lt;li&gt;Models Weinberg thinks managers/developers often miss:
 &lt;ul&gt;
 &lt;li&gt;Opportunity Costs: &amp;quot;The cost of what you're working on is what you're not working on.&amp;quot;&lt;/li&gt;
-&lt;li&gt;Forcing Function: &amp;quot;Scheduled processe to force everyone to think critically.&amp;quot;&lt;/li&gt;
+&lt;li&gt;Forcing Function: &amp;quot;Scheduled process to force everyone to think critically.&amp;quot;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;Find root cause using the Five Whys Model, asking &amp;quot;why?&amp;quot; until getting to the root&lt;/li&gt;
