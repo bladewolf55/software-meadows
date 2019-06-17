@@ -6,6 +6,187 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Flatt's Posts/Casts Review #003 - Incentives, Emotions, Diversity, and Applying Bodyguard Training to Coding</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/20190616-1610 flatts_posts-casts_review_003/../images/reviews-logo.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2019-05-23 to 2019-06-16&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I'm still in the discovery period for how to present my summaries of the articles and podcasts I read over a period of time. While I'm hoping the information is useful to others, it's primarily for me to A) continue learning, and B) look for essential patters in the material.&lt;/p&gt;
+&lt;p&gt;This week I'm going to present what I think are the top-level ideas across &lt;em&gt;all&lt;/em&gt; the material, and the top one or two ideas for each episode. This should make the information easier to digest.&lt;/p&gt;
+&lt;p&gt;But, since I highlighted it in the title, here's the link and notes on the Bodyguard podcast and how I'd apply them to development.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.artofmanliness.com/articles/podcast-513-be-your-own-bodyguard/"&gt;Art of Manliness #513 Be Your Own Bodyguard&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;These are self-defence principles, and apply to potentially dangerous situations. &lt;strong&gt;But note how they also apply to coding!&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Avoidance is the most important thing you can practice. (testing)&lt;/li&gt;
+&lt;li&gt;Deescalation is the next most important. (find bugs fast)&lt;/li&gt;
+&lt;li&gt;Where are your exits? (version control)&lt;/li&gt;
+&lt;li&gt;IF there's a fight, what are your three or four &amp;quot;go to techniques you practice all the time&amp;quot;? (logging, alerts)&lt;/li&gt;
+&lt;li&gt;Regularly simulate and practice stress situations in class. (disaster testing)&lt;/li&gt;
+&lt;li&gt;Learn from people who've experienced it. (involve users)&lt;/li&gt;
+&lt;li&gt;What's the legal impact?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="essential-learnings"&gt;Essential Learnings&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Align incentives&lt;/li&gt;
+&lt;li&gt;Emotions drive our decisions&lt;/li&gt;
+&lt;li&gt;Study multiple subjects (generalize) and apply to your specialty&lt;/li&gt;
+&lt;li&gt;Diversity is highly beneficial&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="podcasts"&gt;Podcasts&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.leadingagile.com/podcast/what-is-a-well-formed-backlog/"&gt;Leading Agile - What is a Well-Formed Backlog? w/ Jeff Howey&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Creating clear characteristics of a well-formed backlog is valuable&lt;/li&gt;
+&lt;li&gt;Keep the criteria simple and short as possible&lt;/li&gt;
+&lt;li&gt;Define the terms and make sure everyone understands them. (Publish)&lt;/li&gt;
+&lt;li&gt;Howey's characterstics: Clearly Prioritized, Linked to What's Important, Shared Understanding, Identify Dependencies, Clear Acceptance Criteria, Clear Definitions of &amp;quot;Done&amp;quot; &amp;quot;Ready&amp;quot;, Good Enough to Start a Conversation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://www.artofmanliness.com/articles/psychology-of-investing/"&gt;Art of Manliness #511: Mastering the Psychology of Investing&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We think bad things happening are dramatically less likely than good things.&lt;/li&gt;
+&lt;li&gt;&amp;quot;The more complex and dynamic a system is, the more simple your solution needs to be.&amp;quot;&lt;/li&gt;
+&lt;li&gt;&amp;quot;There's a weak correlation between knowing the right thing to do and actually doing it.&amp;quot;&lt;/li&gt;
+&lt;li&gt;Our decisions are strongly influenced by our bodies and emotions. Don't code upset!&lt;/li&gt;
+&lt;li&gt;Humans are terrible at probability. They tend to reason in group terms, and conform to the group.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://www.artofmanliness.com/articles/generalist-specialist-david-epstein-interview/"&gt;Art of Manliness #512: Why Generalists Triumph in a Specialized World&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tiger Woods specialized. Roger Federer generalized until his twenties when he settled on tennis.&lt;/li&gt;
+&lt;li&gt;The &amp;quot;ten thousand hours to become an expert&amp;quot; research examined specific fields that, it turns out, yield well to early specializing.&lt;/li&gt;
+&lt;li&gt;Most of the time kids are better off delaying specialization.&lt;/li&gt;
+&lt;li&gt;Generalists are better at new situations because they can synthesize and apply previous experience.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://spec.fm/podcasts/developer-tea/299506"&gt;Developer Tea - Mental Models w/Gabriel Weinberg Part 1&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://spec.fm/podcasts/developer-tea/299507"&gt;Developer Tea - Mental Models w/ Gabriel Weinberg Part 2&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Book of 300 mental models, i.e. &amp;quot;fancy word for concepts&amp;quot;&lt;/li&gt;
+&lt;li&gt;Models Weinberg thinks managers/developers often miss:
+&lt;ul&gt;
+&lt;li&gt;Opportunity Costs: &amp;quot;The cost of what you're working on is what you're not working on.&amp;quot;&lt;/li&gt;
+&lt;li&gt;Forcing Function: &amp;quot;Scheduled processe to force everyone to think critically.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Find root cause using the Five Whys Model, asking &amp;quot;why?&amp;quot; until getting to the root&lt;/li&gt;
+&lt;li&gt;&amp;quot;I want to do this thing not because it's imporant, but because it's more important that all these other things.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://spec.fm/podcasts/developer-tea/299950"&gt;Developer Tea - 3 Assumptions That Can Hurt Your Job Search&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;When you get turned down that means you are incapable of doing that job.&lt;/li&gt;
+&lt;li&gt;Someone is going to read your whole resume.&lt;/li&gt;
+&lt;li&gt;Applications to jobs are how people get jobs.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;quot;Imagine you're trying to find a job without job boards being available. What else can you do to find a job?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://spec.fm/podcasts/developer-tea/299948"&gt;Developer Tea - Aligning Incentives w/ Lambda School CTO - Ben Nelson (part 1)&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://spec.fm/podcasts/developer-tea/299949"&gt;Developer Tea - Aligning Incentives w/ Lambda School CTO - Ben Nelson (part 2)&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lambda School doesn't charge tuition for its education, and only makes money when its graduates get a job.&lt;/li&gt;
+&lt;li&gt;Very high bar for getting in. They're looking for grit.&lt;/li&gt;
+&lt;li&gt;Incentive Alignment. Both sides are working toward the same goal, and only succeed if the goal is achieved.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://hanselminutes.com/687/how-to-build-an-inclusive-conference-with-saron-yitbarek"&gt;Hanselminutes: How to build an inclusive conference with Saron Yitbarek&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://codelandconf.com/"&gt;Codeland Conference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Yitbarek's goal in the conference is to celebrate coding, not the tools, and to be the most inclusive conference.&lt;/li&gt;
+&lt;li&gt;She mentions a study of people who do/don't finish computer science degrees. Those who do have a higher threshold for confusion.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://gimletmedia.com/shows/science-vs/awhklj"&gt;Science Vs. - How Bad Science Killed A President&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Garfield died two and a half months after being shot&lt;/li&gt;
+&lt;li&gt;Among those who tried to help were Alexander Graham Bell with a new invention: a metal detector!&lt;/li&gt;
+&lt;li&gt;Despite Joseph Lister lecturing about bacteria and how to kill them for five years, doctors still don't believe it.&lt;/li&gt;
+&lt;li&gt;So, basically, the doctors are digging around in Garfield's body with grubby hands, causing infection.&lt;/li&gt;
+&lt;li&gt;Nine years later, partly due to Garfield's death, doctors believe in germs and are sterilizing everything.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://www.growthmindsetpodcast.com/blog/2019/scott-brinker"&gt;Growth Mindset #59 - The World of Martech - Scott Brinker&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;One interesting comment was that Brinker thought marketers had an easier time experimenting--such as using A-B testing--that developers. (He was talking about the idea of Agile Marketing.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://spec.fm/podcasts/developer-tea/300682"&gt;Developer Tea - Test Driven Meetings - Measuring Outputs and Side Effects&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Look at a meeting as if it's made up of methods. A one-on-one meeting might have a &amp;quot;feedback function,&amp;quot; which is a unit test idea. So look at the inputs and outputs.&lt;/li&gt;
+&lt;li&gt;But we also want to look at meetings as integration tests. What are the side effects, both positive and negative?&lt;/li&gt;
+&lt;li&gt;Here's what Jonathan suggests in trying to apply the idea
+&lt;ol&gt;
+&lt;li&gt;Before the meeting, write down the outputs and the side effects that you desire from the meeting.&lt;/li&gt;
+&lt;li&gt;Announce the outcome(s) and side effect(s) at the top of meeting so everyone is oriented toward them.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://www.artofmanliness.com/articles/aristotle-living-the-good-life/"&gt;Art of Manliness #515 - Aristotle's Wisdom on Living the Good Life&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://edithhall.co.uk/"&gt;Edith Hall&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/0735220808/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=0735220808&amp;amp;linkCode=as2&amp;amp;tag=stucosuccess&amp;amp;linkId=FSXA3GZUT5SFDAZ4"&gt;Aristotle’s Way: How Ancient Wisdom Can Change Your Life&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Aristotle wanted people to find their telos (purpose). Hall thinks today's education reduces the variety of exposure kids get to things like the arts, reducing their ability to find their telos.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://spec.fm/podcasts/developer-tea/300990"&gt;Developer Tea - How Can Two Rational People Disagree?&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Given the same data, the frame parameters are different.&lt;/li&gt;
+&lt;li&gt;Example: Choosing between a bug or feature. Developer says feature because his frame is long-term. Manager says bug because his frame is short-term. Both are rationally good choices given the data.&lt;/li&gt;
+&lt;li&gt;Often, in conflict, desires and incentives are the same.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://www.growthmindsetpodcast.com/blog/2019/niall-mccann"&gt;Growth Mindset - Doing the Difficult Thing - Dr Niall McCann&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Inspiring and humbling. The guy's amazing.&lt;/li&gt;
+&lt;li&gt;Find out what motivates those who can help you attain your goal, AND&lt;/li&gt;
+&lt;li&gt;Align their incentives to yours.&lt;/li&gt;
+&lt;li&gt;Do what you're doing first because you enjoy it. But also show how success has layers of benefits. Example: McCann's organization protecting a swathe of land not only prevented mass killing of elephants, but also raised local employment, the success increased donorship, and tourism increased because the animals were there to be seen.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You're not really a conservationist unless you've &lt;em&gt;conserved&lt;/em&gt; something.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.artofmanliness.com/articles/podcast-516-how-to-lead-an-unstoppable-team/"&gt;Art of Manliness #516 - How to Lead an Unstoppable Team&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://alden-mills.com/"&gt;Alden Mills&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/gp/product/0062876155/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=0062876155&amp;amp;linkCode=as2&amp;amp;tag=stucosuccess&amp;amp;linkId=FSXA3GZUT5SFDAZ4"&gt;Unstoppable Teams&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Mills is fantastically clear&lt;/li&gt;
+&lt;li&gt;You have to lead yourself first before you can lead others.&lt;/li&gt;
+&lt;li&gt;Building a team means building relationships, which involves feelings.&lt;/li&gt;
+&lt;li&gt;The CARE Loop
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Connect&lt;/strong&gt; The real goal in connecting is to build trust.&lt;br /&gt;
+Three tools: communication, commitment, credibility.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Achieve&lt;/strong&gt; Set direction.&lt;br /&gt;
+Five A's: Aspiring (which he's using like &amp;quot;inspiring&amp;quot;), Assume they can do the job, Assess what they're doing, Appreciate their efforts internally and externally, and ????&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Respect&lt;/strong&gt; Goal of respect is contribution, and requires mutual respect. To get everyone contributing their ideas, skills, etc.&lt;br /&gt;
+Want people to be willing to say &amp;quot;I made a mistake,&amp;quot; then answer three questions: what happened, what I was trying to achieve, what I'm going to do about it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Empower&lt;/strong&gt; Getting people to think like owners.&lt;br /&gt;
+Three Es: Educating, Enabling, Engaging&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://gimletmedia.com/shows/science-vs/brh824"&gt;Sciene Vs. - SHARKS!!!&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Top speed of Great Whites, in just a couple of tail flicks, from 1mph to 25mph.&lt;/li&gt;
+&lt;li&gt;Sharks &lt;em&gt;cannot&lt;/em&gt; smell blood in an Olympic-size swimming pool. They smell as well as other fish.&lt;/li&gt;
+&lt;li&gt;From 2010-2012, more people died from TVs tipping over onto them (51) than from shark attacks (3). 124 shark bites.&lt;/li&gt;
+&lt;li&gt;There's no such thing as a rogue shark (like &lt;em&gt;Jaws&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;One quarter of shark species are threatened with extinction...including the Great White.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://dotnetcore.show/episode-27-blazroed-with-chris-sainty/"&gt;.NET Core Podcast #27 - Blazored with Chris Sainty&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://chrissainty.com/"&gt;Chris Sainty - Building with Blazor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/Blazored"&gt;Blazored&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;quot;What's so great about Blazor?&amp;quot;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ability to write truly full stack applications using just C#&lt;/li&gt;
+&lt;li&gt;Opens up using NuGet instead of waiting for a new javascript framework's ecosystem to build up.&lt;/li&gt;
+&lt;li&gt;On security of running a C# dll in the browser, Chris points out WebAssembly runs in the same sandbox as javascript. So, no more or less secure than javascript.&lt;/li&gt;
+&lt;li&gt;But, it's still in early development. Not ready for general production use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Whenever we take on a dependency into our applications, if you're taking on someone else's code, you're always taking on a level of risk, and it's up to you to assess that level and go from there.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+      <pubDate>Sun, 16 Jun 2019 16:13:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/20190616-1610 flatts_posts-casts_review_003</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/20190616-1610 flatts_posts-casts_review_003</guid>
+    </item>
+    <item>
       <title>Weekly Sugar: Applying Kanban Principles to Your Personal Task List</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list/images/vertical-task-list.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Many of us use Kanban boards (or you might be calling them Scrum boards) on work projects. And, we might use &lt;a href="https://trello.com/"&gt;Trello&lt;/a&gt; for some home projects. But most people probably &lt;em&gt;aren't&lt;/em&gt; using them for their daily task lists.&lt;/p&gt;
@@ -1110,24 +1291,6 @@ Not ups and downs, but always going down. This triggers a negative loop.&lt;/p&g
       <pubDate>Mon, 20 May 2019 14:49:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/flatts_post-cast_reviews_001_-_job_search_burnout_blazor_net_core_configuration</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/flatts_post-cast_reviews_001_-_job_search_burnout_blazor_net_core_configuration</guid>
-    </item>
-    <item>
-      <title>Weekly Sugar: When is Music a Distraction?</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_/images/fading-notes.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Developers often listen to music while programming. But, like teenagers who rock out when trying to do math homework, are we doing ourselves a favor?&lt;/p&gt;
-&lt;p&gt;The research so far shows that listening to music during &lt;em&gt;repetitive work&lt;/em&gt; can boost productivity. Fine if we're creating lots of classes that follow a pattern.&lt;/p&gt;
-&lt;p&gt;But what about &lt;em&gt;creative or demanding cognitive work&lt;/em&gt; such as intensive debugging, having to hold a dozen dependencies in mind at once for thirty minutes? Then, music can be a serious distraction. Often, the best solution at those moments is to turn off the music, or use ambient/white noise to mask office sounds.&lt;/p&gt;
-&lt;p&gt;Developers spend lots of time in demanding mental activity. Find music that doesn't distract you, and be mindful if it is. Change your music to change your mind.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.theatlantic.com/science/archive/2016/12/the-best-music-for-productivity-silence/509948/"&gt;The Best Music for Productivity? Silence - The Atlantic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.sciencealert.com/the-best-music-to-listen-to-for-optimal-productivity-according-to-science"&gt;The Best Music to Listen to For Optimal Productivity, According to Science&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://spoonuniversity.com/healthier/6-scientifically-proven-songs-to-improve-your-focus"&gt;6 Songs That Have Been Scientifically Proven to Improve Focus&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Mon, 20 May 2019 10:23:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_</guid>
     </item>
   </channel>
 </rss>
