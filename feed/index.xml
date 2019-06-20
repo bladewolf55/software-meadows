@@ -26,8 +26,8 @@
 &lt;h1 id="common-mistakes"&gt;3 Common Mistakes&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Right:  Unit testing has &lt;span style="background-color: yellow;"&gt;its&lt;/span&gt; benefits.&lt;/strong&gt;&lt;br /&gt;
 Wrong:  Unit testing has &lt;span style="background-color: yellow;"&gt;it's&lt;/span&gt; benefits.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Right:  &lt;span style="background-color: yellow;"&gt;Carol's&lt;/span&gt; code is clean. Her code's style is precise.&lt;/strong&gt;&lt;br /&gt;
-Wrong:  &lt;span style="background-color: yellow;"&gt;Carols&lt;/span&gt; code is clean. Her codes style is precise.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Right:  &lt;span style="background-color: yellow;"&gt;Carol's&lt;/span&gt; code is clean. Her &lt;span style="background-color: yellow;"&gt;code's&lt;/span&gt; style is precise.&lt;/strong&gt;&lt;br /&gt;
+Wrong:  &lt;span style="background-color: yellow;"&gt;Carols&lt;/span&gt; code is clean. Her &lt;span style="background-color: yellow;"&gt;codes&lt;/span&gt; style is precise.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Right:  He &lt;span style="background-color: yellow;"&gt;runs&lt;/span&gt; that backup every day.&lt;/strong&gt;&lt;br /&gt;
 Wrong: He &lt;span style="background-color: yellow;"&gt;run's&lt;/span&gt; that backup every day.&lt;/p&gt;
 &lt;h1 id="terms"&gt;Terms&lt;/h1&gt;
