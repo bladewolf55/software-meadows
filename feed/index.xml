@@ -6,6 +6,43 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Grammar for Developers - Apostrophes: 3 Simple Rules, 3 Common Mistakes</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes/images/grammar-for-developers-apostrophes.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;It's a truism that (many) developers are not good writers. And it's not just style or composition, it's grammar. This has always puzzled me, since if a programmer makes a grammar mistake (using a backtick instead of an apostrophe, for instance), the program won't run. Maybe the problem is that they don't pay attention to the red squigglies in Word.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Arguably the worst error I see is wrongly using an apostrophe when &amp;quot;its&amp;quot; is possessive. Here's a  sentence to illustrate. Every apostrophe is correct.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Harvey's car's in the shop to have its radiator fixed before it's blown to bits.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Expand the contractions and the differences between possessives and contractions are clear. &lt;code&gt;Harvey's car is in the shop to have its radiator fixed before it is blown to bits.&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here are three rules that, if followed, would take care of about 70% of the most grievous errors I see in blog posts, emails, business proposals, and technical documentation.&lt;/p&gt;
+&lt;p&gt;I even made a fancy PDF.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes/Grammar-for-Developers-Apostrophes.pdf"&gt;Grammar for Developers - Apostrophes&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="simple-rules"&gt;3 Simple Rules&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Never make a pronoun possessive using an apostrophe&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Always make a noun possessive using an apostrophe&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Never use an apostrophe with a verb&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="common-mistakes"&gt;3 Common Mistakes&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Right:  Unit testing has &lt;span style="background-color: yellow;"&gt;its&lt;/span&gt; benefits.&lt;/strong&gt;&lt;br /&gt;
+Wrong:  Unit testing has &lt;span style="background-color: yellow;"&gt;it's&lt;/span&gt; benefits.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Right:  &lt;span style="background-color: yellow;"&gt;Carol's&lt;/span&gt; code is clean. Her code's style is precise.&lt;/strong&gt;&lt;br /&gt;
+Wrong:  &lt;span style="background-color: yellow;"&gt;Carols&lt;/span&gt; code is clean. Her codes style is precise.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Right:  He &lt;span style="background-color: yellow;"&gt;runs&lt;/span&gt; that backup every day.&lt;/strong&gt;&lt;br /&gt;
+Wrong: He &lt;span style="background-color: yellow;"&gt;run's&lt;/span&gt; that backup every day.&lt;/p&gt;
+&lt;h1 id="terms"&gt;Terms&lt;/h1&gt;
+&lt;p&gt;A &lt;strong&gt;noun&lt;/strong&gt; is a specific person, place, thing or idea:
+Carol, France, house, radish, memory, Chipotle.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;pronoun&lt;/strong&gt; is a generic, non-specific person or thing.
+These are the common pronouns: it, he, she, her, them, they.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;verb&lt;/strong&gt; is an action taken by the subject.
+He &lt;em&gt;codes&lt;/em&gt;. She &lt;em&gt;tests&lt;/em&gt;. They &lt;em&gt;demonstrate&lt;/em&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 20 Jun 2019 11:07:30 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes</guid>
+    </item>
+    <item>
       <title>Weekly Sugar: 'Accelerate', the Best Book About DevOps</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/devops/accelerate_notes_and_quotes/accelerate-header.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;I run a Meetup called &lt;em&gt;&lt;a href="https://www.meetup.com/Coffee-Quiet-Code/"&gt;Coffee. Quiet. Code.&lt;/a&gt;&lt;/em&gt; I want to encourage developers to work together in the same casual space without having to discuss anything or even interact much. It could be seen as a far less rigid version of Mycroft Holmes' &lt;a href="https://en.wikipedia.org/wiki/Diogenes_Club"&gt;&amp;quot;Dionysus Club&amp;quot;&lt;/a&gt;, a way to enjoy shared community.&lt;/p&gt;
@@ -795,157 +832,6 @@ Hampton Sides wrote a book on and discusses the events surrounding the Battle of
       <pubDate>Sun, 26 May 2019 14:14:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/flatts_posts-casts_review_002_-_real_problems__strengths__korean_war</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/flatts_posts-casts_review_002_-_real_problems__strengths__korean_war</guid>
-    </item>
-    <item>
-      <title>The 50-10 Time Box - Revising Pomodoro for Software Development</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost/images/time-box.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;This is a slightly edited repost of an article I wrote last year. I think it's valuable enough to promote the technique again, along with the supporting science.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;Many of us have trouble with three aspects of programming:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The cost of interruptions&lt;/li&gt;
-&lt;li&gt;Methods for staying on task&lt;/li&gt;
-&lt;li&gt;The benefits of taking breaks&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Each of these has studies behind it (see References), as well as anecdotal information. The simple question I wanted to answer is:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;What's an effective work-break cycle for programming?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The three most common cycles I know of are:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Pomodoro - 25 minutes work, 5 minutes break&lt;/li&gt;
-&lt;li&gt;52/17 - 52 minutes work, 17 minutes break&lt;/li&gt;
-&lt;li&gt;90/? - 90 minutes work, then a break&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id="pomodoro"&gt;Pomodoro&lt;/h1&gt;
-&lt;p&gt;The Pomodoro Technique is popular, and, besides the work-break cycle, has these suggestions:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Plan the tasks&lt;/li&gt;
-&lt;li&gt;Check off completed tasks&lt;/li&gt;
-&lt;li&gt;Record interruptions so you can return to them outside the work interval&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The problem is, Pomodoro, to my knowledge, hasn't been studied scientifically. When I used it for non-programming tasks, I could see the benefit. The more I tried using it for programming, the less effective I found it.&lt;/p&gt;
-&lt;h1 id="the-task-recovery-lag"&gt;The Task Recovery Lag&lt;/h1&gt;
-&lt;p&gt;Numerous studies show there's a recovery lag when resuming an interrupted task. For software developers, it takes about fifteen minutes to recover the previous context--to &amp;quot;get back to where I was.&amp;quot; The worst time to be interrupted is when there's the highest mental workload. (Like when I'm in the middle of debugging a method having spent twenty minutes understanding how it relates to five other modules.)&lt;/p&gt;
-&lt;p&gt;I think it's a mistake, though, to think only in terms of interruptions. A programmer &lt;em&gt;always&lt;/em&gt; ramps up when starting (or restarting) a coding session. In other words, we should plan on the first fifteen minutes being devoted to recovering context.&lt;/p&gt;
-&lt;h1 id="breaks"&gt;Breaks&lt;/h1&gt;
-&lt;p&gt;I've worked for hours straight, and thought I was being productive. Maybe sometimes I was. But the research shows that regular breaks improve productivity, because the brain needs that time to recover from fatigue.&lt;/p&gt;
-&lt;h1 id="the-friction"&gt;The Friction&lt;/h1&gt;
-&lt;p&gt;So, where does that leave us regarding Pomodoro?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;It takes a programmer at least fifteen minutes to &amp;quot;ramp up&amp;quot;&lt;/li&gt;
-&lt;li&gt;A Pomodoro work period is twenty-five minutes&lt;/li&gt;
-&lt;li&gt;That leaves &lt;em&gt;ten minutes or less of effective work time&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Well, no wonder Pomodoro wasn't working out!&lt;/p&gt;
-&lt;p&gt;I have tried the 52/17 cycle. I found the seventeen minute break too long. I read an article where office workers tried it themselves, and it was pretty challenging. I suspect that the original study wasn't looking at programmers....&lt;/p&gt;
-&lt;p&gt;There are benefits to Pomodoro. The task planning and completion help a lot with emotionally attaching to success, and with chunking down larger items.&lt;/p&gt;
-&lt;h1 id="proposal-the-50-10-time-box"&gt;Proposal - The 50-10 Time Box&lt;/h1&gt;
-&lt;p&gt;I've been trying this for over a year now, and it's working well for me. So, maybe it will work for you, too. Basically, use Pomodoro Technique but with a 50 minute work cycle followed by a ten minute break. This allows for the fifteen minute ramp up, then thirty-five minutes of solid, focused work. I've found that I'm usually ready for a break at the fifty minute mark.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Even if I wasn't &amp;quot;ready&amp;quot; for a break, when I took it I found I needed it.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;I use an online tool named &lt;a href="http://www.marinaratimer.com/"&gt;Marinara Timer&lt;/a&gt; to manage my time boxes. It has a Custom timer where I configured my cycles.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost/images/2018-04-21%2009_04_45.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;What do I like about this approach?&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;It aligns on the hour, making it easy to understand.&lt;/li&gt;
-&lt;li&gt;I get enough context recovery time.&lt;/li&gt;
-&lt;li&gt;Four cycles gets me to lunch, the remaing four finish my day.&lt;/li&gt;
-&lt;li&gt;A ten minute break is enough to take a walk, catch up on email, even have a short conversation. It's an effective coding break.&lt;/li&gt;
-&lt;li&gt;That break has often helped me solve a thorny problem.&lt;/li&gt;
-&lt;li&gt;Improves my task estimates.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;A complete work session looks like this. I use a Markdown document to track my work sessions, distractions and notes, but paper and pen (or pencil!) would work as well or better.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1. Plan my tasks.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;# Distractions
-
-# Round 1
-- [ ] Validation rules
-- [ ] Unit tests
-
-# Round 2
-- [ ] Review code, make sure setting values correctly
-- [ ] Improve queries based on understanding of rules
-
-# Round 3
-- [ ] Design workhorse feature
-
-# Round 4
-- [ ] Begin coding workhorse feature
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;2. Start my timer.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost/images/2018-04-21%2009_17_06.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;3. Work deliberately, with intense focus. Record distractions.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;It's important to not noodle around during the work time. Manage distractions! This is a hallmark of &lt;a href="https://hbr.org/2007/07/the-making-of-an-expert"&gt;deliberate practice&lt;/a&gt;, and an aspect of &lt;a href="http://whatmeditationreallyis.com/index.php/home-blog/item/470-how-to-meditate-distraction-in-meditation-doesnt-matter.html"&gt;meditation&lt;/a&gt; and mindfulness.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;# Distractions
-- [ ] Email from Luis, not urgent but should get back to him soon.
-- [ ] Birthday gift research for Joanie.
-
-# Round 1
-- [ ] Validation rules
-- [ ] Unit tests
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;4. Check off tasks&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;# Distractions
-- [ ] Email from Luis, not urgent but should get back to him soon.
-- [ ] Birthday gift research for Joanie.
-
-# Round 1
-- [x] Validation rules
-- [ ] Unit tests
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;4. When the work cycle ends (I'm currently enamoured of the Whoosh sound), take a break.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;It can be hard to stop, but do it. And, I recommend walking away from the desk, and/or closing your work windows, so you don't get sucked back into the task.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;5. Repeat.&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id="conclusion"&gt;Conclusion&lt;/h1&gt;
-&lt;p&gt;I was spurred to write this post because of &lt;a href="https://www.7pace.com/blog/time-blocking-for-developers-how-to-achieve-flow-stop-being-busy-start-being-productive"&gt;this article&lt;/a&gt;. The author, Tyler Hakes, gives several examples from his workday of how he reduces interruptions in his day, and it's worth reading.&lt;/p&gt;
-&lt;p&gt;Below are a bunch of references I read both before and while creating this entry. They include links to the primary research papers that other articles refer to. I've called out some quotes that I found useful.&lt;/p&gt;
-&lt;h1 id="references"&gt;References&lt;/h1&gt;
-&lt;h2 id="articles"&gt;Articles&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.7pace.com/blog/time-blocking-for-developers-how-to-achieve-flow-stop-being-busy-start-being-productive"&gt;Time Blocking for Developers: How to Achieve Flow, Stop Being “Busy”, &amp;amp; Start Being Productive&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;[Programmer Interrupted](Programmer Interrupted) &amp;lt;= A key article by a researcher whose study is often cited&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.fastcompany.com/944128/worker-interrupted-cost-task-switching"&gt;Worker, Interrupted: The Cost of Task Switching&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://lifehacker.com/how-long-it-takes-to-get-back-on-track-after-a-distract-1720708353"&gt;How Long It Takes to Get Back on Track After a Distraction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://daedtech.com/programmers-teach-non-geeks-the-true-cost-of-interruptions/"&gt;Programmers, Teach Non-Geeks The True Cost of Interruptions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.ironistic.com/the-cost-of-distractions-on-developers/"&gt;The Cost of Distractions on Developers!&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.forbes.com/sites/noodleeducation/2016/04/26/the-pomodoro-technique-and-3-more-research-backed-study-tips/#520044465027"&gt;The Pomodoro Technique And 3 More Research-Backed Study Tips&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.themuse.com/advice/the-rule-of-52-and-17-its-random-but-it-ups-your-productivity"&gt;How the Most Productive People Schedule Their Day - The Rule of 52 and 17&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.huffingtonpost.com/tony-schwartz/work-life-balance-the-90_b_578671.html"&gt;The 90-Minute Solution: How Building in Periods of Renewal Can Change Your Work and Your Life&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.huffingtonpost.com/2013/12/19/youve-been-taking-breaks-_n_4453448.html"&gt;ou’ve Been Taking Breaks All Wrong. Here’s How To Do It Right.&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.huffingtonpost.com/kate-bartolotta/5-science-backed-ways-taking-a-break-boosts-our-productivity_b_8548292.html"&gt;5 Science-Backed Ways Taking a Break Boosts Our Productivity&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Pomodoro_Technique"&gt;Pomodoro Technique&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="papers"&gt;Papers&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://chrisparnin.me/pdf/parnin-icpc09.pdf"&gt;Resumption Strategies for Interrupted Programming Tasks&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;When resuming an incomplete programming task, the developer must remember their previous working state and recover knowledge about the software. Details of working state might include recalling plans, intentions, and goals. Details of knowledge might include plan progress, component mechanisms, and domain representations.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.ics.uci.edu/%7Egmark/chi08-mark.pdf"&gt;The Cost of Interrupted Work: More Speed and Stress&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Our data suggests that people compensate for interruptions by working faster, but this comes at a price: experiencing more stress, higher frustration, time pressure and effort.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://erichorvitz.com/CHI_2007_Iqbal_Horvitz.pdf"&gt;Disruption and Recovery of Computing Tasks:  Field Study, Analysis, and Directions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.researchgate.net/publication/220093595_Interrupts_Just_a_Minute_Never_Is"&gt;Just a minute never is&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;DeMarco reports that the recovery time after a phone call is at least 15 minutes.2 Even though we could not measure recovery time exactly, we believe his estimate to be valid. If more than 10 interrupts occur during a day, the time between the interrupts becomes too short to accomplish product development work.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://users.dcc.uchile.cl/%7Errobbes/p/SANER15-fragmentation.pdf"&gt;An Empirical Study of Work Fragmentation in Software Evolution Tasks&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Work fragmentation as result of interruptions usually demands extra effort to recover and resume pending activities: a study of 24 information workers found that a worker needs on average 25 minutes to get back on an interrupted task [5]. Similarly, Iqbal and Horvitz [6] found that people experience disorientation and loss of context when multitasking. Czerwinsky et al. found that after experiencing work fragmentation people found it more difficult to perform interrupted tasks and took longer to complete them [7].&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://interruptions.net/literature/Iqbal-CHI05-p1489-iqbal.pdf"&gt;Investigating the Effectiveness of Mental Workload as a Predictor of Opportune Moments for Interruption&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Wed, 22 May 2019 23:08:12 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost</guid>
     </item>
   </channel>
 </rss>
