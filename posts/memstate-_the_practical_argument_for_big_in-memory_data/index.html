@@ -92,7 +92,7 @@
 <p>Imagine if your order entry system data was running fully in memory. Now, ask--not rehtorically--<em>could it?</em> The answer will very likely be yes.</p>
 <p>What happens if you need to perform maintenance? Surely it would take forever to replay <em>all</em> those millions of commands (transactions).</p>
 <p>Friberg gives an example where a very large dataset could be loaded back into memory in about ten minutes.</p>
-<p>Finally, while most the podcast discussed big data, I wonder about small data. One of the persistence stores for Memstate is--you guessed it--a file. I think this would be a great solution for any app that needs a small database. The state would load fast, the app would run fast, and there wouldn't be any of the overhead of using a database engine.[^sqlite]</p>
+<p>Finally, while most of the podcast discussed big data, I wonder about small data. One of the persistence stores for Memstate is--you guessed it--a file. I think this would be a great solution for any app that needs a small database. The state would load fast, the app would run fast, and there wouldn't be any of the overhead of using a database engine.[^sqlite]</p>
 <p>Want to go a step further? If the store is a file, <em>and</em> if the amount of data isn't huge, <em>and</em> if absolutle top performance isn't necessary, then I'll bet the transaction information could be stored as plain text. And <em>this</em> means your data and history are future-proof.</p>
 <p>And that's how I like my data.</p>
 <h1 id="references">References</h1>
