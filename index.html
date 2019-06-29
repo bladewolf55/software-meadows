@@ -93,12 +93,12 @@
 <p>The key element to a memory image is using event sourcing.... A familiar example of a system that uses event sourcing is a version control system. Every change is captured as a commit, and you can rebuild the current state of the code base by replaying the commits into an empty directory.</p>
 </blockquote>
 <p>I think this is fantastically straightforward. Why persist <em>state</em> on every write? Why not just persist the <em>change</em>, and keep the state in memory? In the past, the answer was &quot;We can't fit all the data into memory, so you have to read it each time.&quot; But as Friberg points out, you can configure an Azure virtual machine instance with 1 <em>terabyte</em> of RAM!</p>
-<p>Friberg is clear that this method, like any, shouldn't be applied to all use cases. He nicely points out that even if you kept, for (his) example, all of IKEA's inventory levels for all its warehouses in memory, you <em>wouldn't</em> keep all the product descriptions and images. That may, at first, sound wrong. But consider what we already do today:</p>
+<p>Friberg is clear that this method, like any, shouldn't be applied to all use cases. He nicely points out that even if you kept, for (his) example, all of IKEA's inventory levels for all its warehouses in memory, you <em>wouldn't</em> keep all the product descriptions and images. Consider what we already do today with blob assets:</p>
 <ul>
 <li>We don't (typically) store images in version control. We reference it externally.</li>
 <li>We keep images in cache because it's static.</li>
 </ul>
-<p>(And, of course, it also doesn't mean you <em>wouldn't</em> keep that data in memory.)</p>
+<p>(And, of course, it also doesn't mean you <em>couldn't</em> keep that data in memory.)</p>
 <p>Imagine if your order entry system data was running fully in memory. Now, ask--not rehtorically--<em>could it?</em> The answer will very likely be yes.</p>
 <p>What happens if you need to perform maintenance? Surely it would take forever to replay <em>all</em> those millions of commands (transactions).</p>
 <p>Friberg gives an example where a very large dataset could be loaded back into memory in about ten minutes.</p>

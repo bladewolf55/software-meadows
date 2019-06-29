@@ -26,12 +26,12 @@
 &lt;p&gt;The key element to a memory image is using event sourcing.... A familiar example of a system that uses event sourcing is a version control system. Every change is captured as a commit, and you can rebuild the current state of the code base by replaying the commits into an empty directory.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I think this is fantastically straightforward. Why persist &lt;em&gt;state&lt;/em&gt; on every write? Why not just persist the &lt;em&gt;change&lt;/em&gt;, and keep the state in memory? In the past, the answer was &amp;quot;We can't fit all the data into memory, so you have to read it each time.&amp;quot; But as Friberg points out, you can configure an Azure virtual machine instance with 1 &lt;em&gt;terabyte&lt;/em&gt; of RAM!&lt;/p&gt;
-&lt;p&gt;Friberg is clear that this method, like any, shouldn't be applied to all use cases. He nicely points out that even if you kept, for (his) example, all of IKEA's inventory levels for all its warehouses in memory, you &lt;em&gt;wouldn't&lt;/em&gt; keep all the product descriptions and images. That may, at first, sound wrong. But consider what we already do today:&lt;/p&gt;
+&lt;p&gt;Friberg is clear that this method, like any, shouldn't be applied to all use cases. He nicely points out that even if you kept, for (his) example, all of IKEA's inventory levels for all its warehouses in memory, you &lt;em&gt;wouldn't&lt;/em&gt; keep all the product descriptions and images. Consider what we already do today with blob assets:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;We don't (typically) store images in version control. We reference it externally.&lt;/li&gt;
 &lt;li&gt;We keep images in cache because it's static.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;(And, of course, it also doesn't mean you &lt;em&gt;wouldn't&lt;/em&gt; keep that data in memory.)&lt;/p&gt;
+&lt;p&gt;(And, of course, it also doesn't mean you &lt;em&gt;couldn't&lt;/em&gt; keep that data in memory.)&lt;/p&gt;
 &lt;p&gt;Imagine if your order entry system data was running fully in memory. Now, ask--not rehtorically--&lt;em&gt;could it?&lt;/em&gt; The answer will very likely be yes.&lt;/p&gt;
 &lt;p&gt;What happens if you need to perform maintenance? Surely it would take forever to replay &lt;em&gt;all&lt;/em&gt; those millions of commands (transactions).&lt;/p&gt;
 &lt;p&gt;Friberg gives an example where a very large dataset could be loaded back into memory in about ten minutes.&lt;/p&gt;
