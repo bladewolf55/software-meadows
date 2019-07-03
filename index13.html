@@ -109,12 +109,11 @@
 <h2 id="step-2-install-posh-git">Step 2 - Install posh-git</h2>
 <p>These steps assume git.exe is on your path. Steps mostly copied from Dave Hein.</p>
 <ol>
-<li>Open Powershell. Check the execution policy with Get-ExecutionPolicy. It should be RemoteSigned or Unrestricted[^1].</li>
+<li>Open Powershell. Check the execution policy with Get-ExecutionPolicy. It should be RemoteSigned or Unrestricted<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>.</li>
 <li>cd ~\Documents and create directory GitHub.</li>
 <li>cd GitHub</li>
 <li>git clone <a href="https://github.com/dahlbyk/posh-git.git">https://github.com/dahlbyk/posh-git.git</a>.</li>
 </ol>
-<p>[^1]:  Run PowerShell as administrator and call Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm</p>
 <h2 id="step-3-create-a-powershell-profile">Step 3 - Create a Powershell profile</h2>
 <blockquote>
 <p><strong>Warning</strong><br />
@@ -216,14 +215,13 @@ You need to replace the user profile path below with your own.</p>
 <ol>
 <li>Open the console by right-clicking an Explorer folder and choosing from the menu.</li>
 <li>Open the console by using Mads Kristensen's <a href="http://vsixgallery.com/extension/f4ab1e64-5d35-4f06-bad9-bf414f4b3bbb/">Open Command Line</a> extension.</li>
-<li>Be able to run TFS commands (<code>tf.exe</code>)[^2].</li>
+<li>Be able to run TFS commands (<code>tf.exe</code>)<a id="fnref:2" href="#fn:2" class="footnote-ref"><sup>2</sup></a>.</li>
 <li>Copy/paste to/from the console easily, i.e. CTRL-C, CTRL-V.</li>
 <li>Open an explorer window into my current folder using <code>explorer .</code> (note the dot after the command, which means &quot;open here&quot;.)</li>
 <li>Dynamically resize the console contents.</li>
 <li>Scroll back through commands.</li>
 <li>Powerful command line if needed.</li>
 </ol>
-<p>[^2]: I have a kind of crazy work flow where I use Git locally, but check in code to TFS remotely.</p>
 <h1 id="references">References</h1>
 <h2 id="posh-git">posh-git</h2>
 <ul>
@@ -266,6 +264,17 @@ You need to replace the user profile path below with your own.</p>
 <a href="http://www.leeholmes.com/blog/2008/06/01/powershells-noble-blue/">Powershell's Noble Blue</a></li>
 <li><a href="http://davidovitz.blogspot.com/2010/07/fail-to-extract-programfilesx86.html">Fail to extract PROGRAMFILES(X86) environment variable using powershell</a></li>
 </ul>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Run PowerShell as administrator and call Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>I have a kind of crazy work flow where I use Git locally, but check in code to TFS remotely.<a href="#fnref:2" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
 </div>
               </div>
               

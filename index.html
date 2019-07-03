@@ -102,7 +102,7 @@
 <p>Imagine if your order entry system data was running fully in memory. Now, ask--not rehtorically--<em>could it?</em> The answer will very likely be yes.</p>
 <p>What happens if you need to perform maintenance? Surely it would take forever to replay <em>all</em> those millions of commands (transactions).</p>
 <p>Friberg gives an example where a very large dataset could be loaded back into memory in about ten minutes.</p>
-<p>Finally, while most of the podcast discussed big data, I wonder about small data. One of the persistence stores for Memstate is--you guessed it--a file. I think this would be a great solution for any app that needs a small database. The state would load fast, the app would run fast, and there wouldn't be any of the overhead of using a database engine.[^1]</p>
+<p>Finally, while most of the podcast discussed big data, I wonder about small data. One of the persistence stores for Memstate is--you guessed it--a file. I think this would be a great solution for any app that needs a small database. The state would load fast, the app would run fast, and there wouldn't be any of the overhead of using a database engine.<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a></p>
 <p>Want to go a step further? If the store is a file, <em>and</em> if the amount of data isn't huge, <em>and</em> if absolutle top performance isn't necessary, then I'll bet the transaction information could be stored as plain text. And <em>this</em> means your data and history are future-proof.</p>
 <p>And that's how I like my data.</p>
 <h1 id="references">References</h1>
@@ -112,7 +112,14 @@
 <li><a href="https://dotnetcore.show/episode-28-memstate-with-robert-friberg/">The .NET Core Podcast Episode 28 - memstate with Robert Friberg</a></li>
 <li><a href="https://www.martinfowler.com/bliki/MemoryImage.html">MemoryImage</a></li>
 </ul>
-<p>[^1]: Not that, for instance, <a href="https://sqlite.org/index.html">SQLite</a> is big. I think it's just a .dll.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Not that, for instance, <a href="https://sqlite.org/index.html">SQLite</a> is big. I think it's just a .dll.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
 </div>
               </div>
               

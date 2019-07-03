@@ -671,7 +671,7 @@ pause
 <h2 id="dealing-with-a-local-nuget-package-source">Dealing With a Local NuGet Package Source</h2>
 <p>There are four (technically five or six!) places to store NuGet config files containing package source information, and two ways to configure package source in TFS Build.</p>
 <h3 id="nuget-config-file-locations">NuGet Config File Locations</h3>
-<p>Let's assume our in-house NuGet source is located at <a href="http://ngserver/nuget">http://ngserver/nuget</a>.</p>
+<p>Let's assume our in-house NuGet source is located at http://ngserver/nuget.</p>
 <ol>
 <li><strong>User Profile</strong> - Enter it into Visual Studio's settings. This is fine for regular development, but not good for a build server because the build agent service will run as either Local System or a specific user account such as &quot;tfsagent&quot;.</li>
 </ol>
@@ -1036,7 +1036,7 @@ You can also add team projects using the Visual Studio Team Explorer.</p>
 <p>My projects are reorganized, and a couple will build (NameDb and RevEngine). Time to turn handle the RevEngine dependency.</p>
 <h1 id="publish-shared-project-references-as-nuget-packages">Publish shared project references as NuGet packages</h1>
 <p>I'm still working in the TempTeams folder. I'll wait until everything's working before going back to my preferred folders.</p>
-<p>Creating NuGet packages can be complex. For this walkthrough, I'm showing the simplest thing that works; I'm sure these steps are not ideal. The following assumes I have a local NuGet server at <a href="http://localhost:7275/nuget">http://localhost:7275/nuget</a> that doesn't require an API key for pushing packages (not recommended), and does allow pushing symbols.</p>
+<p>Creating NuGet packages can be complex. For this walkthrough, I'm showing the simplest thing that works; I'm sure these steps are not ideal. The following assumes I have a local NuGet server at http://localhost:7275/nuget that doesn't require an API key for pushing packages (not recommended), and does allow pushing symbols.</p>
 <ol>
 <li><p>Open the solution, and edit the RevEngine Project Properties &gt; Application &gt; Assembly Information.</p>
 </li>
@@ -1090,7 +1090,7 @@ If using TFS 2015, you must use version <a href="https://github.com/onlyutkarsh/
 <p>Follow the instructions to install the extension.</p>
 <p>To install 'Export/Import Build Definition' (EIBD) on Team Foundation Server 2015 Update 2 and above, perform the following steps:</p>
 <ol>
-<li>Navigate to the Team Foundation Server Extensions page on your server. (For example, <a href="http://someserver:8080/tfs/_gallery/manage">http://someserver:8080/tfs/\_gallery/manag</a>)</li>
+<li>Navigate to the Team Foundation Server Extensions page on your server. (For example, http://someserver:8080/tfs/_gallery/manage)</li>
 <li>Click Upload new extension and select the file you have just downloaded.</li>
 <li>After the extension has successfully uploaded, click Install and select the Team Project Collection to install into.</li>
 </ol>
