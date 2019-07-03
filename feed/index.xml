@@ -35,7 +35,7 @@
 &lt;p&gt;Imagine if your order entry system data was running fully in memory. Now, ask--not rehtorically--&lt;em&gt;could it?&lt;/em&gt; The answer will very likely be yes.&lt;/p&gt;
 &lt;p&gt;What happens if you need to perform maintenance? Surely it would take forever to replay &lt;em&gt;all&lt;/em&gt; those millions of commands (transactions).&lt;/p&gt;
 &lt;p&gt;Friberg gives an example where a very large dataset could be loaded back into memory in about ten minutes.&lt;/p&gt;
-&lt;p&gt;Finally, while most of the podcast discussed big data, I wonder about small data. One of the persistence stores for Memstate is--you guessed it--a file. I think this would be a great solution for any app that needs a small database. The state would load fast, the app would run fast, and there wouldn't be any of the overhead of using a database engine.[^sqlite]&lt;/p&gt;
+&lt;p&gt;Finally, while most of the podcast discussed big data, I wonder about small data. One of the persistence stores for Memstate is--you guessed it--a file. I think this would be a great solution for any app that needs a small database. The state would load fast, the app would run fast, and there wouldn't be any of the overhead of using a database engine.[^1]&lt;/p&gt;
 &lt;p&gt;Want to go a step further? If the store is a file, &lt;em&gt;and&lt;/em&gt; if the amount of data isn't huge, &lt;em&gt;and&lt;/em&gt; if absolutle top performance isn't necessary, then I'll bet the transaction information could be stored as plain text. And &lt;em&gt;this&lt;/em&gt; means your data and history are future-proof.&lt;/p&gt;
 &lt;p&gt;And that's how I like my data.&lt;/p&gt;
 &lt;h1 id="references"&gt;References&lt;/h1&gt;
@@ -45,7 +45,7 @@
 &lt;li&gt;&lt;a href="https://dotnetcore.show/episode-28-memstate-with-robert-friberg/"&gt;The .NET Core Podcast Episode 28 - memstate with Robert Friberg&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.martinfowler.com/bliki/MemoryImage.html"&gt;MemoryImage&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;[^sqlite]: Not that, for instance, &lt;a href="https://sqlite.org/index.html"&gt;SQLite&lt;/a&gt; is big. I think it's just a .dll.&lt;/p&gt;
+&lt;p&gt;[^1]: Not that, for instance, &lt;a href="https://sqlite.org/index.html"&gt;SQLite&lt;/a&gt; is big. I think it's just a .dll.&lt;/p&gt;
 </description>
       <pubDate>Fri, 28 Jun 2019 17:45:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/memstate-_the_practical_argument_for_big_in-memory_data</link>
