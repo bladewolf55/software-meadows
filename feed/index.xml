@@ -21,7 +21,7 @@
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/memstate-_the_practical_argument_for_big_in-memory_data/images/rdb-flow.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;In a memory image, the data is: &lt;em&gt;Already&lt;/em&gt; in Memory &amp;gt; Changed in Memory &amp;gt; &lt;em&gt;Change&lt;/em&gt; is saved to Transaction log&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/memstate-_the_practical_argument_for_big_in-memory_data/images/memstate-flow.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;The idea of keeping all needed data in RAM has been around for awhile. Friberg recommends reading &lt;a href="https://www.martinfowler.com/bliki/MemoryImage.htmlhttps://www.martinfowler.com/bliki/MemoryImage.html"&gt;Martin Fowler's description&lt;/a&gt; of the pattern, and so do I. This tidbit helped me grasp how &lt;em&gt;common&lt;/em&gt; the concept is today:&lt;/p&gt;
+&lt;p&gt;The idea of keeping all needed data in RAM has been around for awhile. Friberg recommends reading &lt;a href="https://www.martinfowler.com/bliki/MemoryImage.htmlhttps://www.martinfowler.com/bliki/MemoryImage.html"&gt;Martin Fowler's description&lt;/a&gt; of the pattern, and so do I. This tidbit helped me grasp how &lt;em&gt;common&lt;/em&gt; the concept is:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The key element to a memory image is using event sourcing.... A familiar example of a system that uses event sourcing is a version control system. Every change is captured as a commit, and you can rebuild the current state of the code base by replaying the commits into an empty directory.&lt;/p&gt;
 &lt;/blockquote&gt;

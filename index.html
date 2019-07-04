@@ -88,7 +88,7 @@
 <p><img src="https://www.softwaremeadows.com/posts/memstate-_the_practical_argument_for_big_in-memory_data/images/rdb-flow.png" alt="" /></p>
 <p>In a memory image, the data is: <em>Already</em> in Memory &gt; Changed in Memory &gt; <em>Change</em> is saved to Transaction log</p>
 <p><img src="https://www.softwaremeadows.com/posts/memstate-_the_practical_argument_for_big_in-memory_data/images/memstate-flow.png" alt="" /></p>
-<p>The idea of keeping all needed data in RAM has been around for awhile. Friberg recommends reading <a href="https://www.martinfowler.com/bliki/MemoryImage.htmlhttps://www.martinfowler.com/bliki/MemoryImage.html">Martin Fowler's description</a> of the pattern, and so do I. This tidbit helped me grasp how <em>common</em> the concept is today:</p>
+<p>The idea of keeping all needed data in RAM has been around for awhile. Friberg recommends reading <a href="https://www.martinfowler.com/bliki/MemoryImage.htmlhttps://www.martinfowler.com/bliki/MemoryImage.html">Martin Fowler's description</a> of the pattern, and so do I. This tidbit helped me grasp how <em>common</em> the concept is:</p>
 <blockquote>
 <p>The key element to a memory image is using event sourcing.... A familiar example of a system that uses event sourcing is a version control system. Every change is captured as a commit, and you can rebuild the current state of the code base by replaying the commits into an empty directory.</p>
 </blockquote>
