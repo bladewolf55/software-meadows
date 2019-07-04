@@ -32,7 +32,7 @@
 &lt;li&gt;We keep images in cache because it's static.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;(And, of course, it also doesn't mean you &lt;em&gt;couldn't&lt;/em&gt; keep that data in memory.)&lt;/p&gt;
-&lt;p&gt;Imagine if your order entry system data was running fully in memory. Now, ask--not rehtorically--&lt;em&gt;could it?&lt;/em&gt; The answer will very likely be yes.&lt;/p&gt;
+&lt;p&gt;Imagine if your order entry system data was running fully in memory. Now, ask--not rhetorically--&lt;em&gt;could it?&lt;/em&gt; The answer will very likely be yes.&lt;/p&gt;
 &lt;p&gt;What happens if you need to perform maintenance? Surely it would take forever to replay &lt;em&gt;all&lt;/em&gt; those millions of commands (transactions).&lt;/p&gt;
 &lt;p&gt;Friberg gives an example where a very large dataset could be loaded back into memory in about ten minutes.&lt;/p&gt;
 &lt;p&gt;Finally, while most of the podcast discussed big data, I wonder about small data. One of the persistence stores for Memstate is--you guessed it--a file. I think this would be a great solution for any app that needs a small database. The state would load fast, the app would run fast, and there wouldn't be any of the overhead of using a database engine.&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
