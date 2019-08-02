@@ -6,6 +6,47 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Remote Micro-Exclusions: Two Poor Daily Standup Practices</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_micro-exclusions-_two_poor_daily_standup_practices/images/Symbolism-Leader-Group-Game-Figure-Exclusion-598036.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="remote-micro-exclusion"&gt;Remote (Micro) Exclusion&lt;/h2&gt;
+&lt;p&gt;&amp;quot;Remote exclusion&amp;quot; happens when remote developers are treated as less equal than on-site developers. This usually isn't intentional, but is instead a result of group dynamics.&lt;/p&gt;
+&lt;p&gt;Some behaviors, such as not including remote workers in decisions because it's &amp;quot;too much of a bother&amp;quot; to contact them, are obvious when pointed out. But there are other actions that seem innocuous, yet contribute to the problem. These are&amp;quot;remote micro-exclusions&amp;quot;&lt;/p&gt;
+&lt;p&gt;Consider the daily standup meeting where the bulk of the team is on site, and a few are remote. Here are two practices that can unconsciously devalue the remote team.&lt;/p&gt;
+&lt;h2 id="no-video"&gt;No Video&lt;/h2&gt;
+&lt;p&gt;There are three basic ways to communicate with the remote team in a live meeting.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Audio Only&lt;/li&gt;
+&lt;li&gt;One-Way Video&lt;/li&gt;
+&lt;li&gt;Two-Way Video&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We'll ignore something silly like the remote team using messaging. The first two ways are a problem.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Audio Only&lt;/strong&gt;: Unless someone on the remote team is vociferous, they'll be ghosts, rarely seen nor heard.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;One-Way Video&lt;/strong&gt;: To my mind, this is worse than audio-only. The implication is, &amp;quot;they can see us, be we don't need to see them.&amp;quot; The on-site team only see their avatars, at best.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What's critically missing without two-way video is the visual cues from the remote team. Are they listening? Bored? Knowing someone's observing you immediately improves involvement. Get as close to &amp;quot;being there&amp;quot; as possible!&lt;/p&gt;
+&lt;h2 id="remote-team-last"&gt;Remote Team Last&lt;/h2&gt;
+&lt;p&gt;If the remote team always goes last, it's likely they'll always have less time. Unless a daily standup is being run really strictly, there's going to be conversation about whatever each developer is working on. If there's no two-way video it's worse. The &amp;quot;main&amp;quot; team will tend to dominate the conversation because they can see each other. Consider that for a team of eight, a fifteen minute standup gives each person two minutes. That's honestly plenty of time to report what happened yesterday, what's being worked on today, what's blocking, getting &lt;em&gt;quick&lt;/em&gt; answers, and setting up &lt;em&gt;follow ups&lt;/em&gt; on issues that take too long for the meeting.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Yes, this is a standup management problem. &amp;quot;I'll email you to schedule a talk&amp;quot; should be said frequently. But the remote team is still devalued by going consistently last.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="solutions"&gt;Solutions&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Everyone must be visible on video. Work as if &lt;em&gt;everyone&lt;/em&gt; is remote.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Start&lt;/em&gt; standups with the remote team for a week or two, to remind everyone they're equally important. Then, randomize the order people go in.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Remote work can benefit many companies and employees. It takes effort, but is a worthwhile practice to learn.&lt;/p&gt;
+&lt;h2 id="references"&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://remote.co/qa-leading-remote-companies/what-elements-are-key-to-successful-working-relationships-with-remote-teams/"&gt;What are the keys to successful remote team relationships?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://open.buffer.com/remote-work-tools/"&gt;12 Essential Remote Work Tools We're Using at Buffer Every Day&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Thu, 1 Aug 2019 20:00:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/remote_micro-exclusions-_two_poor_daily_standup_practices</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/remote_micro-exclusions-_two_poor_daily_standup_practices</guid>
+    </item>
+    <item>
       <title>Memstate: The Practical Argument for Big, In-Memory Data</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/memstate-_the_practical_argument_for_big_in-memory_data/images/header.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Today I listened to a fascinating episode of Jamie Taylor's &lt;a href="https://dotnetcore.show/"&gt;The .NET Core Podcast&lt;/a&gt;, featuring an &lt;a href="https://dotnetcore.show/episode-28-memstate-with-robert-friberg/"&gt;interview with developer Robert Friberg&lt;/a&gt;. Do listen to it.&lt;/p&gt;
@@ -580,19 +621,6 @@ Thank you so much for your patience in this time.&lt;/p&gt;
       <pubDate>Wed, 29 May 2019 10:57:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/a_response_to_jonathan_cutrells_podcast_episode_crafting_your_work_b</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/a_response_to_jonathan_cutrells_podcast_episode_crafting_your_work_b</guid>
-    </item>
-    <item>
-      <title>Weekly Sugar: When (not) to Drink Coffee, a Preview</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_when_(not)_to_drink_coffe__a_preview/images/coffee-clock.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;A few years ago I researched and posted about when--and when not--to drink coffee. I'm going to repost that article to &lt;a href="https://www.softwaremeadows.com"&gt;https://www.softwaremeadows.com&lt;/a&gt; in the next several days. Until then, then gist is:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Science shows drinking coffee first thing in the morning negatively affects one’s circadian rhythm by inhibiting the production of cortisol, which the body uses to naturally wake us up. Instead, we should drink coffee between 9:30 and 11:30, and maybe also between 1:30 and 5:00, when cortisol levels are falling.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;(I drink my morning coffee at least one hour after waking up, which is also supported by the research)&lt;/p&gt;
-</description>
-      <pubDate>Sun, 26 May 2019 14:40:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/weekly_sugar-_when_(not)_to_drink_coffe__a_preview</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_when_(not)_to_drink_coffe__a_preview</guid>
     </item>
   </channel>
 </rss>
