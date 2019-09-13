@@ -6,6 +6,212 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>ASP.NET Core Controllers - Exploring How To Test a Simple Feature</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/asp_net_core_controllers_-_exploring_how_to_test_a_simple_feature/images/header.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="setup"&gt;Setup&lt;/h2&gt;
+&lt;p&gt;Here's a brief feature description: &lt;em&gt;When a user story is saved, if it's new then it's assigned the latest sequence number + 1&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;How might this be developed:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Using Test-Driven Development (TDD)&lt;/li&gt;
+&lt;li&gt;In a web application&lt;/li&gt;
+&lt;li&gt;That calls a service&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="puzzle-1-the-controller"&gt;Puzzle 1: The Controller&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In truth, this article isn't specific to ASP.NET Core. But it's what I was working on at the time, &lt;em&gt;and&lt;/em&gt; I found the answer via a Core-specific article.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To illustrate where we can have mental hiccups, let's start with the controller and work &lt;em&gt;backwards&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;    [HttpPost]
+    public IActionResult SaveStory(UserStory model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        //Save
+        //The service takes care of setting the Sequence property on new models.
+        model = _storyService.SaveStory(model);
+
+        return RedirectToAction(actionName: nameof(Index));
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is reasonable code. The controller passes the model to the service, and the service implements the business rule ofincrementing the Sequence property.&lt;/p&gt;
+&lt;p&gt;Take a minute and ask yourself: What would your controller unit test...test?&lt;/p&gt;
+&lt;p&gt;Done? Now ask yourself: If I &lt;em&gt;hadn't written any code yet&lt;/em&gt;, what would I test for?&lt;/p&gt;
+&lt;p&gt;Maybe your first answer started off something like this in your imagination.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;
+    [Fact]
+    public void SaveStory_increments_UserStory_Sequence_by_one()
+    {
+        //arrange
+        var service = MockUserStoryService();
+        service.MaxSequence = 10;
+        UserStory userStory = new UserStory(service) 
+        {
+            // set some fields
+        };
+        var controller = new HomeController();
+        //act
+        var result = controller.SaveStory(model);
+        //assert
+        result.Should().Be()...uh...um....
+    }
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And there's the trap. What I, and I'm sure others, find hard about unit testing and TDD is being clear on the dependencies of what's being testing.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In TDD, ask yourself, &amp;quot;What is this &lt;em&gt;unit&lt;/em&gt; going to do or change &lt;em&gt;by itself&lt;/em&gt;?&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My first thought would be, &amp;quot;Well, the Sequence is going to change. That's the feature, after all.&amp;quot; But that isn't what the controller is doing.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Assuming no errors, the only thing the controller does is pass the model to the service's SaveStory method.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The service is a dependency, and we don't test a dependency's behavior. Again,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In unit testing, don't test a dependency's behavior.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You &lt;em&gt;always&lt;/em&gt; control the dependency's state, and &lt;em&gt;always&lt;/em&gt; return a value you've determined. What you test is what the unit is supposed to &lt;em&gt;do&lt;/em&gt; with that value. This is why we mock dependencies.&lt;/p&gt;
+&lt;p&gt;OK, what's the unit test for the controller? I admit, I was puzzled until I read Steve Smith's article, &lt;a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/testing"&gt;Test controller logic in ASP.NET Core | Microsoft Docs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I should ensure that the service's &lt;code&gt;SaveStory&lt;/code&gt; method was called. I don't need to test &lt;em&gt;that&lt;/em&gt; something was saved, only that it &lt;em&gt;should&lt;/em&gt; be. He's using Moq's &lt;code&gt;Validate&lt;/code&gt; feature for this. I can implement a similar feature in a self-created mock.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;    // https://stackoverflow.com/a/11296961/1628707
+    // This is one of those cases where it's simpler to inherit Collection&amp;lt;T&amp;gt;
+    // and add a couple of needed methods.
+    public class CalledMethods : Collection&amp;lt;CalledMethod&amp;gt;
+    {
+
+        public CalledMethod this[string name]
+        {
+            get { return this.SingleOrDefault(a =&amp;gt; a.Name == name); }
+        }
+
+        private CalledMethod AddAndReturn(string name)
+        {
+            
+            if (this[name] == null) Add(new CalledMethod(name,0));
+            return this[name];
+        }
+
+        /// &amp;lt;summary&amp;gt;
+        /// Adds a &amp;lt;see cref=&amp;quot;CalledMethod&amp;quot;/&amp;gt; if necessary and increments its &amp;lt;see cref=&amp;quot;CalledMethod.Count&amp;quot;/&amp;gt;
+        /// &amp;lt;/summary&amp;gt;
+        /// &amp;lt;param name=&amp;quot;name&amp;quot;&amp;gt;&amp;lt;/param&amp;gt;
+        public void Increment(string name)
+        {
+            var entry = this[name] ?? AddAndReturn(name);
+            entry.Count++;
+        }
+    }
+    
+    public class CalledMethod
+    {
+        public string Name { get; set; }
+        public int Count { get; set; }
+
+        public CalledMethod() { }
+        public CalledMethod(string name, int count = 0)
+        {
+            Name = name;
+            Count = count;
+        }
+    }
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Calling from the Mock class method.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;    public UserStory SaveStory(UserStory story)
+    {
+        CalledMethods.Increment(System.Reflection.MethodBase.GetCurrentMethod().Name);
+        CheckException();
+        return UserStory;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And using in the test.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;    // assume arrange and act before this, then
+    _storyService.CalledMethods[&amp;quot;SaveStory&amp;quot;].Count.Should().Be(1);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="puzzle-2-the-service"&gt;Puzzle 2: The Service&lt;/h2&gt;
+&lt;p&gt;We still haven't implemented the feature. In fact, arguably we shouldn't have written the controller or its test at all; the controller doesn't save the story, the service does.&lt;/p&gt;
+&lt;p&gt;Now let's write the test first:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;[Fact]
+public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
+{
+    var service = new UserStoryService();
+    var userStory = new UserStory()
+    {
+        //set needed fields. Sequence is null or 0.
+        
+    };
+    userStory = service.SaveStory(userStory);
+    
+    userStory.Sequence.Should().Be(???);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Yeah. We run into a question of how to set the Max Sequence. But writing the test is helping us. We need to answer&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Does the service depend on something else to get the Max?&lt;/li&gt;
+&lt;li&gt;If so, mock it&lt;/li&gt;
+&lt;li&gt;If not, &lt;em&gt;it should be a functional test&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At some point, some piece of code is actually persisting data. There's no way to unit test that. If your service depends on an ORM such as Entity Framework (EF), then you can mock EF. But if you want to test that EF works as expected, you have to use a real database and check the values. Another example, if you at some point write to file, you'll need to write functional tests for that.&lt;/p&gt;
+&lt;p&gt;Let's assume our service depends on a data service, and finish the unit test.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;[Fact]
+public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
+{
+    var dataService = new MockDataService();
+    dataService.MaxSequence = 15;    
+    var service = new UserStoryService(dataService);
+    var userStory = new UserStory()
+    {
+        //set needed fields. Sequence is null or 0.
+        
+    };
+    userStory = service.SaveStory(userStory);
+    
+    userStory.Sequence.Should().Be(16);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For you to figure out: What if SaveStory were a void method?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="but-wait"&gt;But Wait....&lt;/h2&gt;
+&lt;p&gt;Now, bonus, how might the functional tests look? Remember, these will be slower and likely run as part of a separate project, just like your integration tests.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class DataServiceTests {
+    Db _db = new Db();
+    public DataServiceTests()
+    {
+        //In xUnit.Net, the constructor is used to reset the environment
+        //to a known state.
+        //There could be a lot of actions to take, so this is simplistic.
+        _db.Reset();
+    }
+
+    [Fact]
+    public void GetMaxSequence_returns_expected_value()
+    {
+        var service = new DataService(_db);
+        //Our known starting point for MaxSequence is 10.
+        service.GetMaxSequence().Should().Be(10);
+    }
+    
+    [Fact]
+    public void IncrementMaxSequence_sets_expected_value()
+    {
+        var service = new DataService(_db);
+        // _db is reset before every test, so MaxSequence is 10 again.
+        service.IncrementMaxSequence(1);
+        service.GetMaxSequence().Should().Be(11);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;TDD isn't nearly so much what to do, as how to think. Especially, I find it forces thinking about how to decouple code and make it testable. The tricky part, requiring practice, is seeing what are dependencies and what aren't. Knowing what your unit is responsible for.&lt;/p&gt;
+&lt;p&gt;I think learning from the simplest cases is great, because it teaches the principles to apply.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 12 Sep 2019 22:15:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/asp_net_core_controllers_-_exploring_how_to_test_a_simple_feature</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/asp_net_core_controllers_-_exploring_how_to_test_a_simple_feature</guid>
+    </item>
+    <item>
       <title>Remote Micro-Exclusions: Two Poor Daily Standup Practices</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_micro-exclusions-_two_poor_daily_standup_practices/images/Symbolism-Leader-Group-Game-Figure-Exclusion-598036.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;h2 id="remote-micro-exclusion"&gt;Remote (Micro) Exclusion&lt;/h2&gt;
@@ -537,101 +743,6 @@ Thank you so much for your patience in this time.&lt;/p&gt;
       <pubDate>Mon, 3 Jun 2019 09:39:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/weekly_sugar-_take_a_walk</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_take_a_walk</guid>
-    </item>
-    <item>
-      <title>A Response to Jonathan Cutrell's Podcast Episode "Crafting Your Work By Your Strengths"</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/a_response_to_jonathan_cutrells_podcast_episode_crafting_your_work_b/images/high-kick.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;sup&gt;&lt;a href="https://commons.wikimedia.org/wiki/File:Karate_WM_2014_(2)_019.JPG"&gt;File:Karate WM 2014 (2) 019.JPG - Wikimedia Commons&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;h2 id="up-front"&gt;Up Front&lt;/h2&gt;
-&lt;p&gt;I always look forward to Jonathan's podcast, and rarely find myself critical, but I found &lt;a href="https://spec.fm/podcasts/developer-tea/298944"&gt;this episode&lt;/a&gt; somewhat unclear and unfocused. I'd like to help clarify what I &lt;em&gt;think&lt;/em&gt; Jonathan wanted to promote.&lt;/p&gt;
-&lt;h2 id="key-points"&gt;Key Points&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Map your skill/knowledge strengths/weaknesses to the job's required core/ancillary skills/knowledge.&lt;/li&gt;
-&lt;li&gt;Improve your weaknesses that are in the job's core.&lt;/li&gt;
-&lt;li&gt;Improve your strengths that are in the job's core.&lt;/li&gt;
-&lt;li&gt;Don't &lt;a href="https://www.dictionary.com/browse/deprecate"&gt;deprecate&lt;/a&gt; yourself for weaknesses and mistakes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="discussion"&gt;Discussion&lt;/h2&gt;
-&lt;p&gt;As developers, workers, and people, we're faced with deciding whether to improve our weaknesses or our strengths, and which ones. We &lt;em&gt;need&lt;/em&gt; to do both. Focusing on only one or the other is unlikely to lead to success. There's science supporting that only repeating what you're good at doesn't lead to improvement. However, only working on what you're not good at leads to atrophy of your strengths.&lt;/p&gt;
-&lt;p&gt;I'm a martial artist. If my left side kicks aren't as good as my right side kicks, then I need to work harder at my left ones. There's an implicit goal of parity. However, we sometimes forget (as students and teachers) that the purpose of that goal is improvement, not achievement. It's OK if my left side kicks are never as good as my right ones. It's also OK if I work hard to make my right kicks amazing.&lt;/p&gt;
-&lt;p&gt;But--to continue the analogy--should I focus on being able to side kick to someone's head who is over six feet tall &lt;em&gt;and&lt;/em&gt; hold that kick in place? Some kata competition champions can do this. It's their strength. It's not mine. The short answer is &amp;quot;no,&amp;quot; because &lt;em&gt;this is important in the context of competition, but not in my interest which is daily health and self-defense.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;With that context, let's go back to the podcast and pull the benefit from it. What's a way to help clarify which job skills we should improve?&lt;/p&gt;
-&lt;p&gt;Create two lists. One is your skill/knowledge strengths and weaknesses. The other is the job's required core and ancillary skills/knowledge.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Skill/Knowledge Lists&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;( * &lt;em&gt;Starred items are ones I'm naturally good at.&lt;/em&gt;)&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;ME&lt;/th&gt;
-&lt;th&gt;JOB&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Strong&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;Core&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Tenacity*&lt;/td&gt;
-&lt;td&gt;C#&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;System Organization*&lt;/td&gt;
-&lt;td&gt;Customer requirements gathering&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Understanding Customers' Needs*&lt;/td&gt;
-&lt;td&gt;REST-ful APIs&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;C#&lt;/td&gt;
-&lt;td&gt;Scalable architecture&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;WebAPI&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Documentation&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Weak&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;strong&gt;Ancillary&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Self-confidence&lt;/td&gt;
-&lt;td&gt;Employee management&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Proven scalability experience&lt;/td&gt;
-&lt;td&gt;Documentation&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Python&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;To meet the job's needs, we should always work on the core skills. Give these lists, here's what I'd recommend the fictitious developer focus on improving:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;C#, keep improving&lt;/li&gt;
-&lt;li&gt;Customer needs, leverage your strength into becoming an expert&lt;/li&gt;
-&lt;li&gt;WebApi, keep improving&lt;/li&gt;
-&lt;li&gt;Scalable architecture, work hard at improving this weakness&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;And don't spend much time on:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;System organization, Tenacity, or Documentation, you're already good enough&lt;/li&gt;
-&lt;li&gt;Personnel management&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;I really think this is the essence of what Jonathan was trying to say, but--unusually--the message got lost on a first listen. I'd say a few lesser episodes out of almost seven hundred is pretty darn good.&lt;/p&gt;
-&lt;p&gt;Thanks, Jonathan!&lt;/p&gt;
-</description>
-      <pubDate>Wed, 29 May 2019 10:57:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/a_response_to_jonathan_cutrells_podcast_episode_crafting_your_work_b</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/a_response_to_jonathan_cutrells_podcast_episode_crafting_your_work_b</guid>
     </item>
   </channel>
 </rss>

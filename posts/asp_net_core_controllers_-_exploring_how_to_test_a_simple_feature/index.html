@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Suggestion For Uncle Bob: Change "Software Craftsmanship" To "Crafted Software" | Software Meadows</title>
+  <title>ASP.NET Core Controllers - Exploring How To Test A Simple Feature | Software Meadows</title>
 </head>
 
 <body>
@@ -62,24 +62,212 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software'>Suggestion for Uncle Bob: Change "Software Craftsmanship" to "Crafted Software"</a></h2>
-                <p class='post-info'><span class='posted-on'>2019-05-14 12:29</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software/images/640px-Salzburg_-_Violin_repair_shop_-_2910.jpg" alt="" /></p>
-<p>Robert &quot;Uncle Bob&quot; Martin has struggled with gender neutrality regarding the term &quot;crafstman.&quot; It's a difficult problem--English has a lack of neuters--and it's good he's struggling because it means he's listening to the very real affect of terminology on women in the workplace.</p>
-<p><a href="https://blog.cleancoder.com/uncle-bob/2018/05/02/Craftsman-Craftswoman-Craftsperson.html">Craftsman, Craftswoman, Craftsperson</a></p>
-<p>I suggest flipping the syntax, so, not &quot;software craftsmanship,&quot; but &quot;crafted software.&quot; Likewise, we can eschew &quot;craftsman&quot; by using &quot;crafter.&quot;</p>
-<p>Thus:</p>
-<p><strong>Crafted Software</strong> not Software Craftsmanship<br />
-<strong>Software Crafter</strong> not Software Craftsman, Craftswoman, Craftsperson<br />
-<strong>Software Crafting</strong> as in, &quot;The discipline of software crafting&quot; not &quot;The discipline of software craftsmanship&quot;<br />
-<strong>Craft</strong> as in, &quot;It's about craft&quot; (or crafting) not &quot;It's about craftsmanship&quot;</p>
-<p>Using these terms has the added benefit of them being shorter, which I like. But maybe you're not into the whole brevity thing.</p>
-<p><img src="https://www.softwaremeadows.com/posts/suggestion_for_uncle_bob-_change_software_craftsmanship_to_crafted_software/images/the_dude.jpg" alt="" /></p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/asp_net_core_controllers_-_exploring_how_to_test_a_simple_feature'>ASP.NET Core Controllers - Exploring How To Test a Simple Feature</a></h2>
+                <p class='post-info'><span class='posted-on'>2019-09-12 22:15</span></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/asp_net_core_controllers_-_exploring_how_to_test_a_simple_feature/images/header.png" alt="" /></p>
+<h2 id="setup">Setup</h2>
+<p>Here's a brief feature description: <em>When a user story is saved, if it's new then it's assigned the latest sequence number + 1</em>.</p>
+<p>How might this be developed:</p>
+<ol>
+<li>Using Test-Driven Development (TDD)</li>
+<li>In a web application</li>
+<li>That calls a service</li>
+</ol>
+<h2 id="puzzle-1-the-controller">Puzzle 1: The Controller</h2>
+<blockquote>
+<p>In truth, this article isn't specific to ASP.NET Core. But it's what I was working on at the time, <em>and</em> I found the answer via a Core-specific article.</p>
+</blockquote>
+<p>To illustrate where we can have mental hiccups, let's start with the controller and work <em>backwards</em>.</p>
+<pre><code class="language-csharp">    [HttpPost]
+    public IActionResult SaveStory(UserStory model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        //Save
+        //The service takes care of setting the Sequence property on new models.
+        model = _storyService.SaveStory(model);
+
+        return RedirectToAction(actionName: nameof(Index));
+    }
+</code></pre>
+<p>This is reasonable code. The controller passes the model to the service, and the service implements the business rule ofincrementing the Sequence property.</p>
+<p>Take a minute and ask yourself: What would your controller unit test...test?</p>
+<p>Done? Now ask yourself: If I <em>hadn't written any code yet</em>, what would I test for?</p>
+<p>Maybe your first answer started off something like this in your imagination.</p>
+<pre><code class="language-csharp">
+    [Fact]
+    public void SaveStory_increments_UserStory_Sequence_by_one()
+    {
+        //arrange
+        var service = MockUserStoryService();
+        service.MaxSequence = 10;
+        UserStory userStory = new UserStory(service) 
+        {
+            // set some fields
+        };
+        var controller = new HomeController();
+        //act
+        var result = controller.SaveStory(model);
+        //assert
+        result.Should().Be()...uh...um....
+    }
+
+</code></pre>
+<p>And there's the trap. What I, and I'm sure others, find hard about unit testing and TDD is being clear on the dependencies of what's being testing.</p>
+<blockquote>
+<p>In TDD, ask yourself, &quot;What is this <em>unit</em> going to do or change <em>by itself</em>?&quot;</p>
+</blockquote>
+<p>My first thought would be, &quot;Well, the Sequence is going to change. That's the feature, after all.&quot; But that isn't what the controller is doing.</p>
+<blockquote>
+<p>Assuming no errors, the only thing the controller does is pass the model to the service's SaveStory method.</p>
+</blockquote>
+<p>The service is a dependency, and we don't test a dependency's behavior. Again,</p>
+<blockquote>
+<p>In unit testing, don't test a dependency's behavior.</p>
+</blockquote>
+<p>You <em>always</em> control the dependency's state, and <em>always</em> return a value you've determined. What you test is what the unit is supposed to <em>do</em> with that value. This is why we mock dependencies.</p>
+<p>OK, what's the unit test for the controller? I admit, I was puzzled until I read Steve Smith's article, <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/testing">Test controller logic in ASP.NET Core | Microsoft Docs</a>.</p>
+<p>I should ensure that the service's <code>SaveStory</code> method was called. I don't need to test <em>that</em> something was saved, only that it <em>should</em> be. He's using Moq's <code>Validate</code> feature for this. I can implement a similar feature in a self-created mock.</p>
+<pre><code class="language-csharp">    // https://stackoverflow.com/a/11296961/1628707
+    // This is one of those cases where it's simpler to inherit Collection&lt;T&gt;
+    // and add a couple of needed methods.
+    public class CalledMethods : Collection&lt;CalledMethod&gt;
+    {
+
+        public CalledMethod this[string name]
+        {
+            get { return this.SingleOrDefault(a =&gt; a.Name == name); }
+        }
+
+        private CalledMethod AddAndReturn(string name)
+        {
+            
+            if (this[name] == null) Add(new CalledMethod(name,0));
+            return this[name];
+        }
+
+        /// &lt;summary&gt;
+        /// Adds a &lt;see cref=&quot;CalledMethod&quot;/&gt; if necessary and increments its &lt;see cref=&quot;CalledMethod.Count&quot;/&gt;
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;name&quot;&gt;&lt;/param&gt;
+        public void Increment(string name)
+        {
+            var entry = this[name] ?? AddAndReturn(name);
+            entry.Count++;
+        }
+    }
+    
+    public class CalledMethod
+    {
+        public string Name { get; set; }
+        public int Count { get; set; }
+
+        public CalledMethod() { }
+        public CalledMethod(string name, int count = 0)
+        {
+            Name = name;
+            Count = count;
+        }
+    }
+
+</code></pre>
+<p>Calling from the Mock class method.</p>
+<pre><code class="language-csharp">    public UserStory SaveStory(UserStory story)
+    {
+        CalledMethods.Increment(System.Reflection.MethodBase.GetCurrentMethod().Name);
+        CheckException();
+        return UserStory;
+    }
+</code></pre>
+<p>And using in the test.</p>
+<pre><code class="language-csharp">    // assume arrange and act before this, then
+    _storyService.CalledMethods[&quot;SaveStory&quot;].Count.Should().Be(1);
+</code></pre>
+<h2 id="puzzle-2-the-service">Puzzle 2: The Service</h2>
+<p>We still haven't implemented the feature. In fact, arguably we shouldn't have written the controller or its test at all; the controller doesn't save the story, the service does.</p>
+<p>Now let's write the test first:</p>
+<pre><code class="language-csharp">[Fact]
+public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
+{
+    var service = new UserStoryService();
+    var userStory = new UserStory()
+    {
+        //set needed fields. Sequence is null or 0.
+        
+    };
+    userStory = service.SaveStory(userStory);
+    
+    userStory.Sequence.Should().Be(???);
+}
+</code></pre>
+<p>Yeah. We run into a question of how to set the Max Sequence. But writing the test is helping us. We need to answer</p>
+<ol>
+<li>Does the service depend on something else to get the Max?</li>
+<li>If so, mock it</li>
+<li>If not, <em>it should be a functional test</em></li>
+</ol>
+<p>At some point, some piece of code is actually persisting data. There's no way to unit test that. If your service depends on an ORM such as Entity Framework (EF), then you can mock EF. But if you want to test that EF works as expected, you have to use a real database and check the values. Another example, if you at some point write to file, you'll need to write functional tests for that.</p>
+<p>Let's assume our service depends on a data service, and finish the unit test.</p>
+<pre><code class="language-csharp">[Fact]
+public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
+{
+    var dataService = new MockDataService();
+    dataService.MaxSequence = 15;    
+    var service = new UserStoryService(dataService);
+    var userStory = new UserStory()
+    {
+        //set needed fields. Sequence is null or 0.
+        
+    };
+    userStory = service.SaveStory(userStory);
+    
+    userStory.Sequence.Should().Be(16);
+}
+</code></pre>
+<blockquote>
+<p>For you to figure out: What if SaveStory were a void method?</p>
+</blockquote>
+<h2 id="but-wait">But Wait....</h2>
+<p>Now, bonus, how might the functional tests look? Remember, these will be slower and likely run as part of a separate project, just like your integration tests.</p>
+<pre><code class="language-csharp">public class DataServiceTests {
+    Db _db = new Db();
+    public DataServiceTests()
+    {
+        //In xUnit.Net, the constructor is used to reset the environment
+        //to a known state.
+        //There could be a lot of actions to take, so this is simplistic.
+        _db.Reset();
+    }
+
+    [Fact]
+    public void GetMaxSequence_returns_expected_value()
+    {
+        var service = new DataService(_db);
+        //Our known starting point for MaxSequence is 10.
+        service.GetMaxSequence().Should().Be(10);
+    }
+    
+    [Fact]
+    public void IncrementMaxSequence_sets_expected_value()
+    {
+        var service = new DataService(_db);
+        // _db is reset before every test, so MaxSequence is 10 again.
+        service.IncrementMaxSequence(1);
+        service.GetMaxSequence().Should().Be(11);
+    }
+}
+</code></pre>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>TDD isn't nearly so much what to do, as how to think. Especially, I find it forces thinking about how to decouple code and make it testable. The tricky part, requiring practice, is seeing what are dependencies and what aren't. Knowing what your unit is responsible for.</p>
+<p>I think learning from the simplest cases is great, because it teaches the principles to apply.</p>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Suggestion For Uncle Bob: Change "Software Craftsmanship" To "Crafted Software" | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on ASP.NET Core Controllers - Exploring How To Test A Simple Feature | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
