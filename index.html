@@ -75,13 +75,20 @@
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/asp_net_core_controllers_-_exploring_how_to_test_a_simple_feature'>ASP.NET Core Controllers - Exploring How To Test a Simple Feature</a></h2>
                 <p class='post-info'><span class='posted-on'>2019-09-12 22:15</span></p>
                 <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/asp_net_core_controllers_-_exploring_how_to_test_a_simple_feature/images/header.png" alt="" /></p>
+<ul>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#puzzle-1:-the-controller">Puzzle 1: The Controller</a></li>
+<li><a href="#puzzle-2:-the-service">Puzzle 2: The Service</a></li>
+<li><a href="#functional-testing:-the-proof-of-the-pudding-is-in-the-tasting">Functional Testing: The Proof of the Pudding Is In the Tasting</a></li>
+<li><a href="#wrap-up">Wrap Up</a></li>
+</ul>
 <h2 id="setup">Setup</h2>
 <p>Here's a brief feature description: <em>When a user story is saved, if it's new then it's assigned the latest sequence number + 1</em>.</p>
 <p>How might this be developed:</p>
 <ol>
 <li>Using Test-Driven Development (TDD)</li>
-<li>In a web application</li>
-<li>That calls a service</li>
+<li>...in a web application</li>
+<li>...that calls a service?</li>
 </ol>
 <h2 id="puzzle-1-the-controller">Puzzle 1: The Controller</h2>
 <blockquote>
@@ -104,8 +111,12 @@
     }
 </code></pre>
 <p>This is reasonable code. The controller passes the model to the service, and the service implements the business rule ofincrementing the Sequence property.</p>
-<p>Take a minute and ask yourself: What would your controller unit test...test?</p>
+<blockquote>
+<p>Take a minute and ask yourself: What would your controller's unit test...test?</p>
+</blockquote>
+<blockquote>
 <p>Done? Now ask yourself: If I <em>hadn't written any code yet</em>, what would I test for?</p>
+</blockquote>
 <p>Maybe your first answer started off something like this in your imagination.</p>
 <pre><code class="language-csharp">
     [Fact]
@@ -134,9 +145,9 @@
 <blockquote>
 <p>Assuming no errors, the only thing the controller does is pass the model to the service's SaveStory method.</p>
 </blockquote>
-<p>The service is a dependency, and we don't test a dependency's behavior. Again,</p>
+<p>The service is a dependency, and we don't test a dependency's behavior. Let me call that one out, because it's crucial.</p>
 <blockquote>
-<p>In unit testing, don't test a dependency's behavior.</p>
+<p>In unit testing, don't test a <em>dependency's</em> behavior.</p>
 </blockquote>
 <p>You <em>always</em> control the dependency's state, and <em>always</em> return a value you've determined. What you test is what the unit is supposed to <em>do</em> with that value. This is why we mock dependencies.</p>
 <p>OK, what's the unit test for the controller? I admit, I was puzzled until I read Steve Smith's article, <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/testing">Test controller logic in ASP.NET Core | Microsoft Docs</a>.</p>
@@ -198,7 +209,7 @@
 </code></pre>
 <h2 id="puzzle-2-the-service">Puzzle 2: The Service</h2>
 <p>We still haven't implemented the feature. In fact, arguably we shouldn't have written the controller or its test at all; the controller doesn't save the story, the service does.</p>
-<p>Now let's write the test first:</p>
+<p>Regardless, let's write the test first this time:</p>
 <pre><code class="language-csharp">[Fact]
 public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
 {
@@ -213,13 +224,12 @@ public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
     userStory.Sequence.Should().Be(???);
 }
 </code></pre>
-<p>Yeah. We run into a question of how to set the Max Sequence. But writing the test is helping us. We need to answer</p>
+<p>Yeah. We run into a question of how to setup the Max Sequence. But writing the test is helping us. We need to answer</p>
 <ol>
-<li>Does the service depend on something else to get the Max?</li>
+<li>Does the service depend on something else to get the MaxSequence?</li>
 <li>If so, mock it</li>
-<li>If not, <em>it should be a functional test</em></li>
+<li>If not, <em>it will be a functional test</em></li>
 </ol>
-<p>At some point, some piece of code is actually persisting data. There's no way to unit test that. If your service depends on an ORM such as Entity Framework (EF), then you can mock EF. But if you want to test that EF works as expected, you have to use a real database and check the values. Another example, if you at some point write to file, you'll need to write functional tests for that.</p>
 <p>Let's assume our service depends on a data service, and finish the unit test.</p>
 <pre><code class="language-csharp">[Fact]
 public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
@@ -240,8 +250,9 @@ public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
 <blockquote>
 <p>For you to figure out: What if SaveStory were a void method?</p>
 </blockquote>
-<h2 id="but-wait">But Wait....</h2>
-<p>Now, bonus, how might the functional tests look? Remember, these will be slower and likely run as part of a separate project, just like your integration tests.</p>
+<h2 id="functional-testing-the-proof-of-the-pudding-is-in-the-tasting">Functional Testing: The Proof of the Pudding Is In the Tasting</h2>
+<p>At some point, some piece of code is actually persisting data. There's no way to unit test that. If your service depends on an ORM such as Entity Framework (EF), then you can mock EF. But if you want to test that that your concrete UnitOfWork/Repository/DbContext/Whatever works as expected, you have to use a real database and check the values. Another example: if you at some point write to file, you'll need to write functional tests for that, and verify that what was written is what you expected.</p>
+<p>Bonus: how might the functional tests look? Remember, these will be slower and likely run as part of a separate project, just like your integration tests.</p>
 <pre><code class="language-csharp">public class DataServiceTests {
     Db _db = new Db();
     public DataServiceTests()
