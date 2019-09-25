@@ -11,6 +11,7 @@
 &lt;p&gt;Source Code: &lt;a href="https://github.com/bladewolf55/posh-git-tfvc"&gt;bladewolf55/posh-git-tfvc: A PowerShell environment for Git, modified to use with TFVC-based solutions&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I created this version of posh-git to handle a specific use case: a developer works for a company that requires using TFVC, but she wants to use Git locally to gain its rapid branching/merging abilities. Yet, she also wants to get the benefits of using Visual Studio's TFVC integration, namely CodeLens information.&lt;/p&gt;
 &lt;p&gt;Visual Studio supports both TFVC and Git version controls, and you're allowed to choose which one to use via Options &amp;gt; Source Control. Except, not really. If your solution has a .git folder or .git file, VS assumes you're using Git even if you also have a $tf file or your solution/projecs are configured for TFVC.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/posh-git_fork_to_allow_visual_studio_to_use_tfvc_and_ignore_git/images/ScreenCap_2019-09-24_20-46-29.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;The general solution is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Rename .git to _git&lt;/li&gt;
