@@ -6,6 +6,27 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Posh-git Fork to Allow Visual Studio to Use TFVC and Ignore Git</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/posh-git_fork_to_allow_visual_studio_to_use_tfvc_and_ignore_git/images/git-plus-tfvc.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Source Code: &lt;a href="https://github.com/bladewolf55/posh-git-tfvc"&gt;bladewolf55/posh-git-tfvc: A PowerShell environment for Git, modified to use with TFVC-based solutions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I created this version of posh-git to handle a specific use case: a developer works for a company that requires using TFVC, but she wants to use Git locally to gain its rapid branching/merging abilities. Yet, she also wants to get the benefits of using Visual Studio's TFVC integration, namely CodeLens information.&lt;/p&gt;
+&lt;p&gt;Visual Studio supports both TFVC and Git version controls, and you're allowed to choose which one to use via Options &amp;gt; Source Control. Except, not really. If your solution has a .git folder or .git file, VS assumes you're using Git even if you also have a $tf file or your solution/projecs are configured for TFVC.&lt;/p&gt;
+&lt;p&gt;The general solution is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rename .git to _git&lt;/li&gt;
+&lt;li&gt;Set environment variable GIT_DIR to the full path to the _git folder&lt;/li&gt;
+&lt;li&gt;Set environment variable GIT_WORK_TREE to the full path to the working folder&lt;/li&gt;
+&lt;li&gt;Add line to .gitignore to ignore the _git folder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My modifications to the &lt;code&gt;GitUtils.ps1&lt;/code&gt; file accomplish that.&lt;/p&gt;
+&lt;p&gt;As a bonus, in the &lt;code&gt;test _git&lt;/code&gt; folder there's a file containing a Git alias to initialize a repo using a _git folder and the appropriate .gitignore and .tfignore changes.&lt;/p&gt;
+&lt;p&gt;It's not fancy, and I'm sure a better developer can improve on it.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 24 Sep 2019 20:04:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/posh-git_fork_to_allow_visual_studio_to_use_tfvc_and_ignore_git</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/posh-git_fork_to_allow_visual_studio_to_use_tfvc_and_ignore_git</guid>
+    </item>
+    <item>
       <title>ASP.NET Core Controllers - Exploring How To Test a Simple Feature</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/asp_net_core_controllers_-_exploring_how_to_test_a_simple_feature/images/header.png" alt="" /&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -739,21 +760,6 @@ Thank you so much for your patience in this time.&lt;/p&gt;
       <pubDate>Tue, 4 Jun 2019 11:06:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/an_open_email_to_blackwing602_com_about_their_poor_account_security</guid>
-    </item>
-    <item>
-      <title>Weekly Sugar: Take a Walk</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_take_a_walk/walking-man.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;You've been stuck on a thorny problem for an hour, and the forehead-shaped dents on your desk are going to upset the maintenance department--again. You're about to run out of coffee. The problem is attached to you like a &lt;a href="https://upload.wikimedia.org/wikipedia/commons/3/39/20000_squid_Nautilus_viewbay.jpg"&gt;squid on the Nautilus&lt;/a&gt;. What's the next step?&lt;/p&gt;
-&lt;p&gt;Science says the next step is, literally, steps. Take a break and walk. Eyes off screen, don't read your phone. Go outside if you can. The &amp;quot;extra&amp;quot; ten minutes will often save another hour of struggle as you give your brain a chance to do what it's good at: reforming patterns.&lt;/p&gt;
-&lt;p&gt;Try it today. Stop. Breathe. Take a walk.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Reference&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://scienceline.org/2014/11/stuck-on-a-problem-take-a-walk/"&gt;Stuck on a problem? Take a walk | Scienceline&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Mon, 3 Jun 2019 09:39:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/weekly_sugar-_take_a_walk</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_take_a_walk</guid>
     </item>
   </channel>
 </rss>
