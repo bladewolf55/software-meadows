@@ -6,7 +6,7 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
-      <title>Summary of Accelerate State of DevOps 2019</title>
+      <title>Summary of "Accelerate State of DevOps 2019"</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/summary_of_accelerate_state_of_devops_2019/images/ScreenCap_2019-10-03_22-02-21.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;This year's report from DevOps Research and Assessment (DORA) starts with &lt;a href="https://cloud.google.com/blog/products/devops-sre/the-2019-accelerate-state-of-devops-elite-performance-productivity-and-scaling"&gt;The 2019 Accelerate State of DevOps: Elite performance, productivity, and scaling&lt;/a&gt;, which links to more detailed information.&lt;/p&gt;
 &lt;p&gt;DORA provides, in my opinion, the best researched information on DevOps available. Making implementation decisions based on their insights is a safe bet.&lt;/p&gt;
