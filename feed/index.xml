@@ -6,6 +6,62 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Confirmed Android text punctuation voice commands</title>
+      <description>&lt;p&gt;From what I've read, Apple is superior in its speech-recognition of punctuation. This is what I've confirmed can be done on an Android phone.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Result&lt;/th&gt;
+&lt;th&gt;Command&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Enter once then capitalize&lt;/td&gt;
+&lt;td&gt;&amp;quot;new line&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Enter twice then capitlize&lt;/td&gt;
+&lt;td&gt;&amp;quot;new paragraph&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;td&gt;&amp;quot;period&amp;quot; or &amp;quot;dot&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;?&lt;/td&gt;
+&lt;td&gt;&amp;quot;question mark&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;!&lt;/td&gt;
+&lt;td&gt;&amp;quot;exclamation point&amp;quot; &amp;quot;exclamation mark&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;,&lt;/td&gt;
+&lt;td&gt;&amp;quot;comma&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;=&lt;/td&gt;
+&lt;td&gt;&amp;quot;equal sign&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;pre&gt;&lt;code&gt;                      | &amp;quot;hyphen&amp;quot; &amp;quot;dash&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;%                           | &amp;quot;percent sign&amp;quot;
+:-)                         | &amp;quot;smiley face&amp;quot;
+:-(                         | &amp;quot;sad face&amp;quot;
+...                         | &amp;quot;dot dot dot&amp;quot;&lt;/p&gt;
+</description>
+      <pubDate>Sun, 6 Oct 2019 15:17:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/confirmed_android_text_punctuation_voice_commands</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/confirmed_android_text_punctuation_voice_commands</guid>
+    </item>
+    <item>
       <title>Summary of "Accelerate State of DevOps 2019"</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/summary_of_accelerate_state_of_devops_2019/images/ScreenCap_2019-10-03_22-02-21.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;This year's report from DevOps Research and Assessment (DORA) starts with &lt;a href="https://cloud.google.com/blog/products/devops-sre/the-2019-accelerate-state-of-devops-elite-performance-productivity-and-scaling"&gt;The 2019 Accelerate State of DevOps: Elite performance, productivity, and scaling&lt;/a&gt;, which links to more detailed information.&lt;/p&gt;
@@ -810,65 +866,6 @@ etc.
       <pubDate>Tue, 11 Jun 2019 11:34:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list</guid>
-    </item>
-    <item>
-      <title>Joe Developer: When (not) to Drink Coffee</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/joe_developer-_when_(not)_to_drink_coffee/images/coffee-clock.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;2019-06-10 15:03:00 This is an update of an article I wrote a few years ago.&lt;br /&gt;
-2019-06-11 09:25:38 Significant update to call out when to drink coffee and other health benefits.&lt;/p&gt;
-&lt;h1 id="the-gist"&gt;The Gist&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;We should drink coffee between 9:30 and 11:30, and &lt;em&gt;maybe&lt;/em&gt; also between 1:30 and 5:00.&lt;/li&gt;
-&lt;li&gt;Drinking 4-5 8oz cups per day has other health benefits. Quoted:
-&lt;ul&gt;
-&lt;li&gt;reduces your risk of cancer up to 20 percent;&lt;/li&gt;
-&lt;li&gt;reduces your risk of heart disease by 5 percent;&lt;/li&gt;
-&lt;li&gt;reduces your risk of Type 2 diabetes by 30 percent; and&lt;/li&gt;
-&lt;li&gt;reduces your risk of Parkinson's disease by 30 percent.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Unless you're pregnant. If pregnant, coffee can slightly increase the risk of miscarriage.&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Science shows drinking coffee first thing in the morning negatively affects one’s circadian rhythm by inhibiting the production of cortisol, which the body uses to naturally wake us up. Drinking coffee when cortisol levels are falling helps us stay evenly alert. The recommended times are based on the average person who gets up around 6:30am. Adjust accordingly for your own consistent wake time.&lt;/p&gt;
-&lt;p&gt;Best summary for both time-of-day and health benefits:&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.inc.com/geoffrey-james/scientists-just-discovered-best-time-of-day-to-drink-your-first-cup-of-coffee.html"&gt;The Best Time of Day to Drink Coffee, According to Science | Inc.com&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Most entertaining summary:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://en.ilovecoffee.jp/posts/view/57"&gt;The best time to drink coffee according to science - I Love Coffee&lt;/a&gt; (with infographics!!)&lt;/p&gt;
-&lt;p&gt;The last entry seems to have begat many others. It’s my favorite. It makes me happy to read it.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/joe_developer-_when_(not)_to_drink_coffee/images/2019-06-11_09-38-22.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;None of these articles discusses &lt;em&gt;how&lt;/em&gt; to shift your coffee consumption, which is a shame. It's like telling a smoker, &amp;quot;just quit.&amp;quot; The thing is, cortisol production doesn't just leap back into action. I've taken &lt;a href="https://www.webmd.com/drugs/2/drug-22008/budesonide-oral/details"&gt;budesonide&lt;/a&gt;, which decreases cortisol production, and the weaning off period is 2-4 weeks. So, I recommend making the change gradually.&lt;/p&gt;
-&lt;h1 id="the-article-trail"&gt;The Article Trail&lt;/h1&gt;
-&lt;p&gt;I first read &lt;a href="http://www.fastcompany.com/3034375/coffee-week/the-new-habit-challenge-drink-your-coffee-when-science-tells-you-to"&gt;this 2014 article&lt;/a&gt; about why you shouldn’t drink coffee first thing in the morning, i.e. right after getting up. Curious, I tried to find out more on the subject. I turned out there are several similar articles. In all cases, the stories originate from an article by Steven Miller, Ph.D., &lt;a href="http://neurosciencedc.blogspot.jp/2013/10/the-best-time-for-your-coffee.html"&gt;The Best Time for Your Coffee&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Now, Dr Miller is a scientist, and he cites his sources, and he’s clear about what he’s saying and not saying. Check out the comments on his article; he defends against a few hostile readers.&lt;/p&gt;
-&lt;p&gt;But where did he get his data? That’s from a study in 2009, the sciency-named &lt;a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2684472/"&gt;Modified-Release Hydrocortisone to Provide Circadian Cortisol Profiles&lt;/a&gt;. This article, which has 80% words I don’t understand, includes this graphic showing natural peak cortisol levels.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/joe_developer-_when_(not)_to_drink_coffee/images/ScreenCap_2019-06-10_15-21-37.png" alt="" /&gt;&lt;/p&gt;
-&lt;h1 id="whats-what"&gt;What’s What?&lt;/h1&gt;
-&lt;p&gt;Dr Miller doesn’t point to a specific study proving that people should drink coffee at a particular time. He states his opinion based on the research. I liked his interesting pharmacological approach (emphases are mine).&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Drug tolerance is an important subject, especially in the case of caffeine since &lt;em&gt;most of us overuse this drug&lt;/em&gt;. Therefore, if we are drinking caffeine at a time when your cortisol concentration in the blood is at its peak, you probably should not be drinking it. This is because cortisol production is strongly related to your level of alertness and it just so happens that cortisol peaks for your 24 hour rhythm between 8 and 9 AM on average (Debono et al., 2009). Therefore, you are drinking caffeine at a time when you are already approaching your maximal level of alertness naturally. &lt;em&gt;One of the key principles of pharmacology is use a drug when it is needed&lt;/em&gt; (although I’m sure some scientists might argue that caffeine is always needed). Otherwise, we can develop tolerance to a drug administered at the same dose.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Are you wondering what cortisol is? I did, too.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href="http://www.todaysdietitian.com/newarchives/111609p38.shtml"&gt;Cortisol&lt;/a&gt;, a glucocorticoid (steroid hormone), is produced from cholesterol in the two adrenal glands located on top of each kidney. It is normally released in response to events and circumstances such as waking up in the morning, exercising, and acute stress. Cortisol’s far-reaching, systemic effects play many roles in the body’s effort to carry out its processes and maintain homeostasis.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Cortisol is part of the fight-or-flight response. We don’t want too much cortisol, but it’s normal to get a boost of it at specific times, such as waking up.&lt;/p&gt;
-&lt;p&gt;The problem with caffeine during peak natural cortisol production is that the body, in effect, says, “Hey, this coffee’s doing a great job! Turn off the cortisol!” Over time, we get less of a boost than we used to, so we drink more coffee. And our body says, “Wow, more coffee? Better turn down the cortisol again!” And so on.&lt;/p&gt;
-&lt;h1 id="personal-results"&gt;Personal Results&lt;/h1&gt;
-&lt;p&gt;I've had some trouble in the past getting good, consistent sleep. I can’t blame it all on how I’ve been drinking coffee, but here's my current, typical morning.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Stretch/exercise for about 20 minutes first thing in the morning (7am). This wakes me up &lt;em&gt;way&lt;/em&gt; better than coffee.&lt;/li&gt;
-&lt;li&gt;Three or four cups of coffee starting about 9:30 (ending before 11:30), and another cup at about 2pm.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;What has changed since adopting this routine is I don't feel I &lt;em&gt;need&lt;/em&gt; coffee first thing in the morning to wake up. And that's because, &lt;em&gt;&lt;strong&gt;I don't&lt;/strong&gt;&lt;/em&gt;! If I miss some coffee, it doesn't throw my whole sleeping pattern out of whack, either.&lt;/p&gt;
-&lt;h1 id="other-references"&gt;Other References&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.forbes.com/sites/anthonykosner/2014/01/05/why-the-best-time-to-drink-coffee-is-not-first-thing-in-the-morning/#f3c6a327a717"&gt;Why The Best Time To Drink Coffee Is Not First Thing In The Morning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://time.com/3903826/coffee-early-morning-worst-time/"&gt;Coffee: Drinking in the Morning is not the Best Time | Time&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Mon, 10 Jun 2019 15:03:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/joe_developer-_when_(not)_to_drink_coffee</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/joe_developer-_when_(not)_to_drink_coffee</guid>
     </item>
   </channel>
 </rss>
