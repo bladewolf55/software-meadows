@@ -7,7 +7,7 @@
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
       <title>Confirmed Android text punctuation voice commands</title>
-      <description>&lt;p&gt;From what I've read, Apple is superior in its speech-recognition of punctuation. This is what I've confirmed can be done on an Android phone.&lt;/p&gt;
+      <description>&lt;p&gt;This is what I've confirmed can be done on an Android phone. (From what I've read, Apple is superior in its speech-recognition of punctuation.)&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -26,7 +26,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;.&lt;/td&gt;
-&lt;td&gt;&amp;quot;period&amp;quot; or &amp;quot;dot&amp;quot;&lt;/td&gt;
+&lt;td&gt;&amp;quot;period&amp;quot; &amp;quot;dot&amp;quot;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;?&lt;/td&gt;
@@ -40,18 +40,28 @@
 &lt;td&gt;,&lt;/td&gt;
 &lt;td&gt;&amp;quot;comma&amp;quot;&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;&amp;quot;hyphen&amp;quot; &amp;quot;dash&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;%&lt;/td&gt;
+&lt;td&gt;&amp;quot;percent sign&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;:-)&lt;/td&gt;
+&lt;td&gt;&amp;quot;smiley face&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;:-(&lt;/td&gt;
+&lt;td&gt;&amp;quot;sad face&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;&amp;quot;dot dot dot&amp;quot;&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;pre&gt;&lt;code&gt;                      | &amp;quot;hyphen&amp;quot; &amp;quot;dash&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;%                           | &amp;quot;percent sign&amp;quot;
-:-)                         | &amp;quot;smiley face&amp;quot;
-:-(                         | &amp;quot;sad face&amp;quot;
-...                         | &amp;quot;dot dot dot&amp;quot;&lt;/p&gt;
 </description>
       <pubDate>Sun, 6 Oct 2019 15:17:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/confirmed_android_text_punctuation_voice_commands</link>
