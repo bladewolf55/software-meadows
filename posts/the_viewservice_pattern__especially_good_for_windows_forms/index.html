@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Weekly Sugar: When Is Music A Distraction? | Software Meadows</title>
+  <title>The Viewservice Pattern: Especially Good For Windows Forms | Software Meadows</title>
 </head>
 
 <body>
@@ -62,24 +62,175 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_'>Weekly Sugar: When is Music a Distraction?</a></h2>
-                <p class='post-info'><span class='posted-on'>2019-05-20 10:23</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/weekly_sugar-_when_is_music_a_distraction_/images/fading-notes.png" alt="" /></p>
-<p>Developers often listen to music while programming. But, like teenagers who rock out when trying to do math homework, are we doing ourselves a favor?</p>
-<p>The research so far shows that listening to music during <em>repetitive work</em> can boost productivity. Fine if we're creating lots of classes that follow a pattern.</p>
-<p>But what about <em>creative or demanding cognitive work</em> such as intensive debugging, having to hold a dozen dependencies in mind at once for thirty minutes? Then, music can be a serious distraction. Often, the best solution at those moments is to turn off the music, or use ambient/white noise to mask office sounds.</p>
-<p>Developers spend lots of time in demanding mental activity. Find music that doesn't distract you, and be mindful if it is. Change your music to change your mind.</p>
-<p><strong>References</strong></p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/the_viewservice_pattern__especially_good_for_windows_forms'>The ViewService Pattern: Especially Good For Windows Forms</a></h2>
+                <p class='post-info'><span class='posted-on'>2019-10-13 12:03</span></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/the_viewservice_pattern__especially_good_for_windows_forms/images/form.png" alt="" /></p>
+<p>Windows Form development is still happening, is fast, and is reasonably easy to understand how to get started with. It's event-driven and hasn't changed much since Visual Basic. You drag controls onto a canvas, double-click the controls to open their event methods, and write what's supposed to happen.</p>
+<p>Thus, Frankenstein's monster was born.</p>
+<p>I'm taming the monster with a pattern I'm calling the ViewService. I won't create a Gang of Four class diagram, but basically a ViewService is a way of separating the code that manages ViewModels, and is a useful approach in Windows Forms. It's directly analagous to domain services and models.</p>
+<p>How often have you written or maintained code that looks like this? (note this is pseudocoding, not actual code.)</p>
+<pre><code class="language-csharp">class MainForm
+{
+    void buttonLoadData(object sender, EventArgs e)
+    {
+        var cn = new Connection(_connString);
+        var cmd = new Command(cn, &quot;select a.*, b.* from Customer a join Order b on a.CustomerId = b.CustomerId&quot;);
+        var reader = cmd.ReadResults();
+        until (reader.Eof)
+        {
+            var co = ConvertReaderToCustomerOrder(reader.Read());
+            grid1.Row.Add(new Row(co.Name, co.Zip);
+            AddOrdersToGridRow(grid1.Rows[grid1.Rows.Length-1], co)
+            if (co.Type = 1) { grid1.Rows[grid1.Rows.Length-1].BackgroundColor = Blue;}
+            else if (co.Type = 3) { grid1.Rows[grid1.Rows.Length-1].BackgroundColor = Orange;}
+        }
+        
+    }
+    
+    void AddOrdersToGridRows(Row row, CustomerOrder order, Connection cn)
+    {
+        foreach (var orderitem in order.Orders)
+        {
+            var cmd = new Command();
+            cmd.Connection = cn;
+            cmd.CommandText = String.Format (&quot;select * from lineitems where OrderId = %1&quot;,  orderitem.OrderId);
+            var items = ToLineItems(cmd.ExecuteQuery());
+            row[&quot;Items&quot;] = AddItemsToGrid(items, row);
+            if (order.Type = 3 and items.Count() &gt; 15) {row.BackgroundColor = Red;}
+        }
+        CheckIfMoreOrdersHaveArrivedAndPrintThem();
+        
+    }
+    
+    void buttonRefreshData(object sender, EventArgs e)
+    {
+        buttonLoadData(sender, e);
+    }
+    
+}
+</code></pre>
+<p>The problems with the above code could occupy us for awhile, and they add up to one word: complication.</p>
 <ul>
-<li><a href="https://www.theatlantic.com/science/archive/2016/12/the-best-music-for-productivity-silence/509948/">The Best Music for Productivity? Silence - The Atlantic</a></li>
-<li><a href="https://www.sciencealert.com/the-best-music-to-listen-to-for-optimal-productivity-according-to-science">The Best Music to Listen to For Optimal Productivity, According to Science</a></li>
-<li><a href="https://spoonuniversity.com/healthier/6-scientifically-proven-songs-to-improve-your-focus">6 Songs That Have Been Scientifically Proven to Improve Focus</a></li>
+<li>Events are doing too many things</li>
+<li>Events are called directly</li>
+<li>Tight coupling</li>
+<li>Inconsistent naming and coding style</li>
 </ul>
+<p>Here's how I recommend clearing up this kind of code by applying the ViewService pattern.</p>
+<ol>
+<li>Group form events together</li>
+<li>Group together methods that only apply to this form</li>
+<li>Group methods that could apply to a <strong>replacement</strong> form together, potentially into a service</li>
+<li>Form events present data, or call a method to preserve data</li>
+</ol>
+<p>Let's apply these steps to the above.</p>
+<blockquote>
+<p>The code below is pretty sparse and incomplete. The goal is to give you the idea of what to do, not provide a full-fledged implementation.</p>
+</blockquote>
+<h2 id="group-form-events-and-methods">Group form events and methods</h2>
+<p>This is organizational, and clarifies what the <em>user</em> is doing vs what the <em>developer</em> is doing. (Methods collapsed for clarity.)</p>
+<pre><code class="language-csharp">
++ void AddOrdersToGridRows(Row row, CustomerOrder order, Connection cn)...
+
+#region &quot;Control Events&quot;
+
++ void buttonLoadData(object sender, EventArgs e)...
++ void buttonRefreshData(object sender, EventArgs e)...
+
+#endregion
+
+</code></pre>
+<h2 id="better-methods-and-names-and-events-call-custom-methods-instead-of-being-treated-as-custom-methods">Better methods and names, and events <em>call</em> custom methods instead of being <em>treated</em> as custom methods</h2>
+<pre><code class="language-csharp">class MainForm
+{
+    List&lt;CustomerOrderView&gt; _customerOrders = new List&lt;CustomerOrderView&gt;();
+    
+    + void GetData()...
+    + void LoadControls()
+    
+    void buttonLoadData(object sender, EventArgs e)
+    {
+        GetData();
+        LoadControls();
+    }
+    void buttonCancel(object sender, EventArgs e)
+    {
+        LoadControls();
+    }
+}
+</code></pre>
+<p>Already, we're gaining clarity.</p>
+<h2 id="separate-the-data-calls-into-a-viewservice">Separate the data calls into a ViewService</h2>
+<blockquote>
+<p>Imagine the ViewService is going to be resued in a web application. That means it doesn't accept or process form controls, and is UI agnostic.</p>
+</blockquote>
+<p>This is the same Dependency Injection pattern used in web applications. The difference is that CustomerOrderViewService isn't a domain service, it's specific to this view of the data.</p>
+<pre><code class="language-csharp">
+class MainForm 
+{
+    ICustomerOrderViewService _customerOrderViewService = null;
+    List&lt;CustomerOrderView&gt; _customerOrders = new List&lt;CustomerOrderView&gt;();
+
+    
+    + void MainForm(ICustomerOrderViewService)...
+    
+    void GetData()
+    {
+        _customerOrders = _customerOrderViewService.Get(txtCustomerId.Text);
+    }
+    
+    void LoadControls()
+    {
+        if (_customerOrders == null) { GetData(); }
+        gridOrders.DataSource = _customerOrders;
+    }
+
+}
+
+//These two classes would be in separate files, and *could* be in a separate namespace
+//to emphasize the decoupling.
+
+class CustomerOrderViewService: ICustomerOrderViewService
+{
+    ICustomerOrderService _customerOrderService = null;
+    
+    + public CustomerOrderViewService(ICustomerOrderService _customerOrderService)...
+    
+
+    public List&lt;CustomerOrderView&gt; Get(string customerId)
+    {
+        //This is the call to the *domain service*. It might call the database directly, or might in turn call a web api.
+        
+        //Returns type CustomerOrder
+        var customerOrders = _customerOrderService.GetOrdersByCustomer(string customerId);
+        
+        //Mapping
+        return customerOrders.Select(a =&gt; a.ToCustomerOrderView());
+    }
+    
+}
+
+class static CustomerOrderViewServiceHelpers
+{
+    public static ToCustomerOrderView (this CustomerOrder customerOrder)
+    {
+        return new CustomerOrderView()
+        {
+            Name = customerOrder.Name,
+            CustomerType = customerOrder.CustomerType,
+            etc....
+        }
+    }
+}
+
+</code></pre>
+<h2 id="the-happy-wrap-up">The Happy Wrap Up</h2>
+<p>By applying the ViewService pattern, we can separate Windows Form code into cleaner areas of concern, making our code clear, testable, maintainable and replaceable.</p>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Weekly Sugar: When Is Music A Distraction? | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on The Viewservice Pattern: Especially Good For Windows Forms | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
