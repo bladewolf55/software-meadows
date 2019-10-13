@@ -6,6 +6,60 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Most of Us Developers Aren't Smart</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/most_of_us_developers_arent_smart/images/light-bulbs-styled-after-felix-gonzalez-torres.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Most of us developers think we're smart. But we aren't smart. We're clever.&lt;/p&gt;
+&lt;p&gt;And confused.&lt;/p&gt;
+&lt;p&gt;You can easily prove this by looking at our code. Specifically, by answering these questions:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;How many layers of indirection are there?&lt;/li&gt;
+&lt;li&gt;How many abstractions of abstractions are there?&lt;/li&gt;
+&lt;li&gt;How many different things are our methods doing?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Combined, these reveal how complicated a set of code is.&lt;/p&gt;
+&lt;p&gt;What we do as developers is complex. There are lots of little moving parts that all need to work together.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Complex: composed of many interconnected parts; compound; composite&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Complicated: difficult to analyze, understand, explain, etc.&lt;a id="fnref:2" href="#fn:2" class="footnote-ref"&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Because we're clever, we think we understand how to manage this complexity. But we don't. We're confused by it. So, instead of making the complex clear, we complicate it. We add stuff that makes those moving parts harder to understand (over-use of indirection and abstraction), and harder to work together (method multi-responsibility).&lt;/p&gt;
+&lt;p&gt;No one likes to hear this or face it in themselves. But we face it too often when supporting others' code. It comes with that little, internal question, &amp;quot;Couldn't this be easier?&amp;quot;&lt;/p&gt;
+&lt;p&gt;So, what do we do?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First&lt;/strong&gt;, decide that &amp;quot;we&amp;quot; applies to &amp;quot;you.&amp;quot; It's better to start with this assumption because it leads to learning rather than avoidance. If I insist I'm smart, I won't make the effort to learn better--thus, not smart. But if I insist I can be better, no matter how good I am, then the path to improvement and away from stagnation opens long and wide.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Second&lt;/strong&gt;, find examples of complex code that isn't complicated. Open source projects coming out of Microsoft and Google are good starting points.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Third&lt;/strong&gt;, Read about and apply the principles behind uncomplicating code. Three of these are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/SOLID"&gt;SOLID&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself"&gt;DRY&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it"&gt;YAGNI&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally, be guided by four overarching principles in your architecture and coding. Make your code...&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Clear&lt;/li&gt;
+&lt;li&gt;Maintainable&lt;/li&gt;
+&lt;li&gt;Testable&lt;/li&gt;
+&lt;li&gt;Replaceable&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We may not &lt;em&gt;be&lt;/em&gt; smart, but be can code smarter.&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;strong&gt;Complex&lt;/strong&gt; 1645–55; 1905–10 for def 7; (adj.) &amp;lt; Latin complexus, past participle of complectī, complectere to embrace, encompass, include, equivalent to complect- (see complect) + -tus past participle suffix; (noun) &amp;lt; Late Latin complexus totality, complex (Latin: inclusion, grasping, embrace), equivalent to complect(ere) + -tus suffix of v. action; reanalysis of the Latin v. as “to intertwine (completely)” has influenced sense of the adj.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;&lt;strong&gt;Complicated&lt;/strong&gt; 1615–25; &amp;lt; Latin complicātus (past participle of complicāre to fold together), equivalent to com- com- + -plic- (combining form of *plecāre to fold, akin to plectī to plait; see complex) + -ātus -ate1&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Sun, 13 Oct 2019 11:15:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/most_of_us_developers_arent_smart</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/most_of_us_developers_arent_smart</guid>
+    </item>
+    <item>
       <title>Confirmed Android text punctuation voice commands</title>
       <description>&lt;p&gt;This is what I've confirmed can be done on an Android phone. (From what I've read, Apple is superior in its speech-recognition of punctuation.)&lt;/p&gt;
 &lt;table&gt;
@@ -842,36 +896,6 @@ Three Es: Educating, Enabling, Engaging&lt;/li&gt;
       <pubDate>Sun, 16 Jun 2019 16:13:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/20190616-1610 flatts_posts-casts_review_003</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/20190616-1610 flatts_posts-casts_review_003</guid>
-    </item>
-    <item>
-      <title>Weekly Sugar: Applying Kanban Principles to Your Personal Task List</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list/images/vertical-task-list.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Many of us use Kanban boards (or you might be calling them Scrum boards) on work projects. And, we might use &lt;a href="https://trello.com/"&gt;Trello&lt;/a&gt; for some home projects. But most people probably &lt;em&gt;aren't&lt;/em&gt; using them for their daily task lists.&lt;/p&gt;
-&lt;p&gt;There are lots of To Do apps out there, but here's a &amp;quot;first principles&amp;quot; approach using two lists. I do this in &lt;a href="http://keep.google.com"&gt;Google Keep&lt;/a&gt;, but it could as easily be done on paper, which is the inspiration.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;TODAY
-- [ ] Finish base page
-- [ ] Start home controllers
-- [ ] Buy diapers at lunch
-
-WAITING ON
-- [ ] Time approval from Florence (emailed 5/12 3p)
-
-SOON (limit 5)
-- [ ] Read *Accelerate*
-- [ ] Prepare for DevOps conference
-- [ ] Call Marcus about tennis Thu
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class="language-txt"&gt;PERSONAL BACKLOG
-- [ ] Plan Vinit's birthday
-- [ ] Add user stories to MyCoolProject  
-etc.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In Keep, or a text file, it's easy to move tasks around. On paper, you might write in pencil and renumber priorities.&lt;/p&gt;
-&lt;p&gt;The point is, this is the same as a Kanban flow, just rotated 90 degrees. It's easy to update and change, which is critical to capturing thoughts quickly so they don't get lost. The software (or hardware) gets out of the way.&lt;/p&gt;
-</description>
-      <pubDate>Tue, 11 Jun 2019 11:34:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_applying_kanban_principles_to_your_personal_task_list</guid>
     </item>
   </channel>
 </rss>
