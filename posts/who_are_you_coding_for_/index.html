@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Weekly Sugar: 'Accelerate', The Best Book About Devops | Software Meadows</title>
+  <title>Who Are You Coding For? | Software Meadows</title>
 </head>
 
 <body>
@@ -62,19 +62,33 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/weekly_sugar-_accelerate__the_best_book_about_devops'>Weekly Sugar: 'Accelerate', the Best Book About DevOps</a></h2>
-                <p class='post-info'><span class='posted-on'>2019-06-18 14:02</span></p>
-                <div class='post-content'><p><img src="https://www.softwaremeadows.com/devops/accelerate_notes_and_quotes/accelerate-header.png" alt="" /></p>
-<p>I run a Meetup called <em><a href="https://www.meetup.com/Coffee-Quiet-Code/">Coffee. Quiet. Code.</a></em> I want to encourage developers to work together in the same casual space without having to discuss anything or even interact much. It could be seen as a far less rigid version of Mycroft Holmes' <a href="https://en.wikipedia.org/wiki/Diogenes_Club">&quot;Dionysus Club&quot;</a>, a way to enjoy shared community.</p>
-<p>My inspiration came from people, often strangers, reading together in libraries, and also the sweet memories of my whole family reading their separate books they received as holiday gifts. In that spirit, here's a book recommendation.</p>
-<p><a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations-ebook/dp/B07B9F83WM">Accelerate: The Science of Lean Software and DevOps</a> is exactly what it claims to be: high-quality, peer-reviewed research answering the practical question &quot;What's really working in software development across all industries and team sizes?&quot; There are plenty of opinions out there on DevOps. This book deals in facts.</p>
-<p>I wrote an extensive book summary for a client, which you'll find on my web site.</p>
-<p><a href="https://www.softwaremeadows.com/devops/accelerate_notes_and_quotes/">'Accelerate' Book Notes And Quotes | Software Meadows</a></p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/who_are_you_coding_for_'>Who Are You Coding For?</a></h2>
+                <p class='post-info'><span class='posted-on'>2019-10-20 18:36</span></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/who_are_you_coding_for_/images/The_bones_of_a_bridge.jpg" alt="" /></p>
+<h2 id="the-lesson">The Lesson</h2>
+<p>Consider this brief, hypothetical exchange between two developers, maybe in a meeting where others are present.</p>
+<p><strong>Developer 1</strong>: ...so, I solved the problem this way. This causes e.Data to overwrite the previous line.</p>
+<pre><code class="language-csharp">bool overwrite = e.Data.Contains(&quot;.....&quot;);
+
+WriteLog(e.Data, overwrite);
+</code></pre>
+<p><strong>Developer 2</strong>: &quot;You know you could just include the condition in the WriteLog call, like this. You don't need to go to the trouble of  setting a variable.&quot;</p>
+<pre><code class="language-csharp">WriteLog(e.Data, e.Data.Contains(&quot;.....&quot;));
+</code></pre>
+<p><strong>Developer 1</strong>: &quot;Sure. So, why did I?&quot;</p>
+<p><strong>Developer 2</strong>: &quot;Huh?&quot;</p>
+<p><strong>Developer 1</strong>: &quot;Why did I use a variable.&quot;</p>
+<p><strong>Developer 2</strong>: &quot;I don't know.&quot;</p>
+<p><strong>Developer 1</strong>: &quot;Because I'm not coding for me today. I'm coding for other developers, and my future self. I want it to be as easy for them as possible to understand what this code is doing.&quot;</p>
+<h2 id="why-i-wrote-this">Why I wrote this</h2>
+<p>My grandfather was once desribed as a bridge-builder. Even if he were (metaphorically) crossing a river just once, he'd build a bridge for whoever came after him.</p>
+<p>Think about this as you make coding, architectural, and documentation decisions. What you do will affect someone in the future. Are you focused on finishing now, as fast as possible? Or crafting your code so that someone thanks you later one.</p>
+<p>Who are you coding for?</p>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Weekly Sugar: 'Accelerate', The Best Book About Devops | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Who Are You Coding For? | Software Meadows">email</a>. I might even update the post!
         </p>
         
 

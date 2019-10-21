@@ -6,6 +6,33 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Who Are You Coding For?</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/who_are_you_coding_for_/images/The_bones_of_a_bridge.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="the-lesson"&gt;The Lesson&lt;/h2&gt;
+&lt;p&gt;Consider this brief, hypothetical exchange between two developers, maybe in a meeting where others are present.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: ...so, I solved the problem this way. This causes e.Data to overwrite the previous line.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;bool overwrite = e.Data.Contains(&amp;quot;.....&amp;quot;);
+
+WriteLog(e.Data, overwrite);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Developer 2&lt;/strong&gt;: &amp;quot;You know you could just include the condition in the WriteLog call, like this. You don't need to go to the trouble of  setting a variable.&amp;quot;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;WriteLog(e.Data, e.Data.Contains(&amp;quot;.....&amp;quot;));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;Sure. So, why did I?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer 2&lt;/strong&gt;: &amp;quot;Huh?&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;Why did I use a variable.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer 2&lt;/strong&gt;: &amp;quot;I don't know.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;Because I'm not coding for me today. I'm coding for other developers, and my future self. I want it to be as easy for them as possible to understand what this code is doing.&amp;quot;&lt;/p&gt;
+&lt;h2 id="why-i-wrote-this"&gt;Why I wrote this&lt;/h2&gt;
+&lt;p&gt;My grandfather was once desribed as a bridge-builder. Even if he were (metaphorically) crossing a river just once, he'd build a bridge for whoever came after him.&lt;/p&gt;
+&lt;p&gt;Think about this as you make coding, architectural, and documentation decisions. What you do will affect someone in the future. Are you focused on finishing now, as fast as possible? Or crafting your code so that someone thanks you later one.&lt;/p&gt;
+&lt;p&gt;Who are you coding for?&lt;/p&gt;
+</description>
+      <pubDate>Sun, 20 Oct 2019 18:36:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/who_are_you_coding_for_</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/who_are_you_coding_for_</guid>
+    </item>
+    <item>
       <title>The ViewService Pattern: Especially Good For Windows Forms</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_viewservice_pattern__especially_good_for_windows_forms/images/form.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Windows Form development is still happening, is fast, and is reasonably easy to understand how to get started with. It's event-driven and hasn't changed much since Visual Basic. You drag controls onto a canvas, double-click the controls to open their event methods, and write what's supposed to happen.&lt;/p&gt;
@@ -871,19 +898,6 @@ He &lt;em&gt;codes&lt;/em&gt;. She &lt;em&gt;tests&lt;/em&gt;. They &lt;em&gt;de
       <pubDate>Thu, 20 Jun 2019 11:07:30 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes</guid>
-    </item>
-    <item>
-      <title>Weekly Sugar: 'Accelerate', the Best Book About DevOps</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/devops/accelerate_notes_and_quotes/accelerate-header.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;I run a Meetup called &lt;em&gt;&lt;a href="https://www.meetup.com/Coffee-Quiet-Code/"&gt;Coffee. Quiet. Code.&lt;/a&gt;&lt;/em&gt; I want to encourage developers to work together in the same casual space without having to discuss anything or even interact much. It could be seen as a far less rigid version of Mycroft Holmes' &lt;a href="https://en.wikipedia.org/wiki/Diogenes_Club"&gt;&amp;quot;Dionysus Club&amp;quot;&lt;/a&gt;, a way to enjoy shared community.&lt;/p&gt;
-&lt;p&gt;My inspiration came from people, often strangers, reading together in libraries, and also the sweet memories of my whole family reading their separate books they received as holiday gifts. In that spirit, here's a book recommendation.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations-ebook/dp/B07B9F83WM"&gt;Accelerate: The Science of Lean Software and DevOps&lt;/a&gt; is exactly what it claims to be: high-quality, peer-reviewed research answering the practical question &amp;quot;What's really working in software development across all industries and team sizes?&amp;quot; There are plenty of opinions out there on DevOps. This book deals in facts.&lt;/p&gt;
-&lt;p&gt;I wrote an extensive book summary for a client, which you'll find on my web site.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/devops/accelerate_notes_and_quotes/"&gt;'Accelerate' Book Notes And Quotes | Software Meadows&lt;/a&gt;&lt;/p&gt;
-</description>
-      <pubDate>Tue, 18 Jun 2019 14:02:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/weekly_sugar-_accelerate__the_best_book_about_devops</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/weekly_sugar-_accelerate__the_best_book_about_devops</guid>
     </item>
   </channel>
 </rss>
