@@ -15,7 +15,7 @@
 
 WriteLog(e.Data, overwrite);
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Developer 2&lt;/strong&gt;: &amp;quot;You know you could just include the condition in the WriteLog call, like this. You don't need to go to the trouble of  setting a variable.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer 2&lt;/strong&gt;: &amp;quot;You know you could just include the condition in the WriteLog call. You don't need to go to the trouble of  setting a variable.&amp;quot;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;WriteLog(e.Data, e.Data.Contains(&amp;quot;.....&amp;quot;));
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;Sure. So, why did I?&amp;quot;&lt;/p&gt;
