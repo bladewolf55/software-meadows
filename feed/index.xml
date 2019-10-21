@@ -20,7 +20,7 @@ WriteLog(e.Data, overwrite);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;Sure. So, why did I?&amp;quot;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Developer 2&lt;/strong&gt;: &amp;quot;Huh?&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;Why did I use a variable.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;Why did I use a variable?&amp;quot;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Developer 2&lt;/strong&gt;: &amp;quot;I don't know.&amp;quot;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;Because I'm not coding for me today. I'm coding for other developers, and my future self. I want it to be as easy for them as possible to understand what this code is doing.&amp;quot;&lt;/p&gt;
 &lt;h2 id="why-i-wrote-this"&gt;Why I wrote this&lt;/h2&gt;
