@@ -10,7 +10,7 @@
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/who_are_you_coding_for_/images/The_bones_of_a_bridge.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;h2 id="the-lesson"&gt;The Lesson&lt;/h2&gt;
 &lt;p&gt;Consider this brief, hypothetical exchange between two developers, maybe in a meeting where others are present.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: ...so, I solved the problem this way. This causes e.Data to overwrite the previous line.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Developer 1&lt;/strong&gt;: &amp;quot;...so, I solved the problem this way. This causes e.Data to overwrite the previous line.&amp;quot;&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;bool overwrite = e.Data.Contains(&amp;quot;.....&amp;quot;);
 
 WriteLog(e.Data, overwrite);
