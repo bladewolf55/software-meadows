@@ -6,6 +6,109 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>TFS/Azure DevOps: Building and Releasing Git Branches, A Simple Example</title>
+      <description>&lt;h2 id="contents"&gt;Contents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#the-situation"&gt;The Situation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#implementation"&gt;Implementation&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#git"&gt;Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#tfs-build"&gt;TFS Build&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#tfs-release"&gt;TFS Release&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#code-freeze"&gt;Code Freeze&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="the-situation"&gt;The Situation&lt;/h2&gt;
+&lt;p&gt;The development teams run on a two-week release cycle. The final three days of the cycle they are in code freeze. Code is deployed to two environments: Test and Production.&lt;/p&gt;
+&lt;p&gt;During code freeze:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;At the start, all repos are built and released to Test. This is the production code.&lt;/li&gt;
+&lt;li&gt;Newly developed code must be committed to the repository and built, but it must &lt;em&gt;not&lt;/em&gt; be released to Test.&lt;/li&gt;
+&lt;li&gt;At the end, all production code is deployed to Production, and newly developed code is deployed to Test.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally, the teams want to have just one build and one deployement definition for each solution.&lt;/p&gt;
+&lt;h2 id="implementation"&gt;Implementation&lt;/h2&gt;
+&lt;h3 id="git"&gt;Git&lt;/h3&gt;
+&lt;p&gt;Git is configured with two long-lived branches: master and development.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Developers always work against the development branch, pushing their local, short-lived feature branches.&lt;/li&gt;
+&lt;li&gt;At code freeze, development is merged into master.&lt;/li&gt;
+&lt;li&gt;If there are emergency production deployments, ideally they're made first to deployment and then to master. If they're made directly to master then the changes need to be merged into development (or, ideally, development is rebased onto master)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="tfs-build"&gt;TFS Build&lt;/h3&gt;
+&lt;p&gt;The build definition is configured with Triggers, specifically Branch filters for both master and development branches. Continuous Integration is enabled.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_08-55-31.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;This allows commits to both development and master branches to trigger the build.&lt;/p&gt;
+&lt;h3 id="tfs-release"&gt;TFS Release&lt;/h3&gt;
+&lt;p&gt;The deployment definition is configured in the following way:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pipeline&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-18-00.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Artifacts&lt;/strong&gt;&lt;br /&gt;
+There's a single artifact with a Source type of Build. The Source is the build definition.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-18-03.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Continuous deployment is enabled, and both branches are allowed.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-18-55.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Environments&lt;/strong&gt;&lt;br /&gt;
+Both environments use the After release trigger.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Test Environment&lt;/em&gt;&lt;br /&gt;
+The artifact filters include both branches&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-21-51.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;In the sample, a Copy Files task is used to move the binaries to their release folder. While not required for the solution, it demonstrates using variables to create release subfolders. In this case, folders for branch and build number are created. Also note the Overwrite and Flatten Folders checkboxes.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-43-07.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Production Environment&lt;/em&gt;&lt;br /&gt;
+The differences between this and the Test environment are&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Only the master branch is included in the artifact filters&lt;/li&gt;
+&lt;li&gt;Approvers are added&lt;/li&gt;
+&lt;li&gt;Only the latest build is deployed upon approval&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-45-58.png" alt="" /&gt;&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-46-23.png" alt="" /&gt;&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-48-16.png" alt="" /&gt;&lt;/p&gt;
+&lt;h3 id="code-freeze"&gt;Code Freeze&lt;/h3&gt;
+&lt;p&gt;What has to happen during the code freeze?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Development branch commits don't deploy. That's it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There are at least two ways to prevent development branch deployments during code freeze.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Add a build tag using a custom task that checks for the presense of a particular file. A custom build task would be used for this.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sorry, I don't have an example of this. But I've seen it done in a real-world environment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Use a Gated release. For example, check a web service endpoint. If it fails to return, you're in code freeze and the gate fails.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Recommendation: Stick with build tags&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The disadvantage to tagging builds is that the custom task needs to be added to each build definition. The advantage is that the tag is part of the artifact trigger.&lt;/p&gt;
+&lt;p&gt;The disadvantage to gates is that there's a required timeout period of at-minimum 6 minutes before the gate fails. The advantage is that build definitions don't need to create tags.&lt;/p&gt;
+&lt;p&gt;REST API Gate Sample&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_12-22-08.png" alt="" /&gt;&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_12-22-35.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Web API Endpoint Sample&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;   public class InCodeFreezeController : ApiController
+    {
+        public IHttpActionResult Get()
+        {
+            //IsInCodeFreeze checks some condition. Could be the same file-existence
+            //check that's used for tagging today.
+            //Not ideal, but simpler for TFS Gate to just fail the request
+            if (IsInCodeFreeze)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+      <pubDate>Thu, 12 Dec 2019 18:34:00 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example</guid>
+    </item>
+    <item>
       <title>Who Are You Coding For?</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/who_are_you_coding_for_/images/The_bones_of_a_bridge.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;h2 id="the-lesson"&gt;The Lesson&lt;/h2&gt;
@@ -861,43 +964,6 @@ public void SaveStory_sets_new_UserStory_Sequence_to_Max_plus_one()
       <pubDate>Fri, 28 Jun 2019 17:45:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/memstate-_the_practical_argument_for_big_in-memory_data</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/memstate-_the_practical_argument_for_big_in-memory_data</guid>
-    </item>
-    <item>
-      <title>Grammar for Developers - Apostrophes: 3 Simple Rules, 3 Common Mistakes</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes/images/grammar-for-developers-apostrophes.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;It's a truism that (many) developers are not good writers. And it's not just style or composition, it's grammar. This has always puzzled me, since if a programmer makes a grammar mistake (using a backtick instead of an apostrophe, for instance), the program won't run. Maybe the problem is that they don't pay attention to the red squigglies in Word.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Arguably the worst error I see is wrongly using an apostrophe when &amp;quot;its&amp;quot; is possessive. Here's a  sentence to illustrate. Every apostrophe is correct.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Harvey's car's in the shop to have its radiator fixed before it's blown to bits.&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Expand the contractions and the differences between possessives and contractions are clear. &lt;code&gt;Harvey's car is in the shop to have its radiator fixed before it is blown to bits.&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here are three rules that, if followed, would take care of about 70% of the most grievous errors I see in blog posts, emails, business proposals, and technical documentation.&lt;/p&gt;
-&lt;p&gt;I even made a fancy PDF.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes/Grammar%20for%20Developers%20-%20Apostrophes.pdf"&gt;Grammar for Developers - Apostrophes&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id="simple-rules"&gt;3 Simple Rules&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Never make a pronoun possessive using an apostrophe&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Always make a noun possessive using an apostrophe&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Never use an apostrophe with a verb&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id="common-mistakes"&gt;3 Common Mistakes&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Right:  Unit testing has &lt;span style="background-color: yellow;"&gt;its&lt;/span&gt; benefits.&lt;/strong&gt;&lt;br /&gt;
-Wrong:  Unit testing has &lt;span style="background-color: yellow;"&gt;it's&lt;/span&gt; benefits.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Right:  &lt;span style="background-color: yellow;"&gt;Carol's&lt;/span&gt; code is clean. Her &lt;span style="background-color: yellow;"&gt;code's&lt;/span&gt; style is precise.&lt;/strong&gt;&lt;br /&gt;
-Wrong:  &lt;span style="background-color: yellow;"&gt;Carols&lt;/span&gt; code is clean. Her &lt;span style="background-color: yellow;"&gt;codes&lt;/span&gt; style is precise.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Right:  He &lt;span style="background-color: yellow;"&gt;runs&lt;/span&gt; that backup every day.&lt;/strong&gt;&lt;br /&gt;
-Wrong: He &lt;span style="background-color: yellow;"&gt;run's&lt;/span&gt; that backup every day.&lt;/p&gt;
-&lt;h1 id="terms"&gt;Terms&lt;/h1&gt;
-&lt;p&gt;A &lt;strong&gt;noun&lt;/strong&gt; is a specific person, place, thing or idea:
-Carol, France, house, radish, memory, Chipotle.&lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;pronoun&lt;/strong&gt; is a generic, non-specific person or thing.
-These are the common pronouns: it, he, she, her, them, they.&lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;verb&lt;/strong&gt; is an action taken by the subject.
-He &lt;em&gt;codes&lt;/em&gt;. She &lt;em&gt;tests&lt;/em&gt;. They &lt;em&gt;demonstrate&lt;/em&gt;.&lt;/p&gt;
-</description>
-      <pubDate>Thu, 20 Jun 2019 11:07:30 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/grammar_for_developers_apostrophes_3_simple_rules_3_common_mistakes</guid>
     </item>
   </channel>
 </rss>
