@@ -10,7 +10,7 @@
       <description>&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
 &lt;p&gt;The latest MongoDb driver for .Net doesn't have a way to convert a collection such as List&lt;T&gt; to IMongoQueryable. If the code depends on that interface, it needs to be mocked, but how to set the concrete data?&lt;/p&gt;
 &lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
-&lt;p&gt;What you'll need to do this yourself.&lt;/p&gt;
+&lt;p&gt;What you'll need to run this sample yourself.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Visual Studio&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.nuget.org/packages/MongoDB.Driver/"&gt;MongoDb.Driver&lt;/a&gt;&lt;/li&gt;
