@@ -58,7 +58,7 @@
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Like me, you probably try all kinds of typecasting before realizing you're always trying to upcast which doesn't work. Finally, you find the answer on Stack Overflow. There are two ways to mock up the data, and both make the IMongoQueryable class accept IQueryable.&lt;/p&gt;
+&lt;p&gt;Like me, you probably try all kinds of typecasting before realizing you're always trying to do something impossible. Finally, you find the answer on Stack Overflow. There are two ways to mock up the data, and both make the IMongoQueryable class accept IQueryable.&lt;/p&gt;
 &lt;h2 id="using-nsubstitute"&gt;Using NSubstitute&lt;/h2&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;public class CustomerService_Should
 {
