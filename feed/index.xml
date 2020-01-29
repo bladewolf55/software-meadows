@@ -86,7 +86,7 @@
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Pretty slick. For reference, here's how a mocked MongoQueryable would look&lt;/p&gt;
+&lt;p&gt;Pretty slick.&lt;/p&gt;
 &lt;h2 id="creating-mongoqueryable"&gt;Creating MongoQueryable&lt;T&gt;&lt;/h2&gt;
 &lt;p&gt;A simple concrete class that allows setting a List property.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;public class MongoQueryable&amp;lt;T&amp;gt; : IMongoQueryable&amp;lt;T&amp;gt;
