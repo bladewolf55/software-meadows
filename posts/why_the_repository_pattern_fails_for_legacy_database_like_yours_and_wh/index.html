@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Mock Returning A List As Imongoqueryable For Unit Testing | Software Meadows</title>
+  <title>Why The Repository Pattern Fails For Legacy Databases Like Yours And What To Do About It | Software Meadows</title>
 </head>
 
 <body>
@@ -62,147 +62,511 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/mock_returning_a_list_as_imongoqueryable_for_unit_testing'>Mock returning a List as IMongoQueryable for unit testing</a></h2>
-                <p class='post-info'><span class='posted-on'>2020-01-28 17:29</span></p>
-                <div class='post-content'><h2 id="the-problem">The Problem</h2>
-<p>The latest MongoDb driver for .Net doesn't have a way to convert a collection such as List<T> to IMongoQueryable. If the code depends on that interface, it needs to be mocked, but how to set the concrete data?</p>
-<h2 id="the-solution">The Solution</h2>
-<p>What you'll need to run this sample yourself.</p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/why_the_repository_pattern_fails_for_legacy_database_like_yours_and_wh'>Why the Repository Pattern Fails for Legacy Databases Like Yours and What to Do About It</a></h2>
+                <p class='post-info'><span class='posted-on'>2020-02-11 19:11</span></p>
+                <div class='post-content'><p><a href="https://en.wikipedia.org/wiki/File:Repo-Man-Poster.jpg#/media/File:Repo-Man-Poster.jpg"><img src="https://upload.wikimedia.org/wikipedia/en/4/46/Repo-Man-Poster.jpg" alt="Repo-Man-Poster.jpg"></a><br>By Source, <a href="//en.wikipedia.org/wiki/File:Repo-Man-Poster.jpg" title="Fair use of copyrighted material in the context of Repo Man (film)">Fair use</a>, <a href="https://en.wikipedia.org/w/index.php?curid=10827447">Link</a></p>
+<h2 id="contents">Contents</h2>
 <ul>
-<li>Visual Studio</li>
-<li><a href="https://www.nuget.org/packages/MongoDB.Driver/">MongoDb.Driver</a></li>
-<li><a href="https://www.nuget.org/packages/NSubstitute/">NSubstitute</a></li>
-<li><a href="https://www.nuget.org/packages/xunit/">xunit</a></li>
-<li><a href="https://www.nuget.org/packages/xunit.runner.visualstudio/">xunit.runner.visualstudio</a></li>
+<li><a href="#introduction:-a-classic-example-(spot-the-flaw?)">Introduction: A Classic Example (spot the flaw?)</a></li>
+<li><a href="#implicit-architecture-rules">Implicit Architecture Rules</a></li>
+<li><a href="#the-unnecessary-abstraction">The Unnecessary Abstraction</a></li>
+<li><a href="#cutting-out-the-middleman">Cutting Out the Middleman</a></li>
+<li><a href="#your-data-sources-will-change...">Your Data Sources Will Change...</a></li>
 </ul>
-<p>Let's say you've settled on using MongoDb as your NoSQL data store. You write a simple repository pattern with one method to query for any concrete type.<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a></p>
-<pre><code class="language-csharp">	public interface IMongoRepository&lt;T&gt; where T : class
-	{
-		public IMongoQueryable&lt;T&gt; QueryAll();
-	}
-</code></pre>
-<p>You also have a simple Customer service that calls the repository</p>
-<pre><code class="language-csharp">public class CustomerService
+<h2 id="introduction-a-classic-example-spot-the-flaw">Introduction: A Classic Example (spot the flaw?)</h2>
+<p>One of the hallmarks of creating a loosely coupled architecture is using the repository pattern to return data. Each model's repository is implemented from an interface, and that interface is injected into, typically, a service.</p>
+<pre><code class="language-csharp">namespace Company.Domain.DomainModels
 {
-	IMongoRepository&lt;Customer&gt; _customerRepository = null;
-	public CustomerService(IMongoRepository&lt;Customer&gt; customerRepository)
-	{
-		_customerRepository = customerRepository;
-	}
-
-	public List&lt;Customer&gt; GetCustomers()
-	{
-		return _customerRepository.QueryAll().ToList();
-	}
+    public class Customer
+    {
+        public int CustomerId {get; set;}
+        public string Name {get; set;}
+    }
 }
 </code></pre>
-<p>Finally, you start writing the following test. But you discover there's no way to get a concrete instance of IMongQueryable<T>. There used to be, but it's legacy code.</p>
-<pre><code class="language-csharp">public class CustomerService_Should
+<pre><code class="language-csharp">namespace Company.Domain.DataInterfaces
 {
-	[Fact]
-	public void Return_customers()
-	{
-		var expected = new List&lt;Customer&gt;() { new Customer() { Id = 1 } };
-		var customerRepository = Substitute.For&lt;IMongoRepository&lt;Customer&gt;&gt;();
-		
-		//return the mocked data. But how to convert the list into IMongoQueryable???
-
-		customerRepository.QueryAll().Returns([argh, what goes here??]);
-		var service = new CustomerService(customerRepository);
-		var actual = service.GetCustomers();
-		Assert.Equal(expected.Count, actual.Count);
-		Assert.Equal(expected.First().Id, actual.First().Id);
-	}
+    public interface IRepository&lt;T&gt; where T: class
+    {
+        T Single(Expression&lt;Func&lt;T, bool&gt; where);
+        IEnumerable&lt;T&gt; Many(Expression&lt;Func&lt;T, bool&gt; where);
+    }
 }
 </code></pre>
-<p>Like me, you probably try all kinds of typecasting before realizing you're always trying to do something impossible. Finally, you find the answer on Stack Overflow. There are two ways to mock up the data, and both make the IMongoQueryable class accept IQueryable.</p>
-<h2 id="using-nsubstitute">Using NSubstitute</h2>
-<pre><code class="language-csharp">public class CustomerService_Should
-{
-	[Fact]
-	public void Return_customers()
-	{
-		var expected = new List&lt;Customer&gt;() { new Customer() { Id = 1 } };
-		var customerRepository = Substitute.For&lt;IMongoRepository&lt;Customer&gt;&gt;();
-		
-		//Mock IMongoQueryable to accept IQueryable, enabling just enough of the interface
-		//to work
-		var expectedQueryable = expected.AsQueryable();
-		var mockQueryable = Substitute.For&lt;IMongoQueryable&lt;Customer&gt;&gt;();
-		mockQueryable.ElementType.Returns(expectedQueryable.ElementType);
-		mockQueryable.Expression.Returns(expectedQueryable.Expression);
-		mockQueryable.Provider.Returns(expectedQueryable.Provider);
-		mockQueryable.GetEnumerator().Returns(expectedQueryable.GetEnumerator());
-
-		//return the mocked data
-		customerRepository.QueryAll().Returns(mockQueryable);
-		var service = new CustomerService(customerRepository);
-		var actual = service.GetCustomers();
-		Assert.Equal(expected.Count, actual.Count);
-		Assert.Equal(expected.First().Id, actual.First().Id);
-	}
+<p>The concrete implementation, using Entity Framework 6.</p>
+<pre><code class="language-csharp">namespace Company.Data
+    public class CustomerRepository: IRepository&lt;Customer&gt;
+    {
+        CompanyDbContext _context = new CompanyDbContext();
+        Customer Single(Expression&lt;Func&lt;Customer, bool&gt; where)
+        {
+            return _context.Customers.SingleOrDefault(where);   
+        }
+        IEnumerable&lt;Customer&gt; Many(Expression&lt;Func&lt;Customer, bool&gt; where)
+        {
+            return _context.Customers.Where(where);
+        }
+    }
 }
 </code></pre>
-<p>Pretty slick.</p>
-<h2 id="creating-mongoqueryable">Creating MongoQueryable<T></h2>
-<p>A simple concrete class that allows setting a List property.</p>
-<pre><code class="language-csharp">public class MongoQueryable&lt;T&gt; : IMongoQueryable&lt;T&gt;
+<p>The concrete customer service with the repository interface injected.</p>
+<pre><code class="language-csharp">namespace Company.Services
 {
-	public List&lt;T&gt; MockData { get; set; }
-
-	public Type ElementType =&gt; MockData.AsQueryable().ElementType;
-
-	public Expression Expression =&gt; MockData.AsQueryable().Expression;
-
-	public IQueryProvider Provider =&gt; MockData.AsQueryable().Provider;
-
-	public IEnumerator&lt;T&gt; GetEnumerator() =&gt; MockData.AsQueryable().GetEnumerator();
-	IEnumerator IEnumerable.GetEnumerator() =&gt; MockData.AsQueryable().GetEnumerator();
-
-	public QueryableExecutionModel GetExecutionModel() =&gt; throw new NotImplementedException();
-
-	public IAsyncCursor&lt;T&gt; ToCursor(CancellationToken cancellationToken = default) =&gt; throw new NotImplementedException();
-
-	public Task&lt;IAsyncCursor&lt;T&gt;&gt; ToCursorAsync(CancellationToken cancellationToken = default) =&gt; throw new NotImplementedException();
-
+    public class CustomerService: ICustomerService
+    {
+        IRepository&lt;Customer&gt; _customerRepository;
+        
+        public CustomerService(IRepository&lt;Customer&gt; customerRepository)
+        {
+            _customerRepository = customerRepository
+        }
+        
+        public Customer GetCustomer(int id)
+        {
+            return _customerRepository.Single(a =&gt; a.CustomerId == id);
+        }
+        
+        public List&lt;Customers&gt; GetCustomers(Expression&lt;Func&lt;Customer, bool&gt;&gt; where)
+        {
+            return _customerRepository.Many(where);
+        }
+    }
 }
 </code></pre>
-<p>The test.</p>
-<pre><code class="language-csharp">[Fact]
-public void Return_customers2()
+<p>A unit test. (Note this is a lousy unit test because it's &quot;testing&quot; a data passthrough, but it illustrates the point.)</p>
+<pre><code class="language-csharp">using XUnit;
+using NSubstitute;
+using FluentAssertions;
+
+namespace Company.Tests
 {
-	var expected = new List&lt;Customer&gt;() { new Customer() { Id = 1 } };
-	var customerRepository = Substitute.For&lt;IMongoRepository&lt;Customer&gt;&gt;();
-
-	//Mock IMongoQueryable using a class
-	var mockQueryable = new MongoQueryable&lt;Customer&gt;();
-	mockQueryable.MockData = expected;
-
-	//return the mocked data
-	customerRepository.QueryAll().Returns(mockQueryable);
-	var service = new CustomerService(customerRepository);
-	var actual = service.GetCustomers();
-	Assert.Equal(expected.Count, actual.Count);
-	Assert.Equal(expected.First().Id, actual.First().Id);
+    public class CustomerService_Should
+    {
+        [Fact]
+        public void Return_one_customer()
+        {
+            int id = 1;
+            Customer expected = new Customer() {CustomerId = 1;}
+            var customerRepository = Substitute.For&lt;IRepository&lt;Customer&gt;&gt;();
+            var customerService = new CustomerService(customerRepository);
+            customerRepository.Single((a =&gt; a.CustomerId == id).Returns(expected);
+            var result = customerService.GetCustomer(id);
+            result.Should().BeEquivalentTo(expected);
+        }
+    }
 }
 </code></pre>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://stackoverflow.com/questions/46035390/unit-testing-with-imongoqueryable">c# - Unit Testing with IMongoQueryable - Stack Overflow</a></li>
-</ul>
-<div class="footnotes">
-<hr />
+<p>The namespaces indicate where in the<a href="https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/"> Onion Architecture</a> the classes belong.</p>
 <ol>
-<li id="fn:1">
-<p>The comments in Stack Overflow point out that using IMongoQueryable--or IQueryable-- isn't ideal because it tightly couples the code to MongoDb or to a Queryable backend. It might be better to use a truly generic repository and convert to/from MongoDb (or other database) as needed.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+<li>Core: <code>Customer</code> represents a company customer. It has no behavior.</li>
+<li>Core: IRepository is our generic standard for getting data. By injecting this standard into services, we can swap out the database by simply implementing it in a new concrete repository.</li>
+<li>Core: ICustomerService is our contract for what a CustomerService should implement</li>
+<li>Data: CustomerRepository is the concrete instance that will return models from the database.</li>
+<li>Service: CustomerService is the concrete instance that returns models to the client.</li>
+</ol>
+<blockquote>
+<p><strong>Hint</strong> The flaw with the repository pattern is #2 and #4.</p>
+</blockquote>
+<p><img src="https://i0.wp.com/jeffreypalermo.com/wp-content/uploads/2018/06/image257b0257d255b59255d.png?resize=366%2c259&amp;ssl=1" alt="" />
+Image Copyright Jeffrey Palermo</p>
+<h2 id="implicit-architecture-rules">Implicit Architecture Rules</h2>
+<p>Implicit in the Onion architecture are these rules:</p>
+<ol>
+<li>Domain Models represent the way the organization really works.</li>
+<li>Domain Services return Domain Models. (e.g. CustomerService returns Customer)</li>
+<li>Data Services return Data Models (e.g. CustomerRepository returns...Customer, in this case)</li>
+<li>APIs return with View Models (MVC Controllers, WebApi return something like CustomerMaintModel)</li>
+<li>UIs work with View Models</li>
+</ol>
+<p>This is a loosely coupled architecture. By using interfaces, it's also highly testable.</p>
+<p>So, what's wrong with it?</p>
+<blockquote>
+<p>The repository expects to return a domain model from the database. And that's not how most databases, especially legacy databases, are designed.</p>
+</blockquote>
+<p>Let's make sure this is really clear, because it's the flaw in every example I've seen of this architecture. Here's how the domain and database stay loosely coupled.</p>
+<ol>
+<li>The domain models represent how the organization sees information.</li>
+<li>The database models represent how the data is stored.</li>
+<li>The domain should have no knowledge of the database.</li>
+</ol>
+<blockquote>
+<p>The mistake I've seen is that organizations' repositories return their <em>data models</em>, not domain models. They then rely on the service to map to the domain models. This means the repositories are tightly coupled to the data model.</p>
+</blockquote>
+<p>In this light, look at the classic example again. The repository returns a Customer object. Customer is a <em>domain</em> model. This means that, if the database tables aren't one-to-one matches to the domain models, we have two choices in mapping the table model to the domain model.</p>
+<ol>
+<li><p>Use IRepository<CustFile> and have the CustomerService do the mapping. For instance, the <code>List&lt;Customer&gt; GetCustomers()</code> method would get the data from the CustFileRepository and populate a Customer list.</p>
+<blockquote>
+<p>This is how I've seen most organizations try to do it. But we've tightly coupled our data model to our domain's IRepository. The data model is now part of the domain model. If we wanted to swap out the database, <em>it would have to have a CustFile table</em>. If it doesn't, we're rewriting the repositories and injecting new interfaces into the services.</p>
+</blockquote>
+</li>
+<li><p>Use IRepository<Customer> and have the CustomerRepository do the mapping. For instance, the <code>IEnumerable&lt;Customer&gt; Many()</code> method would get the data using a data model such as CustFile and populate a Customer list. There's no guarantee CustFile has the same properties as Customer.</p>
+<blockquote>
+<p>This would be &quot;more right&quot; since there'd be loose coupling to the data. We could supposedly swap out the database. But as you'll see it won't work the way you think, and becomes an unnecessary layer of abstraction.</p>
+</blockquote>
 </li>
 </ol>
-</div>
+<p>Let's try doing the second way. But let's use a more real-world scenario.</p>
+<p>The customer data is stored in two Microsoft SQL Server tables that were created over the course of ten years. The extended table was used to handle new columns for the original table. Note the different primary key names and storing name information in a weird way. Also, there's no foreign key for the one-to-zero-one relationship.</p>
+<pre><code class="language-txt">CustFile
+=========
+CustId   int PK
+FullName varchar(100)
+
+CustFileExtended
+===============
+CustomerNumber int PK
+Zip5           int
+</code></pre>
+<p>We need data models specific to these tables.</p>
+<pre><code class="language-csharp">namespace Company.Data.DataModels
+{
+    public class CustFile
+    {
+        public int CustId { get; set; }
+        public string FullName { get; set; }
+    }
+    
+    public class CustFileExtended
+    {
+        public int CustNumber { get; set; }
+        public int Zip5 { get; set; }
+    }
+}
+</code></pre>
+<p>To keep the example clear, we'll use an explicit ICustomerRepository. Remember, in order to be loosely coupled, this repository returns a Customer domain model.</p>
+<blockquote>
+<p>If it returned CustFile and CustFileExtended models, then those data models would have to be part of the Domain. And <em>that</em> would tightly couple the abstract domain model to the concrete data model.</p>
+</blockquote>
+<pre><code class="language-csharp">namespace Company.Domain.DataInterfaces
+{
+    public interface ICustomerRepository
+    {
+        // Create
+        Customer Create(Customer entity);
+
+        // Retrieve
+        Customer RetrieveSingle(int id);
+        IEnumerable&lt;Customer&gt; RetrieveMany();
+        IEnumerable&lt;Customer&gt; RetrieveMany(Expression&lt;Func&lt;Customer, bool&gt;&gt; where);
+
+        // Update
+        Customer Update(Customer entity);
+
+        // Delete
+        void Delete(int id);
+    }
+}
+</code></pre>
+<blockquote>
+<p>Note the use of Expression. That's coupling to Queryables, which are provider-dependent.</p>
+</blockquote>
+<p>Now we'll try to implement the repository using Entity Framework. To make the problem clear, we'll only look at the RetrieveMany methods.</p>
+<pre><code class="language-csharp">namespace Company.Data
+{
+    public class CustomerRepository : ICustomerRepository
+    {
+        private CompanyDbContext _context;
+        public CustomerRepository(CompanyDbContext context)
+        {
+            _context = context;
+        }
+        
+        public IEnumerable&lt;Customer&gt; RetrieveMany()
+        {
+            // Now what?
+        }
+        
+        public IEnumerable&lt;Customer&gt; RetrieveMany(Expression&lt;Func&lt;Customer, bool&gt;&gt; where)
+        {
+            // Now what?
+        }
+    }
+}
+</code></pre>
+<p>We'll assume we can mock the context somehow. But this is where things go awry.</p>
+<blockquote>
+<p>Many organizations end up adding IRepository and IUnitOfWork to DbSet and DbContext. Patterns on top of patterns. Abstractions on top of abstractions!</p>
+</blockquote>
+<p>How do we return a collection of Customers? Remember, we're getting the data from two different tables.</p>
+<blockquote>
+<p><strong>Important</strong> The calls to the database have no knowledge of what a Customer is.</p>
+</blockquote>
+<pre><code class="language-csharp">public IEnumerable&lt;Customer&gt; RetrieveMany()
+{
+    List&lt;Customer&gt; customers = new List&lt;Customer&gt;();
+    
+    // there's no filtering, so get all records. That's right. ALL OF THEM.
+    var custFiles = _context.CustFiles.ToList();
+    int[] ids = custFiles.Select(a =&gt; a.CustId).ToArray();
+    var custFileExtendeds = _context.CustFileExtendeds.Where(a =&gt; ids.Contains(a.CustNumber)).ToList();
+    
+    customers = custFiles.Select(a =&gt; new Customer()
+    {
+       CustomerId = a.CustId,
+       Name = a.FullName,
+       ZipCode = custFileExtendeds.SingleOrDefault(b =&gt; b.CustNumber == a.CustId)?.Zip5
+    });
+    
+    return customers;
+}
+</code></pre>
+<p>We're using a generic repository pattern, which is typically going to include a method such as above because sometimes we <em>do</em> want all the records. But not if there are a hundred million. OK, let's try filtering.</p>
+<pre><code class="language-csharp">public IEnumerable&lt;Customer&gt; RetrieveMany(Expression&lt;Func&lt;Customer, bool&gt;&gt; where)
+{
+    List&lt;Customer&gt; customers = new List&lt;Customer&gt;();
+    
+    // And...now what?
+}
+</code></pre>
+<p>We have a filter expression that can be examined for its properties and conditions. So at first it <em>seems</em> like all we have to do is</p>
+<ol>
+<li>Extract the Customer properties</li>
+<li>Map them to the CustFile and CustFileExtended properties</li>
+<li>Pull out the boolean conditions</li>
+<li>Create Expressions from the properties and conditions and apply the filters to the appropriate CustFile or CustFileExtended DbSets.</li>
+<li>Build and return the Customer list.</li>
+</ol>
+<p>That's...actually, a lot of work. And wait...that's not complete, is it? There could be a few more steps after 4.</p>
+<ol start="5">
+<li>Programmatically handle a CustFile property that's filtering based on a CustFileExtended property. E.g. <code>Customer.Discount == Customer.MaxDiscount</code>. Except in the database it's CustFile.Discount and CustFileExtended.MaxDiscount. How's that going to work?</li>
+<li>Programmatically handle nested conditions that go across table properties. Good luck to you.</li>
+<li>Hope to heck a Customer property being filtered on isn't made up of two properties from two different tables.</li>
+</ol>
+<p>and so on until...</p>
+<ol start="99">
+<li>Build and return the Customer list and pray it's right.</li>
+</ol>
+<p>OK, so maybe we need custom repository interfaces for each domain model. Then we can make the client supply known filters like customer ids, get our initial datasets down to a managable size, then filter on the domain model.</p>
+<pre><code class="language-csharp">//No need for an Expression since List&lt;Customer&gt; is generic.
+public IEnumerable&lt;Customer&gt; RetrieveMany(int zipCode, Func&lt;Customer, bool&gt; where)
+{
+    List&lt;Customer&gt; customers = new List&lt;Customer&gt;();
+    var custFileExtendeds = _context.CustFileExtendeds.Where(a =&gt; a.Zip5 == zipCode).ToList();
+    //Build the customer list and add the filter at the end.
+    return custFileExtendeds.Select(a =&gt; new Customer()
+    {
+       CustomerId = a.CustNumber,
+       ZipCode = a.Zip5,
+       Name = _context.CustFiles.Single(a =&gt; a.CustId == a.CustNumber).FullName
+    }).Where(where);
+}
+</code></pre>
+<p>And the Service method would look like this:</p>
+<pre><code class="language-csharp">public List&lt;Customer&gt; GetCustomers(int zipCode, Func&lt;Customer, bool&gt; where)
+{
+    return _customerRepository.RetrieveMany(zipCode, where);
+}
+</code></pre>
+<p>Seeing that service method, you're hopefully asking some important questions. Like...</p>
+<blockquote>
+<p>What if my domain model was being populated by data from multiple databases and maybe a web service?</p>
+<p>What's the repository pattern gaining me?</p>
+</blockquote>
+<h2 id="the-unnecessary-abstraction">The Unnecessary Abstraction</h2>
+<p>We've discovered a few things about having separate domain and data models.</p>
+<ol>
+<li>No matter what, we need to map data models to domain models.</li>
+<li>We can't have fully flexible filtering.</li>
+<li>The mapping problems using IRepository<Customer> methods are the same as with CustomerService methods. Specifically, the methods need to restrict the data that will come from the database in order for performance to be good.</li>
+</ol>
+<p>There's one other requirement: whatever data sources are injected into CustomerService need to be mockable.</p>
+<p>Whenever you see a passthrough query such as shown above in CustomerService.GetCustomers, it's worth asking, &quot;Can I cut out the middleman?&quot;</p>
+<p>The answer here is &quot;Yes.&quot; The repository is just getting in the way. We know the concrete CustomerService will depend on concrete data. The repository is just an abstraction of that data so we can unit test. We've already determined that if we want to swap out the database, we're going to be rewriting something. Why add to our troubles by essentially <em>writing our CustomerService methods twice</em>?</p>
+<blockquote>
+<p><strong>Solution</strong> Inject the mockable data source directly into the service</p>
+</blockquote>
+<p>If the data source uses an interface, great. If there are multiple data sources, do whatever it takes to make them mockable. But don't use a repository abstraction. It just adds complexity for no gain.</p>
+<h2 id="cutting-out-the-middleman">Cutting Out the Middleman</h2>
+<p>Here's how our CustomerService example looks with the repository removed, organized by onion layers. These could be different assemblies.</p>
+<p><strong>Domain</strong></p>
+<pre><code class="language-csharp">namespace Company.Domain.DomainModels
+{
+    public class Customer
+    {
+        public int CustomerId { get; set; }
+        public string Name { get; set; }
+        public int ZipCode { get; set; }
+
+    }
+}
+</code></pre>
+<pre><code class="language-csharp">namespace Company.Domain.ServiceInterfaces
+{
+    public interface ICustomerService
+    {
+        //Create
+        Customer Create(Customer customer);
+
+        //Retrieve
+        Customer RetrieveSingleById(int id);
+        Customer RetrieveSingleByName(string name);
+        List&lt;Customer&gt; RetrieveManyByIds(int[] ids);
+        List&lt;Customer&gt; RetrieveManyByPartialName(string partialName);
+        List&lt;Customer&gt; RetrieveManyByZipCode(int zipCode, Func&lt;Customer, bool&gt; where);
+
+        //Update
+        Customer Update(Customer customer);
+
+        //Delete
+        void Delete(int id);
+
+    }
+}
+</code></pre>
+<p><strong>Data</strong></p>
+<pre><code class="language-csharp">namespace Company.Data.DataModels
+{
+    public class CustFile
+    {
+        public int CustId { get; set; }
+        public string FullName { get; set; }
+    }
+    
+    public class CustFileExtended
+    {
+        public int CustNumber { get; set; }
+        public int Zip5 { get; set; }
+    }
+}
+</code></pre>
+<pre><code class="language-csharp">namespace Company.Data.SqlDatabase
+{
+    public class SqlDbContext : DbContext
+    {
+        public IDbSet&lt;CustFile&gt; CustFiles { get; set; }
+        public IDbSet&lt;CustFileExtended&gt; CustFileExtendeds {get;set;}
+
+        public SqlDbContext(string nameOrConnectionString) : base(nameOrConnectionString) { }
+        
+        //This constructor is used by Effort in unit testing
+        public SqlDbContext(DbConnection existingConnection) : base(existingConnection, true) { }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity&lt;CustFile&gt;()
+                .HasKey(a =&gt; a.CustId);
+
+            modelBuilder.Entity&lt;CustFileExtended&gt;()
+                .HasKey(a =&gt; a.CustNumber);
+        }
+    }
+}
+
+</code></pre>
+<p><strong>Services</strong></p>
+<p>This is only showing one method.</p>
+<pre><code class="language-csharp">namespace Company.Services
+{
+    public class CustomerService : ICustomerService
+    {
+        SqlDbContext _context = new EF6Context(&quot;SqlDb&quot;);
+
+        public CustomerService(SqlDbContext context)
+        {
+            _context = context;
+        }
+
+        public List&lt;Customer&gt; RetrieveManyByZipCode(int zipCode, Func&lt;Customer, bool&gt; where)
+        {
+            var custFileExtendeds = _context.CustFileExtendeds.Where(a =&gt; a.Zip5 == zipCode).ToList();
+            return GetCustomers(custFileExtendeds)
+                .Where(where).ToList();
+        }
+        
+        // Helpers for mapping
+        private List&lt;Customer&gt; GetCustomers(List&lt;CustFile&gt; custFiles)
+        {
+            List&lt;Customer&gt; customers = new List&lt;Customer&gt;();
+            var custFileExtendeds = _context.CustFileExtendeds
+                .Where(a =&gt; customers.Select(b =&gt; b.CustomerId).ToList().Contains(a.CustNumber)).ToList();
+
+            customers.AddRange(custFiles.Select(a =&gt;
+            {
+                var custFileExtended = custFileExtendeds.Single(b =&gt; b.CustNumber == a.CustId);
+                return new Customer()
+                {
+                    CustomerId = a.CustId,
+                    Name = a.FullName,
+                    ZipCode = custFileExtended.Zip5
+                };
+            }));
+
+            return customers;
+        }
+
+        private List&lt;Customer&gt; GetCustomers(List&lt;CustFileExtended&gt; custFileExtendeds)
+        {
+            int[] ids = custFileExtendeds.Select(a =&gt; a.CustNumber).ToArray();
+            var custFiles = _context.CustFiles.Where(a =&gt; ids.Contains(a.CustId)).ToList();
+            return GetCustomers(custFiles);
+        }
+    }
+}
+</code></pre>
+<p><strong>Test</strong></p>
+<p>There are various ways to mock Entity Framework. I like <a href="https://entityframework-effort.net/overview">Effort</a> because you don't need to add interfaces to your DbContext, you just need a particular constructor.</p>
+<pre><code class="language-csharp">//other usings above, these are the testing dependencies
+using Company.Data;
+using Company.Data.DataModels;
+using Company.Domain.DomainModels;
+using Company.Domain.ServiceInterfaces;
+using Company.Services;
+using Xunit;
+using Effort;
+using FluentAssertions;
+
+namespace DealingWithData.Tests
+{
+    public class CustomerService_Should
+    {
+        SqlDbContext _context;
+        ICustomerService _customerService;
+
+        public CustomerService_Should()
+        {
+            //This is what makes Effort the in-memory database
+            _context = new SqlDbContext(DbConnectionFactory.CreateTransient());
+            _customerService = new CustomerService(_context);
+        }
+
+        ~CustomerService_Should() 
+        {
+            _context.Dispose();
+        }
+
+        [Fact]
+        public void Return_a_single_customer_by_id()
+        {
+            // arrange
+            Customer expected = new Customer()
+            {
+                CustomerId = 1,
+                Name = &quot;Herbert&quot;,
+                ZipCode = 12345
+            };
+            // mock the data the service works with
+            _context.CustFiles.Add(new CustFile() { CustId = 1, FullName = &quot;Herbert&quot; });
+            _context.CustFileExtendeds.Add(new CustFileExtended() { CustNumber = 1, Zip5 = 12345 });
+            _context.SaveChanges();
+
+            // act
+            var actual = _customerService.RetrieveSingleById(expected.CustomerId);
+
+            // assert
+            actual.Should().BeEquivalentTo(expected);
+        }
+    }
+}
+</code></pre>
+<p>If...when...we have changes in our data sources, we'll have to update the service and the unit tests. That's OK. Before, we'd have been updating repositories and unit tests. This removes the repository pattern dead weight.</p>
+<h2 id="your-data-sources-will-change">Your Data Sources Will Change...</h2>
+<p>Sometimes radically. Your domain model will change, too, but it shouldn't be driven by the backend data. You should be able to code and unit test without <em>any</em> concrete dependencies, and it shouldn't be painful.</p>
+<p>Do you really need the Repository pattern? Probably not.</p>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Mock Returning A List As Imongoqueryable For Unit Testing | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Why The Repository Pattern Fails For Legacy Databases Like Yours And What To Do About It | Software Meadows">email</a>. I might even update the post!
         </p>
         
 

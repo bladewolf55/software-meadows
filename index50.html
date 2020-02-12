@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Mock Returning A List As Imongoqueryable For Unit Testing | Software Meadows</title>
+  <title>Home | Software Meadows</title>
 </head>
 
 <body>
@@ -60,156 +60,45 @@
         <div id="site-subtitle">A pleasant walk through computing</div>
       </header>
       <section id="content">
-        
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/mock_returning_a_list_as_imongoqueryable_for_unit_testing'>Mock returning a List as IMongoQueryable for unit testing</a></h2>
-                <p class='post-info'><span class='posted-on'>2020-01-28 17:29</span></p>
-                <div class='post-content'><h2 id="the-problem">The Problem</h2>
-<p>The latest MongoDb driver for .Net doesn't have a way to convert a collection such as List<T> to IMongoQueryable. If the code depends on that interface, it needs to be mocked, but how to set the concrete data?</p>
-<h2 id="the-solution">The Solution</h2>
-<p>What you'll need to run this sample yourself.</p>
-<ul>
-<li>Visual Studio</li>
-<li><a href="https://www.nuget.org/packages/MongoDB.Driver/">MongoDb.Driver</a></li>
-<li><a href="https://www.nuget.org/packages/NSubstitute/">NSubstitute</a></li>
-<li><a href="https://www.nuget.org/packages/xunit/">xunit</a></li>
-<li><a href="https://www.nuget.org/packages/xunit.runner.visualstudio/">xunit.runner.visualstudio</a></li>
-</ul>
-<p>Let's say you've settled on using MongoDb as your NoSQL data store. You write a simple repository pattern with one method to query for any concrete type.<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a></p>
-<pre><code class="language-csharp">	public interface IMongoRepository&lt;T&gt; where T : class
-	{
-		public IMongoQueryable&lt;T&gt; QueryAll();
-	}
-</code></pre>
-<p>You also have a simple Customer service that calls the repository</p>
-<pre><code class="language-csharp">public class CustomerService
-{
-	IMongoRepository&lt;Customer&gt; _customerRepository = null;
-	public CustomerService(IMongoRepository&lt;Customer&gt; customerRepository)
-	{
-		_customerRepository = customerRepository;
-	}
+        <hr />
 
-	public List&lt;Customer&gt; GetCustomers()
-	{
-		return _customerRepository.QueryAll().ToList();
-	}
-}
-</code></pre>
-<p>Finally, you start writing the following test. But you discover there's no way to get a concrete instance of IMongQueryable<T>. There used to be, but it's legacy code.</p>
-<pre><code class="language-csharp">public class CustomerService_Should
-{
-	[Fact]
-	public void Return_customers()
-	{
-		var expected = new List&lt;Customer&gt;() { new Customer() { Id = 1 } };
-		var customerRepository = Substitute.For&lt;IMongoRepository&lt;Customer&gt;&gt;();
-		
-		//return the mocked data. But how to convert the list into IMongoQueryable???
-
-		customerRepository.QueryAll().Returns([argh, what goes here??]);
-		var service = new CustomerService(customerRepository);
-		var actual = service.GetCustomers();
-		Assert.Equal(expected.Count, actual.Count);
-		Assert.Equal(expected.First().Id, actual.First().Id);
-	}
-}
-</code></pre>
-<p>Like me, you probably try all kinds of typecasting before realizing you're always trying to do something impossible. Finally, you find the answer on Stack Overflow. There are two ways to mock up the data, and both make the IMongoQueryable class accept IQueryable.</p>
-<h2 id="using-nsubstitute">Using NSubstitute</h2>
-<pre><code class="language-csharp">public class CustomerService_Should
-{
-	[Fact]
-	public void Return_customers()
-	{
-		var expected = new List&lt;Customer&gt;() { new Customer() { Id = 1 } };
-		var customerRepository = Substitute.For&lt;IMongoRepository&lt;Customer&gt;&gt;();
-		
-		//Mock IMongoQueryable to accept IQueryable, enabling just enough of the interface
-		//to work
-		var expectedQueryable = expected.AsQueryable();
-		var mockQueryable = Substitute.For&lt;IMongoQueryable&lt;Customer&gt;&gt;();
-		mockQueryable.ElementType.Returns(expectedQueryable.ElementType);
-		mockQueryable.Expression.Returns(expectedQueryable.Expression);
-		mockQueryable.Provider.Returns(expectedQueryable.Provider);
-		mockQueryable.GetEnumerator().Returns(expectedQueryable.GetEnumerator());
-
-		//return the mocked data
-		customerRepository.QueryAll().Returns(mockQueryable);
-		var service = new CustomerService(customerRepository);
-		var actual = service.GetCustomers();
-		Assert.Equal(expected.Count, actual.Count);
-		Assert.Equal(expected.First().Id, actual.First().Id);
-	}
-}
-</code></pre>
-<p>Pretty slick.</p>
-<h2 id="creating-mongoqueryable">Creating MongoQueryable<T></h2>
-<p>A simple concrete class that allows setting a List property.</p>
-<pre><code class="language-csharp">public class MongoQueryable&lt;T&gt; : IMongoQueryable&lt;T&gt;
-{
-	public List&lt;T&gt; MockData { get; set; }
-
-	public Type ElementType =&gt; MockData.AsQueryable().ElementType;
-
-	public Expression Expression =&gt; MockData.AsQueryable().Expression;
-
-	public IQueryProvider Provider =&gt; MockData.AsQueryable().Provider;
-
-	public IEnumerator&lt;T&gt; GetEnumerator() =&gt; MockData.AsQueryable().GetEnumerator();
-	IEnumerator IEnumerable.GetEnumerator() =&gt; MockData.AsQueryable().GetEnumerator();
-
-	public QueryableExecutionModel GetExecutionModel() =&gt; throw new NotImplementedException();
-
-	public IAsyncCursor&lt;T&gt; ToCursor(CancellationToken cancellationToken = default) =&gt; throw new NotImplementedException();
-
-	public Task&lt;IAsyncCursor&lt;T&gt;&gt; ToCursorAsync(CancellationToken cancellationToken = default) =&gt; throw new NotImplementedException();
-
-}
-</code></pre>
-<p>The test.</p>
-<pre><code class="language-csharp">[Fact]
-public void Return_customers2()
-{
-	var expected = new List&lt;Customer&gt;() { new Customer() { Id = 1 } };
-	var customerRepository = Substitute.For&lt;IMongoRepository&lt;Customer&gt;&gt;();
-
-	//Mock IMongoQueryable using a class
-	var mockQueryable = new MongoQueryable&lt;Customer&gt;();
-	mockQueryable.MockData = expected;
-
-	//return the mocked data
-	customerRepository.QueryAll().Returns(mockQueryable);
-	var service = new CustomerService(customerRepository);
-	var actual = service.GetCustomers();
-	Assert.Equal(expected.Count, actual.Count);
-	Assert.Equal(expected.First().Id, actual.First().Id);
-}
-</code></pre>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://stackoverflow.com/questions/46035390/unit-testing-with-imongoqueryable">c# - Unit Testing with IMongoQueryable - Stack Overflow</a></li>
-</ul>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn:1">
-<p>The comments in Stack Overflow point out that using IMongoQueryable--or IQueryable-- isn't ideal because it tightly couples the code to MongoDb or to a Queryable backend. It might be better to use a truly generic repository and convert to/from MongoDb (or other database) as needed.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
-</li>
-</ol>
-</div>
-</div>
-              </div>
-              
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Mock Returning A List As Imongoqueryable For Unit Testing | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Home | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
       </section>
       <!-- posts only appear in home index -->
       <section id="posts">
-         
+        
+              <div class='post'>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/test-post-with-code'>Migrating Google Drive</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-01-26 14:06</span></p>
+                <div class='post-content'><p>My <a href="http://stephkayeturner.com/">wife</a>recently got her own domain name, and signed up for Google Apps for Business. She's been migrating her email and calendar from previous accounts, including a Google account.<br />
+The problem was Drive. She had a mixture of documents in Google Docs format and MS Office. Some items were shared. All in all, it looked like a big mess, complicated by the fact that Google doesn't let you give ownership of your files to someone in another domain. I don't know why. I assume the Ph.Ds who work there didn't properly sacrifice to the Domain Name God.<br />
+Also--and this burns me up--Google won't let you download files using their super-secret-must-be-tastier-than-Coke internal format. If you have Drive synchronization set up, you'll see documents with .gdoc extensions, but they're just text files with points to the web site. What this means is that there is no hope of downloading and uploading Google Docs and preserve true fidelity.<br />
+Thanks, Google. My files aren't really my files, because you own the format.<br />
+So, here's what I did--and what I could have done.<br />
+First, I think I could have paid for a tool that would migrate the documents. But I didn't, and I didn't even really look for one. Instead, I used a utility that I like a lot,<a href="http://gs.fhtino.it/gdocbackup">GDocBackup</a>. It's not only a nice free utility, but the web site has a great picture.<br />
+<img src="http://gs.fhtino.it/_/rsrc/1211547139810/config/app/images/io_piccolo.jpg" alt="" /></p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Go through my wife's old Google Drive account--we'll call it Thing One--and remove me as a shared person.</li>
+<li>Go through my Drive and remove her as a shared person.</li>
+<li>Use GDocBackup to download all of her files. &quot;Wait!&quot; you interrupt (which is a little rude), &quot;Why didn't you use Drive's ability to download all the files?&quot; Simple. It doesn't preserve folder layout. I'm sure they'd argue that a file can have more than one label, so it's impossible. But then, why does local Drive sync work? Not impressed.</li>
+<li>Now here's where I crow about my wife. I told her that I could preserve which files were GDocs by keeping two sets of folders: one with only the Google format docs, and one with everything else. Then, I'd import the first ones with Drive set to convert the files. And she says, &quot;Oh, that's all right. You can just upload them all as Microsoft docs.&quot; So, that saves me <em>huge</em> time.</li>
+<li>So, in the interests of saving her work, I determine a few files that really must be in Google format, and upload/convert those, then delete them.</li>
+<li>I then disconnect my local Drive sync, and reconnect using her new Business account--which we'll call Thing Two.</li>
+<li>I copy all of the Thing One files from the GDocBackup folder into the Google Drive folder (Thing Two).</li>
+<li>Wait for synchronization to complete.</li>
+</ol>
+<p>There. Wasn't that easy?*<br />
+I really hope Google makes this process better. What I really don't understand is why they don't allow assigning ownership across domains. I mean, it's probably just a primary key field in a database. But what do I know?<br />
+------------------------------<br />
+*No, it wasn't.</p>
+</div>
+              </div>
+               <div class='paging'><a href='index49.html'>Newer</a>&nbsp;&nbsp;&nbsp;</div>
       </section>
       <footer><p>All original content copyright (c) Charles L Flatt</p>
 </footer>
