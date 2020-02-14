@@ -506,7 +506,7 @@ namespace DealingWithData.Tests
 &lt;p&gt;Sometimes radically. Your domain model will change, too, but it shouldn't be driven by the backend data. You should be able to code and unit test without &lt;em&gt;any&lt;/em&gt; concrete dependencies, and it shouldn't be painful.&lt;/p&gt;
 &lt;p&gt;Do you really need the Repository pattern? Probably not.&lt;/p&gt;
 </description>
-      <pubDate>Tue, 11 Feb 2020 19:11:00 -0700</pubDate>
+      <pubDate>Thu, 13 Feb 2020 15:11:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/why_the_repository_pattern_fails_for_legacy_database_like_yours_and_wh</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/why_the_repository_pattern_fails_for_legacy_database_like_yours_and_wh</guid>
     </item>
