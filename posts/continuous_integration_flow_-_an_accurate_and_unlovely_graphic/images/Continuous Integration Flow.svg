@@ -1,0 +1,1029 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="8.5in"
+   height="11in"
+   viewBox="0 0 215.9 279.4"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="Continuous Integration Flow.svg">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker5854"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path5852"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker5802"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart">
+      <path
+         transform="scale(0.8) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5800" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path5440"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.8) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible;"
+       id="marker5730"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:collect="always">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path5728" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path5443"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#858585;stroke-width:1pt;stroke-opacity:1;fill:#858585;fill-opacity:1"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="-81.344274"
+     inkscape:cy="517.69924"
+     inkscape:document-units="in"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="in"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="false"
+     showguides="false"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="33.167411,79.375"
+       orientation="1,0"
+       id="guide8382"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-17.6)">
+    <rect
+       style="opacity:1;fill:#f0f4f0;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902"
+       id="rect6870"
+       width="198.43748"
+       height="116.79464"
+       x="9.0714283"
+       y="87.601196"
+       ry="4.1796494" />
+    <g
+       id="g5409"
+       transform="translate(2.6726953,128.44786)">
+      <rect
+         style="opacity:1;fill:#f9ffa7;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902"
+         id="rect6752"
+         width="44.460365"
+         height="26.080357"
+         x="11.285958"
+         y="29.092142"
+         ry="2.6458333" />
+      <rect
+         ry="2.6458333"
+         y="34.383808"
+         x="16.577625"
+         height="26.080357"
+         width="44.460365"
+         id="rect6750"
+         style="opacity:1;fill:#f9ffa7;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902" />
+      <rect
+         style="opacity:1;fill:#f9ffa7;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902"
+         id="rect4817-7-6"
+         width="44.460365"
+         height="26.080357"
+         x="21.869291"
+         y="39.675476"
+         ry="2.6458333" />
+      <text
+         id="text4777"
+         y="52.954208"
+         x="43.207024"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-weight:bold;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="52.954208"
+           x="43.207024"
+           id="tspan4775"
+           sodipodi:role="line">Source Control</tspan><tspan
+           id="tspan4779"
+           style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="57.187542"
+           x="43.686581"
+           sodipodi:role="line">purpose is to protect </tspan><tspan
+           id="tspan4789"
+           style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="61.420876"
+           x="43.207024"
+           sodipodi:role="line">source code</tspan></text>
+    </g>
+    <g
+       id="g5418"
+       transform="translate(-98.27381,55.033331)">
+      <rect
+         style="opacity:1;fill:#a7f9ff;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902"
+         id="rect4817-7-90"
+         width="51.142101"
+         height="26.836309"
+         x="120.49174"
+         y="39.675476"
+         ry="2.7225242" />
+      <text
+         id="text4777-8"
+         y="45.367218"
+         x="145.15662"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-weight:bold;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="45.367218"
+           x="145.15662"
+           id="tspan4775-8"
+           sodipodi:role="line">Continuous Integration</tspan><tspan
+           id="tspan4815"
+           style="font-weight:bold;text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="49.600552"
+           x="145.15662"
+           sodipodi:role="line">Server</tspan><tspan
+           id="tspan4779-2"
+           style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="53.833885"
+           x="145.15662"
+           sodipodi:role="line">purpose is to build</tspan><tspan
+           id="tspan5054"
+           style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="58.067219"
+           x="145.15662"
+           sodipodi:role="line">source code and</tspan><tspan
+           id="tspan5058"
+           style="text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="62.300552"
+           x="145.15662"
+           sodipodi:role="line">run tests</tspan></text>
+    </g>
+    <g
+       id="g4932"
+       transform="translate(-26.422079,131.30186)">
+      <rect
+         ry="2.6458333"
+         y="100.91307"
+         x="138.78452"
+         height="26.080357"
+         width="35.907738"
+         id="rect4821"
+         style="opacity:1;fill:#deffdd;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902" />
+      <rect
+         style="opacity:1;fill:#deffdd;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902"
+         id="rect4819"
+         width="35.907738"
+         height="26.080357"
+         x="134.55124"
+         y="96.679726"
+         ry="2.6458333" />
+      <rect
+         ry="2.6458333"
+         y="92.446388"
+         x="130.31795"
+         height="26.080357"
+         width="35.907738"
+         id="rect4817"
+         style="opacity:1;fill:#deffdd;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902" />
+      <text
+         id="text4787-7"
+         y="81.421967"
+         x="130.44342"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan4846"
+           style="stroke-width:0.26458332"
+           y="81.421967"
+           x="130.44342"
+           sodipodi:role="line"><tspan
+   style="font-weight:bold"
+   id="tspan5298">Build Agents</tspan> are installed </tspan><tspan
+           style="stroke-width:0.26458332"
+           y="85.655296"
+           x="130.44342"
+           sodipodi:role="line"
+           id="tspan5280">on computers configured </tspan><tspan
+           id="tspan4848"
+           style="stroke-width:0.26458332"
+           y="89.888634"
+           x="130.44342"
+           sodipodi:role="line">like developer workstations</tspan></text>
+      <text
+         id="text4787-75"
+         y="111.51599"
+         x="133.38875"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="111.51599"
+           x="133.38875"
+           id="tspan4785-5"
+           sodipodi:role="line">Build Agent 1 </tspan><tspan
+           id="tspan4895"
+           style="stroke-width:0.26458332"
+           y="115.74932"
+           x="133.38875"
+           sodipodi:role="line">Build Agent 2</tspan></text>
+      <text
+         id="text4787-75-1"
+         y="121.70695"
+         x="139.4834"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan4897"
+           style="stroke-width:0.26458332"
+           y="121.70695"
+           x="139.4834"
+           sodipodi:role="line">Build Agent 3</tspan></text>
+      <text
+         id="text4787-75-1-5"
+         y="126.20816"
+         x="149.9359"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan4897-6"
+           style="stroke-width:0.26458332"
+           y="126.20816"
+           x="149.9359"
+           sodipodi:role="line">Build Agent 4</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777778px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="154.51942"
+       y="227.5825"
+       id="text4936"><tspan
+         sodipodi:role="line"
+         id="tspan4934"
+         x="154.51942"
+         y="227.5825"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;">C:\Build</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="231.84685"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4940">  |_1</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="236.11118"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4942">  |_2</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="240.37552"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4944">  |_3</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="244.63986"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4948">    |a (artifacts)</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="248.90421"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4950">    |b (binaries)</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="253.16853"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4946">    |s (source)</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="257.43289"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4952">      |_project</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="261.69724"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4954">        |_bin</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="265.96158"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4956">          |_Tests.dll</tspan><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="270.22592"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan5292" /><tspan
+         sodipodi:role="line"
+         x="154.51942"
+         y="274.45923"
+         style="stroke-width:0.26458332;font-size:3.52777778px;"
+         id="tspan4938" /></text>
+    <path
+       style="fill:none;stroke:#909090;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 141.9577,225.17702 h 11.22532"
+       id="path4958"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="124.19936"
+       y="264.48276"
+       id="text4787-4"><tspan
+         sodipodi:role="line"
+         x="124.19936"
+         y="264.48276"
+         style="stroke-width:0.26458332"
+         id="tspan4978">The agent reuses or creates </tspan><tspan
+         sodipodi:role="line"
+         x="124.19936"
+         y="268.71609"
+         style="stroke-width:0.26458332"
+         id="tspan4980">a folder upon each build</tspan><tspan
+         sodipodi:role="line"
+         x="124.19936"
+         y="272.94943"
+         style="stroke-width:0.26458332"
+         id="tspan5288">to simulate building on a</tspan><tspan
+         sodipodi:role="line"
+         x="124.19936"
+         y="277.18277"
+         style="stroke-width:0.26458332"
+         id="tspan5290">clean workstation.</tspan></text>
+    <rect
+       ry="3.161005"
+       y="101.47248"
+       x="93.422318"
+       height="31.158478"
+       width="47.934864"
+       id="rect4817-7"
+       style="opacity:1;fill:#a7f9ff;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="96.826576"
+       y="107.03014"
+       id="text4787-3"><tspan
+         sodipodi:role="line"
+         id="tspan4785-21"
+         x="96.826576"
+         y="107.03014"
+         style="stroke-width:0.26458332">Pipeline 1</tspan></text>
+    <rect
+       ry="2.5102615"
+       y="101.19984"
+       x="150.08336"
+       height="24.744007"
+       width="49.271214"
+       id="rect4817-7-8"
+       style="opacity:1;fill:#a7f9ff;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="152.70747"
+       y="106.75748"
+       id="text4787-3-5"><tspan
+         sodipodi:role="line"
+         id="tspan4785-21-6"
+         x="152.70747"
+         y="106.75748"
+         style="stroke-width:0.26458332">Pipeline 2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="111.15453"
+       y="93.927338"
+       id="text4787-3-7"><tspan
+         sodipodi:role="line"
+         id="tspan4785-21-7"
+         x="111.15453"
+         y="93.927338"
+         style="stroke-width:0.26458332"><tspan
+   style="font-weight:bold"
+   id="tspan5294">Pipelines</tspan> are sets of tasks. A pipeline can</tspan><tspan
+         sodipodi:role="line"
+         x="111.15453"
+         y="98.160667"
+         style="stroke-width:0.26458332"
+         id="tspan5099">run anything the build machine is capable of.</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="96.163094"
+       y="115.28329"
+       id="text4787-40"><tspan
+         sodipodi:role="line"
+         id="tspan4785-20"
+         x="96.163094"
+         y="115.28329"
+         style="stroke-width:0.26458332">1. Clone Git repo</tspan><tspan
+         sodipodi:role="line"
+         x="96.163094"
+         y="119.51662"
+         style="stroke-width:0.26458332"
+         id="tspan5119">2. Install NuGet packages</tspan><tspan
+         sodipodi:role="line"
+         x="96.163094"
+         y="123.74995"
+         style="stroke-width:0.26458332"
+         id="tspan5121">3. Build source</tspan><tspan
+         sodipodi:role="line"
+         x="96.163094"
+         y="127.98328"
+         style="stroke-width:0.26458332"
+         id="tspan5129">4. Run tests</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="152.66016"
+       y="113.85366"
+       id="text4787-40-2"><tspan
+         sodipodi:role="line"
+         id="tspan4785-20-3"
+         x="152.66016"
+         y="113.85366"
+         style="stroke-width:0.26458332">1. Send FTP files to client</tspan><tspan
+         sodipodi:role="line"
+         x="152.66016"
+         y="118.08699"
+         style="stroke-width:0.26458332"
+         id="tspan5119-3">2. Wait for response</tspan><tspan
+         sodipodi:role="line"
+         x="152.66016"
+         y="122.32033"
+         style="stroke-width:0.26458332"
+         id="tspan5129-7">3. Email results to Admin</tspan><tspan
+         sodipodi:role="line"
+         x="152.66016"
+         y="126.55366"
+         style="stroke-width:0.26458332"
+         id="tspan5164" /><tspan
+         sodipodi:role="line"
+         x="152.66016"
+         y="130.78699"
+         style="stroke-width:0.26458332"
+         id="tspan5162" /></text>
+    <g
+       id="g5246"
+       transform="translate(-12.828937,28.275497)">
+      <rect
+         ry="7.9620571"
+         y="140.4361"
+         x="164.80209"
+         height="15.924114"
+         width="47.40033"
+         id="rect5221"
+         style="opacity:1;fill:#a7f9ff;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902" />
+      <g
+         id="g8895"
+         transform="translate(0,2.1166667)">
+        <text
+           id="text4787-75-1-6"
+           y="147.75529"
+           x="177.78389"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"><tspan
+             id="tspan4897-5"
+             style="stroke-width:0.26458332"
+             y="147.75529"
+             x="177.78389"
+             sodipodi:role="line">Build Agent 3</tspan></text>
+        <text
+           id="text4787-75-1-5-5"
+           y="151.98924"
+           x="178.08014"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"><tspan
+             id="tspan4897-6-3"
+             style="stroke-width:0.26458332"
+             y="151.98924"
+             x="178.08014"
+             sodipodi:role="line">Build Agent 4</tspan></text>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="183.27332"
+         y="144.46233"
+         id="text8794-0-5"><tspan
+           sodipodi:role="line"
+           id="tspan8792-20-8"
+           x="183.27332"
+           y="144.46233"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';fill:#000000;fill-opacity:1;stroke-width:0.26458332">Pool 2</tspan></text>
+    </g>
+    <g
+       id="g5254"
+       transform="translate(0,31.750001)">
+      <rect
+         style="opacity:1;fill:#a7f9ff;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902"
+         id="rect4817-7-3"
+         width="47.40033"
+         height="22.071314"
+         x="93.497536"
+         y="133.75435"
+         ry="11.035657" />
+      <g
+         id="g8871"
+         transform="translate(0,1.0583333)">
+        <text
+           id="text4787-75-9"
+           y="142.26582"
+           x="106.24074"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"><tspan
+             style="stroke-width:0.26458332"
+             y="142.26582"
+             x="106.24074"
+             id="tspan4785-5-9"
+             sodipodi:role="line">Build Agent 1 </tspan><tspan
+             id="tspan4895-6"
+             style="stroke-width:0.26458332"
+             y="146.49916"
+             x="106.24074"
+             sodipodi:role="line">Build Agent 2</tspan></text>
+        <text
+           id="text4787-75-1-6-3"
+           y="151.06422"
+           x="106.10368"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           xml:space="preserve"><tspan
+             id="tspan4897-5-1"
+             style="stroke-width:0.26458332"
+             y="151.06422"
+             x="106.10368"
+             sodipodi:role="line">Build Agent 3</tspan></text>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="112.24844"
+         y="138.342"
+         id="text8794-0"><tspan
+           sodipodi:role="line"
+           id="tspan8792-20"
+           x="112.24844"
+           y="138.342"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';fill:#000000;fill-opacity:1;stroke-width:0.26458332">Pool 1</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="105.0582"
+       y="148.77257"
+       id="text4787-6"><tspan
+         sodipodi:role="line"
+         id="tspan4785-4"
+         x="105.0582"
+         y="148.77257"
+         style="stroke-width:0.26458332"><tspan
+   style="font-weight:bold"
+   id="tspan5296">Agent Pools</tspan> are collections of agents that</tspan><tspan
+         sodipodi:role="line"
+         x="105.0582"
+         y="153.00591"
+         style="stroke-width:0.26458332"
+         id="tspan5274">can run the same pipelines (i.e. agent machines</tspan><tspan
+         sodipodi:role="line"
+         x="105.0582"
+         y="157.23923"
+         style="stroke-width:0.26458332"
+         id="tspan5276">have the correct capabilities such as Visual Studio</tspan><tspan
+         sodipodi:role="line"
+         x="105.0582"
+         y="161.47256"
+         style="stroke-width:0.26458332"
+         id="tspan5278">installed)</tspan></text>
+    <g
+       id="g5425"
+       transform="translate(-5.8208336,12.699998)">
+      <rect
+         style="opacity:1;fill:#a7ffa7;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902"
+         id="rect4817-7-9-28"
+         width="35.907738"
+         height="26.080357"
+         x="56.881603"
+         y="211.10136"
+         ry="2.6458333" />
+      <text
+         id="text4783"
+         y="216.27835"
+         x="61.092667"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="216.27835"
+           x="61.092667"
+           id="tspan4781"
+           sodipodi:role="line">User 2</tspan></text>
+      <text
+         id="text4787"
+         y="234.27711"
+         x="61.426304"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="234.27711"
+           x="61.426304"
+           id="tspan4785"
+           sodipodi:role="line">Source Control</tspan></text>
+    </g>
+    <g
+       id="g5432"
+       transform="translate(3.1750001,11.112498)">
+      <rect
+         style="opacity:1;fill:#a7ffad;fill-opacity:1;stroke:#5f6364;stroke-width:0.25399998;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.7254902"
+         id="rect4817-7-9-28-3"
+         width="35.907738"
+         height="26.080357"
+         x="5.8331194"
+         y="212.70499"
+         ry="2.6458333" />
+      <text
+         id="text4783-1"
+         y="217.88196"
+         x="10.044183"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="217.88196"
+           x="10.044183"
+           id="tspan4781-1"
+           sodipodi:role="line">User 1</tspan></text>
+      <text
+         id="text4787-755"
+         y="235.88074"
+         x="10.377824"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="235.88074"
+           x="10.377824"
+           id="tspan4785-2"
+           sodipodi:role="line">Source Control</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#858585;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker5802);marker-end:url(#marker5854)"
+       d="m 33.193797,222.9882 -0.02216,-28.23863"
+       id="path5434"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#858585;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#Arrow1Lstart);marker-end:url(#marker5730)"
+       d="M 57.997485,223.11297 V 194.84078"
+       id="path5436"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#858585;stroke-width:0.25400001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 69.757345,179.82716 h 9.354433 v 37.09809 h 19.013745 v 21.9161 h 4.810847"
+       id="path5438"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc" />
+    <g
+       id="g5910"
+       transform="translate(0,12.170831)"
+       style="stroke:#355f32;stroke-opacity:1">
+      <path
+         inkscape:connector-curvature="0"
+         id="path5904"
+         d="m 17.372519,246.69961 v 5.61265 H 121.34037 v -5.07811"
+         style="fill:none;stroke:#355f32;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5906"
+         d="m 70.024616,252.09872 v -5.87993"
+         style="fill:none;stroke:#355f32;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="43.832203"
+       y="269.61484"
+       id="text5914"><tspan
+         sodipodi:role="line"
+         id="tspan5912"
+         x="43.832203"
+         y="269.61484"
+         style="stroke-width:0.26458332">In effect, these workstations are</tspan><tspan
+         sodipodi:role="line"
+         x="43.832203"
+         y="273.84818"
+         style="stroke-width:0.26458332"
+         id="tspan5916">all the same, except that some</tspan><tspan
+         sodipodi:role="line"
+         x="43.832203"
+         y="278.08151"
+         style="stroke-width:0.26458332"
+         id="tspan6508">have agents building software,</tspan><tspan
+         sodipodi:role="line"
+         x="43.832203"
+         y="282.31485"
+         style="stroke-width:0.26458332"
+         id="tspan6510">instead of humans</tspan></text>
+    <g
+       id="g6597"
+       transform="translate(-3.4315249,-19.888069)">
+      <text
+         id="text4787-3-7-7"
+         y="60.221329"
+         x="17.10449"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan5945"
+           style="stroke-width:0.26458332"
+           y="60.221329"
+           x="17.10449"
+           sodipodi:role="line">1.  A pipeline is triggered manually, on a schedule, or when source code </tspan><tspan
+           style="stroke-width:0.26458332"
+           y="64.454659"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6864">     is committed.</tspan><tspan
+           id="tspan5978"
+           style="stroke-width:0.26458332"
+           y="68.687996"
+           x="17.10449"
+           sodipodi:role="line" /><tspan
+           style="stroke-width:0.26458332"
+           y="72.921326"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6770">2.  Build agents are listening for requests</tspan><tspan
+           style="stroke-width:0.26458332"
+           y="77.154663"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6818" /><tspan
+           style="stroke-width:0.26458332"
+           y="81.387993"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6796">3.  The pipeline searches its agent pool(s) for the next availabe agent that </tspan><tspan
+           style="stroke-width:0.26458332"
+           y="85.62133"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6866">      can run all the steps. It queues the pipeline for an agent</tspan><tspan
+           style="stroke-width:0.26458332"
+           y="89.85466"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6798" /><tspan
+           style="stroke-width:0.26458332"
+           y="94.087997"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6806">4.  The agent uses or creates a folder as its workspace, runs the pipeline </tspan><tspan
+           style="stroke-width:0.26458332"
+           y="98.321327"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6868">      steps, and reports results to the CI server</tspan><tspan
+           style="stroke-width:0.26458332"
+           y="102.55466"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6778" /><tspan
+           id="tspan5988"
+           style="stroke-width:0.26458332"
+           y="106.78799"
+           x="17.10449"
+           sodipodi:role="line" /><tspan
+           style="stroke-width:0.26458332"
+           y="111.02132"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6605" /></text>
+      <text
+         id="text4787-3-7-7-1"
+         y="52.575081"
+         x="17.911921"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.35px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+         xml:space="preserve"><tspan
+           id="tspan5945-6"
+           style="font-weight:bold;stroke-width:0.26458332;font-size:6.35px;"
+           y="52.575081"
+           x="17.911921"
+           sodipodi:role="line">Continuous Integration Flow</tspan></text>
+    </g>
+    <g
+       id="g6597-6"
+       transform="translate(68.985055,-27.476192)">
+      <text
+         id="text4787-3-7-7-4"
+         y="60.221329"
+         x="17.10449"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="63.396328"
+           x="17.10449"
+           sodipodi:role="line"
+           id="tspan6605-0" /></text>
+    </g>
+    <g
+       id="g6862"
+       transform="translate(-118.23096,-1.7386904)">
+      <text
+         id="text4746"
+         y="40.208729"
+         x="270.19162"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan4750"
+           style="stroke-width:0.26458332"
+           y="43.383728"
+           x="270.19162"
+           sodipodi:role="line" /><tspan
+           id="tspan4752"
+           style="stroke-width:0.26458332"
+           y="47.617062"
+           x="270.19162"
+           sodipodi:role="line" /><tspan
+           id="tspan4754"
+           style="stroke-width:0.26458332"
+           y="51.850395"
+           x="270.19162"
+           sodipodi:role="line">*   Source can be built on</tspan><tspan
+           id="tspan4769"
+           style="stroke-width:0.26458332"
+           y="56.083729"
+           x="270.19162"
+           sodipodi:role="line">     a clean machine</tspan><tspan
+           style="stroke-width:0.26458332"
+           y="60.317062"
+           x="270.19162"
+           sodipodi:role="line"
+           id="tspan6872" /><tspan
+           id="tspan4756"
+           style="stroke-width:0.26458332"
+           y="64.550392"
+           x="270.19162"
+           sodipodi:role="line">*   Dependencies are accounted</tspan><tspan
+           id="tspan6847"
+           style="stroke-width:0.26458332"
+           y="68.78373"
+           x="270.19162"
+           sodipodi:role="line">      for.</tspan><tspan
+           id="tspan4762"
+           style="stroke-width:0.26458332"
+           y="73.017059"
+           x="270.19162"
+           sodipodi:role="line" /><tspan
+           style="stroke-width:0.26458332"
+           y="77.250397"
+           x="270.19162"
+           sodipodi:role="line"
+           id="tspan6874">*b  Pipeline runs are repeatable</tspan><tspan
+           id="tspan4773"
+           style="stroke-width:0.26458332"
+           y="81.483727"
+           x="270.19162"
+           sodipodi:role="line">     and predictable.</tspan></text>
+      <text
+         id="text6839"
+         y="36.196426"
+         x="294.98938"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="36.196426"
+           x="294.98938"
+           id="tspan6837"
+           sodipodi:role="line">What problems does</tspan><tspan
+           id="tspan6841"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="40.42976"
+           x="294.98938"
+           sodipodi:role="line">Continuous Integration</tspan><tspan
+           id="tspan6843"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';text-align:center;text-anchor:middle;stroke-width:0.26458332"
+           y="44.663094"
+           x="294.98938"
+           sodipodi:role="line">solve?</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.77772045px;line-height:1;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#bababa;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="15.825441"
+       y="141.59428"
+       id="text6926"><tspan
+         sodipodi:role="line"
+         id="tspan6924"
+         x="15.825441"
+         y="141.59428"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.77772045px;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#bababa;fill-opacity:1;stroke-width:0.26458332">Azure DevOps</tspan></text>
+    <path
+       style="fill:none;stroke:#8f8f8f;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 129.90796,182.78165 32.62425,-5.60615"
+       id="path7024"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#454545;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="27.689129"
+       y="172.77312"
+       id="text8794"><tspan
+         sodipodi:role="line"
+         id="tspan8792"
+         x="27.689129"
+         y="172.77312"
+         style="fill:#454545;fill-opacity:1;stroke-width:0.26458332">Git</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#454545;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="16.459831"
+       y="161.77815"
+       id="text8794-5"><tspan
+         sodipodi:role="line"
+         id="tspan8792-5"
+         x="16.459831"
+         y="161.77815"
+         style="fill:#454545;fill-opacity:1;stroke-width:0.26458332">Subversion</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1;font-family:Calibri;-inkscape-font-specification:'Calibri, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#454545;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="21.76251"
+       y="167.01665"
+       id="text8794-7"><tspan
+         sodipodi:role="line"
+         id="tspan8792-2"
+         x="21.76251"
+         y="167.01665"
+         style="fill:#454545;fill-opacity:1;stroke-width:0.26458332">TFVC</tspan></text>
+  </g>
+</svg>

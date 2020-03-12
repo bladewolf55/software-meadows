@@ -6,6 +6,18 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Continuous Integration Flow - An Accurate and Unlovely Graphic</title>
+      <description>&lt;p&gt;I needed to explain this to a colleague recently, took a picture of my whiteboard drawing, then digitized it using Inkscape. I've also linked to a PDF version. It says &amp;quot;Azure DevOps,&amp;quot;, but it's a pretty generic depiction.&lt;/p&gt;
+&lt;p&gt;It ain't pretty, but it's correct.&lt;/p&gt;
+&lt;p&gt;Hope it helps someone!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic/images/Continuous%20Integration%20Flow.pdf"&gt;Continuous Integration Flow.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic/images/Continuous%20Integration%20Flow.svg" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Wed, 11 Mar 2020 21:17:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic</guid>
+    </item>
+    <item>
       <title>Why the Repository Pattern Fails for Legacy Databases Like Yours and What to Do About It</title>
       <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/File:Repo-Man-Poster.jpg#/media/File:Repo-Man-Poster.jpg"&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/en/4/46/Repo-Man-Poster.jpg" alt="Repo-Man-Poster.jpg"&gt;&lt;/a&gt;&lt;br&gt;By Source, &lt;a href="//en.wikipedia.org/wiki/File:Repo-Man-Poster.jpg" title="Fair use of copyrighted material in the context of Repo Man (film)"&gt;Fair use&lt;/a&gt;, &lt;a href="https://en.wikipedia.org/w/index.php?curid=10827447"&gt;Link&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="contents"&gt;Contents&lt;/h2&gt;
@@ -1721,28 +1733,6 @@ unconsolidated implementation.&amp;quot; --Ward Cunningham, 1992&lt;/li&gt;
       <pubDate>Thu, 3 Oct 2019 19:58:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/summary_of_accelerate_state_of_devops_2019</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/summary_of_accelerate_state_of_devops_2019</guid>
-    </item>
-    <item>
-      <title>Posh-git Fork to Allow Visual Studio to Use TFVC and Ignore Git</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/posh-git_fork_to_allow_visual_studio_to_use_tfvc_and_ignore_git/images/git-plus-tfvc.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Source Code: &lt;a href="https://github.com/bladewolf55/posh-git-tfvc"&gt;bladewolf55/posh-git-tfvc: A PowerShell environment for Git, modified to use with TFVC-based solutions&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;I created this version of posh-git to handle a specific use case: a developer works for a company that requires using TFVC, but she wants to use Git locally to gain its rapid branching/merging abilities. Yet, she also wants to get the benefits of using Visual Studio's TFVC integration, namely CodeLens information.&lt;/p&gt;
-&lt;p&gt;Visual Studio supports both TFVC and Git version controls, and you're allowed to choose which one to use via Options &amp;gt; Source Control. Except, not really. If your solution has a .git folder or .git file, VS assumes you're using Git even if you also have a $tf file or your solution/projecs are configured for TFVC.&lt;/p&gt;
-&lt;p&gt;The general solution is:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Rename .git to _git&lt;/li&gt;
-&lt;li&gt;Set environment variable GIT_DIR to the full path to the _git folder&lt;/li&gt;
-&lt;li&gt;Set environment variable GIT_WORK_TREE to the full path to the working folder&lt;/li&gt;
-&lt;li&gt;Add line to .gitignore to ignore the _git folder&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/posh-git_fork_to_allow_visual_studio_to_use_tfvc_and_ignore_git/images/ScreenCap_2019-09-24_20-46-29.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;My modifications to the &lt;code&gt;GitUtils.ps1&lt;/code&gt; file accomplish that.&lt;/p&gt;
-&lt;p&gt;As a bonus, in the &lt;code&gt;test _git&lt;/code&gt; folder there's a file containing a Git alias to initialize a repo using a _git folder and the appropriate .gitignore and .tfignore changes.&lt;/p&gt;
-&lt;p&gt;It's not fancy, and I'm sure a better developer can improve on it.&lt;/p&gt;
-</description>
-      <pubDate>Tue, 24 Sep 2019 20:04:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/posh-git_fork_to_allow_visual_studio_to_use_tfvc_and_ignore_git</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/posh-git_fork_to_allow_visual_studio_to_use_tfvc_and_ignore_git</guid>
     </item>
   </channel>
 </rss>
