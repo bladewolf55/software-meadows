@@ -6,6 +6,82 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Remote Work Tiny Tips - Focusing and Breaking</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_focusing_and_breaking/images/Focus%20is%20a%20superpower.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the &lt;em&gt;doing&lt;/em&gt;. Don't beat yourself up! Try this tiny tip on...&lt;/p&gt;
+&lt;h1 id="focusing"&gt;Focusing&lt;/h1&gt;
+&lt;p&gt;Here are just a couple of effective ways to enter into what researcher Mihaly Csikszentmihalyi calls &amp;quot;&lt;a href="https://www.amazon.com/Flow-Psychology-Experience-Perennial-Classics-ebook/dp/B000W94FE6/ref=sr_1_1?keywords=flow&amp;amp;qid=1585105481&amp;amp;sr=8-1"&gt;flow&lt;/a&gt;.&amp;quot;&lt;/p&gt;
+&lt;h2 id="time-box"&gt;Time Box&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.neuroscientificallychallenged.com/blog/know-your-brain-default-mode-network"&gt;Pomodoro&lt;/a&gt; is arguably the most well-known time-boxing technique, made up of 25 minute intensive work and 5 minute breaks. However, from both research and my experience, I don't recommend it for software developers or other professions that require significant ramp-up time before real work can get done. Developers take about twenty minutes to load the full context of a piece of software into working memory. That only leaves five minutes to work!&lt;/p&gt;
+&lt;p&gt;Instead, I use a &lt;a href="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost/"&gt;50-10 time box&lt;/a&gt;. It neatly aligns to the hour, allows enough focused work time, and the ten minute break isn't onerous. Here are the steps (same as Pomodoro, just different times).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Keep a physical or electronic notebook available.&lt;/li&gt;
+&lt;li&gt;Write down what you'll work on in the time box.&lt;/li&gt;
+&lt;li&gt;Start your timer for 50 minutes. Work &lt;em&gt;exclusively&lt;/em&gt; on the task during that time.&lt;/li&gt;
+&lt;li&gt;When you become distracted--you will--quickly write down what distracted you then go back to work.&lt;/li&gt;
+&lt;li&gt;At break time, &lt;em&gt;take the break&lt;/em&gt;. Seriously, walk away for 10 minutes.&lt;/li&gt;
+&lt;li&gt;Repeat.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;Why it works&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Research shows 40-50 minutes is about optimal for intense focus, especially in problem solving.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Research also shows that breaks are critical for maintaining high cognitive performance. They give your neurons time to strengthen the pathways to the information just learned.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is why walking away from a problem is so effective in solving it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Writing down your distractions literally removes them from your mind. Otherwise, part of your brain keeps trying to think about them.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="remove-all-distractions"&gt;Remove All Distractions&lt;/h2&gt;
+&lt;p&gt;Consider that there are two kinds of focus: exclusive and inclusive. Exclusive focus is when you're wholly engaged in the task and forget about the past, present, and your environment (imagine writing a book). Inclusive focus is when you're paying attention to many things in your environment that affect accomplishing the task (think about football quarterbacks).&lt;/p&gt;
+&lt;p&gt;Most of us working remotely are aiming for exclusive focus. And distractions are the enemy. Such as...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kids, spouses, pets demanding attention&lt;/li&gt;
+&lt;li&gt;Notifications from email, social media, chat, watch, calendar, etc.&lt;/li&gt;
+&lt;li&gt;TVs, video games&lt;/li&gt;
+&lt;li&gt;Music (yes, even my beloved music)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here's your experiment. Or challenge. Or whatever temporarily motivates you to try it.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Turn off &lt;em&gt;every&lt;/em&gt; notification on your computer and phone. The phone's easy: put it in airplane mode and turn on Do Not Disturb.&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tell your family to leave you alone until a particular time, such as the start of your time box break.&lt;/li&gt;
+&lt;li&gt;If possible, close the door.&lt;/li&gt;
+&lt;li&gt;If there are still sounds, put in earphones or a headset.&lt;/li&gt;
+&lt;li&gt;Don't turn on music. If you still need sound to block out distracting noises, try the excellent &lt;a href="https://mynoise.net/"&gt; myNoise&lt;/a&gt; web site and app.&lt;/li&gt;
+&lt;li&gt;Work without distraction, and afterward quickly write down how you felt.&lt;/li&gt;
+&lt;li&gt;Do it again.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Why it works&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Creative and problem-solving work requires juggling lots of information. Any external distractions hamper that effort by taking our attention.&lt;/li&gt;
+&lt;li&gt;Our brains work in modes. One mode, the &lt;a href="https://www.neuroscientificallychallenged.com/blog/know-your-brain-default-mode-network"&gt;&lt;em&gt;default mental network&lt;/em&gt;&lt;/a&gt;, is our wandering mind. We spend about 47% of our time there. When you're distracted by your own thoughts, that's wandering mind. When you set the distraction aside and go back to the task, you're in &lt;em&gt;task mind&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Give yourself the best chance at being in task mind.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="finally"&gt;Finally&lt;/h2&gt;
+&lt;p&gt;Focus is real. But it's not a gift. It's a skill.&lt;/p&gt;
+&lt;h2 id="misc"&gt;Misc&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://play.google.com/store/apps/details?id=com.AT.PomodoroTimer"&gt;Brain Focus Productivity Timer - Apps on Google Play&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.marinaratimer.com/"&gt;Pomodoro Method Style Time Management Tool &amp;amp; Timer | Marinara by 352&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Unless of course you need to be notified for medical or other real-life circumstances. I'm just saying that Snapchat can likely wait.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Tue, 24 Mar 2020 20:50:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_focusing_and_breaking</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_focusing_and_breaking</guid>
+    </item>
+    <item>
       <title>Remote Work Tiny Tips - Forming New Habits</title>
       <description>&lt;p&gt;&lt;a title="Abhijit Tembhekar from Mumbai, India / CC BY (https://creativecommons.org/licenses/by/2.0)" href="https://commons.wikimedia.org/wiki/File:Red_Apple.jpg"&gt;&lt;img width="256" alt="Red Apple" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/256px-Red_Apple.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the &lt;em&gt;doing&lt;/em&gt;. Don't beat yourself up! Try this tiny tip on...&lt;/p&gt;
@@ -1565,60 +1641,6 @@ class static CustomerOrderViewServiceHelpers
       <pubDate>Sun, 13 Oct 2019 12:03:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/the_viewservice_pattern__especially_good_for_windows_forms</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_viewservice_pattern__especially_good_for_windows_forms</guid>
-    </item>
-    <item>
-      <title>Most of Us Developers Aren't Smart</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/most_of_us_developers_arent_smart/images/light-bulbs-styled-after-felix-gonzalez-torres.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Most of us developers think we're smart. But we aren't smart. We're clever.&lt;/p&gt;
-&lt;p&gt;And confused.&lt;/p&gt;
-&lt;p&gt;You can easily prove this by looking at our code. Specifically, by answering these questions:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;How many layers of indirection are there?&lt;/li&gt;
-&lt;li&gt;How many abstractions of abstractions are there?&lt;/li&gt;
-&lt;li&gt;How many different things are our methods doing?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Combined, these reveal how complicated a set of code is.&lt;/p&gt;
-&lt;p&gt;What we do as developers is complex. There are lots of little moving parts that all need to work together.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Complex: composed of many interconnected parts; compound; composite&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Complicated: difficult to analyze, understand, explain, etc.&lt;a id="fnref:2" href="#fn:2" class="footnote-ref"&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Because we're clever, we think we understand how to manage this complexity. But we don't. We're confused by it. So, instead of making the complex clear, we complicate it. We add stuff that makes those moving parts harder to understand (over-use of indirection and abstraction), and harder to work together (method multi-responsibility).&lt;/p&gt;
-&lt;p&gt;No one likes to hear this or face it in themselves. But we face it too often when supporting others' code. It comes with that little, internal question, &amp;quot;Couldn't this be easier?&amp;quot;&lt;/p&gt;
-&lt;p&gt;So, what do we do?&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;First&lt;/strong&gt;, decide that &amp;quot;we&amp;quot; applies to &amp;quot;you.&amp;quot; It's better to start with this assumption because it leads to learning rather than avoidance. If I insist I'm smart, I won't make the effort to learn better--thus, not smart. But if I insist I can be better, no matter how good I am, then the path to improvement and away from stagnation opens long and wide.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Second&lt;/strong&gt;, find examples of complex code that isn't complicated. Open source projects coming out of Microsoft and Google are good starting points.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Third&lt;/strong&gt;, Read about and apply the principles behind uncomplicating code. Three of these are:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/SOLID"&gt;SOLID&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself"&gt;DRY&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it"&gt;YAGNI&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Finally, be guided by four overarching principles in your architecture and coding. Make your code...&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Clear&lt;/li&gt;
-&lt;li&gt;Maintainable&lt;/li&gt;
-&lt;li&gt;Testable&lt;/li&gt;
-&lt;li&gt;Replaceable&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;We may not &lt;em&gt;be&lt;/em&gt; smart, but be can code smarter.&lt;/p&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;&lt;strong&gt;Complex&lt;/strong&gt; 1645–55; 1905–10 for def 7; (adj.) &amp;lt; Latin complexus, past participle of complectī, complectere to embrace, encompass, include, equivalent to complect- (see complect) + -tus past participle suffix; (noun) &amp;lt; Late Latin complexus totality, complex (Latin: inclusion, grasping, embrace), equivalent to complect(ere) + -tus suffix of v. action; reanalysis of the Latin v. as “to intertwine (completely)” has influenced sense of the adj.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:2"&gt;
-&lt;p&gt;&lt;strong&gt;Complicated&lt;/strong&gt; 1615–25; &amp;lt; Latin complicātus (past participle of complicāre to fold together), equivalent to com- com- + -plic- (combining form of *plecāre to fold, akin to plectī to plait; see complex) + -ātus -ate1&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-      <pubDate>Sun, 13 Oct 2019 11:15:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/most_of_us_developers_arent_smart</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/most_of_us_developers_arent_smart</guid>
     </item>
   </channel>
 </rss>
