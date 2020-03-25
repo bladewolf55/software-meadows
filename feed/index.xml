@@ -6,13 +6,13 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
-      <title>Remote Work Tiny Tips - Focusing and Breaking</title>
+      <title>Remote Work Tiny Tips - Focusing</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_focusing_and_breaking/images/Focus%20is%20a%20superpower.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the &lt;em&gt;doing&lt;/em&gt;. Don't beat yourself up! Try this tiny tip on...&lt;/p&gt;
+&lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the &lt;em&gt;doing&lt;/em&gt;. Don't beat yourself up! Try thees tiny tips on...&lt;/p&gt;
 &lt;h1 id="focusing"&gt;Focusing&lt;/h1&gt;
 &lt;p&gt;Here are just a couple of effective ways to enter into what researcher Mihaly Csikszentmihalyi calls &amp;quot;&lt;a href="https://www.amazon.com/Flow-Psychology-Experience-Perennial-Classics-ebook/dp/B000W94FE6/ref=sr_1_1?keywords=flow&amp;amp;qid=1585105481&amp;amp;sr=8-1"&gt;flow&lt;/a&gt;.&amp;quot;&lt;/p&gt;
 &lt;h2 id="time-box"&gt;Time Box&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://www.neuroscientificallychallenged.com/blog/know-your-brain-default-mode-network"&gt;Pomodoro&lt;/a&gt; is arguably the most well-known time-boxing technique, made up of 25 minute intensive work and 5 minute breaks. However, from both research and my experience, I don't recommend it for software developers or other professions that require significant ramp-up time before real work can get done. Developers take about twenty minutes to load the full context of a piece of software into working memory. That only leaves five minutes to work!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Pomodoro_Technique"&gt;Pomodoro&lt;/a&gt; is arguably the most well-known time-boxing technique, made up of 25 minute intensive work and 5 minute breaks. However, from both research and my experience, I don't recommend it for software developers or other professions that require significant ramp-up time before real work can get done. Developers take about twenty minutes to load the full context of a piece of software into working memory. That only leaves five minutes to work!&lt;/p&gt;
 &lt;p&gt;Instead, I use a &lt;a href="https://www.softwaremeadows.com/posts/the_50-10_time_box_revising_pomodoro_for_software_development_repost/"&gt;50-10 time box&lt;/a&gt;. It neatly aligns to the hour, allows enough focused work time, and the ten minute break isn't onerous. Here are the steps (same as Pomodoro, just different times).&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Keep a physical or electronic notebook available.&lt;/li&gt;
@@ -56,7 +56,7 @@
 &lt;p&gt;&lt;strong&gt;Why it works&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Creative and problem-solving work requires juggling lots of information. Any external distractions hamper that effort by taking our attention.&lt;/li&gt;
-&lt;li&gt;Our brains work in modes. One mode, the &lt;a href="https://www.neuroscientificallychallenged.com/blog/know-your-brain-default-mode-network"&gt;&lt;em&gt;default mental network&lt;/em&gt;&lt;/a&gt;, is our wandering mind. We spend about 47% of our time there. When you're distracted by your own thoughts, that's wandering mind. When you set the distraction aside and go back to the task, you're in &lt;em&gt;task mind&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Our brains work in modes. One mode, the &lt;a href="https://en.wikipedia.org/wiki/Default_mode_network"&gt;&lt;em&gt;default mental network&lt;/em&gt;&lt;/a&gt;, is our wandering mind. We spend about 47% of our time there. When you're distracted by your own thoughts, that's wandering mind. When you set the distraction aside and go back to the task, you're in &lt;em&gt;task mind&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Give yourself the best chance at being in task mind.&lt;/p&gt;
