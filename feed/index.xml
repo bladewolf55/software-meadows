@@ -6,9 +6,16 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Remote Work Tiny Tips - Stay Health (Exercise)</title>
+      <description />
+      <pubDate>Wed, 25 Mar 2020 18:02:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_stay_health_exercise</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_stay_health_exercise</guid>
+    </item>
+    <item>
       <title>Remote Work Tiny Tips - Focusing</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_focusing_and_breaking/images/Focus%20is%20a%20superpower.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the &lt;em&gt;doing&lt;/em&gt;. Don't beat yourself up! Try thees tiny tips on...&lt;/p&gt;
+&lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the &lt;em&gt;doing&lt;/em&gt;. Don't beat yourself up! Try these tiny tips on...&lt;/p&gt;
 &lt;h1 id="focusing"&gt;Focusing&lt;/h1&gt;
 &lt;p&gt;Here are just a couple of effective ways to enter into what researcher Mihaly Csikszentmihalyi calls &amp;quot;&lt;a href="https://www.amazon.com/Flow-Psychology-Experience-Perennial-Classics-ebook/dp/B000W94FE6/ref=sr_1_1?keywords=flow&amp;amp;qid=1585105481&amp;amp;sr=8-1"&gt;flow&lt;/a&gt;.&amp;quot;&lt;/p&gt;
 &lt;h2 id="time-box"&gt;Time Box&lt;/h2&gt;
@@ -1472,175 +1479,6 @@ WriteLog(e.Data, overwrite);
       <pubDate>Sun, 20 Oct 2019 18:36:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/who_are_you_coding_for_</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/who_are_you_coding_for_</guid>
-    </item>
-    <item>
-      <title>The ViewService Pattern: Especially Good For Windows Forms</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_viewservice_pattern__especially_good_for_windows_forms/images/form.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Windows Form development is still happening, is fast, and is reasonably easy to understand how to get started with. It's event-driven and hasn't changed much since Visual Basic. You drag controls onto a canvas, double-click the controls to open their event methods, and write what's supposed to happen.&lt;/p&gt;
-&lt;p&gt;Thus, Frankenstein's monster was born.&lt;/p&gt;
-&lt;p&gt;I'm taming the monster with a pattern I'm calling the ViewService. I won't create a Gang of Four class diagram, but basically a ViewService is a way of separating the code that manages ViewModels, and is a useful approach in Windows Forms. It's directly analagous to domain services and models.&lt;/p&gt;
-&lt;p&gt;How often have you written or maintained code that looks like this? (note this is pseudocoding, not actual code.)&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;class MainForm
-{
-    void buttonLoadData(object sender, EventArgs e)
-    {
-        var cn = new Connection(_connString);
-        var cmd = new Command(cn, &amp;quot;select a.*, b.* from Customer a join Order b on a.CustomerId = b.CustomerId&amp;quot;);
-        var reader = cmd.ReadResults();
-        until (reader.Eof)
-        {
-            var co = ConvertReaderToCustomerOrder(reader.Read());
-            grid1.Row.Add(new Row(co.Name, co.Zip);
-            AddOrdersToGridRow(grid1.Rows[grid1.Rows.Length-1], co)
-            if (co.Type = 1) { grid1.Rows[grid1.Rows.Length-1].BackgroundColor = Blue;}
-            else if (co.Type = 3) { grid1.Rows[grid1.Rows.Length-1].BackgroundColor = Orange;}
-        }
-        
-    }
-    
-    void AddOrdersToGridRows(Row row, CustomerOrder order, Connection cn)
-    {
-        foreach (var orderitem in order.Orders)
-        {
-            var cmd = new Command();
-            cmd.Connection = cn;
-            cmd.CommandText = String.Format (&amp;quot;select * from lineitems where OrderId = %1&amp;quot;,  orderitem.OrderId);
-            var items = ToLineItems(cmd.ExecuteQuery());
-            row[&amp;quot;Items&amp;quot;] = AddItemsToGrid(items, row);
-            if (order.Type = 3 and items.Count() &amp;gt; 15) {row.BackgroundColor = Red;}
-        }
-        CheckIfMoreOrdersHaveArrivedAndPrintThem();
-        
-    }
-    
-    void buttonRefreshData(object sender, EventArgs e)
-    {
-        buttonLoadData(sender, e);
-    }
-    
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The problems with the above code could occupy us for awhile, and they add up to one word: complication.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Events are doing too many things&lt;/li&gt;
-&lt;li&gt;Events are called directly&lt;/li&gt;
-&lt;li&gt;Tight coupling&lt;/li&gt;
-&lt;li&gt;Inconsistent naming and coding style&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here's how I recommend clearing up this kind of code by applying the ViewService pattern.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Group form events together&lt;/li&gt;
-&lt;li&gt;Group together methods that only apply to this form&lt;/li&gt;
-&lt;li&gt;Group methods that could apply to a &lt;strong&gt;replacement&lt;/strong&gt; form together, potentially into a service&lt;/li&gt;
-&lt;li&gt;Form events present data, or call a method to preserve data&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Let's apply these steps to the above.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The code below is pretty sparse and incomplete. The goal is to give you the idea of what to do, not provide a full-fledged implementation.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="group-form-events-and-methods"&gt;Group form events and methods&lt;/h2&gt;
-&lt;p&gt;This is organizational, and clarifies what the &lt;em&gt;user&lt;/em&gt; is doing vs what the &lt;em&gt;developer&lt;/em&gt; is doing. (Methods collapsed for clarity.)&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;
-+ void AddOrdersToGridRows(Row row, CustomerOrder order, Connection cn)...
-
-#region &amp;quot;Control Events&amp;quot;
-
-+ void buttonLoadData(object sender, EventArgs e)...
-+ void buttonRefreshData(object sender, EventArgs e)...
-
-#endregion
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="better-methods-and-names-and-events-call-custom-methods-instead-of-being-treated-as-custom-methods"&gt;Better methods and names, and events &lt;em&gt;call&lt;/em&gt; custom methods instead of being &lt;em&gt;treated&lt;/em&gt; as custom methods&lt;/h2&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;class MainForm
-{
-    List&amp;lt;CustomerOrderView&amp;gt; _customerOrders = new List&amp;lt;CustomerOrderView&amp;gt;();
-    
-    + void GetData()...
-    + void LoadControls()
-    
-    void buttonLoadData(object sender, EventArgs e)
-    {
-        GetData();
-        LoadControls();
-    }
-    void buttonCancel(object sender, EventArgs e)
-    {
-        LoadControls();
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Already, we're gaining clarity.&lt;/p&gt;
-&lt;h2 id="separate-the-data-calls-into-a-viewservice"&gt;Separate the data calls into a ViewService&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Imagine the ViewService is going to be resued in a web application. That means it doesn't accept or process form controls, and is UI agnostic.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This is the same Dependency Injection pattern used in web applications. The difference is that CustomerOrderViewService isn't a domain service, it's specific to this view of the data.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;
-class MainForm 
-{
-    ICustomerOrderViewService _customerOrderViewService = null;
-    List&amp;lt;CustomerOrderView&amp;gt; _customerOrders = new List&amp;lt;CustomerOrderView&amp;gt;();
-
-    
-    + void MainForm(ICustomerOrderViewService)...
-    
-    void GetData()
-    {
-        _customerOrders = _customerOrderViewService.Get(txtCustomerId.Text);
-    }
-    
-    void LoadControls()
-    {
-        if (_customerOrders == null) { GetData(); }
-        gridOrders.DataSource = _customerOrders;
-    }
-
-}
-
-//These two classes would be in separate files, and *could* be in a separate namespace
-//to emphasize the decoupling.
-
-class CustomerOrderViewService: ICustomerOrderViewService
-{
-    ICustomerOrderService _customerOrderService = null;
-    
-    + public CustomerOrderViewService(ICustomerOrderService _customerOrderService)...
-    
-
-    public List&amp;lt;CustomerOrderView&amp;gt; Get(string customerId)
-    {
-        //This is the call to the *domain service*. It might call the database directly, or might in turn call a web api.
-        
-        //Returns type CustomerOrder
-        var customerOrders = _customerOrderService.GetOrdersByCustomer(string customerId);
-        
-        //Mapping
-        return customerOrders.Select(a =&amp;gt; a.ToCustomerOrderView());
-    }
-    
-}
-
-class static CustomerOrderViewServiceHelpers
-{
-    public static ToCustomerOrderView (this CustomerOrder customerOrder)
-    {
-        return new CustomerOrderView()
-        {
-            Name = customerOrder.Name,
-            CustomerType = customerOrder.CustomerType,
-            etc....
-        }
-    }
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="the-happy-wrap-up"&gt;The Happy Wrap Up&lt;/h2&gt;
-&lt;p&gt;By applying the ViewService pattern, we can separate Windows Form code into cleaner areas of concern, making our code clear, testable, maintainable and replaceable.&lt;/p&gt;
-</description>
-      <pubDate>Sun, 13 Oct 2019 12:03:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/the_viewservice_pattern__especially_good_for_windows_forms</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_viewservice_pattern__especially_good_for_windows_forms</guid>
     </item>
   </channel>
 </rss>
