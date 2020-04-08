@@ -6,6 +6,39 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Remote Work Tiny Tips - Staying Social</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_staying_social/images/396_WGN_on_WE.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the doing. Don't beat yourself up! Try this tiny tip on...&lt;/p&gt;
+&lt;h2 id="staying-social"&gt;Staying Social&lt;/h2&gt;
+&lt;p&gt;I heard a comment recently that went something like this (and which I used in a previous post):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Social distancing does not require social isolation&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Today an acquaintenance (thanks, Sean!) demonstrated a great method for staying social, especially if, like me, you're not inclined toward talking even when the government isn't mandating staying put. He interviewed me about music. We don't know each other well, but the interview format removes all kinds of social barriers. It was great. Plus, I love music.&lt;/p&gt;
+&lt;h2 id="the-simple-and-amazing-interview-that-doesnt-have-to-be-long"&gt;The Simple (and Amazing!) Interview (That Doesn't Have to Be Long)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Remember: people &lt;em&gt;love&lt;/em&gt; to talk about themselves&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Write down a subject you're curious about that you think other people will know about&lt;/li&gt;
+&lt;li&gt;Write down three questions about that subject&lt;/li&gt;
+&lt;li&gt;Write down three people you could call&lt;/li&gt;
+&lt;li&gt;Email or text &lt;em&gt;one&lt;/em&gt; of them to set up a formal date/time for the interview. Don't be late!&lt;/li&gt;
+&lt;li&gt;Video chat or call. Do not email, do not text. You must hear their voice, and ideally see their face.&lt;/li&gt;
+&lt;li&gt;Ask your questions. Record if you want to, but be sure to ask if that's OK.&lt;/li&gt;
+&lt;li&gt;Listen. Really listen. This person is giving you a great gift.&lt;/li&gt;
+&lt;li&gt;Afterward, immediately email and thank them for their time.&lt;/li&gt;
+&lt;li&gt;Then...and this is the goose-pimply, sipping-bourbon-in-winter part--&lt;em&gt;savor&lt;/em&gt; what you just did. Write down how you felt, what your favorite answers were, what you learned.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="finally"&gt;Finally&lt;/h2&gt;
+&lt;p&gt;Humans need connection. Positive social connections are a strong predictor of length and quality of life.&lt;/p&gt;
+&lt;p&gt;Go ahead. Book that interview.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 7 Apr 2020 20:32:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_staying_social</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_staying_social</guid>
+    </item>
+    <item>
       <title>Remote Work Tiny Tips - Hugs in a No-Touch World</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_hugs_in_a_no-touch_world/images/mother-and-child1.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the doing. Don't beat yourself up! Try this tiny tip on...&lt;/p&gt;
@@ -985,147 +1018,6 @@ namespace DealingWithData.Tests
       <pubDate>Thu, 13 Feb 2020 15:11:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/why_the_repository_pattern_fails_for_legacy_database_like_yours_and_wh</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/why_the_repository_pattern_fails_for_legacy_database_like_yours_and_wh</guid>
-    </item>
-    <item>
-      <title>Mock returning a List as IMongoQueryable for unit testing</title>
-      <description>&lt;h2 id="the-problem"&gt;The Problem&lt;/h2&gt;
-&lt;p&gt;The latest MongoDb driver for .Net doesn't have a way to convert a collection such as List&lt;T&gt; to IMongoQueryable. If the code depends on that interface, it needs to be mocked, but how to set the concrete data?&lt;/p&gt;
-&lt;h2 id="the-solution"&gt;The Solution&lt;/h2&gt;
-&lt;p&gt;What you'll need to run this sample yourself.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Visual Studio&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.nuget.org/packages/MongoDB.Driver/"&gt;MongoDb.Driver&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.nuget.org/packages/NSubstitute/"&gt;NSubstitute&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.nuget.org/packages/xunit/"&gt;xunit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.nuget.org/packages/xunit.runner.visualstudio/"&gt;xunit.runner.visualstudio&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Let's say you've settled on using MongoDb as your NoSQL data store. You write a simple repository pattern with one method to query for any concrete type.&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;	public interface IMongoRepository&amp;lt;T&amp;gt; where T : class
-	{
-		public IMongoQueryable&amp;lt;T&amp;gt; QueryAll();
-	}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You also have a simple Customer service that calls the repository&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public class CustomerService
-{
-	IMongoRepository&amp;lt;Customer&amp;gt; _customerRepository = null;
-	public CustomerService(IMongoRepository&amp;lt;Customer&amp;gt; customerRepository)
-	{
-		_customerRepository = customerRepository;
-	}
-
-	public List&amp;lt;Customer&amp;gt; GetCustomers()
-	{
-		return _customerRepository.QueryAll().ToList();
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Finally, you start writing the following test. But you discover there's no way to get a concrete instance of IMongQueryable&lt;T&gt;. There used to be, but it's legacy code.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public class CustomerService_Should
-{
-	[Fact]
-	public void Return_customers()
-	{
-		var expected = new List&amp;lt;Customer&amp;gt;() { new Customer() { Id = 1 } };
-		var customerRepository = Substitute.For&amp;lt;IMongoRepository&amp;lt;Customer&amp;gt;&amp;gt;();
-		
-		//return the mocked data. But how to convert the list into IMongoQueryable???
-
-		customerRepository.QueryAll().Returns([argh, what goes here??]);
-		var service = new CustomerService(customerRepository);
-		var actual = service.GetCustomers();
-		Assert.Equal(expected.Count, actual.Count);
-		Assert.Equal(expected.First().Id, actual.First().Id);
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Like me, you probably try all kinds of typecasting before realizing you're always trying to do something impossible. Finally, you find the answer on Stack Overflow. There are two ways to mock up the data, and both make the IMongoQueryable class accept IQueryable.&lt;/p&gt;
-&lt;h2 id="using-nsubstitute"&gt;Using NSubstitute&lt;/h2&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public class CustomerService_Should
-{
-	[Fact]
-	public void Return_customers()
-	{
-		var expected = new List&amp;lt;Customer&amp;gt;() { new Customer() { Id = 1 } };
-		var customerRepository = Substitute.For&amp;lt;IMongoRepository&amp;lt;Customer&amp;gt;&amp;gt;();
-		
-		//Mock IMongoQueryable to accept IQueryable, enabling just enough of the interface
-		//to work
-		var expectedQueryable = expected.AsQueryable();
-		var mockQueryable = Substitute.For&amp;lt;IMongoQueryable&amp;lt;Customer&amp;gt;&amp;gt;();
-		mockQueryable.ElementType.Returns(expectedQueryable.ElementType);
-		mockQueryable.Expression.Returns(expectedQueryable.Expression);
-		mockQueryable.Provider.Returns(expectedQueryable.Provider);
-		mockQueryable.GetEnumerator().Returns(expectedQueryable.GetEnumerator());
-
-		//return the mocked data
-		customerRepository.QueryAll().Returns(mockQueryable);
-		var service = new CustomerService(customerRepository);
-		var actual = service.GetCustomers();
-		Assert.Equal(expected.Count, actual.Count);
-		Assert.Equal(expected.First().Id, actual.First().Id);
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Pretty slick.&lt;/p&gt;
-&lt;h2 id="creating-mongoqueryable"&gt;Creating MongoQueryable&lt;T&gt;&lt;/h2&gt;
-&lt;p&gt;A simple concrete class that allows setting a List property.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public class MongoQueryable&amp;lt;T&amp;gt; : IMongoQueryable&amp;lt;T&amp;gt;
-{
-	public List&amp;lt;T&amp;gt; MockData { get; set; }
-
-	public Type ElementType =&amp;gt; MockData.AsQueryable().ElementType;
-
-	public Expression Expression =&amp;gt; MockData.AsQueryable().Expression;
-
-	public IQueryProvider Provider =&amp;gt; MockData.AsQueryable().Provider;
-
-	public IEnumerator&amp;lt;T&amp;gt; GetEnumerator() =&amp;gt; MockData.AsQueryable().GetEnumerator();
-	IEnumerator IEnumerable.GetEnumerator() =&amp;gt; MockData.AsQueryable().GetEnumerator();
-
-	public QueryableExecutionModel GetExecutionModel() =&amp;gt; throw new NotImplementedException();
-
-	public IAsyncCursor&amp;lt;T&amp;gt; ToCursor(CancellationToken cancellationToken = default) =&amp;gt; throw new NotImplementedException();
-
-	public Task&amp;lt;IAsyncCursor&amp;lt;T&amp;gt;&amp;gt; ToCursorAsync(CancellationToken cancellationToken = default) =&amp;gt; throw new NotImplementedException();
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The test.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;[Fact]
-public void Return_customers2()
-{
-	var expected = new List&amp;lt;Customer&amp;gt;() { new Customer() { Id = 1 } };
-	var customerRepository = Substitute.For&amp;lt;IMongoRepository&amp;lt;Customer&amp;gt;&amp;gt;();
-
-	//Mock IMongoQueryable using a class
-	var mockQueryable = new MongoQueryable&amp;lt;Customer&amp;gt;();
-	mockQueryable.MockData = expected;
-
-	//return the mocked data
-	customerRepository.QueryAll().Returns(mockQueryable);
-	var service = new CustomerService(customerRepository);
-	var actual = service.GetCustomers();
-	Assert.Equal(expected.Count, actual.Count);
-	Assert.Equal(expected.First().Id, actual.First().Id);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/46035390/unit-testing-with-imongoqueryable"&gt;c# - Unit Testing with IMongoQueryable - Stack Overflow&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;The comments in Stack Overflow point out that using IMongoQueryable--or IQueryable-- isn't ideal because it tightly couples the code to MongoDb or to a Queryable backend. It might be better to use a truly generic repository and convert to/from MongoDb (or other database) as needed.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-      <pubDate>Tue, 28 Jan 2020 17:29:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/mock_returning_a_list_as_imongoqueryable_for_unit_testing</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/mock_returning_a_list_as_imongoqueryable_for_unit_testing</guid>
     </item>
   </channel>
 </rss>
