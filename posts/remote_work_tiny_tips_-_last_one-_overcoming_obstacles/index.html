@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>TFS/Azure Devops: Building And Releasing Git Branches, A Simple Example | Software Meadows</title>
+  <title>Remote Work Tiny Tips - Last One: Overcoming Obstacles | Software Meadows</title>
 </head>
 
 <body>
@@ -62,109 +62,62 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example'>TFS/Azure DevOps: Building and Releasing Git Branches, A Simple Example</a></h2>
-                <p class='post-info'><span class='posted-on'>2019-12-12 18:34</span></p>
-                <div class='post-content'><h2 id="contents">Contents</h2>
-<ul>
-<li><a href="#the-situation">The Situation</a></li>
-<li><a href="#implementation">Implementation</a>
-<ul>
-<li><a href="#git">Git</a></li>
-<li><a href="#tfs-build">TFS Build</a></li>
-<li><a href="#tfs-release">TFS Release</a></li>
-<li><a href="#code-freeze">Code Freeze</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="the-situation">The Situation</h2>
-<p>The development teams run on a two-week release cycle. The final three days of the cycle they are in code freeze. Code is deployed to two environments: Test and Production.</p>
-<p>During code freeze:</p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_last_one-_overcoming_obstacles'>Remote Work Tiny Tips - Last One: Overcoming Obstacles</a></h2>
+                <p class='post-info'><span class='posted-on'>2020-04-09 19:30</span></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_last_one-_overcoming_obstacles/images/action-adult-athlete-champion-preview.jpg" alt="" /></p>
+<p>It's relatively easy to get the technology running to work from home. The hard part is the doing. Don't beat yourself up! Try this tiny tip on...</p>
+<h2 id="overcoming-obstacles">Overcoming Obstacles</h2>
+<p>What if there were a simple technique, backed by science, that you could use in five minutes to help you improve all kinds of behaviors?</p>
+<p>There is.</p>
+<h2 id="mental-contrasting-with-implementation-intentions-but-you-can-call-it-woop">Mental Contrasting With Implementation Intentions - But You Can Call It WOOP</h2>
+<p><em>Mental Contrasting</em> is a visualization technique involving first thinking of a positive future outcome followed by thinking of obstacles.</p>
+<p><em>Implementation Intention</em> is a self-regulatory strategy in the form of an &quot;if-then plan&quot; that can lead to better goal attainment. For example, &quot;If I see the cookies, I'm going to grab the banana.&quot; Repeatedly imagining the plan improves the brain's automatic response.</p>
+<p>Dr Gabriele Oettingen is premier among those who've researched MCII intensively, and she created a method for applying that research. It's called WOOP.</p>
+<h2 id="woop">WOOP</h2>
+<p>Takes five minutes in a quiet (uninterrupted), calm environment, and intensely imagine the following.</p>
 <ol>
-<li>At the start, all repos are built and released to Test. This is the production code.</li>
-<li>Newly developed code must be committed to the repository and built, but it must <em>not</em> be released to Test.</li>
-<li>At the end, all production code is deployed to Production, and newly developed code is deployed to Test.</li>
+<li>Your <strong>WISH</strong> (detailed goal with metrics)</li>
+<li>The best <strong>OUTCOME</strong> (all the positive stuff and feelings)</li>
+<li>Potential <strong>OBSTACLES</strong> (the negative stuff)</li>
+<li>Your If-Then <strong>PLAN</strong></li>
 </ol>
-<p>Finally, the teams want to have just one build and one deployement definition for each solution.</p>
-<h2 id="implementation">Implementation</h2>
-<h3 id="git">Git</h3>
-<p>Git is configured with two long-lived branches: master and development.</p>
-<ul>
-<li>Developers always work against the development branch, pushing their local, short-lived feature branches.</li>
-<li>At code freeze, development is merged into master.</li>
-<li>If there are emergency production deployments, ideally they're made first to deployment and then to master. If they're made directly to master then the changes need to be merged into development (or, ideally, development is rebased onto master)</li>
-</ul>
-<h3 id="tfs-build">TFS Build</h3>
-<p>The build definition is configured with Triggers, specifically Branch filters for both master and development branches. Continuous Integration is enabled.</p>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_08-55-31.png" alt="" /></p>
-<p>This allows commits to both development and master branches to trigger the build.</p>
-<h3 id="tfs-release">TFS Release</h3>
-<p>The deployment definition is configured in the following way:</p>
-<p><strong>Pipeline</strong></p>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-18-00.png" alt="" /></p>
-<p><strong>Artifacts</strong><br />
-There's a single artifact with a Source type of Build. The Source is the build definition.</p>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-18-03.png" alt="" /></p>
-<p>Continuous deployment is enabled, and both branches are allowed.</p>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-18-55.png" alt="" /></p>
-<p><strong>Environments</strong><br />
-Both environments use the After release trigger.</p>
-<p><em>Test Environment</em><br />
-The artifact filters include both branches</p>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-21-51.png" alt="" /></p>
-<p>In the sample, a Copy Files task is used to move the binaries to their release folder. While not required for the solution, it demonstrates using variables to create release subfolders. In this case, folders for branch and build number are created. Also note the Overwrite and Flatten Folders checkboxes.</p>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-43-07.png" alt="" /></p>
-<p><em>Production Environment</em><br />
-The differences between this and the Test environment are</p>
-<ul>
-<li>Only the master branch is included in the artifact filters</li>
-<li>Approvers are added</li>
-<li>Only the latest build is deployed upon approval</li>
-</ul>
-<p><img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-45-58.png" alt="" /><br />
-<img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-46-23.png" alt="" /><br />
-<img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_09-48-16.png" alt="" /></p>
-<h3 id="code-freeze">Code Freeze</h3>
-<p>What has to happen during the code freeze?</p>
+<p>Do this every day, several times a day.</p>
+<p><em>Important: Do not switch the &quot;O&quot;s. You must imagine the Outcome before the Obstacles. The research shows that switching them nullifies any benefit.</em></p>
 <blockquote>
-<p>Development branch commits don't deploy. That's it.</p>
+<p>Here's Dr Oettingen describing the four steps.<br />
+<a href="https://vimeo.com/262725813">The Four Steps of WOOP</a></p>
+<p>And here she is taking people through the technique. I just love her.<br />
+<a href="https://vimeo.com/262976048">Let’s WOOP</a></p>
 </blockquote>
-<p>There are at least two ways to prevent development branch deployments during code freeze.</p>
-<ol>
-<li><p>Add a build tag using a custom task that checks for the presense of a particular file. A custom build task would be used for this.</p>
+<h2 id="whats-going-on-what-about-the-power-of-postive-thinking">What's Going On? What About the Power of Postive Thinking?</h2>
+<p>Norman Vincent Peale got it (somewhat) wrong. It's not enough to think positively. In fact, trying to only think positively will hinder reaching your goals.</p>
+<p>&quot;Studies are showing that when people limit their thinking to imagining positive outcomes, they tend not to put forth the effort to make those outcomes come about. As [Dr Oettingen] put it:&quot;</p>
 <blockquote>
-<p>Sorry, I don't have an example of this. But I've seen it done in a real-world environment.</p>
+<p>Positive thinking fools our minds into perceiving that we’ve already attained our goal, slackening our readiness to pursue it.</p>
 </blockquote>
-</li>
-<li><p>Use a Gated release. For example, check a web service endpoint. If it fails to return, you're in code freeze and the gate fails.</p>
-</li>
-</ol>
-<p><strong>Recommendation: Stick with build tags</strong></p>
-<p>The disadvantage to tagging builds is that the custom task needs to be added to each build definition. The advantage is that the tag is part of the artifact trigger.</p>
-<p>The disadvantage to gates is that there's a required timeout period of at-minimum 6 minutes before the gate fails. The advantage is that build definitions don't need to create tags.</p>
-<p>REST API Gate Sample<br />
-<img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_12-22-08.png" alt="" /><br />
-<img src="https://www.softwaremeadows.com/posts/tfs_azure_devops__building_and_releasing_git_branches,_a_simple_example/ScreenCap_2019-12-11_12-22-35.png" alt="" /></p>
-<p>Web API Endpoint Sample</p>
-<pre><code class="language-csharp">   public class InCodeFreezeController : ApiController
-    {
-        public IHttpActionResult Get()
-        {
-            //IsInCodeFreeze checks some condition. Could be the same file-existence
-            //check that's used for tagging today.
-            //Not ideal, but simpler for TFS Gate to just fail the request
-            if (IsInCodeFreeze)
-            {
-                return BadRequest();
-            }
-            return Ok();
-        }
-    }
-</code></pre>
+<p>Understood this way, negative feedback is no longer a threat, it helps with how to fulfill the wish. It isn't personal. WOOP creates associative links in the brain, linking the outcome with the obstacle and the means to overcome the obstacle.</p>
+<ul>
+<li>Mental contrasting has the better long-term benefit to achieving and maintaining goals</li>
+<li>For easily attained goals, implementation intention doesn't matter much, but for difficult goals, It increases success threefold.</li>
+<li>Practicing WOOP can double effectiveness on the goal ten weeks out.</li>
+</ul>
+<blockquote>
+<p>WOOP isn't someone's opinion. It's not a gimmick. It's real science.</p>
+</blockquote>
+<h2 id="finally">Finally</h2>
+<p>How much is five or ten minutes worth to you? Is it worth improving your life? Your kids' lives?</p>
+<p>Go ahead. Find out.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://woopmylife.org/new-page-3">Learn how to WOOP — WOOP my life</a></li>
+<li><a href="https://woopmylife.org/further">Science — WOOP my life</a> &lt;= Includes links to about twenty cited research papers</li>
+<li><a href="https://www.psychologytoday.com/us/blog/turning-straw-gold/201501/mental-contrasting-smart-alternative-positive-thinking">Mental Contrasting: A Smart Alternative to Positive Thinking | Psychology Today</a></li>
+</ul>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on TFS/Azure Devops: Building And Releasing Git Branches, A Simple Example | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Remote Work Tiny Tips - Last One: Overcoming Obstacles | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
