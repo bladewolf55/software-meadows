@@ -6,6 +6,87 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Using FluentAssertions with xUnit Theory to Test for an Exception AND a Successful Return</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_/images/header.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;I recently wanted to unit test a method that required significant setup, and where an invalid method argument would throw an exception while valid values returned easily testable results.&lt;/p&gt;
+&lt;p&gt;While I could have created a separate test, this really lent itself to using an xUnit Theory. The problem I faced was how to test for the exception but also test for a valid return. I &lt;em&gt;didn't&lt;/em&gt; want to write duplicate code within the test itself, such as declaring the service twice.&lt;/p&gt;
+&lt;p&gt;Some research and experimentation led to the approach below. The trick is to declare a delegate function, then use FluentAssertions to either catch the invocation exception, or to invoke the function and return the value.&lt;/p&gt;
+&lt;p&gt;Here's a simple Class Library app to demonstrate the technique. I kind of love this because there's no wasted or duplicate code.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using System;
+using FluentAssertions;
+using Xunit;
+
+namespace FluentAssertionsInvoking
+{
+    public class CustomerService_Should
+    {
+        [Theory]
+        [InlineData(null)]
+        [InlineData(&amp;quot;Marcus Welby&amp;quot;)]
+        public void Return_a_customer_or_throw_an_exception(string name)
+        {
+            // arrange
+            var expected = new Customer() { Name = name };
+            var customerService = new CustomerService(expected);
+
+            // act
+            Func&amp;lt;CustomerService, Customer&amp;gt; action = service =&amp;gt; service.GetCustomer();
+
+            // assert
+            // Exception condition
+            if (name == null)
+            {
+                customerService.Invoking(action).Should().Throw&amp;lt;Exception&amp;gt;();
+            }
+            else
+            // Valid condition
+            {
+                var result = action.Invoke(customerService);
+                result.Should().BeEquivalentTo(expected);
+            }
+        }
+    }
+
+    public class Customer
+    {
+        public string Name { get; set; }
+    }
+
+    public class CustomerService
+    {
+        private Customer _customer;
+        public CustomerService(Customer customer)
+        {
+            _customer = customer;
+        }
+        public Customer GetCustomer()
+        {
+            if (_customer.Name == null) { throw new Exception(); }
+            return _customer;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_/images/ScreenCap_2020-04-15_19-31-15.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="references"&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://fluentassertions.com/"&gt;FluentAssertions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://xunit.net/"&gt;xUnit.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="bonus"&gt;Bonus&lt;/h2&gt;
+&lt;p&gt;Here's the xunit.runner.json to show only method names in the Test Runner output. Remember to set the file to Copy to Output.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+  &amp;quot;$schema&amp;quot;: &amp;quot;https://xunit.net/schema/current/xunit.runner.schema.json&amp;quot;,
+  &amp;quot;methodDisplay&amp;quot;: &amp;quot;method&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_/images/ScreenCap_2020-04-15_19-31-27.png" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Wed, 15 Apr 2020 19:13:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_</guid>
+    </item>
+    <item>
       <title>Remote Work Tiny Tips - Last One: Overcoming Obstacles</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_last_one-_overcoming_obstacles/images/action-adult-athlete-champion-preview.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the doing. Don't beat yourself up! Try this tiny tip on...&lt;/p&gt;
@@ -557,18 +638,6 @@ Savor that list. It's your warm friend. Even if it was a hassle sometimes...
       <pubDate>Wed, 18 Mar 2020 17:57:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_keeping_your_routine</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_keeping_your_routine</guid>
-    </item>
-    <item>
-      <title>Continuous Integration Flow - An Accurate and Unlovely Graphic</title>
-      <description>&lt;p&gt;I needed to explain this to a colleague recently, took a picture of my whiteboard drawing, then digitized it using Inkscape. I've also linked to a PDF version. It says &amp;quot;Azure DevOps,&amp;quot;, but it's a pretty generic depiction.&lt;/p&gt;
-&lt;p&gt;It ain't pretty, but it's correct.&lt;/p&gt;
-&lt;p&gt;Hope it helps someone!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic/images/Continuous%20Integration%20Flow.pdf"&gt;Continuous Integration Flow.pdf&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic/images/Continuous%20Integration%20Flow.svg" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Wed, 11 Mar 2020 21:17:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic</guid>
     </item>
   </channel>
 </rss>
