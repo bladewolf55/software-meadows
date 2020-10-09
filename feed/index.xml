@@ -6,6 +6,100 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Five (so far) Dynamics of Group Problem Solving</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/monopoly.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;h1 id="how-are-your-problems-being-solved"&gt;HOW ARE YOUR PROBLEMS BEING SOLVED?&lt;/h1&gt;
+&lt;h2 id="this-post-is"&gt;This Post Is&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;My (relatively educated) opinions&lt;/li&gt;
+&lt;li&gt;To get you (and me!) thinking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/lee-van-cleef.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="do-this"&gt;1. &amp;quot;Do this!&amp;quot;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Often (upper) management or overbearing personalities&lt;/li&gt;
+&lt;li&gt;Driven by &amp;quot;I'm supposed to &lt;em&gt;decide&lt;/em&gt;.&amp;quot; and &amp;quot;my first thought is the right answer.&amp;quot;&lt;/li&gt;
+&lt;li&gt;Can be important in urgent or gridlock situations.&lt;/li&gt;
+&lt;li&gt;BUT, mustn't become the go-to.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="background-color:yellow;"&gt;Mitigation: &amp;quot;We're providing an update, but we're open to ideas.&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/right-wrong-way.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="there-are-two-ways"&gt;2. &amp;quot;There are two ways...&amp;quot;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Often team leads or developers not directly responsible for the outcome&lt;/li&gt;
+&lt;li&gt;Simplistic to get quick buy-in&lt;/li&gt;
+&lt;li&gt;Driven by &amp;quot;I'm supposed to &lt;em&gt;know&lt;/em&gt;&amp;quot; and maintaining status quo&lt;/li&gt;
+&lt;li&gt;Stops exploration and can shortcut testing&lt;/li&gt;
+&lt;li&gt;Flatt's Law #12: &amp;quot;There are usually many right ways to do something, and always infinite wrong ways.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="background-color:yellow;"&gt;Mitigation: &amp;quot;We'll start with those, and review with you if we come across alternatives.&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/sherlock.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="ive-already-thought-oftried-that"&gt;3. &amp;quot;I’ve already thought of/tried that.&amp;quot;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Often a senior developer&lt;/li&gt;
+&lt;li&gt;Stops conversation&lt;/li&gt;
+&lt;li&gt;Pits the &amp;quot;expert&amp;quot; against colleagues&lt;/li&gt;
+&lt;li&gt;Leads to gridlock and win-lose thinking&lt;/li&gt;
+&lt;li&gt;Can be ego/image-driven&lt;/li&gt;
+&lt;li&gt;BUT, can also be true&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="background-color:yellow;"&gt;Mitigation: &amp;quot;Can we look at your steps/tests/code? We want to perform due dilligence.&amp;quot; &lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/corn-maze-aerial.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="weve-already-thought-oftried-that"&gt;4. &amp;quot;We've already thought of/tried that.&amp;quot;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Can hide a decision actually made via 1-3.&lt;/li&gt;
+&lt;li&gt;Can be clique-driven&lt;/li&gt;
+&lt;li&gt;BUT, is usually true (i.e., &amp;quot;we're really in agreement&amp;quot;)&lt;/li&gt;
+&lt;li&gt;BUT, still potentially stops exploration&lt;/li&gt;
+&lt;li&gt;Can be valuable when presenting to management&lt;/li&gt;
+&lt;li&gt;BUT, requires trust. Can be a cudgel, &amp;quot;you don't really understand what we do.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span style="background-color:yellow;"&gt;Mitigation: &amp;quot;I'd like to understand better. Who can step me through what you've done?&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/160129-elderlyexercise-stock.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="this-is-where-we-are-right-now"&gt;5. &amp;quot;This is where we are right now.&amp;quot;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Can be used by anyone at any time&lt;/li&gt;
+&lt;li&gt;Growth mindset&lt;/li&gt;
+&lt;li&gt;Psychologically safe&lt;/li&gt;
+&lt;li&gt;&amp;quot;What's been tried? What can we try?&amp;quot;&lt;/li&gt;
+&lt;li&gt;&amp;quot;What's the real problem we should be solving?&amp;quot;&lt;/li&gt;
+&lt;li&gt;&amp;quot;How urgent is it &lt;em&gt;really&lt;/em&gt;?&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/wallendas.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="in-general"&gt;In General&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Fast vs Slow thinking: slower is better for solving problems&lt;/li&gt;
+&lt;li&gt;Measures of Success: quality is usually better than speed&lt;/li&gt;
+&lt;li&gt;Habits: Encourage asking questions as the path to solutions.&lt;/li&gt;
+&lt;li&gt;Fixed vs Growth Mindset: start from &amp;quot;I don't have to know right now.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/library.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="more-reading"&gt;More Reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Daniel Kahneman: &lt;em&gt;Thinking, Fast and Slow&lt;/em&gt;&lt;br /&gt;
+&lt;a href="https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555/"&gt;https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google: &lt;em&gt;The five keys to a successful Google team&lt;/em&gt;&lt;br /&gt;
+&lt;a href="https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/"&gt;https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Wendy Wood: &lt;em&gt;Good Habits, Bad Habits&lt;/em&gt;&lt;br /&gt;
+&lt;a href="https://www.amazon.com/Good-Habits-Bad-Science-Positive/dp/1250159075"&gt;https://www.amazon.com/Good-Habits-Bad-Science-Positive/dp/1250159075&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Carol Dweck: Fixed vs Growth Mindsets (&lt;em&gt;caveat: research not replicated&lt;/em&gt;)&lt;br /&gt;
+&lt;a href="https://en.wikipedia.org/wiki/Carol_Dweck"&gt;https://en.wikipedia.org/wiki/Carol_Dweck&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;And me, Charles L Flatt&lt;br /&gt;
+&lt;a href="https://www.softwaremeadows.com"&gt;https://www.softwaremeadows.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Mon, 5 Oct 2020 15:55:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving</guid>
+    </item>
+    <item>
       <title>Domain-Driven Design - An Opinionated Layers Graphic</title>
       <description>&lt;p&gt;The DDD implementations I've seen in tutorials tend to leave out a couple of things.&lt;/p&gt;
 &lt;ol&gt;
@@ -762,41 +856,6 @@ namespace FluentAssertionsInvoking
       <pubDate>Sun, 5 Apr 2020 14:07:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_hugs_in_a_no-touch_world</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_hugs_in_a_no-touch_world</guid>
-    </item>
-    <item>
-      <title>Remote Work Tiny Tips - Gratitude, Gosh Darn It!</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_gratitude__gosh_darn_it!/images/City%20Lights%201.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the &lt;em&gt;doing&lt;/em&gt;. Don't beat yourself up! Try this tiny tip on...&lt;/p&gt;
-&lt;h2 id="gratitude"&gt;Gratitude&lt;/h2&gt;
-&lt;p&gt;Honestly, it can be hard to feel good about work, especially when it's upended. But I'll always remember attending a talk given by prolific writer Isaac Asimov, who said, &amp;quot;I think if you're going to do something for eight hours a day, you should feel good and be proud of it.&amp;quot;&lt;/p&gt;
-&lt;p&gt;There's solid research showing that gratitude is A) a skill, B) challenging, and C) highly beneficial to our health and well-being.&lt;/p&gt;
-&lt;h2 id="when-is-your-work-day-over"&gt;When Is Your Work Day Over?&lt;/h2&gt;
-&lt;p&gt;Here's a small routine to try out.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;When your work day ends--whenever that is--it's not over until you've physically written down one thing you're grateful for.&lt;/li&gt;
-&lt;li&gt;Relive that thing. Savor it. Take a full minute.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;I'm not saying you won't have days that are crap and you're glad they're over. I'm saying you get to choose how you &lt;em&gt;transition&lt;/em&gt; to the next part of your day. Spare yourself, your spouse, your kids the barrel of awful. Tell them the truth; maybe it was rough, but there was something to be grateful for.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Don't let your past control you. Take a minute for one good thing.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="finally"&gt;Finally&lt;/h2&gt;
-&lt;p&gt;Stop the comparisons to others. You're not more or less grateful than someone else. The worst kinds of reference points are other people. How grateful are &lt;em&gt;you&lt;/em&gt; today?&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;p&gt;(taken from the terrific, free Yale course &lt;a href="https://www.coursera.org/learn/the-science-of-well-being"&gt;The Science of Well-Being&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Gratitude&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Emmons et al. (2003).&lt;/strong&gt; &lt;a href="https://greatergood.berkeley.edu/pdfs/GratitudePDFs/6Emmons-BlessingsBurdens.pdf"&gt;Counting blessings versus burdens: An experimental investigation of gratitude and subjective well-being in daily life.&lt;/a&gt; Journal of personality and social psychology, 84(2), 377.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This paper tells us that gratitude - counting the good things in our lives - makes us happy&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Seligman et al. (2005).&lt;/strong&gt; &lt;a href="http://www.psykologtidsskriftet.no/pdf/2005/874-884.pdf"&gt;Positive Psychology Progress: Empirical Validation of Interventions.&lt;/a&gt; American Psychologist, 60(5):410-21&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This paper explores several happiness interventions and tells us gratitude interventions can increase happiness&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Barton et al. (2015).&lt;/strong&gt; &lt;a href="https://gratefulness.org/content/uploads/2015/11/UofG-Study.pdf"&gt;Linking financial distress to marital quality: The intermediary roles of demand/withdraw and spousal gratitude expressions.&lt;/a&gt; Personal Relationships, 22, 536–549.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This paper tells us being grateful can help us through difficult times (as seen in the case of marriage)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Grant &amp;amp; Gino (2010).&lt;/strong&gt; &lt;a href="https://www.ncbi.nlm.nih.gov/pubmed/20515249"&gt;A little thanks goes a long way: Explaining why gratitude expressions motivate prosocial behavior.&lt;/a&gt; Journal of personality and social psychology, 98(6), 946.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This paper tells us receiving gratitude makes us feel valued and motivates us to be more generous&lt;/em&gt;&lt;/p&gt;
-</description>
-      <pubDate>Mon, 30 Mar 2020 18:05:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_gratitude__gosh_darn_it!</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_gratitude__gosh_darn_it!</guid>
     </item>
   </channel>
 </rss>
