@@ -6,6 +6,91 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Introducing NUtCasE - A New Case for Coding</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/introducing_nutcase_-_a_new_case_for_coding/images/nutcase-logo.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;As James Brown and Aretha Franklin are the royalty of soul, PascalCase and camelCase have reigned&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; over semantic coding style for decades. However, both suffer from several problems, including&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Comprehensability&lt;/li&gt;
+&lt;li&gt;Clarity&lt;/li&gt;
+&lt;li&gt;Consistency&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;and, in my view, their biggest failure: SIMPLICITY (which equally irritatingly doesn't start with &amp;quot;C&amp;quot;).&lt;/p&gt;
+&lt;p&gt;It's time for a new claiment to the throne. An approach that rewards higher virtues. Virtues such as&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Creativity&lt;/li&gt;
+&lt;li&gt;Courage&lt;/li&gt;
+&lt;li&gt;Contrariness&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;and, in my view, its Diana Ross-level supreme value: CONFUSION (note the completion of &amp;quot;C&amp;quot;s)&lt;/p&gt;
+&lt;p&gt;Coding doesn't attract nearly enough professionals, and is abysmally populated by arrogant, infantile, over-the-hill, white males like me. We need new blood! Fresh brains! Uncooked appendages! I firmly believe a tidal wave of NUtCasErs is on the software oceanic horizon.&lt;/p&gt;
+&lt;p&gt;To get started with NUtCasE, just follow these six utterly straightforward rules.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Any casing is allowed as long as it doesn't conflict with other rules.&lt;a id="fnref:2" href="#fn:2" class="footnote-ref"&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example: &lt;code&gt;ranOSBoBSOnar()&lt;/code&gt;&lt;a id="fnref:3" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;All names begin with a capital letter unless it’s the letter that begins your residential state’s capital.&lt;a id="fnref:9" href="#fn:4" class="footnote-ref"&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example: &lt;code&gt;ranOSBoBSOnar()&lt;/code&gt;&lt;a id="fnref:4" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Methods and constants begin capitalized if an odd numbered letter, lower case if even numbered.&lt;a id="fnref:10" href="#fn:5" class="footnote-ref"&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example: &lt;code&gt;ranOSBoBSOnar()&lt;/code&gt;&lt;a id="fnref:5" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The third letter is always lower case, except on Tuesdays.&lt;a id="fnref:11" href="#fn:6" class="footnote-ref"&gt;&lt;sup&gt;6&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example: &lt;code&gt;ranOSBoBSOnar()&lt;/code&gt;&lt;a id="fnref:6" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If a name has exactly two Bs, those Bs are always capitalized in honor of Buckaroo Banzai.&lt;a id="fnref:12" href="#fn:7" class="footnote-ref"&gt;&lt;sup&gt;7&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example: &lt;code&gt;ranOSBoBSOnar()&lt;/code&gt;&lt;a id="fnref:7" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Palindromes must mirror case while matching as many rules as possible. If an in-use palindrome can match more rules, the name must change everywhere it occurs on Earth.&lt;a id="fnref:13" href="#fn:8" class="footnote-ref"&gt;&lt;sup&gt;8&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example: &lt;code&gt;ranOSBoBSOnar()&lt;/code&gt;&lt;a id="fnref:8" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A NUtCasE linter is not in the works, but if anyone wants to develop one that'd be great.&lt;/p&gt;
+&lt;p&gt;Together, we can bring joy and &lt;del&gt;in&lt;/del&gt;sanity back to coding.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;NUtCasE: Embrace the inevitable confusion&lt;/strong&gt;&lt;/em&gt;&lt;a id="fnref:14" href="#fn:9" class="footnote-ref"&gt;&lt;sup&gt;9&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Not to be confused with &lt;a href="https://en.wikipedia.org/wiki/Rein"&gt;rein&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/Rain"&gt;rain&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/Rayne,_Essex"&gt;Rayne&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/Rane_(band)"&gt;Rane&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/William_MacLeod_Raine"&gt;Raine&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/Raein"&gt;Raein&lt;/a&gt;.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;Inspired by &lt;a href="https://en.wikipedia.org/wiki/Three_Laws_of_Robotics"&gt;Asimov's Three Laws of Robotics&lt;/a&gt;&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;That's &amp;quot;Ran OS BOB&lt;a id="fnref:15" href="#fn:10" class="footnote-ref"&gt;&lt;sup&gt;10&lt;/sup&gt;&lt;/a&gt; SONAR&amp;quot;, in the extremely unlikely case it isn't perfectly clear.&lt;a href="#fnref:3" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;a href="#fnref:4" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;a href="#fnref:5" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;a href="#fnref:6" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;a href="#fnref:7" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;a href="#fnref:8" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;I live in Denver, Colorado.&lt;a href="#fnref:9" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:5"&gt;
+&lt;p&gt;No reference.&lt;a href="#fnref:10" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:6"&gt;
+&lt;p&gt;Inspired by the game of &lt;a href="https://en.wikipedia.org/wiki/List_of_games_in_Star_Trek#Fizzbin"&gt;Fizzbin&lt;/a&gt;.&lt;a href="#fnref:11" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:7"&gt;
+&lt;p&gt;The great humanitarian musician hero surgeon &lt;a href="https://en.wikipedia.org/wiki/The_Adventures_of_Buckaroo_Banzai_Across_the_8th_Dimension"&gt;Buckaroo Banzai&lt;/a&gt;, who clearly was inspired in his youth by the great humanitarian adventurer hero surgeon &lt;a href="https://en.wikipedia.org/wiki/Doc_Savage"&gt;Doc Savage&lt;/a&gt;. Remember, no matter where you go...there you are.&lt;a href="#fnref:12" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:8"&gt;
+&lt;p&gt;I've never understood why &amp;quot;palindrome&amp;quot; isn't, itself, a palindrome. &lt;a href="https://en.wikipedia.org/wiki/Palindrome"&gt;Palindrome&lt;/a&gt;.&lt;a href="#fnref:13" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:9"&gt;
+&lt;p&gt;Inspired by Kelly Grovier, from an article about Raphael's &amp;quot;The School of Athens.&amp;quot; &lt;a href="https://www.bbc.com/culture/article/20200910-the-school-of-athens-a-detail-hidden-in-a-masterpiece?xtor=ES-213-%5BBBC%20Features%20Newsletter%5D-2020September18-%5BCulture%7c+Button%5D"&gt;The School of Athens: A detail hidden in a masterpiece&lt;/a&gt;&lt;a href="#fnref:14" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:10"&gt;
+&lt;p&gt;OS BOB&lt;a id="fnref:16" href="#fn:11" class="footnote-ref"&gt;&lt;sup&gt;11&lt;/sup&gt;&lt;/a&gt; was a famously little-known operating system created in the 1970s for the sport of underwater badminton.&lt;a href="#fnref:15" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:11"&gt;
+&lt;p&gt;BOB stands for Brigadiers of Badminton.&lt;a href="#fnref:16" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Sat, 17 Oct 2020 11:10:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/introducing_nutcase_-_a_new_case_for_coding</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/introducing_nutcase_-_a_new_case_for_coding</guid>
+    </item>
+    <item>
       <title>One Sheet Summary: Getting Things Done</title>
       <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
 &lt;ul&gt;
@@ -709,62 +794,6 @@ namespace FluentAssertionsInvoking
       <pubDate>Wed, 15 Apr 2020 19:13:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_</guid>
-    </item>
-    <item>
-      <title>Remote Work Tiny Tips - Last One: Overcoming Obstacles</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_last_one-_overcoming_obstacles/images/action-adult-athlete-champion-preview.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;It's relatively easy to get the technology running to work from home. The hard part is the doing. Don't beat yourself up! Try this tiny tip on...&lt;/p&gt;
-&lt;h2 id="overcoming-obstacles"&gt;Overcoming Obstacles&lt;/h2&gt;
-&lt;p&gt;What if there were a simple technique, backed by science, that you could use in five minutes to help you improve all kinds of behaviors?&lt;/p&gt;
-&lt;p&gt;There is.&lt;/p&gt;
-&lt;h2 id="mental-contrasting-with-implementation-intentions-but-you-can-call-it-woop"&gt;Mental Contrasting With Implementation Intentions - But You Can Call It WOOP&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Mental Contrasting&lt;/em&gt; is a visualization technique involving first thinking of a positive future outcome followed by thinking of obstacles.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Implementation Intention&lt;/em&gt; is a self-regulatory strategy in the form of an &amp;quot;if-then plan&amp;quot; that can lead to better goal attainment. For example, &amp;quot;If I see the cookies, I'm going to grab the banana.&amp;quot; Repeatedly imagining the plan improves the brain's automatic response.&lt;/p&gt;
-&lt;p&gt;Dr Gabriele Oettingen is premier among those who've researched MCII intensively, and she created a method for applying that research. It's called WOOP.&lt;/p&gt;
-&lt;h2 id="woop"&gt;WOOP&lt;/h2&gt;
-&lt;p&gt;Takes five minutes in a quiet (uninterrupted), calm environment, and intensely imagine the following.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Your &lt;strong&gt;WISH&lt;/strong&gt; (detailed goal with metrics)&lt;/li&gt;
-&lt;li&gt;The best &lt;strong&gt;OUTCOME&lt;/strong&gt; (all the positive stuff and feelings)&lt;/li&gt;
-&lt;li&gt;Potential &lt;strong&gt;OBSTACLES&lt;/strong&gt; (the negative stuff)&lt;/li&gt;
-&lt;li&gt;Your If-Then &lt;strong&gt;PLAN&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Do this every day, several times a day.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Important: Do not switch the &amp;quot;O&amp;quot;s. You must imagine the Outcome before the Obstacles. The research shows that switching them nullifies any benefit.&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Here's Dr Oettingen describing the four steps.&lt;br /&gt;
-&lt;a href="https://vimeo.com/262725813"&gt;The Four Steps of WOOP&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;And here she is taking people through the technique. I just love her.&lt;br /&gt;
-&lt;a href="https://vimeo.com/262976048"&gt;Let’s WOOP&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="whats-going-on-what-about-the-power-of-postive-thinking"&gt;What's Going On? What About the Power of Postive Thinking?&lt;/h2&gt;
-&lt;p&gt;Norman Vincent Peale got it (somewhat) wrong. It's not enough to think positively. In fact, trying to only think positively will hinder reaching your goals.&lt;/p&gt;
-&lt;p&gt;&amp;quot;Studies are showing that when people limit their thinking to imagining positive outcomes, they tend not to put forth the effort to make those outcomes come about. As [Dr Oettingen] put it:&amp;quot;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Positive thinking fools our minds into perceiving that we’ve already attained our goal, slackening our readiness to pursue it.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Understood this way, negative feedback is no longer a threat, it helps with how to fulfill the wish. It isn't personal. WOOP creates associative links in the brain, linking the outcome with the obstacle and the means to overcome the obstacle.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Mental contrasting has the better long-term benefit to achieving and maintaining goals&lt;/li&gt;
-&lt;li&gt;For easily attained goals, implementation intention doesn't matter much, but for difficult goals, It increases success threefold.&lt;/li&gt;
-&lt;li&gt;Practicing WOOP can double effectiveness on the goal ten weeks out.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;WOOP isn't someone's opinion. It's not a gimmick. It's real science.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="finally"&gt;Finally&lt;/h2&gt;
-&lt;p&gt;How much is five or ten minutes worth to you? Is it worth improving your life? Your kids' lives?&lt;/p&gt;
-&lt;p&gt;Go ahead. Find out.&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://woopmylife.org/new-page-3"&gt;Learn how to WOOP — WOOP my life&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://woopmylife.org/further"&gt;Science — WOOP my life&lt;/a&gt; &amp;lt;= Includes links to about twenty cited research papers&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.psychologytoday.com/us/blog/turning-straw-gold/201501/mental-contrasting-smart-alternative-positive-thinking"&gt;Mental Contrasting: A Smart Alternative to Positive Thinking | Psychology Today&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Thu, 9 Apr 2020 19:30:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_last_one-_overcoming_obstacles</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/remote_work_tiny_tips_-_last_one-_overcoming_obstacles</guid>
     </item>
   </channel>
 </rss>
