@@ -10,7 +10,7 @@
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/introducing_nutcase_-_a_new_case_for_coding/images/nutcase-logo.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;As James Brown and Aretha Franklin are the royalty of soul, PascalCase and camelCase have reigned&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; over semantic coding style for decades. However, both suffer from several problems, including&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Comprehensability&lt;/li&gt;
+&lt;li&gt;Comprehensibility&lt;/li&gt;
 &lt;li&gt;Clarity&lt;/li&gt;
 &lt;li&gt;Consistency&lt;/li&gt;
 &lt;/ul&gt;
