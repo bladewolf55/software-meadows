@@ -6,6 +6,21 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>One Sheet Summary: Drive</title>
+      <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/well-being"&gt;All One Sheet Summaries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/https://www.amazon.com/Drive-Surprising-Truth-About-Motivates-ebook/dp/B004P1JDJO"&gt;Buy the book on Amazon&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_drive/images/drive.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_drive/images/drive.png" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Tue, 20 Oct 2020 20:37:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_drive</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_drive</guid>
+    </item>
+    <item>
       <title>Introducing NUtCasE - A New Case for Coding</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/introducing_nutcase_-_a_new_case_for_coding/images/nutcase-logo.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;As James Brown and Aretha Franklin are the royalty of soul, PascalCase and camelCase have reigned&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; over semantic coding style for decades. However, both suffer from several problems, including&lt;/p&gt;
@@ -713,87 +728,6 @@ As much as I like this app, I'm astonished I can make changes, close, and am &lt
       <pubDate>Mon, 11 May 2020 19:45:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/what_is_cyclomatic_complexity_md</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/what_is_cyclomatic_complexity_md</guid>
-    </item>
-    <item>
-      <title>Using FluentAssertions with xUnit Theory to Test for an Exception AND a Successful Return</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_/images/header.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;I recently wanted to unit test a method that required significant setup, and where an invalid method argument would throw an exception while valid values returned easily testable results.&lt;/p&gt;
-&lt;p&gt;While I could have created a separate test, this really lent itself to using an xUnit Theory. The problem I faced was how to test for the exception but also test for a valid return. I &lt;em&gt;didn't&lt;/em&gt; want to write duplicate code within the test itself, such as declaring the service twice.&lt;/p&gt;
-&lt;p&gt;Some research and experimentation led to the approach below. The trick is to declare a delegate function, then use FluentAssertions to either catch the invocation exception, or to invoke the function and return the value.&lt;/p&gt;
-&lt;p&gt;Here's a simple Class Library app to demonstrate the technique. I kind of love this because there's no wasted or duplicate code.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using System;
-using FluentAssertions;
-using Xunit;
-
-namespace FluentAssertionsInvoking
-{
-    public class CustomerService_Should
-    {
-        [Theory]
-        [InlineData(null)]
-        [InlineData(&amp;quot;Marcus Welby&amp;quot;)]
-        public void Return_a_customer_or_throw_an_exception(string name)
-        {
-            // arrange
-            var expected = new Customer() { Name = name };
-            var customerService = new CustomerService(expected);
-
-            // act
-            Func&amp;lt;CustomerService, Customer&amp;gt; action = service =&amp;gt; service.GetCustomer();
-
-            // assert
-            // Exception condition
-            if (name == null)
-            {
-                customerService.Invoking(action).Should().Throw&amp;lt;Exception&amp;gt;();
-            }
-            else
-            // Valid condition
-            {
-                var result = action.Invoke(customerService);
-                result.Should().BeEquivalentTo(expected);
-            }
-        }
-    }
-
-    public class Customer
-    {
-        public string Name { get; set; }
-    }
-
-    public class CustomerService
-    {
-        private Customer _customer;
-        public CustomerService(Customer customer)
-        {
-            _customer = customer;
-        }
-        public Customer GetCustomer()
-        {
-            if (_customer.Name == null) { throw new Exception(); }
-            return _customer;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_/images/ScreenCap_2020-04-15_19-31-15.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://fluentassertions.com/"&gt;FluentAssertions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://xunit.net/"&gt;xUnit.net&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="bonus"&gt;Bonus&lt;/h2&gt;
-&lt;p&gt;Here's the xunit.runner.json to show only method names in the Test Runner output. Remember to set the file to Copy to Output.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-json"&gt;{
-  &amp;quot;$schema&amp;quot;: &amp;quot;https://xunit.net/schema/current/xunit.runner.schema.json&amp;quot;,
-  &amp;quot;methodDisplay&amp;quot;: &amp;quot;method&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_/images/ScreenCap_2020-04-15_19-31-27.png" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Wed, 15 Apr 2020 19:13:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/using_fluentassertions_with_xunit_theory_to_test_for_an_exception_and_</guid>
     </item>
   </channel>
 </rss>
