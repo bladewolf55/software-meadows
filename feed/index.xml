@@ -6,6 +6,41 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Bizarre NuGet.exe 5.7 "authors is required" behaviors</title>
+      <description>&lt;p&gt;Are you using &lt;code&gt;nuget.exe&lt;/code&gt; to generate packages, especially as part of your continuous integration? If you've upgraded to version 5.7, you may be experiencing unexpected errors like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Could not load file or assembly 'file:///C:\Program Files (x86)\NuGet CLI\nuget.exe' or one of its dependencies. Operation is not supported. (Exception from HRESULT: 0x80131515)
+Using '[project]].nuspec' for metadata.
+Authors is required.
+Description is required.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I've &lt;a href="https://github.com/NuGet/Home/issues/9954"&gt;submitted a bug report&lt;/a&gt; which is slowly gaining traction, but to my knowledge isn't yet resolved. Here's a summary of the problem and conditions. Please follow the link for more details.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Problem&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The [project].nuspec's token substitution isn't working, e.g. substituting AssemblyConfiguration for &lt;span class="math"&gt;\(author\)&lt;/span&gt;.&lt;/li&gt;
+&lt;li&gt;Applies to .Net Framework NuGet projects being packaged using &lt;code&gt;nuget.exe&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Conditions&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The error will occur under the following conditions&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Version 5.6 is named &lt;code&gt;nuget.5.6.exe&lt;/code&gt;. E.g. the command used is &lt;code&gt;nuget.5.6 pack&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Version 5.7 is named &lt;code&gt;nuget.exe&lt;/code&gt;.  E.g. the command used is &lt;code&gt;nuget pack&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You may get conflicting behaviors if:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You have both version 5.6 and 5.7 in your PATH&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Mitigation&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;nuget.exe&lt;/code&gt; version 5.6.&lt;/li&gt;
+&lt;li&gt;Ensure only one &lt;code&gt;nuget.exe&lt;/code&gt; version is in the PATH&lt;/li&gt;
+&lt;li&gt;Name the file &lt;code&gt;nuget.exe&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Fri, 23 Oct 2020 10:44:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/bizarre_nuget_exe_5_7_behaviors</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/bizarre_nuget_exe_5_7_behaviors</guid>
+    </item>
+    <item>
       <title>One Sheet Summary: Drive</title>
       <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
 &lt;ul&gt;
@@ -714,20 +749,6 @@ As much as I like this app, I'm astonished I can make changes, close, and am &lt
       <pubDate>Sun, 17 May 2020 21:05:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/tabs_vs_spaces_is_dumb__convert_tabs_into_spaces_</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/tabs_vs_spaces_is_dumb__convert_tabs_into_spaces_</guid>
-    </item>
-    <item>
-      <title>What Is Cyclomatic Complexity In a Nutshell?</title>
-      <description>&lt;p&gt;Imagine you're going to walk to a friend's house. If the house is a few doors down, you don't need to make any decisions. But if your friend is further away, you may come to an intersection. You choose a direction and come to another intersection, and so on. How many paths are there to your friend's house?&lt;/p&gt;
-&lt;p&gt;That's cyclomatic complexity in a nutshell.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The number of independent paths through a method.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/what_is_cyclomatic_complexity_md/map1.png" alt="Map1" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/what_is_cyclomatic_complexity_md/map2.png" alt="Map2" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Mon, 11 May 2020 19:45:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/what_is_cyclomatic_complexity_md</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/what_is_cyclomatic_complexity_md</guid>
     </item>
   </channel>
 </rss>
