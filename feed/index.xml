@@ -6,6 +6,21 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>One Sheet Summary: Good Habits, Bad Habits</title>
+      <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/well-being"&gt;All One Sheet Summaries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Good-Habits-Bad-Science-Positive/dp/1250159075"&gt;Buy the book on Amazon&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_good_habits__bad_habits/images/good-habits-bad-habits.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_good_habits__bad_habits/images/good-habits-bad-habits.png" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sat, 24 Oct 2020 10:48:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_good_habits__bad_habits</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_good_habits__bad_habits</guid>
+    </item>
+    <item>
       <title>Bizarre NuGet.exe 5.7 "authors is required" behaviors</title>
       <description>&lt;p&gt;Are you using &lt;code&gt;nuget.exe&lt;/code&gt; to generate packages, especially as part of your continuous integration? If you've upgraded to version 5.7, you may be experiencing unexpected errors like this:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-text"&gt;Could not load file or assembly 'file:///C:\Program Files (x86)\NuGet CLI\nuget.exe' or one of its dependencies. Operation is not supported. (Exception from HRESULT: 0x80131515)
@@ -149,10 +164,10 @@ Description is required.
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd.svg" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd.png" alt="" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd-next-action-flow.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd-next-action-flow.svg" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd-next-action-flow.png" alt="" /&gt;&lt;/p&gt;
 </description>
       <pubDate>Wed, 14 Oct 2020 11:29:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done</link>
@@ -167,7 +182,7 @@ Description is required.
 &lt;/ul&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop/images/accelerate.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop/images/accelerate.svg" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop/images/accelerate.png" alt="" /&gt;&lt;/p&gt;
 </description>
       <pubDate>Mon, 12 Oct 2020 18:15:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop</link>
@@ -716,39 +731,6 @@ As much as I like this app, I'm astonished I can make changes, close, and am &lt
       <pubDate>Tue, 9 Jun 2020 21:05:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/when_did__save__yes,_no,_cancel__become_wrong__</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/when_did__save__yes,_no,_cancel__become_wrong__</guid>
-    </item>
-    <item>
-      <title>Tabs vs Spaces is Dumb. Convert Tabs INTO Spaces.</title>
-      <description>&lt;p&gt;&lt;span style="font-family:consolas, monospace;font-size:50px; color:darkred;"&gt; ^t =&amp;gt; &amp;quot;    &amp;quot; = ♥ &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;A part of me thinks this is so obvious I shouldn't need to post about it. But I keep seeing &amp;quot;tabs vs spaces&amp;quot; articles by programmers and just...don't...get it.&lt;/p&gt;
-&lt;p&gt;Modern text editors let you choose in settings how to treat tabs. The significant choices are:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;How many spaces a tab represents&lt;/li&gt;
-&lt;li&gt;Whether to save the tab character in the document or convert it to spaces&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;To me this has always been easy.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Four spaces&lt;/li&gt;
-&lt;li&gt;Convert tabs to spaces&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;When typing, it's faster to indent using the tab key. But when sharing with another person, there's no guarantee their tabs will use the same number of spaces as yours. So fidelity and consistency demand spaces.&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It doesn't matter what efficient keyboard shorcuts you take to &lt;em&gt;generate&lt;/em&gt; the spaces, as long as the document ends up with only spaces.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The only argument for storing tabs in the document is being able to back &amp;quot;space&amp;quot; using them. But it's not enough of a timesaver to overcome the advantages of storing spaces.&lt;/p&gt;
-&lt;p&gt;There is no reasonable--or reason for a--tabs vs spaces debate.&lt;/p&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;If you never share your work, then the entire question is moot. I don't care what you do.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-      <pubDate>Sun, 17 May 2020 21:05:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/tabs_vs_spaces_is_dumb__convert_tabs_into_spaces_</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/tabs_vs_spaces_is_dumb__convert_tabs_into_spaces_</guid>
     </item>
   </channel>
 </rss>
