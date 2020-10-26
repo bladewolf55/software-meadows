@@ -7,7 +7,8 @@
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
       <title>"Path" is ambiguous. Here are clear, consistent variable names.</title>
-      <description>&lt;pre&gt;&lt;code class="language-csharp"&gt;public void ImportRecords(string path) {}
+      <description>&lt;h2 id="quiz-du-jour"&gt;Quiz du jour&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public void ImportRecords(string path) {}
 
 public void ImportRecords(string file) {}
 
@@ -16,6 +17,7 @@ public void ImportRecords(string folder) {}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What's the argument for each of the parameters above? Does &amp;quot;path&amp;quot; include a filename? Do &amp;quot;file&amp;quot; and &amp;quot;folder&amp;quot; include a path?&lt;/p&gt;
 &lt;p&gt;File system input/output is just about as old as computing itself, and yet I'll bet you see--and use!--ambiguous I/O variables all the time.&lt;/p&gt;
+&lt;h2 id="simple-consistent"&gt;Simple, Consistent&lt;/h2&gt;
 &lt;p&gt;Here are four variable names I've settled on to keep the meanings clear. They take just a little more effort at first, and with practice become a habit.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -48,6 +50,13 @@ public void ImportRecords(string folder) {}
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h2 id="references"&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/2235173/file-name-path-name-base-name-naming-standard-for-pieces-of-a-path"&gt;language agnostic - File name? Path name? Base name? Naming standard for pieces of a path - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.mikepope.com/blog/DisplayBlog.aspx?permalink=2346"&gt;Editing by analogy - mike's web log&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Path_(computing)"&gt;Path (computing) - Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.lifewire.com/unc-universal-naming-convention-818230"&gt;Working With the Universal Naming Convention (UNC Path)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       <pubDate>Mon, 26 Oct 2020 10:30:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_</link>
