@@ -17,7 +17,7 @@ public void ImportRecords(string folder) {}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;What's the argument for each of the parameters above? Does &amp;quot;path&amp;quot; include a filename? Do &amp;quot;file&amp;quot; and &amp;quot;folder&amp;quot; include a path?&lt;/p&gt;
 &lt;p&gt;File system input/output is just about as old as computing itself, and yet I'll bet you see--and use!--ambiguous I/O variables all the time.&lt;/p&gt;
-&lt;h2 id="simple-consistent"&gt;Simple, Consistent&lt;/h2&gt;
+&lt;h2 id="clear-consistent"&gt;Clear, Consistent&lt;/h2&gt;
 &lt;p&gt;Here are four variable names I've settled on to keep the meanings clear. They take just a little more effort at first, and with practice become a habit.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
