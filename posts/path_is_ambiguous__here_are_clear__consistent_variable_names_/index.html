@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Continuous Integration Flow - An Accurate And Unlovely Graphic | Software Meadows</title>
+  <title>"Path" Is Ambiguous. Here Are Clear, Consistent Variable Names. | Software Meadows</title>
 </head>
 
 <body>
@@ -62,18 +62,54 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic'>Continuous Integration Flow - An Accurate and Unlovely Graphic</a></h2>
-                <p class='post-info'><span class='posted-on'>2020-03-11 21:17</span></p>
-                <div class='post-content'><p>I needed to explain this to a colleague recently, took a picture of my whiteboard drawing, then digitized it using Inkscape. I've also linked to a PDF version. It says &quot;Azure DevOps,&quot;, but it's a pretty generic depiction.</p>
-<p>It ain't pretty, but it's correct.</p>
-<p>Hope it helps someone!</p>
-<p><a href="https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic/images/Continuous%20Integration%20Flow.pdf">Continuous Integration Flow.pdf</a></p>
-<p><img src="https://www.softwaremeadows.com/posts/continuous_integration_flow_-_an_accurate_and_unlovely_graphic/images/Continuous%20Integration%20Flow.svg" alt="" /></p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_'>"Path" is ambiguous. Here are clear, consistent variable names.</a></h2>
+                <p class='post-info'><span class='posted-on'>2020-10-26 10:30</span></p>
+                <div class='post-content'><pre><code class="language-csharp">public void ImportRecords(string path) {}
+
+public void ImportRecords(string file) {}
+
+public void ImportRecords(string folder) {}
+
+</code></pre>
+<p>What's the argument for each of the parameters above? Does &quot;path&quot; include a filename? Do &quot;file&quot; and &quot;folder&quot; include a path?</p>
+<p>File system input/output is just about as old as computing itself, and yet I'll bet you see--and use!--ambiguous I/O variables all the time.</p>
+<p>Here are four variable names I've settled on to keep the meanings clear. They take just a little more effort at first, and with practice become a habit.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Means</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fileName</code></td>
+<td>just the file name</td>
+<td>customers.csv</td>
+</tr>
+<tr>
+<td><code>filePath</code></td>
+<td>full path to file</td>
+<td>c:\transfer\import\customers.csv</td>
+</tr>
+<tr>
+<td><code>folderName</code></td>
+<td>just the folder name</td>
+<td>import</td>
+</tr>
+<tr>
+<td><code>folderPath</code></td>
+<td>full path to the folder</td>
+<td>c:\transfer\import</td>
+</tr>
+</tbody>
+</table>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Continuous Integration Flow - An Accurate And Unlovely Graphic | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on "Path" Is Ambiguous. Here Are Clear, Consistent Variable Names. | Software Meadows">email</a>. I might even update the post!
         </p>
         
 

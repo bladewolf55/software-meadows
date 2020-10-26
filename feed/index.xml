@@ -6,6 +6,54 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>"Path" is ambiguous. Here are clear, consistent variable names.</title>
+      <description>&lt;pre&gt;&lt;code class="language-csharp"&gt;public void ImportRecords(string path) {}
+
+public void ImportRecords(string file) {}
+
+public void ImportRecords(string folder) {}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What's the argument for each of the parameters above? Does &amp;quot;path&amp;quot; include a filename? Do &amp;quot;file&amp;quot; and &amp;quot;folder&amp;quot; include a path?&lt;/p&gt;
+&lt;p&gt;File system input/output is just about as old as computing itself, and yet I'll bet you see--and use!--ambiguous I/O variables all the time.&lt;/p&gt;
+&lt;p&gt;Here are four variable names I've settled on to keep the meanings clear. They take just a little more effort at first, and with practice become a habit.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Variable&lt;/th&gt;
+&lt;th&gt;Means&lt;/th&gt;
+&lt;th&gt;Example&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;fileName&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;just the file name&lt;/td&gt;
+&lt;td&gt;customers.csv&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;filePath&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;full path to file&lt;/td&gt;
+&lt;td&gt;c:\transfer\import\customers.csv&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;folderName&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;just the folder name&lt;/td&gt;
+&lt;td&gt;import&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;folderPath&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;full path to the folder&lt;/td&gt;
+&lt;td&gt;c:\transfer\import&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+      <pubDate>Mon, 26 Oct 2020 10:30:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_</guid>
+    </item>
+    <item>
       <title>One Sheet Summary: Tiny Habits</title>
       <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
 &lt;ul&gt;
@@ -312,22 +360,6 @@ Description is required.
       <pubDate>Mon, 5 Oct 2020 15:55:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving</guid>
-    </item>
-    <item>
-      <title>Domain-Driven Design - An Opinionated Layers Graphic</title>
-      <description>&lt;p&gt;The DDD implementations I've seen in tutorials tend to leave out a couple of things.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Applications get domain information two different ways. Javascript frameworks call  WebApis. But desktop apps can use the domain services directly, avoiding the performance waste of an extra call. Think of the WebApi as a passthrough (façade) to the domain service.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Domain models &amp;lt;&amp;gt; Data models. The domain layer--critically--takes care of mapping data to domain. Consider that your domain models may be populated from multiple data sources, or multiple tables from a single database . . . or both.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/domain-driven_design_-_opinionated_layers_graphic/images/Loosely-Coupled%20Domain-Driven%20Design%20Architecture.pdf"&gt;Loosely-Coupled Domain-Driven Design Architecture&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/domain-driven_design_-_opinionated_layers_graphic/images/Loosely-Coupled%20Domain-Driven%20Design%20Architecture.png" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Sun, 23 Aug 2020 22:47:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/domain-driven_design_-_opinionated_layers_graphic</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/domain-driven_design_-_opinionated_layers_graphic</guid>
     </item>
   </channel>
 </rss>
