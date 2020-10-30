@@ -6,6 +6,18 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>The Four Foundations of Software Improvement - Letter-Size Art Deco Poster</title>
+      <description>&lt;p&gt;For me, these cover most--if not all--the bases. Plus, &lt;em&gt;Art Deco&lt;/em&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster/images/four-foundations.pdf"&gt;Download the PDF&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster/images/four-foundations.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span style="font-size:smaller;"&gt;Open SVG Art Deco border found &lt;a href="https://freesvg.org/art-deco-border"&gt;here&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+</description>
+      <pubDate>Fri, 30 Oct 2020 11:38:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster</guid>
+    </item>
+    <item>
       <title>"Path" is ambiguous. Here are clear, consistent variable names.</title>
       <description>&lt;h2 id="quiz-du-jour"&gt;Quiz du jour&lt;/h2&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;public void ImportRecords(string path) {}
@@ -277,98 +289,6 @@ Description is required.
       <pubDate>Mon, 12 Oct 2020 18:15:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop</guid>
-    </item>
-    <item>
-      <title>Five (so far) Dynamics of Group Problem Solving</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/monopoly.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;h1 id="how-are-your-problems-being-solved"&gt;HOW ARE YOUR PROBLEMS BEING SOLVED?&lt;/h1&gt;
-&lt;h2 id="this-post-is"&gt;This Post Is&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;My (relatively educated) opinions&lt;/li&gt;
-&lt;li&gt;To get you (and me!) thinking&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/lee-van-cleef.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="do-this"&gt;1. &amp;quot;Do this!&amp;quot;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Often (upper) management or overbearing personalities&lt;/li&gt;
-&lt;li&gt;Driven by &amp;quot;I'm supposed to &lt;em&gt;decide&lt;/em&gt;.&amp;quot; and &amp;quot;my first thought is the right answer.&amp;quot;&lt;/li&gt;
-&lt;li&gt;Can be important in urgent or gridlock situations.&lt;/li&gt;
-&lt;li&gt;BUT, mustn't become the go-to.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="background-color:yellow;"&gt;Mitigation: &amp;quot;We're providing an update, but we're open to ideas.&amp;quot;&lt;/span&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/right-wrong-way.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="there-are-two-ways"&gt;2. &amp;quot;There are two ways...&amp;quot;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Often team leads or developers not directly responsible for the outcome&lt;/li&gt;
-&lt;li&gt;Simplistic to get quick buy-in&lt;/li&gt;
-&lt;li&gt;Driven by &amp;quot;I'm supposed to &lt;em&gt;know&lt;/em&gt;&amp;quot; and maintaining status quo&lt;/li&gt;
-&lt;li&gt;Stops exploration and can shortcut testing&lt;/li&gt;
-&lt;li&gt;Flatt's Law #12: &amp;quot;There are usually many right ways to do something, and always infinite wrong ways.&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="background-color:yellow;"&gt;Mitigation: &amp;quot;We'll start with those, and review with you if we come across alternatives.&amp;quot;&lt;/span&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/sherlock.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="ive-already-thought-oftried-that"&gt;3. &amp;quot;I’ve already thought of/tried that.&amp;quot;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Often a senior developer&lt;/li&gt;
-&lt;li&gt;Stops conversation&lt;/li&gt;
-&lt;li&gt;Pits the &amp;quot;expert&amp;quot; against colleagues&lt;/li&gt;
-&lt;li&gt;Leads to gridlock and win-lose thinking&lt;/li&gt;
-&lt;li&gt;Can be ego/image-driven&lt;/li&gt;
-&lt;li&gt;BUT, can also be true&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="background-color:yellow;"&gt;Mitigation: &amp;quot;Can we look at your steps/tests/code? We want to perform due dilligence.&amp;quot; &lt;/span&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/corn-maze-aerial.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="weve-already-thought-oftried-that"&gt;4. &amp;quot;We've already thought of/tried that.&amp;quot;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Can hide a decision actually made via 1-3.&lt;/li&gt;
-&lt;li&gt;Can be clique-driven&lt;/li&gt;
-&lt;li&gt;BUT, is usually true (i.e., &amp;quot;we're really in agreement&amp;quot;)&lt;/li&gt;
-&lt;li&gt;BUT, still potentially stops exploration&lt;/li&gt;
-&lt;li&gt;Can be valuable when presenting to management&lt;/li&gt;
-&lt;li&gt;BUT, requires trust. Can be a cudgel, &amp;quot;you don't really understand what we do.&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span style="background-color:yellow;"&gt;Mitigation: &amp;quot;I'd like to understand better. Who can step me through what you've done?&amp;quot;&lt;/span&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/160129-elderlyexercise-stock.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="this-is-where-we-are-right-now"&gt;5. &amp;quot;This is where we are right now.&amp;quot;&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Can be used by anyone at any time&lt;/li&gt;
-&lt;li&gt;Growth mindset&lt;/li&gt;
-&lt;li&gt;Psychologically safe&lt;/li&gt;
-&lt;li&gt;&amp;quot;What's been tried? What can we try?&amp;quot;&lt;/li&gt;
-&lt;li&gt;&amp;quot;What's the real problem we should be solving?&amp;quot;&lt;/li&gt;
-&lt;li&gt;&amp;quot;How urgent is it &lt;em&gt;really&lt;/em&gt;?&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/wallendas.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="in-general"&gt;In General&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Fast vs Slow thinking: slower is better for solving problems&lt;/li&gt;
-&lt;li&gt;Measures of Success: quality is usually better than speed&lt;/li&gt;
-&lt;li&gt;Habits: Encourage asking questions as the path to solutions.&lt;/li&gt;
-&lt;li&gt;Fixed vs Growth Mindset: start from &amp;quot;I don't have to know right now.&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving/images/library.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="more-reading"&gt;More Reading&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Daniel Kahneman: &lt;em&gt;Thinking, Fast and Slow&lt;/em&gt;&lt;br /&gt;
-&lt;a href="https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555/"&gt;https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google: &lt;em&gt;The five keys to a successful Google team&lt;/em&gt;&lt;br /&gt;
-&lt;a href="https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/"&gt;https://rework.withgoogle.com/blog/five-keys-to-a-successful-google-team/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Wendy Wood: &lt;em&gt;Good Habits, Bad Habits&lt;/em&gt;&lt;br /&gt;
-&lt;a href="https://www.amazon.com/Good-Habits-Bad-Science-Positive/dp/1250159075"&gt;https://www.amazon.com/Good-Habits-Bad-Science-Positive/dp/1250159075&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Carol Dweck: Fixed vs Growth Mindsets (&lt;em&gt;caveat: research not replicated&lt;/em&gt;)&lt;br /&gt;
-&lt;a href="https://en.wikipedia.org/wiki/Carol_Dweck"&gt;https://en.wikipedia.org/wiki/Carol_Dweck&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Mon, 5 Oct 2020 15:55:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/five_(so_far)_dynamics_of_group_problem_solving</guid>
     </item>
   </channel>
 </rss>
