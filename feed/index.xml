@@ -6,6 +6,97 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Tech Debt - You can't put maintenance last if you want to drive a race car</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tech_debt_-_you_cant_put_maintenance_last_if_you_want_to_drive_a_race/images/640px-ALMS_Prototypes.jpg" alt="" /&gt;&lt;br /&gt;
+&lt;sup&gt;SPYDERMAN360, CC BY 2.0 &lt;a href="https://creativecommons.org/licenses/by/2.0"&gt;https://creativecommons.org/licenses/by/2.0&lt;/a&gt;, via Wikimedia Commons&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Originally posted at &lt;a href="https://clearmeasure.com/tech-debt-you-cant-put-maintenance-last-if-you-want-to-drive-a-race-car/"&gt;Clear Measure&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id="the-nurture-bit"&gt;The Nurture Bit&lt;/h2&gt;
+&lt;p&gt;When I was growing up, I spent part of my summers with my grandparents in Oklahoma. I was inculcated into the value of maintenance early on. My grandfather did most of his own car maintenance and repair. I'm not talking about just an oil and filter change. Back then, a determined car owner could virtually rebuild an entire automobile.&lt;/p&gt;
+&lt;p&gt;My grandfather had a car lift in his garage.&lt;/p&gt;
+&lt;p&gt;Imagine if Danica Patrick or Jeff Gordon was told just before a race &amp;quot;sorry, we didn't fix your brakes because the boss said to paint a new sponsor's logo on the car. Maybe next time.&amp;quot; I personally don't have to imagine what happens if you don't replace your tires. I did a 360 on the highway because of balding tires in snow.&lt;/p&gt;
+&lt;p&gt;To me, paying down technical debt, refactoring, cleaning up documentation, is just part of what a development shop must do. Likewise, operations must keep computers updated. However, I've seen many organizations where maintenance is treated by management as optional, or worse, as a profit obstacle. And I've seen just as many developers and network engineers avoid maintenance. Why? What are the consequences? Do they matter?&lt;/p&gt;
+&lt;h2 id="the-nature-bit"&gt;The Nature Bit&lt;/h2&gt;
+&lt;p&gt;There are several reasons humans metaphorically--and actually--don't change their oil or replace their Access 97 applications. Among them,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It's still working, and &amp;quot;if it ain't broke&amp;quot; . . . well, you know the rest.&lt;/li&gt;
+&lt;li&gt;We're &lt;a href="https://www.psychologytoday.com/us/blog/shut-and-listen/201806/humans-cant-plan-long-term-and-heres-why"&gt;not good at long-term planning&lt;/a&gt; and &amp;quot;tend to opt for immediate rewards.&amp;quot;&lt;/li&gt;
+&lt;li&gt;We're adaptable. Very. &lt;a href="https://en.wikipedia.org/wiki/Hedonic_treadmill"&gt;Hedonic adaptation&lt;/a&gt;, for example, has its good points, but not when it keeps us from fixing those security holes that we &amp;quot;really should get to someday.&amp;quot;&lt;/li&gt;
+&lt;li&gt;We think it's too expensive in dollars, time, effort, or any combination of those. As Mac Smith puts it in &lt;a href="https://reliabilityweb.com/articles/entry/maintenance-as-a-profit-center"&gt;this article&lt;/a&gt;, &amp;quot;One of the things that has NOT changed very much is the age-old management perception that maintenance is just a necessary evil and unfortunate cost center.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In my experience, maintenance such as paying down technical debt is treated as second-class, something you &lt;em&gt;might&lt;/em&gt; have time to do &lt;em&gt;after&lt;/em&gt; you're done writing your software and fixing bugs. Management too often sees it as similar to employees reading about business improvement between support calls; &amp;quot;you can do that on your &lt;em&gt;own&lt;/em&gt; time.&amp;quot; And while we software developers know refactoring is important, how often do we not do it just because (we feel) there isn't &lt;em&gt;time&lt;/em&gt;?&lt;/p&gt;
+&lt;h2 id="technical-debt-is-really-debt"&gt;Technical Debt is Really Debt&lt;/h2&gt;
+&lt;p&gt;Measuring and reporting technical debt can be challenging. You'll find articles saying it's harder than measuring financial debt. But they all agree that technical debt translates to real dollars. We're talking potentially big numbers.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Based on this definition [the cost of fixing the structural quality problems in an application that, if left unfixed, puts the business at serious risk] and the analysis of 1400 applications containing 550 million lines of code submitted by 160 organizations, CRL estimate that the Technical Debt of an average-sized application of 300,000 lines of code (LOC) is $1,083,000. This represents an average Technical Debt per LOC of $3.61. --&lt;a href="https://www.castsoftware.com/research-labs/technical-debt-estimation"&gt;Technical Debt Estimation - CAST&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Technical debt is unavoidable. Like buying an office building, as soon as you create software you have dollars of technical debt. Business owners pay for regular building maintenance, why not regular software maintenance? The question for organizations is, &amp;quot;does not cleaning up code really affect my profit?&amp;quot; I think unless shown otherwise, you should assume the answer is yes. Here's a list of impacts.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Technical Debt &lt;strong&gt;increases time-to-market and development costs&lt;/strong&gt;. How?
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Increased security risks&lt;/strong&gt; The best way to increase the chances of your data being stolen every day? Don't prioritize auditing and daily maintaining your software.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Time to understand code&lt;/strong&gt; The &amp;quot;dirtier&amp;quot; the code base, the longer it takes developers to understand an already complex system. I've experienced code that regularly took me &lt;em&gt;three times longer&lt;/em&gt; than it should have to figure out.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Increased likelihood of introducing bugs&lt;/strong&gt; The harder code is to understand, the more likely you'll break something when adding a new feature. &lt;em&gt;Automated Testing&lt;/em&gt; helps with this, but older code often isn't written to make testing easy.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Decreased maintainability&lt;/strong&gt; Ever tried to find a part for a 1980s appliance you dearly love? Multiply that by a thousand and that's what it's costing your business each day your developers struggle with old or poorly architected code.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Harder to replace&lt;/strong&gt; Software components eventually have to be replaced. But it's not like replacing your car's tires. It's more like replacing all the galvanized pipe in a thirty-story five-star hotel filled with Hollywood stars before the Emmys.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prone to outages&lt;/strong&gt; The authors of &lt;a href="https://www.amazon.com/Meltdown-Systems-Fail-What-About/dp/0735222630"&gt;Meltdown&lt;/a&gt; found that highly complicated, tightly-coupled systems will inevitably, unpredictably fail. Software is--you guessed it--by its nature prone to complexity and coupling.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Employee depression leading to apathy and increased turnover&lt;/strong&gt; An overlooked cost of technical debt is the health toll it takes, nicely expressed in the article &lt;a href="https://codeahoy.com/2020/01/25/technical-debt/"&gt;Technical Debt is Soul-crushing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The inability to quickly respond to changing requirements and priorities&lt;/strong&gt; Consider the above points. If it takes longer to understand, maintain, fix, and introduce new features to existing code, how can the developers pivot and respond quickly to new market conditions? It's hard to turn a submarine. Now imagine trying to turn a fleet of subs. Managing technical debt transforms those submarines into James Bond sports cars.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="im-convinced.i-think.what-do-i-do"&gt;I'm Convinced. I Think. What Do I Do?&lt;/h2&gt;
+&lt;p&gt;Like buying an old house that you learn has plumbing, electric, and foundation problems . . . but you gotta live there so you can't just tear it down . . . technical debt can be overwhelming. The answer to overwhelm is chunking down the work load and choosing tasks wisely.&lt;/p&gt;
+&lt;h3 id="forget-the-blame"&gt;1. Forget the Blame&lt;/h3&gt;
+&lt;p&gt;It's not anyone's fault. Or it's everyone's fault. Regardless, the way forward is to act like scientists and colleagues. Get curious. Fix the problem, not the blame.&lt;/p&gt;
+&lt;h3 id="accept-change-especially-at-the-top"&gt;2.  Accept Change, Especially at the Top&lt;/h3&gt;
+&lt;p&gt;Technical debt has been created as much from the top of the organization as from the coders. Every time a project was made &amp;quot;top priority,&amp;quot; and teams were asked &amp;quot;how do we work around that to release faster?&amp;quot; without also saying &amp;quot;but then it needs to be done right, immediately,&amp;quot; executives reduced the abililty to stay fleet-footed. Execs and devs must both change. It'll be for the better.&lt;/p&gt;
+&lt;h3 id="measure-for-reality"&gt;3. Measure For Reality&lt;/h3&gt;
+&lt;p&gt;How will you define technical debt? How will you discover it? How will you measure it? The answers to these questions lead to facts, and facts often aren't comfortable things to face. You can do this yourself, but I recommend partnering with an outside company such as &lt;a href="https://clearmeasure.com/"&gt;Clear Measure&lt;/a&gt;&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, who doesn't share the organization's culture or biases. Be sure they use evidence-based metrics such as the &lt;a href="https://stelligent.com/2018/12/21/measuring-devops-success-with-four-key-metrics/"&gt;DORA group's four key metrics&lt;/a&gt; of high-performing teams.&lt;/p&gt;
+&lt;h3 id="improve-a-little-a-lot"&gt;4. Improve a Little, a Lot&lt;/h3&gt;
+&lt;p&gt;With facts in hand, you have ways of measuring progress. Choose an easy win that the &lt;em&gt;developers&lt;/em&gt; agree will help them. Not the executives. Not project managers. Developers. This gives them  ownership of their purpose. I again recommend they accept coaching just like a top racer or athlete does. Utlimately, though, they'll find their solution through their autonomy and mastery. Next, repeat. A one-percent improvement each day is realistic and sustainable.&lt;/p&gt;
+&lt;h3 id="celebrate"&gt;5. Celebrate&lt;/h3&gt;
+&lt;p&gt;Every success needs a reward, especially the little ones. Repeated behaviors with rewards become habits, and that's what we want when it comes to software maintenance and paying down technical debt.&lt;/p&gt;
+&lt;h2 id="references-and-further-reading"&gt;References and Further Reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://tenmilesquare.com/the-impact-of-technical-debt-a-guide-for-business-managers/"&gt;The Impact of Technical Debt: A Guide for Business Managers – Tenmilesquare&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://18f.gsa.gov/2015/08/07/technical-debt-1/"&gt;18F: Digital service delivery | Don’t underestimate the danger of technical debt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://18f.gsa.gov/2015/09/04/what-is-technical-debt/"&gt;18F: Digital service delivery | What is technical debt?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.castsoftware.com/research-labs/technical-debt-estimation"&gt;Technical Debt Estimation - CAST&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://commadot.com/the-ux-of-technical-debt/"&gt;http://commadot.com/the-ux-of-technical-debt/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.industrialmarketer.com/marketers-technical-debt/"&gt;Why Marketers Need to Start Thinking About Technical Debt | Industrial Marketer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.computerworld.com/article/2516325/the-new-push-to-measure-software-s-true-cost.html"&gt;The new push to measure software's true cost | Computerworld&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.toptal.com/finance/part-time-cfos/technical-debt"&gt;How Does Technical Debt Affect a Business Financially? | Toptal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://deloitte.wsj.com/cio/2015/01/21/how-to-calculate-technical-debt/"&gt;How to Calculate Technical Debt - CIO Journal - WSJ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://thinkapps.com/blog/development/technical-debt-calculation/"&gt;How to Calculate Technical Debt and Express It Clearly&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://thinkapps.com/blog/development/technical-debt-computation-top-tools/"&gt;Technical Debt Computation: Comparison of Top Tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.sonarqube.org/"&gt;Code Quality and Security | SonarQube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.forbes.com/sites/falonfatemi/2016/05/30/technical-debt-the-silent-company-killer/#29b15aec4562"&gt;Technical Debt: The Silent Company Killer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://codeahoy.com/2020/01/25/technical-debt/"&gt;Technical Debt is Soul-crushing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Hedonic_treadmill"&gt;Hedonic treadmill - Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://reliabilityweb.com/articles/entry/maintenance-as-a-profit-center"&gt;Maintenance as a Profit Center - Reliabilityweb: A Culture of Reliability&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/maintenance-margin/"&gt;Maintenance Margin - Overview, How It Works, Example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.efficientplantmag.com/2015/05/the-psychology-of-successful-maintenance-and-reliability-programs/"&gt;The Psychology Of Successful Maintenance and Reliability Programs - Efficient Plant&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.psychologytoday.com/us/blog/shut-and-listen/201806/humans-cant-plan-long-term-and-heres-why"&gt;Humans Can't Plan Long-Term, and Here's Why | Psychology Today&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://18f.gsa.gov/2015/08/07/technical-debt-1/"&gt;18F: Digital service delivery | Don’t underestimate the danger of technical debt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.castsoftware.com/research-labs/technical-debt-estimation"&gt;Technical Debt Estimation - CAST&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Meltdown-Systems-Fail-What-About/dp/0735222630"&gt;Meltdown: Why Our Systems Fail and What We Can Do About It&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Le_Mans_Prototype"&gt;Le Mans Prototypes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Endurance_racing_(motorsport)"&gt;Endurance racing (motorsport) - Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Disclosure: I'm an employee of Clear Measure.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Mon, 7 Dec 2020 14:38:00 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/tech_debt_-_you_cant_put_maintenance_last_if_you_want_to_drive_a_race</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/tech_debt_-_you_cant_put_maintenance_last_if_you_want_to_drive_a_race</guid>
+    </item>
+    <item>
       <title>The Four Foundations of Software Improvement - Letter-Size Art Deco Poster</title>
       <description>&lt;p&gt;For me, these cover most--if not all--the bases. Plus, &lt;em&gt;Art Deco&lt;/em&gt;!&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster/images/four-foundations.pdf"&gt;Download the PDF&lt;/a&gt;&lt;/p&gt;
@@ -274,21 +365,6 @@ Description is required.
       <pubDate>Wed, 14 Oct 2020 11:29:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done</guid>
-    </item>
-    <item>
-      <title>One Sheet Summary: "Accelerate: The Science of Lean Software and DevOps"</title>
-      <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/well-being"&gt;All One Sheet Summaries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations/dp/B07B9F83WM"&gt;Buy the book on Amazon&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop/images/accelerate.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop/images/accelerate.png" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Mon, 12 Oct 2020 18:15:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_accelerate-_the_science_of_lean_software_and_devop</guid>
     </item>
   </channel>
 </rss>

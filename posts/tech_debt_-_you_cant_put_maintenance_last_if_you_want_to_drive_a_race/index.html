@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Bizarre Nuget.Exe 5.7 "Authors Is Required" Behaviors | Software Meadows</title>
+  <title>Tech Debt - You Can't Put Maintenance Last If You Want To Drive A Race Car | Software Meadows</title>
 </head>
 
 <body>
@@ -62,41 +62,97 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/bizarre_nuget_exe_5_7_behaviors'>Bizarre NuGet.exe 5.7 "authors is required" behaviors</a></h2>
-                <p class='post-info'><span class='posted-on'>2020-10-23 10:44</span></p>
-                <div class='post-content'><p>Are you using <code>nuget.exe</code> to generate packages, especially as part of your continuous integration? If you've upgraded to version 5.7, you may be experiencing unexpected errors like this:</p>
-<pre><code class="language-text">Could not load file or assembly 'file:///C:\Program Files (x86)\NuGet CLI\nuget.exe' or one of its dependencies. Operation is not supported. (Exception from HRESULT: 0x80131515)
-Using '[project]].nuspec' for metadata.
-Authors is required.
-Description is required.
-</code></pre>
-<p>I've <a href="https://github.com/NuGet/Home/issues/9954">submitted a bug report</a> which is slowly gaining traction, but to my knowledge isn't yet resolved. Here's a summary of the problem and conditions. Please follow the link for more details.</p>
-<p><strong>Problem</strong></p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/tech_debt_-_you_cant_put_maintenance_last_if_you_want_to_drive_a_race'>Tech Debt - You can't put maintenance last if you want to drive a race car</a></h2>
+                <p class='post-info'><span class='posted-on'>2020-12-07 14:38</span></p>
+                <div class='post-content'><p><img src="https://www.softwaremeadows.com/posts/tech_debt_-_you_cant_put_maintenance_last_if_you_want_to_drive_a_race/images/640px-ALMS_Prototypes.jpg" alt="" /><br />
+<sup>SPYDERMAN360, CC BY 2.0 <a href="https://creativecommons.org/licenses/by/2.0">https://creativecommons.org/licenses/by/2.0</a>, via Wikimedia Commons</sup></p>
+<p><em>Originally posted at <a href="https://clearmeasure.com/tech-debt-you-cant-put-maintenance-last-if-you-want-to-drive-a-race-car/">Clear Measure</a></em></p>
+<h2 id="the-nurture-bit">The Nurture Bit</h2>
+<p>When I was growing up, I spent part of my summers with my grandparents in Oklahoma. I was inculcated into the value of maintenance early on. My grandfather did most of his own car maintenance and repair. I'm not talking about just an oil and filter change. Back then, a determined car owner could virtually rebuild an entire automobile.</p>
+<p>My grandfather had a car lift in his garage.</p>
+<p>Imagine if Danica Patrick or Jeff Gordon was told just before a race &quot;sorry, we didn't fix your brakes because the boss said to paint a new sponsor's logo on the car. Maybe next time.&quot; I personally don't have to imagine what happens if you don't replace your tires. I did a 360 on the highway because of balding tires in snow.</p>
+<p>To me, paying down technical debt, refactoring, cleaning up documentation, is just part of what a development shop must do. Likewise, operations must keep computers updated. However, I've seen many organizations where maintenance is treated by management as optional, or worse, as a profit obstacle. And I've seen just as many developers and network engineers avoid maintenance. Why? What are the consequences? Do they matter?</p>
+<h2 id="the-nature-bit">The Nature Bit</h2>
+<p>There are several reasons humans metaphorically--and actually--don't change their oil or replace their Access 97 applications. Among them,</p>
 <ul>
-<li>The [project].nuspec's token substitution isn't working, e.g. substituting AssemblyConfiguration for <span class="math">\(author\)</span>.</li>
-<li>Applies to .Net Framework NuGet projects being packaged using <code>nuget.exe</code></li>
+<li>It's still working, and &quot;if it ain't broke&quot; . . . well, you know the rest.</li>
+<li>We're <a href="https://www.psychologytoday.com/us/blog/shut-and-listen/201806/humans-cant-plan-long-term-and-heres-why">not good at long-term planning</a> and &quot;tend to opt for immediate rewards.&quot;</li>
+<li>We're adaptable. Very. <a href="https://en.wikipedia.org/wiki/Hedonic_treadmill">Hedonic adaptation</a>, for example, has its good points, but not when it keeps us from fixing those security holes that we &quot;really should get to someday.&quot;</li>
+<li>We think it's too expensive in dollars, time, effort, or any combination of those. As Mac Smith puts it in <a href="https://reliabilityweb.com/articles/entry/maintenance-as-a-profit-center">this article</a>, &quot;One of the things that has NOT changed very much is the age-old management perception that maintenance is just a necessary evil and unfortunate cost center.&quot;</li>
 </ul>
-<p><strong>Conditions</strong></p>
-<p>The error will occur under the following conditions</p>
+<p>In my experience, maintenance such as paying down technical debt is treated as second-class, something you <em>might</em> have time to do <em>after</em> you're done writing your software and fixing bugs. Management too often sees it as similar to employees reading about business improvement between support calls; &quot;you can do that on your <em>own</em> time.&quot; And while we software developers know refactoring is important, how often do we not do it just because (we feel) there isn't <em>time</em>?</p>
+<h2 id="technical-debt-is-really-debt">Technical Debt is Really Debt</h2>
+<p>Measuring and reporting technical debt can be challenging. You'll find articles saying it's harder than measuring financial debt. But they all agree that technical debt translates to real dollars. We're talking potentially big numbers.</p>
+<blockquote>
+<p>Based on this definition [the cost of fixing the structural quality problems in an application that, if left unfixed, puts the business at serious risk] and the analysis of 1400 applications containing 550 million lines of code submitted by 160 organizations, CRL estimate that the Technical Debt of an average-sized application of 300,000 lines of code (LOC) is $1,083,000. This represents an average Technical Debt per LOC of $3.61. --<a href="https://www.castsoftware.com/research-labs/technical-debt-estimation">Technical Debt Estimation - CAST</a></p>
+</blockquote>
+<p>Technical debt is unavoidable. Like buying an office building, as soon as you create software you have dollars of technical debt. Business owners pay for regular building maintenance, why not regular software maintenance? The question for organizations is, &quot;does not cleaning up code really affect my profit?&quot; I think unless shown otherwise, you should assume the answer is yes. Here's a list of impacts.</p>
 <ul>
-<li>Version 5.6 is named <code>nuget.5.6.exe</code>. E.g. the command used is <code>nuget.5.6 pack</code></li>
-<li>Version 5.7 is named <code>nuget.exe</code>.  E.g. the command used is <code>nuget pack</code></li>
-</ul>
-<p>You may get conflicting behaviors if:</p>
+<li>Technical Debt <strong>increases time-to-market and development costs</strong>. How?
 <ul>
-<li>You have both version 5.6 and 5.7 in your PATH</li>
+<li><strong>Increased security risks</strong> The best way to increase the chances of your data being stolen every day? Don't prioritize auditing and daily maintaining your software.</li>
+<li><strong>Time to understand code</strong> The &quot;dirtier&quot; the code base, the longer it takes developers to understand an already complex system. I've experienced code that regularly took me <em>three times longer</em> than it should have to figure out.</li>
+<li><strong>Increased likelihood of introducing bugs</strong> The harder code is to understand, the more likely you'll break something when adding a new feature. <em>Automated Testing</em> helps with this, but older code often isn't written to make testing easy.</li>
+<li><strong>Decreased maintainability</strong> Ever tried to find a part for a 1980s appliance you dearly love? Multiply that by a thousand and that's what it's costing your business each day your developers struggle with old or poorly architected code.</li>
+<li><strong>Harder to replace</strong> Software components eventually have to be replaced. But it's not like replacing your car's tires. It's more like replacing all the galvanized pipe in a thirty-story five-star hotel filled with Hollywood stars before the Emmys.</li>
+<li><strong>Prone to outages</strong> The authors of <a href="https://www.amazon.com/Meltdown-Systems-Fail-What-About/dp/0735222630">Meltdown</a> found that highly complicated, tightly-coupled systems will inevitably, unpredictably fail. Software is--you guessed it--by its nature prone to complexity and coupling.</li>
+<li><strong>Employee depression leading to apathy and increased turnover</strong> An overlooked cost of technical debt is the health toll it takes, nicely expressed in the article <a href="https://codeahoy.com/2020/01/25/technical-debt/">Technical Debt is Soul-crushing</a></li>
+<li><strong>The inability to quickly respond to changing requirements and priorities</strong> Consider the above points. If it takes longer to understand, maintain, fix, and introduce new features to existing code, how can the developers pivot and respond quickly to new market conditions? It's hard to turn a submarine. Now imagine trying to turn a fleet of subs. Managing technical debt transforms those submarines into James Bond sports cars.</li>
 </ul>
-<p><strong>Mitigation</strong></p>
+</li>
+</ul>
+<h2 id="im-convinced.i-think.what-do-i-do">I'm Convinced. I Think. What Do I Do?</h2>
+<p>Like buying an old house that you learn has plumbing, electric, and foundation problems . . . but you gotta live there so you can't just tear it down . . . technical debt can be overwhelming. The answer to overwhelm is chunking down the work load and choosing tasks wisely.</p>
+<h3 id="forget-the-blame">1. Forget the Blame</h3>
+<p>It's not anyone's fault. Or it's everyone's fault. Regardless, the way forward is to act like scientists and colleagues. Get curious. Fix the problem, not the blame.</p>
+<h3 id="accept-change-especially-at-the-top">2.  Accept Change, Especially at the Top</h3>
+<p>Technical debt has been created as much from the top of the organization as from the coders. Every time a project was made &quot;top priority,&quot; and teams were asked &quot;how do we work around that to release faster?&quot; without also saying &quot;but then it needs to be done right, immediately,&quot; executives reduced the abililty to stay fleet-footed. Execs and devs must both change. It'll be for the better.</p>
+<h3 id="measure-for-reality">3. Measure For Reality</h3>
+<p>How will you define technical debt? How will you discover it? How will you measure it? The answers to these questions lead to facts, and facts often aren't comfortable things to face. You can do this yourself, but I recommend partnering with an outside company such as <a href="https://clearmeasure.com/">Clear Measure</a><a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>, who doesn't share the organization's culture or biases. Be sure they use evidence-based metrics such as the <a href="https://stelligent.com/2018/12/21/measuring-devops-success-with-four-key-metrics/">DORA group's four key metrics</a> of high-performing teams.</p>
+<h3 id="improve-a-little-a-lot">4. Improve a Little, a Lot</h3>
+<p>With facts in hand, you have ways of measuring progress. Choose an easy win that the <em>developers</em> agree will help them. Not the executives. Not project managers. Developers. This gives them  ownership of their purpose. I again recommend they accept coaching just like a top racer or athlete does. Utlimately, though, they'll find their solution through their autonomy and mastery. Next, repeat. A one-percent improvement each day is realistic and sustainable.</p>
+<h3 id="celebrate">5. Celebrate</h3>
+<p>Every success needs a reward, especially the little ones. Repeated behaviors with rewards become habits, and that's what we want when it comes to software maintenance and paying down technical debt.</p>
+<h2 id="references-and-further-reading">References and Further Reading</h2>
 <ul>
-<li>Use <code>nuget.exe</code> version 5.6.</li>
-<li>Ensure only one <code>nuget.exe</code> version is in the PATH</li>
-<li>Name the file <code>nuget.exe</code></li>
+<li><a href="https://tenmilesquare.com/the-impact-of-technical-debt-a-guide-for-business-managers/">The Impact of Technical Debt: A Guide for Business Managers – Tenmilesquare</a></li>
+<li><a href="https://18f.gsa.gov/2015/08/07/technical-debt-1/">18F: Digital service delivery | Don’t underestimate the danger of technical debt</a></li>
+<li><a href="https://18f.gsa.gov/2015/09/04/what-is-technical-debt/">18F: Digital service delivery | What is technical debt?</a></li>
+<li><a href="https://www.castsoftware.com/research-labs/technical-debt-estimation">Technical Debt Estimation - CAST</a></li>
+<li><a href="http://commadot.com/the-ux-of-technical-debt/">http://commadot.com/the-ux-of-technical-debt/</a></li>
+<li><a href="https://www.industrialmarketer.com/marketers-technical-debt/">Why Marketers Need to Start Thinking About Technical Debt | Industrial Marketer</a></li>
+<li><a href="https://www.computerworld.com/article/2516325/the-new-push-to-measure-software-s-true-cost.html">The new push to measure software's true cost | Computerworld</a></li>
+<li><a href="https://www.toptal.com/finance/part-time-cfos/technical-debt">How Does Technical Debt Affect a Business Financially? | Toptal</a></li>
+<li><a href="https://deloitte.wsj.com/cio/2015/01/21/how-to-calculate-technical-debt/">How to Calculate Technical Debt - CIO Journal - WSJ</a></li>
+<li><a href="http://thinkapps.com/blog/development/technical-debt-calculation/">How to Calculate Technical Debt and Express It Clearly</a></li>
+<li><a href="http://thinkapps.com/blog/development/technical-debt-computation-top-tools/">Technical Debt Computation: Comparison of Top Tools</a></li>
+<li><a href="https://www.sonarqube.org/">Code Quality and Security | SonarQube</a></li>
+<li><a href="https://www.forbes.com/sites/falonfatemi/2016/05/30/technical-debt-the-silent-company-killer/#29b15aec4562">Technical Debt: The Silent Company Killer</a></li>
+<li><a href="https://codeahoy.com/2020/01/25/technical-debt/">Technical Debt is Soul-crushing</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Hedonic_treadmill">Hedonic treadmill - Wikipedia</a></li>
+<li><a href="https://reliabilityweb.com/articles/entry/maintenance-as-a-profit-center">Maintenance as a Profit Center - Reliabilityweb: A Culture of Reliability</a></li>
+<li><a href="https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/maintenance-margin/">Maintenance Margin - Overview, How It Works, Example</a></li>
+<li><a href="https://www.efficientplantmag.com/2015/05/the-psychology-of-successful-maintenance-and-reliability-programs/">The Psychology Of Successful Maintenance and Reliability Programs - Efficient Plant</a></li>
+<li><a href="https://www.psychologytoday.com/us/blog/shut-and-listen/201806/humans-cant-plan-long-term-and-heres-why">Humans Can't Plan Long-Term, and Here's Why | Psychology Today</a></li>
+<li><a href="https://18f.gsa.gov/2015/08/07/technical-debt-1/">18F: Digital service delivery | Don’t underestimate the danger of technical debt</a></li>
+<li><a href="https://www.castsoftware.com/research-labs/technical-debt-estimation">Technical Debt Estimation - CAST</a></li>
+<li><a href="https://www.amazon.com/Meltdown-Systems-Fail-What-About/dp/0735222630">Meltdown: Why Our Systems Fail and What We Can Do About It</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Le_Mans_Prototype">Le Mans Prototypes</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Endurance_racing_(motorsport)">Endurance racing (motorsport) - Wikipedia</a></li>
 </ul>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Disclosure: I'm an employee of Clear Measure.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Bizarre Nuget.Exe 5.7 "Authors Is Required" Behaviors | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Tech Debt - You Can't Put Maintenance Last If You Want To Drive A Race Car | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
