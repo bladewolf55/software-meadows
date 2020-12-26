@@ -6,6 +6,132 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>NuGet 5.7+ Ignores NuSpec CSProj Replacement Tokens - and other weird behaviors</title>
+      <description>&lt;p&gt;I submitted this issue in on 2020-08-28. It's had some comments and confirmations, but the moderators are having trouble reproducing it. I'm hoping this will help.&lt;/p&gt;
+&lt;p&gt;Source Code:  &lt;a href="https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio/images/ClassLibrary1.zip"&gt;ClassLibrary1.zip&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="title"&gt;Title&lt;/h2&gt;
+&lt;p&gt;Here's the link to the issue.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/NuGet/Home/issues/9954"&gt;NuGet again throwing exceptions &amp;quot;authors is required&amp;quot; &amp;quot;description is required&amp;quot;, ignoring csproj/nuspec replacement tokens · Issue #9954&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="environment"&gt;Environment&lt;/h2&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Windows 10 Pro
+Visual Studio 2019
+.NET Framework 4.8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="more-info"&gt;More Info&lt;/h2&gt;
+&lt;p&gt;There are multiple failures being reported below. The fundamental one is that NuGet 5.7 and above ignore token replacements in .nuspec files from .NET Framework project .csproj files.&lt;/p&gt;
+&lt;h2 id="steps-to-reproduce"&gt;Steps to Reproduce&lt;/h2&gt;
+&lt;h3 id="pre-setup"&gt;Pre-setup&lt;/h3&gt;
+&lt;p&gt;Check the Windows PATH environment variables (&lt;code&gt;System Properties &amp;gt; Advanced &amp;gt; Environment Variables&lt;/code&gt;) at the user and system levels and be sure that &lt;em&gt;no&lt;/em&gt; version of &lt;code&gt;nuget.exe&lt;/code&gt; is on the path. One way to verify is to open a new command window and type &lt;code&gt;nuget&lt;/code&gt;. If there's output, &lt;code&gt;nuget&lt;/code&gt; is on the path.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A reboot may be required for the computer to recognize the path change. Normally, it only takes closing completely out of the System Properties editor.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Remember to open a new command window after PATH changes so the environment variable is reloaded.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="steps"&gt;Steps&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;In Visual Studio, create a new .NET Framework Console Application.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio/images/sc01.png" alt="" /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open Properties\AssemblyInfo.cs add the values that are substituted for $description and $author:
+&lt;pre&gt;&lt;code class="language-cs"&gt;[assembly: AssemblyDescription(&amp;quot;Desc&amp;quot;)]
+[assembly: AssemblyConfiguration(&amp;quot;&amp;quot;)]
+[assembly: AssemblyCompany(&amp;quot;Name&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Download NuGet 5.7 &lt;a href="https://www.nuget.org/downloads"&gt;https://www.nuget.org/downloads&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Copy to the project folder&lt;/li&gt;
+&lt;li&gt;Rename to &lt;code&gt;nuget.exe&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It's important that the file be named &lt;code&gt;nuget.exe&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;In the &lt;code&gt;ClassLibrary1.csproj&lt;/code&gt; project folder, run&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nuget spec
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Reduce the resulting &lt;code&gt;ClassLibrary1.nuspec&lt;/code&gt; file to the minimum required properties&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;package &amp;gt;
+  &amp;lt;metadata&amp;gt;
+    &amp;lt;id&amp;gt;$id$&amp;lt;/id&amp;gt;
+    &amp;lt;version&amp;gt;$version$&amp;lt;/version&amp;gt;
+    &amp;lt;authors&amp;gt;$author$&amp;lt;/authors&amp;gt;
+    &amp;lt;description&amp;gt;$description$&amp;lt;/description&amp;gt;
+  &amp;lt;/metadata&amp;gt;
+&amp;lt;/package&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Build the project or solution.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In project folder, run &lt;code&gt;nuget pack&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Expected&lt;/strong&gt;: Successful build of new package&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Actual&lt;/strong&gt;: Error that Author and Description are missing:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Attempting to build package from 'ClassLibrary1.csproj'.
+MSBuild auto-detection: using msbuild version '16.8.2.56705' from 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'.
+Packing files from 'C:\Users\charl\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug'.
+Using 'ClassLibrary1.nuspec' for metadata.
+Authors is required.
+Description is required.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="nuget-5.6-behavior"&gt;NuGet 5.6 Behavior&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;In the above environment, replace the &lt;code&gt;nuget.exe&lt;/code&gt; version 5.7 with version 5.6.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It's important that the file be named &lt;code&gt;nuget.exe&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Run &lt;code&gt;nuget pack&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The pack succeeds.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Attempting to build package from 'ClassLibrary1.csproj'.
+MSBuild auto-detection: using msbuild version '16.8.2.56705' from 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'.
+Packing files from 'C:\Users\charl\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug'.
+Using 'ClassLibrary1.nuspec' for metadata.
+Successfully created package 'C:\Users\charl\source\repos\ClassLibrary1\ClassLibrary1\ClassLibrary1.1.0.0.nupkg'.
+WARNING: NU5128: Some target frameworks declared in the dependencies group of the nuspec and the lib/ref folder do not have exact matches in the other location. Consult the list of actions below:
+- Add a dependency group for .NETFramework4.8 to the nuspec
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="nuget-5.8-and-5.9-preview-behaviors"&gt;NuGet 5.8 and 5.9 preview Behaviors&lt;/h2&gt;
+&lt;p&gt;Both versions exhibit the same bug as 5.7.&lt;/p&gt;
+&lt;h2 id="behavior-when-renaming-nuget.exe"&gt;Behavior When Renaming &lt;code&gt;nuget.exe&lt;/code&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Copy version 5.6 into the project folder&lt;/li&gt;
+&lt;li&gt;Rename it &lt;code&gt;nugetx.exe&lt;/code&gt; (It doesn't matter what it's renamed to, as long as it isn't &lt;code&gt;nuget.exe&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;nugetx.exe pack&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Unlike when named &lt;code&gt;nuget.exe&lt;/code&gt;, version 5.6 &lt;code&gt;pack&lt;/code&gt; fails with the unexpected error!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Attempting to build package from 'ClassLibrary1.csproj'.
+MSBuild auto-detection: using msbuild version '16.8.2.56705' from 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'.
+Packing files from 'C:\Users\charl\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug'.
+Using 'ClassLibrary1.nuspec' for metadata.
+Authors is required.
+Description is required.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="behavior-when-two-nuget-files-in-path"&gt;Behavior When Two NuGet files in Path&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Copy version 5.6 into the project folder and rename to &lt;code&gt;nuget.exe&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Copy version 5.6 &lt;em&gt;again&lt;/em&gt; into the project folder and rename to &lt;code&gt;nugetx.exe&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;nuget pack&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;nugetx pack&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In &lt;em&gt;both&lt;/em&gt; cases, the pack succeeds.&lt;/p&gt;
+&lt;h2 id="real-world-concerns"&gt;Real World Concerns&lt;/h2&gt;
+&lt;p&gt;Many organizations will, in a continuous deployment environment, use a known path to the latest NuGet package and expect it to be named &lt;code&gt;nuget.exe&lt;/code&gt;. As seen above, those organizations will suddenly find themselves with failing package steps.&lt;/p&gt;
+&lt;p&gt;In order to continue, they must either stay on version 5.6 and accept the potential security issues there, or rework their pipeline.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 26 Dec 2020 13:38:00 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio</guid>
+    </item>
+    <item>
       <title>Tech Debt - You can't put maintenance last if you want to drive a race car</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/tech_debt_-_you_cant_put_maintenance_last_if_you_want_to_drive_a_race/images/640px-ALMS_Prototypes.jpg" alt="" /&gt;&lt;br /&gt;
 &lt;sup&gt;SPYDERMAN360, CC BY 2.0 &lt;a href="https://creativecommons.org/licenses/by/2.0"&gt;https://creativecommons.org/licenses/by/2.0&lt;/a&gt;, via Wikimedia Commons&lt;/sup&gt;&lt;/p&gt;
@@ -347,24 +473,6 @@ Description is required.
       <pubDate>Sat, 17 Oct 2020 11:10:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/introducing_nutcase_-_a_new_case_for_coding</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/introducing_nutcase_-_a_new_case_for_coding</guid>
-    </item>
-    <item>
-      <title>One Sheet Summary: Getting Things Done</title>
-      <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/well-being"&gt;All One Sheet Summaries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/B00KWG9M2E"&gt;Buy the book on Amazon&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd.png" alt="" /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd-next-action-flow.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done/images/gtd-next-action-flow.png" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Wed, 14 Oct 2020 11:29:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_getting_things_done</guid>
     </item>
   </channel>
 </rss>
