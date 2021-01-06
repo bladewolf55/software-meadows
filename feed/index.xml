@@ -25,7 +25,12 @@
     </item>
     <item>
       <title>NuGet 5.7+ Ignores NuSpec CSProj Replacement Tokens - and other weird behaviors</title>
-      <description>&lt;p&gt;I submitted this issue in on 2020-08-28. It's had some comments and confirmations, but the moderators are having trouble reproducing it. I'm hoping this will help.&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;&lt;br /&gt;
+A stellar sleuth discovered that the error messages are related to whether the &lt;code&gt;nuget.exe&lt;/code&gt; executable's &amp;quot;Unblock&amp;quot; attribute is checked. When it is (i.e. the file is unblocked), the error message doesn't occur. While it's still a bug, at least there's a solid workaround.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio/images/sc02.png" alt="" /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I submitted this issue in on 2020-08-28. It's had some comments and confirmations, but the moderators are having trouble reproducing it. I'm hoping this will help.&lt;/p&gt;
 &lt;p&gt;Source Code:  &lt;a href="https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio/images/ClassLibrary1.zip"&gt;ClassLibrary1.zip&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="title"&gt;Title&lt;/h2&gt;
 &lt;p&gt;Here's the link to the issue.&lt;/p&gt;
