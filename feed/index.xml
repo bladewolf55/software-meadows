@@ -23,7 +23,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;This won't be a &amp;quot;Complete and Authoritative 10 Steps to Perfect Readme Files.&amp;quot; It's intended to be a good starting point.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id="what-the-heck-am-i-talking-about"&gt;What (the heck Am I Talking About)?&lt;/h2&gt;
+&lt;h2 id="what-the-heck-am-i-talking-about"&gt;What (the heck am I talking about)?&lt;/h2&gt;
 &lt;p&gt;I'm talking about the &lt;code&gt;README.md&lt;/code&gt; file that's typically at the root of Git repositories, especially when using GitHub, GitLab, BitBucket, and Azure DevOps.&lt;/p&gt;
 &lt;p&gt;Specifically, though, I'm talking about &lt;em&gt;&lt;strong&gt;the Readme file that you use in your on-premise repositories&lt;/strong&gt;&lt;/em&gt;. That is, your organization's internal projects.&lt;/p&gt;
 &lt;blockquote&gt;
