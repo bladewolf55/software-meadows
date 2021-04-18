@@ -56,9 +56,9 @@ Scrum is Agile, but Agile isn't Scrum. Agile is a set of four values and twelve 
 &lt;/blockquote&gt;
 &lt;p&gt;The core flow of Scrum is:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Capture all potential work in a prioritized Product Backlog.&lt;/li&gt;
+&lt;li&gt;Capture all potential work in an ordered&lt;a id="fnref:3" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; Product Backlog.&lt;/li&gt;
 &lt;li&gt;Define regular iteration periods of work called Sprints.&lt;/li&gt;
-&lt;li&gt;Define a Sprint Goal and pull top priority work into a Sprint Backlog that will meet that goal.&lt;/li&gt;
+&lt;li&gt;Define a valuable Sprint Goal and pull work into a Sprint Backlog that will meet that goal.&lt;/li&gt;
 &lt;li&gt;Complete the items in the Sprint Backlog during the Sprint, meeting daily for fifteen minutes to review progress.&lt;/li&gt;
 &lt;li&gt;Review the Sprint results with stakeholders.&lt;/li&gt;
 &lt;li&gt;Reflect inside the team on how the process can be improved, and add those improvements to the Product Backlog.&lt;/li&gt;
@@ -91,7 +91,7 @@ Scrum--and Agile in general--prefers rapid, regular feedback to allow early self
 &lt;li&gt;Work item process = Scrum.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The differences between the &amp;quot;Agile&amp;quot; and &amp;quot;Scrum&amp;quot; processes is primarily terminology.&lt;a id="fnref:3" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; A Scrum Product Backlog Item (PBI) is an Agile User Story. A Scrum Impediment is an Agile Issue.&lt;/p&gt;
+&lt;p&gt;The differences between the &amp;quot;Agile&amp;quot; and &amp;quot;Scrum&amp;quot; processes is primarily terminology.&lt;a id="fnref:4" href="#fn:4" class="footnote-ref"&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt; A Scrum Product Backlog Item (PBI) is an Agile User Story. A Scrum Impediment is an Agile Issue.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;Click Create.&lt;br /&gt;
@@ -258,7 +258,7 @@ The common recommendation is to not assign stories. Instead, let developers pull
 I like the now-classic template &amp;quot;As a ROLE, I want WHAT, because WHY&amp;quot;. For example:&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-text"&gt;As a Security Admin, I need to be able to assign read-only to some screens because only accounting should be able to change the values, but everyone can see them.
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &amp;quot;why&amp;quot; is important because it tells us the &lt;em&gt;value&lt;/em&gt; of the story. Work with the end-users to create these stories. The further you are from the actual end user, the more you're playing the game of Telephone&lt;a id="fnref:4" href="#fn:4" class="footnote-ref"&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;--and ensuring you're not getting accurate info.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;why&amp;quot; is important because it tells us the &lt;em&gt;value&lt;/em&gt; of the story. Work with the end-users to create these stories. The further you are from the actual end user, the more you're playing the game of Telephone&lt;a id="fnref:5" href="#fn:5" class="footnote-ref"&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt;--and ensuring you're not getting accurate info.&lt;/p&gt;
 &lt;p&gt;The other quality of a good story is the acceptance criteria. That is, how will the &lt;em&gt;user&lt;/em&gt; know the story is complete.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;br /&gt;
@@ -415,10 +415,13 @@ The Sprint Retrospective is the most important part of the process. Without it, 
 &lt;p&gt;&lt;a href="http://agilemanifesto.org/"&gt;Manifesto for Agile Software Development&lt;/a&gt;&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:3"&gt;
-&lt;p&gt;&lt;a href="https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&amp;amp;tabs=basic-process"&gt;Choose a process like Basic, Agile, Scrum, or CMMI - Azure Boards | Microsoft Docs&lt;/a&gt;&lt;a href="#fnref:3" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://medium.com/the-liberators/myth-in-scrum-the-product-backlog-is-prioritized-bae533f7514a"&gt;Myth: In Scrum, the Product Backlog is prioritized | by Christiaan Verwijs | The Liberators | Medium&lt;/a&gt;&lt;a href="#fnref:3" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:4"&gt;
-&lt;p&gt;Children sit in a circle. The first child whispers a longish sentence to the next child, who whispers to the third child, and so on. The last child compares what she heard to the original. Inevitibly there's significant drift. When I was a kid, it was called the game of Gossip.&lt;a href="#fnref:4" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&amp;amp;tabs=basic-process"&gt;Choose a process like Basic, Agile, Scrum, or CMMI - Azure Boards | Microsoft Docs&lt;/a&gt;&lt;a href="#fnref:4" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:5"&gt;
+&lt;p&gt;Children sit in a circle. The first child whispers a longish sentence to the next child, who whispers to the third child, and so on. The last child compares what she heard to the original. Inevitibly there's significant drift. When I was a kid, it was called the game of Gossip.&lt;a href="#fnref:5" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
