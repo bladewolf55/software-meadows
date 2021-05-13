@@ -6,6 +6,50 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>What do you mean by automated tests and continuous integration?</title>
+      <description>&lt;p&gt;I had a client ask me this posts's title question recently. It's a good one. In this case, the person asking develops internal python software, but that's not his primary job so he wasn't familiar with the deep world of enterprise-level development.&lt;/p&gt;
+&lt;p&gt;How do we explain this to a newcomer? Here's my answer, rooted in Azure DevOps. Perfect? No. Useful? I hope so!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Automated Testing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Any tests that don't require human interaction. These include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unit tests (testing discrete code elements such as a single function)&lt;/li&gt;
+&lt;li&gt;Integration tests (testing that modules all communicate with each other, external sites, back-end databases, etc)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In Python, these will be your pytests. I've created simple tests to help illustrate.&lt;/p&gt;
+&lt;p&gt;Automated testing is essential, not optional. When practiced well, developers routinely have more test code than app code. Unit testing improves architecture by encouraging loose coupling. It also dramatically improves confidence when making changes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Continuous Integration and Continuous Deployment&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Typically, when there's team development, the &amp;quot;main&amp;quot; version of the source code is kept on a remote server. In our case, that's the Azure DevOps Git repositories.&lt;/p&gt;
+&lt;p&gt;That main branch is what's been deployed to production users, and must &lt;em&gt;always&lt;/em&gt; be working. So, how do we ensure that our changes don't break the main branch? That is, how do we safely &lt;em&gt;integrate&lt;/em&gt; our code to what's already there?&lt;/p&gt;
+&lt;p&gt;The two parts to the answer are branching and building.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Develop new features in a short-lived branch (short-lived branches exist no more than a day or two)&lt;/li&gt;
+&lt;li&gt;Pull the main branch code to your local workspace&lt;/li&gt;
+&lt;li&gt;Rebase your feature code onto the main, so it's as if you &lt;em&gt;just made your changes.&lt;/em&gt; You've integrated locally.&lt;/li&gt;
+&lt;li&gt;Rebuild the application locally and run all tests.&lt;/li&gt;
+&lt;li&gt;Push your feature branch to the remote Git server and create a pull request, saying &amp;quot;Hey, I want this branch merged into main!&amp;quot;&lt;/li&gt;
+&lt;li&gt;Someone approves the PR, integrating into main.&lt;/li&gt;
+&lt;li&gt;The main branch &lt;em&gt;automatically&lt;/em&gt; builds and tests the code &lt;em&gt;from scratch&lt;/em&gt;. &lt;strong&gt;This is key. It's as if a new developer is working on a new computer.&lt;/strong&gt; We build/test the code once, then deploy it to different environments. What could go wrong?
+&lt;ol&gt;
+&lt;li&gt;The code doesn't build.&lt;/li&gt;
+&lt;li&gt;The tests fail&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;If anything goes wrong, we're notified the bad code doesn't get released to users.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It can be counter-intuitive, but the safest development method is to push changes frequently. Why?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fewer changes are easier to fix&lt;/li&gt;
+&lt;li&gt;Rolling back a PR with only a few changes isn't a big deal&lt;/li&gt;
+&lt;li&gt;Integrating multiple times per day means the latest changes are working&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When there is high automated test coverage and frequent integration, there can be enough confidence in the system to enable &lt;em&gt;continuous deployment&lt;/em&gt;. That's where the code is automatically released to users as long as all environments build and test successfully. If there's a problem in a release deployment, it's easy to either roll that back or, better, rapidly fix the issue since there will have been a small number of changes.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/what_do_you_mean_by_automated_tests_and_continuous_integration_/images/sc01.png" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Thu, 13 May 2021 13:33:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/what_do_you_mean_by_automated_tests_and_continuous_integration_</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/what_do_you_mean_by_automated_tests_and_continuous_integration_</guid>
+    </item>
+    <item>
       <title>A Simple Intro to Scrum in Azure DevOps</title>
       <description>&lt;p&gt;Azure DevOps is a flexible--yet opinionated--application to use for Scrum. It's got a large number of settings, and sometimes how things are named is confusing. This is a &amp;quot;get up and running&amp;quot; guide that includes the basics of the Scrum framework and a daily flow for your team.&lt;/p&gt;
 &lt;p&gt;What's included:&lt;/p&gt;
@@ -984,21 +1028,6 @@ public void ImportRecords(string folder) {}
       <pubDate>Sat, 24 Oct 2020 11:13:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits</guid>
-    </item>
-    <item>
-      <title>One Sheet Summary: Good Habits, Bad Habits</title>
-      <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/well-being"&gt;All One Sheet Summaries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Good-Habits-Bad-Science-Positive/dp/1250159075"&gt;Buy the book on Amazon&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_good_habits__bad_habits/images/good-habits-bad-habits.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_good_habits__bad_habits/images/good-habits-bad-habits.png" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Sat, 24 Oct 2020 10:48:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_good_habits__bad_habits</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_good_habits__bad_habits</guid>
     </item>
   </channel>
 </rss>
