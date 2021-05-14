@@ -64,7 +64,7 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/what_do_you_mean_by_automated_tests_and_continuous_integration_'>What do you mean by automated tests and continuous integration?</a></h2>
                 <p class='post-info'><span class='posted-on'>2021-05-13 13:33</span></p>
-                <div class='post-content'><p>I had a client ask me this posts's title question recently. It's a good one. In this case, the person asking develops internal python software, but that's not his primary job so he wasn't familiar with the deep world of enterprise-level development.</p>
+                <div class='post-content'><p>I had a client ask me this posts's title question recently. It's a good one. In this case, the person asking develops internal Python software, but that's not his primary job so he wasn't familiar with the deep world of enterprise-level development.</p>
 <p>How do we explain this to a newcomer? Here's my answer, rooted in Azure DevOps. Perfect? No. Useful? I hope so!</p>
 <p><strong>Automated Testing</strong></p>
 <p>Any tests that don't require human interaction. These include:</p>
@@ -72,7 +72,6 @@
 <li>Unit tests (testing discrete code elements such as a single function)</li>
 <li>Integration tests (testing that modules all communicate with each other, external sites, back-end databases, etc)</li>
 </ul>
-<p>In Python, these will be your pytests. I've created simple tests to help illustrate.</p>
 <p>Automated testing is essential, not optional. When practiced well, developers routinely have more test code than app code. Unit testing improves architecture by encouraging loose coupling. It also dramatically improves confidence when making changes.</p>
 <p><strong>Continuous Integration and Continuous Deployment</strong></p>
 <p>Typically, when there's team development, the &quot;main&quot; version of the source code is kept on a remote server. In our case, that's the Azure DevOps Git repositories.</p>
@@ -91,7 +90,7 @@
 <li>The tests fail</li>
 </ol>
 </li>
-<li>If anything goes wrong, we're notified the bad code doesn't get released to users.</li>
+<li>If anything goes wrong, we're notified and the bad code doesn't get released to users.</li>
 </ol>
 <p>It can be counter-intuitive, but the safest development method is to push changes frequently. Why?</p>
 <ul>
