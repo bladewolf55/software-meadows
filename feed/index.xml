@@ -6,7 +6,7 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
-      <title>Git checkout is a snapshot, not a delta</title>
+      <title>Git commit/checkout is a snapshot, not a delta</title>
       <description>&lt;p&gt;For many of us with past source control experience (Subversion, Team Foundation Version Control, Visual Source Safe), there's a subtlety to a Git commit that can trip us up when it comes to build/deployment pipelines. We mistakenly think the pipeline will &amp;quot;get latest.&amp;quot;&lt;/p&gt;
 &lt;p&gt;A Git commit is a snapshot of the entire source tree of the developer's workspace. It's &lt;em&gt;not&lt;/em&gt; a record of only that commit's changes. This is why it's critical, before submitting a branch pull request or a commit to mainline (depending on your workflow) that you pull the remote repository's latest code into your local repository.&lt;/p&gt;
 &lt;p&gt;Imagine two developers, Jasmine and Sabrina. They're going to work on a repo with two files.&lt;/p&gt;
@@ -52,8 +52,8 @@ git push
 &lt;p&gt;Now the PR will deploy the latest files because that's what's in commit aaaa444.&lt;/p&gt;
 </description>
       <pubDate>Fri, 14 May 2021 16:03:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/git_checkout_is_a_snapshot__not_a_delta</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/git_checkout_is_a_snapshot__not_a_delta</guid>
+      <link>https://www.softwaremeadows.com/posts/git_commit_checkout_is_a_snapshot__not_a_delta</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/git_commit_checkout_is_a_snapshot__not_a_delta</guid>
     </item>
     <item>
       <title>What do you mean by automated tests and continuous integration?</title>

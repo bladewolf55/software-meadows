@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/kavadocs.css' />
 
 
-  <title>One Sheet Summary: Atomic Habits | Software Meadows</title>
+  <title>Git Commit/Checkout Is A Snapshot, Not A Delta | Software Meadows</title>
 </head>
 
 <body>
@@ -62,21 +62,56 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits'>One Sheet Summary: Atomic Habits</a></h2>
-                <p class='post-info'><span class='posted-on'>2020-10-24 11:13</span></p>
-                <div class='post-content'><p>I make these to post on my wall and help me learn the subject. Be sure to read the book!</p>
-<ul>
-<li><a href="https://www.softwaremeadows.com/well-being">All One Sheet Summaries</a></li>
-<li><a href="https://www.amazon.com/Atomic-Habits-James-Clear/dp/B07RFSSYBH">Buy the book on Amazon</a></li>
-</ul>
-<hr />
-<p><a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits/images/atomic-habits.pdf">Download the PDF Version</a></p>
-<p><img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits/images/atomic-habits.png" alt="" /></p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/git_commit_checkout_is_a_snapshot__not_a_delta'>Git commit/checkout is a snapshot, not a delta</a></h2>
+                <p class='post-info'><span class='posted-on'>2021-05-14 16:03</span></p>
+                <div class='post-content'><p>For many of us with past source control experience (Subversion, Team Foundation Version Control, Visual Source Safe), there's a subtlety to a Git commit that can trip us up when it comes to build/deployment pipelines. We mistakenly think the pipeline will &quot;get latest.&quot;</p>
+<p>A Git commit is a snapshot of the entire source tree of the developer's workspace. It's <em>not</em> a record of only that commit's changes. This is why it's critical, before submitting a branch pull request or a commit to mainline (depending on your workflow) that you pull the remote repository's latest code into your local repository.</p>
+<p>Imagine two developers, Jasmine and Sabrina. They're going to work on a repo with two files.</p>
+<pre><code>|_princess.txt
+|_witch.txt
+</code></pre>
+<p>At 1pm, they both clone the remote, so both their local repositories exactly match. I'm showing the SHA hashes below.</p>
+<pre><code>HEAD aaaa111  &lt;== this is the commit number
+|_princess.txt  bbbb111
+|_witch.txt     cccc111
+</code></pre>
+<p>Let's be really clear. Git doesn't know about the files. It knows about the hashes it uses to name its copies of the files. So Git's commit tree is:</p>
+<pre><code>aaaa111
+|_bbbb111
+|_cccc111
+</code></pre>
+<p>They each create a separate branch. At 1:30pm, Jasmine changes her file, commits, and creates a pull request. Her commit tree is:</p>
+<pre><code>HEAD aaaa222
+|_princess.txt  bbbb222
+|_witch.txt     cccc111
+</code></pre>
+<p>When the PR is approved and commit aaaa222 is deployed, <em>those files</em> are deployed.</p>
+<p>At 2:00pm, Sabrina changes her file, commits, and creates a PR. Her commit tree is:</p>
+<pre><code>HEAD aaaa333
+|_princess.txt  bbbb111
+|_witch.txt     cccc222
+</code></pre>
+<p>This is the important part: <strong>Sabrina didn't pull from the remote, so her commit tree doesn't include Jasmine's changes.</strong></p>
+<p>When the PR is approved and commit aaaa333 is deployed, Git does <em>not</em> get the latest princess.txt nor should it. Git checks out the named commit tree, and that commit has the earlier princess.txt.</p>
+<p>What Sabrina needed to do before the PR is:</p>
+<pre><code>git checkout main
+git pull --rebase
+git checkout myfeature
+git rebase main
+git push
+# OR git push --force &lt;== if the branch was previously pushed
+</code></pre>
+<p>If she does this, her commit tree for the PR will be:</p>
+<pre><code>HEAD aaaa444
+|_princess.txt  bbbb222
+|_witch.txt     cccc222
+</code></pre>
+<p>Now the PR will deploy the latest files because that's what's in commit aaaa444.</p>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on One Sheet Summary: Atomic Habits | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Git Commit/Checkout Is A Snapshot, Not A Delta | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
