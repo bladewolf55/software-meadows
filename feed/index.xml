@@ -6,6 +6,56 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Git checkout is a snapshot, not a delta</title>
+      <description>&lt;p&gt;For many of us with past source control experience (Subversion, Team Foundation Version Control, Visual Source Safe), there's a subtlety to a Git commit that can trip us up when it comes to build/deployment pipelines. We mistakenly think the pipeline will &amp;quot;get latest.&amp;quot;&lt;/p&gt;
+&lt;p&gt;A Git commit is a snapshot of the entire source tree of the developer's workspace. It's &lt;em&gt;not&lt;/em&gt; a record of only that commit's changes. This is why it's critical, before submitting a branch pull request or a commit to mainline (depending on your workflow) that you pull the remote repository's latest code into your local repository.&lt;/p&gt;
+&lt;p&gt;Imagine two developers, Jasmine and Sabrina. They're going to work on a repo with two files.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;|_princess.txt
+|_witch.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;At 1pm, they both clone the remote, so both their local repositories exactly match. I'm showing the SHA hashes below.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HEAD aaaa111  &amp;lt;== this is the commit number
+|_princess.txt  bbbb111
+|_witch.txt     cccc111
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let's be really clear. Git doesn't know about the files. It knows about the hashes it uses to name its copies of the files. So Git's commit tree is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;aaaa111
+|_bbbb111
+|_cccc111
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;They each create a separate branch. At 1:30pm, Jasmine changes her file, commits, and creates a pull request. Her commit tree is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HEAD aaaa222
+|_princess.txt  bbbb222
+|_witch.txt     cccc111
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When the PR is approved and commit aaaa222 is deployed, &lt;em&gt;those files&lt;/em&gt; are deployed.&lt;/p&gt;
+&lt;p&gt;At 2:00pm, Sabrina changes her file, commits, and creates a PR. Her commit tree is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HEAD aaaa333
+|_princess.txt  bbbb111
+|_witch.txt     cccc222
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is the important part: &lt;strong&gt;Sabrina didn't pull from the remote, so her commit tree doesn't include Jasmine's changes.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When the PR is approved and commit aaaa333 is deployed, Git does &lt;em&gt;not&lt;/em&gt; get the latest princess.txt nor should it. Git checks out the named commit tree, and that commit has the earlier princess.txt.&lt;/p&gt;
+&lt;p&gt;What Sabrina needed to do before the PR is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git checkout main
+git pull --rebase
+git checkout myfeature
+git rebase main
+git push
+# OR git push --force &amp;lt;== if the branch was previously pushed
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If she does this, her commit tree for the PR will be:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HEAD aaaa444
+|_princess.txt  bbbb222
+|_witch.txt     cccc222
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now the PR will deploy the latest files because that's what's in commit aaaa444.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 14 May 2021 16:03:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/git_checkout_is_a_snapshot__not_a_delta</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/git_checkout_is_a_snapshot__not_a_delta</guid>
+    </item>
+    <item>
       <title>What do you mean by automated tests and continuous integration?</title>
       <description>&lt;p&gt;I had a client ask me this posts's title question recently. It's a good one. In this case, the person asking develops internal Python software, but that's not his primary job so he wasn't familiar with the deep world of enterprise-level development.&lt;/p&gt;
 &lt;p&gt;How do we explain this to a newcomer? Here's my answer, rooted in Azure DevOps. Perfect? No. Useful? I hope so!&lt;/p&gt;
@@ -1012,21 +1062,6 @@ public void ImportRecords(string folder) {}
       <pubDate>Sat, 24 Oct 2020 11:14:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_tiny_habits</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_tiny_habits</guid>
-    </item>
-    <item>
-      <title>One Sheet Summary: Atomic Habits</title>
-      <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/well-being"&gt;All One Sheet Summaries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Atomic-Habits-James-Clear/dp/B07RFSSYBH"&gt;Buy the book on Amazon&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits/images/atomic-habits.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits/images/atomic-habits.png" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Sat, 24 Oct 2020 11:13:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_atomic_habits</guid>
     </item>
   </channel>
 </rss>
