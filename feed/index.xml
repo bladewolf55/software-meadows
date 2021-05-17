@@ -6,6 +6,176 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Scrum in Azure DevOps - A simpler (custom) process</title>
+      <description>&lt;p&gt;The default Azure DevOps Scrum process is good, but I think it adds some unnecessary complication. Below I'll walk through inheriting from and modifying that process. I'm building on the work in my  post &lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro to Scrum in Azure DevOps&lt;/a&gt;, so you should start there if you need to.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Lots of what's below is my opinion, so take it for what it's worth. But don't discount it, that's mean.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="a-new-process"&gt;A New Process&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open Azure DevOps and open the Organization Settings &amp;gt; Boards &amp;gt; Process&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Select Scrum &amp;gt; Create inherited process, and name it SimpleScrum
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc01.png" alt="" /&gt;&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc02.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open the SimpleScrum process. Under Work item types, we already have an essential set of types. Let's start by creating a work item type named Story instead of Product Backlog Item (PBI).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;No, you can't rename an inherited process work item type. I hate this, and so do you.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open the PBI work item type &amp;gt; States, and hide the Committed state.&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc05.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the original tab, choose New work item type and name it Story&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc03.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Under Layout, add and update the fields to look like this. In one case, you're renaming Description to Value (orange), in others you're using an existing field (green), and in still others it's a new field (red).&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc04.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Under States, add a new state named Active in the In Progress category, and remove Committed.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can only remove an inherited state that's been hidden.&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc18.png" alt="" /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Under Rules, create the following rule.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Name: Assign Active&lt;/li&gt;
+&lt;li&gt;When: A work item stage changes to . . . Active&lt;/li&gt;
+&lt;li&gt;Then: Use the current user to set the value of . . . Assigned To&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc19.png" alt="" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Return to the Work Item Types and disable Product Backlog Item&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;br /&gt;
+Only disable PBI if you are &lt;em&gt;not&lt;/em&gt; going to apply the new process to an existing project. If you are, leave PBI enabled so that you can change existing work items from PBI to Story.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open Bug and make these changes.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Hide System Info, Acceptance Criteria, Priority, and Activity.&lt;/li&gt;
+&lt;li&gt;Optional: I hide the Build fields&lt;/li&gt;
+&lt;li&gt;Add More Info, Developer Notes, Testing Notes, Reported By, and Blocked
+&lt;blockquote&gt;
+&lt;p&gt;Any fields added to Story will be in the &amp;quot;Use existing field&amp;quot; dropdown.&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc06.png" alt="" /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;br /&gt;
+Treat Bugs as a defects reported by production users. Why? Because it makes it much easier to track Bug fix cycle time. See below for tracking defects during development.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Under States, add Active to In Progress, hide Approved and Committed&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Under Rules, create the same Assign Active rule as in Story&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="pre-release-vs-post-release-defectsbugs"&gt;Pre-Release vs Post-Release Defects/Bugs&lt;/h2&gt;
+&lt;p&gt;If your shop includes quality assurance, user-acceptance testing, or other non-unit testing, you should track your defects separately from Bugs. If those roles are in your team, then I like communicating those defects at the same level as Tasks. If they're outside the team, then I recommend tracking them at the same level as Bugs.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new work item type named PreRelease Defect with the same fields, states, and rule as Bug. Hide Description. Choose an icon you like.&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc07.png" alt="" /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;OK, the work items are ready!&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc08.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="backlog-levels"&gt;Backlog Levels&lt;/h2&gt;
+&lt;p&gt;These changes make your new work item type availabe in the New item dropdowns on boards and backlogs.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open SimpleSrum &amp;gt; Backlog levels&lt;/li&gt;
+&lt;li&gt;Edit Backlog items and add Story and PreRelease Defect. Set Default work item type to Story&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc15.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="use-the-process"&gt;Use the Process&lt;/h2&gt;
+&lt;p&gt;You can create a new Project using the SimpleScrum process, but you can also apply the process to an existing project.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;br /&gt;
+Applying a process does come with risks if there are non-matching fields. Be sure you read the documentation!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I'm going to apply the process to Baskets-R-Us (from Part 1 of the series) so you see what's involved and why starting with a new projec might be better.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open All Process and click the Scurm Team Projects link&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc09.png" alt="" /&gt;&lt;/li&gt;
+&lt;li&gt;For BRUW, select Change Process and choose SimpleScrum&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc10.png" alt="" /&gt;&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc11.png" alt="" /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="fix-up-the-work-items"&gt;Fix up the work items&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Open the BRUW project &amp;gt; Queries &amp;gt; New Query&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Return all work items&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc14.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open Column Options and add State and Reason. Sort by Work Item Type and State&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Select all Product Backlog Items, right-click &amp;gt; Change Type, select Story.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Select Commmitted items, right-click &amp;gt; Edit, change State to Active&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Select Approved items, right-click &amp;gt; Edit, change State to New&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Save items&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You may have other changes to make to your work items.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="fix-up-the-story-board"&gt;Fix up the Story Board&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Story Board customizations are at the Team level&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Open the BRUW project &amp;gt; Boards. I was greeted with this message:
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc12.png" alt="" /&gt;&lt;/li&gt;
+&lt;li&gt;Fine, I'll Correct this now. It's the board's column settings that need changing, which is what I want to do anyway!&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc13.png" alt="" /&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can't delete any columns that have stories in them until you move the stories.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Keep all existing columns. Rename Ready for QA to Ready for Test, QA to Test. Map each column's state to Active for now. Save.&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc16.png" alt="" /&gt;&lt;/li&gt;
+&lt;li&gt;Clear all filters. Move stories out of Approved, Ready for Dev and Ready for Release&lt;/li&gt;
+&lt;li&gt;Remove columns Approved,  Ready for Dev and Ready for Release.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Open the board's Settings &amp;gt; Styles, add a styling rule
+&lt;ul&gt;
+&lt;li&gt;Name: Blocked&lt;/li&gt;
+&lt;li&gt;Card color: Red&lt;/li&gt;
+&lt;li&gt;Rule criteria: Blocked = Yes&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc20.png" alt="" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If a Story's Blocked field is set to Yes, the card will show red.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc17.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="fix-up-the-task-board"&gt;Fix up the Task Board&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Task Board customizations are at the Team level&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Open the Task Board (Sprints) Settings&lt;/li&gt;
+&lt;li&gt;In Fields &amp;gt; Story, add a field to always show Parent. This lets you see a story's Feature if it has one.&lt;/li&gt;
+&lt;li&gt;Add a Styles rule for Blocked as done above&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="what-about-work-item-templates"&gt;What about work item templates?&lt;/h2&gt;
+&lt;p&gt;Azure DevOps supports templates, and I wish they were useful. Maybe they will be for you, but what I want is to assign a default template to a work item for my team. For example, have a Bug template with starter info in Repro Steps that's automatically applied on any new Bug.&lt;/p&gt;
+&lt;p&gt;Until that happens, I'll leave you with Microsoft's documentation.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/work-item-template?view=azure-devops&amp;amp;tabs=browser"&gt;Use work item templates to update stories &amp;amp; more - Azure Boards | Microsoft Docs&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;This post sets up a good, basic process. In the next post, we'll put it to work.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 17 May 2021 16:00:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process</guid>
+    </item>
+    <item>
       <title>Git commit/checkout is a snapshot, not a delta</title>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;ERROR!&lt;/strong&gt;&lt;br /&gt;
@@ -1049,24 +1219,6 @@ public void ImportRecords(string folder) {}
       <pubDate>Mon, 26 Oct 2020 10:30:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_</guid>
-    </item>
-    <item>
-      <title>One Sheet Summary: Tiny Habits</title>
-      <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/well-being"&gt;All One Sheet Summaries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Tiny-Habits-BJ-Fogg-PhD/dp/B082VKLDM9"&gt;Buy the book on Amazon&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_tiny_habits/images/tiny-habits.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_tiny_habits/images/tiny-habits.png" alt="" /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summary-_tiny_habits/images/tiny-habits-behavior-swarming.pdf"&gt;Download the PDF Version&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/one_sheet_summary-_tiny_habits/images/tiny-habits-behavior-swarming.png" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Sat, 24 Oct 2020 11:14:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/one_sheet_summary-_tiny_habits</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summary-_tiny_habits</guid>
     </item>
   </channel>
 </rss>
