@@ -74,7 +74,12 @@
               <div class='post'>
                 <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/git_commit_checkout_is_a_snapshot__not_a_delta'>Git commit/checkout is a snapshot, not a delta</a></h2>
                 <p class='post-info'><span class='posted-on'>2021-05-14 16:03</span></p>
-                <div class='post-content'><p>For many of us with past source control experience (Subversion, Team Foundation Version Control, Visual Source Safe), there's a subtlety to a Git commit that can trip us up when it comes to build/deployment pipelines. We mistakenly think the pipeline will &quot;get latest.&quot;</p>
+                <div class='post-content'><blockquote>
+<p><strong>ERROR!</strong><br />
+What I say below about how Git commits work, and the recommended pre-PR flow, is correct. However, what I say about pull requests is <em>not</em> correct. In the example below, Sabrina's PR would end up with Jasmine's change because a PR merges into master.</p>
+<p>My own confusion came from a client situation where a branch was deployed to production, instead of being merged into master first. I didn't spot that detail right away in the pipeline's history.</p>
+</blockquote>
+<p>For many of us with past source control experience (Subversion, Team Foundation Version Control, Visual Source Safe), there's a subtlety to a Git commit that can trip us up when it comes to build/deployment pipelines. We mistakenly think the pipeline will &quot;get latest.&quot;</p>
 <p>A Git commit is a snapshot of the entire source tree of the developer's workspace. It's <em>not</em> a record of only that commit's changes. This is why it's critical, before submitting a branch pull request or a commit to mainline (depending on your workflow) that you pull the remote repository's latest code into your local repository.</p>
 <p>Imagine two developers, Jasmine and Sabrina. They're going to work on a repo with two files.</p>
 <pre><code>|_princess.txt
