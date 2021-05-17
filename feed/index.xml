@@ -15,7 +15,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Open Azure DevOps and open the Organization Settings &amp;gt; Boards &amp;gt; Process&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Select Scrum &amp;gt; Create inherited process, and name it SimpleScrum
+&lt;li&gt;&lt;p&gt;Select Scrum &amp;gt; Create inherited process, and name it SimpleScrum&lt;br /&gt;
 &lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc01.png" alt="" /&gt;&lt;br /&gt;
 &lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc02.png" alt="" /&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -97,11 +97,13 @@ Applying a process does come with risks if there are non-matching fields. Be sur
 &lt;/blockquote&gt;
 &lt;p&gt;I'm going to apply the process to Baskets-R-Us (from Part 1 of the series) so you see what's involved and why starting with a new projec might be better.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Open All Process and click the Scurm Team Projects link&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc09.png" alt="" /&gt;&lt;/li&gt;
-&lt;li&gt;For BRUW, select Change Process and choose SimpleScrum&lt;br /&gt;
+&lt;li&gt;&lt;p&gt;Open All Process and click the Scurm Team Projects link&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc09.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;For BRUW, select Change Process and choose SimpleScrum&lt;br /&gt;
 &lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc10.png" alt="" /&gt;&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc11.png" alt="" /&gt;&lt;/li&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc11.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id="fix-up-the-work-items"&gt;Fix up the work items&lt;/h2&gt;
 &lt;ol&gt;
@@ -129,10 +131,12 @@ Applying a process does come with risks if there are non-matching fields. Be sur
 &lt;p&gt;Story Board customizations are at the Team level&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
-&lt;li&gt;Open the BRUW project &amp;gt; Boards. I was greeted with this message:
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc12.png" alt="" /&gt;&lt;/li&gt;
-&lt;li&gt;Fine, I'll Correct this now. It's the board's column settings that need changing, which is what I want to do anyway!&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc13.png" alt="" /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Open the BRUW project &amp;gt; Boards. I was greeted with this message:
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc12.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fine, I'll Correct this now. It's the board's column settings that need changing, which is what I want to do anyway!&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc13.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You can't delete any columns that have stories in them until you move the stories.&lt;/p&gt;
@@ -144,7 +148,7 @@ Applying a process does come with risks if there are non-matching fields. Be sur
 &lt;li&gt;Remove columns Approved,  Ready for Dev and Ready for Release.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;Open the board's Settings &amp;gt; Styles, add a styling rule
+&lt;li&gt;&lt;p&gt;Open the board's Settings &amp;gt; Styles, add a styling rule&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Name: Blocked&lt;/li&gt;
 &lt;li&gt;Card color: Red&lt;/li&gt;
