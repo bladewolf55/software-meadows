@@ -11,6 +11,21 @@
 &lt;blockquote&gt;
 &lt;p&gt;Lots of what's below is my opinion, so take it for what it's worth. But don't discount it, that's mean.&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h2 id="the-framework"&gt;The Framework&lt;/h2&gt;
+&lt;p&gt;In my experience, when Developers, Scrum Masters, and Product Owners get their hands on electronic project management software, they add and add to what's already there. This is usually a mistake. Instead, pare down to the simplest thing that works, and only add features when needed.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As an aside, the other thing organizations do is try to enforce a single process on all teams. This is not Agile, because it removes team autonomy, self-organization, and effectiveness. The usual reason given is to make reporting across teams easier. That gives too much weight to upper management control. Instead, ask Developers to help figure out how to deliver cross-team reports. While you're at it, see if you can pare down those reports, too. Ask, &amp;quot;How is this report delivering user value?&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;One way to find the simplest thing that works is imagine--or put--it on paper. Here's all we're really trying to capture.&lt;/p&gt;
+&lt;p&gt;The work item structure is:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Feature
+|_Story
+  |_Task
+|_Bug
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A story or bug card--sticky note version!--might look like this and has all the relevent info plus pointers to more detail.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc21.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Try to keep your electronic version that simple.&lt;/p&gt;
 &lt;h2 id="a-new-process"&gt;A New Process&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Open Azure DevOps and open the Organization Settings &amp;gt; Boards &amp;gt; Process&lt;/p&gt;
@@ -33,7 +48,7 @@
 &lt;li&gt;&lt;p&gt;Under Layout, add and update the fields to look like this. In one case, you're renaming Description to Value (orange), in others you're using an existing field (green), and in still others it's a new field (red).&lt;br /&gt;
 &lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc04.png" alt="" /&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Under States, add a new state named Active in the In Progress category, and remove Committed.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Under States, add two new states: Active in the In Progress category and Removed in the Removed category, and remove Committed.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You can only remove an inherited state that's been hidden.&lt;br /&gt;
 &lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc18.png" alt="" /&gt;&lt;/p&gt;
@@ -173,7 +188,9 @@ Applying a process does come with risks if there are non-matching fields. Be sur
 &lt;p&gt;Until that happens, I'll leave you with Microsoft's documentation.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/work-item-template?view=azure-devops&amp;amp;tabs=browser"&gt;Use work item templates to update stories &amp;amp; more - Azure Boards | Microsoft Docs&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;This post sets up a good, basic process. In the next post, we'll put it to work.&lt;/p&gt;
+&lt;p&gt;This post sets up a good, basic process. A key aspect is that work items at the same level are structured almost the same. This helps reduce cognitive friction switching from a Bug to a PreRelease Defect to a Story, and emphasizes that the primary difference between them is their name.&lt;/p&gt;
+&lt;p&gt;As one Scrum consultant I heard interviewed put it, &amp;quot;I think of every work item as a story.&amp;quot;&lt;/p&gt;
+&lt;p&gt;In the next post, we'll put this process to work.&lt;/p&gt;
 </description>
       <pubDate>Mon, 17 May 2021 16:00:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process</link>
