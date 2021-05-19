@@ -6,6 +6,21 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Graphic - Git Merge vs Rebase</title>
+      <description>&lt;p&gt;I've struggled to find a graphic of merge vs rebase that made sense to me, so I created one.&lt;/p&gt;
+&lt;p&gt;The way I think of rebase is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I'm making it seem to the other branch like I just did this work. I'm putting my work last.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/graphic_-_git_merge_vs_rebase/images/git-merge-vs-rebase.svg"&gt;SVG File&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://www.softwaremeadows.com/posts/graphic_-_git_merge_vs_rebase/images/git-merge-vs-rebase.png"&gt;PNG File&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/graphic_-_git_merge_vs_rebase/images/git-merge-vs-rebase.png" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Wed, 19 May 2021 16:22:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/graphic_-_git_merge_vs_rebase</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/graphic_-_git_merge_vs_rebase</guid>
+    </item>
+    <item>
       <title>Scrum in Azure DevOps - A simpler (custom) process</title>
       <description>&lt;p&gt;The default Azure DevOps Scrum process is good, but I think it adds some unnecessary complication. Below I'll walk through inheriting from and modifying that process. I'm building on the work in my  post &lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro to Scrum in Azure DevOps&lt;/a&gt;, so you should start there if you need to.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1183,63 +1198,6 @@ Description is required.
       <pubDate>Fri, 30 Oct 2020 11:38:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster</guid>
-    </item>
-    <item>
-      <title>"Path" is ambiguous. Here are clear, consistent variable names.</title>
-      <description>&lt;h2 id="quiz-du-jour"&gt;Quiz du jour&lt;/h2&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;public void ImportRecords(string path) {}
-
-public void ImportRecords(string file) {}
-
-public void ImportRecords(string folder) {}
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;What's the argument for each of the parameters above? Does &amp;quot;path&amp;quot; include a filename? Do &amp;quot;file&amp;quot; and &amp;quot;folder&amp;quot; include a path?&lt;/p&gt;
-&lt;p&gt;File system input/output is just about as old as computing itself, and yet I'll bet you see--and use!--ambiguous I/O variables all the time.&lt;/p&gt;
-&lt;h2 id="clear-consistent"&gt;Clear, Consistent&lt;/h2&gt;
-&lt;p&gt;Here are four variable names I've settled on to keep the meanings clear. They take just a little more effort at first, and with practice become a habit.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Variable&lt;/th&gt;
-&lt;th&gt;Means&lt;/th&gt;
-&lt;th&gt;Example&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;fileName&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;just the file name&lt;/td&gt;
-&lt;td&gt;customers.csv&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;filePath&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;full path to file&lt;/td&gt;
-&lt;td&gt;c:\transfer\import\customers.csv&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;folderName&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;just the folder name&lt;/td&gt;
-&lt;td&gt;import&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;folderPath&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;full path to the folder&lt;/td&gt;
-&lt;td&gt;c:\transfer\import&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/2235173/file-name-path-name-base-name-naming-standard-for-pieces-of-a-path"&gt;language agnostic - File name? Path name? Base name? Naming standard for pieces of a path - Stack Overflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.mikepope.com/blog/DisplayBlog.aspx?permalink=2346"&gt;Editing by analogy - mike's web log&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Path_(computing)"&gt;Path (computing) - Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.lifewire.com/unc-universal-naming-convention-818230"&gt;Working With the Universal Naming Convention (UNC Path)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Mon, 26 Oct 2020 10:30:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_</guid>
     </item>
   </channel>
 </rss>

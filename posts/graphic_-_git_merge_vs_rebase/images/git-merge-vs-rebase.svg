@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 215.9 279.4"
+   height="11in"
+   width="8.5in"
+   sodipodi:docname="Git merge vs rebase.svg"
+   inkscape:export-filename="C:\Users\charl\Downloads\Git merge vs rebase.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     units="in"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="in"
+     inkscape:cy="473.18169"
+     inkscape:cx="296.84663"
+     inkscape:zoom="0.7"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:snap-global="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Charles L Flatt</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <path
+       style="fill:none;stroke:#f4a338;stroke-width:2.54;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 80.433634,110.99459 c 0,0 -3.243387,3.25059 -6.650049,4.30995 -4.29697,1.33621 -8.9654,0.86156 -8.960669,4.7029 0.01127,9.15364 1.65e-4,37.79375 0,46.86905 -6.4e-5,3.48695 5.869641,4.97851 9.567817,7.82106 3.766264,2.89488 6.297685,6.97537 6.297685,6.97537"
+       id="path882"
+       sodipodi:nodetypes="cssssc" />
+    <path
+       style="fill:none;stroke:#172ba5;stroke-width:2.61248;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 80.508926,236.53958 V 45.808634"
+       id="path830" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="67.723778"
+       y="195.03586"
+       id="text834"><tspan
+         sodipodi:role="line"
+         id="tspan832"
+         x="67.723778"
+         y="195.03586"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583">Other work</tspan><tspan
+         sodipodi:role="line"
+         x="67.723778"
+         y="205.6192"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan936">committed</tspan><tspan
+         sodipodi:role="line"
+         x="67.723778"
+         y="216.20253"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan836">BEFORE </tspan><tspan
+         sodipodi:role="line"
+         x="67.723778"
+         y="226.78587"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan930">I started</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="67.52742"
+       y="66.36232"
+       id="text834-4"><tspan
+         sodipodi:role="line"
+         x="67.52742"
+         y="66.36232"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan918">Other work</tspan><tspan
+         sodipodi:role="line"
+         x="67.52742"
+         y="76.945656"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan934">committed</tspan><tspan
+         sodipodi:role="line"
+         x="67.52742"
+         y="87.528992"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan836-8">AFTER </tspan><tspan
+         sodipodi:role="line"
+         x="67.52742"
+         y="98.112335"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan932">I started</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="55.852493"
+       y="147.32484"
+       id="text834-4-5"><tspan
+         sodipodi:role="line"
+         x="55.852493"
+         y="147.32484"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan836-8-4">My work</tspan></text>
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path896"
+       cx="80.697922"
+       cy="223.9509"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle898"
+       cx="80.697922"
+       cy="208.07588"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle900"
+       cx="80.697922"
+       cy="192.20087"
+       r="4.3467264" />
+    <circle
+       style="fill:#f4a338;fill-opacity:1;stroke:#5e3805;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle902"
+       cx="64.822929"
+       cy="160.45084"
+       r="4.3467264" />
+    <circle
+       style="fill:#f4a338;fill-opacity:1;stroke:#5e3805;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle904"
+       cx="64.822929"
+       cy="144.57582"
+       r="4.3467264" />
+    <circle
+       style="fill:#f4a338;fill-opacity:1;stroke:#5e3805;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle906"
+       cx="64.822929"
+       cy="128.70081"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle908"
+       cx="80.697922"
+       cy="102.24249"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle910"
+       cx="80.697922"
+       cy="86.3675"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle912"
+       cx="80.697922"
+       cy="70.492508"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle914"
+       cx="80.697922"
+       cy="54.617508"
+       r="4.3467264" />
+    <path
+       style="fill:none;stroke:#172ba5;stroke-width:2.61248;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 133.42561,236.53958 V 45.808634"
+       id="path938" />
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="189.43214"
+       y="195.03586"
+       id="text948"><tspan
+         sodipodi:role="line"
+         id="tspan940"
+         x="189.43214"
+         y="195.03586"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583">Other work</tspan><tspan
+         sodipodi:role="line"
+         x="189.43214"
+         y="205.6192"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan942">committed</tspan><tspan
+         sodipodi:role="line"
+         x="189.43214"
+         y="216.20253"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan944">BEFORE </tspan><tspan
+         sodipodi:role="line"
+         x="189.43214"
+         y="226.78587"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan946">I started</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="189.23579"
+       y="129.8623"
+       id="text958"><tspan
+         sodipodi:role="line"
+         x="189.23579"
+         y="129.8623"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan950">Other work</tspan><tspan
+         sodipodi:role="line"
+         x="189.23579"
+         y="140.44565"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan952">committed</tspan><tspan
+         sodipodi:role="line"
+         x="189.23579"
+         y="151.02898"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan954">AFTER </tspan><tspan
+         sodipodi:role="line"
+         x="189.23579"
+         y="161.61232"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan956">I started</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8.46667px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="178.72023"
+       y="78.533173"
+       id="text962"><tspan
+         sodipodi:role="line"
+         x="178.72023"
+         y="78.533173"
+         style="text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan960">My work</tspan></text>
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle964"
+       cx="133.61456"
+       cy="223.9509"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle966"
+       cx="133.61456"
+       cy="208.07588"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle968"
+       cx="133.61456"
+       cy="192.20087"
+       r="4.3467264" />
+    <circle
+       style="fill:#f4a338;fill-opacity:1;stroke:#5e3805;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle970"
+       cx="133.61456"
+       cy="91.659164"
+       r="4.3467264" />
+    <circle
+       style="fill:#f4a338;fill-opacity:1;stroke:#5e3805;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle972"
+       cx="133.61456"
+       cy="75.784172"
+       r="4.3467264" />
+    <circle
+       style="fill:#f4a338;fill-opacity:1;stroke:#5e3805;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle974"
+       cx="133.61456"
+       cy="59.909176"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle976"
+       cx="133.61456"
+       cy="165.74252"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle978"
+       cx="133.61456"
+       cy="149.86751"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle980"
+       cx="133.61456"
+       cy="133.99249"
+       r="4.3467264" />
+    <circle
+       style="fill:#00bfff;stroke:#172ba5;stroke-width:1.27;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle982"
+       cx="133.61456"
+       cy="118.11749"
+       r="4.3467264" />
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="81.185036"
+       y="36.20126"
+       id="text962-8"><tspan
+         sodipodi:role="line"
+         x="81.185036"
+         y="36.20126"
+         style="font-size:14.1111px;text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan960-1">Merge</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14.1111px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.264583"
+       x="177.41782"
+       y="36.20126"
+       id="text962-4"><tspan
+         sodipodi:role="line"
+         x="177.41782"
+         y="36.20126"
+         style="font-size:14.1111px;text-align:end;text-anchor:end;stroke-width:0.264583"
+         id="tspan960-0">Rebase</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.52778px;line-height:1.25;font-family:'Atkinson Hyperlegible';-inkscape-font-specification:'Atkinson Hyperlegible, Normal';text-align:end;text-anchor:end;stroke-width:0.124137"
+       x="187.72972"
+       y="247.04785"
+       id="text834-4-5-9"><tspan
+         sodipodi:role="line"
+         x="187.72972"
+         y="247.04785"
+         style="font-size:3.52778px;text-align:end;text-anchor:end;stroke-width:0.124137"
+         id="tspan836-8-4-4">Charles L Flatt, https://www.softwaremeadows.com</tspan></text>
+  </g>
+</svg>
