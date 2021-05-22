@@ -6,6 +6,21 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Unit Testing is Part of a Developer's Job Description</title>
+      <description>&lt;p&gt;The debate over unit testing's value is over. Twenty-plus years of evidence in software development, and decades more than that in other fields, proves that inspecting for quality early is superior to doing it late.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Whether to unit test shouldn't even be a discussion.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here's a short and sweet &amp;quot;slide deck&amp;quot; on the subject.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/images/unit-testing-slide-1.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/images/unit-testing-slide-2.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/images/unit-testing-slide-3.png" alt="" /&gt;&lt;/p&gt;
+</description>
+      <pubDate>Sat, 22 May 2021 10:51:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description</guid>
+    </item>
+    <item>
       <title>Graphic - Git Merge vs Rebase</title>
       <description>&lt;p&gt;I've struggled to find a graphic of merge vs rebase that made sense to me, so I created one.&lt;/p&gt;
 &lt;p&gt;The way I think of rebase is:&lt;/p&gt;
@@ -22,7 +37,14 @@
     </item>
     <item>
       <title>Scrum in Azure DevOps - A simpler (custom) process</title>
-      <description>&lt;p&gt;The default Azure DevOps Scrum process is good, but I think it adds some unnecessary complication. Below I'll walk through inheriting from and modifying that process. I'm building on the work in my  post &lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro to Scrum in Azure DevOps&lt;/a&gt;, so you should start there if you need to.&lt;/p&gt;
+      <description>&lt;p&gt;Series Parts&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro To Scrum In Azure Devops&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/"&gt;Scrum In Azure Devops - A Simpler (Custom) Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/"&gt;Scrum In Azure Devops - The Story Board is your process heart&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
+&lt;p&gt;The default Azure DevOps Scrum process is good, but I think it adds some unnecessary complication. Below I'll walk through inheriting from and modifying that process. I'm building on the work in my  post &lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro to Scrum in Azure DevOps&lt;/a&gt;, so you should start there if you need to.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Lots of what's below is my opinion, so take it for what it's worth. But don't discount it, that's mean.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -311,7 +333,14 @@ git push
     </item>
     <item>
       <title>A Simple Intro to Scrum in Azure DevOps</title>
-      <description>&lt;p&gt;Azure DevOps is a flexible--yet opinionated--application to use for Scrum. It's got a large number of settings, and sometimes how things are named is confusing. This is a &amp;quot;get up and running&amp;quot; guide that includes the basics of the Scrum framework and a daily flow for your team.&lt;/p&gt;
+      <description>&lt;p&gt;Series Parts&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro To Scrum In Azure Devops&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/"&gt;Scrum In Azure Devops - A Simpler (Custom) Process&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/"&gt;Scrum In Azure Devops - The Story Board is your process heart&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
+&lt;p&gt;Azure DevOps is a flexible--yet opinionated--application to use for Scrum. It's got a large number of settings, and sometimes how things are named is confusing. This is a &amp;quot;get up and running&amp;quot; guide that includes the basics of the Scrum framework and a daily flow for your team.&lt;/p&gt;
 &lt;p&gt;What's included:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Scrum basics&lt;/li&gt;
@@ -1186,18 +1215,6 @@ Description is required.
       <pubDate>Mon, 7 Dec 2020 14:38:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/tech_debt_-_you_cant_put_maintenance_last_if_you_want_to_drive_a_race</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/tech_debt_-_you_cant_put_maintenance_last_if_you_want_to_drive_a_race</guid>
-    </item>
-    <item>
-      <title>The Four Foundations of Software Improvement - Letter-Size Art Deco Poster</title>
-      <description>&lt;p&gt;For me, these cover most--if not all--the bases. Plus, &lt;em&gt;Art Deco&lt;/em&gt;!&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster/images/four-foundations.pdf"&gt;Download the PDF&lt;/a&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster/images/four-foundations.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span style="font-size:smaller;"&gt;Open SVG Art Deco border found &lt;a href="https://freesvg.org/art-deco-border"&gt;here&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
-</description>
-      <pubDate>Fri, 30 Oct 2020 11:38:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_four_foundations_of_software_improvement_-_letter-size_poster</guid>
     </item>
   </channel>
 </rss>
