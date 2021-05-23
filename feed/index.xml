@@ -61,6 +61,8 @@
   |_Task
 |_Bug
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Stories and bugs move through a board.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/kanban-board.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;A story or bug card--sticky note version!--might look like this and has all the relevent info plus pointers to more detail.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc21.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Try to keep your electronic version that simple.&lt;/p&gt;
