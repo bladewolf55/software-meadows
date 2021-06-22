@@ -253,7 +253,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro To Scrum In Azure Devops&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/"&gt;Scrum In Azure Devops - A Simpler (Custom) Process&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/"&gt;Scrum In Azure Devops - The Story Board is your process heart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/"&gt;Scrum In Azure Devops - The Story Board is your process heart&lt;/a&gt; COMING SOON!&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
 &lt;p&gt;The default Azure DevOps Scrum process is good, but I think it adds some unnecessary complication. Below I'll walk through inheriting from and modifying that process. I'm building on the work in my  post &lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro to Scrum in Azure DevOps&lt;/a&gt;, so you should start there if you need to.&lt;/p&gt;
@@ -361,7 +361,7 @@ Treat Bugs as a defects reported by production users. Why? Because it makes it m
 &lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;br /&gt;
 Applying a process does come with risks if there are non-matching fields. Be sure you read the documentation!&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I'm going to apply the process to Baskets-R-Us (from Part 1 of the series) so you see what's involved and why starting with a new projec might be better.&lt;/p&gt;
+&lt;p&gt;I'm going to apply the process to Baskets-R-Us (from Part 1 of the series) so you see what's involved and why starting with a new project might be better.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Open All Process and click the Scurm Team Projects link&lt;br /&gt;
 &lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc09.png" alt="" /&gt;&lt;/p&gt;
@@ -551,7 +551,7 @@ git push
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro To Scrum In Azure Devops&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/"&gt;Scrum In Azure Devops - A Simpler (Custom) Process&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/"&gt;Scrum In Azure Devops - The Story Board is your process heart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/"&gt;Scrum In Azure Devops - The Story Board is your process heart&lt;/a&gt; COMING SOON!&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Azure DevOps is a flexible--yet opinionated--application to use for Scrum. It's got a large number of settings, and sometimes how things are named is confusing. This is a &amp;quot;get up and running&amp;quot; guide that includes the basics of the Scrum framework and a daily flow for your team.&lt;/p&gt;
