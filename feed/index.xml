@@ -45,7 +45,7 @@ git push --force
 &lt;li&gt;You &lt;em&gt;do not ever&lt;/em&gt; rebase main onto a branch and then push main.&lt;/li&gt;
 &lt;li&gt;If someone else is working on your branch with you, you tell them to &lt;code&gt;git pull --force&lt;/code&gt;.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The first one you should never, ever even think of doing. The second one is rare because developer tend to work indepedently on short-lived branches.&lt;/p&gt;
+&lt;p&gt;The first one you should never, ever even think of doing. The second one is rare because developers tend to work indepedently on short-lived branches.&lt;/p&gt;
 &lt;p&gt;When it comes to merge vs rebase, the directions of change are always:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Merge from branch into main. Rebase branch onto main.&lt;/p&gt;
