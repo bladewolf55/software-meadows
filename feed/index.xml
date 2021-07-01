@@ -6,6 +6,58 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Basic Daily Git Commands, including "Rebase is Good"</title>
+      <description>&lt;p&gt;These are the commands I use on a daily basis. Hopefully this helps explain and put to rest the fear of &lt;code&gt;rebase&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I have aliases for these that mostly came from &lt;a href="https://haacked.com/archive/2019/02/14/including-git-aliases/"&gt;Phil Haack&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The below commands assume your mainline branch is named 'main'. Adjust accordingly if it's called 'master,' 'trunk', etc.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;# Start day getting latest
+git checkout main --rebase
+# Create a new branch
+git checkout -b features/my-feature
+# work for a half hour
+git add -A
+git commit -m &amp;quot;Did some work&amp;quot;
+# push branch to remote in case I die
+git push --set-upstream origin features/my-feature
+# work another couple of hours, occasionally syncing to remote
+# (one liner)
+git add -A &amp;amp;&amp;amp; git commit -m &amp;quot;Did some other work&amp;quot;
+git push
+# ready to submit PR. I want my code to be *after* the latest, so . . .
+git checkout main --rebase
+git pull [gets latest changes]
+git checkout feature/my-feature
+git rebase main
+# deal with any merge conflicts, then squash and force push
+git rebase main --interactive [I squash all commits into one]
+git push --force
+# I'm done. Create the pull request.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="qa"&gt;Q&amp;amp;A&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Isn't rebase bad and you should never ever do it because everyone says so?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;No. Rebase is good and you're listening to the wrong people. It's what significantly reduces merge conflicts in your pull requests. What's bad about rebasing is not understand what it does and what problems it could cause.&lt;/p&gt;
+&lt;p&gt;Rebase changes the file hashes for your branch's commits. You're saying, &amp;quot;If I merge my changes into main, they'll be in the middle of what's already committed. I want them at the end. So take my changes and apply them to the end of main &lt;em&gt;as if I just made them&lt;/em&gt;.&amp;quot; From Git's point of view, these are new commits, so they get new hashes. That's why you have to force-push them, &lt;em&gt;overwriting&lt;/em&gt; the remote branch.&lt;/p&gt;
+&lt;p&gt;This is OK as long as:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;You &lt;em&gt;do not&lt;/em&gt; push directly to main.&lt;/li&gt;
+&lt;li&gt;If someone else is working on your branch with you, you tell them to &lt;code&gt;git pull --force&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first one you should never, ever even think of doing. The second one is rare because developer tend to work indepedently on short-lived branches.&lt;/p&gt;
+&lt;p&gt;When it comes to merge vs rebase, the directions of change are always:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Merge from branch into main. Rebase branch onto main.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When you &amp;quot;merge from&amp;quot;, you start in main. When you &amp;quot;rebase onto&amp;quot; you start in the branch.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What about merge conflicts?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That's a whole other topic. What matters is using a good diff/merge tool. The one I use, &lt;a href="https://github.com/KDE/kdiff3"&gt;KDiff3&lt;/a&gt;, is really old but I like it best.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 1 Jul 2021 13:28:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/basic_daily_git_commands__including_rebase_is_good</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/basic_daily_git_commands__including_rebase_is_good</guid>
+    </item>
+    <item>
       <title>Professional Development Fundamentals</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/professional_development_fundamentals/images/pro-dev-fun-logo.png" alt="" /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1207,137 +1259,6 @@ Things that might go wrong. These SHOULD end up on product backlogs and get fixe
       <pubDate>Tue, 5 Jan 2021 14:00:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/one_sheet_summry-_leadership_is_language</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/one_sheet_summry-_leadership_is_language</guid>
-    </item>
-    <item>
-      <title>NuGet 5.7+ Ignores NuSpec CSProj Replacement Tokens - and other weird behaviors</title>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;&lt;br /&gt;
-A stellar sleuth discovered that the error messages are related to whether the &lt;code&gt;nuget.exe&lt;/code&gt; executable's &amp;quot;Unblock&amp;quot; attribute is checked. When it is (i.e. the file is unblocked), the error message doesn't occur. While it's still a bug, at least there's a solid workaround.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio/images/sc02.png" alt="" /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I submitted this issue in on 2020-08-28. It's had some comments and confirmations, but the moderators are having trouble reproducing it. I'm hoping this will help.&lt;/p&gt;
-&lt;p&gt;Source Code:  &lt;a href="https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio/images/ClassLibrary1.zip"&gt;ClassLibrary1.zip&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="title"&gt;Title&lt;/h2&gt;
-&lt;p&gt;Here's the link to the issue.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/NuGet/Home/issues/9954"&gt;NuGet again throwing exceptions &amp;quot;authors is required&amp;quot; &amp;quot;description is required&amp;quot;, ignoring csproj/nuspec replacement tokens · Issue #9954&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="environment"&gt;Environment&lt;/h2&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Windows 10 Pro
-Visual Studio 2019
-.NET Framework 4.8
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="more-info"&gt;More Info&lt;/h2&gt;
-&lt;p&gt;There are multiple failures being reported below. The fundamental one is that NuGet 5.7 and above ignore token replacements in .nuspec files from .NET Framework project .csproj files.&lt;/p&gt;
-&lt;h2 id="steps-to-reproduce"&gt;Steps to Reproduce&lt;/h2&gt;
-&lt;h3 id="pre-setup"&gt;Pre-setup&lt;/h3&gt;
-&lt;p&gt;Check the Windows PATH environment variables (&lt;code&gt;System Properties &amp;gt; Advanced &amp;gt; Environment Variables&lt;/code&gt;) at the user and system levels and be sure that &lt;em&gt;no&lt;/em&gt; version of &lt;code&gt;nuget.exe&lt;/code&gt; is on the path. One way to verify is to open a new command window and type &lt;code&gt;nuget&lt;/code&gt;. If there's output, &lt;code&gt;nuget&lt;/code&gt; is on the path.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A reboot may be required for the computer to recognize the path change. Normally, it only takes closing completely out of the System Properties editor.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Remember to open a new command window after PATH changes so the environment variable is reloaded.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id="steps"&gt;Steps&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;In Visual Studio, create a new .NET Framework Console Application.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio/images/sc01.png" alt="" /&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Open Properties\AssemblyInfo.cs add the values that are substituted for $description and $author:
-&lt;pre&gt;&lt;code class="language-cs"&gt;[assembly: AssemblyDescription(&amp;quot;Desc&amp;quot;)]
-[assembly: AssemblyConfiguration(&amp;quot;&amp;quot;)]
-[assembly: AssemblyCompany(&amp;quot;Name&amp;quot;)]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;Download NuGet 5.7 &lt;a href="https://www.nuget.org/downloads"&gt;https://www.nuget.org/downloads&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Copy to the project folder&lt;/li&gt;
-&lt;li&gt;Rename to &lt;code&gt;nuget.exe&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It's important that the file be named &lt;code&gt;nuget.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;In the &lt;code&gt;ClassLibrary1.csproj&lt;/code&gt; project folder, run&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;nuget spec
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Reduce the resulting &lt;code&gt;ClassLibrary1.nuspec&lt;/code&gt; file to the minimum required properties&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
-&amp;lt;package &amp;gt;
-  &amp;lt;metadata&amp;gt;
-    &amp;lt;id&amp;gt;$id$&amp;lt;/id&amp;gt;
-    &amp;lt;version&amp;gt;$version$&amp;lt;/version&amp;gt;
-    &amp;lt;authors&amp;gt;$author$&amp;lt;/authors&amp;gt;
-    &amp;lt;description&amp;gt;$description$&amp;lt;/description&amp;gt;
-  &amp;lt;/metadata&amp;gt;
-&amp;lt;/package&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Build the project or solution.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;In project folder, run &lt;code&gt;nuget pack&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Expected&lt;/strong&gt;: Successful build of new package&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Actual&lt;/strong&gt;: Error that Author and Description are missing:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Attempting to build package from 'ClassLibrary1.csproj'.
-MSBuild auto-detection: using msbuild version '16.8.2.56705' from 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'.
-Packing files from 'C:\Users\charl\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug'.
-Using 'ClassLibrary1.nuspec' for metadata.
-Authors is required.
-Description is required.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="nuget-5.6-behavior"&gt;NuGet 5.6 Behavior&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;In the above environment, replace the &lt;code&gt;nuget.exe&lt;/code&gt; version 5.7 with version 5.6.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It's important that the file be named &lt;code&gt;nuget.exe&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Run &lt;code&gt;nuget pack&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The pack succeeds.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Attempting to build package from 'ClassLibrary1.csproj'.
-MSBuild auto-detection: using msbuild version '16.8.2.56705' from 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'.
-Packing files from 'C:\Users\charl\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug'.
-Using 'ClassLibrary1.nuspec' for metadata.
-Successfully created package 'C:\Users\charl\source\repos\ClassLibrary1\ClassLibrary1\ClassLibrary1.1.0.0.nupkg'.
-WARNING: NU5128: Some target frameworks declared in the dependencies group of the nuspec and the lib/ref folder do not have exact matches in the other location. Consult the list of actions below:
-- Add a dependency group for .NETFramework4.8 to the nuspec
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="nuget-5.8-and-5.9-preview-behaviors"&gt;NuGet 5.8 and 5.9 preview Behaviors&lt;/h2&gt;
-&lt;p&gt;Both versions exhibit the same bug as 5.7.&lt;/p&gt;
-&lt;h2 id="behavior-when-renaming-nuget.exe"&gt;Behavior When Renaming &lt;code&gt;nuget.exe&lt;/code&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Copy version 5.6 into the project folder&lt;/li&gt;
-&lt;li&gt;Rename it &lt;code&gt;nugetx.exe&lt;/code&gt; (It doesn't matter what it's renamed to, as long as it isn't &lt;code&gt;nuget.exe&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;nugetx.exe pack&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Unlike when named &lt;code&gt;nuget.exe&lt;/code&gt;, version 5.6 &lt;code&gt;pack&lt;/code&gt; fails with the unexpected error!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Attempting to build package from 'ClassLibrary1.csproj'.
-MSBuild auto-detection: using msbuild version '16.8.2.56705' from 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin'.
-Packing files from 'C:\Users\charl\source\repos\ClassLibrary1\ClassLibrary1\bin\Debug'.
-Using 'ClassLibrary1.nuspec' for metadata.
-Authors is required.
-Description is required.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="behavior-when-two-nuget-files-in-path"&gt;Behavior When Two NuGet files in Path&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Copy version 5.6 into the project folder and rename to &lt;code&gt;nuget.exe&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Copy version 5.6 &lt;em&gt;again&lt;/em&gt; into the project folder and rename to &lt;code&gt;nugetx.exe&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;nuget pack&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;nugetx pack&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;In &lt;em&gt;both&lt;/em&gt; cases, the pack succeeds.&lt;/p&gt;
-&lt;h2 id="real-world-concerns"&gt;Real World Concerns&lt;/h2&gt;
-&lt;p&gt;Many organizations will, in a continuous deployment environment, use a known path to the latest NuGet package and expect it to be named &lt;code&gt;nuget.exe&lt;/code&gt;. As seen above, those organizations will suddenly find themselves with failing package steps.&lt;/p&gt;
-&lt;p&gt;In order to continue, they must either stay on version 5.6 and accept the potential security issues there, or rework their pipeline.&lt;/p&gt;
-</description>
-      <pubDate>Sat, 26 Dec 2020 13:38:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/nuget_5_7+_ignores_nuspec_replacement_tokens_-_and_other_weird_behavio</guid>
     </item>
   </channel>
 </rss>
