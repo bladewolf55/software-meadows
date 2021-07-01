@@ -104,11 +104,12 @@ git push --force
 </code></pre>
 <h2 id="qa">Q&amp;A</h2>
 <p><em>Isn't rebase bad and you should never ever do it because everyone says so?</em></p>
-<p>No. Rebase is good and you're listening to the wrong people. It's what significantly reduces merge conflicts in your pull requests. What's bad about rebasing is not understand what it does and what problems it could cause.</p>
-<p>Rebase changes the file hashes for your branch's commits. You're saying, &quot;If I merge my changes into main, they'll be in the middle of what's already committed. I want them at the end. So take my changes and apply them to the end of main <em>as if I just made them</em>.&quot; From Git's point of view, these are new commits, so they get new hashes. That's why you have to force-push them, <em>overwriting</em> the remote branch.</p>
+<p>No. Rebase is good and you're listening to the wrong people. It's what significantly reduces merge conflicts in your pull requests. What's bad is not understanding what rebase does and what problems it could cause.</p>
+<p>When rebasing onto main, you're saying, &quot;If I merge my changes into main now, they'll be in the middle of what's already committed. I want them at the end. So take my changes and apply them to the end of main <em>as if I just made them</em>.&quot;</p>
+<p>From Git's point of view, these are new commits, so they get new file hashes. That's why you have to force-push them, <em>overwriting</em> the remote branch.</p>
 <p>This is OK as long as:</p>
 <ol>
-<li>You <em>do not</em> push directly to main.</li>
+<li>You <em>do not ever</em> rebase main onto a branch and then push main.</li>
 <li>If someone else is working on your branch with you, you tell them to <code>git pull --force</code>.</li>
 </ol>
 <p>The first one you should never, ever even think of doing. The second one is rare because developer tend to work indepedently on short-lived branches.</p>
