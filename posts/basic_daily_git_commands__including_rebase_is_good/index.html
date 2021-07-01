@@ -70,7 +70,7 @@
 <p>The below commands assume your mainline branch is named 'main'. Adjust accordingly if it's called 'master,' 'trunk', etc.</p>
 </blockquote>
 <pre><code class="language-powershell"># Start day getting latest
-git checkout main --rebase
+git checkout main
 # Create a new branch
 git checkout -b features/my-feature
 # work for a half hour
@@ -83,7 +83,7 @@ git push --set-upstream origin features/my-feature
 git add -A &amp;&amp; git commit -m &quot;Did some other work&quot;
 git push
 # ready to submit PR. I want my code to be *after* the latest, so . . .
-git checkout main --rebase
+git checkout main
 git pull [gets latest changes]
 git checkout feature/my-feature
 git rebase main
