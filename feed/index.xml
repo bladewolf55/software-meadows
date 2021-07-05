@@ -52,7 +52,7 @@ git push --force
 &lt;/blockquote&gt;
 &lt;p&gt;When you &amp;quot;merge from&amp;quot;, you start in main. When you &amp;quot;rebase onto&amp;quot; you start in the branch.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;What about merge conflicts?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;That's a whole other topic. What matters is using a good diff/merge tool. The one I use, &lt;a href="https://github.com/KDE/kdiff3"&gt;KDiff3&lt;/a&gt;, is really old but I like it best.&lt;/p&gt;
+&lt;p&gt;That's a whole other topic. What matters is using a good diff/merge tool. The one I use, &lt;a href="https://download.kde.org/stable/kdiff3/"&gt;KDiff3&lt;/a&gt;, is really old but I like it best.&lt;/p&gt;
 </description>
       <pubDate>Thu, 1 Jul 2021 13:28:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/basic_daily_git_commands__including_rebase_is_good</link>
