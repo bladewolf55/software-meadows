@@ -76,9 +76,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;Using multiple Areas should be reserved for really complex projects&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;blockquote&gt;
 &lt;p&gt;Remember, work items are assigned to an Area and Iteration. What we're doing here is inverting (and subverting) the Azure DevOps structure by turning Areas into Projects.&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt;|_MRU Process [THE Monsters-R-Us Process]
   |_Monsters-R-Us Project [The ONLY proejct]
     |_MRU Team [EVERYONE including vendors. Iterations defined here. Backlog/Board defined here]
