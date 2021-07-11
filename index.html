@@ -89,7 +89,7 @@
 <h2 id="the-most-common-configuration-i-recommend">The Most Common Configuration I Recommend</h2>
 <p>Here's how I'd set up a project that has one or two teams, which <em>should</em> be all that are on an Agile-based project anyway.</p>
 <blockquote>
-<p>Notice I do <em>not</em> use the root level for the project backlog. Unfortunately, Microsoft doesn't help enough in setting this up.</p>
+<p>Notice I do <em>not</em> use the root level for the product backlog. Unfortunately, Microsoft doesn't help enough in setting this up.</p>
 </blockquote>
 <pre><code>Baskets-R-Us Website
 |_Product Backlog
@@ -98,7 +98,7 @@
 </code></pre>
 <p>Why &quot;product backlog&quot;? In Team configuration &gt; Iterations, there are two settings: Default iteration, Backlog Iteration.</p>
 <p><img src="https://www.softwaremeadows.com/posts/configuring_iterations_for_teams_in_azure_devops/images/sc01.png" alt="" /></p>
-<p>Default Iteration means &quot;when I create a new work item, which iteration is it assigned to?&quot; The default is @CurrentIteration. <em>This is wrong!</em>. New work items should <em>not</em> be automatically added to the current sprint: that's contrary to Scrum thinking. Instead, I set Default iteration to the team's product backlog iteration.</p>
+<p>Default Iteration means &quot;when I create a new work item, which iteration is it assigned to?&quot; The default is @CurrentIteration. <em>This is wrong!</em> New work items should <em>not</em> be automatically added to the current sprint: that's contrary to Scrum thinking. Instead, I set Default iteration to the team's product backlog iteration.</p>
 <p>Likewise, Backlog iteration means &quot;When we look at our backlog, which iteration is at the root?&quot; That should be, of course, the product backlog iteration. That's why I keep the naming clean.</p>
 <p>Both teams on this project would use the same product backlog and iterations. The teams would have <em>independent</em> boards and work items because by default a team has its own area.</p>
 <p>The result is that, in sprint planning, everyone would work from the same product backlog. Assuming Scrum, the project (product) should have a single Product Owner and Scrum Master shared by the two teams. When work items are assigned to iterations, they're also assigned to the team's area, allowing each team to filter for its work items in its boards.</p>
@@ -107,7 +107,6 @@
 <p>Where organizations often go astray is naming.</p>
 </blockquote>
 <p>Here's one way iterations might be organized for multiple teams. Again, notice my naming.</p>
-<p><strong>Project Settings &gt; Boards &gt; Project configuration &gt; Iterations</strong></p>
 <pre><code>Baskets-R-Us Website &lt;== root level folder
 |_ eCommerce Product Backlog
   |_2021-04-07
@@ -118,9 +117,8 @@
 </code></pre>
 <p>In this case, the teams within the project are working very independently. They don't share a backlog, instead each team maintains its own.</p>
 <h2 id="yet-another-approach">Yet Another Approach</h2>
-<p>Here's another--arguably better--way to organize multiple teams on a single Scrum-based project.</p>
+<p>Here's another--arguably better--way to organize multiple teams on a single Scrum-based project where the teams want to use their own sprint cycles. On a single project with just a couple of team. That's probably not a good idea. Keep the teams working as closely together as possible <em>on the same project</em>.</p>
 <blockquote>
-<p>This assumes the teams want to use their own sprint cycles. On a single project with just a couple of teams, that's <em>still</em> probably not a good idea. Keep the teams working as closely together as possible <em>on the same project</em>.</p>
 <p>This rule of thumb doesn't apply on teams across projects, who shouldn't be constrained in how they independently work. They not only should have separate DevOps projects, but should be allowed to have their own process template.</p>
 </blockquote>
 <pre><code>Baskets-R-Us Website &lt;== root level folder
@@ -137,11 +135,11 @@
 <p>The fact that it's harder to work with the sprints might be a clue that the teams should share an iteration cycle.</p>
 </blockquote>
 <h2 id="the-wrong-way">The Wrong Way</h2>
+<p>Some organizations (believe) they want all employees and teams to use the same process, and even share the same backlog and board. This <em>can</em> be done in Azure DevOps, but frankly I think it's anti-Agile, anti-productive, and there's plenty of evidence to back me up.</p>
 <blockquote>
 <p>Really, don't do this. It encourages a top-down, tightly-coupled, bureaucratic culture.</p>
 </blockquote>
-<p>Some organizations (believe) they want all employees and teams to use the same process, and even share the same backlog and board. This <em>can</em> be done in Azure DevOps, but frankly I think it's anti-Agile, anti-productive, and there's plenty of evidence to back me up.</p>
-<p>Still, here's how you might do it by taking advantage of the little-used (for good reason) Areas feature.</p>
+<p>If you're determined, here's how you might do it by taking advantage of the little-used (for good reason) Areas feature.</p>
 <blockquote>
 <p>Using multiple Areas should be reserved for really complex projects</p>
 </blockquote>
