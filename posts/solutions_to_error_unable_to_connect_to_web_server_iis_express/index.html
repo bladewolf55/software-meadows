@@ -66,10 +66,21 @@
                 <p class='post-info'><span class='posted-on'>2021-07-30 11:26</span></p>
                 <div class='post-content'><h2 id="issue">Issue</h2>
 <p>IIS Express will occasionally not be able to start on a particular port. In some cases, it's because another app is using that port. But for a known range, the reason is that Hyper-V takes over these ports.</p>
-<pre><code># Run this commandC:\WINDOWS\system32&gt;netsh int ipv4 show excludedportrange protocol=tcp# This is the outputProtocol tcp Port Exclusion RangesStart Port    End Port----------    --------     50000       50059     ** - Administered port exclusions.
+<pre><code class="language-powershell"># Run this command
+C:\WINDOWS\system32&gt;netsh int ipv4 show excludedportrange protocol=tcp
+
+# This is the output
+
+Protocol tcp Port Exclusion Ranges
+Start Port    End Port
+----------    --------
+     50000       50059     *
+* - Administered port exclusions.
 </code></pre>
 <p>This is a useful temporary fix:</p>
-<pre><code>net stop winnat# start/run whatever e.g. IIS Expressnet start winnat
+<pre><code class="language-powershell">net stop winnat
+# start/run whatever e.g. IIS Express
+net start winnat
 </code></pre>
 <p>To prevent it from happening do the following to disable Hyper-V.</p>
 <blockquote>
@@ -81,7 +92,10 @@
 <li><code>dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All</code></li>
 </ol>
 <p>And maybe this . . .</p>
-<pre><code>net stop winnatnetsh int ipv4 set dynamic tcp start=49152 num=16384netsh int ipv6 set dynamic tcp start=49152 num=16384net start winnat
+<pre><code class="language-powershell">net stop winnat
+netsh int ipv4 set dynamic tcp start=49152 num=16384
+netsh int ipv6 set dynamic tcp start=49152 num=16384
+net start winnat
 </code></pre>
 <h2 id="references">References</h2>
 <ul>
