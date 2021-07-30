@@ -6,6 +6,51 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Solutions to Error Unable to connect to Web Server IIS Express</title>
+      <description>&lt;h2 id="issue"&gt;Issue&lt;/h2&gt;
+&lt;p&gt;IIS Express will occasionally not be able to start on a particular port. In some cases, it's because another app is using that port. But for a known range, the reason is that Hyper-V takes over these ports.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Run this commandC:\WINDOWS\system32&amp;gt;netsh int ipv4 show excludedportrange protocol=tcp# This is the outputProtocol tcp Port Exclusion RangesStart Port    End Port----------    --------     50000       50059     ** - Administered port exclusions.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a useful temporary fix:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;net stop winnat# start/run whatever e.g. IIS Expressnet start winnat
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To prevent it from happening do the following to disable Hyper-V.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In my case, I don't need Hyper-V so I just left it disabled.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;dism.exe /Online /Disable-Feature:Microsoft-Hyper-V&lt;/code&gt; (will have to restart)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;netsh int ipv4 add excludedportrange protocol=tcp startport=&amp;lt;your port&amp;gt; numberofports=1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;And maybe this . . .&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;net stop winnatnetsh int ipv4 set dynamic tcp start=49152 num=16384netsh int ipv6 set dynamic tcp start=49152 num=16384net start winnat
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="references"&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/a/54727281/14709316"&gt;https://stackoverflow.com/a/54727281/14709316&lt;/a&gt; ⇐= If you want to reserve your own port range&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/docker/for-win/issues/3171#issuecomment-459205576"&gt;https://github.com/docker/for-win/issues/3171#issuecomment-459205576&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blogs.msdn.microsoft.com/whereismysolution/2018/05/11/how-to-use-reserved-port-in-nettcpbinding-and-basichttpbinding-in-a-wcf-application/"&gt;https://blogs.msdn.microsoft.com/whereismysolution/2018/05/11/how-to-use-reserved-port-in-nettcpbinding-and-basichttpbinding-in-a-wcf-application/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And more . . .&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://dandini.wordpress.com/2019/07/15/administered-port-exclusions-blocking-high-ports/"&gt;Administered Port Exclusions blocking high ports – The 'almost not worth having' blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-us/archive/blogs/whereismysolution/how-to-use-reserved-port-in-nettcpbinding-and-basichttpbinding-in-a-wcf-application"&gt;How to use reserved port in netTcpBinding and basicHttpBinding in a WCF Application | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gist.github.com/strayge/481a77d31a94e133a76662877b1a90ca"&gt;windows 10, port reserved for HyperV · GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://duckduckgo.com/?q=Unable+to+Connect+to+Web+Server+%27IIS+Express%27&amp;amp;t=brave&amp;amp;ia=web&amp;amp;iai=r1-7&amp;amp;page=1&amp;amp;sexp=%7B%22cdrexp%22%3A%22b%22%2C%22biaexp%22%3A%22b%22%2C%22msvrtexp%22%3A%22b%22%7D&amp;amp;pn=1"&gt;Unable to Connect to Web Server 'IIS Express' at DuckDuckGo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://forums.iis.net/t/1250787.aspx?+Unable+to+connect+to+Web+Server+IIS+Express+"&gt;&amp;quot;Unable to connect to Web Server 'IIS Express'&amp;quot; : The Official Microsoft IIS Forums&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/58346617/unable-to-connect-to-web-server-iis-express#59211490"&gt;c# - Unable to connect to web server 'IIS Express' - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://forums.asp.net/t/2144945.aspx?Unable+to+connect+to+web+server+IIS+Express+"&gt;Unable to connect to web server 'IIS Express' | The&lt;/a&gt;&lt;a href="http://asp.net/"&gt;ASP.NET&lt;/a&gt;&lt;a href="https://forums.asp.net/t/2144945.aspx?Unable+to+connect+to+web+server+IIS+Express+"&gt;Forums&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://asp.net/"&gt;asp.net&lt;/a&gt;&lt;a href="https://stackoverflow.com/questions/23502327/unable-to-launch-the-iis-express-web-server-failed-to-register-url-access-is-d"&gt;- Unable to launch the IIS Express Web server, Failed to register URL, Access is denied - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://support.microsoft.com/en-ca/help/929851/the-default-dynamic-port-range-for-tcp-ip-has-changed-in-windows-vista"&gt;https://support.microsoft.com/en-ca/help/929851/the-default-dynamic-port-range-for-tcp-ip-has-changed-in-windows-vista&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-US/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang"&gt;The default dynamic port range for TCP/IP has changed in Windows Vista and in Windows Server 2008 - Windows Server | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Fri, 30 Jul 2021 11:26:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/solutions_to_error_unable_to_connect_to_web_server_iis_express</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/solutions_to_error_unable_to_connect_to_web_server_iis_express</guid>
+    </item>
+    <item>
       <title>Configuring Iterations for Teams in Azure DevOps</title>
       <description>&lt;p&gt;I don't know how much guidance Microsoft gives on creating Iterations. This is my approach.&lt;/p&gt;
 &lt;h2 id="the-basics"&gt;The Basics&lt;/h2&gt;
@@ -1130,219 +1175,6 @@ The Sprint Retrospective is the most important part of the process. Without it, 
       <pubDate>Sat, 17 Apr 2021 14:41:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops</guid>
-    </item>
-    <item>
-      <title>How (and why) to maintain a README.md file for internal projects: Onboarding and Continuous Integration</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/how_and_why_to_maintain_a_readme_md_file_-_onboarding_and_continuous_integration/images/id-314246---1548375197.svg-300.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="contents"&gt;Contents&lt;/h2&gt;
-&lt;!-- Start Document Outline --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#what-the-heck-am-i-talking-about"&gt;What (the heck am I talking about)?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#why-do-i-want-one"&gt;Why (do I want one)?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#how-do-i-communicate-the-environment"&gt;How (do I communicate the Environment)?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#how-do-i-communicate-getting-started"&gt;How (do I communicate Getting Started)?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#why-is-this-valuable-to-cicd"&gt;Why (is this valuable to CI/CD)?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#when-do-i-see-an-awesome-template"&gt;When (do I see an awesome template)?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#thats-a-wrap"&gt;That's (a wrap!)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- End Document Outline --&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This won't be a &amp;quot;Complete and Authoritative 10 Steps to Perfect Readme Files.&amp;quot; It's intended to be a good starting point.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="what-the-heck-am-i-talking-about"&gt;What (the heck am I talking about)?&lt;/h2&gt;
-&lt;p&gt;I'm talking about the &lt;code&gt;README.md&lt;/code&gt; file that's typically at the root of Git repositories, especially when using GitHub, GitLab, BitBucket, and Azure DevOps.&lt;/p&gt;
-&lt;p&gt;Specifically, though, I'm talking about &lt;em&gt;&lt;strong&gt;the Readme file that you use in your on-premise repositories&lt;/strong&gt;&lt;/em&gt;. That is, your organization's internal projects.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Internal projects' Readme files are too often ignored. If they have a concrete and central purpose, they won't be.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="why-do-i-want-one"&gt;Why (do I want one)?&lt;/h2&gt;
-&lt;p&gt;The Readme file should be the starting point for your code's users. For open source, it starts with what the code is for and how to use it. It ends with information on how to build the code.&lt;/p&gt;
-&lt;p&gt;Internal projects have a different audience and different priorities. They are&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Help a new developer get the code working on her workstation.&lt;/li&gt;
-&lt;li&gt;Be the source of truth for continuous integration (CI).&lt;/li&gt;
-&lt;li&gt;Be the source of truth for the environment's version numbers.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Luckily these go hand-in-hand(-in-hand). The point of the build portion of CI is to prove the code can be built on a clean workstation.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;But what does a &amp;quot;clean workstation&amp;quot; mean? Today, it could mean a fresh, default installation of Windows, Linux, or MacOS.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;There are two parts to getting your code building and running on a clean workstation:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Configure the &lt;em&gt;Environment&lt;/em&gt; the code will build in. These are external dependencies.&lt;/li&gt;
-&lt;li&gt;Get and &lt;em&gt;Build&lt;/em&gt; the code along with its internal dependencies.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="how-do-i-communicate-the-environment"&gt;How (do I communicate the Environment)?&lt;/h2&gt;
-&lt;p&gt;The Environment will be the operating system and global installations required by your application. In Azure DevOps Pipeline parlance, they're the build agent's &lt;em&gt;capabilities&lt;/em&gt;. Here's an example for a solution that includes an Angular application and a .NET Core WebApi.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-markdown"&gt;## Environment
-&amp;gt; Changing the environment? Change the CI/CD pipeline!
-
-Install                          | Version    
----------------------------------|------------
-Node                             | 14.15.3
-NPM                              | deps on Node
-Angular CLI                      | 11.2.3
-Azure Authentication             | latest
-Visual Studio (recommended)      | VS 2019+
-&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;One way to think of this is: &amp;quot;If my repo has a build script, what do I &lt;em&gt;not&lt;/em&gt; want it to manage?&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Your app's build script shouldn't try to install Node or Angular. It shouldn't even check if they exist. The first-use developer, or the person creating the CI pipeline, should refer to the Readme for environment details. The contract is that the environment will exist and the build script doesn't need to verify it.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It's easy, with Node apps, to know if it's an environment package. It gets installed globally using &lt;code&gt;npm install -g&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I recommend the table above being the Readme's &lt;em&gt;only&lt;/em&gt; place version numbers exist for those dependencies. It's the source of truth. If you opt to include them in the Getting Started instructions, you need to remember to find/replace whenever the version numbers change.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Regardless, the Readme is the source of truth for environment version information.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="how-do-i-communicate-getting-started"&gt;How (do I communicate Getting Started)?&lt;/h2&gt;
-&lt;p&gt;An excellent practice is to create a build script that will be used by the CI pipeline. This same script should be run before pushing the final commits for a pull request. This way, the CI process is being tested in advance.&lt;/p&gt;
-&lt;p&gt;At its very simplest, a .NET Core solution's build script could look like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-powershell"&gt;dotnet build MySolution.sln -c Release -t:Rebuild
-dotnet publish MySolution.sln -c Release --output &amp;quot;package&amp;quot;
-cd my-angular-app
-npm run my-angular-app:build:production
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This rebuilds the solution and publishes the .NET assemblies to a &amp;quot;package&amp;quot; folder. The Angular app is built and published to its standard &lt;code&gt;dist&lt;/code&gt; folder. In your own organization, the script may also run tests, recreate a database, etc. The point is, there's just one step to take.&lt;/p&gt;
-&lt;p&gt;From an onboarding viewpoint, this is great. The steps are basically &amp;quot;clone the repo, run the build script.&amp;quot;&lt;/p&gt;
-&lt;p&gt;Our Getting Started section could look like this. Note that I'm recommending &lt;code&gt;nvm&lt;/code&gt; or &lt;code&gt;nvm-windows&lt;/code&gt; to the developer. This script also configures the Azure authentication to an Azure Artifacts package source.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-markdown"&gt;## Getting Started
-&amp;gt; Be sure to use the correct versions from above
-
-**Environment**  
-1.  Install PowerShell Core.
-1.  Install NVM or NVM for Windows.
-1.  Open a PowerShell *administrator* shell:
-    ```powershell
-    nvm install [version]
-    nvm use [version]
-    ```
-1.  Open a PowerShell *user* shell
-    ```powershell
-    # Angular
-    npm install -g @angular/cli@[version]
-    # Azure Auth
-    npm install -g vsts-npm-auth
-    ```
-
-**Application**  
-    ```powershell
-    # Clone source
-    cd &amp;quot;C:\users\[user]\source\repos&amp;quot;
-    git clone https://corporate/repo/path/MyApp.git
-    cd MyApp
-    # Set credentials for company packages server
-    vsts-npm-auth -config MyApp/my-angular-app/.npmrc
-    
-    # Build for local development
-    ./build.ps1
-    ```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Again, I'm only indicating version numbers so that there's reduced chance of the version numbers in the Environment table not matching the version numbers in Getting Started. Of course, if you trust everyone to find/replace, there's nothing wrong with including them.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="why-is-this-valuable-to-cicd"&gt;Why (is this valuable to CI/CD)?&lt;/h2&gt;
-&lt;p&gt;The Getting Started steps are, basically, what the CI/CD pipeline should use, too. Here's what a simple Azure YAML file might look like for our solution. The steps are virtually identical.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-yaml"&gt;trigger: main
-
-pool: 
-  vmImage: 'ubuntu-latest'
-  
-stages:
-- stage: build_stage
-  displayName: 'Build' 
-  jobs:
-  - job: 
-    steps:
-    # Environment capabilities
-    - task: NodeTool@0
-      displayName: 'Install Node.js'
-      inputs:
-        versionSpec: '14.15.3'
-    - pwsh: 'npm install -g @angular/cli@11.0.7'
-      displayName: 'Install Angular CLI'
-    - task: npmAuthenticate@0
-      displayName: Authenticate to Azure Artifacts NPM
-      inputs:
-        workingFile: $(System.DefaultWorkingDirectory)/my-angular-app/.npmrc
-    # Build
-    - pwsh: ./build.ps1
-      displayName: 'Run build script'
-    # Publish
-    - publish: $(System.DefaultWorkingDirectory)/package
-      artifact: package
-      displayName: Publish
-
-- stage: deploy_to_build_stage
-  # etc
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="when-do-i-see-an-awesome-templateexample"&gt;When (do I see an awesome template/example)?&lt;/h2&gt;
-&lt;p&gt;Right now.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-markdown"&gt;# My Awesome App
-
-## Introduction
-What the app is for.
-
-## Environment
-&amp;gt; Changing the environment? Change the CI/CD pipeline!
-
-Install                          | Version    
----------------------------------|------------
-.NET Framework                   | 4.8
-PowerShell Core                  | 7.x
-Visual Studio (recommended)      | VS 2019+
-
-Sources:
-*   [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework)
-*   [PowerShell Core](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows)
-
-## Getting Started
-&amp;gt; Be sure to use the correct versions from above.
-
-**Environment**  
-1.  Install PowerShell Core [version].
-1.  Install .NET Framework [version].
-
-**Application** 
-    ```powershell
-    # Clone source
-    cd &amp;quot;C:\users\[user]\source\repos&amp;quot;
-    git clone [path-to-repo]
-    cd [appname]
-    # Build app
-    ./build.ps1
-    ```
-
-## Daily Development
-Things needed to smoothly develop, such as how to run service dependencies.
-
-## When to run the build script
-    ```powershell
-    ./build.ps1
-    ```
-The build script simulates what the CI server will do, and is intended to catch build errors before they get to the server. The script should be run before the &amp;quot;final&amp;quot; PR commit. That is:
-
-1.  Before pushing the final feature branch, AND/OR
-1.  Before pushing to the mainline branch
-
-## Troubleshooting
-Things that might go wrong. These SHOULD end up on product backlogs and get fixed.
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="thats-a-wrap"&gt;That's (a wrap!)&lt;/h2&gt;
-&lt;p&gt;The key values of a Readme for internal projects are:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Source of truth for environment dependency version numbers&lt;/li&gt;
-&lt;li&gt;Rapid developer onboarding&lt;/li&gt;
-&lt;li&gt;Matching steps used for building locally and in CI/CD&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;How can you keep this up-to-date? While I'm not hoping your turnover is high, whenever a new developer is brought on she should try to get the application working using &lt;em&gt;just&lt;/em&gt; the documentation, and update if needed.&lt;/p&gt;
-&lt;p&gt;The proof that everyone's doing their jobs? &lt;em&gt;The document won't need updating!&lt;/em&gt;&lt;/p&gt;
-</description>
-      <pubDate>Fri, 26 Mar 2021 09:28:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/how_and_why_to_maintain_a_readme_md_file_-_onboarding_and_continuous_integration</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/how_and_why_to_maintain_a_readme_md_file_-_onboarding_and_continuous_integration</guid>
     </item>
   </channel>
 </rss>
