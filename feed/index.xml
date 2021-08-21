@@ -32,7 +32,7 @@ This article uses the .NET framework and development for its examples. However, 
 &lt;/ul&gt;
 &lt;!-- End Document Outline --&gt;
 &lt;h2 id="credits"&gt;Credits&lt;/h2&gt;
-&lt;p&gt;I wrote most of this, so I get a bunch of the credit. But it wouldn't be as good if my colleagues at &lt;a href="https://clearmeasure.com/"&gt;Clear Measure&lt;/a&gt; hadn't reviewed my words and provided thoughtful questions and debate. They especially clarified to me that the message of the document should positive toward packaging, that packaging is a critical and established technique for creating performant, maintainable, and scalable business applications.&lt;/p&gt;
+&lt;p&gt;I wrote most of this, so I get a bunch of the credit. But it wouldn't be as good if my colleagues at &lt;a href="https://clearmeasure.com/"&gt;Clear Measure&lt;/a&gt; hadn't reviewed my words and provided thoughtful questions and debate. They especially clarified to me that the message of the document should be positive toward packaging, that packaging is a critical and established technique for creating performant, maintainable, and scalable business applications.&lt;/p&gt;
 &lt;p&gt;So, thank you Trish Polay and Mike Sigsworth. You rock!&lt;/p&gt;
 &lt;p&gt;I don't consider this the last word on this subject. My views will evolve, and I want this article to evolve with them. So stay tuned!&lt;/p&gt;
 &lt;h2 id="packages-are-good"&gt;Packages Are Good!&lt;/h2&gt;
