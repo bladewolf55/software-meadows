@@ -7,8 +7,7 @@
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
       <title>Developing With Project Dependencies - When to Package, When Not To</title>
-      <description>&lt;h1 id="developing-with-project-dependencies-when-to-package-when-not-to"&gt;Developing With Project Dependencies - When to Package, When Not To&lt;/h1&gt;
-&lt;blockquote&gt;
+      <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;One last thought first&lt;/strong&gt;&lt;br /&gt;
 This article uses the .NET framework and development for its examples. However, the principles described should apply to most languages and frameworks. For example, the issues and approach can be taken with Angular applications.&lt;/p&gt;
 &lt;/blockquote&gt;
