@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>Home | Software Meadows</title>
+  <title>Solutions To Error "Unable To Connect To Web Server IIS Express" | Software Meadows</title>
 </head>
 
 <body>
@@ -60,78 +60,94 @@
         <div id="site-subtitle">A pleasant walk through computing</div>
       </header>
       <section id="content">
-        <hr />
+        
+              <div class='post'>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/solutions_to_error_unable_to_connect_to_web_server_iis_express'>Solutions to Error "Unable to connect to Web Server IIS Express"</a></h2>
+                <p class='post-info'><span class='posted-on'>2021-08-04 10:00</span></p>
+                <div class='post-content'><h2 id="issue">Issue</h2>
+<p>IIS Express will occasionally not be able to start on a particular port with this error.</p>
+<blockquote>
+<p>Unable to connect to Web Server IIS Express</p>
+</blockquote>
+<p>In some cases, it's because another app is using that port. But often the reason is that Hyper-V has reserved one or more of the ports. To see which ports are currently excluded/reserved, run this command.</p>
+<blockquote>
+<p>Note: all commands are in PowerShell 7 and should be run as Administrator</p>
+</blockquote>
+<pre><code class="language-powershell">netsh int ipv4 show excludedportrange protocol=tcp
+</code></pre>
+<p>The result may look something like this.</p>
+<pre><code class="language-text">Start Port    End Port
+----------    --------
+     50000       50059     *
+     54675       54774
+     54840       54939
+     54940       55039
+     55040       55139
+     55140       55239
+     55329       55428
+     55429       55528
 
+</code></pre>
+<p>As far as I can tell, Hyper-V doesn't have a known port range it will attempt to use and work around. So, the solution is to exclude the individual ports your projects require.</p>
+<p>You can check which ports the apps use by looking at the <code>launchSettings.json</code> files (assuming .NET Core). Be sure to include both the HTTP and SSL ports. Let's say, across all your projects, IIS Express will need to run on ports 44431,44435,54700,54701.</p>
+<ol>
+<li>Disable Hyper-V
+<pre><code class="language-powershell">dism.exe /Online /Disable-Feature:Microsoft-Hyper-V
+</code></pre>
+</li>
+<li>Restart when prompted</li>
+<li>Run this script, substituting your ports
+<pre><code class="language-powershell">$ports = 44431,44435,54700,54701
+
+foreach ($port in $ports) { 
+    netsh int ipv4 add excludedportrange protocol=tcp startport=$port numberofports=1 
+}
+</code></pre>
+</li>
+<li>Reenable Hyper-V
+<pre><code class="language-powershell">dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All
+</code></pre>
+</li>
+<li>Restart when prompted</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<blockquote>
+<p>Error: The process cannot access the file because it is being used by another process.</p>
+</blockquote>
+<p>If you get this error when running <code>netsh</code> to exclude the port, the port is already excluded. It's a confusing error message.</p>
+<blockquote>
+<p>Windows could not start the Hyper-V Virtual Machine Management service on Local Computer.
+Error 0x8007000e: Not enough memory resources are available to complete this operation.</p>
+</blockquote>
+<p>If you attempt to start the Hyper-V Virtual Machine Management service and get this error, it can be caused if the Hyper-V Host Compute Service is Disabled. Open Services and set that service as Manual.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://dandini.wordpress.com/2019/07/15/administered-port-exclusions-blocking-high-ports/">Administered Port Exclusions blocking high ports – The 'almost not worth having' blog</a></li>
+<li><a href="https://github.com/docker/for-win/issues/3171">Unable to bind ports: Docker-for-Windows &amp; Hyper-V excluding but not using important port ranges · Issue #3171 · docker/for-win</a></li>
+<li><a href="https://www.vembu.com/blog/hyper-v-wont-start/">What to Do When Hyper-V Won’t Start - vembu</a></li>
+<li><a href="https://stackoverflow.com/questions/48478869/cannot-bind-to-some-ports-due-to-permission-denied/54727281#54727281">windows - Cannot bind to some ports due to permission denied - Stack Overflow</a></li>
+<li><a href="https://docs.microsoft.com/en-us/archive/blogs/whereismysolution/how-to-use-reserved-port-in-nettcpbinding-and-basichttpbinding-in-a-wcf-application">How to use reserved port in netTcpBinding and basicHttpBinding in a WCF Application | Microsoft Docs</a></li>
+<li><a href="https://gist.github.com/strayge/481a77d31a94e133a76662877b1a90ca">windows 10, port reserved for HyperV</a></li>
+<li><a href="https://docs.microsoft.com/en-US/troubleshoot/windows-server/networking/default-dynamic-port-range-tcpip-chang">The default dynamic port range for TCP/IP has changed in Windows Vista and in Windows Server 2008 - Windows Server | Microsoft Docs</a></li>
+<li><a href="https://superuser.com/questions/1192492/how-to-remove-a-hyper-v-virtual-ethernet-switch">windows 10 - How to remove a Hyper-V virtual Ethernet switch - Super User</a></li>
+<li><a href="https://social.technet.microsoft.com/Forums/en-US/900298bd-4a86-4c9d-9950-11f0c050fa2f/hyperv-manager-unable-to-connect-to-server-quotlocal-computerquot">Hyper-V Manager unable to connect to server &quot;Local computer&quot;</a></li>
+<li><a href="https://github.com/microsoft/WSL/issues/5240">Error: 0x8007000e Not enough memory resources are available to complete this operation. · Issue #5240 · microsoft/WSL</a></li>
+<li><a href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements">Windows 10 Hyper-V System Requirements | Microsoft Docs</a></li>
+<li><a href="https://serverfault.com/questions/1045527/how-do-i-find-out-why-certain-ports-are-excluded-and-delete-the-exclusion">windows - How do I find out why certain ports are excluded and delete the exclusion? - Server Fault</a></li>
+<li><a href="https://stackoverflow.com/questions/58216537/what-is-administered-port-exclusions-in-windows-10">hyper v - What is Administered port exclusions in windows 10? - Stack Overflow</a></li>
+</ul>
+</div>
+              </div>
+              
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Home | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Solutions To Error "Unable To Connect To Web Server IIS Express" | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
       </section>
       <!-- posts only appear in home index -->
       <section id="posts">
-        
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb'>Windows 8.1 Update 1 Driver Problem DTMB BDA TV USB</a></h2>
-                <p class='post-info'><span class='posted-on'>2014-04-09 14:36</span></p>
-                <div class='post-content'><p>After updating to Windows 8.1 Update 1, my wife installed a USB flash drive that previously gave her no problems, and now wouldn’t show as a drive in Explorer. I got the same error on my (also updated) computer.</p>
-<p><a href="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/image.png"><img src="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/image.png" alt="image" title="image" /></a></p>
-<p>A notification was in the system tray to view devices, which showed the flash drive icon. Right-clicking that and choosing Troubleshoot suggested removing the device and reinserting. Some web searching said the same thing—which was <em>almost</em> right. However, the driver wasn’t being fully removed, so kept getting used again, resulting in the same error.</p>
-<p><a href="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/1.png"><img src="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/1.png" alt="1" title="1" /></a></p>
-<p>Instead, the driver needs to be completely removed. To do this:</p>
-<ol>
-<li>Plug in the flash drive.</li>
-<li>Open Device Manager.</li>
-<li>Find the bad device.</li>
-<li>Right-click and choose Uninstall.</li>
-<li>When prompted, check Delete the software for this device.</li>
-<li>Unplug the drive, then plug it back in.</li>
-<li>The drive should now be available.</li>
-</ol>
-<p><a href="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/image-001.png"><img src="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/image-001.png" alt="image" title="image" /></a></p>
-<p><a href="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/4.png"><img src="https://www.softwaremeadows.com/posts/windows-81-update-1-driver-problem-dtmb/images/4.png" alt="4" title="4" /></a></p>
-</div>
-              </div>
-              
-
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/windows-81-window-key-s-search-from'>Windows 8.1: Window Key + S = Search from Desktop</a></h2>
-                <p class='post-info'><span class='posted-on'>2014-04-09 09:15</span></p>
-                <div class='post-content'><p>Something I don’t (didn’t) like about Windows 8.x is that, if you’re in the desktop, to search for an application required:</p>
-<ol>
-<li>Press Window key, taking you <em>out of the desktop</em> and into to the Modern UI.</li>
-<li>Start typing.</li>
-</ol>
-<p>I hate switching contexts just to find/open an app that don’t have pinned. I mean, I can’t pin <em>all</em> of them! In Windows 7, this is</p>
-<ol>
-<li>Press Window key.</li>
-<li>Start typing.</li>
-</ol>
-<p>I just discovered by exploration that in Windows 8.1 (and presumably 8.0), this sequence keeps me in the desktop:</p>
-<ol>
-<li>Press Window key + S.</li>
-<li>Start typing.</li>
-</ol>
-<p><a href="https://www.softwaremeadows.com/posts/windows-81-window-key-s-search-from/images/image.png"><img src="https://www.softwaremeadows.com/posts/windows-81-window-key-s-search-from/images/image.png" alt="image" title="image" /></a></p>
-<p>Likewise, Window key + Q, W or F. They all open the search sidebar. Note that “F” opens a file search, while the others open “search everything.”</p>
-<p>I haven’t found a keyboard shortcut to open the Modern application list. Yet.</p>
-</div>
-              </div>
-              
-
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/whs-2011-windows-update-one-or-more'>WHS 2011 Windows Update “One or more services are no running” alert</a></h2>
-                <p class='post-info'><span class='posted-on'>2014-03-13 09:40</span></p>
-                <div class='post-content'><p>This is a post to myself on how to fix this problem. The symptom is continuously getting the above alert from the WHS launchpad. The solution is linked here:</p>
-<p><a href="http://social.microsoft.com/Forums/en-US/3f1b6cd1-d1ef-41e2-8848-eb381f8df41c/continually-receive-alert-stating-one-or-more-services-are-not-running?forum=whs2011" title="http://social.microsoft.com/Forums/en-US/3f1b6cd1-d1ef-41e2-8848-eb381f8df41c/continually-receive-alert-stating-one-or-more-services-are-not-running?forum=whs2011">http://social.microsoft.com/Forums/en-US/3f1b6cd1-d1ef-41e2-8848-eb381f8df41c/continually-receive-alert-stating-one-or-more-services-are-not-running?forum=whs2011</a></p>
-<p>From user Dowlo:</p>
-<blockquote>
-<p>I think I have resolved this now. Windows Update service was set to Automatic (Trigger Start) on the alerting machine, and Manual (Trigger Start) on my other machines. I reset it to Manual on the problem machine and the alert has not resurfaced since.</p>
-<p>A little counter-intuitive, but there you have it.</p>
-</blockquote>
-</div>
-              </div>
-               <div class='paging'><a href='index55.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index57.html'>Older</a></div>
+         
       </section>
       <footer><p>All original content copyright (c) Charles L Flatt</p>
 </footer>
