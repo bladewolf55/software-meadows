@@ -9,7 +9,7 @@
       <title>Azure DevOps Locally-Hosted Build Agent With Global NPM/.NET Tools</title>
       <description>&lt;h2 id="bluf"&gt;BLUF&lt;/h2&gt;
 &lt;p&gt;Terse examples of installing NPM global packages and .NET global tools for use by locally-hosted Azure DevOps build agents. Removes having to install as part of the pipeline YAML, and reduces chances of contention if multiple agents run on same machine.&lt;/p&gt;
-&lt;p&gt;Basically, install to a folder that's on the PAT.&lt;/p&gt;
+&lt;p&gt;Basically, install to a folder that's on the PATH.&lt;/p&gt;
 &lt;h2 id="net-tools"&gt;.NET Tools&lt;/h2&gt;
 &lt;p&gt;The instructions below assume an E: drive. Alter to fit your server.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Once, as Administrator&lt;/strong&gt;&lt;/p&gt;
