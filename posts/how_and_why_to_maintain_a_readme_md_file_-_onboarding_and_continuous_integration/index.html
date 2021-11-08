@@ -17,10 +17,10 @@
   </script>
   <script src='https://www.softwaremeadows.com/header-scripts/prism.js'></script>
 
-  <link rel='stylesheet' href='https://www.softwaremeadows.com/css/default.css' />
-<link rel='stylesheet' href='https://www.softwaremeadows.com/css/kavadocs.css' />
+  <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/prism.css' />
-<link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
+<link rel='stylesheet' href='https://www.softwaremeadows.com/css/default.css' />
+<link rel='stylesheet' href='https://www.softwaremeadows.com/css/kavadocs.css' />
 
 
   <title>How (And Why) To Maintain A README.Md File For Internal Projects: Onboarding And Continuous Integration | Software Meadows</title>
@@ -210,57 +210,65 @@ stages:
 </code></pre>
 <h2 id="when-do-i-see-an-awesome-templateexample">When (do I see an awesome template/example)?</h2>
 <p>Right now.</p>
-<pre><code class="language-markdown"># My Awesome App
+<pre>
+# My Awesome App
 
 ## Introduction
 What the app is for.
 
 ## Environment
-&gt; Changing the environment? Change the CI/CD pipeline!
+> Changing the environment? Change the CI/CD pipeline!
 
 Install                          | Version    
 ---------------------------------|------------
-.NET Framework                   | 4.8
-PowerShell Core                  | 7.x
-Visual Studio (recommended)      | VS 2019+
+.NET                             | 6
+PowerShell                       | 7.x
+Visual Studio                    | VS 2022
 
 Sources:
-*   [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework)
-*   [PowerShell Core](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows)
+*   [.NET](https://dotnet.microsoft.com/download/dotnet)
+*   [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows)
+*   [Visual Studio](https://visualstudio.microsoft.com/downloads/)
 
 ## Getting Started
-&gt; Be sure to use the correct versions from above.
+> Be sure to use the correct versions from above.
 
 **Environment**  
-1.  Install PowerShell Core [version].
-1.  Install .NET Framework [version].
+1.  Install PowerShell VERSION.
+1.  Install .NET VERSION.
+
+```powershell
+$ErrorActionPreference = 'Stop'
+# other installations
+```
 
 **Application** 
-    ```powershell
-    # Clone source
-    cd &quot;C:\users\[user]\source\repos&quot;
-    git clone [path-to-repo]
-    cd [appname]
-    # Build app
-    ./build.ps1
-    ```
+```powershell
+# Clone source
+$ErrorActionPreference = 'Stop'
+$userRoot = $env:userprofile
+cd "$userRoot/source/repos"
+git clone PATH_TO_REPO
+cd APP_NAME
+# Build app
+./build.ps1
+```
 
 ## Daily Development
 Things needed to smoothly develop, such as how to run service dependencies.
 
 ## When to run the build script
-    ```powershell
-    ./build.ps1
-    ```
-The build script simulates what the CI server will do, and is intended to catch build errors before they get to the server. The script should be run before the &quot;final&quot; PR commit. That is:
+```powershell
+./build.ps1
+```
+The build script simulates what the CI server will do, and is intended to catch build errors before they get to the server. The script should be run before the "final" PR commit. That is:
 
 1.  Before pushing the final feature branch, AND/OR
 1.  Before pushing to the mainline branch
 
 ## Troubleshooting
 Things that might go wrong. These SHOULD end up on product backlogs and get fixed.
-
-</code></pre>
+</pre>
 <h2 id="thats-a-wrap">That's (a wrap!)</h2>
 <p>The key values of a Readme for internal projects are:</p>
 <ol>
