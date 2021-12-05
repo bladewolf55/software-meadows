@@ -6,6 +6,83 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>2021 DORA Explorer - My Highlights from the State of DevOps report</title>
+      <description>&lt;p&gt;In my opinion, for what we do as our business, the DORA group's work is among the most important for us to understand and use. It's the best resource I know to provide software delivery guidance that's based in evidence, not hearsay and personal opinion.&lt;/p&gt;
+&lt;p&gt;I recommend downloading and reading the complete PDF from the web site.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cloud.google.com/blog/products/devops-sre/announcing-dora-2021-accelerate-state-of-devops-report"&gt;2021 Accelerate State of DevOps report addresses burnout, team performance&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;br /&gt;
+ALL excerpts below are directly quoted via copy/paste from the linked 2021 DevOps report. Extra emphases are mine. They're what stood out to me, and they won't be what stand out to you!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="the-5-metrics"&gt;The 5 Metrics&lt;/h2&gt;
+&lt;p&gt;With seven years of data collection and research, we have developed and validated four metrics that measure software delivery performance. Since 2018, we’ve included a fifth metric to capture operational capabilities.&lt;/p&gt;
+&lt;p&gt;Note that these metrics focus on system-level outcomes, which helps avoid the common pitfalls of software metrics, such as pitting functions against each
+other and making local optimizations at the cost of overall outcomes.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights/five-metrics.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights/elite-performers.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="cloud"&gt;Cloud&lt;/h2&gt;
+&lt;p&gt;Respondents who use hybrid or multi-cloud were 1.6 times more likely to exceed their organizational performance targets
+than those who did not.&lt;/p&gt;
+&lt;p&gt;Unsurprisingly, respondents who have adopted multiple cloud providers were 1.5 times as more likely to meet or exceed their reliability targets.&lt;/p&gt;
+&lt;p&gt;For the third time, we find that what really matters is how teams implement their cloud services, not just that they are using cloud technologies. Elite performers were 3.5 times more likely to have met all essential NIST cloud characteristics.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;On-demand self-service&lt;/strong&gt; Consumers can provision computing resources as needed, automatically, without any human interaction required on the part of the provider.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Broad network access&lt;/strong&gt; Capabilities are widely available and can be accessed through multiple clients such as mobile phones, tablets, laptops, and workstations.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resource pooling&lt;/strong&gt;  Provider resources are pooled in a multi-tenant model, with physical and virtual resources dynamically assigned and reassigned on-demand. The customer generally has no direct control over the exact location of the provided resources, but can specify location
+at a higher level of abstraction, such as country, state, or data center.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rapid elasticity&lt;/strong&gt; Capabilities can be elastically provisioned and released to rapidly scale outward or inward with demand. Consumer capabilities available for provisioning appear to be unlimited and can be appropriated in any quantity at any time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Measured service&lt;/strong&gt; Cloud systems automatically control and optimize resource use by leveraging a metering capability at a level of abstraction appropriate to the type of service, such as storage, processing, bandwidth, and active user accounts. Resource usage can be monitored,
+controlled, and reported for transparency.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="sre-and-devops"&gt;SRE and DevOps&lt;/h2&gt;
+&lt;p&gt;While the DevOps community was emerging at public conferences and conversations, a like-minded movement was forming inside Google: site reliability engineering (SRE). . . . SRE is a learning discipline that prioritizes cross-functional communication and psychological safety, the same values that are at the core of the performance-oriented generative culture typical of elite DevOps teams.&lt;/p&gt;
+&lt;p&gt;In analyzing the results, we found evidence that teams who excel at these modern operational practices are 1.4 times more likely to report greater
+SDO performance, and 1.8 times more likely to report better business outcomes.&lt;/p&gt;
+&lt;p&gt;Typically, individuals with a heavy load of operations tasks are prone to burnout, but SRE has a positive effect. We found that the more a team employs SRE practices, the less likely its members are to experience burnout.&lt;/p&gt;
+&lt;h2 id="documentation"&gt;Documentation&lt;/h2&gt;
+&lt;p&gt;This year, we looked at the quality of internal documentation, which is documentation–such as manuals, READMEs, and even code comments–for the services and applications that a team works on. We measured documentation quality by the degree to which the documentation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;helps readers accomplish their goals&lt;/li&gt;
+&lt;li&gt;is accurate, up-to-date, and comprehensive&lt;/li&gt;
+&lt;li&gt;is findable, well organized, and clear&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We found that about 25% of respondents have good quality documentation, and the impact of this documentation work is clear: teams with higher quality documentation are 2.4 times more likely to see better software delivery and operational (SDO) performance.&lt;/p&gt;
+&lt;h2 id="security"&gt;Security&lt;/h2&gt;
+&lt;p&gt;[Shift left] and integrate throughout As technology teams continue to accelerate and evolve, so do the quantity and sophistication of security threats. In 2020, more than 22 billion records of confidential personal information or business data were exposed, according to Tenable’s 2020 Threat Landscape Retrospective Report.6 Security can’t be an afterthought or the final step before delivery, it must be integrated throughout the software development process.&lt;/p&gt;
+&lt;p&gt;Consistent with previous reports, we found that elite performers excel at implementing security practices. This year, elite performers who met or exceeded their reliability targets were twice as likely to have security integrated in their software development process.&lt;/p&gt;
+&lt;h2 id="technical-devops-capabilities"&gt;Technical DevOps capabilities&lt;/h2&gt;
+&lt;p&gt;Our research shows that organizations who undergo a DevOps transformation by adopting continuous delivery are more likely to have processes that are high quality, low-risk, and cost-effective.&lt;/p&gt;
+&lt;p&gt;Specifically, we measured the following technical practices:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Loosely coupled architecture&lt;/li&gt;
+&lt;li&gt;Trunk-based development&lt;/li&gt;
+&lt;li&gt;Continuous testing&lt;/li&gt;
+&lt;li&gt;Continuous integration&lt;/li&gt;
+&lt;li&gt;Use of open source technologies&lt;/li&gt;
+&lt;li&gt;Monitoring and observability practices&lt;/li&gt;
+&lt;li&gt;Management of database changes&lt;/li&gt;
+&lt;li&gt;Deployment automation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We found that while all of these practices improve continuous delivery, &lt;strong&gt;loosely coupled architecture&lt;/strong&gt; and &lt;strong&gt;continuous testing&lt;/strong&gt; have the greatest impact&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Elite performers who meet their reliability targets are 5.8 times more likely to leverage continuous integration. In continuous integration, each commit triggers a build of the software and &lt;em&gt;runs a series of automated tests that provide feedback in a few minutes.&lt;/em&gt; With continuous integration, you decrease the manual and often complex coordination needed for a successful integration.&lt;/p&gt;
+&lt;h2 id="covid-19"&gt;COVID-19&lt;/h2&gt;
+&lt;p&gt;What reduced burnout?&lt;/p&gt;
+&lt;p&gt;Despite this, we did find a factor that had a large effect on whether or not a team struggled with burnout as a result of working remotely: culture. Teams with a &lt;strong&gt;generative team culture&lt;/strong&gt;, composed of people who felt included and like they belonged on their team, were half as likely to experience burnout during the pandemic. This finding reinforces the importance of prioritizing team and culture. Teams that do better are equipped to weather more challenging periods that put pressure on both the team as well as on individuals.&lt;/p&gt;
+&lt;h2 id="culture"&gt;Culture&lt;/h2&gt;
+&lt;p&gt;Broadly speaking, culture is the inescapable interpersonal undercurrent of every organization. It is anything that influences how employees think,
+feel, and behave towards the organization and one another. All organizations have their own unique culture, and our findings consistently show that culture is one of the top drivers of organizational and IT performance. Specifically, our analyses indicate that a &lt;strong&gt;generative  culture&lt;/strong&gt;–measured using the Westrum organizational culture typology, and people’s sense of belonging and inclusion within the organization–
+predicts higher software delivery and operational (SDO) performance. For example, we find that elite performers that meet their reliability targets are 2.9 times more likely to have a generative team culture than their low-performing counterparts.&lt;/p&gt;
+&lt;p&gt;Our results indicate that performance-oriented organizations that value belonging and inclusion are more likely to have lower levels of employee
+burnout compared to organizations with less positive organizational cultures.&lt;/p&gt;
+&lt;p&gt;Given the evidence showing how psycho-social factors affect SDO performance and levels of burnout among employees, we recommend that if you’re seeking to go through a successful DevOps transformation, you invest in addressing culture-related issues as part of your transformation efforts.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 5 Dec 2021 15:45:00 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights</guid>
+    </item>
+    <item>
       <title>Azure DevOps Locally-Hosted Build Agent With Global NPM/.NET Tools</title>
       <description>&lt;h2 id="bluf"&gt;BLUF&lt;/h2&gt;
 &lt;p&gt;Terse examples of installing NPM global packages and .NET global tools for use by locally-hosted Azure DevOps build agents. Removes having to install as part of the pipeline YAML, and reduces chances of contention if multiple agents run on same machine.&lt;/p&gt;
@@ -996,206 +1073,6 @@ git push --force
       <pubDate>Tue, 18 May 2021 16:22:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/graphic_-_git_merge_vs_rebase</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/graphic_-_git_merge_vs_rebase</guid>
-    </item>
-    <item>
-      <title>Scrum in Azure DevOps - A simpler (custom) process</title>
-      <description>&lt;p&gt;Series Parts&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro To Scrum In Azure Devops&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/"&gt;Scrum In Azure Devops - A Simpler (Custom) Process&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/"&gt;Scrum In Azure Devops - The Story Board is your process heart&lt;/a&gt; COMING SOON!&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="intro"&gt;Intro&lt;/h2&gt;
-&lt;p&gt;The default Azure DevOps Scrum process is good, but I think it adds some unnecessary complication. Below I'll walk through inheriting from and modifying that process. I'm building on the work in my  post &lt;a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/"&gt;A Simple Intro to Scrum in Azure DevOps&lt;/a&gt;, so you should start there if you need to.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Lots of what's below is my opinion, so take it for what it's worth. But don't discount it, that's mean.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="the-framework"&gt;The Framework&lt;/h2&gt;
-&lt;p&gt;In my experience, when Developers, Scrum Masters, and Product Owners get their hands on electronic project management software, they add and add to what's already there. This is usually a mistake. Instead, pare down to the simplest thing that works, and only add features when needed.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;As an aside, the other thing organizations do is try to enforce a single process on all teams. This is not Agile, because it removes team autonomy, self-organization, and effectiveness. The usual reason given is to make reporting across teams easier. That gives too much weight to upper management control. Instead, ask Developers to help figure out how to deliver cross-team reports. While you're at it, see if you can pare down those reports, too. Ask, &amp;quot;How is this report delivering user value?&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;One way to find the simplest thing that works is imagine--or put--it on paper. Here's all we're really trying to capture.&lt;/p&gt;
-&lt;p&gt;The work item structure is:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Feature
-|_Story
-  |_Task
-|_Bug
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Stories and bugs move through a board.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/kanban-board.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;A story or bug card--sticky note version!--might look like this and has all the relevent info plus pointers to more detail.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc21.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Try to keep your electronic version that simple.&lt;/p&gt;
-&lt;h2 id="a-new-process"&gt;A New Process&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Open Azure DevOps and open the Organization Settings &amp;gt; Boards &amp;gt; Process&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Select Scrum &amp;gt; Create inherited process, and name it SimpleScrum&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc01.png" alt="" /&gt;&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc02.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Open the SimpleScrum process. Under Work item types, we already have an essential set of types. Let's start by creating a work item type named Story instead of Product Backlog Item (PBI).&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;No, you can't rename an inherited process work item type. I hate this, and so do you.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Open the PBI work item type &amp;gt; States, and hide the Committed state.&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc05.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;In the original tab, choose New work item type and name it Story&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc03.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Under Layout, add and update the fields to look like this. In one case, you're renaming Description to Value (orange), in others you're using an existing field (green), and in still others it's a new field (red).&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc04.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Under States, add two new states: Active in the In Progress category and Removed in the Removed category, and remove Committed.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You can only remove an inherited state that's been hidden.&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc18.png" alt="" /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Under Rules, create the following rule.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Name: Assign Active&lt;/li&gt;
-&lt;li&gt;When: A work item stage changes to . . . Active&lt;/li&gt;
-&lt;li&gt;Then: Use the current user to set the value of . . . Assigned To&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc19.png" alt="" /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Return to the Work Item Types and disable Product Backlog Item&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;br /&gt;
-Only disable PBI if you are &lt;em&gt;not&lt;/em&gt; going to apply the new process to an existing project. If you are, leave PBI enabled so that you can change existing work items from PBI to Story.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Open Bug and make these changes.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Hide System Info, Acceptance Criteria, Priority, and Activity.&lt;/li&gt;
-&lt;li&gt;Optional: I hide the Build fields&lt;/li&gt;
-&lt;li&gt;Add More Info, Developer Notes, Testing Notes, Reported By, and Blocked
-&lt;blockquote&gt;
-&lt;p&gt;Any fields added to Story will be in the &amp;quot;Use existing field&amp;quot; dropdown.&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc06.png" alt="" /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;br /&gt;
-Treat Bugs as a defects reported by production users. Why? Because it makes it much easier to track Bug fix cycle time. See below for tracking defects during development.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Under States, add Active to In Progress, hide Approved and Committed&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Under Rules, create the same Assign Active rule as in Story&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="pre-release-vs-post-release-defectsbugs"&gt;Pre-Release vs Post-Release Defects/Bugs&lt;/h2&gt;
-&lt;p&gt;If your shop includes quality assurance, user-acceptance testing, or other non-unit testing, you should track your defects separately from Bugs. If those roles are in your team, then I like communicating those defects at the same level as Tasks. If they're outside the team, then I recommend tracking them at the same level as Bugs.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Create a new work item type named PreRelease Defect with the same fields, states, and rule as Bug. Hide Description. Choose an icon you like.&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc07.png" alt="" /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;OK, the work items are ready!&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc08.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="backlog-levels"&gt;Backlog Levels&lt;/h2&gt;
-&lt;p&gt;These changes make your new work item type availabe in the New item dropdowns on boards and backlogs.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Open SimpleSrum &amp;gt; Backlog levels&lt;/li&gt;
-&lt;li&gt;Edit Backlog items and add Story and PreRelease Defect. Set Default work item type to Story&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc15.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="use-the-process"&gt;Use the Process&lt;/h2&gt;
-&lt;p&gt;You can create a new Project using the SimpleScrum process, but you can also apply the process to an existing project.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;br /&gt;
-Applying a process does come with risks if there are non-matching fields. Be sure you read the documentation!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I'm going to apply the process to Baskets-R-Us (from Part 1 of the series) so you see what's involved and why starting with a new project might be better.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Open All Process and click the Scurm Team Projects link&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc09.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;For BRUW, select Change Process and choose SimpleScrum&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc10.png" alt="" /&gt;&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc11.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="fix-up-the-work-items"&gt;Fix up the work items&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Open the BRUW project &amp;gt; Queries &amp;gt; New Query&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Return all work items&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc14.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Open Column Options and add State and Reason. Sort by Work Item Type and State&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Select all Product Backlog Items, right-click &amp;gt; Change Type, select Story.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Select Commmitted items, right-click &amp;gt; Edit, change State to Active&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Select Approved items, right-click &amp;gt; Edit, change State to New&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Save items&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You may have other changes to make to your work items.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="fix-up-the-story-board"&gt;Fix up the Story Board&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Story Board customizations are at the Team level&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Open the BRUW project &amp;gt; Boards. I was greeted with this message:
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc12.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Fine, I'll Correct this now. It's the board's column settings that need changing, which is what I want to do anyway!&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc13.png" alt="" /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You can't delete any columns that have stories in them until you move the stories.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Keep all existing columns. Rename Ready for QA to Ready for Test, QA to Test. Map each column's state to Active for now. Save.&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc16.png" alt="" /&gt;&lt;/li&gt;
-&lt;li&gt;Clear all filters. Move stories out of Approved, Ready for Dev and Ready for Release&lt;/li&gt;
-&lt;li&gt;Remove columns Approved,  Ready for Dev and Ready for Release.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Open the board's Settings &amp;gt; Styles, add a styling rule&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Name: Blocked&lt;/li&gt;
-&lt;li&gt;Card color: Red&lt;/li&gt;
-&lt;li&gt;Rule criteria: Blocked = Yes&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc20.png" alt="" /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;If a Story's Blocked field is set to Yes, the card will show red.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc17.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="fix-up-the-task-board"&gt;Fix up the Task Board&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Task Board customizations are at the Team level&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Open the Task Board (Sprints) Settings&lt;/li&gt;
-&lt;li&gt;In Fields &amp;gt; Story, add a field to always show Parent. This lets you see a story's Feature if it has one.&lt;/li&gt;
-&lt;li&gt;Add a Styles rule for Blocked as done above&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="what-about-work-item-templates"&gt;What about work item templates?&lt;/h2&gt;
-&lt;p&gt;Azure DevOps supports templates, and I wish they were useful. Maybe they will be for you, but what I want is to assign a default template to a work item for my team. For example, have a Bug template with starter info in Repro Steps that's automatically applied on any new Bug.&lt;/p&gt;
-&lt;p&gt;Until that happens, I'll leave you with Microsoft's documentation.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/work-item-template?view=azure-devops&amp;amp;tabs=browser"&gt;Use work item templates to update stories &amp;amp; more - Azure Boards | Microsoft Docs&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;This post sets up a good, basic process. A key aspect is that work items at the same level are structured almost the same. This helps reduce cognitive friction switching from a Bug to a PreRelease Defect to a Story, and emphasizes that the primary difference between them is their name.&lt;/p&gt;
-&lt;p&gt;As one Scrum consultant I heard interviewed put it, &amp;quot;I think of every work item as a story.&amp;quot;&lt;/p&gt;
-&lt;p&gt;In the next post, we'll put this process to work.&lt;/p&gt;
-</description>
-      <pubDate>Mon, 17 May 2021 16:00:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process</guid>
     </item>
   </channel>
 </rss>
