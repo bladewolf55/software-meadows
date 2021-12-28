@@ -71,8 +71,8 @@
 <li>Managers external to the team running compliance reports on whether user stories are filled in &quot;correctly.&quot;</li>
 <li>Penalizing developers using development issues/bugs as a metric.</li>
 </ul>
-<p>Let's look at that last one more closely. One of DORA group's Four Metrics is to capture how often release failures occur. One way to think of that is &quot;how many severe release bugs are we getting?&quot;</p>
-<p>It's tempting, then, to also track how many issues/bugs are found during development, the notion being that reducing bugs during development naturally reduces them in release. But this is wrong headed. There <em>could</em> be value in looking at issues found during development, but it's wrong to use this to praise or punish developers. Why?</p>
+<p>Let's look at that last one more closely. One of the DORA group's <a href="https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance">Four Metrics</a> is to capture how often release failures occur. One way to think of that is &quot;how many severe bugs are we getting after release?&quot;</p>
+<p>It's tempting, then, to also track how many issues/bugs are found during development, the notion being that reducing bugs during development naturally reduces them in release. But this is wrong headed. There <em>could</em> be value in looking at issues found during development, but it's wrong to use this to evaluate, praise or punish developers. Why?</p>
 <ul>
 <li>More issues found during development isn't good or bad.</li>
 <li>Context is missing if you're only looking at numbers.</li>
@@ -86,7 +86,7 @@
 <p>Restrict. Prevent. Catch. Punish.</p>
 </blockquote>
 <p>Those qualities can be summed up as &quot;Developers, we don't trust you.&quot;</p>
-<p>What if, instead, we use a reliable metric--release issues--to guide improvement? Further, what if we let the teams figure out how to make that improvement, allow for mistakes, and measure what matters? We'd end up with a trusted team.</p>
+<p>What if, instead, we use a reliable metric--change failure rate--to guide improvement? Further, what if we let the teams figure out how to make that improvement, allow for mistakes, and measure what matters? We'd end up with a trusted team.</p>
 <p><img src="https://www.softwaremeadows.com/posts/dont_restrict_trust/trust-audit-notify-help.png" alt="" /></p>
 <p>In a Trust Team environment, you</p>
 <ul>

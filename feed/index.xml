@@ -14,8 +14,8 @@
 &lt;li&gt;Managers external to the team running compliance reports on whether user stories are filled in &amp;quot;correctly.&amp;quot;&lt;/li&gt;
 &lt;li&gt;Penalizing developers using development issues/bugs as a metric.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let's look at that last one more closely. One of DORA group's Four Metrics is to capture how often release failures occur. One way to think of that is &amp;quot;how many severe release bugs are we getting?&amp;quot;&lt;/p&gt;
-&lt;p&gt;It's tempting, then, to also track how many issues/bugs are found during development, the notion being that reducing bugs during development naturally reduces them in release. But this is wrong headed. There &lt;em&gt;could&lt;/em&gt; be value in looking at issues found during development, but it's wrong to use this to praise or punish developers. Why?&lt;/p&gt;
+&lt;p&gt;Let's look at that last one more closely. One of the DORA group's &lt;a href="https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance"&gt;Four Metrics&lt;/a&gt; is to capture how often release failures occur. One way to think of that is &amp;quot;how many severe bugs are we getting after release?&amp;quot;&lt;/p&gt;
+&lt;p&gt;It's tempting, then, to also track how many issues/bugs are found during development, the notion being that reducing bugs during development naturally reduces them in release. But this is wrong headed. There &lt;em&gt;could&lt;/em&gt; be value in looking at issues found during development, but it's wrong to use this to evaluate, praise or punish developers. Why?&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;More issues found during development isn't good or bad.&lt;/li&gt;
 &lt;li&gt;Context is missing if you're only looking at numbers.&lt;/li&gt;
@@ -29,7 +29,7 @@
 &lt;p&gt;Restrict. Prevent. Catch. Punish.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Those qualities can be summed up as &amp;quot;Developers, we don't trust you.&amp;quot;&lt;/p&gt;
-&lt;p&gt;What if, instead, we use a reliable metric--release issues--to guide improvement? Further, what if we let the teams figure out how to make that improvement, allow for mistakes, and measure what matters? We'd end up with a trusted team.&lt;/p&gt;
+&lt;p&gt;What if, instead, we use a reliable metric--change failure rate--to guide improvement? Further, what if we let the teams figure out how to make that improvement, allow for mistakes, and measure what matters? We'd end up with a trusted team.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/dont_restrict_trust/trust-audit-notify-help.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;In a Trust Team environment, you&lt;/p&gt;
 &lt;ul&gt;
