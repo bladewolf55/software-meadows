@@ -6,6 +6,70 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Agile Development - Don't Restrict. Trust</title>
+      <description>&lt;p&gt;Lots of organizations try to prevent developers from making mistakes, or catch them doing so, leading to more bureaucracy and over-control. Some examples include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Requiring all teams to follow the exact same process.&lt;/li&gt;
+&lt;li&gt;Using permissions to keep developers from rebasing code with Git.&lt;/li&gt;
+&lt;li&gt;Managers external to the team running compliance reports on whether user stories are filled in &amp;quot;correctly.&amp;quot;&lt;/li&gt;
+&lt;li&gt;Penalizing developers using development issues/bugs as a metric.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let's look at that last one more closely. One of DORA group's Four Metrics is to capture how often release failures occur. One way to think of that is &amp;quot;how many severe release bugs are we getting?&amp;quot;&lt;/p&gt;
+&lt;p&gt;It's tempting, then, to also track how many issues/bugs are found during development, the notion being that reducing bugs during development naturally reduces them in release. But this is wrong headed. There &lt;em&gt;could&lt;/em&gt; be value in looking at issues found during development, but it's wrong to use this to praise or punish developers. Why?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;More issues found during development isn't good or bad.&lt;/li&gt;
+&lt;li&gt;Context is missing if you're only looking at numbers.&lt;/li&gt;
+&lt;li&gt;Whether and how development issues are reported is highly person-dependent.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In short, you can't tell whether a developer is doing a good job based on development issues. That isn't why you'd capture development issue metrics. You would capture them as one metric to compare the effects of making development changes. For example, a team commits to increasing unit test quality. What affect did that have on the number of issues found?&lt;/p&gt;
+&lt;p&gt;What are you even tracking? Is it the number and severity of issues found by QA? That might be OK. But how do you know that Billy has the same standard for &amp;quot;severe&amp;quot; as Claudia? Maybe Rahim breaks down an issue into more bug reports than Luciana.&lt;/p&gt;
+&lt;p&gt;This is when bureaucratic management tries to get everyone working the same way with endless meetings on &amp;quot;what does severe mean?&amp;quot; and &amp;quot;What the right way to report issues?&amp;quot; Some of this matters, sure. But this way of thinking misses the point. Its focus is on treating people as replaceable resources, as machines.&lt;/p&gt;
+&lt;p&gt;This coercive style of management has these qualities:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Restrict. Prevent. Catch. Punish.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Those qualities can be summed up as &amp;quot;Developers, we don't trust you.&amp;quot;&lt;/p&gt;
+&lt;p&gt;What if, instead, we use a reliable metric--release issues--to guide improvement? Further, what if we let the teams figure out how to make that improvement, allow for mistakes, and measure what matters? We'd end up with a trusted team.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/dont_restrict_trust/trust-audit-notify-help.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;In a Trust Team environment, you&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Give your developers more permissions.&lt;/li&gt;
+&lt;li&gt;But also keep audit trails so if something goes wrong we know who did what.&lt;/li&gt;
+&lt;li&gt;Create a robust system that can be recovered quickly.&lt;/li&gt;
+&lt;li&gt;Notify developers of problems automatically and immediately.&lt;/li&gt;
+&lt;li&gt;Help understand what caused issues and how to improve.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Again, let's dig into that last one and contrast to an untrusted team.&lt;/p&gt;
+&lt;p&gt;In the untrusted team, if a severe bug is discovered, several assumptions are made.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;One person is at fault. The team isn't treated as a unit.&lt;/li&gt;
+&lt;li&gt;The developer made a mistake. There's someone to blame.&lt;/li&gt;
+&lt;li&gt;The bug could have been prevented.&lt;/li&gt;
+&lt;li&gt;There needs to be a meeting to put procedures in place to keep it from happening again.&lt;/li&gt;
+&lt;li&gt;Non-team management is needed to enforce the new process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In a trusted team,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The team takes responsibility, knowing multiple people work on the code.&lt;/li&gt;
+&lt;li&gt;The developer may have made a mistake. But there's no blaming because mistakes are part of development.&lt;/li&gt;
+&lt;li&gt;Not everything is in our control. Software's very complex. The developer may have made the right decision, even though there was a poor outcome. You can't prevent all bugs.&lt;/li&gt;
+&lt;li&gt;Adding process &lt;em&gt;adds complexity&lt;/em&gt; to an already complex business. Sometimes process needs improvment. But often there's nothing to fix.&lt;/li&gt;
+&lt;li&gt;As soon as external management insists on compliance reports, the team ceases to be self-managing. Quality will go down, because the focus shifts from building software to pleasing management.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the future, when something goes wrong:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Determine and explain the impact on the overall business.&lt;/li&gt;
+&lt;li&gt;Let the team sort things out.&lt;/li&gt;
+&lt;li&gt;Ask them to inform management what, if anything, will change.&lt;/li&gt;
+&lt;li&gt;Trust their answer.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Build trust, not scapegoats.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 28 Dec 2021 10:45:00 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/dont_restrict_trust</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/dont_restrict_trust</guid>
+    </item>
+    <item>
       <title>2021 DORA Explorer - My Highlights from the State of DevOps report</title>
       <description>&lt;p&gt;In my opinion, for what we do as our business, the DORA group's work is among the most important for us to understand and use. It's the best resource I know to provide software delivery guidance that's based in evidence, not hearsay and personal opinion.&lt;/p&gt;
 &lt;p&gt;I recommend downloading and reading the complete PDF from the web site.&lt;/p&gt;
@@ -77,70 +141,6 @@ predicts higher software delivery and operational (SDO) performance. For example
 &lt;p&gt;Our results indicate that performance-oriented organizations that value belonging and inclusion are more likely to have lower levels of employee
 burnout compared to organizations with less positive organizational cultures.&lt;/p&gt;
 &lt;p&gt;Given the evidence showing how psycho-social factors affect SDO performance and levels of burnout among employees, we recommend that if you’re seeking to go through a successful DevOps transformation, you invest in addressing culture-related issues as part of your transformation efforts.&lt;/p&gt;
-</description>
-      <pubDate>Sun, 5 Dec 2021 15:45:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights</guid>
-    </item>
-    <item>
-      <title>Agile Development - Don't Restrict. Trust</title>
-      <description>&lt;p&gt;Lots of organizations try to prevent developers from making mistakes, or catch them doing so, leading to more bureaucracy and over-control. Some examples include:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Requiring all teams to follow the exact same process.&lt;/li&gt;
-&lt;li&gt;Using permissions to keep developers from rebasing code with Git.&lt;/li&gt;
-&lt;li&gt;Managers external to the team running compliance reports on whether user stories are filled in &amp;quot;correctly.&amp;quot;&lt;/li&gt;
-&lt;li&gt;Penalizing developers using development issues/bugs as a metric.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Let's look at that last one more closely. One of DORA group's Four Metrics is to capture how often release failures occur. One way to think of that is &amp;quot;how many severe release bugs are we getting?&amp;quot;&lt;/p&gt;
-&lt;p&gt;It's tempting, then, to also track how many issues/bugs are found during development, the notion being that reducing bugs during development naturally reduces them in release. But this is wrong headed. There &lt;em&gt;could&lt;/em&gt; be value in looking at issues found during development, but it's wrong to use this to praise or punish developers. Why?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;More issues found during development isn't good or bad.&lt;/li&gt;
-&lt;li&gt;Context is missing if you're only looking at numbers.&lt;/li&gt;
-&lt;li&gt;Whether and how development issues are reported is highly person-dependent.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In short, you can't tell whether a developer is doing a good job based on development issues. That isn't why you'd capture development issue metrics. You would capture them as one metric to compare the effects of making development changes. For example, a team commits to increasing unit test quality. What affect did that have on the number of issues found?&lt;/p&gt;
-&lt;p&gt;What are you even tracking? Is it the number and severity of issues found by QA? That might be OK. But how do you know that Billy has the same standard for &amp;quot;severe&amp;quot; as Claudia? Maybe Rahim breaks down an issue into more bug reports than Luciana.&lt;/p&gt;
-&lt;p&gt;This is when bureaucratic management tries to get everyone working the same way with endless meetings on &amp;quot;what does severe mean?&amp;quot; and &amp;quot;What the right way to report issues?&amp;quot; Some of this matters, sure. But this way of thinking misses the point. Its focus is on treating people as replaceable resources, as machines.&lt;/p&gt;
-&lt;p&gt;This coercive style of management has these qualities:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Restrict. Prevent. Catch. Punish.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Those qualities can be summed up as &amp;quot;Developers, we don't trust you.&amp;quot;&lt;/p&gt;
-&lt;p&gt;What if, instead, we use a reliable metric--release issues--to guide improvement? Further, what if we let the teams figure out how to make that improvement, allow for mistakes, and measure what matters? We'd end up with a trusted team.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights/trust-audit-notify-help.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;In a Trust Team environment, you&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Give your developers more permissions.&lt;/li&gt;
-&lt;li&gt;But also keep audit trails so if something goes wrong we know who did what.&lt;/li&gt;
-&lt;li&gt;Create a robust system that can be recovered quickly.&lt;/li&gt;
-&lt;li&gt;Notify developers of problems automatically and immediately.&lt;/li&gt;
-&lt;li&gt;Help understand what caused issues and how to improve.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Again, let's dig into that last one and contrast to an untrusted team.&lt;/p&gt;
-&lt;p&gt;In the untrusted team, if a severe bug is discovered, several assumptions are made.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;One person is at fault. The team isn't treated as a unit.&lt;/li&gt;
-&lt;li&gt;The developer made a mistake. There's someone to blame.&lt;/li&gt;
-&lt;li&gt;The bug could have been prevented.&lt;/li&gt;
-&lt;li&gt;There needs to be a meeting to put procedures in place to keep it from happening again.&lt;/li&gt;
-&lt;li&gt;Non-team management is needed to enforce the new process.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In a trusted team,&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The team takes responsibility, knowing multiple people work on the code.&lt;/li&gt;
-&lt;li&gt;The developer may have made a mistake. But there's no blaming because mistakes are part of development.&lt;/li&gt;
-&lt;li&gt;Not everything is in our control. Software's very complex. The developer may have made the right decision, even though there was a poor outcome. You can't prevent all bugs.&lt;/li&gt;
-&lt;li&gt;Adding process &lt;em&gt;adds complexity&lt;/em&gt; to an already complex business. Sometimes process needs improvment. But often there's nothing to fix.&lt;/li&gt;
-&lt;li&gt;As soon as external management insists on compliance reports, the team ceases to be self-managing. Quality will go down, because the focus shifts from building software to pleasing management.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In the future, when something goes wrong:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Determine and explain the impact on the overall business.&lt;/li&gt;
-&lt;li&gt;Let the team sort things out.&lt;/li&gt;
-&lt;li&gt;Ask them to inform management what, if anything, will change.&lt;/li&gt;
-&lt;li&gt;Trust their answer.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Build trust, not scapegoats.&lt;/p&gt;
 </description>
       <pubDate>Sun, 5 Dec 2021 15:45:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights</link>
