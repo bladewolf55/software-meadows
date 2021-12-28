@@ -23,8 +23,8 @@
 &lt;/ul&gt;
 &lt;p&gt;In short, you can't tell whether a developer is doing a good job based on development issues. That isn't why you'd capture development issue metrics. You would capture them as one metric to compare the effects of making development changes. For example, a team commits to increasing unit test quality. What affect did that have on the number of issues found?&lt;/p&gt;
 &lt;p&gt;What are you even tracking? Is it the number and severity of issues found by QA? That might be OK. But how do you know that Billy has the same standard for &amp;quot;severe&amp;quot; as Claudia? Maybe Rahim breaks down an issue into more bug reports than Luciana.&lt;/p&gt;
-&lt;p&gt;This is when bureaucratic management tries to get everyone working the same way with endless meetings on &amp;quot;what does severe mean?&amp;quot; and &amp;quot;What the right way to report issues?&amp;quot; Some of this matters, sure. But this way of thinking misses the point. Its focus is on treating people as replaceable resources, as machines.&lt;/p&gt;
-&lt;p&gt;This coercive style of management has these qualities:&lt;/p&gt;
+&lt;p&gt;This is when bureaucratic management tries to get everyone working the same way with endless meetings on &amp;quot;what does severe mean?&amp;quot; and &amp;quot;What's the right way to report issues?&amp;quot; Some of this matters, sure. But this way of thinking misses the point. Its focus is on treating people as replaceable resources, as machines.&lt;/p&gt;
+&lt;p&gt;The coercive style of management has these qualities:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Restrict. Prevent. Catch. Punish.&lt;/p&gt;
 &lt;/blockquote&gt;
