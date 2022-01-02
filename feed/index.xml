@@ -6,6 +6,49 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Change the Phrase to "Home-Job Balance"</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/home-job-balance/images/home-job-balance.png" alt="" /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;I'm on a mission. It's a doomed mission primarily because I'm a little-known software engineer who's read by--maybe--a dozen people in the world. But that's OK. If my mission appeals to you, then that's a little bit of success in my life.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My mission is to change the phrase &amp;quot;work-life balance&amp;quot; to &amp;quot;HOME-JOB BALANCE&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Making my case won't take long. Here it is.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Work-life balances promotes a completely wrong mental model from the start. It's saying that there are two areas of existence: work and life. Anything outside of work is life, and &lt;em&gt;life isn't part of work&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;It's also implying &amp;quot;we shouldn't have to work at our lives.&amp;quot;&lt;/li&gt;
+&lt;li&gt;Finally, the syntax puts &amp;quot;work&amp;quot; at the front, when our &lt;em&gt;home lives&lt;/em&gt; are what we're routinely missing out on. Home should come first.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We all know &amp;quot;work vs. life&amp;quot; is wrong. Work is &lt;em&gt;part&lt;/em&gt; of our lives, it's part of life. With the increase in remote work--note: &lt;strong&gt;work&lt;/strong&gt; from &lt;strong&gt;home&lt;/strong&gt;--we need to be clear about what we're balancing.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Work&amp;quot; isn't something we just do for our jobs. We work at being good spouses, good friends, good parents, at taking care of our bodies and minds. Work isn't bad. What are working &lt;em&gt;at&lt;/em&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So, what I'm balancing isn't work and life. What I'm balancing are my home and my job. When and where am I &amp;quot;at home&amp;quot;? When and where am I &amp;quot;on the job&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is hard, for sure, especially for workers who have children or are caregivers for relatives. I think it becomes easier when we stop thinking about &amp;quot;work&amp;quot; and &amp;quot;life,&amp;quot; and frame our lives as &amp;quot;home&amp;quot; and &amp;quot;job&amp;quot;.&lt;/p&gt;
+&lt;p&gt;This is the first article, the &amp;quot;what&amp;quot; of the mission. My next will give guidance on how, a lot of which others have already written about.&lt;/p&gt;
+&lt;p&gt;In the meantime, here are some questions to answer:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HOME&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Where&lt;/em&gt; do I feel &amp;quot;at home&amp;quot;?&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;When&lt;/em&gt; do I feel &amp;quot;at home&amp;quot;?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;JOB&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Where&lt;/em&gt; do I do my job?&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;When&lt;/em&gt; do I do my job?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;CRUCIAL DIFFERENCES&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What separates--or can separate--being &amp;quot;at home&amp;quot; from being &amp;quot;on the job&amp;quot;?&lt;/li&gt;
+&lt;li&gt;What are my rewards for keeping them separate?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Post again soon!&lt;/p&gt;
+</description>
+      <pubDate>Sun, 2 Jan 2022 16:00:00 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/home-job-balance</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/home-job-balance</guid>
+    </item>
+    <item>
       <title>Agile Development - Don't Restrict. Trust</title>
       <description>&lt;p&gt;Lots of organizations try to prevent developers from making mistakes, or catch them doing so, leading to more bureaucracy and over-control. Some examples include:&lt;/p&gt;
 &lt;ul&gt;
@@ -1106,22 +1149,6 @@ git push --force
       <pubDate>Mon, 24 May 2021 20:42:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/professional_development_fundamentals</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/professional_development_fundamentals</guid>
-    </item>
-    <item>
-      <title>Unit Testing is Part of a Developer's Job Description</title>
-      <description>&lt;p&gt;The debate over unit testing's value is over. Twenty-plus years of evidence in software development, and decades more than that in other fields, proves that inspecting for quality early is superior to doing it late.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Whether to unit test shouldn't even be a discussion.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's a short and sweet slide deck on the subject.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/images/Unit%20Testing%20Slide%20Deck.pptx"&gt;Unit Testing Slide Deck PowerPoint&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/images/Slide1.PNG" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/images/Slide2.PNG" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/images/Slide3.PNG" alt="" /&gt;&lt;/p&gt;
-</description>
-      <pubDate>Sat, 22 May 2021 10:51:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description</guid>
     </item>
   </channel>
 </rss>
