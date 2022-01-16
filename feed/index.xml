@@ -6,6 +6,23 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>The difference between a self-managing team and a managed team</title>
+      <description>&lt;p&gt;This won't take long, but helped bring things into focus for me.&lt;/p&gt;
+&lt;p&gt;The first one's &lt;strong style="color:green;"&gt;Agile&lt;/strong&gt;. The second one's &lt;strong style="color:red;"&gt;bureaucracy&lt;/strong&gt;.&lt;/p&gt;
+&lt;div style="font-size:3em;"&gt;
+&lt;span&gt;Self-Managing Team&lt;/span&gt;
+&lt;div style="font-size:0.6em;"&gt;"&lt;strong style="color:green;"&gt;We&lt;/strong&gt; hold each other accountable."&lt;/div&gt;
+&lt;/div&gt;
+&lt;div style="font-size:3em;margin-top:0.5em;"&gt;
+&lt;span&gt;Managed Team&lt;/span&gt;
+&lt;div style="font-size:0.6em;"&gt;"&lt;strong style="color:red"&gt;I&lt;/strong&gt; hold you all accountable."&lt;/div&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Sat, 15 Jan 2022 20:18:30 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/the_difference_between_a_self-managing_team_and_a_managed_team</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_difference_between_a_self-managing_team_and_a_managed_team</guid>
+    </item>
+    <item>
       <title>Change the Phrase to "Home-Job Balance"</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/home-job-balance/images/home-job-balance.png" alt="" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -938,217 +955,6 @@ git push --force
       <pubDate>Thu, 1 Jul 2021 13:28:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/basic_daily_git_commands__including_rebase_is_good</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/basic_daily_git_commands__including_rebase_is_good</guid>
-    </item>
-    <item>
-      <title>Professional Development Fundamentals</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/professional_development_fundamentals/images/pro-dev-fun-logo.png" alt="" /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The one thing missing from this guide right now is tracking work in an Agile way. I plan to add that later.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="contents"&gt;Contents&lt;/h2&gt;
-&lt;!-- Start Document Outline --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#local-development-cycle"&gt;Local Development Cycle&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#pull-requests-and-code-reviews"&gt;Pull Requests and Code Reviews&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#continuous-integration"&gt;Continuous Integration&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#aspects-of-quality-code"&gt;Aspects of quality code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#capabilities-of-high-performing-software-teams"&gt;Capabilities of high-performing software teams&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#the-four-key-metrics"&gt;The Four Key Metrics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#resources"&gt;Resources&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- End Document Outline --&gt;
-&lt;h2 id="local-development-cycle"&gt;Local Development Cycle&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Release small often&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Pull and rebase latest code from mainline.&lt;/li&gt;
-&lt;li&gt;Work from a short-lived feature branch.&lt;/li&gt;
-&lt;li&gt;Unit test, frequently commit locally, push branch when it passes tests.&lt;/li&gt;
-&lt;li&gt;Integrate latest mainline locally, run private build/tests, push.&lt;/li&gt;
-&lt;li&gt;Final push, create a pull request.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/professional_development_fundamentals/images/local-development-cycle.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="pull-requests-and-code-reviews"&gt;Pull Requests and Code Reviews&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;No unreviewed code&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Another developer reviews the PR (code review)&lt;/li&gt;
-&lt;li&gt;PR merges into mainline&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="continuous-integration"&gt;Continuous Integration&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Build once, deploy-to-many&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;CI Server is triggered by source control changes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Build&lt;/strong&gt; Triggered by mainline and feature branch changes. Build in clean environment, run unit tests, create deployment package.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;TDD&lt;/strong&gt;  Always runs and fully automated. Environment is created and deployed to from scratch. Automated integration tests run.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;UAT&lt;/strong&gt;  Runs if mainline changes and TDD succeeds. Existing environments deployed to. Some automated testing. Users perform acceptance tests.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Prod&lt;/strong&gt; Runs if UAT succeeds and deployment is approved. Existing environment deployed to. Some automated smoke testing. Can require approval.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/professional_development_fundamentals/images/ci-basic.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="aspects-of-quality-code"&gt;Aspects of quality code&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Code is never finished&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Loosely coupled&lt;/strong&gt; Dependencies are reduced. See SOLID, DRY, YAGNI.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Complexity reduced&lt;/strong&gt; Packages, classes, methods have one purpose.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tested early&lt;/strong&gt; Unit testing reduces defects and improves architecture. See TDD.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Reviewed&lt;/strong&gt; Code reviews improve quality and share knowledge.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Clearly named&lt;/strong&gt; Naming (of classes, methods, variables) is hard and important.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Self-documenting&lt;/strong&gt; &lt;em&gt;What&lt;/em&gt; the code does should be obvious. Comment &lt;em&gt;why&lt;/em&gt; the code does what it does, when not obvious.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Properly versioned&lt;/strong&gt; Harder than it seems. See Semantic Versioning and your language's package peculiarities.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Maintanable and replaceable&lt;/strong&gt; No code lasts forever. Design for change.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="capabilities-of-high-performing-software-teams"&gt;Capabilities of high-performing software teams&lt;/h2&gt;
-&lt;p&gt;A couple of principles can guide making lots of better decisions.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Reduce friction to doing the right thing&lt;/li&gt;
-&lt;li&gt;Do all the steps&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here are the 24 capabilities of high-performing software organizations from the DORA group's meticulous, evidence-based research.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Capability (and desired result)&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;CONTINUOUS DELIVERY CAPABILITIES&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;01 Version control&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;02 Deployment automation&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;03 Continuous integration (CI)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;04 Trunk-based development&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;05 Test automation&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;06 Test data management&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;07 Shift left on security (put first, make easy)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;08 Continuous delivery (CD)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;ARCHITECTURE CAPABILITIES&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;09 Loosely coupled architecture&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;10 Empowered teams&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;PRODUCT AND PROCESS CAPABILITIES&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;11 Customer feedback&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;12 Value stream mapping&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;13 Working in small batches&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;14 Team experimentation&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;LEAN MANAGEMENT AND MONITORING CAPABILITIES&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;15 Change approval processes (lightweight, not external)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;16 Monitoring&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;17 Proactive notification&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;18 WIP limits (limit work-in-progress)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;19 Visualizing work (public Kanban boards)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;CULTURAL CAPABILITIES&lt;/strong&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;20 Westrum organizational culture (Generative)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;21 Supporting learning&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;22 Collaboration among teams&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;23 Job satisfaction&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;24 Transformational leadership&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id="the-four-key-metrics"&gt;The Four Key Metrics&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;How do you know you're succeeding?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Again, from the DORA group.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Deployment Frequency&lt;/strong&gt; How often an organization successfully releases to production&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Lead Time for Changes&lt;/strong&gt; The amount of time it takes a commit to get into production&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Change Failure Rate&lt;/strong&gt; The percentage of deployments causing a failure in production&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Time to Restore Service&lt;/strong&gt; How long it takes an organization to recover from a failure in production&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="resources"&gt;Resources&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/SOLID"&gt;SOLID&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself"&gt;DRY (Don't repeat yourself)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it"&gt;YAGNI (You aren't going to need it)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Test-driven_development"&gt;TDD (Test-Driven Development)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://semver.org/"&gt;Semantic Versioning 2.0.0 | Semantic Versioning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://cloud.google.com/devops/"&gt;DevOps Research and Assessment (DORA)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance"&gt;Are you an Elite DevOps performer? Find out with the Four Keys Project&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Accelerate-Software-Performing-Technology-Organizations-ebook/dp/B07B9F83WM"&gt;Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.karlton.org/2017/12/naming-things-hard/"&gt;Naming things is hard | dk&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Code_review"&gt;Code review&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Meltdown-Systems-Fail-What-About-ebook/dp/B073NNNMBB"&gt;Meltdown: What Plane Crashes, Oil Spills, and Dumb Business Decisions Can Teach Us About How to Succeed at Work and at Homee&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Mon, 24 May 2021 20:42:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/professional_development_fundamentals</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/professional_development_fundamentals</guid>
     </item>
   </channel>
 </rss>
