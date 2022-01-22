@@ -6,6 +6,112 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Home-Job Balance: How I "End" My Job Day</title>
+      <description>&lt;h2 id="previously-on-home-job-balance"&gt;Previously on &lt;em&gt;Home-Job Balance&lt;/em&gt; . . .&lt;/h2&gt;
+&lt;p&gt;In my &lt;a href="https://www.softwaremeadows.com/posts/home-job-balance/"&gt;previous post&lt;/a&gt;, I submitted that a big step toward improving work/life balance is to replace that phrase with &amp;quot;home-job balance.&amp;quot; Doing so corrects several problems with the current phrase, and brings our attention where it often belongs: &lt;strong&gt;home&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I'm going to answer the questions I asked in that post and give some tips on how I &amp;quot;close up shop&amp;quot; for the day, which I can do &lt;em&gt;at any time&lt;/em&gt; during the day.&lt;/p&gt;
+&lt;h2 id="when-am-i-at-home-vs-at-the-job"&gt;When am I at home vs at the job?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Job&lt;/strong&gt;&lt;br /&gt;
+It's startlingly easier for me to identify when and where I'm on the job than at home.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When I'm performing tasks specifically for my company or my company's client (I work for a &lt;a href="https://clearmeasure.com/"&gt;consulting company&lt;/a&gt;.)&lt;/li&gt;
+&lt;li&gt;When I'm reading company and client messages (Slack, email).&lt;/li&gt;
+&lt;li&gt;When I'm getting company/client notifications (meetings, messages, tasks).&lt;/li&gt;
+&lt;li&gt;At my computer with certain folders and applications open, such as client code repositories, Visual Studio, Azure DevOps.&lt;/li&gt;
+&lt;li&gt;Reading subject articles to complete my tasks.&lt;/li&gt;
+&lt;li&gt;Reading general articles/books for my career. This includes reading blog posts like the one I'm writing!&lt;/li&gt;
+&lt;li&gt;I feel on the job if I'm talking about my job to family and friends with my attention on solving job problems, not just describing what I do.&lt;/li&gt;
+&lt;li&gt;Likewise, I'm on the job if I'm &lt;em&gt;dwelling&lt;/em&gt; on my job when I don't have to be.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Home&lt;/strong&gt;&lt;br /&gt;
+It'd be a mistake to decide I feel at home when I'm not doing my job.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Being home can't be &amp;quot;the absense of job.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here are some ways I feel at home.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Working on house projects, especially when they're nice to do instead of &amp;quot;must do.&amp;quot; I had to clean the garage door rails because the door kept (and, sigh, keeps) sticking. I crafted and installed a little shelf across the kitchen window for my wife's herbs. I felt at home with both, and enjoyed the second more.&lt;/li&gt;
+&lt;li&gt;Being in the living room with my wife and dog. It often doesn't matter what I'm doing. They're close and they matter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The above involve being physically at home. But home doesn't have to be a place. A house isn't always a home. Some other ways I feel at home are,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reading a book. The less it's related to my career, the more at home I feel. Fiction brings me home because I grew up entering the worlds of imagination.&lt;/li&gt;
+&lt;li&gt;Watching TV or movies. Like books, these take me out of my job and into other lives. Note that I do these on my computer.&lt;/li&gt;
+&lt;li&gt;Walking my neighborhood. I'm lucky to live somewhere I enjoy.&lt;/li&gt;
+&lt;li&gt;Exercising, especially either being instructed or leading a class.&lt;/li&gt;
+&lt;li&gt;Having earnest and playful conversations with family and friends.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="keeping-my-job-separate-when-it-uses-the-same-place-and-tools"&gt;Keeping my job separate when it uses the same place and tools&lt;/h2&gt;
+&lt;p&gt;I do my job in my home office at my laptop. I also do home stuff in my home office on the same laptop. It's not productive for me to maintain two different laptops. Here's what I do to cue myself &amp;quot;this is the job, Dude.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Different browsers and/or profiles&lt;/strong&gt;&lt;br /&gt;
+I use Brave for my home browsing and Edge for my work browsing.&lt;/p&gt;
+&lt;p&gt;In Edge, I have two job profiles: my company and my client. To make switching between those two easier, I loaded my company profile and pinned that instance to my Windows task bar. Then I loaded my client profile and pinned that instance.&lt;/p&gt;
+&lt;p&gt;The result is it's faster and easier for me to open Edge with the needed bookmarks and security context in place.&lt;/p&gt;
+&lt;p&gt;Notice I put Home first?&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/home-job_balance__how_i__end__my_job_day/2022-01-22-07-18-21.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clearly separate job folders&lt;/strong&gt;&lt;br /&gt;
+I have a high-level job folder, and no personal projects go in that. Recently, I made another change I love. I have separate high-level Git repository folders for my job and personal projects.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;C:\source &amp;lt;= ONLY client repos
+|_project 1
+|_project 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;C:\users\charl\source\repos &amp;lt;= ONLY personal repos
+|_project 1
+|_project 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="leaving-the-job-for-the-day"&gt;Leaving the job for the day&lt;/h2&gt;
+&lt;p&gt;I have a loose ritual I can do at any time to signal to myself &amp;quot;I'm done with my job for the day&amp;quot; or &amp;quot;done for now.&amp;quot;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close job-specific browsers&lt;/strong&gt;&lt;br /&gt;
+I close my job Edge browsers. But what if I have a couple dozen browser tabs open for a job project? I use a cool extension like &lt;a href="https://qlearly.com/"&gt;Qlearly&lt;/a&gt; to save them all, and can reopen when I'm on the job again.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close job-specific apps&lt;/strong&gt;&lt;br /&gt;
+Some apps I only use for my job, for example Slack. Slack &amp;quot;closes&amp;quot; to the notification area. I right-click that icon and Quit the app. Bam, Slack, you no longer control me!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close File Explorer showing job folders&lt;/strong&gt;&lt;br /&gt;
+Not minimize. Close. I add friction to looking at my job's work.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Confession: I actually use the terrific &lt;a href="http://www.freecommander.com/"&gt;FreeCommander XE&lt;/a&gt; paid version to manage my files. My job folder tabs are in the left pane. I close those tabs, or close the app, or at least minimize it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close any windows showing job-related documents&lt;/strong&gt;&lt;br /&gt;
+For me, this can be: Visual Studio, VS Code, Word, Excel, Balsamiq, LINQPad . . . you get the point.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I &lt;em&gt;know&lt;/em&gt;. In your mind you're thinking, &amp;quot;But I just need to open them all again and pick up where I left off. It's so much &lt;em&gt;easier&lt;/em&gt; to leave them open.&amp;quot;&lt;/p&gt;
+&lt;p&gt;That's true. It's easier. That's the point. You're making it &lt;strong&gt;easy to stay on the job&lt;/strong&gt;. Instead, make it easy to be at home.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Say, &amp;quot;I'm going home&amp;quot;&lt;/strong&gt;&lt;br /&gt;
+This sounds silly. It isn't, and it takes one second. Try it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close my laptop lid&lt;/strong&gt;&lt;br /&gt;
+If I've had a really tough day.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Walk away from my computer&lt;/strong&gt;&lt;br /&gt;
+I was surprised how much difference it makes to physically go to another room where my computer isn't. I'll go back to it later &lt;em&gt;on my own terms&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Do something that makes me feel at home&lt;/strong&gt;&lt;br /&gt;
+You know, from that list I made.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Maybe I'll open my computer again fifteen minutes later to shop for new bed sheets. Fine. &lt;em&gt;I've given myself the end-of-job cue and a break I deserve right now.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="final-thoughts-notifications"&gt;Final Thoughts: Notifications&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;What and who are you putting first all the time? Have you made yourself &amp;quot;always available&amp;quot;?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;By default, lots of computer and phone apps have their notification turned on. Schedule yourself some self-care time to learn your app settings, have a heart-to-heart with yourself, and turn off whatever you can.&lt;/p&gt;
+&lt;p&gt;For example: Slack/Teams/Discord users, ask yourself, &amp;quot;Which channels are &lt;em&gt;urgent&lt;/em&gt;, if any?&amp;quot; I hope for you the initial answer isn't &amp;quot;all of them&amp;quot;! I set up Slack so I only get notified on a couple of channels and if I get a direct mention. When I quit Slack on my computer, I know I'll still get emergency notifications on my phone.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When you're on the job, put it first. &lt;strong&gt;When you're at home, put it first.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+      <pubDate>Sat, 22 Jan 2022 07:00:46 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/home-job_balance__how_i__end__my_job_day</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/home-job_balance__how_i__end__my_job_day</guid>
+    </item>
+    <item>
       <title>The difference between a self-managing team and a managed team</title>
       <description>&lt;p&gt;This won't take long, but helped bring things into focus for me.&lt;/p&gt;
 &lt;p&gt;The first one's &lt;strong style="color:green;"&gt;Agile&lt;/strong&gt;. The second one's &lt;strong style="color:red;"&gt;bureaucracy&lt;/strong&gt;.&lt;/p&gt;
@@ -906,59 +1012,6 @@ Error 0x8007000e: Not enough memory resources are available to complete this ope
       <pubDate>Sun, 11 Jul 2021 14:59:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/configuring_iterations_for_teams_in_azure_devops</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/configuring_iterations_for_teams_in_azure_devops</guid>
-    </item>
-    <item>
-      <title>Basic Daily Git Commands, including "Rebase is Good"</title>
-      <description>&lt;p&gt;These are the commands I use on a daily basis. Hopefully this helps explain and put to rest the fear of &lt;code&gt;rebase&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;I have aliases for these that mostly came from &lt;a href="https://haacked.com/archive/2019/02/14/including-git-aliases/"&gt;Phil Haack&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The below commands assume your mainline branch is named 'main'. Adjust accordingly if it's called 'master,' 'trunk', etc.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code class="language-powershell"&gt;# Start day getting latest
-git checkout main
-# Create a new branch
-git checkout -b features/my-feature
-# work for a half hour
-git add -A
-git commit -m &amp;quot;Did some work&amp;quot;
-# push branch to remote in case I die
-git push --set-upstream origin features/my-feature
-# work another couple of hours, occasionally syncing to remote
-# (one liner)
-git add -A &amp;amp;&amp;amp; git commit -m &amp;quot;Did some other work&amp;quot;
-git push
-# ready to submit PR. I want my code to be *after* the latest, so . . .
-git checkout main
-git pull [gets latest changes]
-git checkout feature/my-feature
-git rebase main
-# deal with any merge conflicts, then squash and force push
-git rebase main --interactive [I squash all commits into one]
-git push --force
-# I'm done. Create the pull request.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="qa"&gt;Q&amp;amp;A&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Isn't rebase bad and you should never ever do it because everyone says so?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;No. Rebase is good and you're listening to the wrong people. It's what significantly reduces merge conflicts in your pull requests. What's bad is not understanding what rebase does and what problems it could cause.&lt;/p&gt;
-&lt;p&gt;When rebasing onto main, you're saying, &amp;quot;If I merge my changes into main now, they'll be in the middle of what's already committed. I want them at the end. So take my changes and apply them to the end of main &lt;em&gt;as if I just made them&lt;/em&gt;.&amp;quot;&lt;/p&gt;
-&lt;p&gt;From Git's point of view, these are new commits, so they get new file hashes. That's why you have to force-push them, &lt;em&gt;overwriting&lt;/em&gt; the remote branch.&lt;/p&gt;
-&lt;p&gt;This is OK as long as:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;You &lt;em&gt;do not ever&lt;/em&gt; rebase main onto a branch and then push main.&lt;/li&gt;
-&lt;li&gt;If someone else is working on your branch with you, you tell them to &lt;code&gt;git pull --force&lt;/code&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The first one you should never, ever even think of doing. The second one is rare because developers tend to work indepedently on short-lived branches.&lt;/p&gt;
-&lt;p&gt;When it comes to merge vs rebase, the directions of change are always:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Merge from branch into main. Rebase branch onto main.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;When you &amp;quot;merge from&amp;quot;, you start in main. When you &amp;quot;rebase onto&amp;quot; you start in the branch.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;What about merge conflicts?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;That's a whole other topic. What matters is using a good diff/merge tool. The one I use, &lt;a href="https://download.kde.org/stable/kdiff3/"&gt;KDiff3&lt;/a&gt;, is really old but I like it best.&lt;/p&gt;
-</description>
-      <pubDate>Thu, 1 Jul 2021 13:28:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/basic_daily_git_commands__including_rebase_is_good</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/basic_daily_git_commands__including_rebase_is_good</guid>
     </item>
   </channel>
 </rss>
