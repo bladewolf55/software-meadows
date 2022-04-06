@@ -7,7 +7,7 @@
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
       <title>How to Hide Markdown Breadcrumbs in VS Code</title>
-      <description>&lt;p&gt;Here's a quick one. If you using &lt;a href="https://code.visualstudio.com/docs/introvideos/basics"&gt;Visual Studio Code&lt;/a&gt; as your Markdown editor and work with larger documents, such as a daily journal, VS Code's default behavior of showing breadcrumbs might be a performance drag.&lt;/p&gt;
+      <description>&lt;p&gt;Here's a quick one. If you're using &lt;a href="https://code.visualstudio.com/docs/introvideos/basics"&gt;Visual Studio Code&lt;/a&gt; as your Markdown editor and work with larger documents, such as a daily journal, VS Code's default behavior of showing breadcrumbs might be a performance drag.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code/2022-04-06-15-59-57.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;To turn off header-level breadcrumbs when working with &lt;strong&gt;just&lt;/strong&gt; Markdown files:&lt;/p&gt;
 &lt;ol&gt;
