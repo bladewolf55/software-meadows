@@ -6,6 +6,30 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>How to Hide Markdown Breadcrumbs in VS Code</title>
+      <description>&lt;p&gt;Here's a quick one. If you using &lt;a href="https://code.visualstudio.com/docs/introvideos/basics"&gt;Visual Studio Code&lt;/a&gt; as your Markdown editor and work with larger documents, such as a daily journal, VS Code's default behavior of showing breadcrumbs might be a performance drag.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code/2022-04-06-15-59-57.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;To turn off header-level breadcrumbs when working with &lt;strong&gt;just&lt;/strong&gt; Markdown files:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;View &amp;gt; Command Palette &amp;gt;  the JSON User settings &amp;gt; Preferences: Open Settings (JSON)&lt;/li&gt;
+&lt;li&gt;Add this setting
+&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;[markdown]&amp;quot;: {
+    &amp;quot;breadcrumbs.showStrings&amp;quot;: false
+},
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code/2022-04-06-16-00-39.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;If you want to disable breadcrumbs for all languages, use this setting:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;breadcrumbs.enabled&amp;quot;: false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Happy writing!&lt;/p&gt;
+</description>
+      <pubDate>Wed, 6 Apr 2022 15:52:05 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code</guid>
+    </item>
+    <item>
       <title>Home-Job Balance: How I "End" My Job Day</title>
       <description>&lt;h2 id="previously-on-home-job-balance"&gt;Previously on &lt;em&gt;Home-Job Balance&lt;/em&gt; . . .&lt;/h2&gt;
 &lt;p&gt;In my &lt;a href="https://www.softwaremeadows.com/posts/home-job-balance/"&gt;previous post&lt;/a&gt;, I submitted that a big step toward improving work/life balance is to replace that phrase with &amp;quot;home-job balance.&amp;quot; Doing so corrects several problems with the current phrase, and brings our attention where it often belongs: &lt;strong&gt;home&lt;/strong&gt;.&lt;/p&gt;
@@ -915,107 +939,6 @@ Error 0x8007000e: Not enough memory resources are available to complete this ope
       <pubDate>Wed, 4 Aug 2021 10:00:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/solutions_to_error_unable_to_connect_to_web_server_iis_express</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/solutions_to_error_unable_to_connect_to_web_server_iis_express</guid>
-    </item>
-    <item>
-      <title>Configuring Iterations for Teams in Azure DevOps</title>
-      <description>&lt;p&gt;I don't know how much guidance Microsoft gives on creating Iterations. This is my approach.&lt;/p&gt;
-&lt;h2 id="the-basics"&gt;The Basics&lt;/h2&gt;
-&lt;p&gt;Here's the Azure DevOps structure, regardless of usage:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;|_Process [Work items defined]
-  |_Project(s) [Iterations defined]
-    |_Team(s) [Board defined, Iterations selected]
-      |_Area(s) 
-        |_Work Item(s) [assigned to Area and Iteration]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There's always a top-level &amp;quot;iteration&amp;quot; with the name of the project, which can't be changed. This is confusing because everything in the iteration tree is called an iteration, but in fact you should think of the tree as folders of iterations.&lt;/p&gt;
-&lt;p&gt;You configure iterations at the project level (Project Settings &amp;gt; Boards &amp;gt; Project configuration). However, a Team &lt;em&gt;chooses&lt;/em&gt; which iterations it uses. In other words, adding iterations to the project does &lt;em&gt;not&lt;/em&gt; add them to all teams.&lt;/p&gt;
-&lt;p&gt;While initially confusing, this gives a lot of flexiblity in the project. Everyone can be on the same sprint cycle, or individual teams can be on their own cycle.&lt;/p&gt;
-&lt;h2 id="the-most-common-configuration-i-recommend"&gt;The Most Common Configuration I Recommend&lt;/h2&gt;
-&lt;p&gt;Here's how I'd set up a project that has one or two teams, which &lt;em&gt;should&lt;/em&gt; be all that are on an Agile-based project anyway.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Notice I do &lt;em&gt;not&lt;/em&gt; use the root level for the product backlog. Unfortunately, Microsoft doesn't help enough in setting this up.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;Baskets-R-Us Website
-|_Product Backlog
-  |_Sprint 2021-04-16
-  |_Sprint 2021-04-30
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Why &amp;quot;product backlog&amp;quot;? In Team configuration &amp;gt; Iterations, there are two settings: Default iteration, Backlog Iteration.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/configuring_iterations_for_teams_in_azure_devops/images/sc01.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Default Iteration means &amp;quot;when I create a new work item, which iteration is it assigned to?&amp;quot; The default is @CurrentIteration. &lt;em&gt;This is wrong!&lt;/em&gt; New work items should &lt;em&gt;not&lt;/em&gt; be automatically added to the current sprint: that's contrary to Scrum thinking. Instead, I set Default iteration to the team's product backlog iteration.&lt;/p&gt;
-&lt;p&gt;Likewise, Backlog iteration means &amp;quot;When we look at our backlog, which iteration is at the root?&amp;quot; That should be, of course, the product backlog iteration. That's why I keep the naming clean.&lt;/p&gt;
-&lt;p&gt;Both teams on this project would use the same product backlog and iterations. The teams would have &lt;em&gt;independent&lt;/em&gt; boards and work items because by default a team has its own area.&lt;/p&gt;
-&lt;p&gt;The result is that, in sprint planning, everyone would work from the same product backlog. Assuming Scrum, the project (product) should have a single Product Owner and Scrum Master shared by the two teams. When work items are assigned to iterations, they're also assigned to the team's area, allowing each team to filter for its work items in its boards.&lt;/p&gt;
-&lt;h2 id="naming-iterations"&gt;Naming Iterations&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Where organizations often go astray is naming.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's one way iterations might be organized for multiple teams. Again, notice my naming.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Baskets-R-Us Website &amp;lt;== root level folder
-|_ eCommerce Product Backlog
-  |_2021-04-07
-  |_2021-04-30
-|_Social Media Product Backlog
-  |_2021-04 05-16
-  |_2021-04 19-30
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this case, the teams within the project are working very independently. They don't share a backlog, instead each team maintains its own.&lt;/p&gt;
-&lt;h2 id="yet-another-approach"&gt;Yet Another Approach&lt;/h2&gt;
-&lt;p&gt;Here's another--arguably better--way to organize multiple teams on a single Scrum-based project where the teams want to use their own sprint cycles. On a single project with just a couple of team. That's probably not a good idea. Keep the teams working as closely together as possible &lt;em&gt;on the same project&lt;/em&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This rule of thumb doesn't apply on teams across projects, who shouldn't be constrained in how they independently work. They not only should have separate DevOps projects, but should be allowed to have their own process template.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;Baskets-R-Us Website &amp;lt;== root level folder
-|_Product Backlog
-  |_ eCommerce Sprints
-    |_2021-04-07
-    |_2021-04-30
-|_Social Media Sprints
-    |_2021-04 05-16
-    |_2021-04 19-30
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Given this organization, both teams would set their default and backlog iterations to &amp;quot;Product Backlog.&amp;quot; The clear naming will help them find their iterations.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The fact that it's harder to work with the sprints might be a clue that the teams should share an iteration cycle.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="the-wrong-way"&gt;The Wrong Way&lt;/h2&gt;
-&lt;p&gt;Some organizations (believe) they want all employees and teams to use the same process, and even share the same backlog and board. This &lt;em&gt;can&lt;/em&gt; be done in Azure DevOps, but frankly I think it's anti-Agile, anti-productive, and there's plenty of evidence to back me up.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Really, don't do this. It encourages a top-down, tightly-coupled, bureaucratic culture.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;If you're determined, here's how you might do it by taking advantage of the little-used (for good reason) Areas feature.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Using multiple Areas should be reserved for really complex projects&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Remember, work items are assigned to an Area and Iteration. What we're doing here is inverting (and subverting) the Azure DevOps structure by turning Areas into Projects.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;|_MRU Process [THE Monsters-R-Us Process]
-  |_Monsters-R-Us Project [The ONLY project in the entire company]
-    |_MRU Team [EVERYONE including vendors. Iterations defined here. Backlog/Board defined here]
-      |_Area - MRU Website
-        |_Work Item(s) [assigned to Area and Iteration]
-      |_Area - MRU Mobile Applications
-        |_Work Item(s)
-      |_Area - MRU Developer Experience
-        |_Work Item(s)
-      |_Area - Internal DevOps Improvements
-        |_Work Item(s)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;What this allows:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Any employee can be assigned work in any area&lt;/li&gt;
-&lt;li&gt;All work items are in a single, monolithic backlog that can be filtered by area&lt;/li&gt;
-&lt;li&gt;Single, monolithic board that can be filtered by area or person&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I'm sure someone will say Tags can be used for categorization and filtering. That's true, but adds complication.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;Azure DevOps is a quite capable suite of features that will work for many types of organizations. &lt;em&gt;Because&lt;/em&gt; of that, it can be challenging to understand how to configure well.&lt;/p&gt;
-&lt;p&gt;Hopefully, this helps you along toward your own success.&lt;/p&gt;
-</description>
-      <pubDate>Sun, 11 Jul 2021 14:59:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/configuring_iterations_for_teams_in_azure_devops</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/configuring_iterations_for_teams_in_azure_devops</guid>
     </item>
   </channel>
 </rss>
