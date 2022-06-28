@@ -6,6 +6,101 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>.NET MAUI Progressing From a Default Project Part 2 - (The Problem With) Basic Unit Testing</title>
+      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
+&lt;p&gt;Level: Moderate&lt;/p&gt;
+&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="net-mauis-testing-problem"&gt;.NET MAUI's testing problem&lt;/h2&gt;
+&lt;p&gt;At the time of this writing, .NET MAUI apps don't support unit testing. At least, not in any way I could find. And I tried, I really tried, to fool .NET by playing with target frameworks and conditionally including a Program Main method, and other goofy stuff, but to no avail.&lt;/p&gt;
+&lt;p&gt;So, that's the bad news, a real bummer, and in my opinion a terrible oversight on the .NET MAUI team's part. There's no talk of unit testing, no guidance, no explanation.&lt;/p&gt;
+&lt;p&gt;Here's the good news: you can unit test .NET MAUI class libraries. Examples can be found at the &lt;a href="https://github.com/CommunityToolkit/Maui/tree/main/src/CommunityToolkit.Maui.UnitTests"&gt;Community Toolkit repository&lt;/a&gt; (thank you, open source!).&lt;/p&gt;
+&lt;p&gt;This means we need to separate anything we want to unit test into a library. That's not ideal, especially for smaller projects, but we'll make do. I have confidence Microsoft is working on a better way.&lt;/p&gt;
+&lt;h2 id="add-the-viewmodels-library"&gt;Add the ViewModels library&lt;/h2&gt;
+&lt;p&gt;To keep things organized, let's add a ViewModels library. Later, we'll add a Models library.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You could also have a single library for testable code, broken into namespaces. I would do that here, but, frankly, I wasn't sure what to name it! Plus, separate libraries reenforces our separation of concerns.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Solution &amp;gt; Add &amp;gt; New Project &amp;gt; .NET MAUI Class Library named &amp;quot;Maui.Progression.ViewModels&amp;quot;.&lt;/li&gt;
+&lt;li&gt;Install the Microsoft.Toolkit.Mvvm package, and uninstall that package from the app project.&lt;/li&gt;
+&lt;li&gt;Delete the &lt;code&gt;Class1.cs&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;Copy or move the &lt;code&gt;Counter.cs&lt;/code&gt; file to the root of the ViewModels library.&lt;/li&gt;
+&lt;li&gt;In the app project, delete the ViewModels folder.&lt;/li&gt;
+&lt;li&gt;In the app project, add the ViewModels project as a project reference.&lt;/li&gt;
+&lt;li&gt;Update the &lt;code&gt;MainPage.xaml&lt;/code&gt; viewmodels namespace.
+&lt;pre&gt;&lt;code class="language-xml"&gt;xmlns:viewmodels=&amp;quot;clr-namespace:Maui.Progression.ViewModels;assembly=Maui.Progression.ViewModels&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;At this point you may need to do a Solution Clean and Rebuild, or even close Visual Studio, delete the bin/obj folders, and restart then build.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For example, I got this warning:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;Warning	WMC1006	Cannot resolve Assembly or Windows Metadata file 'C:\Users\charl\source\repos\dotnet-maui-progression\src\Maui.Progression.02\Maui.Progression.ViewModels\bin\Debug\net6.0-windows10.0.19041.0\Maui.Progression.ViewModels.dll'	Maui.Progression	C:\Users\charl\source\repos\dotnet-maui-progression\src\Maui.Progression.02\Maui.Progression\Maui.Progression.csproj
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Running the app should behave as before.&lt;/p&gt;
+&lt;h2 id="add-the-testing-project"&gt;Add the testing project&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My preferred unit testing stack is &lt;a href="https://xunit.net/"&gt;xUnit&lt;/a&gt;, &lt;a href="https://fluentassertions.com/"&gt;FluentAssertions&lt;/a&gt;, and &lt;a href="https://nsubstitute.github.io/"&gt;NSubstitute&lt;/a&gt;. I'm keeping this tutorial simple by using vanilla xUnit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Solution &amp;gt; Add &amp;gt; New Project &amp;gt; xUnit Test Project named &amp;quot;Maui.Progression.UnitTests&amp;quot;&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;Maui.Progression.ViewModels&lt;/code&gt; as a project reference.&lt;/li&gt;
+&lt;li&gt;Rename &lt;code&gt;UnitTest1.cs&lt;/code&gt; to &lt;code&gt;Counter_Should.cs&lt;/code&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is just my preferred naming convention.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;Counter_Should.cs&lt;/code&gt; with this code.
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.ViewModels;
+
+namespace Maui.Progression.UnitTests;
+
+public class Counter_Should
+{
+    [Fact]
+    public void Increment_counter_by_one_using_command()
+    {
+        // arrange
+        int expected = 1;
+        var vm = new Counter();
+
+        // verify the starting count
+        Assert.True(vm.Count == 0, &amp;quot;Starting count should have been zero.&amp;quot;);
+
+        // act
+        vm.IncreaseCounterCommand.Execute(null);
+
+        // assert
+        Assert.Equal(expected, vm.Count);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Run the test, which should pass.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing/2022-06-23-12-46-27.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;As a final check, rerun the app.&lt;/p&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;We've separated out our View Model into a testable library, and written a simple passing test. We haven't written any kind of UI test, but that's OK for now. In a future part, I hope to try out the &lt;a href="https://appcenter.ms/"&gt;Visual Studio App Center&lt;/a&gt;, which appears purpose-built for multi-platform UI testing.&lt;/p&gt;
+&lt;p&gt;Next up: adding a Model!&lt;/p&gt;
+&lt;h2 id="resources"&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/"&gt;Unit Testing Is Part Of A Developer's Job Description | Software Meadows&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Tue, 28 Jun 2022 01:15:00 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</guid>
+    </item>
+    <item>
       <title>.NET MAUI Progressing From a Default Project Part 1 - Adding the View Model</title>
       <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
 &lt;p&gt;Level: Moderate&lt;/p&gt;
@@ -243,104 +338,9 @@ This is probably the most useful troubleshooting step I've found. When you close
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-      <pubDate>Mon, 20 Jun 2022 07:51:00 -0600</pubDate>
+      <pubDate>Tue, 28 Jun 2022 01:00:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model</guid>
-    </item>
-    <item>
-      <title>.NET MAUI Progressing From a Default Project Part 2 - (The Problem With) Basic Unit Testing</title>
-      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
-&lt;p&gt;Level: Moderate&lt;/p&gt;
-&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="net-mauis-testing-problem"&gt;.NET MAUI's testing problem&lt;/h2&gt;
-&lt;p&gt;At the time of this writing, .NET MAUI apps don't support unit testing. At least, not in any way I could find. And I tried, I really tried, to fool .NET by playing with target frameworks and conditionally including a Program Main method, and other goofy stuff, but to no avail.&lt;/p&gt;
-&lt;p&gt;So, that's the bad news, a real bummer, and in my opinion a terrible oversight on the .NET MAUI team's part. There's no talk of unit testing, no guidance, no explanation.&lt;/p&gt;
-&lt;p&gt;Here's the good news: you can unit test .NET MAUI class libraries. Examples can be found at the &lt;a href="https://github.com/CommunityToolkit/Maui/tree/main/src/CommunityToolkit.Maui.UnitTests"&gt;Community Toolkit repository&lt;/a&gt; (thank you, open source!).&lt;/p&gt;
-&lt;p&gt;This means we need to separate anything we want to unit test into a library. That's not ideal, especially for smaller projects, but we'll make do. I have confidence Microsoft is working on a better way.&lt;/p&gt;
-&lt;h2 id="add-the-viewmodels-library"&gt;Add the ViewModels library&lt;/h2&gt;
-&lt;p&gt;To keep things organized, let's add a ViewModels library. Later, we'll add a Models library.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You could also have a single library for testable code, broken into namespaces. I would do that here, but, frankly, I wasn't sure what to name it! Plus, separate libraries reenforces our separation of concerns.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Solution &amp;gt; Add &amp;gt; New Project &amp;gt; .NET MAUI Class Library named &amp;quot;Maui.Progression.ViewModels&amp;quot;.&lt;/li&gt;
-&lt;li&gt;Install the Microsoft.Toolkit.Mvvm package, and uninstall that package from the app project.&lt;/li&gt;
-&lt;li&gt;Delete the &lt;code&gt;Class1.cs&lt;/code&gt; file.&lt;/li&gt;
-&lt;li&gt;Copy or move the &lt;code&gt;Counter.cs&lt;/code&gt; file to the root of the ViewModels library.&lt;/li&gt;
-&lt;li&gt;In the app project, delete the ViewModels folder.&lt;/li&gt;
-&lt;li&gt;In the app project, add the ViewModels project as a project reference.&lt;/li&gt;
-&lt;li&gt;Update the &lt;code&gt;MainPage.xaml&lt;/code&gt; viewmodels namespace.
-&lt;pre&gt;&lt;code class="language-xml"&gt;xmlns:viewmodels=&amp;quot;clr-namespace:Maui.Progression.ViewModels;assembly=Maui.Progression.ViewModels&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;At this point you may need to do a Solution Clean and Rebuild, or even close Visual Studio, delete the bin/obj folders, and restart then build.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;For example, I got this warning:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Warning	WMC1006	Cannot resolve Assembly or Windows Metadata file 'C:\Users\charl\source\repos\dotnet-maui-progression\src\Maui.Progression.02\Maui.Progression.ViewModels\bin\Debug\net6.0-windows10.0.19041.0\Maui.Progression.ViewModels.dll'	Maui.Progression	C:\Users\charl\source\repos\dotnet-maui-progression\src\Maui.Progression.02\Maui.Progression\Maui.Progression.csproj
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Running the app should behave as before.&lt;/p&gt;
-&lt;h2 id="add-the-testing-project"&gt;Add the testing project&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;My preferred unit testing stack is &lt;a href="https://xunit.net/"&gt;xUnit&lt;/a&gt;, &lt;a href="https://fluentassertions.com/"&gt;FluentAssertions&lt;/a&gt;, and &lt;a href="https://nsubstitute.github.io/"&gt;NSubstitute&lt;/a&gt;. I'm keeping this tutorial simple by using vanilla xUnit.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Solution &amp;gt; Add &amp;gt; New Project &amp;gt; xUnit Test Project named &amp;quot;Maui.Progression.UnitTests&amp;quot;&lt;/li&gt;
-&lt;li&gt;Add &lt;code&gt;Maui.Progression.ViewModels&lt;/code&gt; as a project reference.&lt;/li&gt;
-&lt;li&gt;Rename &lt;code&gt;UnitTest1.cs&lt;/code&gt; to &lt;code&gt;Counter_Should.cs&lt;/code&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This is just my preferred naming convention.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;Update &lt;code&gt;Counter_Should.cs&lt;/code&gt; with this code.
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.ViewModels;
-
-namespace Maui.Progression.UnitTests;
-
-public class Counter_Should
-{
-    [Fact]
-    public void Increment_counter_by_one_using_command()
-    {
-        // arrange
-        int expected = 1;
-        var vm = new Counter();
-
-        // verify the starting count
-        Assert.True(vm.Count == 0, &amp;quot;Starting count should have been zero.&amp;quot;);
-
-        // act
-        vm.IncreaseCounterCommand.Execute(null);
-
-        // assert
-        Assert.Equal(expected, vm.Count);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Run the test, which should pass.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing/2022-06-23-12-46-27.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;As a final check, rerun the app.&lt;/p&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;We've separated out our View Model into a testable library, and written a simple passing test. We haven't written any kind of UI test, but that's OK for now. In a future part, I hope to try out the &lt;a href="https://appcenter.ms/"&gt;Visual Studio App Center&lt;/a&gt;, which appears purpose-built for multi-platform UI testing.&lt;/p&gt;
-&lt;p&gt;Next up: adding a Model!&lt;/p&gt;
-&lt;h2 id="resources"&gt;Resources&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/"&gt;Unit Testing Is Part Of A Developer's Job Description | Software Meadows&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Mon, 20 Jun 2022 07:51:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</guid>
     </item>
     <item>
       <title>How to Hide Markdown Breadcrumbs in VS Code</title>
