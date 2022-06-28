@@ -23,9 +23,9 @@
 &lt;ol&gt;
 &lt;li&gt;Install and open Visual Studio 2022 Preview&lt;/li&gt;
 &lt;li&gt;Create a new project
-&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-07-55-35.png" alt="" /&gt;&lt;/li&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-07-55-35.png" alt="" /&gt;&lt;/li&gt;
 &lt;li&gt;Filter for C# MAUI, or search for &amp;quot;.NET MAUI App&amp;quot;
-&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-07-58-25.png" alt="" /&gt;&lt;/li&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-07-58-25.png" alt="" /&gt;&lt;/li&gt;
 &lt;li&gt;Create a .NET MAUI App using the defaults. Change the name to match mine if you want.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id="the-android-emulator"&gt;The Android Emulator&lt;/h3&gt;
@@ -39,17 +39,17 @@ I had trouble with Hyper-V the first time I tried .NET MAUI on my laptop even th
 &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;Choose Debug Target &amp;gt; Android Emulator
-&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-07-30.png" alt="" /&gt;&lt;/li&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-07-30.png" alt="" /&gt;&lt;/li&gt;
 &lt;li&gt;Click to start the emulator. The Android Device Manager starts. Answer Yes to allow changes.&lt;/li&gt;
 &lt;li&gt;You &lt;em&gt;can&lt;/em&gt; accept the default Pixel 5 Android 12.0 (Level 31). However, I recommend canceling at this point and manually creating a Pixel 5 Android 12.1 (Level 32) or later. There are some behavior differences worth seeing, specifically in how the splash screen is treated.
-&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-15-46.png" alt="" /&gt;&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-16-17.png" alt="" /&gt;&lt;/li&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-15-46.png" alt="" /&gt;&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-16-17.png" alt="" /&gt;&lt;/li&gt;
 &lt;li&gt;You don't need to explicitly start the emulator. Running the app will do that. So . . .&lt;/li&gt;
 &lt;li&gt;Run the app!&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-17-43.png" alt="" /&gt;&lt;/li&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-17-43.png" alt="" /&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;This should start the emulator, then install and run the default app. On my machine, this takes a couple of minutes.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-22-10.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-22-10.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Clicking the button increases a counter.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;br /&gt;
@@ -213,7 +213,7 @@ This is probably the most useful troubleshooting step I've found. When you close
 &lt;li&gt;Open Task Manager (Ctrl+Shift+Esc)&lt;/li&gt;
 &lt;li&gt;Open the Details tab&lt;/li&gt;
 &lt;li&gt;End the adb.exe process&lt;br /&gt;
-&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-12-29-33.png" alt="" /&gt;&lt;/li&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-12-29-33.png" alt="" /&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;AND IF THAT DOESN'T WORK!!!&lt;/p&gt;
 &lt;p&gt;Restart and try clearing those files again. And delete the project's obj/bin again. Sheesh!&lt;/p&gt;
@@ -244,8 +244,8 @@ This is probably the most useful troubleshooting step I've found. When you close
 &lt;/div&gt;
 </description>
       <pubDate>Mon, 20 Jun 2022 07:51:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model</guid>
+      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model</guid>
     </item>
     <item>
       <title>.NET MAUI Progressing From a Default Project Part 2 - (The Problem With) Basic Unit Testing</title>
@@ -328,7 +328,7 @@ public class Counter_Should
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Run the test, which should pass.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing/2022-06-23-12-46-27.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing/2022-06-23-12-46-27.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;As a final check, rerun the app.&lt;/p&gt;
 &lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
 &lt;p&gt;We've separated out our View Model into a testable library, and written a simple passing test. We haven't written any kind of UI test, but that's OK for now. In a future part, I hope to try out the &lt;a href="https://appcenter.ms/"&gt;Visual Studio App Center&lt;/a&gt;, which appears purpose-built for multi-platform UI testing.&lt;/p&gt;
@@ -339,8 +339,8 @@ public class Counter_Should
 &lt;/ul&gt;
 </description>
       <pubDate>Mon, 20 Jun 2022 07:51:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</guid>
+      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</guid>
     </item>
     <item>
       <title>How to Hide Markdown Breadcrumbs in VS Code</title>

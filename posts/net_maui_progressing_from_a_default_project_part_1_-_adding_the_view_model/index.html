@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/kavadocs.css' />
 
 
-  <title>A Simple Intro To Scrum In Azure Devops | Software Meadows</title>
+  <title>.NET MAUI Progressing From A Default Project Part 1 - Adding The View Model | Software Meadows</title>
 </head>
 
 <body>
@@ -62,430 +62,240 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops'>A Simple Intro to Scrum in Azure DevOps</a></h2>
-                <p class='post-info'><span class='posted-on'>2021-04-17 14:41</span></p>
-                <div class='post-content'><p>Series Parts</p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model'>.NET MAUI Progressing From a Default Project Part 1 - Adding the View Model</a></h2>
+                <p class='post-info'><span class='posted-on'>2022-06-20 07:51</span></p>
+                <div class='post-content'><h2 id="the-series">The Series</h2>
+<p>Level: Moderate</p>
+<p>This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent <a href="https://www.youtube.com/watch?app=desktop&amp;v=DuNLR_NJv8U">James Montemagno's Workshop</a>.</p>
+<p>Source: <a href="https://github.com/bladewolf55/net-maui-progression">https://github.com/bladewolf55/net-maui-progression</a></p>
 <ul>
-<li><a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/">A Simple Intro To Scrum In Azure Devops</a></li>
-<li><a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/">Scrum In Azure Devops - A Simpler (Custom) Process</a></li>
-<li><a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/">Scrum In Azure Devops - The Story Board is your process heart</a> COMING SOON!</li>
+<li><a href="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/">Part 1 - Adding the View Model</a></li>
+<li><a href="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing">Part 2 - (The Problem With) Basic Unit Testing</a></li>
 </ul>
-<h2 id="intro">Intro</h2>
-<p>Azure DevOps is a flexible--yet opinionated--application to use for Scrum. It's got a large number of settings, and sometimes how things are named is confusing. This is a &quot;get up and running&quot; guide that includes the basics of the Scrum framework and a daily flow for your team.</p>
-<p>What's included:</p>
-<ul>
-<li>Scrum basics</li>
-<li>A &quot;Day in the Life&quot; of your dev team</li>
-<li>My recommended configurations of the default Scrum Process Template</li>
-</ul>
-<p>What's not:</p>
-<ul>
-<li>Getting an Azure DevOps free account (I assume you've done this)</li>
-<li>Security</li>
-<li>Deep reporting</li>
-<li>My preferred really simple process template. That's a future post.</li>
-</ul>
-<h2 id="contents">Contents</h2>
-<!-- Start Document Outline -->
-<ul>
-<li><a href="#contents">Contents</a></li>
-<li><a href="#scrum-basics">Scrum Basics</a></li>
-<li><a href="#configure-a-new-project">Configure a New Project</a></li>
-<li><a href="#day-in-the-life---capture-epics-features-and-stories">Day in the Life - Capture Epics, Features, and Stories</a></li>
-<li><a href="#day-in-the-life---plan-the-sprint">Day in the Life - Plan the Sprint</a></li>
-<li><a href="#time-out-what-makes-a-good-user-story-and-what-is-effort">Time Out! What Makes a Good User Story? And What is Effort?</a>
-<ul>
-<li><a href="#work-item-descriptions-stories">Work Item Descriptions (Stories)</a></li>
-<li><a href="#effort">Effort</a></li>
-</ul>
-</li>
-<li><a href="#configuring-the-story-board">Configuring the Story Board</a></li>
-<li><a href="#time-out-there-sure-are-a-lot-of-states">Time Out! There Sure Are a Lot of &quot;States&quot;</a></li>
-<li><a href="#day-in-the-life---daily-standup">Day in the Life - Daily Standup</a>
-<ul>
-<li><a href="#your-custom-stuff">Your Custom Stuff</a></li>
-<li><a href="#the-story-board">The Story Board</a></li>
-<li><a href="#the-task-board">The Task Board</a></li>
-</ul>
-</li>
-<li><a href="#day-in-the-life---the-review-and-retrospective">Day in the Life - The Review and Retrospective</a></li>
-<li><a href="#resources-and-footnotes">Resources and Footnotes</a></li>
-</ul>
-<!-- End Document Outline -->
-<h2 id="scrum-basics">Scrum Basics</h2>
-<p>Scrum is not a methodology. It's an Agile framework that methodologies are based on. Scrum mostly describes <em>what</em> you should have but not <em>how</em> you should do it.<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a> This will come as a surprise to most readers, since &quot;Scrum means boards and points and velocity and charts&quot; is what the consultants sell. The truth is, those are applications of Scrum that have proven successful over the years, and I'll be including some of them below.</p>
+<h2 id="the-problem.net-maui-solves">The Problem .NET MAUI Solves</h2>
+<p>Cross-platform development is hard, usually requiring maintaining a project per platform. Any feature must be added to each code base. .NET MAUI uses a single project with the majority of the UI code using XAML, and the business code in C#. This code is then transpiled to the native platforms. The result is less maintenance, fewer errors, and reduced knowledge needed to build cross-platform applications.</p>
+<h2 id="brief-getting-started-the-default-app">(Brief) Getting Started: The Default App</h2>
+<p>These instructions assume running in Windows 10/11. You can follow the instructions below, which are brief and aren't intended as a beginner's guide. Or, better yet, use <a href="https://docs.microsoft.com/en-us/dotnet/maui/get-started/first-app?pivots=devices-android">Microsoft's official documents</a>.</p>
+<h3 id="the-project">The Project</h3>
+<ol>
+<li>Install and open Visual Studio 2022 Preview</li>
+<li>Create a new project
+<img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-07-55-35.png" alt="" /></li>
+<li>Filter for C# MAUI, or search for &quot;.NET MAUI App&quot;
+<img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-07-58-25.png" alt="" /></li>
+<li>Create a .NET MAUI App using the defaults. Change the name to match mine if you want.</li>
+</ol>
+<h3 id="the-android-emulator">The Android Emulator</h3>
 <blockquote>
 <p><strong>Important</strong><br />
-Scrum is Agile, but Agile isn't Scrum. Agile is a set of four values and twelve principles<a id="fnref:2" href="#fn:2" class="footnote-ref"><sup>2</sup></a> established by a bunch of software developers in 2001. If a framework or methdology supports those values and principles, it's Agile. Other such methodologies incude Kanban, Lean, eXtreme Programming, and Crystal.</p>
-</blockquote>
-<p>The core flow of Scrum is:</p>
-<ol>
-<li>Capture all potential work in an ordered<a id="fnref:3" href="#fn:3" class="footnote-ref"><sup>3</sup></a> Product Backlog.</li>
-<li>Define regular iteration periods of work called Sprints.</li>
-<li>Define a valuable Sprint Goal and pull work into a Sprint Backlog that will meet that goal.</li>
-<li>Complete the items in the Sprint Backlog during the Sprint, meeting daily for fifteen minutes to review progress.</li>
-<li>Review the Sprint results with stakeholders.</li>
-<li>Reflect inside the team on how the process can be improved, and add those improvements to the Product Backlog.</li>
-<li>Repeat, maintaining a sustainable pace</li>
-</ol>
-<blockquote>
-<p>A Sprint is a contract to complete the Sprint Goal. The team commits to achieving the goal, and the customer commits to not adding work during the Sprint that inhibits the goal.</p>
-</blockquote>
-<p>A Scrum team has three roles:</p>
-<ul>
-<li>Product Owner, who represents the customer's interests and is responsible for <em>which</em> work will get done next.</li>
-<li>Developers, who decide <em>how</em> the work will get done.</li>
-<li>Scrum Master, who guides the team to successfully use Scrum.</li>
-</ul>
-<blockquote>
-<p>There is no Project Manager in a Scrum team. The team works together as peers using their skills to best effect.</p>
+You'll need to <a href="https://docs.microsoft.com/en-us/dotnet/maui/android/emulator/hardware-acceleration">enable either Hyper-V or HAXM</a>.</p>
 </blockquote>
 <blockquote>
-<p><strong>Tight Feedback Loops</strong><br />
-Scrum--and Agile in general--prefers rapid, regular feedback to allow early self-correction.</p>
-</blockquote>
-<h2 id="configure-a-new-project">Configure a New Project</h2>
-<p>Open your Azure DevOps site and select your organization (which should already be configured).</p>
-<p><strong>Create</strong></p>
-<ol>
-<li>Choose <code>+ New Project</code>.</li>
-<li>Enter a Project name, Visibility = Private, and open the Advanced settings.
-<ol>
-<li>Version control = Git</li>
-<li>Work item process = Scrum.</li>
-</ol>
-<blockquote>
-<p>The differences between the &quot;Agile&quot; and &quot;Scrum&quot; processes is primarily terminology.<a id="fnref:4" href="#fn:4" class="footnote-ref"><sup>4</sup></a> A Scrum Product Backlog Item (PBI) is an Agile User Story. A Scrum Impediment is an Agile Issue.</p>
-</blockquote>
-</li>
-<li>Click Create.<br />
-<img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc01.png" alt="" /></li>
-</ol>
-<blockquote>
-<p>Our project has one team. Configuring multiple teams is outside this guide's scope. A large enough project could have many teams, each with its own iterations and board configurations.</p>
-</blockquote>
-<p><strong>Configure Iterations</strong></p>
-<ol>
-<li>Open Project Settings (the gear icon at bottom of the left sidebar menu).</li>
-<li>Select Boards &gt; Project configuration.</li>
-<li>Delete all of the sample iterations (named &quot;Sprint 1&quot; etc) leaving just the top-level iteration.</li>
-<li>Add one New Child named &quot;Product Backlog&quot; with no dates. Select this item.</li>
-</ol>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc02.png" alt="" /></p>
-<p><strong>Configure the Team</strong></p>
-<ol>
-<li>Open Project Settings (the gear icon at bottom of the left sidebar menu).</li>
-<li>Select Boards &gt; Team configuration.</li>
-<li>In the General tab
-<ul>
-<li>Check Epics, Features, and Backlog items.</li>
-<li>Select &quot;Bugs are managed with requirements&quot;</li>
-</ul>
-</li>
-<li>In the Iterations tab.
-<ul>
-<li>Set Default iteration to &quot;Product Backlog&quot;.</li>
-<li>Set Backlog Iteration to &quot;Product Backlog&quot;.</li>
-<li>(We'll create sprints in a later step.)</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p><strong>Opinion</strong><br />
-Why not use @Current as the Default iteration? Because whenever a work item is added, it will automatically become part of the current sprint. This promotes a poor practice: not honoring the Sprint contract. Also, it's way too easy to forget to change the work item to be part of the backlog.</p>
-</blockquote>
-<blockquote>
-<p>This guide doesn't show customizing work item types, which can be very useful. My advice: do as little customization as needed, and almost none at first. Don't assume you need it.</p>
-</blockquote>
-<p><strong>What is &quot;Manage Bugs With Requirements&quot;?</strong></p>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Manage with requirements</td>
-<td>Bugs are the same level as PBIs, appear as cards on the Story Board, can have tasks.</td>
-</tr>
-<tr>
-<td>Manage with tasks</td>
-<td>Bugs are added to BPIs just like Tasks, and cannot have Tasks themselves.</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>It may seem counter-intuitive, but I recommend managing bugs with requirements, which is the Scrum process default anyway. With this configuration, it's easier to define bugs as post-release issues and report on their impact.</p>
-</blockquote>
-<h2 id="day-in-the-life-capture-epics-features-and-stories">Day in the Life - Capture Epics, Features, and Stories</h2>
-<p>We need to capture the work we think we're going to do. The only requirement for Scrum is a Product Backlog which can contain any kind of work item. It's often convenient to group work into features and epics.</p>
-<ul>
-<li><strong>Epic</strong> A high-level objective such as &quot;Implement broad accessibility.&quot; Usually a longer duration like a year.</li>
-<li><strong>Feature</strong> An objective that will take multiple Sprints. For example, &quot;Make site blind-accessible.&quot;</li>
-<li><strong>Product Backlog Item (Story)</strong> The work items to achieve in Sprints. PBI's can be part of a Feature, or independent. These typically take a few hours to a few days.</li>
-</ul>
-<blockquote>
-<p>I call PBIs &quot;stories&quot; out of habit. I think it's easier to capture work in terms of stories.</p>
-</blockquote>
-<blockquote>
-<p><strong>Important</strong><br />
-Epics and Features are things you finish, not areas of effort. Epics appeal to executives as high-level objectives.</p>
+<p><strong>Note</strong><br />
+I had trouble with Hyper-V the first time I tried .NET MAUI on my laptop even though it's supported, and had to use HAXM for a while. The problem went away when I did a clean install of Windows 11. Presumably, that would have been true in Windows 10.</p>
 </blockquote>
 <ol>
-<li><p>Open Boards &gt; Backlogs</p>
-</li>
-<li><p>Open View Options and set</p>
-<ul>
-<li>Forecasting On</li>
-<li>In Progress Items On</li>
-<li>Completed Child Items Off</li>
-<li>Side Pane = Planning<br />
-<img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc03.png" alt="" /></li>
-</ul>
-</li>
-<li><p>Add three, two-week sprints. I like ISO naming because it's clear and cross-cultural. Be sure to choose the correct Location (&quot;Product Backlog&quot;).<br />
-<img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc04.png" alt="" /></p>
-</li>
-<li><p>Select Epics from the &quot;Backlog items&quot; dropdown</p>
-</li>
-<li><p>Add a New Work Item of type Epic named &quot;Implement broad accessibility&quot;.</p>
-</li>
-<li><p>Click the + sign at the left of the epic and Add Feature &quot;Make site blind-accessible&quot;</p>
-</li>
-<li><p>Switch to Backlog items view.</p>
-</li>
-<li><p>Add some stories, both independent and for the feature. We'll link to the feature in a little bit. Notice how you can add either a PBI or a Bug. If &quot;Manage Bugs with tasks&quot; had been selected earlier, you could only add PBIs here.</p>
-</li>
+<li>Choose Debug Target &gt; Android Emulator
+<img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-07-30.png" alt="" /></li>
+<li>Click to start the emulator. The Android Device Manager starts. Answer Yes to allow changes.</li>
+<li>You <em>can</em> accept the default Pixel 5 Android 12.0 (Level 31). However, I recommend canceling at this point and manually creating a Pixel 5 Android 12.1 (Level 32) or later. There are some behavior differences worth seeing, specifically in how the splash screen is treated.
+<img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-15-46.png" alt="" /><br />
+<img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-16-17.png" alt="" /></li>
+<li>You don't need to explicitly start the emulator. Running the app will do that. So . . .</li>
+<li>Run the app!<br />
+<img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-17-43.png" alt="" /></li>
 </ol>
+<p>This should start the emulator, then install and run the default app. On my machine, this takes a couple of minutes.</p>
+<p><img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-08-22-10.png" alt="" /></p>
+<p>Clicking the button increases a counter.</p>
 <blockquote>
-<p><strong>Opinion</strong><br />
-The default for adding new work items is &quot;Add to Top&quot;. Change that to Add to Bottom. As you'll see, the Product Owner prioritizes work <em>to the top</em>. Don't step on her effort.</p>
-</blockquote>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc05.png" alt="" /></p>
+<p><strong>Warning</strong><br />
+As of 2022-06-20, using Android 12.1 as configured above, clicking the button doesn't display the number of clicks. I'm not sure what in the style sheets is preventing this, but you can work around it this way:</p>
 <ol>
-<li>Open View Options and change the right side panel to &quot;Mapping&quot;. You should see the feature.</li>
-<li>Select, drag, and drop the first four stories onto the feature to link them.</li>
+<li>Open Resources &gt; Styles &gt; Styles.xslt</li>
+<li>Add &quot;MinimumWidthRequest&quot;. This forces a wide button.</li>
 </ol>
-<h2 id="day-in-the-life-plan-the-sprint">Day in the Life - <strong>Plan</strong> the Sprint</h2>
-<p>Sprint Planning is one of the Scrum events. Normally, prior to this, the Product Owner has prioritized the backlog so that the highest value (to the customer) stories are at the top.</p>
-<p>Sprint Planning is done by the team.</p>
-<ul>
-<li>Work item Effort is estimated.</li>
-<li>The work itself is discussed in more detail and captured in the work item.</li>
-<li>A Sprint Goal is agreed to, and work is assigned to the Sprint.</li>
-</ul>
-<ol>
-<li><p>Open View Options and change the right side panel to &quot;Planning&quot; so show the sprints.</p>
-</li>
-<li><p>Reorder the work items, give each an Effort, and change its State to &quot;Approved&quot;.</p>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc06.png" alt="" /></p>
-</li>
-<li><p>We've enabled Forecasting. Set the Forecasting velocity to 20 as our best guess for what we can get done this first sprint. This shows how many stories can go in the Sprint.</p>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc07.png" alt="" /></p>
-</li>
-<li><p>Select, drag, and drop the top four stories onto the current Sprint.</p>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc08.png" alt="" /></p>
-</li>
-<li><p>With the top four still selected, right-click and choose Edit. Select the State field and set to Committed.</p>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc10.png" alt="" /></p>
-</li>
-</ol>
-<blockquote>
-<p>Since this walkthrough sticks to the defaults as much as possible, I'm using the intended Scrum flow which is &quot;Items ready to estimate are Approved. Items in the Sprint are Committed.&quot;</p>
-<p>I personally modify the process and use these states: New, In Progess, Done. This allows a work item to remain New in the Sprint Backlog. When it's dragged to another column, it's now In Progress.</p>
-</blockquote>
-<blockquote>
-<p><strong>Advice</strong><br />
-DO NOT plan future Sprints. That's Waterfall thinking.<br />
-DO estimate effort for all stories. This helps the Product Owner.</p>
-</blockquote>
-<blockquote>
-<p><strong>What about assignments?</strong><br />
-The common recommendation is to not assign stories. Instead, let developers pull from the top as they are ready to begin work. The idea is anyone on the team can work on any story.</p>
-<p>My experience is that the team knows who's best suited to work on stories and will often assign stories during Sprint Planning.</p>
-<p><em>However</em>, I don't recommend assigning stories <em>before</em> they make it to a sprint. Don't try to predict the future, and don't pigeonhole developers.</p>
-</blockquote>
-<h2 id="time-out-what-makes-a-good-user-story-and-what-is-effort">Time Out! What Makes a Good User Story? And What is Effort?</h2>
-<h3 id="work-item-descriptions-stories">Work Item Descriptions (Stories)</h3>
-<p>There are plenty of opinions about what makes good work item descriptions. In my view, work item descriptions come in three basic types</p>
-<ul>
-<li>User Stories, which are user-centric items</li>
-<li>Bugs, which are for <em><strong>post-release</strong></em> defect reporting</li>
-<li>&quot;Whatever&quot; stories which are often internal/development items</li>
-</ul>
-<blockquote>
-<p>In all cases, the most important thing is to capture early, and enough information to ensure you can discuss the work item later. Stories are the <em>beginning</em> of the conversation, not the end.</p>
-</blockquote>
-<p><strong>User Stories</strong><br />
-I like the now-classic template &quot;As a ROLE, I want WHAT, because WHY&quot;. For example:</p>
-<pre><code class="language-text">As a Security Admin, I need to be able to assign read-only to some screens because only accounting should be able to change the values, but everyone can see them.
+<pre><code class="language-xml">&lt;Style TargetType=&quot;Button&quot;&gt;
+    &lt;Setter Property=&quot;MinimumWidthRequest&quot; Value=&quot;200&quot; /&gt;
+    &lt;Setter Property=&quot;TextColor&quot; Value=&quot;{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}&quot; /&gt;
 </code></pre>
-<p>The &quot;why&quot; is important because it tells us the <em>value</em> of the story. Work with the end-users to create these stories. The further you are from the actual end user, the more you're playing the game of Telephone<a id="fnref:5" href="#fn:5" class="footnote-ref"><sup>5</sup></a>--and ensuring you're not getting accurate info.</p>
-<p>The other quality of a good story is the acceptance criteria. That is, how will the <em>user</em> know the story is complete.</p>
+</blockquote>
+<h2 id="mvvm-basics">MVVM Basics</h2>
+<p>Great, we have a working app! And the .NET MAUI team have included lots of boilerplate to understand. But one thing not included is implementing the <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel">Model-View-ViewModel &quot;MVVM&quot;</a> pattern.</p>
+<p>We need to separate our code to improve maintenance and testing (more on testing in a later post!). One pattern for doing this is MVVM. Similar to Model-View-Controller (MVC), MVVM says,</p>
+<ol>
+<li>The Model contains our raw domain information and business behaviors, which may come from various data sources. (See <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain-Driven Design</a>.)</li>
+<li>The View Model typically retrieves the Model via a service. The View Model then prepares the information for display.</li>
+<li>The View displays whatever's in the View Model.</li>
+</ol>
+<p>The <em>separation of concerns</em> here is that</p>
+<ol>
+<li>The View doesn't know how the View Model gets its information.</li>
+<li>The View Model doesn't know how the Model gets its information.</li>
+</ol>
+<p>This allows us to make changes to the View, View Model, and Model mostly independently. We strive for <em>loose coupling</em>.</p>
+<p>An important aspect of MVVM is how to bind the View to the View Model. The user interacts with the View, for example clicking a button to increment a counter. This updates the data stored in the View Model (and possibly gets passed to the Model).</p>
+<p>However, we can also update the values programmatically directly in the View Model, and we want those values to display in the View. This is two-way binding.</p>
+<h2 id="creating-the-view-model">Creating the View Model</h2>
+<p>Right now, when we click the app's button it runs code in the <code>MainPage.xaml.cs</code> class. If this looks familiar to some of you<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>, it's because it's the same code-behind approach used in ASP.NET WebForms.</p>
+<p>It works, but is too tightly coupled. Let's pull that simple functionality into a View Model.</p>
+<ol>
+<li>Add the NuGet package <code>Microsoft.Toolkit.Mvvm</code>.
+<blockquote>
+<p>This is the same package as <code>CommunityToolkit.Mvvm</code>. Only the namespace differs.</p>
+</blockquote>
+</li>
+<li>Add a folder named <code>ViewModels</code>, and a file named <code>Counter.cs</code>.
+<blockquote>
+<p>Some developers append their view models with &quot;VM&quot; or &quot;ViewModel&quot;. That's fine, but I don't, 'cause that's what namespaces are for!</p>
+</blockquote>
+</li>
+<li>Add the following code
+<pre><code class="language-csharp">using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+
+namespace Maui.Progression.ViewModels;
+
+public partial class Counter : ObservableObject
+{
+    [ObservableProperty]
+    [AlsoNotifyChangeFor(nameof(CountText))]
+    int count;
+
+    public string CountText
+    {
+        get
+        {
+            string text = &quot;Click me&quot;;
+            if (count &gt; 0)
+            {
+                text = $&quot;Clicked {count} &quot; + (count == 1 ? &quot;time&quot; : &quot;times&quot;);
+            }            
+            SemanticScreenReader.Announce(text);
+            return text;
+        }
+    }
+
+    [ICommand]
+    void IncreaseCounter()
+    {
+        Count++;
+    }
+}
+</code></pre>
+</li>
+</ol>
+<p>The <code>Microsoft.Toolkit.Mvvm</code> package includes code generators to create all of the two-way binding code using the attributes. Here we've</p>
+<ul>
+<li>Created an observable property named <code>Count</code> (the generator capitalizes the property name for us based on the backing field)</li>
+<li>Created a read-only property named CountText. This is what we'll display.</li>
+<li>Told the framework &quot;when you notify of a change in Count, also notify there was a change in CountText.&quot;</li>
+<li>Created a bindable command named IncreaseCounter to do the work.</li>
+</ul>
+<blockquote>
+<p><strong>Notes</strong></p>
+<ul>
+<li>Must be a partial class</li>
+<li>Must inherit from ObservableObject</li>
+<li>The <code>Count</code> property must be incremented, not the backing field.</li>
+</ul>
+</blockquote>
+<p>Let's modify the MainPage view. Change the declarations.</p>
+<pre><code class="language-xml">&lt;ContentPage xmlns=&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             x:Class=&quot;Maui.Progression._01.MainPage&quot;
+             xmlns:ViewModels=&quot;clr-namespace:Maui.Progression._01.ViewModels&quot;
+             x:DataType=&quot;ViewModels:Counter&quot;
+             &gt;
+</code></pre>
+<p>This code allows Intellisense to work. It doesn't <em>perform</em> the binding. That's done in the code-behind as shown later.</p>
+<ul>
+<li>Adds the ViewModels namespace</li>
+<li>Declares the view is of type Counter.</li>
+</ul>
+<p>Change the button code.</p>
+<pre><code class="language-xml">            &lt;Button
+                Text=&quot;{Binding CountText}&quot;
+                SemanticProperties.Hint=&quot;Counts the number of times you click&quot;
+                Command=&quot;{Binding IncreaseCounterCommand}&quot;
+                HorizontalOptions=&quot;Center&quot; /&gt;
+</code></pre>
+<ul>
+<li>Binds the button text to our CountText property</li>
+<li>Binds the button click to the IncreaseCounter command.
+<blockquote>
+<p><strong>Important</strong> The toolkit code generator automatically appends &quot;Command&quot; to methods decorated with <code>ICommand</code>.</p>
+</blockquote>
+</li>
+</ul>
+<p>Finally, in the <code>MainPage.xaml.cs</code> code-behind, replace with this.</p>
+<pre><code class="language-csharp">using Maui.Progression._01.ViewModels;
+
+namespace Maui.Progression._01;
+
+public partial class MainPage : ContentPage
+{
+	public MainPage()
+	{
+		InitializeComponent();
+		BindingContext = new Counter();
+	}
+}
+</code></pre>
+<p>This is what <em>actually</em> binds the View to the View Model.</p>
+<p>Running the code should behave as before.</p>
+<h2 id="tricks">Tricks</h2>
+<p>Building for multiple platforms takes awhile. If you're willing to develop mostly for Windows, and check progress on Android/iOS/Mac occasionally, you can comment out the mobile targets.</p>
+<pre><code class="language-xml">&lt;PropertyGroup&gt;
+    &lt;!--&lt;TargetFrameworks&gt;net6.0-android;net6.0-ios;net6.0-maccatalyst&lt;/TargetFrameworks&gt;--&gt;
+    &lt;TargetFrameworks Condition=&quot;$([MSBuild]::IsOSPlatform('windows'))&quot;&gt;$(TargetFrameworks);net6.0-windows10.0.19041.0&lt;/TargetFrameworks&gt;
+
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If you get a message &quot;The namespace already contains a definition for 'Counter',&quot; double check you defined Counter as a partial class. You may then have to close Visual Studio, delete the project's bin and obj folders, restart Visual Studio, and build the project.</p>
+<p>Sometimes I've seen the MVVM Toolkit generators/code get &quot;stuck,&quot; probably due to some files being cached. Even if I comment out most of the class code, the error doesn't go away until I restart Visual Studio.</p>
+<p>In some cases, I've cleaned up the VS generated documents. (But I don't know if this matters.)</p>
+<ol>
+<li>Open %LocalAppData%\Temp\VSGeneratedDocuments</li>
+<li>Delete all the folders</li>
+</ol>
+<p>AND, if you're told you can't delete files because they're locked!!</p>
 <blockquote>
 <p><strong>Important</strong><br />
-You should expect the user story, and especially the acceptance criteria, to change as the story is developed. The conversation continues until the story is completed. <strong>These are not specifications!</strong></p>
+This is probably the most useful troubleshooting step I've found. When you close Visual Studio, it does <em>not</em> close <code>adb.exe</code>, which is used by the Android emulator. I'm betting this will be corrected in the future.</p>
 </blockquote>
-<p><strong>Bugs</strong><br />
-The two most important parts of a good bug report are:</p>
+<ol>
+<li>Close Visual Studio</li>
+<li>Close any open Android Emulator and the Android Device Manager</li>
+<li>Open Task Manager (Ctrl+Shift+Esc)</li>
+<li>Open the Details tab</li>
+<li>End the adb.exe process<br />
+<img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/2022-06-20-12-29-33.png" alt="" /></li>
+</ol>
+<p>AND IF THAT DOESN'T WORK!!!</p>
+<p>Restart and try clearing those files again. And delete the project's obj/bin again. Sheesh!</p>
+<p>If you get this error</p>
+<blockquote>
+<p>Argument 1: cannot convert from 'System.ComponentModel.PropertyChangedEventArgs' to 'int'</p>
+</blockquote>
+<p>double check your View Model class is inheriting from ObservableObject, <em>not</em> BindableObject.</p>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>We've actually done quite a bit here to implement the MVVM pattern.</p>
+<ol>
+<li>Created a View Model with bindable properties and commands</li>
+<li>Updated the View to use the View Model</li>
+<li>Bound the two together</li>
+</ol>
+<p>Next up: <a href="https://www.softwaremeadows.com/posts/_net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing">unit testing</a>!</p>
+<h2 id="resources">Resources</h2>
 <ul>
-<li>Who reported it.</li>
-<li>Clear, accurate steps to reproduce the issue.</li>
-<li>Expected vs Actual result.</li>
+<li><a href="https://www.softwaremeadows.com/posts/domain-driven_design_-_opinionated_layers_graphic/">Domain-Driven Design - An Opinionated Layers Graphic | Software Meadows</a></li>
 </ul>
-<p>The person who reported the issue should be the person who confirms during development (or after deployment) the bug is fixed.</p>
-<p>Steps to reproduce require coaching. Very few people do this well at first because we tend to assume the reader knows the software as well as we do. That's never true. Instead, assume you're training a new hire.</p>
-<ol>
-<li>Don't use slang or insider terms</li>
-<li>Write down the same terms/menu items, etc on the screen</li>
-<li>Provide the exact values used</li>
-</ol>
-<p><strong>Whatever Stories</strong><br />
-These are often things like &quot;Prepare stakeholder presentation&quot; or &quot;Review database indexes for performance.&quot; I try to keep these to a minimum.</p>
-<blockquote>
-<p>The bulk of your work items should be stories because that means you're satisfying the customer's needs.</p>
-</blockquote>
-<h3 id="effort">Effort</h3>
-<p>How hard will the story be to achieve? &quot;Relative to what?&quot; you ask me. The answer is, &quot;relative to the other stories.&quot; A team gains a sense of how hard their work is in the context of their skills. The purpose of estimating effort--which typically occurs <strong>before</strong> prioritizing work items--is to help the developers decide how much work they can complete in the sprint, and help the Product Owner with determining story value.</p>
-<p>Effort is traditionally measured in something other than hours. Azure DevOps uses Fibonacci story points. I have a couple of opinions and recommendations about this.</p>
-<ol>
-<li><strong>Don't go beyond 13</strong>. There's really no value in going up to 100 like some overly-formal systems suggest. You're just after a numerical sense of &quot;easy, not bad, pretty hard, too hard for one sprint.&quot; Keep it simple!</li>
-<li>Think in terms of &quot;can I get this done in the sprint?&quot; Most of your stories should finish in a day or less.</li>
-</ol>
-<blockquote>
-<p>The <strong>developers</strong> agrees on effort for each story during Sprint Planning. This provokes necessary conversation.</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Points</th>
-<th>What it might mean</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">1</td>
-<td>Pretty easy, less than a day</td>
-</tr>
-<tr>
-<td style="text-align: center;">2</td>
-<td>Easy, probably a day</td>
-</tr>
-<tr>
-<td style="text-align: center;">3</td>
-<td>Might run into trouble, a few days</td>
-</tr>
-<tr>
-<td style="text-align: center;">5</td>
-<td>Tough, maybe depends on other people or complicated problem</td>
-</tr>
-<tr>
-<td style="text-align: center;">8</td>
-<td>Hard, might need further breaking down</td>
-</tr>
-<tr>
-<td style="text-align: center;">13</td>
-<td>Too much! Should become multiple stories</td>
-</tr>
-</tbody>
-</table>
-<h2 id="configuring-the-story-board">Configuring the Story Board</h2>
-<p>An <em>unfiltered</em> Story Board shows the flow of stories through four overall states:</p>
-<ol>
-<li>New (not estimated or approved)</li>
-<li>Approved (estimated and ready for a sprint)</li>
-<li>Committed (in the current sprint)</li>
-<li>Done</li>
-</ol>
-<blockquote>
-<p><strong>Option</strong><br />
-You <em>could</em> just use the Story Board to manage all work items. In this way, it's exactly like a physical board with sticky notes. However, you may have too many backlog items to make this enjoyable.</p>
-</blockquote>
-<p>A Story Board <em>filtered for a Sprint</em> has just two states:</p>
-<ol>
-<li>Committed</li>
-<li>Done</li>
-</ol>
-<p>The default columns for a team (using the Scrum template) are: New, Approved, Committed, Done. You can use these if you want, but you'll probably want to modify it.</p>
-<blockquote>
-<p>The first thing about the board columns is: the board reflects <em>your flow</em>. So make sure it's telling you the truth.</p>
-<p>The second thing about board columns: Avoid creating a Waterfall board with &quot;Planning, Design, Development, Testing, Release&quot; etc. Your stories are better off when you don't force their states. It'll depend on the business whether there's a firm hand-off such as to a QA team member.</p>
-<p>The third thing about boards is: They're a <em>pull</em> system. You work on the story. If there's a hand-off, you put the story into a &quot;ready&quot; column so the next person can pull <em>when she's ready</em>.</p>
-</blockquote>
-<p>Let's configure our board to include a QA team member handoff.</p>
-<ol>
-<li>Open Boards</li>
-<li>Choose the Backlog Items view<br />
-<img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc09.png" alt="" /></li>
-<li>Open the Board Settings and Columns tab. When you add or rename columns, be sure to set their State.<br />
-<img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc11.png" alt="" /></li>
-<li>Configure the columns as shown.</li>
-</ol>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc12.png" alt="" /></p>
-<p>Now we're ready for people to start work! Go ahead and drag a couple of stories from Ready for Dev to Developing, and assign them. (I previously added some Users.)</p>
-<h2 id="time-out-there-sure-are-a-lot-of-states">Time Out! There Sure Are a Lot of &quot;States&quot;</h2>
-<p>Yeah, it's confusing with all the layers of abstraction. Here's a chart to help you understand what the states are and what level they're configured at.</p>
-<blockquote>
-<p><strong>Important</strong><br />
-Even if you customize a process, at story is only ever in one of three conceptual states: <strong>New, In Progress, Done</strong>.</p>
-</blockquote>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc16.png" alt="" /></p>
-<h2 id="day-in-the-life-daily-standup">Day in the Life - Daily Standup</h2>
-<p>The purpose of the daily standup meeting is to communicate progress. It's part of the rapid feedback loop. I like using Azure DevOps the following way in the meeting.</p>
-<h3 id="your-custom-stuff">Your Custom Stuff</h3>
-<p>The Scrum Master shows whatever charts the team is using to help progress toward the Sprint Goal. The most useful, in my view, are:</p>
-<ul>
-<li>Burndown Chart</li>
-<li>Cumulative Flow Diagram</li>
-</ul>
-<h3 id="the-story-board">The Story Board</h3>
-<p>Next is the Story Board showing everyone's stories. This gives the best overview and is the first place to spot bottlenecks. As the Sprint progresses, stories move from left to right. (I've added some Tasks and a Test to make things a little more real.)</p>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc13.png" alt="" /></p>
-<blockquote>
-<p><strong>Tip</strong><br />
-Don't assume you <em>must</em> use Tasks. If your project is simple enough, or the team is mature enough, viewing the stories' progress through the board is often enough.</p>
-</blockquote>
-<blockquote>
-<p><strong>Rule</strong><br />
-Do the simplest thing that works.</p>
-</blockquote>
-<p>You can filter the Story Board to show each person's work in progress. Note that this filters on who owns the story. This may be all you need for short-lived stories that don't have multiple people working on them.</p>
-<h3 id="the-task-board">The Task Board</h3>
-<p>If you <em>do</em> have multiple people assigned to stories' tasks, then the Task Board is valuable. Open &quot;Sprints&quot; from the left side menu.</p>
-<p>This view shows the Committed (in progress) stories on the left hand side, and any tasks in progress. Just as with the Story Board, you can filter by person. Nicely, if the person is assigned a task belonging to another developer's story, she's still shown in context.</p>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc14.png" alt="" /></p>
-<p><img src="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/images/sc15.png" alt="" /></p>
-<h2 id="day-in-the-life-the-review-and-retrospective">Day in the Life - The Review and Retrospective</h2>
-<p>There's no particular Azure DevOps screen I know of for recording reviews and retrospectives, <em>except</em> that whatever you want to improve should become stories on your Product Backlog.</p>
-<blockquote>
-<p><strong>Suggestion</strong><br />
-Instead of &quot;rolling&quot; unfinished stories to the next Sprint, try setting them all back to the Product Backlog iteration, but <em>without</em> changing their states. In other words, a story that's Committed remains that way. This makes the forecasting easier and lets the team &quot;reset&quot; their thinking. Why assume a story that wasn't finished <em>must</em> be on the next Sprint. Maybe, under reexamination, it shouldn't. If it shouldn't, it can be set as New. That's OK. Don't get hung up on keeping track of how much work was already done. Scrum is supposed to help you ship.</p>
-</blockquote>
-<p>But do them. Really.</p>
-<blockquote>
-<p><strong>Crucial</strong><br />
-The Sprint Retrospective is the most important part of the process. Without it, it's hard to improve.</p>
-</blockquote>
-<h2 id="resources-and-footnotes">Resources and Footnotes</h2>
 <div class="footnotes">
 <hr />
 <ol>
 <li id="fn:1">
-<p><a href="https://scrumguides.org/scrum-guide.html">Scrum Guide | Scrum Guides</a><a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p><a href="http://agilemanifesto.org/">Manifesto for Agile Software Development</a><a href="#fnref:2" class="footnote-back-ref">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p><a href="https://medium.com/the-liberators/myth-in-scrum-the-product-backlog-is-prioritized-bae533f7514a">Myth: In Scrum, the Product Backlog is prioritized | by Christiaan Verwijs | The Liberators | Medium</a><a href="#fnref:3" class="footnote-back-ref">&#8617;</a></p>
-</li>
-<li id="fn:4">
-<p><a href="https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&amp;tabs=basic-process">Choose a process like Basic, Agile, Scrum, or CMMI - Azure Boards | Microsoft Docs</a><a href="#fnref:4" class="footnote-back-ref">&#8617;</a></p>
-</li>
-<li id="fn:5">
-<p>Children sit in a circle. The first child whispers a longish sentence to the next child, who whispers to the third child, and so on. The last child compares what she heard to the original. Inevitibly there's significant drift. When I was a kid, it was called the game of Gossip.<a href="#fnref:5" class="footnote-back-ref">&#8617;</a></p>
+<p>The ancient ones<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -493,7 +303,7 @@ The Sprint Retrospective is the most important part of the process. Without it, 
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on A Simple Intro To Scrum In Azure Devops | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on .NET MAUI Progressing From A Default Project Part 1 - Adding The View Model | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
