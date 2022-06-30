@@ -6,6 +6,36 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>The Worst Interview Question</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_worst_interview_question/van-tay-media-TFFn3BYLc5s-unsplash.jpg" alt="" /&gt;&lt;br /&gt;
+&lt;sup&gt;Photo by Van Tey Media, Free to use under the Unsplash License&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;I know this is kind of click-bait; there are many interview questions that could rise to the level of &amp;quot;worst.&amp;quot; But this one really irks me. The worst interview question comes at the very beginning and is excruciatingly common.&lt;/p&gt;
+&lt;p&gt;&amp;quot;Tell me about yourself.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Now, purists will complain that this isn't even a question, that it's a command. I'd argue it's a question in the form of a statement. But that's trivial. It's not what bugs me. When I'm asked this, I usually respond with some variation of&lt;/p&gt;
+&lt;p&gt;&amp;quot;You have my résumé. What do you want to know?&amp;quot;&lt;/p&gt;
+&lt;p&gt;Do you see? Why ask that first, broad, unfocused question? From the interviewer's point of view, I think many would say, &amp;quot;It shows me how you present yourself.&amp;quot;&lt;/p&gt;
+&lt;p&gt;No, it doesn't. Not accurately.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_worst_interview_question/laurenz-kleinheider-OsC8HauR0e0-unsplash.jpg" alt="" /&gt;&lt;br /&gt;
+&lt;sup&gt;Photo by Laurence Kleinheider, Free to use under the Unsplash License&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;What it tells me as a candidate is you didn't do your research. You at best glanced at my résumé, and now you want me to summarize a document I've already spent hours (over years) honing. But it's worse than that. Because if I start telling you about my job experience, I'm &lt;em&gt;assuming&lt;/em&gt; that's what you want to know. I'm not even telling you what's important to me (even though you might think otherwise). I'm telling you what I'm &lt;em&gt;guessing&lt;/em&gt; is important to you.&lt;/p&gt;
+&lt;p&gt;Don't play games. Don't be lazy. Prepare for the interview.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Most companies' first interview is a screening. So, what's the barrier to being considered for stage two? Ask those questions. &amp;quot;Our software improves animal research efficiency. Do you have ethical concerns about animal testing?&amp;quot;&lt;/li&gt;
+&lt;li&gt;Tell the candidate more about the specific role, or about the company. Provide context for the questions you're going to ask. &amp;quot;We're invested in pair programming. Not everyone likes that, which we understand. What do you think about pair programming?&amp;quot;&lt;/li&gt;
+&lt;li&gt;Ask questions based on their résumé. &amp;quot;I see you did some finance work, which is also part of our business. What did you specifically do on that team?&amp;quot;&lt;/li&gt;
+&lt;li&gt;Certainly ask open-ended questions, but still keep them relevant. &amp;quot;What do you enjoy doing outside of the job?&amp;quot; matters if the company or team cares about home-job balance.&lt;/li&gt;
+&lt;li&gt;Have a conversation. This is harder than &amp;quot;First we ask you questions for 25 minutes. Then you get 5 minutes to ask us questions.&amp;quot; But, look, it's an interview, not an interrogation. Assume the interviewing goes both ways. In fact, &lt;em&gt;invite&lt;/em&gt; that.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;quot;Tell me about yourself&amp;quot; isn't friendly or useful. It makes the candidate uncomfortable, trying to please, and off-balances them out of the gate. Or, they practice a standard, formal answer that only tells you they can memorize a pitch.&lt;/p&gt;
+&lt;p&gt;Your interviews reflect your company's values. Want better matching employees? Ask thoughtful questions that matter.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_worst_interview_question/cody-engel-E8jI4iSq0tQ-unsplash.jpg" alt="" /&gt;&lt;br /&gt;
+&lt;sup&gt;Photo by Cody Engel, Free to use under the Unsplash License&lt;/sup&gt;&lt;/p&gt;
+</description>
+      <pubDate>Thu, 30 Jun 2022 17:43:05 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/the_worst_interview_question</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_worst_interview_question</guid>
+    </item>
+    <item>
       <title>.NET MAUI Progressing From a Default Project Part 2 - (The Problem With) Basic Unit Testing</title>
       <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
 &lt;p&gt;Level: Moderate&lt;/p&gt;
@@ -734,374 +764,6 @@ npm install --global nswag
       <pubDate>Tue, 12 Oct 2021 16:48:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/azure_devops_locally-hosted_build_agent_with_global_npm-_net_tools</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/azure_devops_locally-hosted_build_agent_with_global_npm-_net_tools</guid>
-    </item>
-    <item>
-      <title>Developing With Project Dependencies - When to Package, When Not To</title>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;One last thought first&lt;/strong&gt;&lt;br /&gt;
-This article uses the .NET framework and development for its examples. However, the principles described should apply to most languages and frameworks. For example, the issues and approach can be taken with Angular applications.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="contents"&gt;Contents&lt;/h2&gt;
-&lt;!-- Start Document Outline --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="#packages-are-good"&gt;Packages Are Good!&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#the-developers-essential-desire"&gt;The Developer's Essential Desire&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#the-practical-difference-between-external-and-internal-dependencies"&gt;The Practical Difference Between External and Internal Dependencies&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#the-fundamental-conflicts"&gt;The Fundamental Conflicts&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#challenging-assumptions"&gt;Challenging Assumptions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#a-simple-heuristic"&gt;A Simple Heuristic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#building-blocks"&gt;Building Blocks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#a-common-folder-structure"&gt;A Common Folder Structure&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#repositories"&gt;Repositories&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#meta-solution-files"&gt;Meta-Solution Files&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#simultaneous-development-with-packages-if-you-must"&gt;Simultaneous Development With Packages, If You Must&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#the-versioning-puzzle---in-general"&gt;The Versioning Puzzle - In General&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#the-versioning-puzzle---nuget-packages-in-particular"&gt;The Versioning Puzzle - NuGet Packages In Particular&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#wrap-up"&gt;Wrap Up&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- End Document Outline --&gt;
-&lt;h2 id="credits"&gt;Credits&lt;/h2&gt;
-&lt;p&gt;I wrote most of this, so I get a bunch of the credit. But it wouldn't be as good if my colleagues at &lt;a href="https://clearmeasure.com/"&gt;Clear Measure&lt;/a&gt; hadn't reviewed my words and provided thoughtful questions and debate. They especially clarified to me that the message of the document should be positive toward packaging, that packaging is a critical and established technique for creating performant, maintainable, and scalable business applications.&lt;/p&gt;
-&lt;p&gt;So, thank you Trish Polay and Mike Sigsworth. You rock!&lt;/p&gt;
-&lt;p&gt;I don't consider this the last word on this subject. My views will evolve, and I want this article to evolve with them. Stay tuned!&lt;/p&gt;
-&lt;h2 id="packages-are-good"&gt;Packages Are Good!&lt;/h2&gt;
-&lt;p&gt;This document examines when it makes sense to publish shared dependencies as packages vs maintaining project references. A strong case is made that shared code doesn't &lt;em&gt;have&lt;/em&gt; to become packages. However, this shouldn't be taken as affirming shared project references as &lt;em&gt;desirable.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The question is less whether you'll be packaging reusable bits of your code base, and more &lt;em&gt;when&lt;/em&gt;. If you're developing a large enterprise application, breaking it into smaller, independently developed, tested, and deployed services has important benefits. At minimum, this means implementing something like an Onion Architecture informed by Domain-Driven Design. For high-scalability, microservices can become a strong choice.&lt;/p&gt;
-&lt;p&gt;There's little doubt that developing independent--yet related--projects is more difficult than a monolith where all the code is available all at once. But difficulty isn't the only factor to consider. A loosely-coupled architecture that's easier to test, faster to deploy, and more resilient to change, pays for itself many times over, even if daily development takes more time or effort.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Beware coding by expedience. Technical debt is sure to quickly accrue.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The guidance below is when it makes sense to use packages given how your code is &lt;em&gt;today&lt;/em&gt;. Maybe you're working in a monolith and packaging isn't a good near-term decision. But &lt;em&gt;don't&lt;/em&gt; make that your long-term decision. Really.&lt;/p&gt;
-&lt;p&gt;Here are some examples of how you can think about it.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;We're starting a new code base with shared code. What do we do?&lt;/em&gt;&lt;br /&gt;
-Try putting some shared code in its own repo. Figure out how that works.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Maybe our new code base has code that &lt;em&gt;might&lt;/em&gt; be shared, but isn't yet.&lt;/em&gt;&lt;br /&gt;
-That's OK Likewise try putting the shared code in its own repo.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;We have shared projects. But when we pull them out, developing the independently becomes a headache. What do we do?&lt;/em&gt;&lt;br /&gt;
-Reexamine the code. Instead of assuming your projects &lt;em&gt;as they are&lt;/em&gt; should become packages, try extracting code from those projects into good packages.&lt;/p&gt;
-&lt;p&gt;As you read below, you may be tempted to stick with your monolith and eschew packages. That's not what I want. I want you to build an environment where you can develop high quality, less complex, loosely-coupled applications quickly. You may not be there today, but that's where you're headed.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In all of the above, you won't get it right the first time. Your code will evolve along with your understanding. You'll need help and find out how other shops do it. Expect that.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="the-developers-essential-desire"&gt;The Developer's Essential Desire&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Work on all parts of the application at the same time&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="the-practical-difference-between-external-and-internal-dependencies"&gt;The Practical Difference Between External and Internal Dependencies&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;External dependency packages are intended for generic use cases&lt;/li&gt;
-&lt;li&gt;Internal dependency projects are for specific applications&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Both are dependencies, but who uses them are different. An external package like Json.Net doesn't know who's using it. An internal dependency like CustomerContractService is developed &lt;em&gt;for specific applications&lt;/em&gt;.&lt;/p&gt;
-&lt;h2 id="the-fundamental-conflicts"&gt;The Fundamental Conflicts&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Loose coupling says projects can be developed, tested, and deployed independently.&lt;/li&gt;
-&lt;li&gt;But related projects benefit from developing, testing, and deploying together.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;External packages don't have specific parent dependencies, so they can be developed independently and reside in their own repository and solution workspace. Internal applications have shared dependencies that need to be developed simultaneously.&lt;/p&gt;
-&lt;p&gt;These two development models are at odds.&lt;/p&gt;
-&lt;p&gt;For external packages,&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The parent references the package dependency, which is downloaded from a store&lt;/li&gt;
-&lt;li&gt;The package dependency's code isn't changed&lt;/li&gt;
-&lt;li&gt;The package version is changed externally, and the parent chooses when to upgrade&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For internal dependencies,&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The parent references the project dependency, which is in a relative path&lt;/li&gt;
-&lt;li&gt;Changes to the parent and dependency are committed to source control together&lt;/li&gt;
-&lt;li&gt;The package version is changed at the same time for the package and parent&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The two critical concerns are:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Internal dependencies have a &lt;strong&gt;fixed relative path&lt;/strong&gt; stored in source control&lt;/li&gt;
-&lt;li&gt;A parent expects the dependency to exist when submitted to continuous integration&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="challenging-assumptions"&gt;Challenging Assumptions&lt;/h2&gt;
-&lt;p&gt;There are several reasons a development shop may decide to separate dependencies into packages.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Clarify the code base by explicitly decoupling the dependency&lt;/li&gt;
-&lt;li&gt;Allow greater or easier consumption of the dependency&lt;/li&gt;
-&lt;li&gt;Easily share reusable code between projects that live in separate repositories and are worked on by independent teams&lt;/li&gt;
-&lt;li&gt;Allow independent projects to choose when to upgrade to new version of shared code&lt;/li&gt;
-&lt;li&gt;A belief creating packages is how it &amp;quot;should&amp;quot; be done for separation of concerns, loose coupling, domain-driven design, microserves, etc.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Several of these reasons can be challenged, especially the last. Here are some questions to ask yourself and team.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Imagine the dependency is a third arty open source project. How would that affect our application development?&lt;/li&gt;
-&lt;li&gt;If we don't package our dependencies, is our coding easier or harder? Which parts?&lt;/li&gt;
-&lt;li&gt;Does an application &lt;em&gt;have&lt;/em&gt; to change the dependency code during feature development? If so, why? If not, how long can the application wait for the package to have the new changes?&lt;/li&gt;
-&lt;li&gt;Is committing a relative path a hinderance? Is it real or reactive? Can our group establish a common structure for shared project dependencies?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Seriously, if you don't need packages, don't create them. You can still have loosely-coupled shared code.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="a-simple-heuristic"&gt;A Simple Heuristic&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Not all shared dependencies should be packages.&lt;/strong&gt;&lt;/em&gt; That's a critical message to take away from this article. It's easy to &lt;em&gt;think&lt;/em&gt; our development lives would be easier by packaging all our shared dependencies, but that isn't true.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;If the dependency is usually developed in lockstep with the parent, don't make it a package.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;For examples, these probably &lt;em&gt;aren't&lt;/em&gt; good choices for packages&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A CustomerService assembly&lt;/li&gt;
-&lt;li&gt;An Entity Framework repository assembly&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Candidates for internal packages have these qualities&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Don't change major functionality frequently&lt;/li&gt;
-&lt;li&gt;Are highly backward-compatible&lt;/li&gt;
-&lt;li&gt;Who uses them doesn't have to be known&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here are some examples. Typically these are customized for the business and are application-agnostic.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Security libraries. Great choice.&lt;/li&gt;
-&lt;li&gt;Type manipulation libraries&lt;/li&gt;
-&lt;li&gt;Networking libraries&lt;/li&gt;
-&lt;li&gt;Libraries that work across domains&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;What do I mean by that last one? Let's say you're practicing Domain-Driven Design. You've segregated your domains and created separate repositories per domain. However, you find there are some domain behaviors that apply to all domains &lt;em&gt;and&lt;/em&gt; need to be consistent. Those may be a candidate for a package.&lt;/p&gt;
-&lt;h2 id="building-blocks"&gt;Building Blocks&lt;/h2&gt;
-&lt;p&gt;These are the building blocks we're dealing with.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Source control&lt;/li&gt;
-&lt;li&gt;Project vs package references&lt;/li&gt;
-&lt;li&gt;Relative paths for project references&lt;/li&gt;
-&lt;li&gt;Automated build dependencies&lt;/li&gt;
-&lt;li&gt;Dependency versioning&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="a-common-folder-structure"&gt;A Common Folder Structure&lt;/h2&gt;
-&lt;p&gt;Since we're assuming software development inside an organization, we can take advantage of that by sharing some conventions. For all the solutions below I recommend the same folder layout. It's not the only way, but is consistent and allows a mono-style to be broken up more easily later.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Use this general structure&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;|_repos
-  |_Repo
-    |_docs
-    |_src
-      |_Project1
-        |_Project1.csproj
-      |_Project2
-        |_Project2.csproj
-      |_Solution1.sln
-    |_build.ps1
-    |_pipeline.yml
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;A repo with shared project references doesn't need (but could have) a solution file. It's name is prepended with an underscore so that shared projects are at the top of the development folder.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;|_repos
-  |__SharedRepo
-    |_docs
-    |src
-      |_Project1
-      |_Project1
-      |_Project2
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The key to this or other layouts is the predictability of relative paths.&lt;/p&gt;
-&lt;h2 id="repositories"&gt;Repositories&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;As long as we stick to the layout, our project references will resolve correctly.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here's a example of four Git repositories. Notice how, as long as the convention is followed, the repos don't conflict with each other.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;repos
-|__SharedRepo1
-  |_.git
-  |_docs
-  |_src
-|__SharedRepo2
-  |_.git
-  |_docs
-  |_src
-|_AppRepo1
-  |_.git
-  |_docs
-  |_src
-    |_Project1
-      -&amp;gt; ProjectReference ../../SharedRepo1/src/Project1/Project1.csproj
-      -&amp;gt; PackageReference PackageProject1.2.1.5
-  |_build.ps1
-  |_pipeline.ps1
-|_AppRepo2
-  |_.git
-  |_docs
-  |_src
-    |_Project1
-      -&amp;gt; ProjectReference ../../SharedRepo1/src/Project1/Project1.csproj
-      -&amp;gt; ProjectReference ../../SharedRepo2/src/Project3/Project3.csproj
-      -&amp;gt; ProjectReference ../../PackageRepo1/src/PackageProject1/PackageProject1.csproj
-  |_build.ps1
-  |_pipeline.ps1
-|_PackageRepo1
-  |_.git
-  |_docs
-  |_src
-    |_PackageProject1
-    |_PackageProject2
-    |_Packages.sln
-  |_build.ps1
-  |_pipeline.ps1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;AppRepo2 Project 1 represents what I'd prefer &lt;em&gt;not&lt;/em&gt; to do: reference a NuGet package project. This is discussed later.&lt;/p&gt;
-&lt;h2 id="meta-solution-files"&gt;Meta-Solution Files&lt;/h2&gt;
-&lt;p&gt;For convenience, developers may want to have their own solution files that combine other solutions. However, most of these should not be stored in source.&lt;/p&gt;
-&lt;p&gt;If you put them in the root of the development folder (e.g. &lt;code&gt;repos&lt;/code&gt;), there's no source control issue. But it may make more sense for them to be in a repository's folder, yet still not version controlled. This is accomplished by adding a line in &lt;code&gt;.gitignore&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;# Ignore root-level solution files
-*.sln
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;|_repos
-  |_Repo
-    |_.git
-    |_src
-      |_Solution1
-      |_Solution2
-    |_.gitignore
-    |_One-Solution.sln
-    |_All-Solutions.sln
-    |_CommonApps.sln
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If there were a few solution files that were convenient to maintain, then a naming convention could be used instead.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;# Ignore root-level solution files with this naming
-*[Ss]olution.sln
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this case, &lt;code&gt;One-Solution.sln&lt;/code&gt; and &lt;code&gt;All-Solutions.sln&lt;/code&gt; would be ignored but &lt;code&gt;CommonApps.sln&lt;/code&gt; would be tracked by Git.&lt;/p&gt;
-&lt;h2 id="simultaneous-development-with-packages-if-you-must"&gt;Simultaneous Development With Packages, If You Must&lt;/h2&gt;
-&lt;p&gt;If you have to develop a package along with its parent, you need to handle a few things.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;(Temporarily or permanently) set a project reference to the package, OR&lt;/li&gt;
-&lt;li&gt;Publish the package locally for a code-publish-install development loop (&lt;em&gt;don't do this, it's dumb!&lt;/em&gt;)&lt;/li&gt;
-&lt;li&gt;Local build, and continuous integration, must either
-&lt;ul&gt;
-&lt;li&gt;Remove the project reference, then deploy the package before building the parent, OR&lt;/li&gt;
-&lt;li&gt;Maintain the project reference so the parent builds with the new dependency, and simultaneously build/deploy the package&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;.NET Core project files can have both a PackageReference and ProjectReference entry for the same assembly, but it's not good practice and will lead to headaches.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You should &lt;em&gt;not&lt;/em&gt; be bouncing back and forth between project references and package references. Solve the problem that's leading to this anti-pattern&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Let's assume you have an application that depends on a packaged project, but you're always updating that dependency in lockstep. The real problem is build and deployment.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The parent project has a project reference to the dependency&lt;/li&gt;
-&lt;li&gt;The build script builds the parent app using the project reference, but generates a package for the dependency&lt;/li&gt;
-&lt;li&gt;The deployment server deploys the new package independently of the parent&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here's some PowerShell pseudocode. Your actual implementation will be different!&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-powershell"&gt;# MyApp build.ps1
-
-# Run the dependency solution's build script, assuming it's independent
-# This should prompt for a new version number, see explanation below
-cd ..\..\_SharedRepo\src\CompanySecurityHelpers
-\build.ps1
-
-# Build and publish the solution locally, which will build the dependency dll
-# with the new version number
-cd ..\..\MyRepo\src
-dotnet build -o Release MyApp.sln
-dotnet publish -o Release --no-build MyApp.sln --output package
-
-# if the dependency's script doesn't create the package, package it here
-dotnet pack -o Release --no-build ..\..\_SharedRepo\src\CompanySecurityHelpers --output package
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="the-versioning-puzzle-in-general"&gt;The Versioning Puzzle - In General&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Versioning is hard to fully automate. I think it's a mistake to try.&lt;/li&gt;
-&lt;li&gt;Fully automating &lt;em&gt;Patch&lt;/em&gt; versioning is probably OK, though.&lt;/li&gt;
-&lt;li&gt;Reduce the friction to allowing developers to commit a new version number.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The idea is simple. Most of the time, you only need to increment the version number when you're ready to generate a pull request. At that time, you should be rebasing your changes on top of the latest mainline release, so you &lt;em&gt;should&lt;/em&gt; have access to the latest package version.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The local build script updates the package version&lt;/li&gt;
-&lt;li&gt;The automated build/deployment pipeline fails if the package version is lower than what's in the store&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Here's pseudo code for asking the developer if the version should be increased. &lt;em&gt;It's the idea, not production code.&lt;/em&gt; This all works best when developers are committing and synchronizing code frequently.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-powershell"&gt;    $currentVersion = GetCurrentVersion
-    Write-Message &amp;quot;Current version is $currentVersion&amp;quot;
-    $reply = Read-Host -Prompt 'Do you want to increment the version to publish the package? (y/N)'
-    $bumpVersion = $reply -eq 'y'    
-    if ($bumpVersion) {
-        $level = Read-Host -Prompt 'Which level? (major, minor, patch, [pre])'
-        # IncrementVersion takes care of updating the .csproj properties
-        $newVersion = IncrementVersion($currentVersion)
-        Write-Message &amp;quot;New version will be $newVersion&amp;quot;
-    }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A PowerShell script could also read the package store, find the latest package, read its version number, and compare to the package being built. This could run locally to catch a problem before the PR, and would definitely run in the CI/CD server.&lt;/p&gt;
-&lt;h2 id="the-versioning-puzzle-nuget-packages-in-particular"&gt;The Versioning Puzzle - NuGet Packages In Particular&lt;/h2&gt;
-&lt;p&gt;NuGet packages have a history of dependency resolution challenges. It looks like .NET Core has fixed most issues. To be sure, dependency resolution is hard because a top-level .NET project can only have &lt;em&gt;one&lt;/em&gt; version of a dll when it builds. So, what should happen in the following environment?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;MyApp installs and uses Json.Net 9.1.0. It depends on features in that version.&lt;/li&gt;
-&lt;li&gt;MyApp installs CoolAutoConfigurator, which itself depends on Json.Net 8.3.7.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;MyApp
-|_Json.Net 9.1.0
-|_CoolAutoConfigurator
-  |_Json.Net 8.3.7
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Which version of Json.Net should MyApp include in the &lt;code&gt;bin&lt;/code&gt; folder? The latest? What if there were changes that break CoolAutoConfigurator?&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Generally, in Core, the latest version will be used. It's up to the developer to deal with a breaking change by coding around it or contacting the package developer to request they upgrade.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;In .NET Framework, including a package with a specific &lt;em&gt;assembly&lt;/em&gt; version would often cause conflicts that were resolved using special files that would, in effect, say &amp;quot;If the assembly version is this, it's OK to use this other assembly version.&amp;quot;&lt;/p&gt;
-&lt;p&gt;Package maintainers found the better way to manage Framework packages was to use specific package versions, but change assembly versions only on major releases. So, Json.Net package 9.2.3 and 9.1.0 would both generate a dll with assembly version 9.0.0. The job of the package developer was to ensure no breaking changes in major versions.&lt;/p&gt;
-&lt;p&gt;This matters. .NET Framework and Core resolve which NuGet package to install based on package version, but assemlies (exes and dlls) resolve which &lt;em&gt;other&lt;/em&gt; assemblies to use by assembly version, and assemblies with different versions are not equal. If &lt;code&gt;myapp.exe&lt;/code&gt; and &lt;code&gt;mylibrary1.dll&lt;/code&gt; both use &lt;code&gt;mylibrary2.dll&lt;/code&gt;, but expect different assembly versions, the program will fail.&lt;/p&gt;
-&lt;p&gt;Core improves on Framework by being more lenient in accepting assembly versions.&lt;/p&gt;
-&lt;p&gt;A further complication is which version numbers appear in the NuGet package store versus which are embedded in the compiled assembly (DLL). Here's a handy map for all you people who want to right click &lt;code&gt;myfile.dll&lt;/code&gt; &amp;gt; Properties &amp;gt; Details.&lt;/p&gt;
-&lt;p&gt;I'm focusing on .NET Core here.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;.NET Core .csproj property&lt;/th&gt;
-&lt;th&gt;.csproj value&lt;/th&gt;
-&lt;th&gt;NuGet&lt;/th&gt;
-&lt;th&gt;File Property&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Package version&lt;/td&gt;
-&lt;td&gt;1.0.2-alpha1&lt;/td&gt;
-&lt;td&gt;1.0.2-alpha1&lt;/td&gt;
-&lt;td&gt;Product version&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Assembly version&lt;/td&gt;
-&lt;td&gt;1.0.0.0&lt;/td&gt;
-&lt;td&gt;-&lt;/td&gt;
-&lt;td&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Assembly file version&lt;/td&gt;
-&lt;td&gt;1.0.0.123&lt;/td&gt;
-&lt;td&gt;-&lt;/td&gt;
-&lt;td&gt;File version&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Weird, isn't it? The assembly version isn't visible in file properties, but it's critical for our applications and for the Global Assembly Cache (GAC).&lt;/p&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;In general, organizations need to avoid making the assumption that all their shared project references &lt;em&gt;should&lt;/em&gt; become packages. Instead, they should extract into packages libraries that can be developed independently, and maintain project references to the other shared code.&lt;/p&gt;
-&lt;p&gt;Importantly, they should then &lt;em&gt;reduce the shared project references&lt;/em&gt; by ruthlessly reevaulating and refactoring the code.&lt;/p&gt;
-&lt;p&gt;Having a convention for code folder layouts makes it much easier to separate code into independent repositories.&lt;/p&gt;
-&lt;p&gt;Versioning is more difficult when it's highly automated. Try keeping this in the developer's hands, and create safeguards to accidentally deploying the wrong thing&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Finally, packages do not equal loose coupling, though they can aid in a decoupling effort. Loose coupling has more to do with architecture, modeling, and development practices. An Onion Architecture, Domain-Drive Design, and Test-Driven Devlopment will go a long way to lowering your code's coupling and complexity.&lt;/p&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;This is one area where I may be more wrong than I want to admit. A better way of thinking might be, &amp;quot;how easy can we make versioning without causing conflict?&amp;quot;&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-      <pubDate>Sat, 21 Aug 2021 17:29:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/developing_with_project_dependencies_-_when_to_package__when_not_to</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/developing_with_project_dependencies_-_when_to_package__when_not_to</guid>
     </item>
   </channel>
 </rss>
