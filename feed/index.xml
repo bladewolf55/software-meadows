@@ -45,12 +45,12 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="the-domain-models"&gt;The Domain Models&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;Add a two new .NET Class Library projects, one named &lt;code&gt;Maui.Progression.Domain&lt;/code&gt;, the other named &lt;code&gt;Maui.Progression.DomainServices&lt;/code&gt;.
+&lt;li&gt;Add two new .NET Class Library projects, one named &lt;code&gt;Maui.Progression.Domain&lt;/code&gt;, the other named &lt;code&gt;Maui.Progression.DomainServices&lt;/code&gt;.
 &lt;blockquote&gt;
 &lt;p&gt;These are plain class libraries, not specific to .NET MAUI.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
-&lt;li&gt;Add two folders, &lt;code&gt;Models&lt;/code&gt; and &lt;code&gt;Interfaces&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add a &lt;code&gt;Models&lt;/code&gt; folder.&lt;/li&gt;
 &lt;li&gt;Delete &lt;code&gt;Class1.cs&lt;/code&gt;, add &lt;code&gt;NumberMapItem.cs&lt;/code&gt; to Models with this code.
 &lt;pre&gt;&lt;code class="language-csharp"&gt;namespace Maui.Progression.Domain.Models;
 
@@ -125,7 +125,7 @@ public class NumberMap_Should
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;It's contrived, I know, but we have two tests, one to make sure we return words for numbers, the other for what happens if a number doesn't have a word.&lt;/p&gt;
-&lt;p&gt;Now add the class &lt;code&gt;NumberMap.cs&lt;/code&gt; to the Domain with this code to pass the tests.&lt;/p&gt;
+&lt;p&gt;Now add the class &lt;code&gt;NumberMap.cs&lt;/code&gt; to the Models folder with this code to pass the tests.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -188,7 +188,7 @@ public class NumberMapperService_Should
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The above code declares the service and injects our own test data instead of letting it get data from an external source.&lt;/p&gt;
-&lt;p&gt;Add an interface to DomainServices named &lt;code&gt;INumberMapper.cs&lt;/code&gt; with this code.&lt;/p&gt;
+&lt;p&gt;Add an &lt;code&gt;Interfaces&lt;/code&gt; folder and an interface to DomainServices named &lt;code&gt;INumberMapper.cs&lt;/code&gt; with this code.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.Domain.Models;
 
 namespace Maui.Progression.DomainServices.Interfaces;
@@ -200,7 +200,7 @@ public interface INumberMapper
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We'll use this interface later to test our ViewModel.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The principles here are A) to program to the interface, and B) dependency injection. By injecting an interface, we can mock the behavior later.&lt;/p&gt;
+&lt;p&gt;The principles here are A) program to the interface, and B) dependency injection. By injecting an interface, we can mock the behavior later.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Add a class named &lt;code&gt;NumberMapper.cs&lt;/code&gt; to DomainServices.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.Domain.Models;

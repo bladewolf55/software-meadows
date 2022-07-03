@@ -112,12 +112,12 @@
 </code></pre>
 <h2 id="the-domain-models">The Domain Models</h2>
 <ol>
-<li>Add a two new .NET Class Library projects, one named <code>Maui.Progression.Domain</code>, the other named <code>Maui.Progression.DomainServices</code>.
+<li>Add two new .NET Class Library projects, one named <code>Maui.Progression.Domain</code>, the other named <code>Maui.Progression.DomainServices</code>.
 <blockquote>
 <p>These are plain class libraries, not specific to .NET MAUI.</p>
 </blockquote>
 </li>
-<li>Add two folders, <code>Models</code> and <code>Interfaces</code></li>
+<li>Add a <code>Models</code> folder.</li>
 <li>Delete <code>Class1.cs</code>, add <code>NumberMapItem.cs</code> to Models with this code.
 <pre><code class="language-csharp">namespace Maui.Progression.Domain.Models;
 
@@ -192,7 +192,7 @@ public class NumberMap_Should
 }
 </code></pre>
 <p>It's contrived, I know, but we have two tests, one to make sure we return words for numbers, the other for what happens if a number doesn't have a word.</p>
-<p>Now add the class <code>NumberMap.cs</code> to the Domain with this code to pass the tests.</p>
+<p>Now add the class <code>NumberMap.cs</code> to the Models folder with this code to pass the tests.</p>
 <pre><code class="language-csharp">using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -255,7 +255,7 @@ public class NumberMapperService_Should
 }
 </code></pre>
 <p>The above code declares the service and injects our own test data instead of letting it get data from an external source.</p>
-<p>Add an interface to DomainServices named <code>INumberMapper.cs</code> with this code.</p>
+<p>Add an <code>Interfaces</code> folder and an interface to DomainServices named <code>INumberMapper.cs</code> with this code.</p>
 <pre><code class="language-csharp">using Maui.Progression.Domain.Models;
 
 namespace Maui.Progression.DomainServices.Interfaces;
@@ -267,7 +267,7 @@ public interface INumberMapper
 </code></pre>
 <p>We'll use this interface later to test our ViewModel.</p>
 <blockquote>
-<p>The principles here are A) to program to the interface, and B) dependency injection. By injecting an interface, we can mock the behavior later.</p>
+<p>The principles here are A) program to the interface, and B) dependency injection. By injecting an interface, we can mock the behavior later.</p>
 </blockquote>
 <p>Add a class named <code>NumberMapper.cs</code> to DomainServices.</p>
 <pre><code class="language-csharp">using Maui.Progression.Domain.Models;
