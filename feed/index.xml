@@ -6,6 +6,71 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>.NET MAUI Progressing From a Default Project Part 4 - Putting the View in Its Place</title>
+      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
+&lt;p&gt;Level: Moderate&lt;/p&gt;
+&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="moving-the-view"&gt;Moving the View&lt;/h2&gt;
+&lt;p&gt;Compared to the &lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;last part&lt;/a&gt;, this one's really short.&lt;/p&gt;
+&lt;p&gt;Our app has one view, MainPage, sitting in the root of the project. Like the rest of this series, that's fine for a small app with just a few views. But let's keep our app tidy and pretend it's going to have a dozen views.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Which might be an awful lot for a mobile app.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In the &lt;code&gt;Maui.Progression&lt;/code&gt; project, add a folder named &amp;quot;Views&amp;quot; and move the MainPage files (&lt;code&gt;MainPage.xaml&lt;/code&gt; and &lt;code&gt;MainPage.xaml.cs&lt;/code&gt;) into it. When prompted to adjust namespaces, choose Yes.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/2022-07-04-19-07-19.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Trickery, trickery, trickery&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; &lt;em&gt;Neither&lt;/em&gt; of our files' namespaces got updated.&lt;/p&gt;
+&lt;p&gt;Open &lt;code&gt;MainPage.xaml.cs&lt;/code&gt; and update the namespace.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.ViewModels;
+
+namespace Maui.Progression.Views;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Open &lt;code&gt;MainPage.xaml&lt;/code&gt; and update the page's x:Class namespace.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot; ?&amp;gt;
+&amp;lt;ContentPage xmlns=&amp;quot;http://schemas.microsoft.com/dotnet/2021/maui&amp;quot;
+             xmlns:x=&amp;quot;http://schemas.microsoft.com/winfx/2009/xaml&amp;quot;
+             x:Class=&amp;quot;Maui.Progression.Views.MainPage&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We also need to edit &lt;code&gt;MauiProgram.cs&lt;/code&gt; to add &lt;code&gt;Maui.Progression.Views&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.DomainServices;
+using Maui.Progression.DomainServices.Interfaces;
+using Maui.Progression.ViewModels;
+using Maui.Progression.Views;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;And&lt;/em&gt; the &lt;code&gt;AppShell.xaml&lt;/code&gt; &amp;quot;local&amp;quot; namespace.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot; ?&amp;gt;
+&amp;lt;Shell
+    x:Class=&amp;quot;Maui.Progression.AppShell&amp;quot;
+    xmlns=&amp;quot;http://schemas.microsoft.com/dotnet/2021/maui&amp;quot;
+    xmlns:x=&amp;quot;http://schemas.microsoft.com/winfx/2009/xaml&amp;quot;
+    xmlns:local=&amp;quot;clr-namespace:Maui.Progression.Views&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Run the program and the tests. Et voila! it works.&lt;/p&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;I know, I know. &amp;quot;Jeez, that was easy, what was the point?&amp;quot;&lt;/p&gt;
+&lt;p&gt;The point is that we now have a well-organized application, which increases maintainability. We're following a View-Model-ViewModel pattern, and our Views, View Models, and Models are corralled into their metaphorical pens. We also saw just how pervasive and important the namespaces are, and that--unlike some other refactoring--Visual Studio doesn't (today) catch everything.&lt;/p&gt;
+&lt;p&gt;Next Up: Build and (hopefully some kind of) Deployment (and then view layouts and styles)!&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;From The Far Side by Gary Larson&lt;br /&gt;
+&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/farside-trickery.jpg" alt="" /&gt;&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Mon, 4 Jul 2022 19:00:47 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place</guid>
+    </item>
+    <item>
       <title>.NET MAUI Progressing From a Default Project Part 3 - Adding the Model, More Testing, and DDD</title>
       <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
 &lt;p&gt;Level: Moderate&lt;/p&gt;
@@ -15,6 +80,7 @@
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="the-role-of-the-model-in-mvvm"&gt;The Role of the Model in MVVM&lt;/h2&gt;
 &lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/8/87/MVVMPattern.png" alt="" /&gt;&lt;/p&gt;
@@ -519,6 +585,7 @@ Mine didn't run right the first time. I forgot to pass the options to the JSON d
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="net-mauis-testing-problem"&gt;.NET MAUI's testing problem&lt;/h2&gt;
 &lt;p&gt;At the time of this writing, .NET MAUI apps don't support unit testing. At least, not in any way I could find. And I tried, I really tried, to fool .NET by playing with target frameworks and conditionally including a Program Main method, and other goofy stuff, but to no avail.&lt;/p&gt;
@@ -615,6 +682,7 @@ public class Counter_Should
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="the-problem.net-maui-solves"&gt;The Problem .NET MAUI Solves&lt;/h2&gt;
 &lt;p&gt;Cross-platform development is hard, usually requiring maintaining a project per platform. Any feature must be added to each code base. .NET MAUI uses a single project with the majority of the UI code using XAML, and the business code in C#. This code is then transpiled to the native platforms. The result is less maintenance, fewer errors, and reduced knowledge needed to build cross-platform applications.&lt;/p&gt;
@@ -1109,83 +1177,6 @@ You know, from that list I made.&lt;/p&gt;
       <pubDate>Tue, 28 Dec 2021 10:45:00 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/dont_restrict_trust</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/dont_restrict_trust</guid>
-    </item>
-    <item>
-      <title>2021 DORA Explorer - My Highlights from the State of DevOps report</title>
-      <description>&lt;p&gt;In my opinion, for what we do as our business, the DORA group's work is among the most important for us to understand and use. It's the best resource I know to provide software delivery guidance that's based in evidence, not hearsay and personal opinion.&lt;/p&gt;
-&lt;p&gt;I recommend downloading and reading the complete PDF from the web site.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://cloud.google.com/blog/products/devops-sre/announcing-dora-2021-accelerate-state-of-devops-report"&gt;2021 Accelerate State of DevOps report addresses burnout, team performance&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;br /&gt;
-ALL excerpts below are directly quoted via copy/paste from the linked 2021 DevOps report. Extra emphases are mine. They're what stood out to me, and they won't be what stand out to you!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="the-5-metrics"&gt;The 5 Metrics&lt;/h2&gt;
-&lt;p&gt;With seven years of data collection and research, we have developed and validated four metrics that measure software delivery performance. Since 2018, we’ve included a fifth metric to capture operational capabilities.&lt;/p&gt;
-&lt;p&gt;Note that these metrics focus on system-level outcomes, which helps avoid the common pitfalls of software metrics, such as pitting functions against each
-other and making local optimizations at the cost of overall outcomes.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights/five-metrics.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights/elite-performers.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="cloud"&gt;Cloud&lt;/h2&gt;
-&lt;p&gt;Respondents who use hybrid or multi-cloud were 1.6 times more likely to exceed their organizational performance targets
-than those who did not.&lt;/p&gt;
-&lt;p&gt;Unsurprisingly, respondents who have adopted multiple cloud providers were 1.5 times as more likely to meet or exceed their reliability targets.&lt;/p&gt;
-&lt;p&gt;For the third time, we find that what really matters is how teams implement their cloud services, not just that they are using cloud technologies. Elite performers were 3.5 times more likely to have met all essential NIST cloud characteristics.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;On-demand self-service&lt;/strong&gt; Consumers can provision computing resources as needed, automatically, without any human interaction required on the part of the provider.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Broad network access&lt;/strong&gt; Capabilities are widely available and can be accessed through multiple clients such as mobile phones, tablets, laptops, and workstations.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Resource pooling&lt;/strong&gt;  Provider resources are pooled in a multi-tenant model, with physical and virtual resources dynamically assigned and reassigned on-demand. The customer generally has no direct control over the exact location of the provided resources, but can specify location
-at a higher level of abstraction, such as country, state, or data center.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Rapid elasticity&lt;/strong&gt; Capabilities can be elastically provisioned and released to rapidly scale outward or inward with demand. Consumer capabilities available for provisioning appear to be unlimited and can be appropriated in any quantity at any time.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Measured service&lt;/strong&gt; Cloud systems automatically control and optimize resource use by leveraging a metering capability at a level of abstraction appropriate to the type of service, such as storage, processing, bandwidth, and active user accounts. Resource usage can be monitored,
-controlled, and reported for transparency.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="sre-and-devops"&gt;SRE and DevOps&lt;/h2&gt;
-&lt;p&gt;While the DevOps community was emerging at public conferences and conversations, a like-minded movement was forming inside Google: site reliability engineering (SRE). . . . SRE is a learning discipline that prioritizes cross-functional communication and psychological safety, the same values that are at the core of the performance-oriented generative culture typical of elite DevOps teams.&lt;/p&gt;
-&lt;p&gt;In analyzing the results, we found evidence that teams who excel at these modern operational practices are 1.4 times more likely to report greater
-SDO performance, and 1.8 times more likely to report better business outcomes.&lt;/p&gt;
-&lt;p&gt;Typically, individuals with a heavy load of operations tasks are prone to burnout, but SRE has a positive effect. We found that the more a team employs SRE practices, the less likely its members are to experience burnout.&lt;/p&gt;
-&lt;h2 id="documentation"&gt;Documentation&lt;/h2&gt;
-&lt;p&gt;This year, we looked at the quality of internal documentation, which is documentation–such as manuals, READMEs, and even code comments–for the services and applications that a team works on. We measured documentation quality by the degree to which the documentation:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;helps readers accomplish their goals&lt;/li&gt;
-&lt;li&gt;is accurate, up-to-date, and comprehensive&lt;/li&gt;
-&lt;li&gt;is findable, well organized, and clear&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We found that about 25% of respondents have good quality documentation, and the impact of this documentation work is clear: teams with higher quality documentation are 2.4 times more likely to see better software delivery and operational (SDO) performance.&lt;/p&gt;
-&lt;h2 id="security"&gt;Security&lt;/h2&gt;
-&lt;p&gt;[Shift left] and integrate throughout As technology teams continue to accelerate and evolve, so do the quantity and sophistication of security threats. In 2020, more than 22 billion records of confidential personal information or business data were exposed, according to Tenable’s 2020 Threat Landscape Retrospective Report.6 Security can’t be an afterthought or the final step before delivery, it must be integrated throughout the software development process.&lt;/p&gt;
-&lt;p&gt;Consistent with previous reports, we found that elite performers excel at implementing security practices. This year, elite performers who met or exceeded their reliability targets were twice as likely to have security integrated in their software development process.&lt;/p&gt;
-&lt;h2 id="technical-devops-capabilities"&gt;Technical DevOps capabilities&lt;/h2&gt;
-&lt;p&gt;Our research shows that organizations who undergo a DevOps transformation by adopting continuous delivery are more likely to have processes that are high quality, low-risk, and cost-effective.&lt;/p&gt;
-&lt;p&gt;Specifically, we measured the following technical practices:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Loosely coupled architecture&lt;/li&gt;
-&lt;li&gt;Trunk-based development&lt;/li&gt;
-&lt;li&gt;Continuous testing&lt;/li&gt;
-&lt;li&gt;Continuous integration&lt;/li&gt;
-&lt;li&gt;Use of open source technologies&lt;/li&gt;
-&lt;li&gt;Monitoring and observability practices&lt;/li&gt;
-&lt;li&gt;Management of database changes&lt;/li&gt;
-&lt;li&gt;Deployment automation&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;We found that while all of these practices improve continuous delivery, &lt;strong&gt;loosely coupled architecture&lt;/strong&gt; and &lt;strong&gt;continuous testing&lt;/strong&gt; have the greatest impact&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Elite performers who meet their reliability targets are 5.8 times more likely to leverage continuous integration. In continuous integration, each commit triggers a build of the software and &lt;em&gt;runs a series of automated tests that provide feedback in a few minutes.&lt;/em&gt; With continuous integration, you decrease the manual and often complex coordination needed for a successful integration.&lt;/p&gt;
-&lt;h2 id="covid-19"&gt;COVID-19&lt;/h2&gt;
-&lt;p&gt;What reduced burnout?&lt;/p&gt;
-&lt;p&gt;Despite this, we did find a factor that had a large effect on whether or not a team struggled with burnout as a result of working remotely: culture. Teams with a &lt;strong&gt;generative team culture&lt;/strong&gt;, composed of people who felt included and like they belonged on their team, were half as likely to experience burnout during the pandemic. This finding reinforces the importance of prioritizing team and culture. Teams that do better are equipped to weather more challenging periods that put pressure on both the team as well as on individuals.&lt;/p&gt;
-&lt;h2 id="culture"&gt;Culture&lt;/h2&gt;
-&lt;p&gt;Broadly speaking, culture is the inescapable interpersonal undercurrent of every organization. It is anything that influences how employees think,
-feel, and behave towards the organization and one another. All organizations have their own unique culture, and our findings consistently show that culture is one of the top drivers of organizational and IT performance. Specifically, our analyses indicate that a &lt;strong&gt;generative  culture&lt;/strong&gt;–measured using the Westrum organizational culture typology, and people’s sense of belonging and inclusion within the organization–
-predicts higher software delivery and operational (SDO) performance. For example, we find that elite performers that meet their reliability targets are 2.9 times more likely to have a generative team culture than their low-performing counterparts.&lt;/p&gt;
-&lt;p&gt;Our results indicate that performance-oriented organizations that value belonging and inclusion are more likely to have lower levels of employee
-burnout compared to organizations with less positive organizational cultures.&lt;/p&gt;
-&lt;p&gt;Given the evidence showing how psycho-social factors affect SDO performance and levels of burnout among employees, we recommend that if you’re seeking to go through a successful DevOps transformation, you invest in addressing culture-related issues as part of your transformation efforts.&lt;/p&gt;
-</description>
-      <pubDate>Sun, 5 Dec 2021 15:45:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/2021_dora_explorer_my_highlights</guid>
     </item>
   </channel>
 </rss>
