@@ -55,7 +55,7 @@ using Maui.Progression.Views;
 &lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
 &lt;p&gt;I know, I know. &amp;quot;Jeez, that was easy, what was the point?&amp;quot;&lt;/p&gt;
 &lt;p&gt;The point is that we now have a well-organized application, which increases maintainability. We're following a View-Model-ViewModel pattern, and our Views, View Models, and Models are corralled into their metaphorical pens. We also saw just how pervasive and important the namespaces are, and that--unlike some other refactoring--Visual Studio doesn't (today) catch everything.&lt;/p&gt;
-&lt;p&gt;Next Up: Build and (hopefully some kind of) Deployment (and then view layouts and styles)!&lt;/p&gt;
+&lt;p&gt;Next Up: Styles!&lt;/p&gt;
 &lt;div class="footnotes"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
