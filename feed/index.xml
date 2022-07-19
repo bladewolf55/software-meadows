@@ -6,6 +6,84 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>.NET MAUI Progressing From a Default Project Part 6 - Revisiting Unit Testing</title>
+      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
+&lt;p&gt;Level: Moderate&lt;/p&gt;
+&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="someone-elses-solution-to-unit-testing.net-maui-projects"&gt;(Someone Else's) Solution to Unit Testing .NET MAUI Projects&lt;/h2&gt;
+&lt;p&gt;In part 2, I discussed how .NET MAUI didn't support unit testing, and that you could separate out the namespaces into their own projects. And that's still true and useful. But for many projects that's overkill. In my opinion, it's especially egregious for unit testing the View Models, which I'd prefer stay with the UI project.&lt;/p&gt;
+&lt;p&gt;In his video &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=C9vIDLQwc7M"&gt;Unit Testing .NET MAUI Apps with xUnit&lt;/a&gt;, Gerald Versluis demonstrates how to modify the project to allow direct unit testing. It's pretty simple, I must say, and for fun I'll take the solution from part 5 and &lt;em&gt;collapse&lt;/em&gt; it back into a single project.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ideally, as long as I keep the namespaces the same, everything should work the same and pass perfectly with very little effort.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="creating-the-namespace-folder-structure"&gt;Creating the namespace folder structure&lt;/h2&gt;
+&lt;p&gt;Right now, we have separate projects for our domain-driven design.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-12-59-46.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Let's recreate those namespaces in the &lt;code&gt;Maui.Progression&lt;/code&gt; project. Create folders like so.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-09-57.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Now copy the  files and folders from the projects into the new folders.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-12-14.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Add this NuGet package to the &lt;code&gt;Maui.Progression&lt;/code&gt; project.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Microsoft.Toolkit.Mvvm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If we had other dependencies, they'd need to be added as well.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In the 'Maui.Progression.UnitTests' project, add a project reference to &lt;code&gt;Maui.Progression&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-14-45-18.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Now delete these projects:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Maui.Progression.Domain&lt;/li&gt;
+&lt;li&gt;Maui.Progression.DomainServices&lt;/li&gt;
+&lt;li&gt;Maui.Progression.ViewModels&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Their references will automatically be removed from the unit test project.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can try to simply rebuild the solution. But I had to close and reopen Visual Studio, then clean/rebuild. The build will fail, which is expected.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-28-05.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="the-secret-sauce"&gt;The Secret Sauce&lt;/h2&gt;
+&lt;p&gt;As discussed in part 2, the reason I couldn't just unit test the .NET MAUI project is because it needs to include a framework of &lt;code&gt;net6.0&lt;/code&gt;. The other reason I didn't know about, that Versluis explains, is if I add the &lt;code&gt;net6.0&lt;/code&gt; framework it needs to build as a DLL, not an Exe. This removes the &amp;quot;Main method required&amp;quot; error.&lt;/p&gt;
+&lt;p&gt;Here's how to do that.&lt;/p&gt;
+&lt;p&gt;Edit your &lt;code&gt;Maui.Progression.csproj&lt;/code&gt; file, either by selecting it or right-click the project name and choosing &amp;quot;Edit Project File&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Modify the &lt;code&gt;TargetFrameworks&lt;/code&gt; line to include &lt;code&gt;net6.0&lt;/code&gt;. I put it first.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;TargetFrameworks&amp;gt;net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst&amp;lt;/TargetFrameworks&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here's the kicker. Modify the OutputType to &lt;em&gt;conditionally&lt;/em&gt; generate an Exe for everything except the &lt;code&gt;net6.0&lt;/code&gt; framework. DLL is the default when EXE isn't selected.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;OutputType Condition=&amp;quot;'$(TargetFramework)' != 'net6.0'&amp;quot;&amp;gt;Exe&amp;lt;/OutputType&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Clean and Rebuild the solution. You many need to close/reopen Visual Studio.&lt;/p&gt;
+&lt;p&gt;The solution &lt;em&gt;still&lt;/em&gt; won't build, because the &lt;code&gt;MainPage.xaml&lt;/code&gt; is attempting to reference anx external assembly.&lt;/p&gt;
+&lt;p&gt;Open that file and change the namespace attributes to this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;xmlns:viewmodels=&amp;quot;clr-namespace:Maui.Progression.ViewModels&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Clean and Rebuild is now successful!&lt;/p&gt;
+&lt;p&gt;Run the tests and they pass, like magic.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-51-35.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="proscons"&gt;Pros/Cons&lt;/h2&gt;
+&lt;p&gt;The advantage to keeping all the code in one project is it's a little quicker to navigate.&lt;/p&gt;
+&lt;p&gt;One disadvantage is separate projects can force better testing design.&lt;/p&gt;
+&lt;p&gt;But another, subtler disadvantage is build time. If there are no changes to the UI, and only changes to the dependency projects, the build is substantially faster. This matters when doing test-driven development because we want to keep our feedback loop fast.&lt;/p&gt;
+&lt;p&gt;You need to decide what balance matters to you.&lt;/p&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;We saw how to enable unit testing against a .NET MAUI project directly by building it as a DLL against the &lt;code&gt;net6.0&lt;/code&gt; framework target. There are still challenges in unit testing where the code includes things like &lt;code&gt;SemanticReader&lt;/code&gt; calls; I'm hoping to tackle that soon.&lt;/p&gt;
+&lt;p&gt;Next Up: Build (and maybe deployment), I hope.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 19 Jul 2022 12:50:14 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing</guid>
+    </item>
+    <item>
       <title>.NET MAUI Progressing From a Default Project Part 5 - Restyling From Scratch</title>
       <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
 &lt;p&gt;Level: Moderate&lt;/p&gt;
@@ -17,6 +95,7 @@
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="what-problem-do-styles-solve"&gt;What Problem Do Styles Solve?&lt;/h2&gt;
 &lt;p&gt;Fundamentally, styles let you declare in one place how something will look no matter where it appears. A style differs (in my mind) from a format.&lt;/p&gt;
@@ -573,6 +652,7 @@ There's a downside to using classes. You can't interactively change style values
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="moving-the-view"&gt;Moving the View&lt;/h2&gt;
 &lt;p&gt;Compared to the &lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;last part&lt;/a&gt;, this one's really short.&lt;/p&gt;
@@ -639,6 +719,7 @@ using Maui.Progression.Views;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="the-role-of-the-model-in-mvvm"&gt;The Role of the Model in MVVM&lt;/h2&gt;
 &lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/8/87/MVVMPattern.png" alt="" /&gt;&lt;/p&gt;
@@ -1145,6 +1226,7 @@ Mine didn't run right the first time. I forgot to pass the options to the JSON d
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="net-mauis-testing-problem"&gt;.NET MAUI's testing problem&lt;/h2&gt;
 &lt;p&gt;At the time of this writing, .NET MAUI apps don't support unit testing. At least, not in any way I could find. And I tried, I really tried, to fool .NET by playing with target frameworks and conditionally including a Program Main method, and other goofy stuff, but to no avail.&lt;/p&gt;
@@ -1243,6 +1325,7 @@ public class Counter_Should
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="the-problem.net-maui-solves"&gt;The Problem .NET MAUI Solves&lt;/h2&gt;
 &lt;p&gt;Cross-platform development is hard, usually requiring maintaining a project per platform. Any feature must be added to each code base. .NET MAUI uses a single project with the majority of the UI code using XAML, and the business code in C#. This code is then transpiled to the native platforms. The result is less maintenance, fewer errors, and reduced knowledge needed to build cross-platform applications.&lt;/p&gt;
@@ -1630,49 +1713,6 @@ You know, from that list I made.&lt;/p&gt;
       <pubDate>Sat, 15 Jan 2022 20:18:30 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/the_difference_between_a_self-managing_team_and_a_managed_team</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_difference_between_a_self-managing_team_and_a_managed_team</guid>
-    </item>
-    <item>
-      <title>Change the Phrase to "Home-Job Balance"</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/home-job-balance/images/home-job-balance.png" alt="" /&gt;&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;I'm on a mission. It's a doomed mission primarily because I'm a little-known software engineer who's read by--maybe--a dozen people in the world. But that's OK. If my mission appeals to you, then that's a little bit of success in my life.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;My mission is to change the phrase &amp;quot;work-life balance&amp;quot; to &amp;quot;HOME-JOB BALANCE&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Making my case won't take long. Here it is.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&amp;quot;Work-life balance&amp;quot; promotes a completely wrong mental model from the start. It's saying that there are two areas of existence: work and life. Anything outside of work is life, and &lt;em&gt;life isn't part of work&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;It's also implying &amp;quot;we shouldn't have to work at our lives.&amp;quot;&lt;/li&gt;
-&lt;li&gt;Finally, the syntax puts &amp;quot;work&amp;quot; at the front, when our &lt;em&gt;home lives&lt;/em&gt; are what we're routinely missing out on. Home should come first.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We all know &amp;quot;work vs. life&amp;quot; is wrong. Work is &lt;em&gt;part&lt;/em&gt; of our lives, it's part of life. With the increase in remote work--note: &lt;strong&gt;work&lt;/strong&gt; from &lt;strong&gt;home&lt;/strong&gt;--we need to be clear about what we're balancing.&lt;/p&gt;
-&lt;p&gt;&amp;quot;Work&amp;quot; isn't something we just do for our jobs. We work at being good spouses, good friends, good parents, at taking care of our bodies and minds. Work isn't bad.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;So, what I'm balancing isn't work and life. What I'm balancing are my home and my job. When and where am I &amp;quot;at home&amp;quot;? When and where am I &amp;quot;on the job&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This is hard, for sure, especially for workers who have children or are caregivers for relatives. I think it becomes easier when we stop thinking about &amp;quot;work&amp;quot; and &amp;quot;life,&amp;quot; and frame our lives as &amp;quot;home&amp;quot; and &amp;quot;job.&amp;quot;&lt;/p&gt;
-&lt;p&gt;This is the first article, the &amp;quot;what&amp;quot; of the mission. My next will give guidance on how, a lot of which others have already written about.&lt;/p&gt;
-&lt;p&gt;In the meantime, here are some questions to answer:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;HOME&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Where&lt;/em&gt; do I feel &amp;quot;at home&amp;quot;?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;When&lt;/em&gt; do I feel &amp;quot;at home&amp;quot;?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;JOB&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Where&lt;/em&gt; do I do my job?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;When&lt;/em&gt; do I do my job?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;CRUCIAL DIFFERENCES&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;What separates--or can separate--being &amp;quot;at home&amp;quot; from being &amp;quot;on the job&amp;quot;?&lt;/li&gt;
-&lt;li&gt;What are my rewards for keeping them separate?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I'll post again soon!&lt;/p&gt;
-</description>
-      <pubDate>Sun, 2 Jan 2022 16:00:00 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/home-job-balance</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/home-job-balance</guid>
     </item>
   </channel>
 </rss>
