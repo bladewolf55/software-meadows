@@ -23,6 +23,9 @@
 &lt;p&gt;In part 2, I discussed how .NET MAUI didn't support unit testing, and that you could separate out the namespaces into their own projects. And that's still true and useful. But for many projects that's overkill. In my opinion, it's especially egregious for unit testing the View Models, which I'd prefer stay with the UI project.&lt;/p&gt;
 &lt;p&gt;In his video &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=C9vIDLQwc7M"&gt;Unit Testing .NET MAUI Apps with xUnit&lt;/a&gt;, Gerald Versluis demonstrates how to modify the project to allow direct unit testing. It's pretty simple, I must say, and for fun I'll take the solution from part 5 and &lt;em&gt;collapse&lt;/em&gt; it back into a single project.&lt;/p&gt;
 &lt;blockquote&gt;
+&lt;p&gt;If you want to just see the answer, scroll down to &lt;em&gt;The Secret Sauce&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Ideally, as long as I keep the namespaces the same, everything should work the same and pass perfectly with very little effort.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="creating-the-namespace-folder-structure"&gt;Creating the namespace folder structure&lt;/h2&gt;
@@ -59,7 +62,7 @@
 &lt;p&gt;Modify the &lt;code&gt;TargetFrameworks&lt;/code&gt; line to include &lt;code&gt;net6.0&lt;/code&gt;. I put it first.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;TargetFrameworks&amp;gt;net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst&amp;lt;/TargetFrameworks&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here's the kicker. Modify the OutputType to &lt;em&gt;conditionally&lt;/em&gt; generate an Exe for everything except the &lt;code&gt;net6.0&lt;/code&gt; framework. DLL is the default when EXE isn't selected.&lt;/p&gt;
+&lt;p&gt;Here's the kicker. Modify the OutputType to &lt;em&gt;conditionally&lt;/em&gt; generate an Exe for everything except the &lt;code&gt;net6.0&lt;/code&gt; framework. DLL is the default when Exe isn't selected.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;OutputType Condition=&amp;quot;'$(TargetFramework)' != 'net6.0'&amp;quot;&amp;gt;Exe&amp;lt;/OutputType&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Clean and Rebuild the solution. You many need to close/reopen Visual Studio.&lt;/p&gt;
@@ -71,8 +74,8 @@
 &lt;p&gt;Run the tests and they pass, like magic.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-51-35.png" alt="" /&gt;&lt;/p&gt;
 &lt;h2 id="proscons"&gt;Pros/Cons&lt;/h2&gt;
-&lt;p&gt;The advantage to keeping all the code in one project is it's a little quicker to navigate.&lt;/p&gt;
-&lt;p&gt;One disadvantage is separate projects can force better testing design.&lt;/p&gt;
+&lt;p&gt;One advantage to keeping all the code in one project is it's a little quicker to navigate.&lt;/p&gt;
+&lt;p&gt;One disadvantage is there's a tendency toward tighter coupling and worse testing design.&lt;/p&gt;
 &lt;p&gt;But another, subtler disadvantage is build time. If there are no changes to the UI, and only changes to the dependency projects, the build is substantially faster. This matters when doing test-driven development because we want to keep our feedback loop fast.&lt;/p&gt;
 &lt;p&gt;You need to decide what balance matters to you.&lt;/p&gt;
 &lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
