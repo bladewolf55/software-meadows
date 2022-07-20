@@ -6,6 +6,141 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Meditation on The Mythical Man Month: Who Failed on the Tower of Babel Project?</title>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Caveat&lt;/strong&gt;&lt;br /&gt;
+I'm not a biblical scholar. This post treads on sensitive ground regarding matters of theology. My intention isn't to critique faith, but instead is the same as Brooks's: interpret the account of the Tower of Babel through the lens of project and corporate management. I hope I've navigated the line between serious and tongue-in-cheek successfully.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In his seminal 1975 book &lt;a href="https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959"&gt;&lt;em&gt;The Mythical Man Month&lt;/em&gt;&lt;/a&gt;, author and engineer Frederick P. Brooks starts chapter 7, &amp;quot;Why Did the Tower of Babel Fail?&amp;quot; with the relevant Biblical text.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Now the whole earth used only one language, with few words. On the occasion of a migration from the east, men discovered a plain in the land of Shinar, and settled there. Then they said to one another, &amp;quot;Come, let us make bricks, burning them well.&amp;quot; So they used bricks for stone, and bitumen for mortar. Then they said, &amp;quot;Come, let us build ourselves a city with a tower whose top shall reach the heavens (thus making a name for ourselves), so that we may not be scattered all over the earth.&amp;quot; Then the Lord came down to look at the city and tower which human beings had built. The Lord said, &amp;quot;They are just one people, and they all have the same language. If this is what they can do as a beginning, then nothing that they resolve to do will be impossible for them. Come, let us go down, and there make such a babble of their language that they will not understand one another's speech.&amp;quot; Thus the Lord dispersed them from there all over the earth, so that they had to stop building the city.&lt;/p&gt;
+&lt;p&gt;GENESIS 11:1-8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As an aside, it's fascinating that after a solid search I don't find this translation anywhere else but in Brooks's book. It seems unlikely he played fast and loose with the Bible, so where did his translation come from?&lt;/p&gt;
+&lt;p&gt;But to the point. Brooks makes the case that the Tower project failed, and that its failure was due to lack of communication and organization by the development team.&lt;/p&gt;
+&lt;p&gt;Is this supported by the text?&lt;/p&gt;
+&lt;p&gt;The first question to answer is whether the project was completed. Initially, reading &amp;quot;Then the Lord came down to look at the city and tower which human beings had built,&amp;quot; it seems they &lt;em&gt;did&lt;/em&gt; complete the city and tower. The puzzle is in the comment, &amp;quot;If this is what they can do as a beginning,&amp;quot; which implies the work is merely started. But if it's merely started, how is there even a tower?&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://www.biblestudytools.com/genesis/11.html"&gt;New International Version&lt;/a&gt; translates this subtly--but crucially--differently.&lt;/p&gt;
+&lt;p&gt;&amp;quot;But the LORD came down to see the city and the tower the people were &lt;em&gt;building&lt;/em&gt;.&amp;quot; [Emphasis mine]&lt;/p&gt;
+&lt;p&gt;However, many other translations use the past tense, &amp;quot;built.&amp;quot;&lt;/p&gt;
+&lt;p&gt;The answer seems to be in the following statements that the Lord confused the language, scattered the people, and they &amp;quot;had to stop building the city.&amp;quot; It appears clear work was unfinished and the past tense &amp;quot;built&amp;quot; should be read as &amp;quot;built so far&amp;quot; rather than &amp;quot;completed.&amp;quot;&lt;/p&gt;
+&lt;p&gt;Is an uncompleted project a failure? Not necessarily. Sometimes projects are abandoned because priorities change. We need to understand, why wasn't this project completed?&lt;/p&gt;
+&lt;p&gt;So, let's examine the project as a corporate development effort as Brooks did, but without--in my opinion--his bias.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The developers had a clear goal and motivation.&lt;/li&gt;
+&lt;li&gt;They began with great success, communicating very well and accomplishing quality work.&lt;/li&gt;
+&lt;li&gt;The CEO checked up on them and felt threatened by their success.&lt;/li&gt;
+&lt;li&gt;He didn't directly cancel the project. He broke up the teams. Not only that, he &lt;em&gt;created&lt;/em&gt; barriers to communication.&lt;/li&gt;
+&lt;li&gt;At that point, the developers gave up on the project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let me call the first point out again: the Tower of Babel was not failing. The development team was &lt;em&gt;succeeding&lt;/em&gt;. The evidence points to the CEO as being the source of the failure, not the developers.&lt;/p&gt;
+&lt;p&gt;Before making that case, one question is &lt;em&gt;why&lt;/em&gt; did the CEO react that way? Why did he feel threatened? The usual reason given for the Lord's actions is the people's hubris.&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; They--from the Lord's viewpoint--are trying to achieve godliness, and the Lord and his host (the C-level execs, if you will) don't take kindly to that. They don't want the people making &amp;quot;a name for themselves.&amp;quot; Maybe they see the roots of a competitive company growing within their own organization!&lt;/p&gt;
+&lt;p&gt;From the people's point of view, their goal is the opposite. They want to stay together, &lt;em&gt;not&lt;/em&gt; be broken up, and see their project as the means to accomplish that goal. If making a name for themselves is against company policy, they don't seem to know it.&lt;/p&gt;
+&lt;p&gt;Brooks's purpose in the chapter is showing that poor communication and organization cause major project problems. I agree, and so I believe does lots of research. Where I disagree with Brooks in his metaphor is who's responsible. This isn't a trivial point; it's a problem I've routinely seen in the dozens of companies I've worked for.&lt;/p&gt;
+&lt;p&gt;So now we come to the crux: &lt;em&gt;What were the communication and organization problems?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I think there are a few important answers. Framing it in software development terms,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The development department didn't communicate their intentions well enough to the CEO.&lt;/li&gt;
+&lt;li&gt;The CEO was ignorant of what was going on in the company.&lt;/li&gt;
+&lt;li&gt;The CEO didn't have a clear mission for the organization.&lt;/li&gt;
+&lt;li&gt;The CEO valued punishment over learning.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If it seems like I'm laying most of the blame for the failed Tower at executive management's feet, I am. The CEO, in this organization, has developed a reputation for being omniscient. It was reasonable for the development department to believe he knew their plans. After all, they stated them out in the open, and such a big project could hardly be missed even in the planning stages.&lt;/p&gt;
+&lt;p&gt;Still, they could have made sure. After all, the CEO also has a reputation as a bit of a hot head. Maybe the CIO assumed too much or didn't talk the the CEO directly. A few emails and phone calls might have helped. Something like, &amp;quot;We've settled into our new offices. We're working really well together and want that to continue. We're thinking of showing what we can do by building this beautiful social network application called &amp;quot;City and Tower.&amp;quot; Is that in line with your goals?&amp;quot;&lt;/p&gt;
+&lt;p&gt;The fact that they missed the mark on such a major project tells me the CEO didn't establish a clear vision. His development department was &lt;em&gt;literally&lt;/em&gt; wandering. They shouldn't have been blamed for making the best of their situation.&lt;/p&gt;
+&lt;p&gt;What's worse is the CEO's reaction when he finds out about the project. He doesn't ask, &amp;quot;How could I have done better?&amp;quot; In fact, he doesn't confirm or consider their motivation. He &lt;em&gt;assumes&lt;/em&gt; bad intent on the team's part. There's no conversation. &lt;em&gt;No communication&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Even worse, he doesn't see the opportunity in the developers' excellent work. He responds in an Industrial Age, J.P. Morgan command-and-coerce style. &amp;quot;I'm the boss, you're threatening my power and position, I demand loyalty, so I'm firing you.&amp;quot;&lt;/p&gt;
+&lt;p&gt;The developers showed the hallmarks of drive: &lt;em&gt;autonomy, mastery, and purpose&lt;/em&gt;.&lt;a id="fnref:2" href="#fn:2" class="footnote-ref"&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; Their initiative should have been rewarded and redirected. What would have been good advice to the CEO?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ask yourself: &amp;quot;How did I not know about this project?&amp;quot;&lt;/li&gt;
+&lt;li&gt;Ask the team: &amp;quot;What's your motivation? How does this project help the organization?&amp;quot;&lt;/li&gt;
+&lt;li&gt;Reflect: &amp;quot;Did my actions or lack of direction affect their decision?&amp;quot;&lt;/li&gt;
+&lt;li&gt;Reflect: &amp;quot;I feel threatened. Is the threat real?&amp;quot;&lt;/li&gt;
+&lt;li&gt;Reflect: &amp;quot;Did they do the wrong thing well? If so, can I harness that in service to the organization?&amp;quot;&lt;/li&gt;
+&lt;li&gt;Act: &amp;quot;I apologize for my part in not communicating well. Let's improve that. You all started something amazing, but I think it's not in line with our objectives. Let's see if our objectives need to be adjusted, but if not let's bring your team to bear on our shared mission.&amp;quot;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I agree the Tower project failed because of poor communication and organization. But the primary failure was at the top management level. What the CEO communicated most successfully was:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;quot;I won't be clear in what I want.&amp;quot;&lt;/li&gt;
+&lt;li&gt;&amp;quot;I don't know what's going on.&amp;quot;&lt;/li&gt;
+&lt;li&gt;&amp;quot;I'll punish you if I think you're against me.&amp;quot;&lt;/li&gt;
+&lt;li&gt;&amp;quot;I'm never to blame.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These are characteristic of what Ron Westrum defines as a pathological culture, which is worse than a bureaucratic one.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Pathological&lt;/th&gt;
+&lt;th&gt;Bureaucratic&lt;/th&gt;
+&lt;th&gt;Generative&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Power oriented&lt;/td&gt;
+&lt;td&gt;Rule oriented&lt;/td&gt;
+&lt;td&gt;Performance oriented&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Low cooperation&lt;/td&gt;
+&lt;td&gt;Modest cooperation&lt;/td&gt;
+&lt;td&gt;High cooperation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Messengers &amp;quot;shot&amp;quot;&lt;/td&gt;
+&lt;td&gt;Messengers neglected&lt;/td&gt;
+&lt;td&gt;Messengers trained&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Responsibilities shirked&lt;/td&gt;
+&lt;td&gt;Narrow responsibilities&lt;/td&gt;
+&lt;td&gt;Risks are shared&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Bridging discouraged&lt;/td&gt;
+&lt;td&gt;Bridging tolerated&lt;/td&gt;
+&lt;td&gt;Bridging encouraged&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Failure leads to scapegoating&lt;/td&gt;
+&lt;td&gt;Failure leads to justice&lt;/td&gt;
+&lt;td&gt;Failure leads to inquiry&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Novelty crushed&lt;/td&gt;
+&lt;td&gt;Novelty leads to problems&lt;/td&gt;
+&lt;td&gt;Novelty implemented&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;While there were mistakes on both sides, the clans of Noah's sons really deserved better, especially after all they'd gone through.&lt;/p&gt;
+&lt;p&gt;Imagine what wonderful products and services that team could have built in a generative organizational culture!&lt;/p&gt;
+&lt;h2 id="resources"&gt;Resources&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.biblestudytools.com/"&gt;The Bible - Read and Study Free Online&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates-ebook/dp/B004P1JDJO"&gt;Drive&lt;/a&gt; by Daniel Pink&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Measure-What-Matters-Google-Foundation-ebook/dp/B078FZ9SYB"&gt;Measure What Matters&lt;/a&gt; by John Doerr&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Leadership-Language-Hidden-Power-Say-ebook/dp/B07L2KL5XV"&gt;Leadership Is Language&lt;/a&gt; by David Marquet&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Crucial-Conversations-Tools-Talking-Stakes-ebook/dp/B093Y3N433"&gt;Crucial Conversations&lt;/a&gt; by Grenny, Patterson, et al&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cloud.google.com/architecture/devops/devops-culture-westrum-organizational-culture"&gt;Westrum Organizational Culture Taxonomy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;I think it's pretty well established the reason for the myth of Babel exists at all is early people were trying to figure out &amp;quot;why do we have multiple languages?&amp;quot; Linguistics wasn't a thing, yet, and understanding the evolution of language is super hard anyway, so it was easier--and reasonable--to basically say &amp;quot;God did it.&amp;quot; I just wish they hadn't tacked on &amp;quot;and it's our fault.&amp;quot;&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;From &lt;em&gt;Drive&lt;/em&gt; by Daniel Pink, see Resources.&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Wed, 20 Jul 2022 13:58:08 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/meditation_on_the_mythical_man_month__who_failed_on_the_tower_of_babel_project</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/meditation_on_the_mythical_man_month__who_failed_on_the_tower_of_babel_project</guid>
+    </item>
+    <item>
       <title>.NET MAUI Progressing From a Default Project Part 6 - Revisiting Unit Testing</title>
       <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
 &lt;p&gt;Level: Moderate&lt;/p&gt;
@@ -1695,27 +1830,6 @@ You know, from that list I made.&lt;/p&gt;
       <pubDate>Sat, 22 Jan 2022 07:00:46 -0700</pubDate>
       <link>https://www.softwaremeadows.com/posts/home-job_balance__how_i__end__my_job_day</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/home-job_balance__how_i__end__my_job_day</guid>
-    </item>
-    <item>
-      <title>The difference between a self-managing team and a managed team</title>
-      <description>&lt;p&gt;This won't take long, but helped bring things into focus for me.&lt;/p&gt;
-&lt;p&gt;The first one's &lt;strong style="color:green;"&gt;Agile&lt;/strong&gt;. The second one's &lt;strong style="color:red;"&gt;bureaucracy&lt;/strong&gt;.&lt;/p&gt;
-&lt;div style="margin-bottom:35px;"&gt;&lt;/div&gt;
-&lt;hr /&gt;
-&lt;div style="font-size:3em;"&gt;
-&lt;span&gt;Self-Managing Team&lt;/span&gt;
-&lt;div style="font-size:0.6em;"&gt;"&lt;strong style="color:green;"&gt;We&lt;/strong&gt; hold each other accountable."&lt;/div&gt;
-&lt;/div&gt;
-&lt;div style="font-size:3em;margin-top:0.5em;"&gt;
-&lt;span&gt;Managed Team&lt;/span&gt;
-&lt;div style="font-size:0.6em;"&gt;"&lt;strong style="color:red"&gt;I&lt;/strong&gt; hold you all accountable."&lt;/div&gt;
-&lt;/div&gt;
-&lt;hr /&gt;
-&lt;div style="margin-bottom:70px;"&gt;&lt;/div&gt;
-</description>
-      <pubDate>Sat, 15 Jan 2022 20:18:30 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/the_difference_between_a_self-managing_team_and_a_managed_team</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_difference_between_a_self-managing_team_and_a_managed_team</guid>
     </item>
   </channel>
 </rss>
