@@ -6,6 +6,92 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>The Better Software Engineer Interview Process</title>
+      <description>&lt;p&gt;I've been finding my next job. I've looked at literally hundreds of listings and been on several interviews. Over my career, I've interviewed &lt;em&gt;a lot&lt;/em&gt;. Today, software engineer interviews work mostly like this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Screening interview (&amp;quot;do we want to proceed with you?&amp;quot;)&lt;/li&gt;
+&lt;li&gt;Development Manager interview (&amp;quot;do I want to work with you?&amp;quot;)&lt;/li&gt;
+&lt;li&gt;Technical interview or Assessment (&amp;quot;can you do the job?&amp;quot;)&lt;/li&gt;
+&lt;li&gt;Other Management interviews (&amp;quot;do we have any objections?&amp;quot;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There can be as low as three (rarely two) steps. I've literally seen it up to six. A six step interview!&lt;/p&gt;
+&lt;p&gt;One intended goal for this process, I think, is to reduce the amount of time taken by management and developers for interviews so they can focus on coding. Another reason--again, my opinion--is there's a belief that management can screen out for fit early.&lt;/p&gt;
+&lt;p&gt;Fit matters. I care a lot about whether I'll fit in with a prospective employer. But, after quite a few recent interviews and really pondering and reading about hiring, I think the typical process is backward, biased, onerous, and ineffective.&lt;/p&gt;
+&lt;h2 id="a-better-way"&gt;A Better Way&lt;/h2&gt;
+&lt;p&gt;Here are the steps I'd like to see.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Initial, online technical assessment using real-world coding. No FizzBuzz, no &amp;quot;reverse this string the hard way.&amp;quot;&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Work with the team.&lt;/li&gt;
+&lt;li&gt;Development Manager interview.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="online-assessment"&gt;1. Online Assessment&lt;/h2&gt;
+&lt;p&gt;I've been skeptical of online skill assessments in the past, but a recent experience has warmed me to them. While still not as good as working with one's daily tools such as Visual Studio, the online interface was very good. So, why start with (and pay for!) this assessment?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Many candidates will drop out because they know they're not ready. This reduces the pool that the development team needs to assess.&lt;/li&gt;
+&lt;li&gt;The remaining results will be reasonably apples-to-apples.&lt;/li&gt;
+&lt;li&gt;What matters first is &amp;quot;can you do the job.&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The skills assessment can be tailored, so junior devs are assessed differently than seniors. And the goal is to gain information, not punish people for not having arcane knowledge. &amp;quot;The basics&amp;quot; really don't apply day-to-day. Let me show you I can write testable, clean, object-oriented code!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A fair, online assessment reduces lots of bias. A candidate shouldn't be disregarded out of the gate just because a hiring manager or the candidate hasn't had lunch yet. This is more common than people want to admit.&lt;a id="fnref:2" href="#fn:2" class="footnote-ref"&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="team-work"&gt;2. Team Work&lt;/h2&gt;
+&lt;p&gt;With the assessment results and resumes in hand, the development team can--with coaching from management and HR--decide who they want to meet. Let me say that again. &lt;em&gt;The developers choose. You can bet they'll be careful with their time.&lt;/em&gt;  In my view, they should ideally work on some code together, or do something that shows the candidate how life will really be. This shouldn't be a &amp;quot;let's talk&amp;quot; meeting. Pull an item from the backlog, discuss how it might be approached, do some pair programming or even &lt;a href="https://en.wikipedia.org/wiki/Mob_programming"&gt;mob programming&lt;/a&gt;&lt;a id="fnref:3" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The candidate will be working mostly with developers. They have the biggest stake, so they should have the biggest say in hiring. This is even more important if you claim to be an Agile shop. If you aren't letting developers self-manage their teams, you may still be a top-down bureaucracy and using Agile as a buzzword.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="management-blessing"&gt;3. Management Blessing&lt;/h2&gt;
+&lt;p&gt;Someone's going to chafe at my suggestion #3 that the final step is only with the development manager; that is, the person who will be the candidate's direct supervisor, or at most one level above that. But why have you promoted people to management positions if you're not going to &lt;em&gt;trust&lt;/em&gt; their judgement? By now in the process, the only candidates who talk to the manager have been pre-approved by the development team she'll be working with. There's really no reason to bring in other managers, except to stroke their egos and forestall &amp;quot;why wasn't I consulted?&amp;quot; comments later.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Besides, most managers complain they're too busy with endless meetings. This reduces meetings quite a bit.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Other managers and execs should certainly introduce themselves after the hiring. But if a qualified developer who is liked by the people she'll be working with doesn't get a job because the CEO or president has a &amp;quot;gut feeling,&amp;quot; and needs to &amp;quot;meet everyone who's going to work here,&amp;quot; a disservice has been done to the entire organization. It signals that people's careers are at the mercy of caprice.&lt;/p&gt;
+&lt;h2 id="change-your-ways-itll-save-you-money-and-improve-your-culture"&gt;Change Your Ways, It'll Save You Money and Improve Your Culture&lt;/h2&gt;
+&lt;p&gt;Companies spend a lot of money on recruiters, time spent reviewing resumes, time spent in interviews. But have they really evaluated whether that money is being well-spent? Have they applied research and evidence, or are they interviewing software engineers the same way they always have?&lt;/p&gt;
+&lt;p&gt;This article proposes the answer is, generally, no. We're hiring developers using a traditional model. And we're getting traditionally chancy results.&lt;/p&gt;
+&lt;p&gt;I learned to look for these qualities as part of hiring decades ago, and they still apply.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Can&lt;/em&gt; the person do the job?&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Will&lt;/em&gt; the person do the job?&lt;/li&gt;
+&lt;li&gt;Does the person &lt;em&gt;fit&lt;/em&gt;?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The principles I've outlined above boil down to.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reduce initial bias&lt;/li&gt;
+&lt;li&gt;Let developers hire developers (with help)&lt;/li&gt;
+&lt;li&gt;Trust your colleagues&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm no expert, but I think we can do better.&lt;/p&gt;
+&lt;h2 id="references"&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.blog/2022/05/23/the-science-of-interviewing-developers/?utm_medium=email"&gt;The science of interviewing developers - Stack Overflow Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://builtin.com/job-interview/candidates-interview-companies"&gt;How Candidates Should Interview Companies | Built In&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.woventeams.com/"&gt;Technical Interview Software for Developers | Woven Teams&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Leadership-Language-Hidden-Power-Say-ebook/dp/B07L2KL5XV/ref=tmm_kin_swatch_0?_encoding=UTF8&amp;amp;qid=1658874171&amp;amp;sr=8-1"&gt;Leadership Is Language: The Hidden Power of What You Say--and What You Don't&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Noise-Human-Judgment-Daniel-Kahneman-ebook/dp/B08KQ2FKBX/ref=sr_1_4?keywords=kahnemann&amp;amp;qid=1658874780&amp;amp;sr=8-4"&gt;Noise: A Flaw in Human Judgment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;FizzBuzz can have value if done as pair-programming, but requires a different skill set on the part of the interviewer.&lt;/p&gt;
+&lt;p&gt;As far as the &amp;quot;find substrings in a string&amp;quot; tradition, in my opinion, it's outdated and useless. The technical interviews where a couple of developers assign a seemingly trivial task and watch in silence while the candidate tries to work it out is just terrible. It's completely removed from the reality of the job (I hope!), and puts useless pressure on the candidate.&lt;/p&gt;
+&lt;p&gt;It isn't an assessment. It's a hazing.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;As discussed by Daniel Kahneman in his book &lt;em&gt;Noise&lt;/em&gt;, and reported on in this &lt;a href="https://www.theguardian.com/books/2021/jun/03/noise-by-daniel-kahneman-olivier-sibony-and-cass-sunstein-review-the-price-of-poor-judgment"&gt;article&lt;/a&gt;.&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;This was one of my favorite interview experiences.&lt;a href="#fnref:3" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Tue, 26 Jul 2022 17:09:30 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/the_better_software_engineer_interview_process</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_better_software_engineer_interview_process</guid>
+    </item>
+    <item>
       <title>Meditation on The Mythical Man-Month: Who Failed on the Tower of Babel Project?</title>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Caveat&lt;/strong&gt;&lt;br /&gt;
@@ -1722,116 +1808,6 @@ This is probably the most useful troubleshooting step I've found. When you close
       <pubDate>Wed, 6 Apr 2022 15:52:05 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code</guid>
-    </item>
-    <item>
-      <title>Home-Job Balance: How I "End" My Job Day</title>
-      <description>&lt;h2 id="previously-on-home-job-balance"&gt;Previously on &lt;em&gt;Home-Job Balance&lt;/em&gt; . . .&lt;/h2&gt;
-&lt;p&gt;In my &lt;a href="https://www.softwaremeadows.com/posts/home-job-balance/"&gt;previous post&lt;/a&gt;, I submitted that a big step toward improving work/life balance is to replace that phrase with &amp;quot;home-job balance.&amp;quot; Doing so corrects several problems with the current phrase, and brings our attention where it often belongs: &lt;strong&gt;home&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;I'm going to answer the questions I asked in that post and give some tips on how I &amp;quot;close up shop&amp;quot; for the day, which I can do &lt;em&gt;at any time&lt;/em&gt; during the day.&lt;/p&gt;
-&lt;h2 id="when-am-i-at-home-vs-at-the-job"&gt;When am I at home vs at the job?&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Job&lt;/strong&gt;&lt;br /&gt;
-It's startlingly easier for me to identify when and where I'm on the job than at home.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;When I'm performing tasks specifically for my company or my company's client (I work for a &lt;a href="https://clearmeasure.com/"&gt;consulting company&lt;/a&gt;.)&lt;/li&gt;
-&lt;li&gt;When I'm reading company and client messages (Slack, email).&lt;/li&gt;
-&lt;li&gt;When I'm getting company/client notifications (meetings, messages, tasks).&lt;/li&gt;
-&lt;li&gt;At my computer with certain folders and applications open, such as client code repositories, Visual Studio, Azure DevOps.&lt;/li&gt;
-&lt;li&gt;Reading subject articles to complete my tasks.&lt;/li&gt;
-&lt;li&gt;Reading general articles/books for my career. This includes reading blog posts like the one I'm writing!&lt;/li&gt;
-&lt;li&gt;I feel on the job if I'm talking about my job to family and friends with my attention on solving job problems, not just describing what I do.&lt;/li&gt;
-&lt;li&gt;Likewise, I'm on the job if I'm &lt;em&gt;dwelling&lt;/em&gt; on my job when I don't have to be.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Home&lt;/strong&gt;&lt;br /&gt;
-It'd be a mistake to decide I feel at home when I'm not doing my job.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Being home can't be &amp;quot;the absense of job.&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here are some ways I feel at home.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Working on house projects, especially when they're nice to do instead of &amp;quot;must do.&amp;quot; I had to clean the garage door rails because the door kept (and, sigh, keeps) sticking. I crafted and installed a little shelf across the kitchen window for my wife's herbs. I felt at home with both, and enjoyed the second more.&lt;/li&gt;
-&lt;li&gt;Being in the living room with my wife and dog. It often doesn't matter what I'm doing. They're close and they matter.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The above involve being physically at home. But home doesn't have to be a place. A house isn't always a home. Some other ways I feel at home are,&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Reading a book. The less it's related to my career, the more at home I feel. Fiction brings me home because I grew up entering the worlds of imagination.&lt;/li&gt;
-&lt;li&gt;Watching TV or movies. Like books, these take me out of my job and into other lives. Note that I do these on my computer.&lt;/li&gt;
-&lt;li&gt;Walking my neighborhood. I'm lucky to live somewhere I enjoy.&lt;/li&gt;
-&lt;li&gt;Exercising, especially either being instructed or leading a class.&lt;/li&gt;
-&lt;li&gt;Having earnest and playful conversations with family and friends.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="keeping-my-job-separate-when-it-uses-the-same-place-and-tools"&gt;Keeping my job separate when it uses the same place and tools&lt;/h2&gt;
-&lt;p&gt;I do my job in my home office at my laptop. I also do home stuff in my home office on the same laptop. It's not productive for me to maintain two different laptops. Here's what I do to cue myself &amp;quot;this is the job, Dude.&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Different browsers and/or profiles&lt;/strong&gt;&lt;br /&gt;
-I use Brave for my home browsing and Edge for my work browsing.&lt;/p&gt;
-&lt;p&gt;In Edge, I have two job profiles: my company and my client. To make switching between those two easier, I loaded my company profile and pinned that instance to my Windows task bar. Then I loaded my client profile and pinned that instance.&lt;/p&gt;
-&lt;p&gt;The result is it's faster and easier for me to open Edge with the needed bookmarks and security context in place.&lt;/p&gt;
-&lt;p&gt;Notice I put Home first?&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/home-job_balance__how_i__end__my_job_day/2022-01-22-07-18-21.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Clearly separate job folders&lt;/strong&gt;&lt;br /&gt;
-I have a high-level job folder, and no personal projects go in that. Recently, I made another change I love. I have separate high-level Git repository folders for my job and personal projects.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;C:\source &amp;lt;= ONLY client repos
-|_project 1
-|_project 2
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;C:\users\charl\source\repos &amp;lt;= ONLY personal repos
-|_project 1
-|_project 2
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;UPDATE 20220126: Reader Avesh Jain sent me the following nice suggestion.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;One tip I'd like to mention is using virtual desktops. I keep a virtual desktop for personal apps and browsers, and one for each client/project. I pin common applications so they appear on all virtual desktops (e.g., OneNote).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="leaving-the-job-for-the-day"&gt;Leaving the job for the day&lt;/h2&gt;
-&lt;p&gt;I have a loose ritual I can do at any time to signal to myself &amp;quot;I'm done with my job for the day&amp;quot; or &amp;quot;done for now.&amp;quot;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close job-specific browsers&lt;/strong&gt;&lt;br /&gt;
-I close my job Edge browsers. But what if I have a couple dozen browser tabs open for a job project? I use a cool extension like &lt;a href="https://qlearly.com/"&gt;Qlearly&lt;/a&gt; to save them all, and can reopen when I'm on the job again.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close job-specific apps&lt;/strong&gt;&lt;br /&gt;
-Some apps I only use for my job, for example Slack. Slack &amp;quot;closes&amp;quot; to the notification area. I right-click that icon and Quit the app. Bam, Slack, you no longer control me!&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close File Explorer showing job folders&lt;/strong&gt;&lt;br /&gt;
-Not minimize. Close. I add friction to looking at my job's work.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Confession: I actually use the terrific &lt;a href="http://www.freecommander.com/"&gt;FreeCommander XE&lt;/a&gt; paid version to manage my files. My job folder tabs are in the left pane. I close those tabs, or close the app, or at least minimize it.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close any windows showing job-related documents&lt;/strong&gt;&lt;br /&gt;
-For me, this can be: Visual Studio, VS Code, Word, Excel, Balsamiq, LINQPad . . . you get the point.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;I &lt;em&gt;know&lt;/em&gt;. In your mind you're thinking, &amp;quot;But I just need to open them all again and pick up where I left off. It's so much &lt;em&gt;easier&lt;/em&gt; to leave them open.&amp;quot;&lt;/p&gt;
-&lt;p&gt;That's true. It's easier. That's the point. You're making it &lt;strong&gt;easy to stay on the job&lt;/strong&gt;. Instead, make it easy to be at home.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Say, &amp;quot;I'm going home&amp;quot;&lt;/strong&gt;&lt;br /&gt;
-This sounds silly. It isn't, and it takes one second. Try it.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Close my laptop lid&lt;/strong&gt;&lt;br /&gt;
-If I've had a really tough day.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Walk away from my computer&lt;/strong&gt;&lt;br /&gt;
-I was surprised how much difference it makes to physically go to another room where my computer isn't. I'll go back to it later &lt;em&gt;on my own terms&lt;/em&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Do something that makes me feel at home&lt;/strong&gt;&lt;br /&gt;
-You know, from that list I made.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Maybe I'll open my computer again fifteen minutes later to shop for new bed sheets. Fine. &lt;em&gt;I've given myself the end-of-job cue and a break I deserve right now.&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="final-thoughts-notifications"&gt;Final Thoughts: Notifications&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;What and who are you putting first all the time? Have you made yourself &amp;quot;always available&amp;quot;?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;By default, lots of computer and phone apps have their notification turned on. Schedule yourself some self-care time to learn your app settings, have a heart-to-heart with yourself, and turn off whatever you can.&lt;/p&gt;
-&lt;p&gt;For example: Slack/Teams/Discord users, ask yourself, &amp;quot;Which channels are &lt;em&gt;urgent&lt;/em&gt;, if any?&amp;quot; I hope for you the initial answer isn't &amp;quot;all of them&amp;quot;! I set up Slack so I only get notified on a couple of channels and if I get a direct mention. When I quit Slack on my computer, I know I'll still get emergency notifications on my phone.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;When you're on the job, put it first. &lt;strong&gt;When you're at home, put it first.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-      <pubDate>Sat, 22 Jan 2022 07:00:46 -0700</pubDate>
-      <link>https://www.softwaremeadows.com/posts/home-job_balance__how_i__end__my_job_day</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/home-job_balance__how_i__end__my_job_day</guid>
     </item>
   </channel>
 </rss>

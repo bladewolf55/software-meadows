@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/kavadocs.css' />
 
 
-  <title>Agile Development - Don't Restrict. Trust | Software Meadows</title>
+  <title>The Better Software Engineer Interview Process | Software Meadows</title>
 </head>
 
 <body>
@@ -62,70 +62,92 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/dont_restrict_trust'>Agile Development - Don't Restrict. Trust</a></h2>
-                <p class='post-info'><span class='posted-on'>2021-12-28 10:45</span></p>
-                <div class='post-content'><p>Lots of organizations try to prevent developers from making mistakes, or catch them doing so, leading to more bureaucracy and over-control. Some examples include:</p>
-<ul>
-<li>Requiring all teams to follow the exact same process.</li>
-<li>Using permissions to keep developers from rebasing code with Git.</li>
-<li>Managers external to the team running compliance reports on whether user stories are filled in &quot;correctly.&quot;</li>
-<li>Penalizing developers using development issues/bugs as a metric.</li>
-</ul>
-<p>Let's look at that last one more closely. One of the DORA group's <a href="https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance">Four Metrics</a> is to capture how often release failures occur. One way to think of that is &quot;how many severe bugs are we getting after release?&quot;</p>
-<p>It's tempting, then, to also track how many issues/bugs are found during development, the notion being that reducing bugs during development naturally reduces them in release. But this is wrong headed. There <em>could</em> be value in looking at issues found during development, but it's wrong to use this to evaluate, praise or punish developers. Why?</p>
-<ul>
-<li>More issues found during development isn't good or bad.</li>
-<li>Context is missing if you're only looking at numbers.</li>
-<li>Whether and how development issues are reported is highly person-dependent.</li>
-</ul>
-<p>In short, you can't tell whether a developer is doing a good job based on development issues. That isn't why you'd capture development issue metrics. You would capture them as one metric to compare the effects of making development changes. For example, a team commits to increasing unit test quality. What affect did that have on the number of issues found?</p>
-<p>What are you even tracking? Is it the number and severity of issues found by QA? That might be OK. But how do you know that Billy has the same standard for &quot;severe&quot; as Claudia? Maybe Rahim breaks down an issue into more bug reports than Luciana.</p>
-<p>This is when bureaucratic management tries to get everyone working the same way with endless meetings on &quot;what does severe mean?&quot; and &quot;what's the right way to report issues?&quot; Some of this matters, sure. But thinking this way more often misses the point. Its focus is on treating people as replaceable resources, as machines.</p>
-<p>The coercive style of management has these qualities:</p>
-<blockquote>
-<p>Restrict. Prevent. Catch. Punish.</p>
-</blockquote>
-<p>Those qualities can be summed up as &quot;Developers, we don't trust you.&quot;</p>
-<p>What if, instead, we use a reliable metric--change failure rate--to guide improvement? Further, what if we let the teams figure out how to make that improvement, allow for mistakes, and measure what matters? We'd end up with a trusted team.</p>
-<p><img src="https://www.softwaremeadows.com/posts/dont_restrict_trust/trust-audit-notify-help.png" alt="" /></p>
-<p>In a Trust Team environment, you</p>
-<ul>
-<li>Give your developers more permissions.</li>
-<li>But also keep audit trails so if something goes wrong we know who did what.</li>
-<li>Create a robust system that can be recovered quickly.</li>
-<li>Notify developers of problems automatically and immediately.</li>
-<li>Help understand what caused issues and how to improve.</li>
-</ul>
-<p>Again, let's dig into that last one and contrast to an untrusted team.</p>
-<p>In the untrusted team, if a severe bug is discovered, several assumptions are made.</p>
-<ul>
-<li>One person is at fault. The team isn't treated as a unit.</li>
-<li>The developer made a mistake. There's someone to blame.</li>
-<li>The bug could have been prevented.</li>
-<li>There needs to be a meeting to put procedures in place to keep it from happening again.</li>
-<li>Non-team management is needed to enforce the new process.</li>
-</ul>
-<p>In a trusted team,</p>
-<ul>
-<li>The team takes responsibility, knowing multiple people work on the code.</li>
-<li>The developer may have made a mistake. But there's no blaming because mistakes are part of development.</li>
-<li>Not everything is in our control. Software's very complex. The developer may have made the right decision, even though there was a poor outcome. You can't prevent all bugs.</li>
-<li>Adding process <em>adds complexity</em> to an already complex business. Sometimes process needs improvment. But often there's nothing to fix.</li>
-<li>As soon as external management insists on compliance reports, the team ceases to be self-managing. Quality will go down, because the focus shifts from building software to pleasing management.</li>
-</ul>
-<p>In the future, when something goes wrong:</p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/the_better_software_engineer_interview_process'>The Better Software Engineer Interview Process</a></h2>
+                <p class='post-info'><span class='posted-on'>2022-07-26 17:09</span></p>
+                <div class='post-content'><p>I've been finding my next job. I've looked at literally hundreds of listings and been on several interviews. Over my career, I've interviewed <em>a lot</em>. Today, software engineer interviews work mostly like this:</p>
 <ol>
-<li>Determine and explain the impact on the overall business.</li>
-<li>Let the team sort things out.</li>
-<li>Ask them to inform management what, if anything, will change.</li>
-<li>Trust their answer.</li>
+<li>Screening interview (&quot;do we want to proceed with you?&quot;)</li>
+<li>Development Manager interview (&quot;do I want to work with you?&quot;)</li>
+<li>Technical interview or Assessment (&quot;can you do the job?&quot;)</li>
+<li>Other Management interviews (&quot;do we have any objections?&quot;)</li>
 </ol>
-<p>Build trust, not scapegoats.</p>
+<p>There can be as low as three (rarely two) steps. I've literally seen it up to six. A six step interview!</p>
+<p>One intended goal for this process, I think, is to reduce the amount of time taken by management and developers for interviews so they can focus on coding. Another reason--again, my opinion--is there's a belief that management can screen out for fit early.</p>
+<p>Fit matters. I care a lot about whether I'll fit in with a prospective employer. But, after quite a few recent interviews and really pondering and reading about hiring, I think the typical process is backward, biased, onerous, and ineffective.</p>
+<h2 id="a-better-way">A Better Way</h2>
+<p>Here are the steps I'd like to see.</p>
+<ol>
+<li>Initial, online technical assessment using real-world coding. No FizzBuzz, no &quot;reverse this string the hard way.&quot;<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a></li>
+<li>Work with the team.</li>
+<li>Development Manager interview.</li>
+</ol>
+<h2 id="online-assessment">1. Online Assessment</h2>
+<p>I've been skeptical of online skill assessments in the past, but a recent experience has warmed me to them. While still not as good as working with one's daily tools such as Visual Studio, the online interface was very good. So, why start with (and pay for!) this assessment?</p>
+<ul>
+<li>Many candidates will drop out because they know they're not ready. This reduces the pool that the development team needs to assess.</li>
+<li>The remaining results will be reasonably apples-to-apples.</li>
+<li>What matters first is &quot;can you do the job.&quot;</li>
+</ul>
+<p>The skills assessment can be tailored, so junior devs are assessed differently than seniors. And the goal is to gain information, not punish people for not having arcane knowledge. &quot;The basics&quot; really don't apply day-to-day. Let me show you I can write testable, clean, object-oriented code!</p>
+<blockquote>
+<p>A fair, online assessment reduces lots of bias. A candidate shouldn't be disregarded out of the gate just because a hiring manager or the candidate hasn't had lunch yet. This is more common than people want to admit.<a id="fnref:2" href="#fn:2" class="footnote-ref"><sup>2</sup></a></p>
+</blockquote>
+<h2 id="team-work">2. Team Work</h2>
+<p>With the assessment results and resumes in hand, the development team can--with coaching from management and HR--decide who they want to meet. Let me say that again. <em>The developers choose. You can bet they'll be careful with their time.</em>  In my view, they should ideally work on some code together, or do something that shows the candidate how life will really be. This shouldn't be a &quot;let's talk&quot; meeting. Pull an item from the backlog, discuss how it might be approached, do some pair programming or even <a href="https://en.wikipedia.org/wiki/Mob_programming">mob programming</a><a id="fnref:3" href="#fn:3" class="footnote-ref"><sup>3</sup></a>.</p>
+<blockquote>
+<p>The candidate will be working mostly with developers. They have the biggest stake, so they should have the biggest say in hiring. This is even more important if you claim to be an Agile shop. If you aren't letting developers self-manage their teams, you may still be a top-down bureaucracy and using Agile as a buzzword.</p>
+</blockquote>
+<h2 id="management-blessing">3. Management Blessing</h2>
+<p>Someone's going to chafe at my suggestion #3 that the final step is only with the development manager; that is, the person who will be the candidate's direct supervisor, or at most one level above that. But why have you promoted people to management positions if you're not going to <em>trust</em> their judgement? By now in the process, the only candidates who talk to the manager have been pre-approved by the development team she'll be working with. There's really no reason to bring in other managers, except to stroke their egos and forestall &quot;why wasn't I consulted?&quot; comments later.</p>
+<blockquote>
+<p>Besides, most managers complain they're too busy with endless meetings. This reduces meetings quite a bit.</p>
+</blockquote>
+<p>Other managers and execs should certainly introduce themselves after the hiring. But if a qualified developer who is liked by the people she'll be working with doesn't get a job because the CEO or president has a &quot;gut feeling,&quot; and needs to &quot;meet everyone who's going to work here,&quot; a disservice has been done to the entire organization. It signals that people's careers are at the mercy of caprice.</p>
+<h2 id="change-your-ways-itll-save-you-money-and-improve-your-culture">Change Your Ways, It'll Save You Money and Improve Your Culture</h2>
+<p>Companies spend a lot of money on recruiters, time spent reviewing resumes, time spent in interviews. But have they really evaluated whether that money is being well-spent? Have they applied research and evidence, or are they interviewing software engineers the same way they always have?</p>
+<p>This article proposes the answer is, generally, no. We're hiring developers using a traditional model. And we're getting traditionally chancy results.</p>
+<p>I learned to look for these qualities as part of hiring decades ago, and they still apply.</p>
+<ol>
+<li><em>Can</em> the person do the job?</li>
+<li><em>Will</em> the person do the job?</li>
+<li>Does the person <em>fit</em>?</li>
+</ol>
+<p>The principles I've outlined above boil down to.</p>
+<ul>
+<li>Reduce initial bias</li>
+<li>Let developers hire developers (with help)</li>
+<li>Trust your colleagues</li>
+</ul>
+<p>I'm no expert, but I think we can do better.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://stackoverflow.blog/2022/05/23/the-science-of-interviewing-developers/?utm_medium=email">The science of interviewing developers - Stack Overflow Blog</a></li>
+<li><a href="https://builtin.com/job-interview/candidates-interview-companies">How Candidates Should Interview Companies | Built In</a></li>
+<li><a href="https://www.woventeams.com/">Technical Interview Software for Developers | Woven Teams</a></li>
+<li><a href="https://www.amazon.com/Leadership-Language-Hidden-Power-Say-ebook/dp/B07L2KL5XV/ref=tmm_kin_swatch_0?_encoding=UTF8&amp;qid=1658874171&amp;sr=8-1">Leadership Is Language: The Hidden Power of What You Say--and What You Don't</a></li>
+<li><a href="https://www.amazon.com/Noise-Human-Judgment-Daniel-Kahneman-ebook/dp/B08KQ2FKBX/ref=sr_1_4?keywords=kahnemann&amp;qid=1658874780&amp;sr=8-4">Noise: A Flaw in Human Judgment</a></li>
+</ul>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>FizzBuzz can have value if done as pair-programming, but requires a different skill set on the part of the interviewer.</p>
+<p>As far as the &quot;find substrings in a string&quot; tradition, in my opinion, it's outdated and useless. The technical interviews where a couple of developers assign a seemingly trivial task and watch in silence while the candidate tries to work it out is just terrible. It's completely removed from the reality of the job (I hope!), and puts useless pressure on the candidate.</p>
+<p>It isn't an assessment. It's a hazing.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>As discussed by Daniel Kahneman in his book <em>Noise</em>, and reported on in this <a href="https://www.theguardian.com/books/2021/jun/03/noise-by-daniel-kahneman-olivier-sibony-and-cass-sunstein-review-the-price-of-poor-judgment">article</a>.<a href="#fnref:2" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>This was one of my favorite interview experiences.<a href="#fnref:3" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Agile Development - Don't Restrict. Trust | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on The Better Software Engineer Interview Process | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
