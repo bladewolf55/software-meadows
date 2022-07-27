@@ -61,7 +61,7 @@
 &lt;li&gt;Let developers hire developers (with help)&lt;/li&gt;
 &lt;li&gt;Trust your colleagues&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I'm no expert, but I think we can do better.&lt;/p&gt;
+&lt;p&gt;I'm no expert&lt;a id="fnref:4" href="#fn:4" class="footnote-ref"&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;, but I think we can do better.&lt;/p&gt;
 &lt;h2 id="references"&gt;References&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://stackoverflow.blog/2022/05/23/the-science-of-interviewing-developers/?utm_medium=email"&gt;The science of interviewing developers - Stack Overflow Blog&lt;/a&gt;&lt;/li&gt;
@@ -83,6 +83,9 @@
 &lt;/li&gt;
 &lt;li id="fn:3"&gt;
 &lt;p&gt;This was one of my favorite interview experiences.&lt;a href="#fnref:3" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;To be intellectually fair, I really haven't found out what research there's been on effective developer hiring practices. I'm just voicing a slightly educated opinion that may be dead wrong.&lt;a href="#fnref:4" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
