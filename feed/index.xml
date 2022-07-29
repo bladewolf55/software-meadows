@@ -245,6 +245,7 @@ I'm not a biblical scholar. This post treads on sensitive ground regarding matte
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="someone-elses-solution-to-unit-testing.net-maui-projects"&gt;(Someone Else's) Solution to Unit Testing .NET MAUI Projects&lt;/h2&gt;
 &lt;p&gt;In part 2, I discussed how .NET MAUI didn't support unit testing, and that you could separate out the namespaces into their own projects. And that's still true and useful. But for many projects that's overkill. In my opinion, it's especially egregious for unit testing the View Models, which I'd prefer stay with the UI project.&lt;/p&gt;
@@ -314,6 +315,44 @@ I'm not a biblical scholar. This post treads on sensitive ground regarding matte
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing</guid>
     </item>
     <item>
+      <title>.NET MAUI Progressing From a Default Project Part 7 - Deploying, the Other People's Links Edition</title>
+      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
+&lt;p&gt;Level: Moderate&lt;/p&gt;
+&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="checking-my-ego"&gt;Checking My Ego&lt;/h2&gt;
+&lt;p&gt;I kind of promised this part in the series, where I was going to take my progressively modified default app and show deploying it. But you know what? Other people have already covered this. So, here are their links and I don't think I have anything to add or clarify. Read them. They'll point you the right way.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://devblogs.microsoft.com/dotnet/devops-for-dotnet-maui/"&gt;Getting Started with DevOps and .NET MAUI - .NET Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.andreasnesheim.no/setting-up-ci-for-your-net-maui-windows-app-in-azure-devops/"&gt;Setting up CI for your .NET MAUI Windows app in Azure DevOps - Andreas Nesheim&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=FNwv_W3TtSU&amp;amp;t=8s"&gt;Create a .NET MAUI Windows MSIX to Sideload Or Publish to the Microsoft Store - YouTube&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I &lt;em&gt;may&lt;/em&gt; still write a future post showing .NET MAUI CI/CD in Azure DevOps Pipelines. That would be interesting because it would ideally cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The local build and package script&lt;/li&gt;
+&lt;li&gt;Remote (integrated) build&lt;/li&gt;
+&lt;li&gt;Package once, deploy to many environments&lt;/li&gt;
+&lt;li&gt;How to manage testing versions before publishing to the platform stores&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The thing is, I haven't done this with .NET MAUI, and I have some other topics I'm more interested in right now. But I'll eventually learn and write about it when I--hopefully--publish my first .NET MAUI application!&lt;/p&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;This series has used the out-of-the-box .NET MAUI project template as a starting point for learning many key concepts and techniques. Some apply only to .NET MAUI, while most apply to general enterprise development.&lt;/p&gt;
+&lt;p&gt;I hope it's been helpful. You rock!&lt;/p&gt;
+</description>
+      <pubDate>Tue, 19 Jul 2022 12:50:14 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition</guid>
+    </item>
+    <item>
       <title>.NET MAUI Progressing From a Default Project Part 5 - Restyling From Scratch</title>
       <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
 &lt;p&gt;Level: Moderate&lt;/p&gt;
@@ -326,6 +365,7 @@ I'm not a biblical scholar. This post treads on sensitive ground regarding matte
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="what-problem-do-styles-solve"&gt;What Problem Do Styles Solve?&lt;/h2&gt;
 &lt;p&gt;Fundamentally, styles let you declare in one place how something will look no matter where it appears. A style differs (in my mind) from a format.&lt;/p&gt;
@@ -883,6 +923,7 @@ There's a downside to using classes. You can't interactively change style values
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="moving-the-view"&gt;Moving the View&lt;/h2&gt;
 &lt;p&gt;Compared to the &lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;last part&lt;/a&gt;, this one's really short.&lt;/p&gt;
@@ -950,6 +991,7 @@ using Maui.Progression.Views;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="the-role-of-the-model-in-mvvm"&gt;The Role of the Model in MVVM&lt;/h2&gt;
 &lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/8/87/MVVMPattern.png" alt="" /&gt;&lt;/p&gt;
@@ -1457,6 +1499,7 @@ Mine didn't run right the first time. I forgot to pass the options to the JSON d
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="net-mauis-testing-problem"&gt;.NET MAUI's testing problem&lt;/h2&gt;
 &lt;p&gt;At the time of this writing, .NET MAUI apps don't support unit testing. At least, not in any way I could find. And I tried, I really tried, to fool .NET by playing with target frameworks and conditionally including a Program Main method, and other goofy stuff, but to no avail.&lt;/p&gt;
@@ -1556,6 +1599,7 @@ public class Counter_Should
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="the-problem.net-maui-solves"&gt;The Problem .NET MAUI Solves&lt;/h2&gt;
 &lt;p&gt;Cross-platform development is hard, usually requiring maintaining a project per platform. Any feature must be added to each code base. .NET MAUI uses a single project with the majority of the UI code using XAML, and the business code in C#. This code is then transpiled to the native platforms. The result is less maintenance, fewer errors, and reduced knowledge needed to build cross-platform applications.&lt;/p&gt;
@@ -1788,30 +1832,6 @@ This is probably the most useful troubleshooting step I've found. When you close
       <pubDate>Tue, 28 Jun 2022 13:00:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model</guid>
-    </item>
-    <item>
-      <title>How to Hide Markdown Breadcrumbs in VS Code</title>
-      <description>&lt;p&gt;Here's a quick one. If you're using &lt;a href="https://code.visualstudio.com/docs/introvideos/basics"&gt;Visual Studio Code&lt;/a&gt; as your Markdown editor and work with larger documents, such as a daily journal, VS Code's default behavior of showing breadcrumbs might be a performance drag.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code/2022-04-06-15-59-57.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;To turn off header-level breadcrumbs when working with &lt;strong&gt;just&lt;/strong&gt; Markdown files:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;View &amp;gt; Command Palette &amp;gt;  the JSON User settings &amp;gt; Preferences: Open Settings (JSON)&lt;/li&gt;
-&lt;li&gt;Add this setting
-&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;[markdown]&amp;quot;: {
-    &amp;quot;breadcrumbs.showStrings&amp;quot;: false
-},
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code/2022-04-06-16-00-39.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;If you want to disable breadcrumbs for all languages, use this setting:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;breadcrumbs.enabled&amp;quot;: false
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Happy writing!&lt;/p&gt;
-</description>
-      <pubDate>Wed, 6 Apr 2022 15:52:05 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/how_to_hide_markdown_breadcrumbs_in_vs_code</guid>
     </item>
   </channel>
 </rss>
