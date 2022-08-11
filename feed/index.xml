@@ -27,7 +27,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;If we used this metaphor to try to persuade management or execs who don't understand software development why we should limit work-in-progress, we'd fail. Let's see why.&lt;/p&gt;
 &lt;h2 id="computers-cook-hamburgers"&gt;Computers Cook Hamburgers&lt;/h2&gt;
-&lt;p&gt;How does short order cooking of burgers actually work? (My drawings aren't as good as Mr Costas!)&lt;/p&gt;
+&lt;p&gt;How does short order cooking of burgers actually work? (My drawings aren't as good as Mr Costa's!)&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/wip_metaphor__not_burgers__books/2022-08-10-08-25-37.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Now, what happens if two people order burgers simultaneously?&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/wip_metaphor__not_burgers__books/2022-08-10-08-26-01.png" alt="" /&gt;&lt;/p&gt;
@@ -52,7 +52,7 @@
 &lt;p&gt;This is very much what a computer CPU is doing. A process is spawned that only uses a portion of memory, and so the CPU spawns another process. It's task switching, but that's what computers are good at, not people.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Does this mean WIP doesn't apply to cooking? No, it does apply. In fact, in a restaurant kitchen, there's a real danger of starting too many orders. This leads to &lt;em&gt;cognitive overload&lt;/em&gt;. &amp;quot;Which patties are ready to flip?&amp;quot; It also leads to too many overlapping tasks. &amp;quot;I need to flip these four patties, assemble those five, plate these other two, and get back to these three patties before they burn.&amp;quot;&lt;/p&gt;
-&lt;p&gt;The kitchen, though, has its own WIP limiter: grill space&lt;a id="fnref:3" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;. You can only start so many burgers. This is why you have to wait so long in a crowded diner.&lt;/p&gt;
+&lt;p&gt;The kitchen, though, has its own WIP limiter: grill space.&lt;a id="fnref:3" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; You can only start so many burgers. This is why you have to wait so long in a crowded diner.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;While cooking is highly asynchronous, it is also highly limited. It's a just-in-time system where you only start orders when you have capacity.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -72,7 +72,7 @@
 &lt;p&gt;Coding has no wait times. You can't start coding a feature, and then switch to another feature while the first one magically continues coding itself. Coding is highly synchronous.&lt;a id="fnref:4" href="#fn:4" class="footnote-ref"&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;What are the consequences of trying to write three books asynchronously? Will they be finished sooner, the same, or later than if you write them one after the other?&lt;a id="fnref:5" href="#fn:5" class="footnote-ref"&gt;&lt;sup&gt;5&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;All three books will be late, and each will take longer to write. Why? Because of task switching. You don't need to be much of a writer to imagine trying to switch between three different books, plots, characters, locations, every page. You'd never &lt;em&gt;read&lt;/em&gt; three books that way, right? The reason's the same. The writer needs to become immersed in the story. Switching to another story requires &amp;quot;getting back into it.&amp;quot; In software development, this is often called &amp;quot;ramp up time&amp;quot; or &amp;quot;reloading the code into my head&amp;quot; and generally takes &lt;em&gt;ten-to-twenty minutes&lt;/em&gt; after an interruption.&lt;/p&gt;
+&lt;p&gt;All three books will be late, and each will take longer to write. Why? Because of task switching. You don't need to be much of a writer to imagine trying to switch between three different books, plots, characters, locations, every page. You'd never &lt;em&gt;read&lt;/em&gt; three books that way, right? The reason's the same. The writer needs to become immersed in the story. Switching to another story requires &amp;quot;getting back into it.&amp;quot; In software development, this is often called &amp;quot;ramp up time&amp;quot; or &amp;quot;reloading the code into my head&amp;quot; and generally takes &lt;em&gt;ten to twenty minutes&lt;/em&gt; after an interruption.&lt;/p&gt;
 &lt;p&gt;If you want all three books on time, write them one after the other.&lt;/p&gt;
 &lt;p&gt;There's another important business consideration here, and one that should appeal to all executives. In our metaphor of the writer, I &lt;em&gt;want&lt;/em&gt; to finish the first book before starting the second. Why? Because I need the money. That book can get published and I can get royalties while writing my second book. I can also use the reviews of my first book to help improve my next one.&lt;/p&gt;
 &lt;p&gt;This is critical to understand in software development. We need to work on one feature at a time &lt;em&gt;with minimal distraction&lt;/em&gt; so we can finish it more quickly and get feedback to both fix the existing feature and inform future features. We also want to get products to users quickly because that's where the company's revenue comes from.&lt;/p&gt;
@@ -86,10 +86,10 @@
 &lt;p&gt;The difference between metaphors and similes is a metaphor substitutes, a simile compares. &amp;quot;I watched the flaming chariot cross the sky&amp;quot; is a metaphor for the sun. &amp;quot;The sun crossing the sky is like a flaming chariot&amp;quot; is a simile. When you see &amp;quot;is like,&amp;quot; it's a simile. In this article, I'm using &amp;quot;metaphor&amp;quot; throughout because it's easier to understand.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:2"&gt;
-&lt;p&gt;Mr Costas does touch on batching, but his example is, again, inaccurate compared to kitchen cooking reality.&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mr Costa does touch on batching, but his example is, again, inaccurate compared to kitchen cooking reality.&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:3"&gt;
-&lt;p&gt;Mr Costas notes this as well.&lt;a href="#fnref:3" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mr Costa notes this as well.&lt;a href="#fnref:3" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:4"&gt;
 &lt;p&gt;Of course, there is technically some wait time, for example while code is building. But compared to restaurant cooking, there's essentially none.&lt;a href="#fnref:4" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
