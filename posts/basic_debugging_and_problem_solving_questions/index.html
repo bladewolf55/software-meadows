@@ -73,15 +73,15 @@
 </blockquote>
 <p><strong>Questions</strong></p>
 <ol>
-<li><strong>What's the symptom?</strong> Get clear on this from the start. &quot;All our prices are multiplied by ten in this screen.</li>
+<li><strong>What's the symptom?</strong> The symptom is Get clear on this from the start. &quot;All our prices are multiplied by ten in this screen.&quot;</li>
 <li><strong>What changed?</strong> In my situation, the exact same code was deployed to a different environment. The code worked in the other three environments. So, the problem wasn't the code. We needed to review the environment, not dive into the debugger. (It was a wrong deployment environment variable.)</li>
 <li><strong>What's the dumbest thing it could be?</strong> Did something get misspelled? Did you push the wrong version?</li>
-<li><strong>Working backward, what controls that behavior?</strong> It's so easy to assume you know what &quot;must be&quot; causing the symptom. Stop. Don't think &quot;must be,&quot; but instead &quot;shouldn't be but let's check.&quot; What class method displays that text? What service calls that class?</li>
+<li><strong>Working backward, what controls that behavior?</strong> It's so easy to assume you know what &quot;must be&quot; causing the symptom. Stop. Don't think &quot;must be,&quot; but instead &quot;might be&quot; and especially &quot;<em>shouldn't</em> be but let's check.&quot; What class method displays that text? What service calls that class?</li>
 </ol>
-<p><strong>Steps/Principles</strong></p>
+<p><strong>Other Principles</strong></p>
 <ul>
-<li><strong>Ask, &quot;What's the real problem?&quot;</strong> For example, the symptom might be &quot;we're getting a 404 on this page.&quot; But the real problem might be, &quot;Our main customer is blocked from completing a critical report.&quot; Maybe the customer problem can be addressed without directly fixing the symptom.</li>
-<li><strong>Don't rush.</strong>  Pressure is the enemy. Solving the problem fast isn't as important as solving it right. Wanting to be the hero and feeling the pressure of being the expert inevitably causes delays and failure. <a href="https://www.softwaremeadows.com/posts/one_sheet_summry-_leadership_is_language/">David Marquet</a> calls this &quot;control the clock, don't obey the clock.&quot;</li>
+<li><strong>Ask, &quot;What's the real problem?&quot;</strong> For example, the symptom might be &quot;we're getting a 404 on this page.&quot; But the real problem might be, &quot;Our main customer is blocked from completing a critical report.&quot; Maybe the customer problem can be addressed without immediately fixing the symptom.</li>
+<li><strong>Don't rush.</strong>  Pressure is the enemy, and often an illusion. Solving the problem fast isn't as important as solving it right. Wanting to be the hero and feeling the pressure of being the expert inevitably causes delays and failure. <a href="https://www.softwaremeadows.com/posts/one_sheet_summry-_leadership_is_language/">David Marquet</a> calls this &quot;control the clock, don't obey the clock.&quot;</li>
 <li><strong>Change one thing at a time.</strong> This is a hard-won skill. Change one thing, and confirm other variables are &quot;known good.&quot; Decades ago, I called my boss for help with a non-working printer. He asked, &quot;Are you using a known-good cable?&quot; &quot;Uh, no.&quot; &quot;You have to make sure the cable works!&quot; He was right.</li>
 <li><strong>Always know what you changed.</strong> If you must change multiple variables, keep track.</li>
 <li><strong>Fix the problem, not the blame.</strong> Now isn't the time for a retrospective, or questioning why the code is written the way it is. That just derails the conversation and is evidence of a <a href="https://cloud.google.com/architecture/devops/devops-culture-westrum-organizational-culture">pathological organization</a>. But do have a post-mortem when heads are clear.</li>
