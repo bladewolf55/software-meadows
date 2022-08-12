@@ -16,7 +16,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Questions&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;What's the symptom?&lt;/strong&gt; The symptom is Get clear on this from the start. &amp;quot;All our prices are multiplied by ten in this screen.&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What's the symptom?&lt;/strong&gt; Get clear on this from the start and respectfully question what you're first told. &amp;quot;The prices are all wrong!&amp;quot; &amp;quot;Would you show me exactly what a where you're seeing that?&amp;quot; &amp;quot;Sure. See? All (and only) the shirt prices are multiplied by ten on this screen.&amp;quot;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;What changed?&lt;/strong&gt; In my situation, the exact same code was deployed to a different environment. The code worked in the other three environments. So, the problem wasn't the code. We needed to review the environment, not dive into the debugger. (It was a wrong deployment environment variable.)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;What's the dumbest thing it could be?&lt;/strong&gt; Did something get misspelled? Did you push the wrong version?&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Working backward, what controls that behavior?&lt;/strong&gt; It's so easy to assume you know what &amp;quot;must be&amp;quot; causing the symptom. Stop. Don't think &amp;quot;must be,&amp;quot; but instead &amp;quot;might be&amp;quot; and especially &amp;quot;&lt;em&gt;shouldn't&lt;/em&gt; be but let's check.&amp;quot; What class method displays that text? What service calls that class?&lt;/li&gt;
