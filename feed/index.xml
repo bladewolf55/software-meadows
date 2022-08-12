@@ -6,6 +6,39 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Basic Debugging and Problem Solving Questions</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/basic_debugging_and_problem_solving_questions/elisa-ventur-bmJAXAz6ads-unsplash.jpg" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;sup&gt;Photo by &lt;a href="https://unsplash.com/@elisa_ventur?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Elisa Ventur&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/problem?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;While a short post, I hope this will help others as it did me. These questions came out of an experience trying to troubleshoot a deployment issue I was called into some time ago. The problem got solved, but the approach to identifying the problem wasn't . . . ideal. Among the challenges were pressure from above and the group dynamics of a thirty-person Zoom meeting.&lt;/p&gt;
+&lt;p&gt;Afterward, I performed a personal post-mortem to identify heuristics that would help with this general class of problems, the &amp;quot;It's not working and we don't know why but it needs to be fixed right now we're watching you&amp;quot; situation.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Actually, these are good questions for any debugging/troubleshooting, not just the under-pressure variety.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Questions&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;What's the symptom?&lt;/strong&gt; Get clear on this from the start. &amp;quot;All our prices are multiplied by ten in this screen.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What changed?&lt;/strong&gt; In my situation, the exact same code was deployed to a different environment. The code worked in the other three environments. So, the problem wasn't the code. We needed to review the environment variables, not dive into the debugger. (It was a wrong deployment environment variable.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What's the dumbest thing it could be?&lt;/strong&gt; Did something get misspelled? Did you push the wrong version?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Working backward, what controls that behavior?&lt;/strong&gt; It's so easy to assume you know what &amp;quot;must be&amp;quot; causing the symptom. Stop. Don't think &amp;quot;must be,&amp;quot; but instead &amp;quot;shouldn't be but let's check.&amp;quot; What class method displays that text? What service calls that class?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Steps/Principles&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ask, &amp;quot;What's the real problem?&amp;quot;&lt;/strong&gt; For example, the symptom might be &amp;quot;we're getting a 404 on this page.&amp;quot; But the real problem might be, &amp;quot;Our main customer is blocked from completing a critical report.&amp;quot; Maybe the customer problem can be addressed without directly fixing the symptom.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Don't rush.&lt;/strong&gt;  Pressure is the enemy. Solving the problem fast isn't as important as solving it right. Wanting to be the hero and feeling the pressure of being the expert inevitably causes delays and failure. &lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summry-_leadership_is_language/"&gt;David Marquet&lt;/a&gt; calls this &amp;quot;control the clock, don't obey the clock.&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Change one thing at a time.&lt;/strong&gt; This is a hard-won skill. Change one thing, and confirm other variables are &amp;quot;known good.&amp;quot; Decades ago, I called my boss for help with a non-working printer. He asked, &amp;quot;Are you using a known-good cable?&amp;quot; &amp;quot;Uh, no.&amp;quot; &amp;quot;You have to make sure the cable works!&amp;quot; He was right.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Always know what you changed.&lt;/strong&gt; If you must change multiple variables, keep track.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fix the problem, not the blame.&lt;/strong&gt; Now isn't the time for a retrospective, or questioning why the code is written the way it is. That just derails the conversation and is evidence of a &lt;a href="https://cloud.google.com/architecture/devops/devops-culture-westrum-organizational-culture"&gt;pathological organization&lt;/a&gt;. But do have a post-mortem when heads are clear.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Of all these, &amp;quot;what's the symptom?,&amp;quot; &amp;quot;what changed?,&amp;quot; and &amp;quot;don't rush&amp;quot; will take you very far.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;It's important to think when things are going crazy, if you want to take the smartest action to get them sane again.&amp;quot; --Harry Dresden, &lt;em&gt;Battle Ground&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+      <pubDate>Fri, 12 Aug 2022 10:54:06 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/basic_debugging_and_problem_solving_questions</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/basic_debugging_and_problem_solving_questions</guid>
+    </item>
+    <item>
       <title>"WIP Metaphor: Not Burgers. Books!"</title>
       <description>&lt;h2 id="developers-dont-cook-hamburgers"&gt;Developers Don't Cook Hamburgers&lt;/h2&gt;
 &lt;p&gt;Metaphors&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; are strong ways of explaining or clarifying difficult concepts. However, the wrong metaphor can weaken one's case.&lt;/p&gt;
@@ -1584,106 +1617,6 @@ Mine didn't run right the first time. I forgot to pass the options to the JSON d
       <pubDate>Thu, 30 Jun 2022 17:43:05 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/the_worst_interview_question</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_worst_interview_question</guid>
-    </item>
-    <item>
-      <title>.NET MAUI Progressing From a Default Project Part 2 - (The Problem With) Basic Unit Testing</title>
-      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
-&lt;p&gt;Level: Moderate&lt;/p&gt;
-&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="net-mauis-testing-problem"&gt;.NET MAUI's testing problem&lt;/h2&gt;
-&lt;p&gt;At the time of this writing, .NET MAUI apps don't support unit testing. At least, not in any way I could find. And I tried, I really tried, to fool .NET by playing with target frameworks and conditionally including a Program Main method, and other goofy stuff, but to no avail.&lt;/p&gt;
-&lt;p&gt;So, that's the bad news, a real bummer, and in my opinion a terrible oversight on the .NET MAUI team's part. There's no talk of unit testing, no guidance, no explanation.&lt;/p&gt;
-&lt;p&gt;Here's the good news: you can unit test .NET MAUI class libraries. Examples can be found at the &lt;a href="https://github.com/CommunityToolkit/Maui/tree/main/src/CommunityToolkit.Maui.UnitTests"&gt;Community Toolkit repository&lt;/a&gt; (thank you, open source!).&lt;/p&gt;
-&lt;p&gt;This means we need to separate anything we want to unit test into a library. That's not ideal, especially for smaller projects, but we'll make do. I have confidence Microsoft is working on a better way.&lt;/p&gt;
-&lt;h2 id="add-the-viewmodels-library"&gt;Add the ViewModels library&lt;/h2&gt;
-&lt;p&gt;To keep things organized, let's add a ViewModels library. Later, we'll add a Models library.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You could also have a single library for testable code, broken into namespaces. I would do that here, but, frankly, I wasn't sure what to name it! Plus, separate libraries reenforces our separation of concerns.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Solution &amp;gt; Add &amp;gt; New Project &amp;gt; .NET MAUI Class Library named &amp;quot;Maui.Progression.ViewModels&amp;quot;.&lt;/li&gt;
-&lt;li&gt;Install the Microsoft.Toolkit.Mvvm package, and uninstall that package from the app project.&lt;/li&gt;
-&lt;li&gt;Delete the &lt;code&gt;Class1.cs&lt;/code&gt; file.&lt;/li&gt;
-&lt;li&gt;Copy or move the &lt;code&gt;Counter.cs&lt;/code&gt; file to the root of the ViewModels library.&lt;/li&gt;
-&lt;li&gt;In the app project, delete the ViewModels folder.&lt;/li&gt;
-&lt;li&gt;In the app project, add the ViewModels project as a project reference.&lt;/li&gt;
-&lt;li&gt;Update the &lt;code&gt;MainPage.xaml&lt;/code&gt; viewmodels namespace.
-&lt;pre&gt;&lt;code class="language-xml"&gt;xmlns:viewmodels=&amp;quot;clr-namespace:Maui.Progression.ViewModels;assembly=Maui.Progression.ViewModels&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;At this point you may need to do a Solution Clean and Rebuild, or even close Visual Studio, delete the bin/obj folders, and restart then build.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;For example, I got this warning:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Warning	WMC1006	Cannot resolve Assembly or Windows Metadata file 'C:\Users\charl\source\repos\dotnet-maui-progression\src\Maui.Progression.02\Maui.Progression.ViewModels\bin\Debug\net6.0-windows10.0.19041.0\Maui.Progression.ViewModels.dll'	Maui.Progression	C:\Users\charl\source\repos\dotnet-maui-progression\src\Maui.Progression.02\Maui.Progression\Maui.Progression.csproj
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Running the app should behave as before.&lt;/p&gt;
-&lt;h2 id="add-the-testing-project"&gt;Add the testing project&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;My preferred unit testing stack is &lt;a href="https://xunit.net/"&gt;xUnit&lt;/a&gt;, &lt;a href="https://fluentassertions.com/"&gt;FluentAssertions&lt;/a&gt;, and &lt;a href="https://nsubstitute.github.io/"&gt;NSubstitute&lt;/a&gt;. I'm keeping this tutorial simple by using vanilla xUnit.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Solution &amp;gt; Add &amp;gt; New Project &amp;gt; xUnit Test Project named &amp;quot;Maui.Progression.UnitTests&amp;quot;&lt;/li&gt;
-&lt;li&gt;Add &lt;code&gt;Maui.Progression.ViewModels&lt;/code&gt; as a project reference.&lt;/li&gt;
-&lt;li&gt;Rename &lt;code&gt;UnitTest1.cs&lt;/code&gt; to &lt;code&gt;Counter_Should.cs&lt;/code&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This is just my preferred naming convention.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;Update &lt;code&gt;Counter_Should.cs&lt;/code&gt; with this code.
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.ViewModels;
-
-namespace Maui.Progression.UnitTests;
-
-public class Counter_Should
-{
-    [Fact]
-    public void Increment_counter_by_one_using_command()
-    {
-        // arrange
-        int expected = 1;
-        var vm = new Counter();
-
-        // verify the starting count
-        Assert.True(vm.Count == 0, &amp;quot;Starting count should have been zero.&amp;quot;);
-
-        // act
-        vm.IncreaseCounterCommand.Execute(null);
-
-        // assert
-        Assert.Equal(expected, vm.Count);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Run the test, which should pass.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing/2022-06-23-12-46-27.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;As a final check, rerun the app.&lt;/p&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;We've separated out our View Model into a testable library, and written a simple passing test. We haven't written any kind of UI test, but that's OK for now. In a future part, I hope to try out the &lt;a href="https://appcenter.ms/"&gt;Visual Studio App Center&lt;/a&gt;, which appears purpose-built for multi-platform UI testing.&lt;/p&gt;
-&lt;p&gt;Next up: adding a Model!&lt;/p&gt;
-&lt;h2 id="resources"&gt;Resources&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/unit_testing_is_part_of_a_developers_job_description/"&gt;Unit Testing Is Part Of A Developer's Job Description | Software Meadows&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-      <pubDate>Tue, 28 Jun 2022 13:15:00 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing</guid>
     </item>
   </channel>
 </rss>
