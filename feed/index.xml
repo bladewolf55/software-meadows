@@ -17,7 +17,7 @@
 &lt;p&gt;&lt;strong&gt;Questions&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;What's the symptom?&lt;/strong&gt; Get clear on this from the start. &amp;quot;All our prices are multiplied by ten in this screen.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;What changed?&lt;/strong&gt; In my situation, the exact same code was deployed to a different environment. The code worked in the other three environments. So, the problem wasn't the code. We needed to review the environment variables, not dive into the debugger. (It was a wrong deployment environment variable.)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What changed?&lt;/strong&gt; In my situation, the exact same code was deployed to a different environment. The code worked in the other three environments. So, the problem wasn't the code. We needed to review the environment, not dive into the debugger. (It was a wrong deployment environment variable.)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;What's the dumbest thing it could be?&lt;/strong&gt; Did something get misspelled? Did you push the wrong version?&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Working backward, what controls that behavior?&lt;/strong&gt; It's so easy to assume you know what &amp;quot;must be&amp;quot; causing the symptom. Stop. Don't think &amp;quot;must be,&amp;quot; but instead &amp;quot;shouldn't be but let's check.&amp;quot; What class method displays that text? What service calls that class?&lt;/li&gt;
 &lt;/ol&gt;
@@ -29,7 +29,7 @@
 &lt;li&gt;&lt;strong&gt;Always know what you changed.&lt;/strong&gt; If you must change multiple variables, keep track.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Fix the problem, not the blame.&lt;/strong&gt; Now isn't the time for a retrospective, or questioning why the code is written the way it is. That just derails the conversation and is evidence of a &lt;a href="https://cloud.google.com/architecture/devops/devops-culture-westrum-organizational-culture"&gt;pathological organization&lt;/a&gt;. But do have a post-mortem when heads are clear.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Of all these, &amp;quot;what's the symptom?,&amp;quot; &amp;quot;what changed?,&amp;quot; and &amp;quot;don't rush&amp;quot; will take you very far.&lt;/p&gt;
+&lt;p&gt;Of all these, &amp;quot;what's the symptom?&amp;quot;, &amp;quot;what changed?&amp;quot;, and &amp;quot;don't rush&amp;quot; will take you very far.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&amp;quot;It's important to think when things are going crazy, if you want to take the smartest action to get them sane again.&amp;quot; --Harry Dresden, &lt;em&gt;Battle Ground&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;

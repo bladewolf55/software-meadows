@@ -84,7 +84,7 @@
 <p><strong>Questions</strong></p>
 <ol>
 <li><strong>What's the symptom?</strong> Get clear on this from the start. &quot;All our prices are multiplied by ten in this screen.</li>
-<li><strong>What changed?</strong> In my situation, the exact same code was deployed to a different environment. The code worked in the other three environments. So, the problem wasn't the code. We needed to review the environment variables, not dive into the debugger. (It was a wrong deployment environment variable.)</li>
+<li><strong>What changed?</strong> In my situation, the exact same code was deployed to a different environment. The code worked in the other three environments. So, the problem wasn't the code. We needed to review the environment, not dive into the debugger. (It was a wrong deployment environment variable.)</li>
 <li><strong>What's the dumbest thing it could be?</strong> Did something get misspelled? Did you push the wrong version?</li>
 <li><strong>Working backward, what controls that behavior?</strong> It's so easy to assume you know what &quot;must be&quot; causing the symptom. Stop. Don't think &quot;must be,&quot; but instead &quot;shouldn't be but let's check.&quot; What class method displays that text? What service calls that class?</li>
 </ol>
@@ -96,7 +96,7 @@
 <li><strong>Always know what you changed.</strong> If you must change multiple variables, keep track.</li>
 <li><strong>Fix the problem, not the blame.</strong> Now isn't the time for a retrospective, or questioning why the code is written the way it is. That just derails the conversation and is evidence of a <a href="https://cloud.google.com/architecture/devops/devops-culture-westrum-organizational-culture">pathological organization</a>. But do have a post-mortem when heads are clear.</li>
 </ul>
-<p>Of all these, &quot;what's the symptom?,&quot; &quot;what changed?,&quot; and &quot;don't rush&quot; will take you very far.</p>
+<p>Of all these, &quot;what's the symptom?&quot;, &quot;what changed?&quot;, and &quot;don't rush&quot; will take you very far.</p>
 <blockquote>
 <p>&quot;It's important to think when things are going crazy, if you want to take the smartest action to get them sane again.&quot; --Harry Dresden, <em>Battle Ground</em></p>
 </blockquote>
