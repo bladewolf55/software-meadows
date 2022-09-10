@@ -72,225 +72,33 @@
       <section id="posts">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/encrypting-appconfig'>Encrypting app.config</a></h2>
-                <p class='post-info'><span class='posted-on'>2015-07-25 07:23</span></p>
-                <div class='post-content'><p>Developers often use the app.config (or web.config) file to hold database connection strings and application settings. For example:</p>
-<pre><code class="language-csharp">&lt;connectionStrings&gt;
-  &lt;add name=&quot;WonderDb&quot; connectionString=&quot;Server=BigServe1;Database=Wonder;Integrated Security=True&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
-&lt;/connectionStrings&gt;
-&lt;appSettings&gt;
-  &lt;add key=&quot;FtpUser&quot; value=&quot;ariadne&quot; /&gt;
-  &lt;add key=&quot;FtpPassword&quot; value=&quot;maze1$&quot; /&gt;
-&lt;/appSettings&gt;
-</code></pre>
-<p>You can find several pages on how to encrypt these settings, but they don’t usually show a typical solution, which, for me, includes:</p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/test-post-with-code'>Migrating Google Drive</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-01-26 14:06</span></p>
+                <div class='post-content'><p>My <a href="http://stephkayeturner.com/">wife</a>recently got her own domain name, and signed up for Google Apps for Business. She's been migrating her email and calendar from previous accounts, including a Google account.<br />
+The problem was Drive. She had a mixture of documents in Google Docs format and MS Office. Some items were shared. All in all, it looked like a big mess, complicated by the fact that Google doesn't let you give ownership of your files to someone in another domain. I don't know why. I assume the Ph.Ds who work there didn't properly sacrifice to the Domain Name God.<br />
+Also--and this burns me up--Google won't let you download files using their super-secret-must-be-tastier-than-Coke internal format. If you have Drive synchronization set up, you'll see documents with .gdoc extensions, but they're just text files with points to the web site. What this means is that there is no hope of downloading and uploading Google Docs and preserve true fidelity.<br />
+Thanks, Google. My files aren't really my files, because you own the format.<br />
+So, here's what I did--and what I could have done.<br />
+First, I think I could have paid for a tool that would migrate the documents. But I didn't, and I didn't even really look for one. Instead, I used a utility that I like a lot,<a href="http://gs.fhtino.it/gdocbackup">GDocBackup</a>. It's not only a nice free utility, but the web site has a great picture.<br />
+<img src="http://gs.fhtino.it/_/rsrc/1211547139810/config/app/images/io_piccolo.jpg" alt="" /></p>
+<h3 id="steps">Steps</h3>
 <ol>
-<li>Encrypting/decrypting both connectionStrings and appSettings in one step.</li>
-<li>Doing it from code.</li>
-<li>Reduced parameters.</li>
+<li>Go through my wife's old Google Drive account--we'll call it Thing One--and remove me as a shared person.</li>
+<li>Go through my Drive and remove her as a shared person.</li>
+<li>Use GDocBackup to download all of her files. &quot;Wait!&quot; you interrupt (which is a little rude), &quot;Why didn't you use Drive's ability to download all the files?&quot; Simple. It doesn't preserve folder layout. I'm sure they'd argue that a file can have more than one label, so it's impossible. But then, why does local Drive sync work? Not impressed.</li>
+<li>Now here's where I crow about my wife. I told her that I could preserve which files were GDocs by keeping two sets of folders: one with only the Google format docs, and one with everything else. Then, I'd import the first ones with Drive set to convert the files. And she says, &quot;Oh, that's all right. You can just upload them all as Microsoft docs.&quot; So, that saves me <em>huge</em> time.</li>
+<li>So, in the interests of saving her work, I determine a few files that really must be in Google format, and upload/convert those, then delete them.</li>
+<li>I then disconnect my local Drive sync, and reconnect using her new Business account--which we'll call Thing Two.</li>
+<li>I copy all of the Thing One files from the GDocBackup folder into the Google Drive folder (Thing Two).</li>
+<li>Wait for synchronization to complete.</li>
 </ol>
-<p>Granted, this is a simple case, where I don’t care about <em>selectively</em> encrypting settings. For that, Jon Galloway has a <a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">good post</a>. In fact, we’ll use Jon’s post as our basis.</p>
-<p><strong><em>Important: In your project, you need to add the System.Configuration assembly. You also add</em> <span style="font-family: consolas;">using System.Configuration</span><em>, but that by itself doesn’t include all the methods we need without referencing the assembly.</em></strong></p>
-<p>In my version, I removed the check for whether the section is locked, because I want an error thrown.</p>
-<pre><code class="language-csharp">if (!section.ElementInformation.IsLocked)
-{. . .
-}
-</code></pre>
-<p>I also allow either encrypting or decrypting. Finally, I wrap up the default behavior, encrypting both appSettings and connectionStrings, in a single method call. Here’s the complete Console Application code.</p>
-<pre><code class="language-csharp">using System;
-using System.Configuration;
-
-namespace EncryptConfig
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            SetDefaultConfigEncryption(true);
-            Console.ReadLine(); //check the file, see if it’s encrypted.
-        }
-
-        private static void SetDefaultConfigEncryption(bool encrypt)
-        {
-            SetConfigSectionEncryption(encrypt,&quot;appSettings&quot;);
-            SetConfigSectionEncryption(encrypt, &quot;connectionStrings&quot;);
-        }
-
-        private static void SetConfigSectionEncryption(bool encrypt, string sectionKey)
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            ConfigurationSection section = config.GetSection(sectionKey);
-            if (section != null)
-            {
-                if (encrypt &amp;&amp; !section.SectionInformation.IsProtected)
-                {
-                        section.SectionInformation.ProtectSection(&quot;DataProtectionConfigurationProvider&quot;);
-                }
-                if (!encrypt &amp;&amp; section.SectionInformation.IsProtected)
-                {
-                        section.SectionInformation.UnprotectSection();
-                }
-                section.SectionInformation.ForceSave = true;
-                config.Save(ConfigurationSaveMode.Full);
-            }
-        }
-    }
-}
-</code></pre>
-<p>Assuming an executable named EncryptConfig.exe, when running the above in Debug mode, the file that’s encrypted is <span style="font-family: consolas;">bin\Debug\EncryptConfig.vshost.exe.Config</span></p>
-<p>That’s nice and makes sense, because that’s the executable that’s actually in use, even though the regular exe has been built, too.The vshost config file is immediately reverted back when debugging ends. Here’s the encrypted version. Whew!</p>
-<pre><code class="language-csharp">&lt;connectionStrings configProtectionProvider=&quot;DataProtectionConfigurationProvider&quot;&gt;
-    &lt;EncryptedData&gt;
-      &lt;CipherData&gt;
-        &lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAkgsqGn6mo3noCKO2peA8w799u8ajWVLado9goQ8esSAAAAAAOgAAAAAIAACAAAADqB7GDKmDFY9buAJlgMDyUoos81ALB/3/UKAtk3wT53TADAAAHixr6r15/5eNFgPHnXPJD950sY5F9oAjYRF4Cpfu9sfd532WpEOxFnST1W4LgX+u+d8so2rf5FqN3ikxsJY4Y1p3xpQeJEA1xa4i9L4n5arPabK4mmNn7fKTKjxri1Xktqkhkb1FLV/opfFFRnOlRy64nFOzWr4Ucwwsr8VR7d3TTt6MD2Bg3pJDZiUgjcQ+tXdD8cHkEhfKfxbMdeLfO65uG6VbyAm+ldjp7p9D6c2Z9DyBbq+rEShrMvMTL+lZ52j9H63sD+V93ESJ9FMgjOMX48TG2ZvboQE6EbiLmM0uH50BqziGUat3ft3Frc+0mQHfoqhnVs2M7mCt5mkjE3Tb0pcvjN3XvWVqo9wy5jxB0K/9yRuPTtSdVBV1q4chHGUZ4XsvBjTnt67LP2XdAYcu/Xju6Swv/dkgXMuXPzuAMgizX86CYuLebR0hMNH3Spiz9ODX98wUFCJMzJ4kQupxpdRNafNKISQWZI7119Anjehz4x3yeWJjUNoatTMWxoQ2xeYr+SlyiRoTOI3BrvfPGgpkDG9nQH2S+8dWMJyWRPHBs2GbrPqjjtLA1yR+2rqt9Uocv29oBJ6DwvnT+FA0p9P/Qp91jzEpRmcTEz+EYoIJfwSsBOIZuRXllcNJkaO1Ni/ThvGpTg0aqotXrhY0MoQlI4m/iPly2qkKVKr3O1qMwY9GrYERTrbj5pKb+hXFPgsOAEDgRBiAHsH6FuoZjG0MIXVTGg4zmJ+7rhsa8EPh61ROI6DwW1rRTA9DSKs9LS1sxeHTR/8QWaLxZuRWSwjuZJaVybPyllU1rvOFzDY9Nv96wk1n9u6s21fSf233l4nuu+7np8VfUdYUxNGfn0TwH69bh8cg1wqaJVCEoSioMHFidrKArtSCciJHW27jn3/SsRz4HWNudebTY8WZTf9YsLTuP0jC7dxuX9CIpuhcJBXitpvyVGxwC5NfmKDAsl/Dws4Rt+/YXVJ/4j5JvT35ZxYbTm/cZgvhL/z6j5odkCkIxey3ulqt1o57VNWJ18Ks0lTStRN0esejDVL6ThnqSVtlP2BCB5bThoRGXvyxhuz6Y/ON4SgeK8vBAAAAAX9I6BKGWYUcUHSscMRV2a6VGisOj9FzqTTWn0YAbeQ2hK0ZuYgK2x7hgp6iZcFJnvvuvXWTHzdvDtEliixpHQQ==&lt;/CipherValue&gt;
-      &lt;/CipherData&gt;
-    &lt;/EncryptedData&gt;
-  &lt;/connectionStrings&gt;
-  &lt;appSettings configProtectionProvider=&quot;DataProtectionConfigurationProvider&quot;&gt;
-    &lt;EncryptedData&gt;
-      &lt;CipherData&gt;
-        &lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAcT/dxC/l5+9h0pizxo4Thn6rgtJlRVLwGediRA8DpywAAAAAOgAAAAAIAACAAAADHdhTfi7lUXxm6CwB3S252W+lo63eEXsNwxrnPOdfQUCABAACM0LuV5c69abxGbAY6Btx9i/lUhfqjGd8B5MvNCmkwN9hQW90sPzgwBYc7o7EJPM9M2PrgbMXmCo1fUn45ZZdoL68b9andNZe78AJAKz+HNRPBaW3UD2ruwZMKr8F/FVlFxrVnrgytRxDbNNZGfwOR8WrfLsISJdOJHjZcOhLU+hsSVeA2WeSPoH/QR7L+zGqZ15/9VmULHK/0J2KacFKyqn8d4SNIOehAR+t7tlec/qdSsFYtsIWq+c4k4mgWWOVwhCXqzc+3dXRforeEYuBHfsG5KyYsxsaZZdg2dm3wooCJCCv8tK86FuDCBym8L5R1oreRWT8WAq73UM4GJn5in5ZDeAK00lnhjB8DddOy7GjrflIIM63Rc1ClXUrfm3lAAAAA+KiFbW8vRL7rF6Kl9uKDpVp8uzCMs5JcPM9lqHz5XNNQ3m7zEk8TaVoOLC56AKu5rJ+ecX76XYWfQqvpQxDj/g==&lt;/CipherValue&gt;
-      &lt;/CipherData&gt;
-    &lt;/EncryptedData&gt;
-  &lt;/appSettings&gt;
-</code></pre>
-<p>There’s nothing new here, I just wanted to document what I think of as a common implementation instead of the generic one. If I’ve made a security error let me know.</p>
-<h2 id="references">References</h2>
-<p>Many pages reference David Hayden’s seminal post on the subject, but I was unable to locate the original.</p>
-<p><a href="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx" title="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx">https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx</a><br />
-<a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">Jon Galloway’s Post</a><br />
-<a href="http://www.4guysfromrolla.com/articles/021506-1.aspx">4 Guys from Rolla</a></p>
+<p>There. Wasn't that easy?*<br />
+I really hope Google makes this process better. What I really don't understand is why they don't allow assigning ownership across domains. I mean, it's probably just a primary key field in a database. But what do I know?<br />
+------------------------------<br />
+*No, it wasn't.</p>
 </div>
               </div>
-              
-
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></h2>
-                <p class='post-info'><span class='posted-on'>2015-03-04 14:38</span></p>
-                <div class='post-content'><p>I am not a web designer. Lest that be unclear, let me call it out.</p>
-<blockquote>
-<p><em>I am not a web designer</em></p>
-</blockquote>
-<p>But, I can imitate, and I can figure things out. Except programmable thermostats. Baffling.</p>
-<p>It’s no secret that Google Sites themes are uniformly mediocre. I went searching for tutorials on how to do better, and found some help—not much—and a company, <a href="http://www.kirksvillewebdesign.com/google-sites">Kirksville Web Design</a>, who specializes in them. This was a pretty big help, because I got to look at actual sites that I knew could be done in GS. I could either pay them for templates, or figure it out.</p>
-<p>This isn’t a tutorial on how to use Google Sites, nor on how to create web images. I’m assuming you know enough about both. (I use <a href="http://inkscape.org">Inkscape</a> to create a lot of my graphics.)</p>
-<p>Now, if you want a really professional site, hire a professional designer like Kirksville. But if you want a decent looking site, here are instructions for creating a simple, better design. The reference web site—again, designed by Kirksville—is <a href="http://www.aim-for-a-revision-courses.co.uk/about-us-1">Aim for ‘A’</a>. The basic layout features a notched design.</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/Notched_Site_Design_Layout.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/Notched_Site_Design_Layout.png" alt="Notched Site Design Layout" title="Notched Site Design Layout" /></a></p>
-<p>That’s not so attractive, but the <a href="http://www.hudsoncma.org/">final site I created</a> is.</p>
-<p><a href="http://www.hudsoncma.org/"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image.png" alt="image" title="image" /></a></p>
-<h1 id="initial-setup">Initial Setup</h1>
-<p>Create a Google Site (GS) with a blank template and the Blank Slate theme. You’ll get a pretty ugly page.</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-001.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-001.png" alt="image" title="image" /></a></p>
-<p>Edit the page and add some text.</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-002.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-002.png" alt="image" title="image" /></a></p>
-<p>Now we’re ready to edit the Site Layout</p>
-<h1 id="site-layout">Site Layout</h1>
-<ol>
-<li>Only activate Header and Horizontal Navigation (deactivate Sidebar). Set Site Width to Custom 1000px (press Enter in this text box to save the setting).</li>
-<li>Click the Header to edit, and set height to 130px. This is what gives the upper notched effect. Less height increases the notch.<br />
-<a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-003.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-003.png" alt="image" title="image" /></a></li>
-<li>Click the Close button. This gives us a centered site.</li>
-</ol>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-004.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-004.png" alt="image" title="image" /></a></p>
-<p>Now, choose Manage Site.</p>
-<h1 id="manage-site">Manage Site</h1>
-<p>In the General page,</p>
-<ol>
-<li>Uncheck Show Site Name at Top of Pages</li>
-<li>Click Configure Search. Uncheck “Enable Search.” This gets rid of the search box.</li>
-<li>Under Mobile: Check Automatically Adjust Site to Mobile Phones</li>
-<li>Save</li>
-</ol>
-<p>Now open the Themes, Colors, and Fonts page. For the header and footer, you’ll need the following. I used png files, but you could use jpg or gif as desired.</p>
-<ul>
-<li>A single-color image 1px wide by 200px high, named header-background.png. I chose color #646464.</li>
-<li>A single-color image 1px wide by 100px high, named footer-background.png.I chose color #646464.</li>
-<li>A header/logo image 1000px wide by 130px high, named header.png. I made the image’s background color #646464 to match the header color. A more advanced (and better) technique is to surround the logo/text with a transparent box only as big as needed, to save download size.</li>
-</ul>
-<p>Make these changes.</p>
-<ol>
-<li>Entire Page
-<ol>
-<li>Background color: #c8c8c8.</li>
-<li>Image: header-background.png. Repeating horizontally fills the space without downloading a large file.<br />
-<a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-005.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-005.png" alt="image" title="image" /></a></li>
-<li>Wrapper: footer-background.png. Note Vertical Position is “bottom.”<br />
-<a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-006.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-006.png" alt="image" title="image" /></a></li>
-</ol>
-</li>
-<li>Site header
-<ol>
-<li>Background Image: header.png. No repetition. (see <em>More about Headers</em>, below).<br />
-<a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-007.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-007.png" alt="image" title="image" /></a></li>
-</ol>
-</li>
-<li>Content area
-<ol>
-<li>Background color: white</li>
-</ol>
-</li>
-<li>Save.</li>
-</ol>
-<p>Et voila!</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-008.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-008.png" alt="image" title="image" /></a></p>
-<p>There’s clearly more that should be done to make this attractive, but this gives you a good start.</p>
-<h1 id="more-about-headers">More About Headers</h1>
-<p>The Hudson CMA web site has a centered logo. I didn’t use a 130x1000 image for this. Instead, I surrounded the logo in a transparent box to give the margins I wanted. Then, <em>instead</em> of adding the logo using Manage Site &gt; Themes, I added it using Site Layout &gt; Header.</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-009.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-009.png" alt="image" title="image" /></a></p>
-<p>One isn’t necessarily better than the other, though they can lead to differences in how the horizontal menu is placed. More on that in another post.</p>
-<h1 id="section"></h1>
-<h1 id="references">References</h1>
-<p><a href="http://blog.msbethea.com/?p=965">Google Sites: Build Your Own Theme</a></p>
-<p><a href="http://www.summitstuff.com/sites-and-blogs/designing-sites-part1">Summit Stuff: Designing Google Sites</a></p>
-<p><a href="https://sites.google.com/site/gsitesgallery/">GSites Gallery</a>   Great inspiration</p>
-<p><a href="http://www.googlesiteswebdesign.com/">Google Sites Web Design</a>  A site maintained by Kirksville</p>
-<p><a href="http://www.sitestemplate.net/">Site Template</a>  If you want to buy templates</p>
-<p><a href="http://www.kirksvillewebdesign.com/google-sites">Kirksville Web Design</a></p>
-</div>
-              </div>
-              
-
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></h2>
-                <p class='post-info'><span class='posted-on'>2015-03-03 13:32</span></p>
-                <div class='post-content'><p>This is a “notes” post, no nice graphics and probably typos. If it helps you—or you sympathize—then it was worth posting.</p>
-<p>In June of 2013 I bought an <a href="http://store.acer.com/store?SiteID=acerna&amp;Action=Content&amp;pbPage=AspireR7&amp;pgm=88341000">Acer Aspire R7-571</a>. It looked great, and worked pretty well except for two things: the spacebar didn’t always respond, and the wireless seemed slow and flaky.</p>
-<p>I shipped it in for repair on the spacebar, which was successful. For some reason, I didn’t ask about the WiFi. About six months later, I gave it to my wife and bought a <a href="http://shop.lenovo.com/us/en/laptops/lenovo/u-series/u530-touch/">Lenovo IdeaPad U530 Touch</a>. Which also had WiFi problems. Those got straightened out, eventually, by using Intel drivers. But it took about a year.</p>
-<p>Recently, I had to do a bare metal restore of the R7. After the restore, the WiFi problem was strongly evident: flaky performance and seemingly throttled speeds at 5GHz. After some research, I decided to replace the adaptor with a dual band Intel 7260 + Bluetooth. The replacement took about twenty minutes, and the WiFi came right up.</p>
-<p>But no Bluetooth. Apparently (more research), the R7’s hardware doesn’t work equally with all wireless cards, which I frankly find bizarre and absurd. But, there was nothing for it except to put the old card back in and plan on selling the machine when I could (with full disclosure to prospective buyers, of course). I really should have removed the Bluetooth keyboard and mouse before starting any of this….</p>
-<p>After the card was reinstalled, I could see the keyboard/mouse listed in Bluetooth, but the hardware wouldn’t respond. I tried deleting them. No good. I tried repairing. The “new” devices wouldn’t show. I tried deleting three different ways (see below). No good. What follows is the rest of the story (sorry, <a href="http://en.wikipedia.org/wiki/Paul_Harvey">Paul Harvey</a>).</p>
-<p>Here are the symptoms. Some people refer to these as “ghosted” devices.</p>
-<p>Searched file system for “sculpt”, took about 30 minutes. nothing found.</p>
-<p>Searched registry, nothing found.</p>
-<p>Being held in memory? Even after removing from registry and uninstalling driver?</p>
-<p>In the following steps, unless indicated, neither mouse nor keyboard were on.</p>
-<ol>
-<li>Closed all bluetooth-related apps.</li>
-<li>Deleted registry entries.</li>
-<li>Uninstalled Broadcom bluetooth software. (Nothing to do if using native drivers?)</li>
-<li>Restart as directed.</li>
-<li>Checked for “sculpt” in registry and files.</li>
-<li>Items appeared in registry. Deleted keys and uninstalled Bluetooth USB module driver from Device Manager.</li>
-<li>Reboot.</li>
-<li>Research “sculpt”. Nothing in registry or file system.</li>
-<li>Found “missing” bluetooth in Devce Manager, tried updating driver, nothing.</li>
-<li>Ran Windows Update to see if standard drivers would appear. No updates.</li>
-<li>Installed Bluetooth drivers. Devices showed up in Device Manager again! How???</li>
-<li>OK, uninstall BT software and drivers again, and this time delete the WIDCOMM folder in Program Files.</li>
-<li>Search for WIDCOMM in registry and files. Delete all occurrences (where appropriate). Clear Recycle Bin.</li>
-<li>Restart.</li>
-<li>Set the devmgr_show_nonpresent_device=1 environment variable. Nothing new in Device Manager.</li>
-<li>Reinstall Bluetooth software.</li>
-<li>And, there they are again! Seems impossible. But, fine, restart.</li>
-<li>Tried an earlier BT driver version.</li>
-<li>Enabled Administrator user and logged in as that user. Same results.</li>
-</ol>
-<p>Tried lots of other suggestions from various sites. None worked. I can’t believe this, but I’m going to have to do a clean reset/reinstallation.</p>
-<p>What I can’t fathom is where the device information is being stored. The display names have to come from somewhere, and if they aren’t in the registry or file system, where else can they be? Nowhere is the right answer, but apparently the incorrect one.</p>
-<p>You win, Acer. You’ve succeeded in guaranteeing I won’t buy another item from you. I said this once before, and then you lulled me with your siren song. But no more. The wax is firmly in my ears.</p>
-</div>
-              </div>
-               <div class='paging'><a href='index59.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index61.html'>Older</a></div>
+               <div class='paging'><a href='index70.html'>Newer</a>&nbsp;&nbsp;&nbsp;</div>
       </section>
       <footer><p>All original content copyright (c) Charles L Flatt</p>
 </footer>

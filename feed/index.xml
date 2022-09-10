@@ -6,6 +6,35 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>The Mythical Man-Month: A Short Review of the Essential Essays</title>
+      <description>&lt;p&gt;A book club I belong to agreed to read Frederick P. Brooks's seminal essay collection &lt;a href="https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959"&gt;The Mythical Man-Month&lt;/a&gt;. We somewhat abandoned the book, finding a lot of it out of date, plus there's no audio version which is how some of the members read. I promised the group I'd read some specific essays because I wanted to, and report back.&lt;/p&gt;
+&lt;p&gt;I've made good on that promise. I think the following are worth reading for a few reasons, which I touch on below. Something not clear initially is when the essays were written. I think that's important for the context, so include what the dates seem to be.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Tar Pit (1975)&lt;/em&gt;&lt;br /&gt;
+While not essential, this short essay nicely discusses what makes software hard and enjoyable. I think most of what Brooks says holds true today.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Mythical Man-Month (1975)&lt;/em&gt;&lt;br /&gt;
+For the title essay, the thesis has held up; adding developers (to a late project) doesn't reduce time-to-completion. Communication is a core challenge of software shops. When new developers are added, there's significant ramp-up time for them, plus other employees' training time devoted to them--taking time away from their own days.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;No Silver Bullet (1986)&lt;/em&gt;&lt;br /&gt;
+This is Brooks's other most famous essay, written just as microcomputers are coming on the scene. In it he proposes software development won't see magnitudes of performance improvement from any single tool or process. He also breaks down why that is, and comparing software development to hardware development makes an observation I hadn't considered: it's hardware development that's the outlier. The incredible advances in power coupled with reduced cost hadn't--and haven't--happened in any other industry.&lt;/p&gt;
+&lt;p&gt;Reading this essay is watching history unfold. Brooks is excited about new approaches--such as objective-oriented programming!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;'No Silver Bullet' Refired (1995)&lt;/em&gt;&lt;br /&gt;
+Here, Brooks examines his own essay nine years later. What a difference those years make! And yet, he argues that there is still no single silver bullet despite many advances. He discusses the various critiques of his essay, acknowledges where they're valid, points out where they're not. I enjoyed that he quotes Capers Jones on the subject of productivity.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;NSB,&amp;quot; like most writings at the time, was focused on &lt;em&gt;productivity&lt;/em&gt;, the software output per unit of input. Jones says, &amp;quot;No. Focus on &lt;em&gt;quality&lt;/em&gt;, and productivity will follow.&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I completely agree.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;The Mythical Man-Month after 20 Years (1995)&lt;/em&gt;&lt;br /&gt;
+This might be my favorite essay. Brooks discusses his entire book, where he was right, and where he was wrong. With gracious humility, he says, &amp;quot;I dismissed Parnas's concept [of information hiding] as a 'recipe for disaster' in Chapter 7. Parnas was right, and I was wrong.&amp;quot;&lt;/p&gt;
+&lt;p&gt;He reveals discussions with the great James McCarthy of Microsoft who pioneered incremental and iterative processes we take for granted (even when business still don't do them!). But mostly, this essay is a snapshot of the industry approaching a turning point of both powerful personal computers and, in a few years, the codification of Agile values and principles. He names bunches of software, a lot I recognized, and most of which is no longer in use.&lt;/p&gt;
+&lt;p&gt;1995 was only a year after I entered the computing industry. I wish I'd found this book then, though I wouldn't have understood it. So much of what we talk and read about seems new, but Brooks and his colleagues were struggling with--and solving--these problems already.&lt;/p&gt;
+&lt;p&gt;We owe these masters a debt, and maybe that's why I'm glad I didn't give up on reading more of the book. I feel I've, in a small way, said &amp;quot;thank you&amp;quot; to those who came before me and made my career possible.&lt;/p&gt;
+&lt;p&gt;One final item. While the essay &lt;em&gt;Why Did the Tower of Babel Fail&lt;/em&gt; didn't make my list, I wrote a fuller article about it on my blog. It disputes Brooks's Tower metaphor, and won't be to everyone's taste, but here it is for you to decide for yourself.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.softwaremeadows.com/posts/meditation_on_the_mythical_man_month__who_failed_on_the_tower_of_babel_project/"&gt;Meditation On The Mythical Man-Month: Who Failed On The Tower Of Babel Project? | Software Meadows&lt;/a&gt;&lt;/p&gt;
+</description>
+      <pubDate>Fri, 9 Sep 2022 19:20:49 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/the_mythical_man-month__a_short_review_of_the_essential_essays</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_mythical_man-month__a_short_review_of_the_essential_essays</guid>
+    </item>
+    <item>
       <title>Basic Debugging and Problem Solving Questions</title>
       <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/basic_debugging_and_problem_solving_questions/elisa-ventur-bmJAXAz6ads-unsplash.jpg" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;sup&gt;Photo by &lt;a href="https://unsplash.com/@elisa_ventur?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Elisa Ventur&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/problem?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
@@ -1587,36 +1616,6 @@ Mine didn't run right the first time. I forgot to pass the options to the JSON d
       <pubDate>Sat, 2 Jul 2022 16:45:08 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd</guid>
-    </item>
-    <item>
-      <title>The Worst Interview Question</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_worst_interview_question/van-tay-media-TFFn3BYLc5s-unsplash.jpg" alt="" /&gt;&lt;br /&gt;
-&lt;sup&gt;Photo by Van Tey Media, Free to use under the Unsplash License&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;I know this is kind of click-bait; there are many interview questions that could rise to the level of &amp;quot;worst.&amp;quot; But this one really irks me. The worst interview question comes at the very beginning and is excruciatingly common.&lt;/p&gt;
-&lt;p&gt;&amp;quot;Tell me about yourself.&amp;quot;&lt;/p&gt;
-&lt;p&gt;Now, purists will complain that this isn't even a question, that it's a command. I'd argue it's a question in the form of a statement. But that's trivial. It's not what bugs me. When I'm asked this, I usually respond with some polite variation of&lt;/p&gt;
-&lt;p&gt;&amp;quot;You have my résumé. What do you want to know?&amp;quot;&lt;/p&gt;
-&lt;p&gt;Do you see? Why ask that first, broad, unfocused question? From the interviewer's point of view, I think many would say, &amp;quot;It shows me how you present yourself.&amp;quot;&lt;/p&gt;
-&lt;p&gt;No, it doesn't. Not accurately.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_worst_interview_question/laurenz-kleinheider-OsC8HauR0e0-unsplash.jpg" alt="" /&gt;&lt;br /&gt;
-&lt;sup&gt;Photo by Laurence Kleinheider, Free to use under the Unsplash License&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;What it tells me as a candidate is you didn't do your research. You at best glanced at my résumé, and now you want me to summarize a document I've already spent hours over years honing. But it's worse than that. Because if I start telling you about my job experience, I'm &lt;em&gt;assuming&lt;/em&gt; that's what you want to know. I'm not even telling you what's important to me (even though you might think otherwise). I'm telling you what I'm &lt;em&gt;guessing&lt;/em&gt; is important to you.&lt;/p&gt;
-&lt;p&gt;Don't play games. Don't be lazy. Prepare for the interview.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Most companies' first interview is a screening. So, what's the barrier to being considered for stage two? Ask those questions. &amp;quot;Our software improves animal research efficiency. Do you have ethical concerns about animal testing?&amp;quot;&lt;/li&gt;
-&lt;li&gt;Tell the candidate more about the specific role, or about the company. Provide context for the questions you're going to ask. &amp;quot;We're invested in pair programming. Not everyone likes that, which we understand. What do you think about pair programming?&amp;quot;&lt;/li&gt;
-&lt;li&gt;Ask questions based on their résumé. &amp;quot;I see you did some finance work, which is also part of our business. What did you specifically do on that team?&amp;quot;&lt;/li&gt;
-&lt;li&gt;Certainly ask open-ended questions, but still keep them relevant. &amp;quot;What do you enjoy doing outside of the job?&amp;quot; matters if the company or team cares about home-job balance.&lt;/li&gt;
-&lt;li&gt;Have a conversation. This is harder than &amp;quot;First we ask you questions for 25 minutes. Then you get 5 minutes to ask us questions.&amp;quot; But, look, it's an interview, not an interrogation. Assume the interviewing goes both ways. In fact, &lt;em&gt;invite&lt;/em&gt; that.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&amp;quot;Tell me about yourself&amp;quot; isn't friendly or useful. It makes the candidate uncomfortable, trying to please, and off-balances them out of the gate. Or, they practice a standard, formal answer that only tells you they can memorize a pitch.&lt;/p&gt;
-&lt;p&gt;Your interviews reflect your company's values. Want better matching employees? Ask thoughtful questions that matter.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/the_worst_interview_question/cody-engel-E8jI4iSq0tQ-unsplash.jpg" alt="" /&gt;&lt;br /&gt;
-&lt;sup&gt;Photo by Cody Engel, Free to use under the Unsplash License&lt;/sup&gt;&lt;/p&gt;
-</description>
-      <pubDate>Thu, 30 Jun 2022 17:43:05 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/the_worst_interview_question</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_worst_interview_question</guid>
     </item>
   </channel>
 </rss>

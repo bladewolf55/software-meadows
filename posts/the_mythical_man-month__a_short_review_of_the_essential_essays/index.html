@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/kavadocs.css' />
 
 
-  <title>Home | Software Meadows</title>
+  <title>The Mythical Man-Month: A Short Review Of The Essential Essays | Software Meadows</title>
 </head>
 
 <body>
@@ -60,237 +60,44 @@
         <div id="site-subtitle">A pleasant walk through computing</div>
       </header>
       <section id="content">
-        <hr />
-
+        
+              <div class='post'>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/the_mythical_man-month__a_short_review_of_the_essential_essays'>The Mythical Man-Month: A Short Review of the Essential Essays</a></h2>
+                <p class='post-info'><span class='posted-on'>2022-09-09 19:20</span></p>
+                <div class='post-content'><p>A book club I belong to agreed to read Frederick P. Brooks's seminal essay collection <a href="https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959">The Mythical Man-Month</a>. We somewhat abandoned the book, finding a lot of it out of date, plus there's no audio version which is how some of the members read. I promised the group I'd read some specific essays because I wanted to, and report back.</p>
+<p>I've made good on that promise. I think the following are worth reading for a few reasons, which I touch on below. Something not clear initially is when the essays were written. I think that's important for the context, so include what the dates seem to be.</p>
+<p><em>The Tar Pit (1975)</em><br />
+While not essential, this short essay nicely discusses what makes software hard and enjoyable. I think most of what Brooks says holds true today.</p>
+<p><em>The Mythical Man-Month (1975)</em><br />
+For the title essay, the thesis has held up; adding developers (to a late project) doesn't reduce time-to-completion. Communication is a core challenge of software shops. When new developers are added, there's significant ramp-up time for them, plus other employees' training time devoted to them--taking time away from their own days.</p>
+<p><em>No Silver Bullet (1986)</em><br />
+This is Brooks's other most famous essay, written just as microcomputers are coming on the scene. In it he proposes software development won't see magnitudes of performance improvement from any single tool or process. He also breaks down why that is, and comparing software development to hardware development makes an observation I hadn't considered: it's hardware development that's the outlier. The incredible advances in power coupled with reduced cost hadn't--and haven't--happened in any other industry.</p>
+<p>Reading this essay is watching history unfold. Brooks is excited about new approaches--such as objective-oriented programming!</p>
+<p><em>'No Silver Bullet' Refired (1995)</em><br />
+Here, Brooks examines his own essay nine years later. What a difference those years make! And yet, he argues that there is still no single silver bullet despite many advances. He discusses the various critiques of his essay, acknowledges where they're valid, points out where they're not. I enjoyed that he quotes Capers Jones on the subject of productivity.</p>
+<blockquote>
+<p>&quot;NSB,&quot; like most writings at the time, was focused on <em>productivity</em>, the software output per unit of input. Jones says, &quot;No. Focus on <em>quality</em>, and productivity will follow.&quot;</p>
+</blockquote>
+<p>I completely agree.</p>
+<p><em>The Mythical Man-Month after 20 Years (1995)</em><br />
+This might be my favorite essay. Brooks discusses his entire book, where he was right, and where he was wrong. With gracious humility, he says, &quot;I dismissed Parnas's concept [of information hiding] as a 'recipe for disaster' in Chapter 7. Parnas was right, and I was wrong.&quot;</p>
+<p>He reveals discussions with the great James McCarthy of Microsoft who pioneered incremental and iterative processes we take for granted (even when business still don't do them!). But mostly, this essay is a snapshot of the industry approaching a turning point of both powerful personal computers and, in a few years, the codification of Agile values and principles. He names bunches of software, a lot I recognized, and most of which is no longer in use.</p>
+<p>1995 was only a year after I entered the computing industry. I wish I'd found this book then, though I wouldn't have understood it. So much of what we talk and read about seems new, but Brooks and his colleagues were struggling with--and solving--these problems already.</p>
+<p>We owe these masters a debt, and maybe that's why I'm glad I didn't give up on reading more of the book. I feel I've, in a small way, said &quot;thank you&quot; to those who came before me and made my career possible.</p>
+<p>One final item. While the essay <em>Why Did the Tower of Babel Fail</em> didn't make my list, I wrote a fuller article about it on my blog. It disputes Brooks's Tower metaphor, and won't be to everyone's taste, but here it is for you to decide for yourself.</p>
+<p><a href="https://www.softwaremeadows.com/posts/meditation_on_the_mythical_man_month__who_failed_on_the_tower_of_babel_project/">Meditation On The Mythical Man-Month: Who Failed On The Tower Of Babel Project? | Software Meadows</a></p>
+</div>
+              </div>
+              
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Home | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on The Mythical Man-Month: A Short Review Of The Essential Essays | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
       </section>
       <!-- posts only appear in home index -->
       <section id="posts">
-        
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/encrypting-appconfig'>Encrypting app.config</a></h2>
-                <p class='post-info'><span class='posted-on'>2015-07-25 07:23</span></p>
-                <div class='post-content'><p>Developers often use the app.config (or web.config) file to hold database connection strings and application settings. For example:</p>
-<pre><code class="language-csharp">&lt;connectionStrings&gt;
-  &lt;add name=&quot;WonderDb&quot; connectionString=&quot;Server=BigServe1;Database=Wonder;Integrated Security=True&quot; providerName=&quot;System.Data.SqlClient&quot; /&gt;
-&lt;/connectionStrings&gt;
-&lt;appSettings&gt;
-  &lt;add key=&quot;FtpUser&quot; value=&quot;ariadne&quot; /&gt;
-  &lt;add key=&quot;FtpPassword&quot; value=&quot;maze1$&quot; /&gt;
-&lt;/appSettings&gt;
-</code></pre>
-<p>You can find several pages on how to encrypt these settings, but they don’t usually show a typical solution, which, for me, includes:</p>
-<ol>
-<li>Encrypting/decrypting both connectionStrings and appSettings in one step.</li>
-<li>Doing it from code.</li>
-<li>Reduced parameters.</li>
-</ol>
-<p>Granted, this is a simple case, where I don’t care about <em>selectively</em> encrypting settings. For that, Jon Galloway has a <a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">good post</a>. In fact, we’ll use Jon’s post as our basis.</p>
-<p><strong><em>Important: In your project, you need to add the System.Configuration assembly. You also add</em> <span style="font-family: consolas;">using System.Configuration</span><em>, but that by itself doesn’t include all the methods we need without referencing the assembly.</em></strong></p>
-<p>In my version, I removed the check for whether the section is locked, because I want an error thrown.</p>
-<pre><code class="language-csharp">if (!section.ElementInformation.IsLocked)
-{. . .
-}
-</code></pre>
-<p>I also allow either encrypting or decrypting. Finally, I wrap up the default behavior, encrypting both appSettings and connectionStrings, in a single method call. Here’s the complete Console Application code.</p>
-<pre><code class="language-csharp">using System;
-using System.Configuration;
-
-namespace EncryptConfig
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            SetDefaultConfigEncryption(true);
-            Console.ReadLine(); //check the file, see if it’s encrypted.
-        }
-
-        private static void SetDefaultConfigEncryption(bool encrypt)
-        {
-            SetConfigSectionEncryption(encrypt,&quot;appSettings&quot;);
-            SetConfigSectionEncryption(encrypt, &quot;connectionStrings&quot;);
-        }
-
-        private static void SetConfigSectionEncryption(bool encrypt, string sectionKey)
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            ConfigurationSection section = config.GetSection(sectionKey);
-            if (section != null)
-            {
-                if (encrypt &amp;&amp; !section.SectionInformation.IsProtected)
-                {
-                        section.SectionInformation.ProtectSection(&quot;DataProtectionConfigurationProvider&quot;);
-                }
-                if (!encrypt &amp;&amp; section.SectionInformation.IsProtected)
-                {
-                        section.SectionInformation.UnprotectSection();
-                }
-                section.SectionInformation.ForceSave = true;
-                config.Save(ConfigurationSaveMode.Full);
-            }
-        }
-    }
-}
-</code></pre>
-<p>Assuming an executable named EncryptConfig.exe, when running the above in Debug mode, the file that’s encrypted is <span style="font-family: consolas;">bin\Debug\EncryptConfig.vshost.exe.Config</span></p>
-<p>That’s nice and makes sense, because that’s the executable that’s actually in use, even though the regular exe has been built, too.The vshost config file is immediately reverted back when debugging ends. Here’s the encrypted version. Whew!</p>
-<pre><code class="language-csharp">&lt;connectionStrings configProtectionProvider=&quot;DataProtectionConfigurationProvider&quot;&gt;
-    &lt;EncryptedData&gt;
-      &lt;CipherData&gt;
-        &lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAkgsqGn6mo3noCKO2peA8w799u8ajWVLado9goQ8esSAAAAAAOgAAAAAIAACAAAADqB7GDKmDFY9buAJlgMDyUoos81ALB/3/UKAtk3wT53TADAAAHixr6r15/5eNFgPHnXPJD950sY5F9oAjYRF4Cpfu9sfd532WpEOxFnST1W4LgX+u+d8so2rf5FqN3ikxsJY4Y1p3xpQeJEA1xa4i9L4n5arPabK4mmNn7fKTKjxri1Xktqkhkb1FLV/opfFFRnOlRy64nFOzWr4Ucwwsr8VR7d3TTt6MD2Bg3pJDZiUgjcQ+tXdD8cHkEhfKfxbMdeLfO65uG6VbyAm+ldjp7p9D6c2Z9DyBbq+rEShrMvMTL+lZ52j9H63sD+V93ESJ9FMgjOMX48TG2ZvboQE6EbiLmM0uH50BqziGUat3ft3Frc+0mQHfoqhnVs2M7mCt5mkjE3Tb0pcvjN3XvWVqo9wy5jxB0K/9yRuPTtSdVBV1q4chHGUZ4XsvBjTnt67LP2XdAYcu/Xju6Swv/dkgXMuXPzuAMgizX86CYuLebR0hMNH3Spiz9ODX98wUFCJMzJ4kQupxpdRNafNKISQWZI7119Anjehz4x3yeWJjUNoatTMWxoQ2xeYr+SlyiRoTOI3BrvfPGgpkDG9nQH2S+8dWMJyWRPHBs2GbrPqjjtLA1yR+2rqt9Uocv29oBJ6DwvnT+FA0p9P/Qp91jzEpRmcTEz+EYoIJfwSsBOIZuRXllcNJkaO1Ni/ThvGpTg0aqotXrhY0MoQlI4m/iPly2qkKVKr3O1qMwY9GrYERTrbj5pKb+hXFPgsOAEDgRBiAHsH6FuoZjG0MIXVTGg4zmJ+7rhsa8EPh61ROI6DwW1rRTA9DSKs9LS1sxeHTR/8QWaLxZuRWSwjuZJaVybPyllU1rvOFzDY9Nv96wk1n9u6s21fSf233l4nuu+7np8VfUdYUxNGfn0TwH69bh8cg1wqaJVCEoSioMHFidrKArtSCciJHW27jn3/SsRz4HWNudebTY8WZTf9YsLTuP0jC7dxuX9CIpuhcJBXitpvyVGxwC5NfmKDAsl/Dws4Rt+/YXVJ/4j5JvT35ZxYbTm/cZgvhL/z6j5odkCkIxey3ulqt1o57VNWJ18Ks0lTStRN0esejDVL6ThnqSVtlP2BCB5bThoRGXvyxhuz6Y/ON4SgeK8vBAAAAAX9I6BKGWYUcUHSscMRV2a6VGisOj9FzqTTWn0YAbeQ2hK0ZuYgK2x7hgp6iZcFJnvvuvXWTHzdvDtEliixpHQQ==&lt;/CipherValue&gt;
-      &lt;/CipherData&gt;
-    &lt;/EncryptedData&gt;
-  &lt;/connectionStrings&gt;
-  &lt;appSettings configProtectionProvider=&quot;DataProtectionConfigurationProvider&quot;&gt;
-    &lt;EncryptedData&gt;
-      &lt;CipherData&gt;
-        &lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtX6m55SoIUyvHb37ZhfgAAQAAAACAAAAAAAQZgAAAAEAACAAAAAcT/dxC/l5+9h0pizxo4Thn6rgtJlRVLwGediRA8DpywAAAAAOgAAAAAIAACAAAADHdhTfi7lUXxm6CwB3S252W+lo63eEXsNwxrnPOdfQUCABAACM0LuV5c69abxGbAY6Btx9i/lUhfqjGd8B5MvNCmkwN9hQW90sPzgwBYc7o7EJPM9M2PrgbMXmCo1fUn45ZZdoL68b9andNZe78AJAKz+HNRPBaW3UD2ruwZMKr8F/FVlFxrVnrgytRxDbNNZGfwOR8WrfLsISJdOJHjZcOhLU+hsSVeA2WeSPoH/QR7L+zGqZ15/9VmULHK/0J2KacFKyqn8d4SNIOehAR+t7tlec/qdSsFYtsIWq+c4k4mgWWOVwhCXqzc+3dXRforeEYuBHfsG5KyYsxsaZZdg2dm3wooCJCCv8tK86FuDCBym8L5R1oreRWT8WAq73UM4GJn5in5ZDeAK00lnhjB8DddOy7GjrflIIM63Rc1ClXUrfm3lAAAAA+KiFbW8vRL7rF6Kl9uKDpVp8uzCMs5JcPM9lqHz5XNNQ3m7zEk8TaVoOLC56AKu5rJ+ecX76XYWfQqvpQxDj/g==&lt;/CipherValue&gt;
-      &lt;/CipherData&gt;
-    &lt;/EncryptedData&gt;
-  &lt;/appSettings&gt;
-</code></pre>
-<p>There’s nothing new here, I just wanted to document what I think of as a common implementation instead of the generic one. If I’ve made a security error let me know.</p>
-<h2 id="references">References</h2>
-<p>Many pages reference David Hayden’s seminal post on the subject, but I was unable to locate the original.</p>
-<p><a href="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx" title="https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx">https://msdn.microsoft.com/en-us/library/ms254494(v=vs.110).aspx</a><br />
-<a href="http://weblogs.asp.net/jongalloway/encrypting-passwords-in-a-net-app-config-file">Jon Galloway’s Post</a><br />
-<a href="http://www.4guysfromrolla.com/articles/021506-1.aspx">4 Guys from Rolla</a></p>
-</div>
-              </div>
-              
-
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched'>Better Google Sites Design–The Notched Page</a></h2>
-                <p class='post-info'><span class='posted-on'>2015-03-04 14:38</span></p>
-                <div class='post-content'><p>I am not a web designer. Lest that be unclear, let me call it out.</p>
-<blockquote>
-<p><em>I am not a web designer</em></p>
-</blockquote>
-<p>But, I can imitate, and I can figure things out. Except programmable thermostats. Baffling.</p>
-<p>It’s no secret that Google Sites themes are uniformly mediocre. I went searching for tutorials on how to do better, and found some help—not much—and a company, <a href="http://www.kirksvillewebdesign.com/google-sites">Kirksville Web Design</a>, who specializes in them. This was a pretty big help, because I got to look at actual sites that I knew could be done in GS. I could either pay them for templates, or figure it out.</p>
-<p>This isn’t a tutorial on how to use Google Sites, nor on how to create web images. I’m assuming you know enough about both. (I use <a href="http://inkscape.org">Inkscape</a> to create a lot of my graphics.)</p>
-<p>Now, if you want a really professional site, hire a professional designer like Kirksville. But if you want a decent looking site, here are instructions for creating a simple, better design. The reference web site—again, designed by Kirksville—is <a href="http://www.aim-for-a-revision-courses.co.uk/about-us-1">Aim for ‘A’</a>. The basic layout features a notched design.</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/Notched_Site_Design_Layout.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/Notched_Site_Design_Layout.png" alt="Notched Site Design Layout" title="Notched Site Design Layout" /></a></p>
-<p>That’s not so attractive, but the <a href="http://www.hudsoncma.org/">final site I created</a> is.</p>
-<p><a href="http://www.hudsoncma.org/"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image.png" alt="image" title="image" /></a></p>
-<h1 id="initial-setup">Initial Setup</h1>
-<p>Create a Google Site (GS) with a blank template and the Blank Slate theme. You’ll get a pretty ugly page.</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-001.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-001.png" alt="image" title="image" /></a></p>
-<p>Edit the page and add some text.</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-002.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-002.png" alt="image" title="image" /></a></p>
-<p>Now we’re ready to edit the Site Layout</p>
-<h1 id="site-layout">Site Layout</h1>
-<ol>
-<li>Only activate Header and Horizontal Navigation (deactivate Sidebar). Set Site Width to Custom 1000px (press Enter in this text box to save the setting).</li>
-<li>Click the Header to edit, and set height to 130px. This is what gives the upper notched effect. Less height increases the notch.<br />
-<a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-003.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-003.png" alt="image" title="image" /></a></li>
-<li>Click the Close button. This gives us a centered site.</li>
-</ol>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-004.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-004.png" alt="image" title="image" /></a></p>
-<p>Now, choose Manage Site.</p>
-<h1 id="manage-site">Manage Site</h1>
-<p>In the General page,</p>
-<ol>
-<li>Uncheck Show Site Name at Top of Pages</li>
-<li>Click Configure Search. Uncheck “Enable Search.” This gets rid of the search box.</li>
-<li>Under Mobile: Check Automatically Adjust Site to Mobile Phones</li>
-<li>Save</li>
-</ol>
-<p>Now open the Themes, Colors, and Fonts page. For the header and footer, you’ll need the following. I used png files, but you could use jpg or gif as desired.</p>
-<ul>
-<li>A single-color image 1px wide by 200px high, named header-background.png. I chose color #646464.</li>
-<li>A single-color image 1px wide by 100px high, named footer-background.png.I chose color #646464.</li>
-<li>A header/logo image 1000px wide by 130px high, named header.png. I made the image’s background color #646464 to match the header color. A more advanced (and better) technique is to surround the logo/text with a transparent box only as big as needed, to save download size.</li>
-</ul>
-<p>Make these changes.</p>
-<ol>
-<li>Entire Page
-<ol>
-<li>Background color: #c8c8c8.</li>
-<li>Image: header-background.png. Repeating horizontally fills the space without downloading a large file.<br />
-<a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-005.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-005.png" alt="image" title="image" /></a></li>
-<li>Wrapper: footer-background.png. Note Vertical Position is “bottom.”<br />
-<a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-006.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-006.png" alt="image" title="image" /></a></li>
-</ol>
-</li>
-<li>Site header
-<ol>
-<li>Background Image: header.png. No repetition. (see <em>More about Headers</em>, below).<br />
-<a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-007.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-007.png" alt="image" title="image" /></a></li>
-</ol>
-</li>
-<li>Content area
-<ol>
-<li>Background color: white</li>
-</ol>
-</li>
-<li>Save.</li>
-</ol>
-<p>Et voila!</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-008.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-008.png" alt="image" title="image" /></a></p>
-<p>There’s clearly more that should be done to make this attractive, but this gives you a good start.</p>
-<h1 id="more-about-headers">More About Headers</h1>
-<p>The Hudson CMA web site has a centered logo. I didn’t use a 130x1000 image for this. Instead, I surrounded the logo in a transparent box to give the margins I wanted. Then, <em>instead</em> of adding the logo using Manage Site &gt; Themes, I added it using Site Layout &gt; Header.</p>
-<p><a href="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-009.png"><img src="https://www.softwaremeadows.com/posts/better-google-sites-designthe-notched/images/image-009.png" alt="image" title="image" /></a></p>
-<p>One isn’t necessarily better than the other, though they can lead to differences in how the horizontal menu is placed. More on that in another post.</p>
-<h1 id="section"></h1>
-<h1 id="references">References</h1>
-<p><a href="http://blog.msbethea.com/?p=965">Google Sites: Build Your Own Theme</a></p>
-<p><a href="http://www.summitstuff.com/sites-and-blogs/designing-sites-part1">Summit Stuff: Designing Google Sites</a></p>
-<p><a href="https://sites.google.com/site/gsitesgallery/">GSites Gallery</a>   Great inspiration</p>
-<p><a href="http://www.googlesiteswebdesign.com/">Google Sites Web Design</a>  A site maintained by Kirksville</p>
-<p><a href="http://www.sitestemplate.net/">Site Template</a>  If you want to buy templates</p>
-<p><a href="http://www.kirksvillewebdesign.com/google-sites">Kirksville Web Design</a></p>
-</div>
-              </div>
-              
-
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/removing-unremovable-bluetooth-device'>Removing Unremovable Bluetooth Device: FAIL!</a></h2>
-                <p class='post-info'><span class='posted-on'>2015-03-03 13:32</span></p>
-                <div class='post-content'><p>This is a “notes” post, no nice graphics and probably typos. If it helps you—or you sympathize—then it was worth posting.</p>
-<p>In June of 2013 I bought an <a href="http://store.acer.com/store?SiteID=acerna&amp;Action=Content&amp;pbPage=AspireR7&amp;pgm=88341000">Acer Aspire R7-571</a>. It looked great, and worked pretty well except for two things: the spacebar didn’t always respond, and the wireless seemed slow and flaky.</p>
-<p>I shipped it in for repair on the spacebar, which was successful. For some reason, I didn’t ask about the WiFi. About six months later, I gave it to my wife and bought a <a href="http://shop.lenovo.com/us/en/laptops/lenovo/u-series/u530-touch/">Lenovo IdeaPad U530 Touch</a>. Which also had WiFi problems. Those got straightened out, eventually, by using Intel drivers. But it took about a year.</p>
-<p>Recently, I had to do a bare metal restore of the R7. After the restore, the WiFi problem was strongly evident: flaky performance and seemingly throttled speeds at 5GHz. After some research, I decided to replace the adaptor with a dual band Intel 7260 + Bluetooth. The replacement took about twenty minutes, and the WiFi came right up.</p>
-<p>But no Bluetooth. Apparently (more research), the R7’s hardware doesn’t work equally with all wireless cards, which I frankly find bizarre and absurd. But, there was nothing for it except to put the old card back in and plan on selling the machine when I could (with full disclosure to prospective buyers, of course). I really should have removed the Bluetooth keyboard and mouse before starting any of this….</p>
-<p>After the card was reinstalled, I could see the keyboard/mouse listed in Bluetooth, but the hardware wouldn’t respond. I tried deleting them. No good. I tried repairing. The “new” devices wouldn’t show. I tried deleting three different ways (see below). No good. What follows is the rest of the story (sorry, <a href="http://en.wikipedia.org/wiki/Paul_Harvey">Paul Harvey</a>).</p>
-<p>Here are the symptoms. Some people refer to these as “ghosted” devices.</p>
-<p>Searched file system for “sculpt”, took about 30 minutes. nothing found.</p>
-<p>Searched registry, nothing found.</p>
-<p>Being held in memory? Even after removing from registry and uninstalling driver?</p>
-<p>In the following steps, unless indicated, neither mouse nor keyboard were on.</p>
-<ol>
-<li>Closed all bluetooth-related apps.</li>
-<li>Deleted registry entries.</li>
-<li>Uninstalled Broadcom bluetooth software. (Nothing to do if using native drivers?)</li>
-<li>Restart as directed.</li>
-<li>Checked for “sculpt” in registry and files.</li>
-<li>Items appeared in registry. Deleted keys and uninstalled Bluetooth USB module driver from Device Manager.</li>
-<li>Reboot.</li>
-<li>Research “sculpt”. Nothing in registry or file system.</li>
-<li>Found “missing” bluetooth in Devce Manager, tried updating driver, nothing.</li>
-<li>Ran Windows Update to see if standard drivers would appear. No updates.</li>
-<li>Installed Bluetooth drivers. Devices showed up in Device Manager again! How???</li>
-<li>OK, uninstall BT software and drivers again, and this time delete the WIDCOMM folder in Program Files.</li>
-<li>Search for WIDCOMM in registry and files. Delete all occurrences (where appropriate). Clear Recycle Bin.</li>
-<li>Restart.</li>
-<li>Set the devmgr_show_nonpresent_device=1 environment variable. Nothing new in Device Manager.</li>
-<li>Reinstall Bluetooth software.</li>
-<li>And, there they are again! Seems impossible. But, fine, restart.</li>
-<li>Tried an earlier BT driver version.</li>
-<li>Enabled Administrator user and logged in as that user. Same results.</li>
-</ol>
-<p>Tried lots of other suggestions from various sites. None worked. I can’t believe this, but I’m going to have to do a clean reset/reinstallation.</p>
-<p>What I can’t fathom is where the device information is being stored. The display names have to come from somewhere, and if they aren’t in the registry or file system, where else can they be? Nowhere is the right answer, but apparently the incorrect one.</p>
-<p>You win, Acer. You’ve succeeded in guaranteeing I won’t buy another item from you. I said this once before, and then you lulled me with your siren song. But no more. The wax is firmly in my ears.</p>
-</div>
-              </div>
-               <div class='paging'><a href='index59.html'>Newer</a>&nbsp;&nbsp;&nbsp;<a href='index61.html'>Older</a></div>
+         
       </section>
       <footer><p>All original content copyright (c) Charles L Flatt</p>
 </footer>
