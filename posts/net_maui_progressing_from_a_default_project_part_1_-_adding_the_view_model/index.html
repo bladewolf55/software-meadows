@@ -145,7 +145,7 @@ As of 2022-06-20, using Android 12.1 as configured above, clicking the button do
 <p>Right now, when we click the app's button it runs code in the <code>MainPage.xaml.cs</code> class. If this looks familiar to some of you<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>, it's because it's the same code-behind approach used in ASP.NET WebForms.</p>
 <p>It works, but is too tightly coupled. Let's pull that simple functionality into a View Model.</p>
 <ol>
-<li>Add the NuGet package <del><code>Microsoft.Toolkit.Mvvm</code></del> <code>CommunityToolkit.Mvvm</code>.
+<li>Add the NuGet package <del><code>CommunityToolkit.Mvvm</code></del> <code>CommunityToolkit.Mvvm</code>.
 <blockquote>
 <p><del>This is the same package as <code>CommunityToolkit.Mvvm</code>. Only the namespace differs.</del><br />
 A reader kindly informed me that the Microsoft version of the toolkit should no longer be used. Instead, use the Community version.</p>
@@ -157,8 +157,8 @@ A reader kindly informed me that the Microsoft version of the toolkit should no 
 </blockquote>
 </li>
 <li>Add the following code
-<pre><code class="language-csharp">using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+<pre><code class="language-csharp">using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Maui.Progression.ViewModels;
 
@@ -191,7 +191,7 @@ public partial class Counter : ObservableObject
 </code></pre>
 </li>
 </ol>
-<p>The <code>Microsoft.Toolkit.Mvvm</code> package includes code generators to create all of the two-way binding code using the attributes. Here we've</p>
+<p>The <code>CommunityToolkit.Mvvm</code> package includes code generators to create all of the two-way binding code using the attributes. Here we've</p>
 <ul>
 <li>Created an observable property named <code>Count</code> (the generator capitalizes the property name for us based on the backing field)</li>
 <li>Created a read-only property named CountText. This is what we'll display.</li>
