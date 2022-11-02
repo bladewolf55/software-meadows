@@ -138,7 +138,7 @@ e
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Double-click the conflicting file and KDiff3 opens.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont/2022-11-01-20-18-24.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Personally, I prefer running &lt;code&gt;git mergetool&lt;/code&gt; because it cycles through all the conflicts. But I'm also used to it, and running &lt;code&gt;git merge --continue&lt;/code&gt;, and all that jazz. But you may love the UI. To Microsoft's credit, the don't force their merge tool on us.&lt;/p&gt;
+&lt;p&gt;Personally, I prefer running &lt;code&gt;git mergetool&lt;/code&gt; because it cycles through all the conflicts. But I'm also used to it, and running &lt;code&gt;git merge --continue&lt;/code&gt;, and all that jazz. You may love the UI. To Microsoft's credit, the don't force their merge tool on us.&lt;/p&gt;
 &lt;div class="footnotes"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
