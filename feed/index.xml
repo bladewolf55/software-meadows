@@ -6,6 +6,153 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Using Visual Studio for Git Merge Conflicts? Well, Don't</title>
+      <description>&lt;p&gt;Microsoft, I love ya, I really do, but your Visual Studio merge tool is bad, bad, bad.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;OK, maybe not deserving of three bads. Or maybe? Read on and judge for yourself.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="causing-conflict"&gt;Causing Conflict&lt;/h2&gt;
+&lt;p&gt;Here's a PowerShell script that sets up a simple merge conflict on a &lt;code&gt;git pull&lt;/code&gt;. Basically, it&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In &lt;code&gt;[user]/source/repos&lt;/code&gt;, creates a bare repo and clones it twice.&lt;/li&gt;
+&lt;li&gt;Adds, commits, and pushes a file in one branch&lt;/li&gt;
+&lt;li&gt;Pulls, changes, and commits in a second branch&lt;/li&gt;
+&lt;li&gt;Changes, commits, then pulls (using merge) in the first branch&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You do need Git in the PATH system environment variable for this to work, but it should be already if you've installed Git for Windows.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;# clean
+$user = $env:HomePath
+$repos = &amp;quot;$user\source\repos&amp;quot;
+if (-Not(Test-Path($repos))) {
+	New-Item -Path $repos -Type Directory
+}
+cd $repos
+
+Remove-Item g0 -Recurse -Force
+Remove-Item g1 -Recurse -Force
+Remove-Item g2 -Recurse -Force
+
+# create repos
+mkdir ./g0
+cd ./g0
+git init --bare -b main
+cd ..
+git clone g0 g1
+git clone g0 g2
+cd ./g1
+
+# start changes
+# step 1
+echo a &amp;gt; x.txt
+git add .
+git commit -m &amp;quot;add with a&amp;quot;
+git push
+
+# step 2
+cd ../g2
+git pull
+git switch -c f2
+echo b &amp;gt; x.txt
+Add-Content -Path x.txt &amp;quot;`ne&amp;quot;
+git commit -a -m &amp;quot;change to b, appended e&amp;quot;
+git switch main
+git merge f2
+git push
+git branch -d f2
+
+# step 3
+cd ../g1
+git switch -c f1
+echo c &amp;gt; x.txt
+git commit -a -m &amp;quot;change to c&amp;quot;
+git switch main
+git merge f1
+# this causes a merge conflict
+git pull --no-rebase
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The merge conflict is on the first line. Branch 1 has this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;c
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Branch 2 has this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;b
+
+e
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I need to choose whether to keep branch 1's &amp;quot;c&amp;quot;, or branch 2's &amp;quot;b&amp;quot;.&lt;/p&gt;
+&lt;h2 id="visual-studio-fail"&gt;Visual Studio Fail&lt;/h2&gt;
+&lt;p&gt;Let's see how Visual Studio 2022 displays this.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont/2022-11-01-19-16-35.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Yuck! See the problems?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It's completely unobvious that the conflict is between &amp;quot;b&amp;quot; and &amp;quot;c&amp;quot; in the first line. In fact, it looks like the problem is on the last line. You have to &lt;em&gt;really&lt;/em&gt; pay attention to notice the line numbers.&lt;/li&gt;
+&lt;li&gt;The UI &lt;em&gt;does not&lt;/em&gt; allow me to choose &amp;quot;c&amp;quot; and keep &amp;quot;e&amp;quot;. But that's very likely what I want! I can only keep &amp;quot;c&amp;quot; if I select the &amp;quot;b e&amp;quot; option and manually type in &amp;quot;c&amp;quot;.&lt;/li&gt;
+&lt;li&gt;The default output is to keep the parent version (the &amp;quot;base&amp;quot;). That's . . . not helpful, when it's labeled &amp;quot;result.&amp;quot;&lt;/li&gt;
+&lt;li&gt;I can view an accurate diff with Compare Target to Source. But why would I? Wouldn't I expect my merge tool to show an accurate diff?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is a simple case, and Visual Studio gets it wrong. I can't trust this tool, and that's too bad.&lt;/p&gt;
+&lt;h2 id="winmerge-not-for-the-win"&gt;WinMerge NOT for the Win&lt;/h2&gt;
+&lt;p&gt;Does &lt;a href="https://winmerge.org/?lang=en"&gt;WinMerge&lt;/a&gt; do any better?&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont/2022-11-01-19-31-16.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Well, yes, it's &lt;em&gt;better&lt;/em&gt;, I suppose. I can tell the problem's on the first line. But, again, the &amp;quot;Merged&amp;quot; is really the base version. And WinMerge doesn't provide any easy way to resolve that conflict. You have to dig into the Merge menu to find ways to automatically replace lines, or manually change the file. While I like WinMerge for file and folder compare, I can't see using it for merge conflicts.&lt;/p&gt;
+&lt;h2 id="kdiff3-brilliant"&gt;KDiff3 - Brilliant!&lt;/h2&gt;
+&lt;p&gt;So, do I have anything that works right? Yes, I do. KDiff3. If you're on Windows 10+ by far the easiest way to install is using &lt;a href="https://learn.microsoft.com/en-us/windows/package-manager/winget/"&gt;&lt;code&gt;winget&lt;/code&gt;&lt;/a&gt;. Or, if you don't us &lt;code&gt;winget&lt;/code&gt;, here's a download link so you don't have to go hunting like I did.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://download.kde.org/stable/kdiff3/"&gt;https://download.kde.org/stable/kdiff3/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;How does KDiff3 manage our conflict?&lt;/p&gt;
+&lt;p&gt;First up, KDiff3 tells you if it was unable to resolve the conflicts. That's right, it can resolve simple conflicts on its own, and in my experience does it well.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont/2022-11-01-19-40-04.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Next, here's our merge screen.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont/2022-11-01-19-41-58.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;That, friends, is joy. My base, local, and remote versions are clearly labeled in the top three panes. My diffs are aligned. And, best of all, the line with the conflict is super clear in the bottom pane, which is also my result file.&lt;/p&gt;
+&lt;p&gt;With my cursor on &lt;code&gt;&amp;lt;Merge Conflict&amp;gt;&lt;/code&gt;, I can click on A, B, or C in the toolbar to decide which value to use. Or, I can use keyboard shortcuts Ctrl+1, Ctrl+2, Ctrl+3. I see the result immediately.&lt;/p&gt;
+&lt;p&gt;This is the way to resolve merge conflicts.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Confession: I haven't tried other well-known tools such as &lt;a href="https://www.scootersoftware.com/index.php"&gt;Beyond Compare&lt;/a&gt; or &lt;a href="https://www.sublimemerge.com/"&gt;Sublime Merge&lt;/a&gt;. I have nothing against them, I just find the free, open source KDiff3 currently meets my needs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="bonus-round-cake-eat"&gt;Bonus Round: Cake, Eat&lt;/h2&gt;
+&lt;p&gt;I use Git mostly from the command line. But there's value in using Visual Studio's generally fine Git integration&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here's the good news: if you configure KDiff3 as your default merge tool in the global git config, Visual Studio will use it.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-powershell"&gt;git config --global -e
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Change paths as needed. Git has built-in support for KDiff3's parameters, so you only need to supply the path.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-text"&gt;[diff]
+	tool = kdiff3
+[merge]
+	tool = kdiff3
+	conflictstyle = diff3
+
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+	keepBackup = false
+	keepTemporaries = false
+
+[difftool &amp;quot;kdiff3&amp;quot;]
+	path = C:/Users/[user]/AppData/Local/KDiff3/bin/kdiff3.exe
+	trustExitCode = true
+[mergetool &amp;quot;kdiff3&amp;quot;]
+	path = C:/Users/[user]/AppData/Local/KDiff3/bin/kdiff3.exe
+	trustExitCode = true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Double-click the conflicting file and KDiff3 opens.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont/2022-11-01-20-18-24.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Personally, I prefer running &lt;code&gt;git mergetool&lt;/code&gt; because it cycles through all the conflicts. But I'm also used to it, and running &lt;code&gt;git merge --continue&lt;/code&gt;, and all that jazz. But you may love the UI. To Microsoft's credit, the don't force their merge tool on us.&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Though the default settings &lt;em&gt;do not&lt;/em&gt; encourage good use of &lt;code&gt;rebase&lt;/code&gt;, which is a crime.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Tue, 1 Nov 2022 19:05:37 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont</guid>
+    </item>
+    <item>
       <title>The Mythical Man-Month: A Short Review of the Essential Essays</title>
       <description>&lt;p&gt;A book club I belong to agreed to read Frederick P. Brooks's seminal essay collection &lt;a href="https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959"&gt;The Mythical Man-Month&lt;/a&gt;. We somewhat abandoned the book, finding a lot of it hard to relate to because we don't write operating systems for specific hardware in a time-sharing environment. Plus there's no audio version, which is how some of the members like to read. I promised the group I'd read some specific essays because I wanted to, and report back.&lt;/p&gt;
 &lt;p&gt;I've made good on that promise. I think the following are worth reading for a few reasons, which I touch on below. Something not clear initially is when the essays were written. I think that's important for the context, so include what the dates seem to be.&lt;/p&gt;
@@ -1138,484 +1285,6 @@ using Maui.Progression.Views;
       <pubDate>Mon, 4 Jul 2022 19:00:47 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place</guid>
-    </item>
-    <item>
-      <title>.NET MAUI Progressing From a Default Project Part 3 - Adding the Model, More Testing, and DDD</title>
-      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
-&lt;p&gt;Level: Moderate&lt;/p&gt;
-&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="the-role-of-the-model-in-mvvm"&gt;The Role of the Model in MVVM&lt;/h2&gt;
-&lt;p&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/8/87/MVVMPattern.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;sup&gt;Ugaya40, CC BY-SA 3.0 &lt;a href="https://creativecommons.org/licenses/by-sa/3.0"&gt;https://creativecommons.org/licenses/by-sa/3.0&lt;/a&gt;, via Wikimedia Commons&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;The purpose of the Model in MVVM is the same as in MVC. It's a class that either models a part of the domain (the way the business sees itself) or the data. In enterprise applications practicing Domain-Driven Design, a service usually populates the Domain Model from Data Models (abstractions of the various data sources).&lt;/p&gt;
-&lt;p&gt;Here's a more accurate diagram of a complex system.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/ddd-diagram.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;We probably won't go deep into the data portion&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;, but getting the Model from a service is pretty common. Along the way, we'll write unit tests.&lt;/p&gt;
-&lt;h2 id="the-feature"&gt;The Feature&lt;/h2&gt;
-&lt;p&gt;We'll implement a simple feature: display the word for the number of button taps up to ten. To do that, we'll get a map of numbers to words from our service.&lt;/p&gt;
-&lt;h2 id="the-architecture"&gt;The Architecture&lt;/h2&gt;
-&lt;p&gt;Here's the namespace/folder layout we'll end up with. I'm following a general DDD/Onion Architecture.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Solution
-|_Maui.Progression
-|_Maui.Progression.Domain
-  |_Models
-    |-NumberMap.cs
-    |-NumberMapItem.cs
-|_Maui.Progression.DomainServices
-  |_Interfaces
-    |-INumberMapper.cs
-  |_NumberMapper.cs
-|_Maui.Progression.UnitTests
-  |-Counter_Should.cs
-  |-NumberMap_Should.cs
-  |-NumberMapperService_Should.cs
-|_Maui.Progression.ViewModels
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="the-domain-models"&gt;The Domain Models&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Add two new .NET Class Library projects, one named &lt;code&gt;Maui.Progression.Domain&lt;/code&gt;, the other named &lt;code&gt;Maui.Progression.DomainServices&lt;/code&gt;.
-&lt;blockquote&gt;
-&lt;p&gt;These are plain class libraries, not specific to .NET MAUI.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;Add a &lt;code&gt;Models&lt;/code&gt; folder.&lt;/li&gt;
-&lt;li&gt;Delete &lt;code&gt;Class1.cs&lt;/code&gt;, add &lt;code&gt;NumberMapItem.cs&lt;/code&gt; to Models with this code.
-&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace Maui.Progression.Domain.Models;
-
-public class NumberMapItem
-{
-    public int Number { get; set; }
-    public string Word { get; set; } = string.Empty;
-
-}    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Next, we'll create a domain model for the collection of number map items, so let's create a test. In &lt;code&gt;Maui.Progression.UnitTests&lt;/code&gt;,&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Add a project dependency to &lt;code&gt;Maui.Progression.Domain&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Add a class named &lt;code&gt;NumberMap_Should.cs&lt;/code&gt; with this code.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.Domain;
-
-namespace Maui.Progression.UnitTests;
-
-public class NumberMap_Should
-{
-    [Fact]
-    public void Return_words_for_numbers()
-    {
-        // arrange
-        var map = new NumberMap();
-
-        // act
-        map.Map = new List&amp;lt;NumberMapItem&amp;gt;()
-        {
-            new NumberMapItem() { Number = 0, Word = &amp;quot;zero&amp;quot;},
-            new NumberMapItem() { Number = 1, Word = &amp;quot;one&amp;quot;},
-            new NumberMapItem() { Number = 2, Word = &amp;quot;two&amp;quot;},
-            new NumberMapItem() { Number = 3, Word = &amp;quot;three&amp;quot;},
-            new NumberMapItem() { Number = 4, Word = &amp;quot;four&amp;quot;},
-            new NumberMapItem() { Number = 5, Word = &amp;quot;five&amp;quot;},
-            new NumberMapItem() { Number = 6, Word = &amp;quot;six&amp;quot;},
-            new NumberMapItem() { Number = 7, Word = &amp;quot;seven&amp;quot;},
-            new NumberMapItem() { Number = 8, Word = &amp;quot;eight&amp;quot;},
-            new NumberMapItem() { Number = 9, Word = &amp;quot;nine&amp;quot;},
-            new NumberMapItem() { Number = 10, Word =&amp;quot;ten&amp;quot;}
-        };
-
-        // assert
-        Assert.Equal(&amp;quot;zero&amp;quot;, map.ToWord(0));
-        Assert.Equal(&amp;quot;one&amp;quot;,  map.ToWord(1));
-        Assert.Equal(&amp;quot;two&amp;quot;,  map.ToWord(2));
-        Assert.Equal(&amp;quot;three&amp;quot;,map.ToWord(3));
-        Assert.Equal(&amp;quot;four&amp;quot;, map.ToWord(4));
-        Assert.Equal(&amp;quot;five&amp;quot;, map.ToWord(5));
-        Assert.Equal(&amp;quot;six&amp;quot;,  map.ToWord(6));
-        Assert.Equal(&amp;quot;seven&amp;quot;,map.ToWord(7));
-        Assert.Equal(&amp;quot;eight&amp;quot;,map.ToWord(8));
-        Assert.Equal(&amp;quot;nine&amp;quot;, map.ToWord(9));
-        Assert.Equal(&amp;quot;ten&amp;quot;,  map.ToWord(10));
-    }
-
-    [Fact]
-    public void Return_null_if_number_not_found()
-    {
-        // arrange
-        var map = new NumberMap();
-
-        // act
-        // assert
-        Assert.Empty(map.Map);
-        Assert.Null(map.ToWord(0));
-
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It's contrived, I know, but we have two tests, one to make sure we return words for numbers, the other for what happens if a number doesn't have a word.&lt;/p&gt;
-&lt;p&gt;Now add the class &lt;code&gt;NumberMap.cs&lt;/code&gt; to the Models folder with this code to pass the tests.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Maui.Progression.Domain.Models
-{
-    public class NumberMap
-    {
-        public List&amp;lt;NumberMapItem&amp;gt; Map { get; set; } = new();
-
-        public string? ToWord(int number) =&amp;gt; Map.SingleOrDefault(a =&amp;gt; a.Number.Equals(number))?.Word;
-
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="the-domain-service"&gt;The Domain Service&lt;/h2&gt;
-&lt;p&gt;Our domain service will return the domain model. Again, this is all overkill in reality, but it demonstrates the techniques.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;In the unit tests project, add a project reference to the DomainServices project.&lt;/li&gt;
-&lt;li&gt;Add a unit test class named &lt;code&gt;NumberMapperService_Should.cs&lt;/code&gt; with this code.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.DomainServices;
-
-namespace Maui.Progression.UnitTests;
-
-public class NumberMapperService_Should
-{
-    readonly NumberMapper numberMapper;
-
-    // This would normally be an injectable data service
-    // such as Entity Framework. We'd use an in-memory database
-    // to mock our data access.
-    readonly string numberData = @&amp;quot;[
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:1, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;one&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:3, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;three&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:5, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;five&amp;quot;&amp;quot;}
-]&amp;quot;;
-
-    public NumberMapperService_Should()
-    {        
-        numberMapper = new NumberMapper(numberData);
-    }
-
-    [Fact]
-    public void Return_a_populated_NumberMap()
-    {
-        // arrange
-        // act
-        var result = numberMapper.GetNumberMap();
-
-        // assert
-        Assert.NotEmpty(result.Map);
-        Assert.Equal(3, result.Map.Count);
-        Assert.Equal(&amp;quot;one&amp;quot;, result.ToWord(1));
-        Assert.Equal(&amp;quot;three&amp;quot;, result.ToWord(3));
-        Assert.Equal(&amp;quot;five&amp;quot;, result.ToWord(5));
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The above code declares the service and injects our own test data instead of letting it get data from an external source.&lt;/p&gt;
-&lt;p&gt;Add an &lt;code&gt;Interfaces&lt;/code&gt; folder and an interface to DomainServices named &lt;code&gt;INumberMapper.cs&lt;/code&gt; with this code.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.Domain.Models;
-
-namespace Maui.Progression.DomainServices.Interfaces;
-
-public interface INumberMapper
-{
-    NumberMap GetNumberMap();
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We'll use this interface later to test our ViewModel.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The principles here are A) program to the interface, and B) dependency injection. By injecting an interface, we can mock the behavior later.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Add a class named &lt;code&gt;NumberMapper.cs&lt;/code&gt; to DomainServices.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.Domain.Models;
-using Maui.Progression.DomainServices.Interfaces;
-using System.Text.Json;
-
-namespace Maui.Progression.DomainServices
-{
-    public class NumberMapper : INumberMapper
-    {
-        string numberData = @&amp;quot;[
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:1, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;one&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:2, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;two&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:3, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;three&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:4, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;four&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:5, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;five&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:6, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;six&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:7, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;seven&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:8, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;eight&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:9, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;nine&amp;quot;&amp;quot;},
-{&amp;quot;&amp;quot;number&amp;quot;&amp;quot;:10, &amp;quot;&amp;quot;word&amp;quot;&amp;quot;:&amp;quot;&amp;quot;ten&amp;quot;&amp;quot;}
-]&amp;quot;;
-
-        public NumberMapper(string numberData = &amp;quot;&amp;quot;)
-        {
-            // Normally numberData would be an injectable data service
-            // like Entity Framework.
-            // Here we're letting the unit test inject test data. If empty,
-            // assume the data service returned values 1-10.
-            if (!String.IsNullOrEmpty(numberData))
-                this.numberData = numberData;
-        }
-        public NumberMap GetNumberMap()
-        {
-            // Get our data and map it to our domain model list of map items.
-            var options = new System.Text.Json.JsonSerializerOptions();
-            options.PropertyNameCaseInsensitive = true;
-            var items = JsonSerializer.Deserialize&amp;lt;List&amp;lt;NumberMapItem&amp;gt;&amp;gt;(numberData, options);
-            // Populate the NumberMap domain model
-            var map = new NumberMap() { Map = items ?? new List&amp;lt;NumberMapItem&amp;gt;() };
-            // Return the domain model
-            return map; ;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The class looks busy, but that's because of simulating getting JSON data from a database or external service. The method under test, &lt;code&gt;GetNumberMap&lt;/code&gt;, is really pretty simple and follows a common pattern.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Get external data.&lt;/li&gt;
-&lt;li&gt;Map the data to our domain model.&lt;/li&gt;
-&lt;li&gt;Return the model.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The test should pass! Note that we're &lt;em&gt;injecting&lt;/em&gt; our test data, which is why we can assert that there are three items. When we use call the service from our ViewModel, it'll default to returning ten items.&lt;/p&gt;
-&lt;h2 id="updating-the-viewmodel-to-use-the-service"&gt;Updating the ViewModel to Use the Service&lt;/h2&gt;
-&lt;p&gt;Let's update our ViewModel &lt;code&gt;Counter_Should&lt;/code&gt; tests to use the service. To do this, we need to mock the service, and let's start making our assertions easier to construct and read. In the Unit Tests project install two NuGet packages.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;NSubstitute&lt;/li&gt;
-&lt;li&gt;FluentAssertions&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Of course, you can use your preferred mocking library such as Moq, and your preferred assertion library such as Shouldly.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;We need to do some prep before our test so that our solution builds with our dependency injection.&lt;/p&gt;
-&lt;p&gt;In ViewModels, open the &lt;code&gt;Counter&lt;/code&gt; view model and update these top several lines. This will &lt;em&gt;not&lt;/em&gt; pass the test!&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.DomainServices;
-using Maui.Progression.DomainServices.Interfaces;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-
-namespace Maui.Progression.ViewModels;
-
-public partial class Counter : ObservableObject
-{
-    readonly INumberMapper numberMapperService;
-
-    [ObservableProperty]
-    [AlsoNotifyChangeFor(nameof(CountText))]
-    int count;
-
-    public Counter(INumberMapper numberMapperService) =&amp;gt; this.numberMapperService = numberMapperService ?? new NumberMapper();
-
-. . .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the app, open &lt;code&gt;Mainpage.xaml.cs&lt;/code&gt; and change to this. Notice we're now injecting the Counter view model.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.ViewModels;
-
-namespace Maui.Progression;
-
-public partial class MainPage : ContentPage
-{
-	public MainPage(Counter viewModel)
-	{
-		InitializeComponent();
-		BindingContext = viewModel;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Open &lt;code&gt;MauiProgram.cs&lt;/code&gt; and change to this. We're configuring the application's dependency injection service, telling it &amp;quot;If a parameter is of this type, then automatically create or use an existing instance so I don't have to code it myself.&amp;quot;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.DomainServices.Interfaces;
-using Maui.Progression.ViewModels;
-
-namespace Maui.Progression;
-
-public static class MauiProgram
-{
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp&amp;lt;App&amp;gt;()			
-			.ConfigureFonts(fonts =&amp;gt;
-			{
-				fonts.AddFont(&amp;quot;OpenSans-Regular.ttf&amp;quot;, &amp;quot;OpenSansRegular&amp;quot;);
-				fonts.AddFont(&amp;quot;OpenSans-Semibold.ttf&amp;quot;, &amp;quot;OpenSansSemibold&amp;quot;);
-			});
-
-		builder.Services.AddSingleton&amp;lt;INumberMapper&amp;gt;(new NumberMapper());
-		builder.Services.AddSingleton&amp;lt;Counter&amp;gt;();
-		builder.Services.AddSingleton&amp;lt;MainPage&amp;gt;();
-
-        return builder.Build();
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now we can update the &lt;code&gt;Counter_Should&lt;/code&gt; test class.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.ViewModels;
-using FluentAssertions;
-using NSubstitute;
-using Maui.Progression.DomainServices.Interfaces;
-using Maui.Progression.Domain.Models;
-
-namespace Maui.Progression.UnitTests;
-
-public class Counter_Should
-{
-    readonly INumberMapper numberMapperService;
-    Counter? counter;
-
-    public Counter_Should()
-    {
-        // Mock the service interface. We want to control the domain model it returns.
-        numberMapperService = Substitute.For&amp;lt;INumberMapper&amp;gt;();
-    }
-
-    [Fact]
-    public void Increment_counter_by_one_using_command()
-    {
-        // arrange
-        int expectedNumber = 1;
-        string expectedWord = &amp;quot;one&amp;quot;;
-        NumberMap map = new()
-        {
-            Map = new List&amp;lt;NumberMapItem&amp;gt;()
-            {
-                new NumberMapItem() { Number = expectedNumber, Word = expectedWord }
-            }
-        };
-        numberMapperService.GetNumberMap().Returns(map);
-
-        // Inject the service into the view model
-        counter = new Counter(numberMapperService);
-
-        // verify the starting count
-        counter.Count.Should().Be(0, &amp;quot;starting count should have been zero.&amp;quot;);
-
-        // act
-        counter.IncreaseCounterCommand.Execute(null);
-
-        // assert
-        counter.Count.Should().Be(expectedNumber);
-        counter.CountText.Should().Contain(expectedWord);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;What's going on here?&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Declare our service interface and Counter view model&lt;/li&gt;
-&lt;li&gt;Mock the service. We don't want it calling the outside world. We want to control its behavior.&lt;/li&gt;
-&lt;li&gt;Inject our mocked service into the view model&lt;/li&gt;
-&lt;li&gt;Test that the view model increments by 1, and the text contains &amp;quot;one&amp;quot;.&lt;/li&gt;
-&lt;li&gt;Part of the test includes explicitly setting what NumberMap object the service will return before instantiating the view model.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Confession&lt;/strong&gt;&lt;br /&gt;
-Right about here I had to close Visual Studio, delete all the solution bin and obj folders, reopen Visual Studio and rebuild the solution. I kept getting a &amp;quot;Cannot resolve Assembly&amp;quot; warning in ViewModels/bin/Debug. When I rebuilt, it revealed errors that weren't being listed before. But this won't happen to you, of course!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;At this point, you should be able to build the solution and run the test, which will fail. But not the way I expected.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;System.IO.FileNotFoundException : Could not load file or assembly 'Microsoft.Maui.Essentials,&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Well, heck. How is the solution building but not running for the test? It's because of this line in &lt;code&gt;Counter.cs&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;SemanticScreenReader.Announce(text);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Our test doesn't have a .NET MAUI platform context, so it can't run the SemanticScreenReader. The purpose of this is accessibility. We don't want to lose that, but Microsoft hasn't made it easy on us.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Confession&lt;/strong&gt;&lt;br /&gt;
-Ugh, so I hate to do this, but for this tutorial the &amp;quot;solution&amp;quot; is to comment out the &lt;code&gt;SemanticScreenReader.Announce&lt;/code&gt; statement. It looks like the way to get this working is mocking the application context. I'll try that in a later post so I can give it my full attention.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;// SemanticScreenReader.Announce(text);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;With the above commented out, the test should run and fail.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-text"&gt;Expected counter.CountText &amp;quot;Clicked 1 time&amp;quot; to contain &amp;quot;one&amp;quot;.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Update the &lt;code&gt;Counter.cs&lt;/code&gt; class like so to get the test to pass.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-csharp"&gt;using Maui.Progression.Domain.Models;
-using Maui.Progression.DomainServices;
-using Maui.Progression.DomainServices.Interfaces;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-
-namespace Maui.Progression.ViewModels;
-
-public partial class Counter : ObservableObject
-{
-    readonly INumberMapper numberMapperService;
-    readonly NumberMap map = new();
-
-    [ObservableProperty]
-    [AlsoNotifyChangeFor(nameof(CountText))]
-    int count;
-
-    public Counter(INumberMapper numberMapper) { 
-        this.numberMapperService = numberMapper ?? new NumberMapper();
-        map = numberMapperService.GetNumberMap();
-    }
-
-    public string CountText
-    {
-        get
-        {
-            string text = &amp;quot;Click me&amp;quot;;
-            if (count &amp;gt; 0)
-            {
-                var word = map.ToWord(count) ?? &amp;quot;Unknown&amp;quot;;
-                text = $&amp;quot;Clicked {word} &amp;quot; + (count == 1 ? &amp;quot;time&amp;quot; : &amp;quot;times&amp;quot;);
-            }
-            // SemanticScreenReader.Announce(text);
-            return text;
-        }
-    }
-
-    [ICommand]
-    void IncreaseCounter()
-    {
-        Count++;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="run-the-app"&gt;Run the App&lt;/h2&gt;
-&lt;p&gt;Of course, run the app, 'cause passing unit tests doesn't guarantee success, it just improves the odds.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Confession&lt;/strong&gt;&lt;br /&gt;
-Mine didn't run right the first time. I forgot to pass the options to the JSON deserializer. Which led me to improving the test.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/2022-07-02-16-21-20.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;Properly adding a domain model involved quite a bit of work. Hopefully it's also clear that the increase in code resulted in a significant increase in testability.&lt;/p&gt;
-&lt;p&gt;Next up: Refactoring the View!&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;p&gt;Jeffrey Palermo codified the Onion Architecture many years ago. I use it. I think you should, too.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://jeffreypalermo.com/2013/08/onion-architecture-part-4-after-four-years/"&gt;Onion Architecture: Part 4 – After Four Years | Programming with Palermo&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Steve Smith is an excellent developer. So is Julie Lerman. They're so good that even though I haven't watched this course, I'm sure it's tops.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.pluralsight.com/courses/fundamentals-domain-driven-design"&gt;Domain-Driven Design Fundamentals | Pluralsight&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;And I'll bet this YouTube presentation is a great intro.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=tdiOqW4ZYu4"&gt;Clean Architecture with ASP.NET Core with Steve Smith | Hampton Roads .NET Users Group - YouTube&lt;/a&gt;&lt;/p&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;Or we might!&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-      <pubDate>Sat, 2 Jul 2022 16:45:08 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd</guid>
     </item>
   </channel>
 </rss>
