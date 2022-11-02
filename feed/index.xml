@@ -91,7 +91,7 @@ e
 &lt;li&gt;The default output is to keep the parent version (the &amp;quot;base&amp;quot;). That's . . . not helpful, when it's labeled &amp;quot;result.&amp;quot;&lt;/li&gt;
 &lt;li&gt;I can view an accurate diff with Compare Target to Source. But why would I? Wouldn't I expect my merge tool to show an accurate diff?&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;This is a simple case, and Visual Studio gets it wrong. I can't trust this tool, and that's too bad.&lt;/p&gt;
+&lt;p&gt;This is a simple case, and Visual Studio gets it wrong&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;. I can't trust this tool, and that's too bad.&lt;/p&gt;
 &lt;h2 id="winmerge-not-for-the-win"&gt;WinMerge NOT for the Win&lt;/h2&gt;
 &lt;p&gt;Does &lt;a href="https://winmerge.org/?lang=en"&gt;WinMerge&lt;/a&gt; do any better?&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont/2022-11-01-19-31-16.png" alt="" /&gt;&lt;/p&gt;
@@ -111,7 +111,7 @@ e
 &lt;p&gt;Confession: I haven't tried other well-known tools such as &lt;a href="https://www.scootersoftware.com/index.php"&gt;Beyond Compare&lt;/a&gt; or &lt;a href="https://www.sublimemerge.com/"&gt;Sublime Merge&lt;/a&gt;. I have nothing against them, I just find the free, open source KDiff3 currently meets my needs.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="bonus-round-cake-eat"&gt;Bonus Round: Cake, Eat&lt;/h2&gt;
-&lt;p&gt;I use Git mostly from the command line. But there's value in using Visual Studio's generally fine Git integration&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I use Git mostly from the command line. But there's value in using Visual Studio's generally fine Git integration&lt;a id="fnref:2" href="#fn:2" class="footnote-ref"&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here's the good news: if you configure KDiff3 as your default merge tool in the global git config, Visual Studio will use it.&lt;/p&gt;
 &lt;pre&gt;&lt;code class="language-powershell"&gt;git config --global -e
 &lt;/code&gt;&lt;/pre&gt;
@@ -143,7 +143,10 @@ e
 &lt;hr /&gt;
 &lt;ol&gt;
 &lt;li id="fn:1"&gt;
-&lt;p&gt;Though the default settings &lt;em&gt;do not&lt;/em&gt; encourage good use of &lt;code&gt;rebase&lt;/code&gt;, which is a crime.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I--and you--can argue that Visual Studio's tool is right. If you're wanting to point out it may be wrong for me to keep the &amp;quot;e&amp;quot; in branch 2, that's true. I'm using this simple test to illustrate which tool gives me the clearest information to make good decisions. I think that's KDiff3.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;Though the default settings &lt;em&gt;do not&lt;/em&gt; encourage good use of &lt;code&gt;rebase&lt;/code&gt;, which is a crime.&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;

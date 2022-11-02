@@ -148,7 +148,7 @@ e
 <li>The default output is to keep the parent version (the &quot;base&quot;). That's . . . not helpful, when it's labeled &quot;result.&quot;</li>
 <li>I can view an accurate diff with Compare Target to Source. But why would I? Wouldn't I expect my merge tool to show an accurate diff?</li>
 </ol>
-<p>This is a simple case, and Visual Studio gets it wrong. I can't trust this tool, and that's too bad.</p>
+<p>This is a simple case, and Visual Studio gets it wrong<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>. I can't trust this tool, and that's too bad.</p>
 <h2 id="winmerge-not-for-the-win">WinMerge NOT for the Win</h2>
 <p>Does <a href="https://winmerge.org/?lang=en">WinMerge</a> do any better?</p>
 <p><img src="https://www.softwaremeadows.com/posts/using_visual_studio_for_git_merge_conflicts__well_dont/2022-11-01-19-31-16.png" alt="" /></p>
@@ -168,7 +168,7 @@ e
 <p>Confession: I haven't tried other well-known tools such as <a href="https://www.scootersoftware.com/index.php">Beyond Compare</a> or <a href="https://www.sublimemerge.com/">Sublime Merge</a>. I have nothing against them, I just find the free, open source KDiff3 currently meets my needs.</p>
 </blockquote>
 <h2 id="bonus-round-cake-eat">Bonus Round: Cake, Eat</h2>
-<p>I use Git mostly from the command line. But there's value in using Visual Studio's generally fine Git integration<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>.</p>
+<p>I use Git mostly from the command line. But there's value in using Visual Studio's generally fine Git integration<a id="fnref:2" href="#fn:2" class="footnote-ref"><sup>2</sup></a>.</p>
 <p>Here's the good news: if you configure KDiff3 as your default merge tool in the global git config, Visual Studio will use it.</p>
 <pre><code class="language-powershell">git config --global -e
 </code></pre>
@@ -200,7 +200,10 @@ e
 <hr />
 <ol>
 <li id="fn:1">
-<p>Though the default settings <em>do not</em> encourage good use of <code>rebase</code>, which is a crime.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+<p>I--and you--can argue that Visual Studio's tool is right. If you're wanting to point out it may be wrong for me to keep the &quot;e&quot; in branch 2, that's true. I'm using this simple test to illustrate which tool gives me the clearest information to make good decisions. I think that's KDiff3.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Though the default settings <em>do not</em> encourage good use of <code>rebase</code>, which is a crime.<a href="#fnref:2" class="footnote-back-ref">&#8617;</a></p>
 </li>
 </ol>
 </div>
