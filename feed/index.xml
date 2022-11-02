@@ -6,7 +6,7 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
-      <title>Using Visual Studio for Git Merge Conflicts? Well, Don't</title>
+      <title>Using Visual Studio for Git Merge Conflicts? Well, Don't.</title>
       <description>&lt;p&gt;Microsoft, I love ya, I really do, but your Visual Studio merge tool is bad, bad, bad.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;OK, maybe not deserving of three bads. Or maybe? Read on and judge for yourself.&lt;/p&gt;
