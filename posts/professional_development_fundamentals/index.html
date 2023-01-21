@@ -71,6 +71,7 @@
 <h2 id="contents">Contents</h2>
 <!-- Start Document Outline -->
 <ul>
+<li><a href="#contents">Contents</a></li>
 <li><a href="#local-development-cycle">Local Development Cycle</a></li>
 <li><a href="#pull-requests-and-code-reviews">Pull Requests and Code Reviews</a></li>
 <li><a href="#continuous-integration">Continuous Integration</a></li>
@@ -87,7 +88,7 @@
 <ol>
 <li>Pull and rebase latest code from mainline.</li>
 <li>Work from a short-lived feature branch.</li>
-<li>Unit test, frequently commit locally, push branch when it passes tests.</li>
+<li>Unit test, frequently commit locally, push feature branch when it passes tests.</li>
 <li>Integrate latest mainline locally, run private build/tests, push.</li>
 <li>Final push, create a pull request.</li>
 </ol>
@@ -107,8 +108,8 @@
 <ul>
 <li>CI Server is triggered by source control changes.</li>
 <li><strong>Build</strong> Triggered by mainline and feature branch changes. Build in clean environment, run unit tests, create deployment package.</li>
-<li><strong>TDD</strong>  Always runs and fully automated. Environment is created and deployed to from scratch. Automated integration tests run.</li>
-<li><strong>UAT</strong>  Runs if mainline changes and TDD succeeds. Existing environments deployed to. Some automated testing. Users perform acceptance tests.</li>
+<li><strong>Integration</strong>  Always runs and fully automated. Environment is created and deployed to from scratch. Automated integration tests run. Jeffrey Palermo calls this the TDD stage.</li>
+<li><strong>UAT</strong>  There are many kinds of UAT environments: QA, user acceptance, security, performance. Runs if mainline changes and Integration succeeds. Existing environments deployed to. Some automated testing.</li>
 <li><strong>Prod</strong> Runs if UAT succeeds and deployment is approved. Existing environment deployed to. Some automated smoke testing. Can require approval.</li>
 </ul>
 <p><img src="https://www.softwaremeadows.com/posts/professional_development_fundamentals/images/ci-basic.png" alt="" /></p>
