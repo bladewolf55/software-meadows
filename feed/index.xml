@@ -6,6 +6,580 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>.NET Framework vs Core Environment Configuration</title>
+      <description>&lt;h2 id="the-crucial-difference"&gt;The Crucial Difference&lt;/h2&gt;
+&lt;p&gt;.NET Framework applies environment configurations at &lt;em&gt;build time&lt;/em&gt;, transforming environment-specific files to create a single configuration file for the deployed application. The application &lt;em&gt;knows&lt;/em&gt; what environment it's supposed to be in, regardless of where it's deployed.&lt;/p&gt;
+&lt;p&gt;.NET/Core applies environment configurations at &lt;em&gt;run time&lt;/em&gt;, using a specific environment variable, and can consume many configuration sources. The application &lt;em&gt;asks&lt;/em&gt; what environment it's deployed in.&lt;/p&gt;
+&lt;h2 id="whats-in-store"&gt;What's In Store&lt;/h2&gt;
+&lt;p&gt;To show how Framework and Core differ, I'll show two ASP.NET MVC apps that do the same thing using both configuration strategies.&lt;/p&gt;
+&lt;h2 id="brief-history"&gt;Brief History&lt;/h2&gt;
+&lt;p&gt;.NET's configuration strategy has a &lt;a href="https://grammarist.com/idiom/checkered-past-and-chequered-past/"&gt;checkered past&lt;/a&gt;. The .NET Framework depends on a single &lt;code&gt;web.config&lt;/code&gt; or &lt;code&gt;app.config&lt;/code&gt;&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;. This is a hard dependency, meaning the file &lt;em&gt;must&lt;/em&gt; exist. There's no way to construct a configuration in memory, and if you want to change a configuration value you have to save to the config file.&lt;/p&gt;
+&lt;p&gt;Over time, Microsoft tried various ways to allow changed the config file. The most common is arguably &lt;a href="https://learn.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/web-config-transformations"&gt;XML Transforms&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a new build configuration such as &amp;quot;Staging&amp;quot;&lt;/li&gt;
+&lt;li&gt;Add the corresponding config file, &lt;code&gt;web.Staging.config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Write transformations that update the base &lt;code&gt;web.config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Apply those transformations when publishing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are several problems with this approach.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It conflates &lt;em&gt;build configuration&lt;/em&gt; with &lt;em&gt;environment configuration&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;It's build-time, as noted above.&lt;/li&gt;
+&lt;li&gt;By design, transformations can &lt;em&gt;not&lt;/em&gt; be applied during development. You don't run the app in Visual Studio using the Staging configuration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The last item was a sticking point for developers. Whether we shouldn't be running other than locally, we often need to. So, developers found various, non-supported ways to handle this. The most common is using a pre-build target to apply the transform.&lt;/p&gt;
+&lt;p&gt;This led to yet another problem: the &lt;code&gt;web.config&lt;/code&gt; file kept changing and, with the rise of version control, was either accidentally checked in or had to be undone. There are some &lt;a href="https://github.com/bladewolf55/DeftConfig"&gt;clever ways to manage that&lt;/a&gt;, but they're fundamentally workarounds.&lt;/p&gt;
+&lt;p&gt;Microsoft pretty much fixed all these problems in .NET Core. It was clear that developers needed to be able to consume environment-based configurations from arbitrary sources during run time.&lt;/p&gt;
+&lt;p&gt;In .NET/Core, the build configuration (Debug, Release) are separate from environment configurations. Build configurations determine things like assembly names, optimization settings, and whether you can debug.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I want to be able to Debug in any environment!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;No matter the source, all environment configurations must be key-value pairs. A simple way to understand environment configurations is also a simple, supported case: when the application runs, it reads all its configuration from system environment variables.&lt;/p&gt;
+&lt;h2 id="why-run-time-configuration-matters-build-once-deploy-to-many"&gt;Why Run-Time Configuration Matters: Build Once, Deploy To Many&lt;/h2&gt;
+&lt;p&gt;Quick quiz: if I build the same .NET Framework code using three different transform files, are they all the same or different?&lt;/p&gt;
+&lt;p&gt;It's tempting to say, &amp;quot;Well, the code is the same, just the configs are different.&amp;quot; But that's technically false. They are three different binaries. The code, in some way, &lt;em&gt;could&lt;/em&gt; be different. This breaks a principle of continuous deployment.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Build once, deploy to many&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We want to have one build artifact which we then deploy to any environment. This way, we &lt;em&gt;know&lt;/em&gt; the code is the same, and the only difference is the environment. We also save considerable time in our CI/CD process.&lt;/p&gt;
+&lt;h2 id="show-me-the-code"&gt;Show Me the Code!&lt;/h2&gt;
+&lt;p&gt;Our web site does just a couple of things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Display an environment-based setting called TestKey&lt;/li&gt;
+&lt;li&gt;Display a customer from the environment's database&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="database"&gt;Database&lt;/h3&gt;
+&lt;p&gt;The app assumes using a SQL Server; modify to your needs. Here's a script for creating the database, tables, and data.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;use master
+go
+create database ConfigLocal
+go
+
+use ConfigLocal
+go
+create table Customers (
+	CustomerId int primary key identity,
+	Name varchar(max)
+)
+
+insert Customers(Name) values ('Local Louise')
+select * from Customers
+------------------------------------------------------
+
+use master
+go
+create database ConfigDevelopmentShared
+go
+
+use ConfigDevelopmentShared
+go
+create table Customers (
+	CustomerId int primary key identity,
+	Name varchar(max)
+)
+
+insert Customers(Name) values ('Development Shared Dagmar')
+select * from Customers
+------------------------------------------------------
+
+use master
+go
+create database ConfigStaging
+go
+
+use ConfigStaging
+go
+create table Customers (
+	CustomerId int primary key identity,
+	Name varchar(max)
+)
+
+insert Customers(Name) values ('Staging Sierra')
+select * from Customers
+------------------------------------------------------
+
+use master
+go
+create database ConfigProduction
+go
+
+use ConfigProduction
+go
+create table Customers (
+	CustomerId int primary key identity,
+	Name varchar(max)
+)
+
+insert Customers(Name) values ('Production Pavla')
+select * from Customers
+------------------------------------------------------
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="net-framework-version"&gt;.NET Framework Version&lt;/h3&gt;
+&lt;p&gt;We're going to fly through the coding part while calling out what matters.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Create new ASP.NET Web Application (.NET Framework) project named &amp;quot;ConfigFramework&amp;quot;&lt;/li&gt;
+&lt;li&gt;Choose MVC template&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;EntityFramework&lt;/code&gt; NuGet package&lt;/li&gt;
+&lt;li&gt;Add Data folder
+&lt;ol&gt;
+&lt;li&gt;Add &lt;code&gt;Customer.cs&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace ConfigFramework.Data
+{
+    public class Customer
+    {
+        public int CustomerId { get; set; }
+        public string Name { get; set; }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;Add &lt;code&gt;ConfigDb.cs&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using System.Data.Entity;
+
+namespace ConfigFramework.Data
+{
+    public class ConfigDb: DbContext
+    {
+        public DbSet&amp;lt;Customer&amp;gt; Customers { get; set; }
+
+        public ConfigDb(): base(&amp;quot;name=ConfigDb&amp;quot;) { }
+
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;Models/CustomerViewModel.cs&lt;/code&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace ConfigFramework.Models
+{
+    public class CustomerViewModel
+    {
+        public int CustomerId { get; set; } 
+        public string Name { get; set; }
+        public string TestKey { get; set; }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Replace code in &lt;code&gt;Controllers/HomeController.cs&lt;/code&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using ConfigFramework.Data;
+using ConfigFramework.Models;
+using System.Linq;
+using System.Web.Mvc;
+
+namespace ConfigFramework.Controllers
+{
+    public class HomeController : Controller
+    {
+        ConfigDb db = new ConfigDb();
+
+        public ActionResult Index()
+        {
+            var customer = db.Customers.First();
+            var model = new CustomerViewModel()
+            {
+                CustomerId = customer.CustomerId,
+                Name = customer.Name,
+                TestKey = Settings.TestKey
+            };
+            return View(model);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Replace code in &lt;code&gt;Views/Home/Index.cshtml&lt;/code&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;@model ConfigFramework.Models.CustomerViewModel
+
+&amp;lt;p&amp;gt;Customer:  @(Model.CustomerId.ToString() + &amp;quot; &amp;quot; + Model.Name)&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Key: @(Model.TestKey)&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;How Do We Read the Environment Configuration?&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add at root &lt;code&gt;Settings.cs&lt;/code&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using System.Web.Configuration;
+
+namespace ConfigFramework
+{
+    public static class Settings
+    {
+        public static string TestKey = WebConfigurationManager.AppSettings[&amp;quot;TestKey&amp;quot;];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;web.config&lt;/code&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;!--&amp;gt; Add under configuration &amp;gt; configSections--&amp;gt;
+&amp;lt;connectionStrings&amp;gt;
+    &amp;lt;add name=&amp;quot;ConfigDb&amp;quot; connectionString=&amp;quot;Server=.;Database=ConfigLocal;Trusted_Connection=True&amp;quot; 
+        providerName=&amp;quot;System.Data.SqlClient&amp;quot;/&amp;gt;
+&amp;lt;/connectionStrings&amp;gt;
+
+&amp;lt;!-- Add to appSettings&amp;gt; --&amp;gt;
+&amp;lt;add key=&amp;quot;TestKey&amp;quot; value=&amp;quot;Local&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Open Build &amp;gt; Configuration Manager&lt;/li&gt;
+&lt;li&gt;Drop down Active solution configuration &amp;gt; New&lt;/li&gt;
+&lt;li&gt;Name = &amp;quot;Development&amp;quot;, Copy settings from = &amp;quot;Debug&amp;quot;, Create new project configurations = checked&lt;/li&gt;
+&lt;li&gt;OK&lt;/li&gt;
+&lt;li&gt;Do the same to create Staging and Production configurations&lt;/li&gt;
+&lt;li&gt;If you don't immediately see the &lt;code&gt;Web.[environment].config&lt;/code&gt; files under &lt;code&gt;web.config&lt;/code&gt;
+&lt;ol&gt;
+&lt;li&gt;Right-click &lt;code&gt;web.config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Choose Add config transform&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;Web.Debug.config&lt;/code&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+
+&amp;lt;configuration xmlns:xdt=&amp;quot;http://schemas.microsoft.com/XML-Document-Transform&amp;quot;&amp;gt;
+    &amp;lt;connectionStrings&amp;gt;
+        &amp;lt;add name=&amp;quot;ConfigDb&amp;quot; connectionString=&amp;quot;Server=.;Database=ConfigLocal;Trusted_Connection=True&amp;quot; 
+            providerName=&amp;quot;System.Data.SqlClient&amp;quot;
+        xdt:Transform=&amp;quot;SetAttributes&amp;quot; xdt:Locator=&amp;quot;Match(name)&amp;quot;/&amp;gt;
+    &amp;lt;/connectionStrings&amp;gt;
+    &amp;lt;appSettings&amp;gt;
+        &amp;lt;add key=&amp;quot;TestKey&amp;quot; value=&amp;quot;Local&amp;quot; xdt:Transform=&amp;quot;SetAttributes&amp;quot; xdt:Locator=&amp;quot;Match(key)&amp;quot;/&amp;gt;
+    &amp;lt;/appSettings&amp;gt;
+&amp;lt;/configuration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Similarly, update Development, Staging, and Release with these values:
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Development:&lt;/strong&gt; Database=ConfigDevelopmentShared, TestKey value=&amp;quot;Development&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Staging:&lt;/strong&gt; Database=ConfigStaging, TestKey value=&amp;quot;Staging&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Production:&lt;/strong&gt; Database=ConfigProduction, TestKey value=&amp;quot;Production&amp;quot;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Using an external editor, modify &lt;code&gt;ConfigFramework.csproj&lt;/code&gt;. Add this task node at the bottom.
+&lt;blockquote&gt;
+&lt;p&gt;This is the magic sauce that allows running the app in Visual Studio using different configurations&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;Target Name=&amp;quot;BeforeBuild&amp;quot;&amp;gt;
+    &amp;lt;TransformXml Source=&amp;quot;Web.config&amp;quot; Transform=&amp;quot;Web.$(Configuration).config&amp;quot; Destination=&amp;quot;Web.config&amp;quot; /&amp;gt;
+&amp;lt;/Target&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Run It&lt;/strong&gt;&lt;br /&gt;
+Setting the configuration to Debug and pressing F5 should, at this point, open the web site and display something like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-04-39.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;You might get a message about enabling debug. Go ahead and do that. We aren't going to disable debugging in our environment files, but in a real application we would.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-02-11.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;Changing the configuration displays different data.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key Points&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Environments are linked to build configurations.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-06-34.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Web site is run using one IIS Express setup, regardless of configuration.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-08-06.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;.NET Framework has no dependency injection out of the box. So, we're using a global, static Settings file. This means unit testing depends on the unit testing project having a &lt;code&gt;web.config&lt;/code&gt; file that's configured appropriately rather than injecting configurations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;While it's possible to get settings from other sources (such as a database), it's custom work.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="netcore-version"&gt;.NET/Core Version&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The steps here are very similar in .NET Core 3+ and .NET 5+. This code uses .NET 6 and includes improved C# language features such as file-scoped namespaces.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new ASP.NET Core Web App (Model-View-Controller) project named &amp;quot;ConfigCore&amp;quot;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt; Be sure to use the Model-View-Controller template&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;Microsoft.EntityFrameworkCore.SqlServer&lt;/code&gt; NuGet package&lt;/li&gt;
+&lt;li&gt;Add Data folder
+&lt;ol&gt;
+&lt;li&gt;Add &lt;code&gt;Customer.cs&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace ConfigFramework.Data;
+
+public class Customer
+{
+    public int CustomerId { get; set; }
+    public string Name { get; set; } = string.Empty;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;Add &lt;code&gt;ConfigDb.cs&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using Microsoft.EntityFrameworkCore;
+
+namespace ConfigFramework.Data;
+
+public class ConfigDb: DbContext
+{
+    public DbSet&amp;lt;Customer&amp;gt; Customers { get; set; }
+
+    public ConfigDb(DbContextOptions options) : base(options) { }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;Models/CustomerViewModel.cs&lt;/code&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace ConfigFramework.Models;
+
+public class CustomerViewModel
+{
+    public int CustomerId { get; set; } 
+    public string Name { get; set; } = string.Empty;
+    public string TestKey { get; set; } = string.Empty;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Replace code in &lt;code&gt;Controllers/HomeController.cs&lt;/code&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There's more code, but we're also doing more with dependency injection&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;using ConfigFramework.Data;
+using ConfigFramework.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+
+namespace ConfigCore.Controllers;
+
+public class HomeController : Controller
+{
+    readonly ILogger&amp;lt;HomeController&amp;gt; _logger;
+    readonly ConfigDb db;
+    readonly Settings settings;
+
+    public HomeController(ILogger&amp;lt;HomeController&amp;gt; logger, ConfigDb db, IOptions&amp;lt;Settings&amp;gt; settings)
+    {
+        _logger = logger;
+        this.db = db;
+        this.settings = settings.Value;
+    }
+
+    public IActionResult Index()
+    {
+        var customer = db.Customers.First();
+        var model = new CustomerViewModel()
+        {
+            CustomerId = customer.CustomerId,
+            Name = customer.Name,
+            TestKey = settings.TestKey
+        };
+        return View(model);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Replace code in &lt;code&gt;Views/Home/Index.cshtml&lt;/code&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;@model ConfigFramework.Models.CustomerViewModel
+
+&amp;lt;p&amp;gt;Customer:  @(Model.CustomerId.ToString() + &amp;quot; &amp;quot; + Model.Name)&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Key: @(Model.TestKey)&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;How Do We Read the Environment Configuration?&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Here's where we see how very different Framework and Core are&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Add at root &lt;code&gt;Settings.cs&lt;/code&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note this does not directly read configurations. Properties get set later.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;namespace ConfigCore;
+
+public class Settings
+{
+    public const string AppSettings = &amp;quot;AppSettings&amp;quot;;
+
+    public string TestKey { get; set; } = String.Empty;
+}    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;Program.cs&lt;/code&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Set up the DbContext and configuration file dependency injection&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;// Add after builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext&amp;lt;ConfigDb&amp;gt;(options =&amp;gt; options.UseSqlServer(&amp;quot;name=ConnectionStrings:ConfigDb&amp;quot;));
+builder.Services.Configure&amp;lt;Settings&amp;gt;(builder.Configuration.GetSection(Settings.AppSettings));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Add a file named &lt;code&gt;appsettings.Development.json&lt;/code&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The section names are arbritary, but we still have a supported convention of sections named
+ConnectionStrings and AppSettings.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;{
+    &amp;quot;Logging&amp;quot;: {
+        &amp;quot;LogLevel&amp;quot;: {
+        &amp;quot;Default&amp;quot;: &amp;quot;Information&amp;quot;,
+        &amp;quot;Microsoft.AspNetCore&amp;quot;: &amp;quot;Warning&amp;quot;
+        }
+    },
+    &amp;quot;ConnectionStrings&amp;quot;: {
+        &amp;quot;ConfigDb&amp;quot;: &amp;quot;Server=.;Database=ConfigLocal;Trusted_Connection=True;TrustServerCertificate=true;&amp;quot;
+    },
+    &amp;quot;AppSettings&amp;quot;: {
+        &amp;quot;TestKey&amp;quot;: &amp;quot;Development&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Add the remaining files with these environment names:
+&lt;blockquote&gt;
+&lt;p&gt;These files are &lt;em&gt;one&lt;/em&gt; of several source that .NET checks for when configuring&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;DevelopmentShared:&lt;/strong&gt; Database=ConfigDevelopmentShared, TestKey value=&amp;quot;Development&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Staging:&lt;/strong&gt; Database=ConfigStaging, TestKey value=&amp;quot;Staging&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Production:&lt;/strong&gt; Database=ConfigProduction, TestKey value=&amp;quot;Production&amp;quot;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;Properties/launchSettings.json&lt;/code&gt;. Replace the IIS Express entry with these new entries.
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;IIS Express Development&amp;quot;: {
+  &amp;quot;commandName&amp;quot;: &amp;quot;IISExpress&amp;quot;,
+  &amp;quot;launchBrowser&amp;quot;: true,
+  &amp;quot;environmentVariables&amp;quot;: {
+    &amp;quot;ASPNETCORE_ENVIRONMENT&amp;quot;: &amp;quot;Development&amp;quot;
+  }
+},
+&amp;quot;IIS Express Development Shared&amp;quot;: {
+  &amp;quot;commandName&amp;quot;: &amp;quot;IISExpress&amp;quot;,
+  &amp;quot;launchBrowser&amp;quot;: true,
+  &amp;quot;environmentVariables&amp;quot;: {
+    &amp;quot;ASPNETCORE_ENVIRONMENT&amp;quot;: &amp;quot;DevelopmentShared&amp;quot;
+  }
+},
+&amp;quot;IIS Express Staging&amp;quot;: {
+  &amp;quot;commandName&amp;quot;: &amp;quot;IISExpress&amp;quot;,
+  &amp;quot;launchBrowser&amp;quot;: true,
+  &amp;quot;environmentVariables&amp;quot;: {
+    &amp;quot;ASPNETCORE_ENVIRONMENT&amp;quot;: &amp;quot;Staging&amp;quot;
+  }
+},
+&amp;quot;IIS Express  Production&amp;quot;: {
+  &amp;quot;commandName&amp;quot;: &amp;quot;IISExpress&amp;quot;,
+  &amp;quot;launchBrowser&amp;quot;: true,
+  &amp;quot;environmentVariables&amp;quot;: {
+    &amp;quot;ASPNETCORE_ENVIRONMENT&amp;quot;: &amp;quot;Production&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Run It&lt;/strong&gt;&lt;br /&gt;
+Keep the build configuration as Debug, choose the IIS Express Development runtime configuration and F5 to run.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-37-22.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;You should see this:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-38-14.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Key Points&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Build configurations are not usually customized&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-12-06-35.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;IIS Express can start as other environments&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-12-08-01.png" alt="" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Environment is an environment variable, &lt;code&gt;ASPNETCORE_ENVIRONMENT&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Environment settings come from many sources, including &lt;code&gt;appsettings.[Environment].json&lt;/code&gt; files.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;launchSettings.json&lt;/code&gt; is used to set the environment variable for &lt;em&gt;local&lt;/em&gt; development.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;br /&gt;
+It may not be obvious, but if you deployed the application to a web server running IIS and wanted it to run as Staging, you would &lt;em&gt;have&lt;/em&gt; to add/set the &lt;code&gt;ASPNETCORE_ENVIRONMENT&lt;/code&gt; to &amp;quot;Staging&amp;quot;. Without that, the app will run as Production by default.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="time-out-whats-with-developmentshared-and-how-does-all-this-work"&gt;Time Out! What's With DevelopmentShared? And How Does All This Work?&lt;/h2&gt;
+&lt;p&gt;In .NET/Core&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WebApplication.CreateBuilder&lt;/code&gt; reads a bunch of configuration sources by default, in a specific order.&lt;/li&gt;
+&lt;li&gt;The &amp;quot;Development&amp;quot; environment has special behaviors that you don't know about unless you read the documentation, which will catch you by surprise.&lt;/li&gt;
+&lt;li&gt;&amp;quot;Development&amp;quot; is intended for local work&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There's some problematic--but understandable--mental modeling at work here that I've seen over the years. Just as Microsoft conflated build and environment configurations, developers have conflated Debug and Development. .NET Framework accidentally encouraged developers to think of Debug as &amp;quot;local development.&amp;quot; Many teams have a shared development environment (shared web and database). So, they naturally added a Development configuration that meant &amp;quot;remote.&amp;quot;&lt;/p&gt;
+&lt;p&gt;In .NET/Core, Debug has nothing to do with environment, and Development equals local. This is stated in the documentation, and is evident in code like this from &lt;code&gt;Program.cs&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler(&amp;quot;/Home/Error&amp;quot;);
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Development is the environment where we'd be calling other services with local ports, such as &lt;code&gt;https://localhost:50334&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;But more importantly, when the configuration is built up, if the &lt;code&gt;ASPNETCORE_ENVIRONMENT&lt;/code&gt; environment is &amp;quot;Development&amp;quot;, user secrets are read if they exist. This is important for keeping sensitive information secure.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-7.0#default-application-configuration-sources"&gt;Default application configuration sources&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I don't like it, but as far as I can tell these hidden behaviors are only enabled if &lt;code&gt;ASPNETCORE_ENVIRONMENT&lt;/code&gt; is set to &amp;quot;Development&amp;quot;. Not &amp;quot;Dev&amp;quot;, and not any other user-defined value. You can, of course, easily customize the builder, but it's critical to know the default behaviors.&lt;/p&gt;
+&lt;p&gt;Also, I prefer sticking with defaults when I can.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So, that's why I added a DevelopmentShared environment. I would &lt;em&gt;assume&lt;/em&gt; that any secrets needed in a shared environment come from a shared source such as Azure Key Vault.&lt;/p&gt;
+&lt;p&gt;How many configuration sources are looked up by default? Six, and in this order. The later sources will override values of the same keys in earlier sources.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Fallback host configuration&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;appsettings.json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;appsettings.[Environment].json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;User secrets&lt;/li&gt;
+&lt;li&gt;Environment variables&lt;/li&gt;
+&lt;li&gt;Command-line arguments&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="proving-how-it-works"&gt;Proving How It Works&lt;/h2&gt;
+&lt;p&gt;As stated earlier, one goal of the new configuration approach is &amp;quot;build once, deploy to many,&amp;quot; meaning I should be able to control my application's settings without changing the appsettings files. Let's try that.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Run using IIS Express Staging.&lt;/li&gt;
+&lt;li&gt;You should see customer &amp;quot;Staging Sierra&amp;quot; and key &amp;quot;Staging&amp;quot;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We'll run the app using a different environment, similar to running in IIS. For convenience, we'll do this from the command line with in-process environment variables.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Open PowerShell&lt;/li&gt;
+&lt;li&gt;Run
+&lt;pre&gt;&lt;code class="language-powershell"&gt;# cd [path/to/ConfigCore solution]
+$Env:ASPNETCORE_ENVIRONMENT = &amp;quot;Production&amp;quot;
+dotnet run --project ConfigCore --no-launch-profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;The site runs using the Kestral webhost. Open whatever URL is displayed, typically http://localhost:5000&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You should see customer = &amp;quot;Pavla&amp;quot; and key = &amp;quot;Production&amp;quot;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Ctrl-C&lt;/code&gt; to stop the site.&lt;/li&gt;
+&lt;li&gt;Run
+&lt;pre&gt;&lt;code class="language-powershell"&gt;$Env:AppSettings__TestKey = &amp;quot;Blamo&amp;quot;
+dotnet run --project ConfigCore --no-launch-profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Once running, refresh the page.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The key should change to &amp;quot;Blamo.&amp;quot;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Why is the environment variable name &lt;code&gt;AppSettings__TestKey&lt;/code&gt; with the double-underscore? That's a Microsoft convention that allows converting the key to a hierarchy of the form &amp;quot;AppSettings:TestKey&amp;quot;. In fact, the json file also converts to that format, as does any other configuration source. The double-underscore works with Linux environment variables.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When you run using Visual Studio, &lt;code&gt;ASPNETCORE_ENVIRONMENT&lt;/code&gt; is usually set in launchSettings. But it doesn't have to be. If you delete the &lt;code&gt;environmentVariables&lt;/code&gt; key, the app will either run as Production (the default) or as whatever is set for &lt;code&gt;ASPNETCORE_ENVIRONMENT&lt;/code&gt; in the user profile or system environment variables.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: Remember you have to close/reopen Visual Studio to see new environment variable changes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;Microsoft fundamentally changed how configuration works in .NET/Core compared to Framework. They solved many problems and provided flexible and testable methods. The biggest barrier I've seen to using the new configuration strategies is understanding what changed and how they're intended to work.&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Because, I guess, Microsoft believed two names were better than one. So far I haven't found an article on why they used two names.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+      <pubDate>Sun, 15 Oct 2023 09:34:52 -0600</pubDate>
+      <link>https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration</guid>
+    </item>
+    <item>
       <title>One Sheet Summary: Software Engineering at Google - Testing</title>
       <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
 &lt;ul&gt;
@@ -743,88 +1317,6 @@ I'm not a biblical scholar. This post treads on sensitive ground regarding matte
       <pubDate>Wed, 20 Jul 2022 13:58:08 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/meditation_on_the_mythical_man_month__who_failed_on_the_tower_of_babel_project</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/meditation_on_the_mythical_man_month__who_failed_on_the_tower_of_babel_project</guid>
-    </item>
-    <item>
-      <title>.NET MAUI Progressing From a Default Project Part 6 - Revisiting Unit Testing</title>
-      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
-&lt;p&gt;Level: Moderate&lt;/p&gt;
-&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="someone-elses-solution-to-unit-testing.net-maui-projects"&gt;(Someone Else's) Solution to Unit Testing .NET MAUI Projects&lt;/h2&gt;
-&lt;p&gt;In part 2, I discussed how .NET MAUI didn't support unit testing, and that you could separate out the namespaces into their own projects. And that's still true and useful. But for many projects that's overkill. In my opinion, it's especially egregious for unit testing the View Models, which I'd prefer stay with the UI project.&lt;/p&gt;
-&lt;p&gt;In his video &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=C9vIDLQwc7M"&gt;Unit Testing .NET MAUI Apps with xUnit&lt;/a&gt;, Gerald Versluis demonstrates how to modify the project to allow direct unit testing. It's pretty simple, I must say, and for fun I'll take the solution from part 5 and &lt;em&gt;collapse&lt;/em&gt; it back into a single project.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;If you want to just see the answer, scroll down to &lt;em&gt;The Secret Sauce&lt;/em&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Ideally, as long as I keep the namespaces the same, everything should work the same and pass perfectly with very little effort.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="creating-the-namespace-folder-structure"&gt;Creating the namespace folder structure&lt;/h2&gt;
-&lt;p&gt;Right now, we have separate projects for our domain-driven design.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-12-59-46.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Let's recreate those namespaces in the &lt;code&gt;Maui.Progression&lt;/code&gt; project. Create folders like so.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-09-57.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Now copy the  files and folders from the projects into the new folders.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-12-14.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Add this NuGet package to the &lt;code&gt;Maui.Progression&lt;/code&gt; project.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Microsoft.Toolkit.Mvvm&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;If we had other dependencies, they'd need to be added as well.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;In the 'Maui.Progression.UnitTests' project, add a project reference to &lt;code&gt;Maui.Progression&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-14-45-18.png" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;Now delete these projects:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Maui.Progression.Domain&lt;/li&gt;
-&lt;li&gt;Maui.Progression.DomainServices&lt;/li&gt;
-&lt;li&gt;Maui.Progression.ViewModels&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Their references will automatically be removed from the unit test project.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;You can try to simply rebuild the solution. But I had to close and reopen Visual Studio, then clean/rebuild. The build will fail, which is expected.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-28-05.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="the-secret-sauce"&gt;The Secret Sauce&lt;/h2&gt;
-&lt;p&gt;As discussed in part 2, the reason I couldn't just unit test the .NET MAUI project is because it needs to include a framework of &lt;code&gt;net6.0&lt;/code&gt;. The other reason I didn't know about, that Versluis explains, is if I add the &lt;code&gt;net6.0&lt;/code&gt; framework it needs to build as a DLL, not an Exe. This removes the &amp;quot;Main method required&amp;quot; error.&lt;/p&gt;
-&lt;p&gt;Here's how to do that.&lt;/p&gt;
-&lt;p&gt;Edit your &lt;code&gt;Maui.Progression.csproj&lt;/code&gt; file, either by selecting it or right-click the project name and choosing &amp;quot;Edit Project File&amp;quot;.&lt;/p&gt;
-&lt;p&gt;Modify the &lt;code&gt;TargetFrameworks&lt;/code&gt; line to include &lt;code&gt;net6.0&lt;/code&gt;. I put it first.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;TargetFrameworks&amp;gt;net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst&amp;lt;/TargetFrameworks&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here's the kicker. Modify the OutputType to &lt;em&gt;conditionally&lt;/em&gt; generate an Exe for everything except the &lt;code&gt;net6.0&lt;/code&gt; framework. DLL is the default when Exe isn't selected.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;OutputType Condition=&amp;quot;'$(TargetFramework)' != 'net6.0'&amp;quot;&amp;gt;Exe&amp;lt;/OutputType&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Clean and Rebuild the solution. You many need to close/reopen Visual Studio.&lt;/p&gt;
-&lt;p&gt;The solution &lt;em&gt;still&lt;/em&gt; won't build, because the &lt;code&gt;MainPage.xaml&lt;/code&gt; is attempting to reference anx external assembly.&lt;/p&gt;
-&lt;p&gt;Open that file and change the namespace attributes to this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-xml"&gt;xmlns:viewmodels=&amp;quot;clr-namespace:Maui.Progression.ViewModels&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Clean and Rebuild is now successful!&lt;/p&gt;
-&lt;p&gt;Run the tests and they pass, like magic.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/2022-07-19-13-51-35.png" alt="" /&gt;&lt;/p&gt;
-&lt;h2 id="proscons"&gt;Pros/Cons&lt;/h2&gt;
-&lt;p&gt;One advantage to keeping all the code in one project is it's a little quicker to navigate.&lt;/p&gt;
-&lt;p&gt;One disadvantage is there's a tendency toward tighter coupling and worse testing design.&lt;/p&gt;
-&lt;p&gt;But another, subtler disadvantage is build time. If there are no changes to the UI, and only changes to the dependency projects, the build is substantially faster. This matters when doing test-driven development because we want to keep our feedback loop fast.&lt;/p&gt;
-&lt;p&gt;You need to decide what balance matters to you.&lt;/p&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;We saw how to enable unit testing against a .NET MAUI project directly by building it as a DLL against the &lt;code&gt;net6.0&lt;/code&gt; framework target. There are still challenges in unit testing where the code includes things like &lt;code&gt;SemanticReader&lt;/code&gt; calls; I'm hoping to tackle that soon.&lt;/p&gt;
-&lt;p&gt;Next Up: Build (and maybe deployment), I hope.&lt;/p&gt;
-</description>
-      <pubDate>Tue, 19 Jul 2022 12:50:14 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing</guid>
     </item>
   </channel>
 </rss>
