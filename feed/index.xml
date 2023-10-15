@@ -7,7 +7,24 @@
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
       <title>.NET Framework vs Core Environment Configuration</title>
-      <description>&lt;h2 id="the-source-code"&gt;The Source Code&lt;/h2&gt;
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href="#the-source-code"&gt;The Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#the-crucial-difference"&gt;The Crucial Difference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#whats-in-store"&gt;What's In Store&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#brief-history"&gt;Brief History&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#why-run-time-configuration-matters-build-once-deploy-to-many"&gt;Why Run-Time Configuration Matters: Build Once, Deploy To Many&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#show-me-the-code"&gt;Show Me the Code!&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#database"&gt;Database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#net-framework-version"&gt;.NET Framework Version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#netcore-version"&gt;.NET/Core Version&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#time-out-whats-with-developmentshared-and-how-does-all-this-work"&gt;Time Out! What's With DevelopmentShared? And How Does All This Work?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#proving-how-it-works"&gt;Proving How It Works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#wrap-up"&gt;Wrap Up&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="the-source-code"&gt;The Source Code&lt;/h2&gt;
 &lt;p&gt;Code is found at:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/bladewolf55/ConfigDemo"&gt;https://github.com/bladewolf55/ConfigDemo&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="the-crucial-difference"&gt;The Crucial Difference&lt;/h2&gt;
