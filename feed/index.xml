@@ -7,7 +7,10 @@
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
       <title>.NET Framework vs Core Environment Configuration</title>
-      <description>&lt;h2 id="the-crucial-difference"&gt;The Crucial Difference&lt;/h2&gt;
+      <description>&lt;h2 id="the-source-code"&gt;The Source Code&lt;/h2&gt;
+&lt;p&gt;Code is found at:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/bladewolf55/ConfigDemo"&gt;https://github.com/bladewolf55/ConfigDemo&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="the-crucial-difference"&gt;The Crucial Difference&lt;/h2&gt;
 &lt;p&gt;.NET Framework applies environment configurations at &lt;em&gt;build time&lt;/em&gt;, transforming environment-specific files to create a single configuration file for the deployed application. The application &lt;em&gt;knows&lt;/em&gt; what environment it's supposed to be in, regardless of where it's deployed.&lt;/p&gt;
 &lt;p&gt;.NET/Core applies environment configurations at &lt;em&gt;run time&lt;/em&gt;, using a specific environment variable, and can consume many configuration sources. The application &lt;em&gt;asks&lt;/em&gt; what environment it's deployed in.&lt;/p&gt;
 &lt;h2 id="whats-in-store"&gt;What's In Store&lt;/h2&gt;
