@@ -11,8 +11,8 @@
 &lt;p&gt;Code is found at:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/bladewolf55/ConfigDemo"&gt;https://github.com/bladewolf55/ConfigDemo&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="the-crucial-difference"&gt;The Crucial Difference&lt;/h2&gt;
-&lt;p&gt;.NET Framework applies environment configurations at &lt;em&gt;build time&lt;/em&gt;, transforming environment-specific files to create a single configuration file for the deployed application. The application &lt;em&gt;knows&lt;/em&gt; what environment it's supposed to be in, regardless of where it's deployed.&lt;/p&gt;
-&lt;p&gt;.NET/Core applies environment configurations at &lt;em&gt;run time&lt;/em&gt;, using a specific environment variable, and can consume many configuration sources. The application &lt;em&gt;asks&lt;/em&gt; what environment it's deployed in.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;.NET Framework&lt;/strong&gt; applies environment configurations at &lt;strong&gt;build time&lt;/strong&gt;, transforming environment-specific files to create a single configuration file for the deployed application. The application &lt;em&gt;knows&lt;/em&gt; what environment it's supposed to be in, regardless of where it's deployed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;.NET/Core&lt;/strong&gt; applies environment configurations at &lt;strong&gt;run time&lt;/strong&gt;, using a specific environment variable, and can consume many configuration sources. The application &lt;em&gt;asks&lt;/em&gt; what environment it's deployed in.&lt;/p&gt;
 &lt;h2 id="whats-in-store"&gt;What's In Store&lt;/h2&gt;
 &lt;p&gt;To show how Framework and Core differ, I'll show two ASP.NET MVC apps that do the same thing using both configuration strategies.&lt;/p&gt;
 &lt;h2 id="brief-history"&gt;Brief History&lt;/h2&gt;
