@@ -270,17 +270,17 @@ namespace ConfigFramework
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Run It&lt;/strong&gt;&lt;br /&gt;
 Setting the configuration to Debug and pressing F5 should, at this point, open the web site and display something like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-04-39.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration/2023-10-15-11-04-39.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;You might get a message about enabling debug. Go ahead and do that. We aren't going to disable debugging in our environment files, but in a real application we would.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-02-11.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration/2023-10-15-11-02-11.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;Changing the configuration displays different data.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Key Points&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Environments are linked to build configurations.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-06-34.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration/2023-10-15-11-06-34.png" alt="" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Web site is run using one IIS Express setup, regardless of configuration.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-08-06.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration/2023-10-15-11-08-06.png" alt="" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;.NET Framework has no dependency injection out of the box. So, we're using a global, static Settings file. This means unit testing depends on the unit testing project having a &lt;code&gt;web.config&lt;/code&gt; file that's configured appropriately rather than injecting configurations.&lt;/p&gt;
 &lt;/li&gt;
@@ -477,16 +477,16 @@ ConnectionStrings and AppSettings.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Run It&lt;/strong&gt;&lt;br /&gt;
 Keep the build configuration as Debug, choose the IIS Express Development runtime configuration and F5 to run.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-37-22.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration/2023-10-15-11-37-22.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;You should see this:&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-11-38-14.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration/2023-10-15-11-38-14.png" alt="" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Key Points&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Build configurations are not usually customized&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-12-06-35.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration/2023-10-15-12-06-35.png" alt="" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;IIS Express can start as other environments&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration/2023-10-15-12-08-01.png" alt="" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration/2023-10-15-12-08-01.png" alt="" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Environment is an environment variable, &lt;code&gt;ASPNETCORE_ENVIRONMENT&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -579,8 +579,8 @@ dotnet run --project ConfigCore --no-launch-profile
 &lt;/div&gt;
 </description>
       <pubDate>Sun, 15 Oct 2023 09:34:52 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/_NET_Framework_vs_Core_Environment_Configuration</guid>
+      <link>https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/framework_vs_core_environment_configuration</guid>
     </item>
     <item>
       <title>One Sheet Summary: Software Engineering at Google - Testing</title>
