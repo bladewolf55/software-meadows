@@ -6,6 +6,79 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Git Demand Flow</title>
+      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/git_demand_flow/git_demand_flow.png" alt="" /&gt;&lt;/p&gt;
+&lt;h2 id="the-issue"&gt;The Issue&lt;/h2&gt;
+&lt;p&gt;Plenty of research says using a trunk-based version control merge/branch strategy is highly effective. But what if a team isn't ready for this?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The trunk-based strategy expects that every commit to main is ready for production (assuming it passes all automated tests).&lt;/li&gt;
+&lt;li&gt;If a commit isn't ready for production, a great technique is to hide the change behind a feature flag.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Our team has this situation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Commits need to be tested on demand.&lt;/li&gt;
+&lt;li&gt;But only some of those commits will be deployed to production right away.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, we may be working on a larger feature that--for various reasons--has to be released all together. For now, we cannot use feature flags and we can't easily add more discrete testing environments.&lt;/p&gt;
+&lt;p&gt;Git Flow seems like a solution, but it still expects to merge point-in-time commits into main.&lt;/p&gt;
+&lt;p&gt;Here is an approach we're trying. It maintains two independent--but related--branches: test and main. Release branches feed main.&lt;/p&gt;
+&lt;h2 id="rules"&gt;Rules&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;No PRs to test or main without a story&lt;/li&gt;
+&lt;li&gt;Latest &lt;code&gt;test&lt;/code&gt; can always be deployed to Test&lt;/li&gt;
+&lt;li&gt;A PR to &lt;code&gt;test&lt;/code&gt; must be QA-ready&lt;/li&gt;
+&lt;li&gt;Latest &lt;code&gt;main&lt;/code&gt; can always be deployed to Production&lt;/li&gt;
+&lt;li&gt;A PR to &lt;code&gt;main&lt;/code&gt; must be production-ready&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="work-flow"&gt;Work flow&lt;/h2&gt;
+&lt;p&gt;I was tempted to use feature branches for longer-lived changes. But we already link stories to features, so using a feature branch in Git seems unnecessary.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It would also require lots of rebasing and forced pulls, the combination of which is asking for trouble.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Besides branching and merging, the flow below refers to tagging stories, moving them into columns, and triggering pipelines. We use Azure DevOps for all of this. You can ignore that stuff if you want, it's not required for the branch/merge strategy.&lt;/p&gt;
+&lt;p&gt;What matters most is we&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PR into &lt;code&gt;test&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Cherry-pick into &lt;code&gt;release&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;PR into &lt;code&gt;main&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Flow&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Developer begins coding for a story in a branch, e.g. &lt;code&gt;clf/198222-improve-customer-grid-performance&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;When the story is ready for QA:
+&lt;ol&gt;
+&lt;li&gt;Tag story as Deployable&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;When QA requests testing one or more stories:
+&lt;ol&gt;
+&lt;li&gt;PR: merge &lt;code&gt;clf/198222-improve-customer-grid-performance&lt;/code&gt; into &lt;code&gt;test&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Tag &lt;code&gt;test&lt;/code&gt; branch commit to trigger pipelines&lt;/li&gt;
+&lt;li&gt;Remove Deployable tags&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;When stories are fully tested
+&lt;ol&gt;
+&lt;li&gt;Move to UAT Done&lt;/li&gt;
+&lt;li&gt;If deployable to production, tag as Deployable for next release&lt;/li&gt;
+&lt;li&gt;Move Deployable to Deploy Doing&lt;/li&gt;
+&lt;li&gt;Branch from &lt;code&gt;main&lt;/code&gt; to &lt;code&gt;release/[datetime]&lt;/code&gt;. &lt;em&gt;Cherry pick&lt;/em&gt; story commits into release branch.&lt;/li&gt;
+&lt;li&gt;PR: merge &lt;code&gt;release/[datetime]&lt;/code&gt; into &lt;code&gt;main&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Tag &lt;code&gt;main&lt;/code&gt; branch commit to trigger pipelines&lt;/li&gt;
+&lt;li&gt;Delete story branches&lt;/li&gt;
+&lt;li&gt;Delete Deployable tags&lt;/li&gt;
+&lt;li&gt;Move to Deploy Done&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;This flow seems like it will succeed in keeping both &lt;code&gt;test&lt;/code&gt;--and especially &lt;code&gt;main&lt;/code&gt;--branches clean until we're ready for trunk-based development.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 28 Dec 2023 20:27:53 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/git_demand_flow</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/git_demand_flow</guid>
+    </item>
+    <item>
       <title>Better Bugs and Stories</title>
       <description>&lt;h2 id="why"&gt;Why?&lt;/h2&gt;
 &lt;p&gt;Written communication is hard. Bugs and stories too often lead to people having to unnecessarily ask someone to explain what's been written because it's vague. There's such a thing as too much detail, but too little, unclear information is more common.&lt;/p&gt;
@@ -1187,44 +1260,6 @@ This might be my favorite essay. Brooks discusses his entire book, where he was 
       <pubDate>Wed, 10 Aug 2022 10:36:00 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/wip_metaphor__not_burgers__books</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/wip_metaphor__not_burgers__books</guid>
-    </item>
-    <item>
-      <title>.NET MAUI Progressing From a Default Project Part 7 - Deploying, the Other People's Links Edition</title>
-      <description>&lt;h2 id="the-series"&gt;The Series&lt;/h2&gt;
-&lt;p&gt;Level: Moderate&lt;/p&gt;
-&lt;p&gt;This series assumes the developer is familiar with .NET MAUI, the Model-View-ViewModel pattern, and has worked through one or more tutorials such as the excellent &lt;a href="https://www.youtube.com/watch?app=desktop&amp;amp;v=DuNLR_NJv8U"&gt;James Montemagno's Workshop&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Source: &lt;a href="https://github.com/bladewolf55/net-maui-progression"&gt;https://github.com/bladewolf55/net-maui-progression&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_1_-_adding_the_view_model/"&gt;Part 1 - Adding the View Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_2_-__the_problem_with__basic_unit_testing"&gt;Part 2 - (The Problem With) Basic Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_3_-_adding_the_model_more_testing_and_ddd/"&gt;Part 3 - Adding the Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_4_-_putting_the_view_in_its_place/"&gt;Part 4 - Putting the View in Its Place&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_5_-_restyling_from_scratch/"&gt;Part 5 - Restyling From Scratch&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_6_-_revisiting_unit_testing/"&gt;Part 6 - Revisiting Unit Testing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition/"&gt;Part 7 - Deploying, the Other People's Links Edition&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="checking-my-ego"&gt;Checking My Ego&lt;/h2&gt;
-&lt;p&gt;I kind of promised this part in the series, where I was going to take my progressively modified default app and show deploying it. But you know what? Other people have already covered this. So, here are their links and I don't think I have anything to add or clarify. Read them. They'll point you the right way.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://devblogs.microsoft.com/dotnet/devops-for-dotnet-maui/"&gt;Getting Started with DevOps and .NET MAUI - .NET Blog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.andreasnesheim.no/setting-up-ci-for-your-net-maui-windows-app-in-azure-devops/"&gt;Setting up CI for your .NET MAUI Windows app in Azure DevOps - Andreas Nesheim&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=FNwv_W3TtSU&amp;amp;t=8s"&gt;Create a .NET MAUI Windows MSIX to Sideload Or Publish to the Microsoft Store - YouTube&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I &lt;em&gt;may&lt;/em&gt; still write a future post showing .NET MAUI CI/CD in Azure DevOps Pipelines. That would be interesting because it would ideally cover:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The local build and package script&lt;/li&gt;
-&lt;li&gt;Remote (integrated) build&lt;/li&gt;
-&lt;li&gt;Package once, deploy to many environments&lt;/li&gt;
-&lt;li&gt;How to manage testing versions before publishing to the platform stores&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The thing is, I haven't done this with .NET MAUI, and I have some other topics I'm more interested in right now. But I'll eventually learn and write about it when I--hopefully--publish my first .NET MAUI application!&lt;/p&gt;
-&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
-&lt;p&gt;This series has used the out-of-the-box .NET MAUI project template as a starting point for learning many key concepts and techniques. Some apply only to .NET MAUI, while most apply to general enterprise development.&lt;/p&gt;
-&lt;p&gt;I hope it's been helpful. You rock!&lt;/p&gt;
-</description>
-      <pubDate>Sun, 31 Jul 2022 07:46:53 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition</guid>
     </item>
   </channel>
 </rss>
