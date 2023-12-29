@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/kavadocs.css' />
 
 
-  <title>Scrum In Azure Devops - A Simpler (Custom) Process | Software Meadows</title>
+  <title>Better Bugs And Stories | Software Meadows</title>
 </head>
 
 <body>
@@ -62,206 +62,103 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process'>Scrum in Azure DevOps - A simpler (custom) process</a></h2>
-                <p class='post-info'><span class='posted-on'>2021-05-17 16:00</span></p>
-                <div class='post-content'><p>Series Parts</p>
-<ul>
-<li><a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/">A Simple Intro To Scrum In Azure Devops</a></li>
-<li><a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/">Scrum In Azure Devops - A Simpler (Custom) Process</a></li>
-<li><a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/">Scrum In Azure Devops - The Story Board is your process heart</a> COMING SOON!</li>
-</ul>
-<h2 id="intro">Intro</h2>
-<p>The default Azure DevOps Scrum process is good, but I think it adds some unnecessary complication. Below I'll walk through inheriting from and modifying that process. I'm building on the work in my  post <a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/">A Simple Intro to Scrum in Azure DevOps</a>, so you should start there if you need to.</p>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/better_bugs_and_stories'>Better Bugs and Stories</a></h2>
+                <p class='post-info'><span class='posted-on'>2023-12-28 18:40</span></p>
+                <div class='post-content'><h2 id="why">Why?</h2>
+<p>Written communication is hard. Bugs and stories too often lead to people having to unnecessarily ask someone to explain what's been written because it's vague. There's such a thing as too much detail, but too little, unclear information is more common.</p>
+<p>This article doesn't cover all about writing good user stories or bugs. It focuses on a few practices that I've found help the most.</p>
+<h2 id="bugs">Bugs</h2>
+<p>The most important parts of a bug report are A) the steps to reproduce the problem, and B) clarity of what the problem is.</p>
+<p>There are many audiences for bugs: the user who's reporting, the developer who's fixing, the product manager or business analyst who's communicating the bug from the user to the team.</p>
+<p>All of these audiences have different mental models of the application and often assume others know what they do. How do we make sure the steps are clear? Here's one tip I like.</p>
 <blockquote>
-<p>Lots of what's below is my opinion, so take it for what it's worth. But don't discount it, that's mean.</p>
+<p>Write the repro steps as if you were training a new employee</p>
 </blockquote>
-<h2 id="the-framework">The Framework</h2>
-<p>In my experience, when Developers, Scrum Masters, and Product Owners get their hands on electronic project management software, they add and add to what's already there. This is usually a mistake. Instead, pare down to the simplest thing that works, and only add features when needed.</p>
-<blockquote>
-<p>As an aside, the other thing organizations do is try to enforce a single process on all teams. This is not Agile, because it removes team autonomy, self-organization, and effectiveness. The usual reason given is to make reporting across teams easier. That gives too much weight to upper management control. Instead, ask Developers to help figure out how to deliver cross-team reports. While you're at it, see if you can pare down those reports, too. Ask, &quot;How is this report delivering user value?&quot;</p>
-</blockquote>
-<p>One way to find the simplest thing that works is imagine--or put--it on paper. Here's all we're really trying to capture.</p>
-<p>The work item structure is:</p>
-<pre><code class="language-text">Feature
-|_Story
-  |_Task
-|_Bug
+<p>Here's how the initial user (who <em>could</em> be a developer or product owner, really anyone) might initially desribe a bug.</p>
+<pre><code>Help! When I search for a customer it should show me the last modified date but isn't.
 </code></pre>
-<p>Stories and bugs move through a board.</p>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/kanban-board.png" alt="" /></p>
-<p>A story or bug card--sticky note version!--might look like this and has all the relevent info plus pointers to more detail.</p>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc21.png" alt="" /></p>
-<p>Try to keep your electronic version that simple.</p>
-<h2 id="a-new-process">A New Process</h2>
-<ol>
-<li><p>Open Azure DevOps and open the Organization Settings &gt; Boards &gt; Process</p>
-</li>
-<li><p>Select Scrum &gt; Create inherited process, and name it SimpleScrum<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc01.png" alt="" /><br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc02.png" alt="" /></p>
-</li>
-<li><p>Open the SimpleScrum process. Under Work item types, we already have an essential set of types. Let's start by creating a work item type named Story instead of Product Backlog Item (PBI).</p>
-<blockquote>
-<p>No, you can't rename an inherited process work item type. I hate this, and so do you.</p>
-</blockquote>
-</li>
-<li><p>Open the PBI work item type &gt; States, and hide the Committed state.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc05.png" alt="" /></p>
-</li>
-<li><p>In the original tab, choose New work item type and name it Story<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc03.png" alt="" /></p>
-</li>
-<li><p>Under Layout, add and update the fields to look like this. In one case, you're renaming Description to Value (orange), in others you're using an existing field (green), and in still others it's a new field (red).<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc04.png" alt="" /></p>
-</li>
-<li><p>Under States, add two new states: Active in the In Progress category and Removed in the Removed category, and remove Committed.</p>
-<blockquote>
-<p>You can only remove an inherited state that's been hidden.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc18.png" alt="" /></p>
-</blockquote>
-</li>
-<li><p>Under Rules, create the following rule.</p>
+<p>Clarifying this bug may require a few messages or, ideally, watching the person do the work. The bug report might end up like this.</p>
+<pre><code>Title: Solaris Activium Search not showing last modified for Nevada customers
+
+Repro Steps
+1. Open Solaris Activium
+2. Choose Menu &gt; Search &gt; Customer Search
+3. Enter last name &quot;Calypso&quot;, first name &quot;Bernard&quot; and Search. Note she lives in Nevada.
+
+Expected: A last modified date within the last few years
+Actual: 0000-00-00
+
+4. Enter last name &quot;Chattergee&quot; first name &quot;Parag&quot; and Search. Note he lives in Maine.
+
+Actual: 2019-03-24
+
+[screen shot]
+
+More Information
+They're only seeing this happen with customers who are in Nevada, but 
+haven't tested all states.
+
+Acceptance Criteria
+(optional if obvious from the bug.)
+
+Last modified date is shown for customers in all states.
+</code></pre>
+<p>What helps the person who opens the bug?</p>
 <ul>
-<li>Name: Assign Active</li>
-<li>When: A work item stage changes to . . . Active</li>
-<li>Then: Use the current user to set the value of . . . Assigned To<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc19.png" alt="" /></li>
+<li>Which system/app is involved?</li>
+<li>What are the exact steps the user performed?</li>
+<li>What was expected? What was actually seen?</li>
+<li>Sometimes a screen shot helps</li>
 </ul>
-</li>
-<li><p>Return to the Work Item Types and disable Product Backlog Item</p>
-<blockquote>
-<p><strong>Important</strong><br />
-Only disable PBI if you are <em>not</em> going to apply the new process to an existing project. If you are, leave PBI enabled so that you can change existing work items from PBI to Story.</p>
-</blockquote>
-</li>
-<li><p>Open Bug and make these changes.</p>
-<ol>
-<li>Hide System Info, Acceptance Criteria, Priority, and Activity.</li>
-<li>Optional: I hide the Build fields</li>
-<li>Add More Info, Developer Notes, Testing Notes, Reported By, and Blocked
-<blockquote>
-<p>Any fields added to Story will be in the &quot;Use existing field&quot; dropdown.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc06.png" alt="" /></p>
-</blockquote>
-</li>
-</ol>
-<blockquote>
-<p><strong>Important</strong><br />
-Treat Bugs as a defects reported by production users. Why? Because it makes it much easier to track Bug fix cycle time. See below for tracking defects during development.</p>
-</blockquote>
-</li>
-<li><p>Under States, add Active to In Progress, hide Approved and Committed</p>
-</li>
-<li><p>Under Rules, create the same Assign Active rule as in Story</p>
-</li>
-</ol>
-<h2 id="pre-release-vs-post-release-defectsbugs">Pre-Release vs Post-Release Defects/Bugs</h2>
-<p>If your shop includes quality assurance, user-acceptance testing, or other non-unit testing, you should track your defects separately from Bugs. If those roles are in your team, then I like communicating those defects at the same level as Tasks. If they're outside the team, then I recommend tracking them at the same level as Bugs.</p>
-<ol>
-<li>Create a new work item type named PreRelease Defect with the same fields, states, and rule as Bug. Hide Description. Choose an icon you like.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc07.png" alt="" /></li>
-</ol>
-<p>OK, the work items are ready!</p>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc08.png" alt="" /></p>
-<h2 id="backlog-levels">Backlog Levels</h2>
-<p>These changes make your new work item type availabe in the New item dropdowns on boards and backlogs.</p>
-<ol>
-<li>Open SimpleSrum &gt; Backlog levels</li>
-<li>Edit Backlog items and add Story and PreRelease Defect. Set Default work item type to Story</li>
-</ol>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc15.png" alt="" /></p>
-<h2 id="use-the-process">Use the Process</h2>
-<p>You can create a new Project using the SimpleScrum process, but you can also apply the process to an existing project.</p>
-<blockquote>
-<p><strong>Warning</strong><br />
-Applying a process does come with risks if there are non-matching fields. Be sure you read the documentation!</p>
-</blockquote>
-<p>I'm going to apply the process to Baskets-R-Us (from Part 1 of the series) so you see what's involved and why starting with a new project might be better.</p>
-<ol>
-<li><p>Open All Process and click the Scurm Team Projects link<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc09.png" alt="" /></p>
-</li>
-<li><p>For BRUW, select Change Process and choose SimpleScrum<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc10.png" alt="" /><br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc11.png" alt="" /></p>
-</li>
-</ol>
-<h2 id="fix-up-the-work-items">Fix up the work items</h2>
-<ol>
-<li><p>Open the BRUW project &gt; Queries &gt; New Query</p>
-</li>
-<li><p>Return all work items<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc14.png" alt="" /></p>
-</li>
-<li><p>Open Column Options and add State and Reason. Sort by Work Item Type and State</p>
-</li>
-<li><p>Select all Product Backlog Items, right-click &gt; Change Type, select Story.</p>
-</li>
-<li><p>Select Commmitted items, right-click &gt; Edit, change State to Active</p>
-</li>
-<li><p>Select Approved items, right-click &gt; Edit, change State to New</p>
-</li>
-<li><p>Save items</p>
-<blockquote>
-<p>You may have other changes to make to your work items.</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="fix-up-the-story-board">Fix up the Story Board</h2>
-<blockquote>
-<p>Story Board customizations are at the Team level</p>
-</blockquote>
-<ol>
-<li><p>Open the BRUW project &gt; Boards. I was greeted with this message:
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc12.png" alt="" /></p>
-</li>
-<li><p>Fine, I'll Correct this now. It's the board's column settings that need changing, which is what I want to do anyway!<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc13.png" alt="" /></p>
-</li>
-<li>
-<blockquote>
-<p>You can't delete any columns that have stories in them until you move the stories.</p>
-</blockquote>
+<p>&quot;Exact steps the user performed&quot; is important. Often someone familiar with the application will try to reproduce the problem but using different steps, leading to &quot;I can't reproduce&quot; confusion.</p>
+<p>Note that while the user might consider the bug fixed if Nevada customers show last modified, the developer should have realized other states could be affected, leading to the more thorough acceptance criteria.</p>
+<h2 id="stories">Stories</h2>
+<p>Stories, aka &quot;user stories,&quot; are used for planning. They should contain the least detail necessary to understand what the story's about and how to know it's done. They promote conversation. A story will likely change as it gets closer to release.</p>
+<p>There are several techniques to help define the story's value. A common one is the template &quot;As a [Role], I [need/want], because [value]. Here's an example.</p>
+<pre><code>Title: Implement Solaris Activium login reset 
+
+Value
+As a User, if I've forgotten my password I want a 
+way to easily reset it so I can quickly get back to work.
+
+More Information
+Today, if a user forgets her password she has to submit a support 
+ticket. Reviewing the last six months of help desk data, it takes 
+an average of four hours for the password to be reset. These users 
+often have deadline-based work, so those delays have a serious cost.
+
+Developer Notes
+[jj] I think we can do this using the standard forgot password pattern.
+
+Acceptance Criteria
+The new flow is
+
+*   User clicks &quot;forgot password&quot; on login page.
+*   User enters email address and submits.
+*   Email arrives in under a minute with link to reset.
+*   Link opens a page to enter the new password twice. Password is validated.
+*   After submitting valid password, user is immediately taken into app.
+</code></pre>
+<p>The key elements above are:</p>
 <ul>
-<li>Keep all existing columns. Rename Ready for QA to Ready for Test, QA to Test. Map each column's state to Active for now. Save.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc16.png" alt="" /></li>
-<li>Clear all filters. Move stories out of Approved, Ready for Dev and Ready for Release</li>
-<li>Remove columns Approved,  Ready for Dev and Ready for Release.</li>
+<li>We know who, what, and why, stated as simply as possible</li>
+<li>We understand the business value, probably a result of discussion with the user and developers</li>
+<li>Developers can capture key discussion points.</li>
+<li>The story is testable, and the test is simple.</li>
 </ul>
-</li>
-<li><p>Open the board's Settings &gt; Styles, add a styling rule</p>
-<ul>
-<li>Name: Blocked</li>
-<li>Card color: Red</li>
-<li>Rule criteria: Blocked = Yes<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc20.png" alt="" /></li>
-</ul>
-</li>
-</ol>
-<p>If a Story's Blocked field is set to Yes, the card will show red.</p>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc17.png" alt="" /></p>
-<h2 id="fix-up-the-task-board">Fix up the Task Board</h2>
-<blockquote>
-<p>Task Board customizations are at the Team level</p>
-</blockquote>
-<ol>
-<li>Open the Task Board (Sprints) Settings</li>
-<li>In Fields &gt; Story, add a field to always show Parent. This lets you see a story's Feature if it has one.</li>
-<li>Add a Styles rule for Blocked as done above</li>
-</ol>
-<h2 id="what-about-work-item-templates">What about work item templates?</h2>
-<p>Azure DevOps supports templates, and I wish they were useful. Maybe they will be for you, but what I want is to assign a default template to a work item for my team. For example, have a Bug template with starter info in Repro Steps that's automatically applied on any new Bug.</p>
-<p>Until that happens, I'll leave you with Microsoft's documentation.</p>
-<p><a href="https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/work-item-template?view=azure-devops&amp;tabs=browser">Use work item templates to update stories &amp; more - Azure Boards | Microsoft Docs</a></p>
 <h2 id="wrap-up">Wrap Up</h2>
-<p>This post sets up a good, basic process. A key aspect is that work items at the same level are structured almost the same. This helps reduce cognitive friction switching from a Bug to a PreRelease Defect to a Story, and emphasizes that the primary difference between them is their name.</p>
-<p>As one Scrum consultant I heard interviewed put it, &quot;I think of every work item as a story.&quot;</p>
-<p>In the next post, we'll put this process to work.</p>
+<p>Hopefully this is useful. What both bugs and stories boil down to are:</p>
+<ol>
+<li>What are we trying to do?</li>
+<li>Is it clear to everyone?</li>
+<li>How will we know it's done?</li>
+</ol>
+<p>Concise, clear sentences make a big difference. This all takes practice but pays for itself quickly.</p>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Scrum In Azure Devops - A Simpler (Custom) Process | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Better Bugs And Stories | Software Meadows">email</a>. I might even update the post!
         </p>
         
 

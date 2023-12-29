@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/kavadocs.css' />
 
 
-  <title>Scrum In Azure Devops - A Simpler (Custom) Process | Software Meadows</title>
+  <title>Home | Software Meadows</title>
 </head>
 
 <body>
@@ -60,215 +60,45 @@
         <div id="site-subtitle">A pleasant walk through computing</div>
       </header>
       <section id="content">
-        
-              <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process'>Scrum in Azure DevOps - A simpler (custom) process</a></h2>
-                <p class='post-info'><span class='posted-on'>2021-05-17 16:00</span></p>
-                <div class='post-content'><p>Series Parts</p>
-<ul>
-<li><a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/">A Simple Intro To Scrum In Azure Devops</a></li>
-<li><a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/">Scrum In Azure Devops - A Simpler (Custom) Process</a></li>
-<li><a href="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_the_story_board_is_your_process_heart/">Scrum In Azure Devops - The Story Board is your process heart</a> COMING SOON!</li>
-</ul>
-<h2 id="intro">Intro</h2>
-<p>The default Azure DevOps Scrum process is good, but I think it adds some unnecessary complication. Below I'll walk through inheriting from and modifying that process. I'm building on the work in my  post <a href="https://www.softwaremeadows.com/posts/a_simple_intro_to_scrum_in_azure_devops/">A Simple Intro to Scrum in Azure DevOps</a>, so you should start there if you need to.</p>
-<blockquote>
-<p>Lots of what's below is my opinion, so take it for what it's worth. But don't discount it, that's mean.</p>
-</blockquote>
-<h2 id="the-framework">The Framework</h2>
-<p>In my experience, when Developers, Scrum Masters, and Product Owners get their hands on electronic project management software, they add and add to what's already there. This is usually a mistake. Instead, pare down to the simplest thing that works, and only add features when needed.</p>
-<blockquote>
-<p>As an aside, the other thing organizations do is try to enforce a single process on all teams. This is not Agile, because it removes team autonomy, self-organization, and effectiveness. The usual reason given is to make reporting across teams easier. That gives too much weight to upper management control. Instead, ask Developers to help figure out how to deliver cross-team reports. While you're at it, see if you can pare down those reports, too. Ask, &quot;How is this report delivering user value?&quot;</p>
-</blockquote>
-<p>One way to find the simplest thing that works is imagine--or put--it on paper. Here's all we're really trying to capture.</p>
-<p>The work item structure is:</p>
-<pre><code class="language-text">Feature
-|_Story
-  |_Task
-|_Bug
-</code></pre>
-<p>Stories and bugs move through a board.</p>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/kanban-board.png" alt="" /></p>
-<p>A story or bug card--sticky note version!--might look like this and has all the relevent info plus pointers to more detail.</p>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc21.png" alt="" /></p>
-<p>Try to keep your electronic version that simple.</p>
-<h2 id="a-new-process">A New Process</h2>
-<ol>
-<li><p>Open Azure DevOps and open the Organization Settings &gt; Boards &gt; Process</p>
-</li>
-<li><p>Select Scrum &gt; Create inherited process, and name it SimpleScrum<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc01.png" alt="" /><br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc02.png" alt="" /></p>
-</li>
-<li><p>Open the SimpleScrum process. Under Work item types, we already have an essential set of types. Let's start by creating a work item type named Story instead of Product Backlog Item (PBI).</p>
-<blockquote>
-<p>No, you can't rename an inherited process work item type. I hate this, and so do you.</p>
-</blockquote>
-</li>
-<li><p>Open the PBI work item type &gt; States, and hide the Committed state.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc05.png" alt="" /></p>
-</li>
-<li><p>In the original tab, choose New work item type and name it Story<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc03.png" alt="" /></p>
-</li>
-<li><p>Under Layout, add and update the fields to look like this. In one case, you're renaming Description to Value (orange), in others you're using an existing field (green), and in still others it's a new field (red).<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc04.png" alt="" /></p>
-</li>
-<li><p>Under States, add two new states: Active in the In Progress category and Removed in the Removed category, and remove Committed.</p>
-<blockquote>
-<p>You can only remove an inherited state that's been hidden.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc18.png" alt="" /></p>
-</blockquote>
-</li>
-<li><p>Under Rules, create the following rule.</p>
-<ul>
-<li>Name: Assign Active</li>
-<li>When: A work item stage changes to . . . Active</li>
-<li>Then: Use the current user to set the value of . . . Assigned To<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc19.png" alt="" /></li>
-</ul>
-</li>
-<li><p>Return to the Work Item Types and disable Product Backlog Item</p>
-<blockquote>
-<p><strong>Important</strong><br />
-Only disable PBI if you are <em>not</em> going to apply the new process to an existing project. If you are, leave PBI enabled so that you can change existing work items from PBI to Story.</p>
-</blockquote>
-</li>
-<li><p>Open Bug and make these changes.</p>
-<ol>
-<li>Hide System Info, Acceptance Criteria, Priority, and Activity.</li>
-<li>Optional: I hide the Build fields</li>
-<li>Add More Info, Developer Notes, Testing Notes, Reported By, and Blocked
-<blockquote>
-<p>Any fields added to Story will be in the &quot;Use existing field&quot; dropdown.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc06.png" alt="" /></p>
-</blockquote>
-</li>
-</ol>
-<blockquote>
-<p><strong>Important</strong><br />
-Treat Bugs as a defects reported by production users. Why? Because it makes it much easier to track Bug fix cycle time. See below for tracking defects during development.</p>
-</blockquote>
-</li>
-<li><p>Under States, add Active to In Progress, hide Approved and Committed</p>
-</li>
-<li><p>Under Rules, create the same Assign Active rule as in Story</p>
-</li>
-</ol>
-<h2 id="pre-release-vs-post-release-defectsbugs">Pre-Release vs Post-Release Defects/Bugs</h2>
-<p>If your shop includes quality assurance, user-acceptance testing, or other non-unit testing, you should track your defects separately from Bugs. If those roles are in your team, then I like communicating those defects at the same level as Tasks. If they're outside the team, then I recommend tracking them at the same level as Bugs.</p>
-<ol>
-<li>Create a new work item type named PreRelease Defect with the same fields, states, and rule as Bug. Hide Description. Choose an icon you like.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc07.png" alt="" /></li>
-</ol>
-<p>OK, the work items are ready!</p>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc08.png" alt="" /></p>
-<h2 id="backlog-levels">Backlog Levels</h2>
-<p>These changes make your new work item type availabe in the New item dropdowns on boards and backlogs.</p>
-<ol>
-<li>Open SimpleSrum &gt; Backlog levels</li>
-<li>Edit Backlog items and add Story and PreRelease Defect. Set Default work item type to Story</li>
-</ol>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc15.png" alt="" /></p>
-<h2 id="use-the-process">Use the Process</h2>
-<p>You can create a new Project using the SimpleScrum process, but you can also apply the process to an existing project.</p>
-<blockquote>
-<p><strong>Warning</strong><br />
-Applying a process does come with risks if there are non-matching fields. Be sure you read the documentation!</p>
-</blockquote>
-<p>I'm going to apply the process to Baskets-R-Us (from Part 1 of the series) so you see what's involved and why starting with a new project might be better.</p>
-<ol>
-<li><p>Open All Process and click the Scurm Team Projects link<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc09.png" alt="" /></p>
-</li>
-<li><p>For BRUW, select Change Process and choose SimpleScrum<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc10.png" alt="" /><br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc11.png" alt="" /></p>
-</li>
-</ol>
-<h2 id="fix-up-the-work-items">Fix up the work items</h2>
-<ol>
-<li><p>Open the BRUW project &gt; Queries &gt; New Query</p>
-</li>
-<li><p>Return all work items<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc14.png" alt="" /></p>
-</li>
-<li><p>Open Column Options and add State and Reason. Sort by Work Item Type and State</p>
-</li>
-<li><p>Select all Product Backlog Items, right-click &gt; Change Type, select Story.</p>
-</li>
-<li><p>Select Commmitted items, right-click &gt; Edit, change State to Active</p>
-</li>
-<li><p>Select Approved items, right-click &gt; Edit, change State to New</p>
-</li>
-<li><p>Save items</p>
-<blockquote>
-<p>You may have other changes to make to your work items.</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="fix-up-the-story-board">Fix up the Story Board</h2>
-<blockquote>
-<p>Story Board customizations are at the Team level</p>
-</blockquote>
-<ol>
-<li><p>Open the BRUW project &gt; Boards. I was greeted with this message:
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc12.png" alt="" /></p>
-</li>
-<li><p>Fine, I'll Correct this now. It's the board's column settings that need changing, which is what I want to do anyway!<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc13.png" alt="" /></p>
-</li>
-<li>
-<blockquote>
-<p>You can't delete any columns that have stories in them until you move the stories.</p>
-</blockquote>
-<ul>
-<li>Keep all existing columns. Rename Ready for QA to Ready for Test, QA to Test. Map each column's state to Active for now. Save.<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc16.png" alt="" /></li>
-<li>Clear all filters. Move stories out of Approved, Ready for Dev and Ready for Release</li>
-<li>Remove columns Approved,  Ready for Dev and Ready for Release.</li>
-</ul>
-</li>
-<li><p>Open the board's Settings &gt; Styles, add a styling rule</p>
-<ul>
-<li>Name: Blocked</li>
-<li>Card color: Red</li>
-<li>Rule criteria: Blocked = Yes<br />
-<img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc20.png" alt="" /></li>
-</ul>
-</li>
-</ol>
-<p>If a Story's Blocked field is set to Yes, the card will show red.</p>
-<p><img src="https://www.softwaremeadows.com/posts/scrum_in_azure_devops_-_a_simpler_custom_process/images/sc17.png" alt="" /></p>
-<h2 id="fix-up-the-task-board">Fix up the Task Board</h2>
-<blockquote>
-<p>Task Board customizations are at the Team level</p>
-</blockquote>
-<ol>
-<li>Open the Task Board (Sprints) Settings</li>
-<li>In Fields &gt; Story, add a field to always show Parent. This lets you see a story's Feature if it has one.</li>
-<li>Add a Styles rule for Blocked as done above</li>
-</ol>
-<h2 id="what-about-work-item-templates">What about work item templates?</h2>
-<p>Azure DevOps supports templates, and I wish they were useful. Maybe they will be for you, but what I want is to assign a default template to a work item for my team. For example, have a Bug template with starter info in Repro Steps that's automatically applied on any new Bug.</p>
-<p>Until that happens, I'll leave you with Microsoft's documentation.</p>
-<p><a href="https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/work-item-template?view=azure-devops&amp;tabs=browser">Use work item templates to update stories &amp; more - Azure Boards | Microsoft Docs</a></p>
-<h2 id="wrap-up">Wrap Up</h2>
-<p>This post sets up a good, basic process. A key aspect is that work items at the same level are structured almost the same. This helps reduce cognitive friction switching from a Bug to a PreRelease Defect to a Story, and emphasizes that the primary difference between them is their name.</p>
-<p>As one Scrum consultant I heard interviewed put it, &quot;I think of every work item as a story.&quot;</p>
-<p>In the next post, we'll put this process to work.</p>
-</div>
-              </div>
-              
+        <hr />
+
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Scrum In Azure Devops - A Simpler (Custom) Process | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Home | Software Meadows">email</a>. I might even update the post!
         </p>
         
 
       </section>
       <!-- posts only appear in home index -->
       <section id="posts">
-         
+        
+              <div class='post'>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/test-post-with-code'>Migrating Google Drive</a></h2>
+                <p class='post-info'><span class='posted-on'>2013-01-26 14:06</span></p>
+                <div class='post-content'><p>My <a href="http://stephkayeturner.com/">wife</a>recently got her own domain name, and signed up for Google Apps for Business. She's been migrating her email and calendar from previous accounts, including a Google account.<br />
+The problem was Drive. She had a mixture of documents in Google Docs format and MS Office. Some items were shared. All in all, it looked like a big mess, complicated by the fact that Google doesn't let you give ownership of your files to someone in another domain. I don't know why. I assume the Ph.Ds who work there didn't properly sacrifice to the Domain Name God.<br />
+Also--and this burns me up--Google won't let you download files using their super-secret-must-be-tastier-than-Coke internal format. If you have Drive synchronization set up, you'll see documents with .gdoc extensions, but they're just text files with points to the web site. What this means is that there is no hope of downloading and uploading Google Docs and preserve true fidelity.<br />
+Thanks, Google. My files aren't really my files, because you own the format.<br />
+So, here's what I did--and what I could have done.<br />
+First, I think I could have paid for a tool that would migrate the documents. But I didn't, and I didn't even really look for one. Instead, I used a utility that I like a lot,<a href="http://gs.fhtino.it/gdocbackup">GDocBackup</a>. It's not only a nice free utility, but the web site has a great picture.<br />
+<img src="http://gs.fhtino.it/_/rsrc/1211547139810/config/app/images/io_piccolo.jpg" alt="" /></p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Go through my wife's old Google Drive account--we'll call it Thing One--and remove me as a shared person.</li>
+<li>Go through my Drive and remove her as a shared person.</li>
+<li>Use GDocBackup to download all of her files. &quot;Wait!&quot; you interrupt (which is a little rude), &quot;Why didn't you use Drive's ability to download all the files?&quot; Simple. It doesn't preserve folder layout. I'm sure they'd argue that a file can have more than one label, so it's impossible. But then, why does local Drive sync work? Not impressed.</li>
+<li>Now here's where I crow about my wife. I told her that I could preserve which files were GDocs by keeping two sets of folders: one with only the Google format docs, and one with everything else. Then, I'd import the first ones with Drive set to convert the files. And she says, &quot;Oh, that's all right. You can just upload them all as Microsoft docs.&quot; So, that saves me <em>huge</em> time.</li>
+<li>So, in the interests of saving her work, I determine a few files that really must be in Google format, and upload/convert those, then delete them.</li>
+<li>I then disconnect my local Drive sync, and reconnect using her new Business account--which we'll call Thing Two.</li>
+<li>I copy all of the Thing One files from the GDocBackup folder into the Google Drive folder (Thing Two).</li>
+<li>Wait for synchronization to complete.</li>
+</ol>
+<p>There. Wasn't that easy?*<br />
+I really hope Google makes this process better. What I really don't understand is why they don't allow assigning ownership across domains. I mean, it's probably just a primary key field in a database. But what do I know?<br />
+------------------------------<br />
+*No, it wasn't.</p>
+</div>
+              </div>
+               <div class='paging'><a href='index72.html'>Newer</a>&nbsp;&nbsp;&nbsp;</div>
       </section>
       <footer><p>All original content copyright (c) Charles L Flatt</p>
 </footer>

@@ -6,6 +6,103 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Better Bugs and Stories</title>
+      <description>&lt;h2 id="why"&gt;Why?&lt;/h2&gt;
+&lt;p&gt;Written communication is hard. Bugs and stories too often lead to people having to unnecessarily ask someone to explain what's been written because it's vague. There's such a thing as too much detail, but too little, unclear information is more common.&lt;/p&gt;
+&lt;p&gt;This article doesn't cover all about writing good user stories or bugs. It focuses on a few practices that I've found help the most.&lt;/p&gt;
+&lt;h2 id="bugs"&gt;Bugs&lt;/h2&gt;
+&lt;p&gt;The most important parts of a bug report are A) the steps to reproduce the problem, and B) clarity of what the problem is.&lt;/p&gt;
+&lt;p&gt;There are many audiences for bugs: the user who's reporting, the developer who's fixing, the product manager or business analyst who's communicating the bug from the user to the team.&lt;/p&gt;
+&lt;p&gt;All of these audiences have different mental models of the application and often assume others know what they do. How do we make sure the steps are clear? Here's one tip I like.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Write the repro steps as if you were training a new employee&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Here's how the initial user (who &lt;em&gt;could&lt;/em&gt; be a developer or product owner, really anyone) might initially desribe a bug.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Help! When I search for a customer it should show me the last modified date but isn't.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Clarifying this bug may require a few messages or, ideally, watching the person do the work. The bug report might end up like this.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Title: Solaris Activium Search not showing last modified for Nevada customers
+
+Repro Steps
+1. Open Solaris Activium
+2. Choose Menu &amp;gt; Search &amp;gt; Customer Search
+3. Enter last name &amp;quot;Calypso&amp;quot;, first name &amp;quot;Bernard&amp;quot; and Search. Note she lives in Nevada.
+
+Expected: A last modified date within the last few years
+Actual: 0000-00-00
+
+4. Enter last name &amp;quot;Chattergee&amp;quot; first name &amp;quot;Parag&amp;quot; and Search. Note he lives in Maine.
+
+Actual: 2019-03-24
+
+[screen shot]
+
+More Information
+They're only seeing this happen with customers who are in Nevada, but 
+haven't tested all states.
+
+Acceptance Criteria
+(optional if obvious from the bug.)
+
+Last modified date is shown for customers in all states.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What helps the person who opens the bug?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Which system/app is involved?&lt;/li&gt;
+&lt;li&gt;What are the exact steps the user performed?&lt;/li&gt;
+&lt;li&gt;What was expected? What was actually seen?&lt;/li&gt;
+&lt;li&gt;Sometimes a screen shot helps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;quot;Exact steps the user performed&amp;quot; is important. Often someone familiar with the application will try to reproduce the problem but using different steps, leading to &amp;quot;I can't reproduce&amp;quot; confusion.&lt;/p&gt;
+&lt;p&gt;Note that while the user might consider the bug fixed if Nevada customers show last modified, the developer should have realized other states could be affected, leading to the more thorough acceptance criteria.&lt;/p&gt;
+&lt;h2 id="stories"&gt;Stories&lt;/h2&gt;
+&lt;p&gt;Stories, aka &amp;quot;user stories,&amp;quot; are used for planning. They should contain the least detail necessary to understand what the story's about and how to know it's done. They promote conversation. A story will likely change as it gets closer to release.&lt;/p&gt;
+&lt;p&gt;There are several techniques to help define the story's value. A common one is the template &amp;quot;As a [Role], I [need/want], because [value]. Here's an example.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Title: Implement Solaris Activium login reset 
+
+Value
+As a User, if I've forgotten my password I want a 
+way to easily reset it so I can quickly get back to work.
+
+More Information
+Today, if a user forgets her password she has to submit a support 
+ticket. Reviewing the last six months of help desk data, it takes 
+an average of four hours for the password to be reset. These users 
+often have deadline-based work, so those delays have a serious cost.
+
+Developer Notes
+[jj] I think we can do this using the standard forgot password pattern.
+
+Acceptance Criteria
+The new flow is
+
+*   User clicks &amp;quot;forgot password&amp;quot; on login page.
+*   User enters email address and submits.
+*   Email arrives in under a minute with link to reset.
+*   Link opens a page to enter the new password twice. Password is validated.
+*   After submitting valid password, user is immediately taken into app.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The key elements above are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We know who, what, and why, stated as simply as possible&lt;/li&gt;
+&lt;li&gt;We understand the business value, probably a result of discussion with the user and developers&lt;/li&gt;
+&lt;li&gt;Developers can capture key discussion points.&lt;/li&gt;
+&lt;li&gt;The story is testable, and the test is simple.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="wrap-up"&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;Hopefully this is useful. What both bugs and stories boil down to are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;What are we trying to do?&lt;/li&gt;
+&lt;li&gt;Is it clear to everyone?&lt;/li&gt;
+&lt;li&gt;How will we know it's done?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Concise, clear sentences make a big difference. This all takes practice but pays for itself quickly.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 28 Dec 2023 18:40:39 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/better_bugs_and_stories</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/better_bugs_and_stories</guid>
+    </item>
+    <item>
       <title>One Sheet Summary: Art of Agile Development - Planning</title>
       <description>&lt;p&gt;I make these to post on my wall and help me learn the subject. Be sure to read the book!&lt;/p&gt;
 &lt;ul&gt;
@@ -1128,96 +1225,6 @@ This might be my favorite essay. Brooks discusses his entire book, where he was 
       <pubDate>Sun, 31 Jul 2022 07:46:53 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/net_maui_progressing_from_a_default_project_part_7_deploying_the_other_peoples_links_edition</guid>
-    </item>
-    <item>
-      <title>The Better Software Engineer Interview Process</title>
-      <description>&lt;p&gt;I've been finding my next job. I've looked at literally hundreds of listings and been on several interviews. Over my career, I've interviewed &lt;em&gt;a lot&lt;/em&gt;. Today, software engineer interviews work mostly like this:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Screening interview (&amp;quot;do we want to proceed with you?&amp;quot;)&lt;/li&gt;
-&lt;li&gt;Development Manager interview (&amp;quot;do I want to work with you?&amp;quot;)&lt;/li&gt;
-&lt;li&gt;Technical interview or assessment (&amp;quot;can you do the job?&amp;quot;)&lt;/li&gt;
-&lt;li&gt;Other Management interviews (&amp;quot;do we have any objections?&amp;quot;)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;There can be as low as three (rarely two) steps. I've literally seen it up to six. A six-step interview!&lt;/p&gt;
-&lt;p&gt;One intended goal for this process, I think, is to reduce the amount of time taken by management and developers for interviews so they can focus on coding. Another reason--again, my opinion--is there's a belief that management can screen out for fit early.&lt;/p&gt;
-&lt;p&gt;Fit matters. I care a lot about whether I'll fit in with a prospective employer. But, after quite a few recent interviews and really pondering and reading about hiring, I think the typical process is backward, biased, onerous, and ineffective.&lt;/p&gt;
-&lt;h2 id="a-better-way"&gt;A Better Way&lt;/h2&gt;
-&lt;p&gt;Here are the steps I'd like to see.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Initial, online technical assessment using real-world coding. No FizzBuzz, no &amp;quot;reverse this string the hard way.&amp;quot;&lt;a id="fnref:1" href="#fn:1" class="footnote-ref"&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Work with the team.&lt;/li&gt;
-&lt;li&gt;Development Manager interview.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id="online-assessment"&gt;1. Online Assessment&lt;/h2&gt;
-&lt;p&gt;I've been skeptical of online skill assessments in the past, but a recent experience has warmed me to them. While still not as good as working with one's daily tools such as Visual Studio, the online interface was very good. So, why should companies start with (and pay for!) this assessment?&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Many candidates will drop out because they know they're not ready. This reduces the pool that the development team needs to assess. It's self-selection.&lt;/li&gt;
-&lt;li&gt;The remaining results will be reasonably apples-to-apples.&lt;/li&gt;
-&lt;li&gt;What matters first is &amp;quot;can you do the job.&amp;quot;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The skills assessment can be tailored, so junior devs are assessed differently than seniors and architects. And the goal is to gain information, not punish people for not having arcane knowledge. &amp;quot;The basics&amp;quot; (you know, bubble sorting) really don't apply day-to-day. Let me show you I can write testable, clean, object-oriented code!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A fair, online assessment reduces lots of bias. A candidate shouldn't be disregarded out of the gate just because a hiring manager or the candidate hasn't had lunch yet. This is more common than people want to admit.&lt;a id="fnref:2" href="#fn:2" class="footnote-ref"&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="team-work"&gt;2. Team Work&lt;/h2&gt;
-&lt;p&gt;With the assessment results and resumes in hand, the development team can--with coaching from management and HR--decide who they want to meet. Let me say that again. &lt;em&gt;The developers choose.&lt;/em&gt; You can bet they'll be careful with their time.  In my view, they should ideally work on some code together, or do something that shows the candidate how life will really be. In a word, collaborate. This shouldn't be a &amp;quot;let's talk&amp;quot; meeting. Pull an item from the backlog, discuss how it might be approached, do some pair programming or even &lt;a href="https://en.wikipedia.org/wiki/Mob_programming"&gt;mob programming&lt;/a&gt;.&lt;a id="fnref:3" href="#fn:3" class="footnote-ref"&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The candidate will be working mostly with developers. They have the biggest stake, so they should have the biggest say in hiring. This is even more important if you claim to be an Agile shop. If you aren't letting developers self-manage their teams, you may still be a top-down bureaucracy.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id="management-blessing"&gt;3. Management Blessing&lt;/h2&gt;
-&lt;p&gt;Someone's going to chafe at my suggestion that the final step is only with the development manager; that is, the person who will be the candidate's direct supervisor, or at most one level above that. But why have you promoted people to management/leadership positions if you're not going to &lt;em&gt;trust&lt;/em&gt; their judgement? By now in the process, the only candidates who talk to the manager have been pre-approved by the development team she'll be working with. There's really no reason to bring in other managers, except to stroke their egos and forestall &amp;quot;why wasn't I consulted?&amp;quot; comments later.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Besides, most managers complain they're too busy with endless meetings. This reduces meetings.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Other managers and execs should certainly introduce themselves after the hiring. But if a qualified developer who is liked by the people she'll be working with doesn't get a job because the CEO or president has a &amp;quot;gut feeling,&amp;quot; and needs to &amp;quot;meet everyone who's going to work here,&amp;quot; a disservice has been done to the entire organization. It signals that people's careers are at the mercy of caprice.&lt;/p&gt;
-&lt;h2 id="change-your-ways-itll-save-you-money-and-improve-your-culture"&gt;Change Your Ways, It'll Save You Money and Improve Your Culture&lt;/h2&gt;
-&lt;p&gt;Companies spend a lot of money on recruiters, time spent reviewing resumes, time spent in interviews. But have they really evaluated whether that money is being well-spent? Have they applied research and evidence, or are they interviewing software engineers the same way they always have?&lt;/p&gt;
-&lt;p&gt;This article proposes the answer is, generally, no. We're hiring developers using a traditional model. And we're getting traditionally chancy results.&lt;/p&gt;
-&lt;p&gt;I learned decades ago to look for these qualities as part of hiring, and they still apply.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;em&gt;&lt;strong&gt;Can&lt;/strong&gt;&lt;/em&gt; the person do the job?&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;&lt;strong&gt;Will&lt;/strong&gt;&lt;/em&gt; the person do the job?&lt;/li&gt;
-&lt;li&gt;Does the person &lt;em&gt;&lt;strong&gt;fit&lt;/strong&gt;&lt;/em&gt;?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The principles I've outlined above boil down to.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Reduce initial bias&lt;/li&gt;
-&lt;li&gt;Let developers hire developers (with help)&lt;/li&gt;
-&lt;li&gt;Trust your colleagues&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I'm no expert, but I think we can hire better.&lt;a id="fnref:4" href="#fn:4" class="footnote-ref"&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="references"&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://stackoverflow.blog/2022/05/23/the-science-of-interviewing-developers/?utm_medium=email"&gt;The science of interviewing developers - Stack Overflow Blog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://builtin.com/job-interview/candidates-interview-companies"&gt;How Candidates Should Interview Companies | Built In&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.woventeams.com/"&gt;Technical Interview Software for Developers | Woven Teams&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://blog.tdwright.co.uk/2022/07/14/fizzbuzz-is-fizzbuzz-years-old-and-still-a-powerful-tool/"&gt;FizzBuzz is FizzBuzz years old (and still a powerful tool) | Tom Wrights Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Leadership-Language-Hidden-Power-Say-ebook/dp/B07L2KL5XV/ref=tmm_kin_swatch_0?_encoding=UTF8&amp;amp;qid=1658874171&amp;amp;sr=8-1"&gt;Leadership Is Language: The Hidden Power of What You Say--and What You Don't&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.amazon.com/Noise-Human-Judgment-Daniel-Kahneman-ebook/dp/B08KQ2FKBX/ref=sr_1_4?keywords=kahnemann&amp;amp;qid=1658874780&amp;amp;sr=8-4"&gt;Noise: A Flaw in Human Judgment&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;FizzBuzz can have value if done as pair-programming, but requires a different skill set on the part of the interviewer.&lt;/p&gt;
-&lt;p&gt;As far as the &amp;quot;find substrings in a string&amp;quot; tradition, in my opinion, it's outdated and useless. The technical interviews where a couple of developers assign a seemingly trivial task and watch in silence while the candidate tries to work it out is just terrible. It's completely removed from the reality of the job (I hope!), and puts useless pressure on the candidate.&lt;/p&gt;
-&lt;p&gt;It isn't an assessment. It's a hazing.&lt;a href="#fnref:1" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:2"&gt;
-&lt;p&gt;As discussed by Daniel Kahneman in his book &lt;em&gt;Noise&lt;/em&gt;, and reported on in this &lt;a href="https://www.theguardian.com/books/2021/jun/03/noise-by-daniel-kahneman-olivier-sibony-and-cass-sunstein-review-the-price-of-poor-judgment"&gt;article&lt;/a&gt;.&lt;a href="#fnref:2" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:3"&gt;
-&lt;p&gt;This was one of my favorite interview experiences.&lt;a href="#fnref:3" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:4"&gt;
-&lt;p&gt;To be intellectually fair, I really haven't found out what research there's been on effective developer hiring practices. I'm just voicing a slightly educated opinion that may be dead wrong.&lt;a href="#fnref:4" class="footnote-back-ref"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-      <pubDate>Tue, 26 Jul 2022 17:09:30 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/the_better_software_engineer_interview_process</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_better_software_engineer_interview_process</guid>
     </item>
   </channel>
 </rss>
