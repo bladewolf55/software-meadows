@@ -88,9 +88,9 @@
 <pre><code class="language-text">Help! When I search for a customer it should show me the last modified date but isn't.
 </code></pre>
 <p>Clarifying this bug may require a few messages or, ideally, watching the person do the work. The bug report might end up like this.</p>
-<pre><code class="language-text">Title: Solaris Activium Search not showing last modified for Nevada customers
+<pre><code class="language-text">TITLE: Solaris Activium Search not showing last modified for Nevada customers
 
-Repro Steps
+REPRO STEPS
 1. Open Solaris Activium
 2. Choose Menu &gt; Search &gt; Customer Search
 3. Enter last name &quot;Calypso&quot;, first name &quot;Bernard&quot; and Search. Note she lives in Nevada.
@@ -104,11 +104,11 @@ Actual: 2019-03-24
 
 [screen shot]
 
-More Information
+MORE INFORMATION
 They're only seeing this happen with customers who are in Nevada, but 
 haven't tested all states.
 
-Acceptance Criteria
+ACCEPTANCE CRITERIA
 (optional if obvious from the bug.)
 
 Last modified date is shown for customers in all states.
@@ -125,22 +125,22 @@ Last modified date is shown for customers in all states.
 <h2 id="stories">Stories</h2>
 <p>Stories, aka &quot;user stories,&quot; are used for planning. They should contain the least detail necessary to understand what the story's about and how to know it's done. They promote conversation. A story will likely change as it gets closer to release.</p>
 <p>There are several techniques to help define the story's value. A common one is the template &quot;As a [Role], I [need/want], because [value]. Here's an example.</p>
-<pre><code class="language-text">Title: Implement Solaris Activium login reset 
+<pre><code class="language-text">TITLE: Implement Solaris Activium login reset 
 
-Value
+VALUE
 As a User, if I've forgotten my password I want a 
 way to easily reset it so I can quickly get back to work.
 
-More Information
+MORE INFORMATION
 Today, if a user forgets her password she has to submit a support 
 ticket. Reviewing the last six months of help desk data, it takes 
 an average of four hours for the password to be reset. These users 
 often have deadline-based work, so those delays have a serious cost.
 
-Developer Notes
+DEVELOPER NOTES
 [jj] I think we can do this using the standard forgot password pattern.
 
-Acceptance Criteria
+ACCEPTANCE CRITERIA
 The new flow is
 
 *   User clicks &quot;forgot password&quot; on login page.
