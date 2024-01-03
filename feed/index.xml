@@ -131,7 +131,7 @@ Thank you, dude, and stay well.&lt;/p&gt;
 &lt;h2 id="by-security"&gt;By Security&lt;/h2&gt;
 &lt;p&gt;Many apps require UAC to install, but don't require admin rights to run.  They may also require UAC with an exe/winget installer but also have portable versions. Apps are categorized below by least-needed privilege. For example, Git for Windows need UAC for the exe installer but not for portable, so it's listed under portable. Likewise if it's non-UAC but also has a portable, then the app is listed as portable.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;While portable apps are viable, I recommend using an installer--winget is ideal!--whenever possible. This makes it much easier to keep tool up to date and secure.&lt;/p&gt;
+&lt;p&gt;While portable apps are viable, I recommend using an installer--winget is ideal!--whenever possible. This makes it much easier to keep software up to date and secure.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Install UAC = true&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
