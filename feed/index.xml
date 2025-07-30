@@ -666,6 +666,14 @@ The new flow is
 &lt;li&gt;&lt;a href="#proving-how-it-works"&gt;Proving How It Works&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#wrap-up"&gt;Wrap Up&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE 2025&lt;/strong&gt;&lt;br /&gt;
+This article was intended to simply compare Framework and Core's default configuration approaches. However, reader Phil Ashby (thanks, Phil!) asked me to point out that Core (now just &amp;quot;.NET&amp;quot;)-style configuration can be used in Framework. There are two approaches.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ben Foster showed in 2016 how to use Core-style configs in Framework. I've used this approach myself. &lt;a href="https://benfoster.io/blog/net-core-configuration-legacy-projects/"&gt;Using .NET Core Configuration with legacy projects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Unknown to me until Phil pointed it out, Microsoft included native support for ConfigurationBuilder starting in 2017 with .NET Framework 4.7.1. I haven't read this article, but it seems like a better solution.  &lt;a href="https://learn.microsoft.com/en-us/aspnet/config-builder"&gt;Configuration builders for ASP.NET&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
 &lt;h2 id="the-source-code"&gt;The Source Code&lt;/h2&gt;
 &lt;p&gt;Code is found at:&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/bladewolf55/ConfigDemo"&gt;https://github.com/bladewolf55/ConfigDemo&lt;/a&gt;&lt;/p&gt;
