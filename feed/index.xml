@@ -9,7 +9,7 @@
       <title>Navidrome IIS Reverse Proxy</title>
       <description>&lt;p&gt;This is a quick post, not a full How To.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;BLUF&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;BLUF&lt;/strong&gt;&lt;br /&gt;
 To use IIS as your reverse proxy for Navidrome: a) enable WebSockets, and b) clear the &lt;code&gt;Accept-Encoding&lt;/code&gt; header's value&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I recently replaced my long-running (and woefully unmaintained) Subsonic self-hosted music server with &lt;a href="https://www.navidrome.org/"&gt;Navidrome&lt;/a&gt;. This was initially (relatively) painless, as Navidrome has:&lt;/p&gt;
@@ -23,12 +23,12 @@ To use IIS as your reverse proxy for Navidrome: a) enable WebSockets, and b) cle
 &lt;li&gt;The documentation didn't seem as clear as I'd have liked on how &lt;a href="https://www.navidrome.org/docs/usage/configuration-options/"&gt;configuration options&lt;/a&gt; work. Specifically, that options can be set in the &lt;code&gt;navidrome.ini&lt;/code&gt; file OR server environment variables, and that the option names are not the same. But, in fairness, this was probably me being impatient.&lt;/li&gt;
 &lt;li&gt;Navidrome organizes songs completely based on tags. This makes sense, but initially showed lots of my albums as separate songs. It was tedious (but worthwhile) to &lt;a href="https://www.mp3tag.de/en/"&gt;tag those songs&lt;/a&gt; to include Album Artist. The &lt;a href="https://www.navidrome.org/docs/usage/tagging-guidelines/"&gt;tagging guidelines documentation&lt;/a&gt; is very useful here . . .
 &lt;ul&gt;
-&lt;li&gt;Except, that in some cases the Year tag is what would cause albums to show separately. I'm pretty sure this has more to do with a bunch of MP4 files I have. Someday I'd like to convert those to MP3 and then reget the album info.&lt;/li&gt;
+&lt;li&gt;Except, that in some cases the Year tag is what would cause albums to show separately. I'm pretty sure this has more to do with a bunch of MP4 (.m4a) files I have. Someday I'd like to convert those to MP3 and then reget the album info.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;My previous Subsonice reverse proxy didn't work with Navidrome.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The last one is the subject of this post. I lost about eight hours on it. The reason to use a reverse proxy is because the Navidrome application (web server) doesn't support SSL. But, if using the app publically (not just within one's local network), SSL (HTTPS) is essential for security. Most of the web examples using of a reverse proxy with Navidrome use &lt;a href="https://nginx.org/en/docs/windows.html"&gt;nginx&lt;/a&gt;. I came very close to installing and using nginx, but that would have required me switching all of my other sites to use it to. Ugh.&lt;/p&gt;
+&lt;p&gt;The last one is the subject of this post. I lost about eight hours on it. The reason to use a reverse proxy is because the Navidrome application (web server) doesn't support SSL. But, if using the app publically (not just within one's local network), SSL (HTTPS) is essential for security. Most of the web examples of using a reverse proxy with Navidrome use &lt;a href="https://nginx.org/en/docs/windows.html"&gt;nginx&lt;/a&gt;. I came very close to installing and using nginx, but that would have required me switching all of my other sites to use it to. Ugh.&lt;/p&gt;
 &lt;p&gt;I use Microsoft Internet Information Server (IIS) on purpose; I'm a Microsoft stack developer, and need to understand the tools. And it seemed like it &lt;em&gt;should&lt;/em&gt; work. But I kept getting an HTTP 500 error.&lt;/p&gt;
 &lt;p&gt;Finally, after looking at logs and beating my head against the keyboard (didn't help), I installed &lt;a href="https://www.telerik.com/fiddler/fiddler-classic"&gt;Fiddler Classic&lt;/a&gt; to watch the traffic. It didn't tell me more than I knew, but then I tried sending my GET request from Fiddler.&lt;/p&gt;
 &lt;p&gt;And it worked.&lt;/p&gt;

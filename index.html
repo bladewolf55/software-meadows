@@ -76,7 +76,7 @@
                 <p class='post-info'><span class='posted-on'>2026-01-02 09:24</span></p>
                 <div class='post-content'><p>This is a quick post, not a full How To.</p>
 <blockquote>
-<p><strong>BLUF</strong>
+<p><strong>BLUF</strong><br />
 To use IIS as your reverse proxy for Navidrome: a) enable WebSockets, and b) clear the <code>Accept-Encoding</code> header's value</p>
 </blockquote>
 <p>I recently replaced my long-running (and woefully unmaintained) Subsonic self-hosted music server with <a href="https://www.navidrome.org/">Navidrome</a>. This was initially (relatively) painless, as Navidrome has:</p>
@@ -90,12 +90,12 @@ To use IIS as your reverse proxy for Navidrome: a) enable WebSockets, and b) cle
 <li>The documentation didn't seem as clear as I'd have liked on how <a href="https://www.navidrome.org/docs/usage/configuration-options/">configuration options</a> work. Specifically, that options can be set in the <code>navidrome.ini</code> file OR server environment variables, and that the option names are not the same. But, in fairness, this was probably me being impatient.</li>
 <li>Navidrome organizes songs completely based on tags. This makes sense, but initially showed lots of my albums as separate songs. It was tedious (but worthwhile) to <a href="https://www.mp3tag.de/en/">tag those songs</a> to include Album Artist. The <a href="https://www.navidrome.org/docs/usage/tagging-guidelines/">tagging guidelines documentation</a> is very useful here . . .
 <ul>
-<li>Except, that in some cases the Year tag is what would cause albums to show separately. I'm pretty sure this has more to do with a bunch of MP4 files I have. Someday I'd like to convert those to MP3 and then reget the album info.</li>
+<li>Except, that in some cases the Year tag is what would cause albums to show separately. I'm pretty sure this has more to do with a bunch of MP4 (.m4a) files I have. Someday I'd like to convert those to MP3 and then reget the album info.</li>
 </ul>
 </li>
 <li>My previous Subsonice reverse proxy didn't work with Navidrome.</li>
 </ul>
-<p>The last one is the subject of this post. I lost about eight hours on it. The reason to use a reverse proxy is because the Navidrome application (web server) doesn't support SSL. But, if using the app publically (not just within one's local network), SSL (HTTPS) is essential for security. Most of the web examples using of a reverse proxy with Navidrome use <a href="https://nginx.org/en/docs/windows.html">nginx</a>. I came very close to installing and using nginx, but that would have required me switching all of my other sites to use it to. Ugh.</p>
+<p>The last one is the subject of this post. I lost about eight hours on it. The reason to use a reverse proxy is because the Navidrome application (web server) doesn't support SSL. But, if using the app publically (not just within one's local network), SSL (HTTPS) is essential for security. Most of the web examples of using a reverse proxy with Navidrome use <a href="https://nginx.org/en/docs/windows.html">nginx</a>. I came very close to installing and using nginx, but that would have required me switching all of my other sites to use it to. Ugh.</p>
 <p>I use Microsoft Internet Information Server (IIS) on purpose; I'm a Microsoft stack developer, and need to understand the tools. And it seemed like it <em>should</em> work. But I kept getting an HTTP 500 error.</p>
 <p>Finally, after looking at logs and beating my head against the keyboard (didn't help), I installed <a href="https://www.telerik.com/fiddler/fiddler-classic">Fiddler Classic</a> to watch the traffic. It didn't tell me more than I knew, but then I tried sending my GET request from Fiddler.</p>
 <p>And it worked.</p>
