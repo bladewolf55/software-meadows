@@ -23,7 +23,7 @@
 <link rel='stylesheet' href='https://www.softwaremeadows.com/css/responsive.css' />
 
 
-  <title>"Path" Is Ambiguous. Here Are Clear, Consistent Variable Names. | Software Meadows</title>
+  <title>Navidrome IIS Reverse Proxy | Software Meadows</title>
 </head>
 
 <body>
@@ -62,63 +62,99 @@
       <section id="content">
         
               <div class='post'>
-                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/path_is_ambiguous__here_are_clear__consistent_variable_names_'>"Path" is ambiguous. Here are clear, consistent variable names.</a></h2>
-                <p class='post-info'><span class='posted-on'>2020-10-26 10:30</span></p>
-                <div class='post-content'><h2 id="quiz-du-jour">Quiz du jour</h2>
-<pre><code class="language-csharp">public void ImportRecords(string path) {}
-
-public void ImportRecords(string file) {}
-
-public void ImportRecords(string folder) {}
-
-</code></pre>
-<p>What's the argument for each of the parameters above? Does &quot;path&quot; include a filename? Do &quot;file&quot; and &quot;folder&quot; include a path?</p>
-<p>File system input/output is just about as old as computing itself, and yet I'll bet you see--and use!--ambiguous I/O variables all the time.</p>
-<h2 id="clear-consistent">Clear, Consistent</h2>
-<p>Here are four variable names I've settled on to keep the meanings clear. They take just a little more effort at first, and with practice become a habit.</p>
-<table>
-<thead>
-<tr>
-<th>Variable</th>
-<th>Means</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>fileName</code></td>
-<td>just the file name</td>
-<td>customers.csv</td>
-</tr>
-<tr>
-<td><code>filePath</code></td>
-<td>full path to file</td>
-<td>c:\transfer\import\customers.csv</td>
-</tr>
-<tr>
-<td><code>folderName</code></td>
-<td>just the folder name</td>
-<td>import</td>
-</tr>
-<tr>
-<td><code>folderPath</code></td>
-<td>full path to the folder</td>
-<td>c:\transfer\import</td>
-</tr>
-</tbody>
-</table>
-<h2 id="references">References</h2>
+                <h2 class='post-title'><a href='https://www.softwaremeadows.com/posts/Navidrome IIS Reverse Proxy'>Navidrome IIS Reverse Proxy</a></h2>
+                <p class='post-info'><span class='posted-on'>2026-01-02 09:24</span></p>
+                <div class='post-content'><p>This is a quick post, not a full How To.</p>
+<blockquote>
+<p><strong>BLUF</strong>
+To use IIS as your reverse proxy for Navidrome: a) enable WebSockets, and b) clear the <code>Accept-Encoding</code> header's value</p>
+</blockquote>
+<p>I recently replaced my long-running (and woefully unmaintained) Subsonic self-hosted music server with <a href="https://www.navidrome.org/">Navidrome</a>. This was initially (relatively) painless, as Navidrome has:</p>
 <ul>
-<li><a href="https://stackoverflow.com/questions/2235173/file-name-path-name-base-name-naming-standard-for-pieces-of-a-path">language agnostic - File name? Path name? Base name? Naming standard for pieces of a path - Stack Overflow</a></li>
-<li><a href="http://www.mikepope.com/blog/DisplayBlog.aspx?permalink=2346">Editing by analogy - mike's web log</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Path_(computing)">Path (computing) - Wikipedia</a></li>
-<li><a href="https://www.lifewire.com/unc-universal-naming-convention-818230">Working With the Universal Naming Convention (UNC Path)</a></li>
+<li>A native Windows installer that also installs a Windows Service</li>
+<li>Straightforward ability to point to my existing library</li>
+<li>Reasonably easy to import playlists I exported from Subsonic</li>
+</ul>
+<p>There were a few barriers.</p>
+<ul>
+<li>The documentation didn't seem as clear as I'd have liked on how <a href="https://www.navidrome.org/docs/usage/configuration-options/">configuration options</a> work. Specifically, that options can be set in the <code>navidrome.ini</code> file OR server environment variables, and that the option names are not the same. But, in fairness, this was probably me being impatient.</li>
+<li>Navidrome organizes songs completely based on tags. This makes sense, but initially showed lots of my albums as separate songs. It was tedious (but worthwhile) to <a href="https://www.mp3tag.de/en/">tag those songs</a> to include Album Artist. The <a href="https://www.navidrome.org/docs/usage/tagging-guidelines/">tagging guidelines documentation</a> is very useful here . . .
+<ul>
+<li>Except, that in some cases the Year tag is what would cause albums to show separately. I'm pretty sure this has more to do with a bunch of MP4 files I have. Someday I'd like to convert those to MP3 and then reget the album info.</li>
+</ul>
+</li>
+<li>My previous Subsonice reverse proxy didn't work with Navidrome.</li>
+</ul>
+<p>The last one is the subject of this post. I lost about eight hours on it. The reason to use a reverse proxy is because the Navidrome application (web server) doesn't support SSL. But, if using the app publically (not just within one's local network), SSL (HTTPS) is essential for security. Most of the web examples using of a reverse proxy with Navidrome use <a href="https://nginx.org/en/docs/windows.html">nginx</a>. I came very close to installing and using nginx, but that would have required me switching all of my other sites to use it to. Ugh.</p>
+<p>I use Microsoft Internet Information Server (IIS) on purpose; I'm a Microsoft stack developer, and need to understand the tools. And it seemed like it <em>should</em> work. But I kept getting an HTTP 500 error.</p>
+<p>Finally, after looking at logs and beating my head against the keyboard (didn't help), I installed <a href="https://www.telerik.com/fiddler/fiddler-classic">Fiddler Classic</a> to watch the traffic. It didn't tell me more than I knew, but then I tried sending my GET request from Fiddler.</p>
+<p>And it worked.</p>
+<p>Fiddler Compose, by default, only uses two headers. This led to a process of elimination of the headers being sent. Fiddler made this pretty easy since I could copy the headers I sent from my browser request (examinging Fiddler Inspection) directly into the Fiddler Compose, eliminating them until it worked again. It turned out, the Navidrome app's web server doesn't accept encoding (or at least not standard encoding).</p>
+<p>Once I knew that, I could update IIS Url Rewrite to include the server variables (not at all well documented how those relate to HTTP headers) and change their values.</p>
+<p>Sorry, you'll need to do your own research on configuring IIS as a reverse proxy. There may be a better way than what I've done (because I'm still finding different documentation on how to do it).</p>
+<p>Here's the <code>web.config</code> I used. It:</p>
+<ul>
+<li>Passes requests from <code>https://music.flattland.com</code> to Navidrome</li>
+<li>Changes the Accept-Encoding request header via a server variable</li>
+<li>Allows (somehow) WebSockets passthrough</li>
+<li>Rewrites outbound URL tag values if the Navidrome URL <code>http://localhost:4533</code> is found</li>
+</ul>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;configuration&gt;
+    &lt;system.webServer&gt;
+        &lt;rewrite&gt;
+            &lt;rules&gt;
+                &lt;rule name=&quot;ReverseProxyInboundRule1&quot; stopProcessing=&quot;true&quot;&gt;
+                    &lt;match url=&quot;(.*)&quot; /&gt;
+                    &lt;action type=&quot;Rewrite&quot; url=&quot;http://localhost:4533/{R:1}&quot; /&gt;
+                    &lt;serverVariables&gt;
+                        &lt;set name=&quot;HTTP_SEC_WEBSOCKET_EXTENSIONS&quot; value=&quot;&quot; /&gt;
+                        &lt;set name=&quot;HTTP_ACCEPT_ENCODING&quot; value=&quot;&quot; /&gt;
+                        &lt;set name=&quot;HTTP_X_ORIGINAL_ACCEPT_ENCODING&quot; value=&quot;{HTTP_ACCEPT_ENCODING}&quot; /&gt;
+                    &lt;/serverVariables&gt;
+                &lt;/rule&gt;
+            &lt;/rules&gt;
+            &lt;outboundRules&gt;
+                &lt;rule name=&quot;ReverseProxyOutboundRule1&quot; preCondition=&quot;ResponseIsHtml1&quot;&gt;
+                    &lt;match filterByTags=&quot;A, Form, Img&quot; pattern=&quot;^http(s)?://localhost:4533/(.*)&quot; /&gt;
+                    &lt;action type=&quot;Rewrite&quot; value=&quot;http{R:1}://music.flattland.com/{R:2}&quot; /&gt;
+                &lt;/rule&gt;
+                &lt;preConditions&gt;
+                    &lt;preCondition name=&quot;ResponseIsHtml1&quot;&gt;
+                        &lt;add input=&quot;{RESPONSE_CONTENT_TYPE}&quot; pattern=&quot;^text/html&quot; /&gt;
+                    &lt;/preCondition&gt;
+                &lt;/preConditions&gt;
+            &lt;/outboundRules&gt;
+        &lt;/rewrite&gt;
+        &lt;urlCompression doStaticCompression=&quot;true&quot; /&gt;
+    &lt;/system.webServer&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h2 id="references">References</h2>
+<p>Some of these I didn't use, but may still be helpful, especially if you're trying to mimic nginx.</p>
+<ul>
+<li><a href="https://docs.inedo.com/docs/installation/windows/web/howto-use-iis-as-reverse-proxy">HOWTO: Configure IIS as a Reverse Proxy for the Integrated Web Server</a>
+<ul>
+<li>This site says to enable &quot;preserveHostHeader,&quot; which I didn't do. Maybe that would remove the need to overwrite Accept-Encoding?</li>
+</ul>
+</li>
+<li><a href="https://learn.microsoft.com/en-us/iis/extensions/url-rewrite-module/setting-http-request-headers-and-iis-server-variables">Setting HTTP request headers and IIS server variables</a>
+<ul>
+<li>Official MS documentation. It confusingly does two things: changes language mapping and overwrites HTTP headers via server variables</li>
+</ul>
+</li>
+<li><a href="https://stackoverflow.com/questions/20113296/how-to-set-the-x-forwarded-for-header-on-iis-reverse-proxy-setup">How to set the X-Forwarded-For header on IIS reverse proxy setup?</a>
+<ul>
+<li>I didn't need to do this, but nginx shows it.</li>
+</ul>
+</li>
+<li><a href="https://blog.yossarian.net/2022/02/02/Setting-up-Navidrome-with-Nginx-as-a-reverse-proxy">Setting up Navidrome with Nginx as a reverse proxy</a></li>
 </ul>
 </div>
               </div>
               
         <p id="comment">
-          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on "Path" Is Ambiguous. Here Are Clear, Consistent Variable Names. | Software Meadows">email</a>. I might even update the post!
+          Comment for me? Send an <a href="mailto:charles@tfhome.us?subject=Comment on Navidrome IIS Reverse Proxy | Software Meadows">email</a>. I might even update the post!
         </p>
         
 

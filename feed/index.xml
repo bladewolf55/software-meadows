@@ -6,6 +6,99 @@
     <link>https://www.softwaremeadows.com/feed</link>
     <link href="https://www.softwaremeadows.com/feed" rel="self" type="application/rss+xml" xmlns="http://www.w3.org/2005/Atom" />
     <item>
+      <title>Navidrome IIS Reverse Proxy</title>
+      <description>&lt;p&gt;This is a quick post, not a full How To.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;BLUF&lt;/strong&gt;
+To use IIS as your reverse proxy for Navidrome: a) enable WebSockets, and b) clear the &lt;code&gt;Accept-Encoding&lt;/code&gt; header's value&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I recently replaced my long-running (and woefully unmaintained) Subsonic self-hosted music server with &lt;a href="https://www.navidrome.org/"&gt;Navidrome&lt;/a&gt;. This was initially (relatively) painless, as Navidrome has:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A native Windows installer that also installs a Windows Service&lt;/li&gt;
+&lt;li&gt;Straightforward ability to point to my existing library&lt;/li&gt;
+&lt;li&gt;Reasonably easy to import playlists I exported from Subsonic&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There were a few barriers.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The documentation didn't seem as clear as I'd have liked on how &lt;a href="https://www.navidrome.org/docs/usage/configuration-options/"&gt;configuration options&lt;/a&gt; work. Specifically, that options can be set in the &lt;code&gt;navidrome.ini&lt;/code&gt; file OR server environment variables, and that the option names are not the same. But, in fairness, this was probably me being impatient.&lt;/li&gt;
+&lt;li&gt;Navidrome organizes songs completely based on tags. This makes sense, but initially showed lots of my albums as separate songs. It was tedious (but worthwhile) to &lt;a href="https://www.mp3tag.de/en/"&gt;tag those songs&lt;/a&gt; to include Album Artist. The &lt;a href="https://www.navidrome.org/docs/usage/tagging-guidelines/"&gt;tagging guidelines documentation&lt;/a&gt; is very useful here . . .
+&lt;ul&gt;
+&lt;li&gt;Except, that in some cases the Year tag is what would cause albums to show separately. I'm pretty sure this has more to do with a bunch of MP4 files I have. Someday I'd like to convert those to MP3 and then reget the album info.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;My previous Subsonice reverse proxy didn't work with Navidrome.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The last one is the subject of this post. I lost about eight hours on it. The reason to use a reverse proxy is because the Navidrome application (web server) doesn't support SSL. But, if using the app publically (not just within one's local network), SSL (HTTPS) is essential for security. Most of the web examples using of a reverse proxy with Navidrome use &lt;a href="https://nginx.org/en/docs/windows.html"&gt;nginx&lt;/a&gt;. I came very close to installing and using nginx, but that would have required me switching all of my other sites to use it to. Ugh.&lt;/p&gt;
+&lt;p&gt;I use Microsoft Internet Information Server (IIS) on purpose; I'm a Microsoft stack developer, and need to understand the tools. And it seemed like it &lt;em&gt;should&lt;/em&gt; work. But I kept getting an HTTP 500 error.&lt;/p&gt;
+&lt;p&gt;Finally, after looking at logs and beating my head against the keyboard (didn't help), I installed &lt;a href="https://www.telerik.com/fiddler/fiddler-classic"&gt;Fiddler Classic&lt;/a&gt; to watch the traffic. It didn't tell me more than I knew, but then I tried sending my GET request from Fiddler.&lt;/p&gt;
+&lt;p&gt;And it worked.&lt;/p&gt;
+&lt;p&gt;Fiddler Compose, by default, only uses two headers. This led to a process of elimination of the headers being sent. Fiddler made this pretty easy since I could copy the headers I sent from my browser request (examinging Fiddler Inspection) directly into the Fiddler Compose, eliminating them until it worked again. It turned out, the Navidrome app's web server doesn't accept encoding (or at least not standard encoding).&lt;/p&gt;
+&lt;p&gt;Once I knew that, I could update IIS Url Rewrite to include the server variables (not at all well documented how those relate to HTTP headers) and change their values.&lt;/p&gt;
+&lt;p&gt;Sorry, you'll need to do your own research on configuring IIS as a reverse proxy. There may be a better way than what I've done (because I'm still finding different documentation on how to do it).&lt;/p&gt;
+&lt;p&gt;Here's the &lt;code&gt;web.config&lt;/code&gt; I used. It:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Passes requests from &lt;code&gt;https://music.flattland.com&lt;/code&gt; to Navidrome&lt;/li&gt;
+&lt;li&gt;Changes the Accept-Encoding request header via a server variable&lt;/li&gt;
+&lt;li&gt;Allows (somehow) WebSockets passthrough&lt;/li&gt;
+&lt;li&gt;Rewrites outbound URL tag values if the Navidrome URL &lt;code&gt;http://localhost:4533&lt;/code&gt; is found&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;configuration&amp;gt;
+    &amp;lt;system.webServer&amp;gt;
+        &amp;lt;rewrite&amp;gt;
+            &amp;lt;rules&amp;gt;
+                &amp;lt;rule name=&amp;quot;ReverseProxyInboundRule1&amp;quot; stopProcessing=&amp;quot;true&amp;quot;&amp;gt;
+                    &amp;lt;match url=&amp;quot;(.*)&amp;quot; /&amp;gt;
+                    &amp;lt;action type=&amp;quot;Rewrite&amp;quot; url=&amp;quot;http://localhost:4533/{R:1}&amp;quot; /&amp;gt;
+                    &amp;lt;serverVariables&amp;gt;
+                        &amp;lt;set name=&amp;quot;HTTP_SEC_WEBSOCKET_EXTENSIONS&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;
+                        &amp;lt;set name=&amp;quot;HTTP_ACCEPT_ENCODING&amp;quot; value=&amp;quot;&amp;quot; /&amp;gt;
+                        &amp;lt;set name=&amp;quot;HTTP_X_ORIGINAL_ACCEPT_ENCODING&amp;quot; value=&amp;quot;{HTTP_ACCEPT_ENCODING}&amp;quot; /&amp;gt;
+                    &amp;lt;/serverVariables&amp;gt;
+                &amp;lt;/rule&amp;gt;
+            &amp;lt;/rules&amp;gt;
+            &amp;lt;outboundRules&amp;gt;
+                &amp;lt;rule name=&amp;quot;ReverseProxyOutboundRule1&amp;quot; preCondition=&amp;quot;ResponseIsHtml1&amp;quot;&amp;gt;
+                    &amp;lt;match filterByTags=&amp;quot;A, Form, Img&amp;quot; pattern=&amp;quot;^http(s)?://localhost:4533/(.*)&amp;quot; /&amp;gt;
+                    &amp;lt;action type=&amp;quot;Rewrite&amp;quot; value=&amp;quot;http{R:1}://music.flattland.com/{R:2}&amp;quot; /&amp;gt;
+                &amp;lt;/rule&amp;gt;
+                &amp;lt;preConditions&amp;gt;
+                    &amp;lt;preCondition name=&amp;quot;ResponseIsHtml1&amp;quot;&amp;gt;
+                        &amp;lt;add input=&amp;quot;{RESPONSE_CONTENT_TYPE}&amp;quot; pattern=&amp;quot;^text/html&amp;quot; /&amp;gt;
+                    &amp;lt;/preCondition&amp;gt;
+                &amp;lt;/preConditions&amp;gt;
+            &amp;lt;/outboundRules&amp;gt;
+        &amp;lt;/rewrite&amp;gt;
+        &amp;lt;urlCompression doStaticCompression=&amp;quot;true&amp;quot; /&amp;gt;
+    &amp;lt;/system.webServer&amp;gt;
+&amp;lt;/configuration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="references"&gt;References&lt;/h2&gt;
+&lt;p&gt;Some of these I didn't use, but may still be helpful, especially if you're trying to mimic nginx.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.inedo.com/docs/installation/windows/web/howto-use-iis-as-reverse-proxy"&gt;HOWTO: Configure IIS as a Reverse Proxy for the Integrated Web Server&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;This site says to enable &amp;quot;preserveHostHeader,&amp;quot; which I didn't do. Maybe that would remove the need to overwrite Accept-Encoding?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://learn.microsoft.com/en-us/iis/extensions/url-rewrite-module/setting-http-request-headers-and-iis-server-variables"&gt;Setting HTTP request headers and IIS server variables&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Official MS documentation. It confusingly does two things: changes language mapping and overwrites HTTP headers via server variables&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/20113296/how-to-set-the-x-forwarded-for-header-on-iis-reverse-proxy-setup"&gt;How to set the X-Forwarded-For header on IIS reverse proxy setup?&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;I didn't need to do this, but nginx shows it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.yossarian.net/2022/02/02/Setting-up-Navidrome-with-Nginx-as-a-reverse-proxy"&gt;Setting up Navidrome with Nginx as a reverse proxy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      <pubDate>Fri, 2 Jan 2026 09:24:48 -0700</pubDate>
+      <link>https://www.softwaremeadows.com/posts/Navidrome IIS Reverse Proxy</link>
+      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/Navidrome IIS Reverse Proxy</guid>
+    </item>
+    <item>
       <title>Flatt's Favorite Development Tools 2024</title>
       <description>&lt;p&gt;&lt;strong&gt;CONTENTS&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -1590,39 +1683,6 @@ This might be my favorite essay. Brooks discusses his entire book, where he was 
       <pubDate>Fri, 9 Sep 2022 19:20:49 -0600</pubDate>
       <link>https://www.softwaremeadows.com/posts/the_mythical_man-month__a_short_review_of_the_essential_essays</link>
       <guid isPermaLink="true">https://www.softwaremeadows.com/posts/the_mythical_man-month__a_short_review_of_the_essential_essays</guid>
-    </item>
-    <item>
-      <title>Basic Debugging and Problem Solving Questions</title>
-      <description>&lt;p&gt;&lt;img src="https://www.softwaremeadows.com/posts/basic_debugging_and_problem_solving_questions/elisa-ventur-bmJAXAz6ads-unsplash.jpg" alt="" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;sup&gt;Photo by &lt;a href="https://unsplash.com/@elisa_ventur?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Elisa Ventur&lt;/a&gt; on &lt;a href="https://unsplash.com/s/photos/problem?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"&gt;Unsplash&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;While a short post, I hope this will help others as it did me. These questions came out of an experience trying to troubleshoot a deployment issue I was called into some time ago. The problem got solved, but the approach to identifying the problem wasn't . . . ideal. Among the challenges were pressure from above and the group dynamics of a thirty-person Zoom meeting.&lt;/p&gt;
-&lt;p&gt;Afterward, I performed a personal post-mortem to identify heuristics that would help with this general class of problems, the &amp;quot;It's not working and we don't know why but it needs to be fixed right now we're watching you&amp;quot; situation.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Actually, these are good questions for any debugging/troubleshooting, not just the under-pressure variety.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Questions&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;What's the symptom?&lt;/strong&gt; Get clear on this from the start and respectfully question what you're first told. &amp;quot;The prices are all wrong!&amp;quot; &amp;quot;Would you show me exactly what a where you're seeing that?&amp;quot; &amp;quot;Sure. See? All (and only) the shirt prices are multiplied by ten on this screen.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;What changed?&lt;/strong&gt; In my situation, the exact same code was deployed to a different environment. The code worked in the other three environments. So, the problem wasn't the code. We needed to review the environment, not dive into the debugger. (It was a wrong deployment environment variable.)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;What's the dumbest thing it could be?&lt;/strong&gt; Did something get misspelled? Did you push the wrong version?&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Working backward, what controls that behavior?&lt;/strong&gt; It's so easy to assume you know what &amp;quot;must be&amp;quot; causing the symptom. Stop. Don't think &amp;quot;must be,&amp;quot; but instead &amp;quot;might be&amp;quot; and especially &amp;quot;&lt;em&gt;shouldn't&lt;/em&gt; be but let's check.&amp;quot; What class method displays that text? What service calls that class?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Other Principles&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Ask, &amp;quot;What's the real problem?&amp;quot;&lt;/strong&gt; For example, the symptom might be &amp;quot;we're getting a 404 on this page.&amp;quot; But the real problem might be, &amp;quot;Our main customer is blocked from completing a critical report.&amp;quot; Maybe the customer problem can be addressed without immediately fixing the symptom.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Don't rush.&lt;/strong&gt;  Pressure is the enemy, and often an illusion. Solving the problem fast isn't as important as solving it right. Wanting to be the hero and feeling the pressure of being the expert inevitably causes delays and failure. &lt;a href="https://www.softwaremeadows.com/posts/one_sheet_summry-_leadership_is_language/"&gt;David Marquet&lt;/a&gt; calls this &amp;quot;control the clock, don't obey the clock.&amp;quot;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Change one thing at a time.&lt;/strong&gt; This is a hard-won skill. Change one thing, and confirm other variables are &amp;quot;known good.&amp;quot; Decades ago, I called my boss for help with a non-working printer. He asked, &amp;quot;Are you using a known-good cable?&amp;quot; &amp;quot;Uh, no.&amp;quot; &amp;quot;You have to make sure the cable works!&amp;quot; He was right.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Always know what you changed.&lt;/strong&gt; If you must change multiple variables, keep track.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Fix the problem, not the blame.&lt;/strong&gt; Now isn't the time for a retrospective, or questioning why the code is written the way it is. That just derails the conversation and is evidence of a &lt;a href="https://cloud.google.com/architecture/devops/devops-culture-westrum-organizational-culture"&gt;pathological organization&lt;/a&gt;. But do have a post-mortem when heads are clear.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Of all these, &amp;quot;what's the symptom?&amp;quot;, &amp;quot;what changed?&amp;quot;, and &amp;quot;don't rush&amp;quot; will take you very far.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&amp;quot;It's important to think when things are going crazy, if you want to take the smartest action to get them sane again.&amp;quot; --Harry Dresden, &lt;em&gt;Battle Ground&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-      <pubDate>Fri, 12 Aug 2022 10:54:06 -0600</pubDate>
-      <link>https://www.softwaremeadows.com/posts/basic_debugging_and_problem_solving_questions</link>
-      <guid isPermaLink="true">https://www.softwaremeadows.com/posts/basic_debugging_and_problem_solving_questions</guid>
     </item>
   </channel>
 </rss>
